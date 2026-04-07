@@ -1,0 +1,19 @@
+Attach metadata to multiple assets at once by uploading a CSV file with the metadata.
+Each row should represent a recently uploaded asset.
+• Column names must match exactly with the sample CSV, in English
+• If a column name isn't recognized, it will be ignored
+• Apart from the Filename, all values in the CSV are optional
+• CSV file must not exceed 5000 rows or 5MB in size
+
+Columns
+Information expected
+1.Filename
+The full name of the uploaded asset, including the extension (e.g., image.jpg, video.mov)
+2.Title
+Short and simple description of your asset (max 200 characters)
+3.Keywords
+Comma-separated keywords (max 49), ordered by relevance
+4.Category
+The numeric code • for the asset category
+5.Releases
+The name(s) of the model or property releases, exactly as used when uploading them to your Adobe Stock portal. If multiple releases share the same name, the most recent one will be used.
