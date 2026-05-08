@@ -55,6 +55,7 @@ GOOGLE_CLOUD_PROJECT=your-gcp-project-id
 GOOGLE_CLOUD_LOCATION=global
 GOOGLE_AUTH_MODE=adc
 OPENROUTER_API_KEY=your_openrouter_key_here
+NIM_API_KEY=your_nim_key_here
 IMAGE_MODEL=nanobanana2
 METADATA_PROVIDER=google
 METADATA_MODEL=gemini-2.5-flash
@@ -80,6 +81,7 @@ Optional:
   Required when `GOOGLE_AUTH_MODE=api_key`
 
 If you use OpenRouter for metadata generation, the script also reads `OPENROUTER_API_KEY`.
+If you use NVIDIA NIM for metadata generation, the script also reads `NIM_API_KEY`.
 
 ## Vertex AI Authentication Setup
 
@@ -130,11 +132,13 @@ Supported image model aliases:
 Supported metadata providers:
 - `google`
 - `openrouter`
+- `nim`
 
 Supported metadata model aliases:
 - `qwenfree` -> `qwen/qwen3.6-plus:free`
 - `minimaxfree` -> `minimax/minimax-m2.5:free`
 - `nemotronsuperfree` -> `nvidia/nemotron-3-super-120b-a12b:free`
+- `kimik25` -> `moonshotai/kimi-k2.5`
 
 ## Basic Usage
 
@@ -142,6 +146,28 @@ Run from the repo root:
 
 ```bash
 python3 main.py "a studio portrait of a young woman recording a vlog at home"
+```
+
+To backfill missing background-removed files for old runs without generating new images:
+
+```bash
+python3 remove_background_only.py
+```
+
+This scans every `output/<timestamp>/` folder, looks for original files named `img-<n>.png`, and only generates the matching `img-rembg-<timestamp>-<n>.png` when it is missing.
+
+To compare exactly two metadata models against all original images in one existing run folder:
+
+```bash
+python3 compare_metadata_models.py output/20260407-153000 \
+  --model-a google:gemini-2.5-flash \
+  --model-b openrouter:qwen/qwen3.6-plus:free
+```
+
+This does not generate new images. It reads `prompt.txt`, runs metadata on each `img-<n>.png`, and writes side-by-side outputs under:
+
+```text
+output/<run>/comparisons/<timestamp>/
 ```
 
 ## CLI Options
@@ -165,8 +191,9 @@ python3 main.py "your prompt here" \
   If omitted, the script uses `IMAGE_MODEL` from `.env`, or `gemini-3-pro-image-preview` by default.
   You can also use aliases: `nanobanana2`, `nanobananapro`
 - `--metadata-provider`: metadata provider, either `google` or `openrouter`
+  or `nim`
 - `--metadata-model`: metadata model
-  You can also use aliases: `qwenfree`, `minimaxfree`, `nemotronsuperfree`
+  You can also use aliases: `qwenfree`, `minimaxfree`, `nemotronsuperfree`, `kimik25`
 - `--temperature`: sampling temperature for both model calls
 - `--top-p`: top-p sampling value for both model calls
 - `--count`: number of images to generate sequentially
@@ -177,8 +204,8 @@ python3 main.py "your prompt here" \
 
 ```bash
 python3 main.py "cute bakery themed sticker sheet on pure blue background" \
-  --metadata-provider openrouter \
-  --metadata-model qwenfree \
+  --metadata-provider nim \
+  --metadata-model kimik25 \
   --count 2 \
   --aspect-ratio 1:1 \
   --resolution 1K \
