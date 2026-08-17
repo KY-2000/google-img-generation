@@ -1033,6 +1033,8 @@ def run(
     aspect_ratio: str,
     resolution: str,
     metadata_provider: str = DEFAULT_METADATA_PROVIDER,
+    run_dir: Path | None = None,
+    remove_background: bool = True,
 ) -> Path:
     run_started_at = time.perf_counter()
     google_auth_mode = get_google_auth_mode(project_root)
@@ -1060,7 +1062,8 @@ def run(
     metadata_system_prompt = load_text_asset(project_root, METADATA_PROMPT_PATH)
     category_list = load_text_asset(project_root, CATEGORY_LIST_PATH)
 
-    run_dir = create_run_output_dir(project_root)
+    run_dir = run_dir or create_run_output_dir(project_root)
+    run_dir.mkdir(parents=True, exist_ok=True)
     save_prompt(run_dir, prompt)
     run_timestamp = run_dir.name
     save_run_config(
@@ -1074,6 +1077,8 @@ def run(
             "count": count,
             "aspect_ratio": aspect_ratio,
             "resolution": resolution,
+            "remove_background": remove_background,
+            "remove_background": remove_background,
         },
     )
     logger = RunLogger(
@@ -1117,13 +1122,22 @@ def run(
                     step_name="image_generation",
                 )
                 save_png_from_bytes(image_bytes, original_image_path)
-                run_step_with_timing(
-                    lambda: remove_background_ffmpeg(original_image_path, rembg_image_path),
-                    logger=logger,
-                    session_data=session_data,
-                    session_index=index,
-                    step_name="background_removal",
-                )
+                metadata_image_filename = original_image_path.name
+                if remove_background:
+                    run_step_with_timing(
+                        lambda: remove_background_ffmpeg(original_image_path, rembg_image_path),
+                        logger=logger,
+                        session_data=session_data,
+                        session_index=index,
+                        step_name="background_removal",
+                    )
+                    metadata_image_filename = rembg_image_path.name
+                else:
+                    logger.log_event(
+                        "Background removal skipped",
+                        session_index=index,
+                        step="background_removal",
+                    )
                 metadata_text = run_step_with_retries(
                     lambda: generate_metadata_text(
                         client=metadata_client,
@@ -1143,7 +1157,7 @@ def run(
                 )
                 metadata_rows.append(
                     {
-                        "image_filename": rembg_image_path.name,
+                        "image_filename": metadata_image_filename,
                         "response_text": metadata_text,
                     }
                 )
