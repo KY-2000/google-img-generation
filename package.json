@@ -1,0 +1,14 @@
+{
+  "name": "google-img-generation",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "xhs-download": "node tools/xhs_download_playwright.mjs",
+    "xhs-download:dry-run": "node tools/xhs_download_playwright.mjs --dry-run",
+    "adobe-upload": "node tools/adobe_upload_playwright.mjs",
+    "adobe-upload:dry-run": "node tools/adobe_upload_playwright.mjs --dry-run"
+  },
+  "devDependencies": {
+    "playwright": "^1.54.0"
+  }
+}

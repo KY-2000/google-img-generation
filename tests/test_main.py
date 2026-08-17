@@ -58,13 +58,13 @@ class EnvLoadingTests(unittest.TestCase):
             project_root = Path(tmpdir)
             env_path = project_root / ".env"
             env_path.write_text(
-                "GOOGLE_API_KEY=test-google-key\n",
+                "VERTEX_API_KEY=test-vertex-key\n",
                 encoding="utf-8",
             )
 
             api_key = main.get_google_api_key(project_root)
 
-            self.assertEqual(api_key, "test-google-key")
+            self.assertEqual(api_key, "test-vertex-key")
 
     def test_get_default_image_model_reads_image_model_from_env_file(self):
         with tempfile.TemporaryDirectory() as tmpdir:
@@ -778,6 +778,74 @@ class RunFlowTests(unittest.TestCase):
             rows = mock_save_metadata_outputs.call_args.kwargs["rows"]
             self.assertEqual(rows[0]["image_filename"], "img-rembg-20260403-120000-1.png")
             self.assertEqual(rows[1]["image_filename"], "img-rembg-20260403-120000-2.png")
+        finally:
+            shutil.rmtree(run_dir, ignore_errors=True)
+
+    @mock.patch("main.save_metadata_outputs")
+    @mock.patch("main.generate_metadata_text")
+    @mock.patch("main.remove_background_ffmpeg")
+    @mock.patch("main.save_png_from_bytes")
+    @mock.patch("main.generate_image_bytes")
+    @mock.patch("main.save_run_config")
+    @mock.patch("main.save_prompt")
+    @mock.patch("main.create_run_output_dir")
+    @mock.patch("main.load_text_asset")
+    @mock.patch("main.build_google_client")
+    @mock.patch("main.get_google_auth_mode")
+    @mock.patch("main.get_vertex_ai_config")
+    def test_run_can_skip_background_removal_and_use_original_image_filenames(
+        self,
+        mock_get_vertex_config,
+        mock_get_google_auth_mode,
+        mock_build_google_client,
+        mock_load_text_asset,
+        mock_create_run_output_dir,
+        mock_save_prompt,
+        mock_save_run_config,
+        mock_generate_image_bytes,
+        mock_save_png_from_bytes,
+        mock_remove_background_ffmpeg,
+        mock_generate_metadata_text,
+        mock_save_metadata_outputs,
+    ):
+        project_root = Path.cwd()
+        run_dir = project_root / "output" / "20260403-no-rembg"
+        shutil.rmtree(run_dir, ignore_errors=True)
+        run_dir.mkdir(parents=True)
+        mock_create_run_output_dir.return_value = run_dir
+        mock_get_google_auth_mode.return_value = "adc"
+        mock_get_vertex_config.return_value = {
+            "project": "test-project",
+            "location": "global",
+        }
+        mock_load_text_asset.side_effect = ["system prompt", "1. Animals\n7. Food"]
+        mock_generate_image_bytes.return_value = b"fake-image"
+        mock_generate_metadata_text.return_value = (
+            "Title: Example\n"
+            "Keywords: one, two\n"
+            "Category Code: 7\n"
+            "Category Name: Food"
+        )
+
+        try:
+            main.run(
+                prompt="example prompt",
+                model="gemini-3-pro-image-preview",
+                metadata_model="gemini-2.5-flash",
+                project_root=project_root,
+                temperature=0.7,
+                top_p=0.85,
+                count=2,
+                aspect_ratio="16:9",
+                resolution="2K",
+                remove_background=False,
+            )
+
+            mock_remove_background_ffmpeg.assert_not_called()
+            mock_save_metadata_outputs.assert_called_once()
+            rows = mock_save_metadata_outputs.call_args.kwargs["rows"]
+            self.assertEqual(rows[0]["image_filename"], "img-1.png")
+            self.assertEqual(rows[1]["image_filename"], "img-2.png")
         finally:
             shutil.rmtree(run_dir, ignore_errors=True)
 
