@@ -1,0 +1,22 @@
+{
+  "run_id": "TF_2026W34",
+  "topic_finder_version": "TF_V1",
+  "generated_at": "2026-08-24T09:00:00+08:00",
+  "assets": [
+    {
+      "asset_id": "AST000001",
+      "domain": "Cybersecurity",
+      "theme": "Phishing Awareness",
+      "source_type": "EVERGREEN",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "icon_1": "Suspicious sender",
+      "icon_2": "Malicious attachment",
+      "icon_3": "Fake login page",
+      "icon_4": "Report phishing",
+      "palette": "blue teal",
+      "status": "APPROVED",
+      "topic_finder_version": "TF_V1"
+    }
+  ]
+}

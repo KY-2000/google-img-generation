@@ -176,6 +176,79 @@ Run from the repo root:
 python3 main.py "a studio portrait of a young woman recording a vlog at home"
 ```
 
+## Stock Icon Pipeline V1
+
+`run_stock_pipeline.py` is the production entry point for square Adobe Stock icon sheets. Each queue asset produces exactly one 2K, 1:1 image whose deterministic prompt requests four icon groups in a 2x2 layout. The generated white-background image is preserved as `original.png`; this workflow never runs the legacy ffmpeg background-removal step.
+
+ChatGPT Work is responsible for weekly topic discovery, monthly portfolio review, and quarterly scoring calibration. The local repository owns queue validation, prompt construction, generation, QC, metadata, persistent state, staging, upload drafts, retry/resume behavior, and logs. Individual final images do not need to pass through ChatGPT Work.
+
+Copy the shape in `queues/incoming/topic_queue.example.json` into a dated queue such as:
+
+```text
+queues/incoming/topic_queue_2026W34.json
+```
+
+The formal contracts are:
+
+- `schemas/topic_queue.schema.json`
+- `schemas/metadata.schema.json`
+- `config/prompts/image_prompt_v1.txt` (`IMG_V1`)
+- `config/prompts/metadata_v2.txt` (`META_V2`)
+- `config/stock_icon_pipeline.json`
+
+Run a no-network contract and prompt-build check first:
+
+```bash
+python run_stock_pipeline.py \
+  --queue queues/incoming/topic_queue_2026W34.json \
+  --dry-run
+```
+
+Run the local pipeline and prepare a validated Adobe batch:
+
+```bash
+python run_stock_pipeline.py \
+  --queue queues/incoming/topic_queue_2026W34.json \
+  --resume \
+  --max-workers 1
+```
+
+Useful controls include `--image-model`, `--metadata-provider`, `--metadata-model`, `--skip-image-generation`, `--skip-metadata`, `--skip-staging`, `--force-image`, and `--force-metadata`. `--resume` uses the SQLite status and stable `asset_id` to skip finished work. V1 serializes registry writes and conservatively caps processing at one worker even when a larger `--max-workers` value is supplied. Uploaded batches are frozen; use `--batch-id BATCH_<name>_2` when staging late assets instead of reusing an uploaded batch.
+
+Persistent state is stored in `data/stock_pipeline.sqlite`. Per-asset artifacts are stored under:
+
+```text
+output/assets/AST000001/
+  manifest.json
+  generation_prompt.txt
+  original.png
+  metadata.json
+  metadata_raw.txt
+  qc.json
+  run_log.json
+  run_log.txt
+```
+
+Only `READY_TO_STAGE` assets enter `output/adobe_batches/BATCH_*/`. The CSV is built deterministically from validated metadata JSON and checked against copied images. To upload and save a human-reviewable Adobe draft:
+
+```bash
+python run_stock_pipeline.py \
+  --queue queues/incoming/topic_queue_2026W34.json \
+  --resume \
+  --upload-draft \
+  --cdp http://127.0.0.1:9222
+```
+
+The uploader uses file type `illustrations`, marks generative AI, clicks Save Work, and intentionally never clicks Adobe's final Submit button.
+
+Future performance snapshots can be imported without scraping Adobe:
+
+```bash
+python tools/import_adobe_performance.py performance.csv
+```
+
+Expected columns are `asset_id,status,accepted_at,downloads,revenue,snapshot_date`. Work handoff folders live under `work_io/topic_finder/incoming`, `work_io/monthly_review/outgoing`, and `work_io/quarterly_calibration/outgoing`; only Topic Finder input is consumed in V1.
+
 ## XHS Wallpaper Workflow
 
 Use `xhs_wallpaper_workflow.py` when you have a folder from:

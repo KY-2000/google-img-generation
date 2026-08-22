@@ -1,0 +1,35 @@
+Create ONE square commercial stock icon-set image containing EXACTLY FOUR separate icon groups in a precise 2x2 grid on a pure white background.
+
+THEME:
+{{THEME}}
+
+TOP LEFT:
+{{ICON_1}}
+
+TOP RIGHT:
+{{ICON_2}}
+
+BOTTOM LEFT:
+{{ICON_3}}
+
+BOTTOM RIGHT:
+{{ICON_4}}
+
+DESIGN SYSTEM:
+{{STYLE}}
+
+Use front-facing construction, identical outline width, shared rounded geometry, equal visual density, equal canvas occupancy, equal margins, generous whitespace, and a limited cohesive {{PALETTE}} palette.
+
+SEMANTIC CLARITY:
+- each quadrant represents one recognizable concept
+- use the minimum necessary shapes
+- do not reuse the same defining symbol
+
+COMMERCIAL INTENT:
+- Adobe Stock, presentations, UI, training, marketing, and thumbnail readability
+
+STRICT CONSTRAINTS:
+- exactly four icon groups; no fifth icon, extra object, or duplicate icon
+- no text, title, labels, letters, numbers, code, logo, brand, trademark, or watermark
+- no fake UI, background scene, human figure, decorative filler, 3D, gradients, or floating badges
+- no arrows or connectors unless semantically essential

@@ -1,0 +1,21 @@
+{
+  "image_prompt_version": "IMG_V1",
+  "metadata_prompt_version": "META_V2",
+  "image": {
+    "aspect_ratio": "1:1",
+    "resolution": "2K",
+    "minimum_resolution": 2048
+  },
+  "metadata": {
+    "min_expected_keywords": 15,
+    "recommended_max_keywords": 35,
+    "hard_max_keywords": 49,
+    "max_title_chars": 70
+  },
+  "adobe": {
+    "max_filename_chars": 30,
+    "file_type": "illustrations",
+    "mark_generative_ai": true,
+    "auto_submit": false
+  }
+}

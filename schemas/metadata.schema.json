@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "metadata.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["asset_id", "title", "keywords", "category_code", "category_name", "keyword_count", "metadata_prompt_version", "qc"],
+  "properties": {
+    "asset_id": {"type": "string", "pattern": "^AST[0-9]{6}$"},
+    "title": {"type": "string", "minLength": 1, "maxLength": 70},
+    "keywords": {"type": "array", "maxItems": 49, "items": {"type": "string", "minLength": 1}},
+    "category_code": {"type": "integer", "minimum": 1, "maximum": 21},
+    "category_name": {"type": "string", "minLength": 1},
+    "keyword_count": {"type": "integer", "minimum": 0, "maximum": 49},
+    "metadata_prompt_version": {"const": "META_V2"},
+    "qc": {
+      "type": "object", "additionalProperties": false,
+      "required": ["image_grounded", "top10_defensible", "contains_speculation", "contains_redundancy", "commercial_ready"],
+      "properties": {
+        "image_grounded": {"type": "boolean"}, "top10_defensible": {"type": "boolean"},
+        "contains_speculation": {"type": "boolean"}, "contains_redundancy": {"type": "boolean"},
+        "commercial_ready": {"type": "boolean"}
+      }
+    }
+  }
+}

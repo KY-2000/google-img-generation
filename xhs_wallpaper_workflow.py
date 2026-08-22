@@ -4,7 +4,7 @@ import json
 import shutil
 import urllib.request
 from datetime import datetime
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 from typing import Any
 
 from main import (
@@ -114,6 +114,9 @@ def list_xhs_input_images(target_dir: Path) -> list[Path]:
 
 
 def get_target_output_name(target_dir: Path) -> str:
+    raw_path = str(target_dir)
+    if "\\" in raw_path:
+        return PureWindowsPath(raw_path).name
     return target_dir.name
 
 

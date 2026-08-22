@@ -5,3 +5,10 @@ output/
 node_modules/
 final_runs/
 .pw-edge-adobe-profile/
+data/*.sqlite
+data/*.sqlite-shm
+data/*.sqlite-wal
+queues/incoming/*.json
+!queues/incoming/*.example.json
+work_io/**/*.json
+work_io/**/*.csv
