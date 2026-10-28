@@ -188,6 +188,52 @@ Copy the shape in `queues/incoming/topic_queue.example.json` into a dated queue 
 queues/incoming/topic_queue_2026W34.json
 ```
 
+ChatGPT Work Finder exports are deliberately a different contract. Convert the top-level candidate array first; do not pass it to `--queue`:
+
+```powershell
+python tools/convert_candidates_to_queue.py `
+  --input queues/finder/incoming/finder_candidates.regional_commercial.example.json `
+  --output queues/production/topic_queue_regional_commercial_20260828.json
+
+python run_stock_pipeline.py `
+  --queue queues/production/topic_queue_regional_commercial_20260828.json `
+  --resume
+```
+
+Or perform conversion and production in one command:
+
+```powershell
+python run_stock_pipeline.py `
+  --candidates queues/finder/incoming/finder_candidates.regional_commercial.example.json `
+  --resume
+```
+
+`--candidates` and `--queue` are mutually exclusive. Candidate input is still validated and persisted as a generated production queue; `--queue` remains strict and never accepts Finder arrays.
+
+### Adobe rejected assets to Dreamstime
+
+Use the rejected-assets workflow to scan Adobe submissions from the last 14 days, match `ASTxxxxxx.png` to `output/assets/<asset_id>/original.png` and `metadata.json`, and generate a populated legacy Dreamstime XLS:
+
+```powershell
+python tools/process_adobe_rejections_to_dreamstime.py --cdp http://127.0.0.1:9222
+```
+
+Prepare the corresponding Dreamstime upload and forms without clicking the final submission button:
+
+```powershell
+python tools/process_adobe_rejections_to_dreamstime.py --cdp http://127.0.0.1:9222 --prepare-dreamstime
+```
+
+Final commercial submission is deliberately explicit:
+
+```powershell
+python tools/process_adobe_rejections_to_dreamstime.py --cdp http://127.0.0.1:9222 --submit-commercial
+```
+
+Use `--days 14` or `--since 2026-08-21T00:00:00+08:00` to control the inclusive cutoff. `--scan-json <prior-scan.json>` skips Adobe browsing for a resume. Artifacts are stored below `output/dreamstime_rejections/<timestamp>/`: Adobe scan JSON, matched manifest, spreadsheet rows, preserved-template XLS, browser screenshots, and per-image status in the manifest. The scanner follows every Adobe rejection-results page and filters only after inspecting the records. Dreamstime fields are Commercial RF, AI Contributor enabled, auto categories retained, local metadata keywords entered individually, W-EL/P-EL/SR-EL enabled, custom web price 2, and both RF-LL fallback and exclusivity disabled. Every required field and selected filename is checked; the run stops instead of silently continuing if Dreamstime's page structure no longer matches.
+
+The conversion preserves Finder research fields and candidate-to-asset lineage in `data/stock_pipeline.sqlite`, allocates stable local AST IDs, and emits only the existing strict production fields. By default all valid candidates are converted; use `--min-score`, `--include-risk`, or `--strategy` only when an explicit experiment filter is wanted. See `docs/STOCK_ICON_PIPELINE_V1.md` for the complete contract boundary.
+
 The formal contracts are:
 
 - `schemas/topic_queue.schema.json`

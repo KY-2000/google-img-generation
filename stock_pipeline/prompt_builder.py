@@ -9,6 +9,10 @@ PLACEHOLDER = re.compile(r"{{([A-Z0-9_]+)}}")
 
 
 def render_image_prompt(template: str, asset: dict[str, object], style: str = DEFAULT_STYLE) -> str:
+    if asset.get("asset_type") == "commercial_background":
+        prompt = str(asset["prompt"])
+        negative = str(asset.get("negative_prompt", ""))
+        return prompt + ("\n\nNegative prompt:\n" + negative if negative else "")
     values = {
         "THEME": asset.get("theme"),
         "ICON_1": asset.get("icon_1"),

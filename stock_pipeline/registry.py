@@ -16,8 +16,8 @@ TRANSITIONS = {
     "QUEUED": {"PROMPT_READY", "FAILED"},
     "PROMPT_READY": {"IMAGE_GENERATING", "IMAGE_READY", "FAILED"},
     "IMAGE_GENERATING": {"IMAGE_READY", "IMAGE_QC_FAILED", "FAILED"},
-    "IMAGE_READY": {"METADATA_PENDING", "FAILED"},
-    "IMAGE_QC_FAILED": {"IMAGE_GENERATING", "FAILED"},
+    "IMAGE_READY": {"METADATA_PENDING", "IMAGE_QC_FAILED", "FAILED"},
+    "IMAGE_QC_FAILED": {"IMAGE_READY", "IMAGE_GENERATING", "FAILED"},
     "METADATA_PENDING": {"METADATA_READY", "METADATA_QC_FAILED", "FAILED"},
     "METADATA_READY": {"READY_TO_STAGE", "METADATA_PENDING", "FAILED"},
     "METADATA_QC_FAILED": {"METADATA_PENDING", "FAILED"},
@@ -25,7 +25,7 @@ TRANSITIONS = {
     "STAGED": {"READY_TO_UPLOAD", "FAILED"},
     "READY_TO_UPLOAD": {"UPLOADED_DRAFT", "FAILED"},
     "UPLOADED_DRAFT": set(),
-    "FAILED": {"PROMPT_READY", "IMAGE_GENERATING", "METADATA_PENDING"},
+    "FAILED": {"PROMPT_READY", "IMAGE_GENERATING", "IMAGE_READY", "METADATA_PENDING"},
 }
 
 
@@ -66,9 +66,26 @@ class Registry:
                 singleton INTEGER PRIMARY KEY CHECK(singleton = 1), next_number INTEGER NOT NULL
             );
             INSERT OR IGNORE INTO id_allocator(singleton, next_number) VALUES(1, 1);
+            CREATE TABLE IF NOT EXISTS candidate_topics (
+                strategy TEXT NOT NULL, candidate_id TEXT NOT NULL, domain TEXT NOT NULL,
+                theme TEXT NOT NULL, source_type TEXT NOT NULL, topic_score REAL NOT NULL,
+                buyer_use_case TEXT NOT NULL, differentiation_reason TEXT NOT NULL,
+                similarity_risk TEXT NOT NULL, region TEXT, industry TEXT, target_role TEXT,
+                problem_type TEXT, icon_1 TEXT NOT NULL, icon_2 TEXT NOT NULL,
+                icon_3 TEXT NOT NULL, icon_4 TEXT NOT NULL, palette TEXT NOT NULL,
+                finder_run_id TEXT NOT NULL, source_filename TEXT NOT NULL, imported_at TEXT NOT NULL,
+                production_asset_id TEXT UNIQUE, production_status TEXT NOT NULL DEFAULT 'IMPORTED',
+                PRIMARY KEY (strategy, candidate_id)
+            );
             """
         )
         self.connection.commit()
+
+        # Additive migration: old icon rows keep their original behavior.
+        columns = {row[1] for row in self.connection.execute("PRAGMA table_info(assets)")}
+        if "asset_config_json" not in columns:
+            self.connection.execute("ALTER TABLE assets ADD COLUMN asset_config_json TEXT NOT NULL DEFAULT '{}'")
+            self.connection.commit()
 
     def close(self) -> None:
         self.connection.close()
@@ -80,14 +97,64 @@ class Registry:
         self.close()
 
     def allocate_asset_id(self) -> str:
+        with self.connection:
+            self.connection.execute("BEGIN IMMEDIATE")
+            return self._allocate_asset_id_locked()
+
+    def _allocate_asset_id_locked(self) -> str:
         maximum = self.connection.execute(
             "SELECT MAX(CAST(SUBSTR(asset_id, 4) AS INTEGER)) FROM assets"
         ).fetchone()[0] or 0
         row = self.connection.execute("SELECT next_number FROM id_allocator WHERE singleton=1").fetchone()
         number = max(maximum + 1, row[0])
         self.connection.execute("UPDATE id_allocator SET next_number=? WHERE singleton=1", (number + 1,))
-        self.connection.commit()
         return f"AST{number:06d}"
+
+    def import_candidate(self, candidate: dict[str, Any], *, finder_run_id: str, source_filename: str) -> None:
+        from .candidate_import import validate_finder_candidates
+        item = validate_finder_candidates([candidate])[0]
+        columns = (
+            "strategy", "candidate_id", "domain", "theme", "source_type", "topic_score",
+            "buyer_use_case", "differentiation_reason", "similarity_risk", "region", "industry",
+            "target_role", "problem_type", "icon_1", "icon_2", "icon_3", "icon_4", "palette",
+        )
+        values = [item.get(column) for column in columns]
+        updates = ", ".join(f"{column}=excluded.{column}" for column in columns[2:])
+        with self.connection:
+            self.connection.execute(
+                f"""INSERT INTO candidate_topics ({', '.join(columns)}, finder_run_id, source_filename, imported_at)
+                VALUES ({', '.join('?' for _ in columns)}, ?, ?, ?)
+                ON CONFLICT(strategy, candidate_id) DO UPDATE SET {updates},
+                finder_run_id=excluded.finder_run_id, source_filename=excluded.source_filename,
+                imported_at=excluded.imported_at""",
+                (*values, finder_run_id, source_filename, now_iso()),
+            )
+
+    def get_candidate(self, strategy: str, candidate_id: str) -> dict[str, Any] | None:
+        row = self.connection.execute(
+            "SELECT * FROM candidate_topics WHERE strategy=? AND candidate_id=?",
+            (strategy, candidate_id),
+        ).fetchone()
+        return dict(row) if row else None
+
+    def allocate_candidate_asset_id(self, strategy: str, candidate_id: str) -> str:
+        with self.connection:
+            self.connection.execute("BEGIN IMMEDIATE")
+            row = self.connection.execute(
+                "SELECT production_asset_id FROM candidate_topics WHERE strategy=? AND candidate_id=?",
+                (strategy, candidate_id),
+            ).fetchone()
+            if row is None:
+                raise KeyError(f"unknown candidate: {strategy}/{candidate_id}")
+            if row[0]:
+                return str(row[0])
+            asset_id = self._allocate_asset_id_locked()
+            self.connection.execute(
+                """UPDATE candidate_topics SET production_asset_id=?, production_status='CONVERTED'
+                WHERE strategy=? AND candidate_id=?""",
+                (asset_id, strategy, candidate_id),
+            )
+            return asset_id
 
     def register_queue(self, queue: dict[str, Any]) -> None:
         from .contracts import validate_topic_queue
@@ -100,34 +167,41 @@ class Registry:
         for item in queue["assets"]:
             existing = self.get_asset(item["asset_id"])
             incoming = {**item, "run_id": queue["run_id"]}
+            for field in ("icon_1", "icon_2", "icon_3", "icon_4"):
+                incoming.setdefault(field, "")
+            config = {key: item[key] for key in ("asset_type", "prompt", "negative_prompt", "aspect_ratio", "resolution", "remove_background", "research") if key in item}
+            # Explicit icon_set is equivalent to the legacy omitted default.
+            if config.get("asset_type") == "icon_set":
+                config.pop("asset_type")
             if existing:
-                if any(existing[field] != incoming[field] for field in identity_fields):
+                if (any(existing[field] != incoming[field] for field in identity_fields)
+                        or json.loads(existing["asset_config_json"]) != config):
                     raise ValueError(f"asset_id {item['asset_id']} conflicts with existing identity")
                 continue
-            pending.append(item)
+            pending.append({**incoming, "asset_config_json": json.dumps(config, sort_keys=True)})
         with self.connection:
             for item in pending:
                 self.connection.execute(
                     """INSERT INTO assets (
                         asset_id, run_id, domain, theme, source_type, topic_score, topic_bucket,
-                        status, topic_finder_version, icon_1, icon_2, icon_3, icon_4, palette, created_at
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, 'QUEUED', ?, ?, ?, ?, ?, ?, ?)""",
+                        status, topic_finder_version, icon_1, icon_2, icon_3, icon_4, palette, created_at, asset_config_json
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, 'QUEUED', ?, ?, ?, ?, ?, ?, ?, ?)""",
                     (item["asset_id"], queue["run_id"], item["domain"], item["theme"],
                      item["source_type"], item["topic_score"], item["topic_bucket"],
                      item["topic_finder_version"], item["icon_1"], item["icon_2"],
-                     item["icon_3"], item["icon_4"], item["palette"], now_iso()),
+                     item["icon_3"], item["icon_4"], item["palette"], now_iso(), item["asset_config_json"]),
                 )
 
     def get_asset(self, asset_id: str) -> dict[str, Any] | None:
         row = self.connection.execute("SELECT * FROM assets WHERE asset_id=?", (asset_id,)).fetchone()
-        return dict(row) if row else None
+        return {**dict(row), **json.loads(row["asset_config_json"])} if row else None
 
     def list_assets(self, status: str | None = None) -> list[dict[str, Any]]:
         if status:
             rows = self.connection.execute("SELECT * FROM assets WHERE status=? ORDER BY asset_id", (status,))
         else:
             rows = self.connection.execute("SELECT * FROM assets ORDER BY asset_id")
-        return [dict(row) for row in rows]
+        return [{**dict(row), **json.loads(row["asset_config_json"])} for row in rows]
 
     def transition(self, asset_id: str, new_status: str, *, error: str | None = None) -> None:
         asset = self.get_asset(asset_id)

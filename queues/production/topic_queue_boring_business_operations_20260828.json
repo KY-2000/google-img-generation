@@ -1,0 +1,82 @@
+{
+  "run_id": "TF_BORING_BUSINESS_OPERATIONS_20260828",
+  "topic_finder_version": "TF_V1_1",
+  "generated_at": "2026-08-31T04:16:55.493918+00:00",
+  "assets": [
+    {
+      "asset_id": "AST990009",
+      "domain": "Procurement Operations",
+      "theme": "Purchase Order Exception Resolution",
+      "source_type": "EVERGREEN",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "icon_1": "Purchase order with quantity mismatch alert",
+      "icon_2": "Goods receipt compared with order lines",
+      "icon_3": "Buyer requesting vendor correction",
+      "icon_4": "Corrected purchase order approved for payment",
+      "palette": "Navy, slate blue, amber, soft mint, off-white",
+      "status": "APPROVED",
+      "topic_finder_version": "TF_V1_1"
+    },
+    {
+      "asset_id": "AST990010",
+      "domain": "Records Management",
+      "theme": "Business Document Retention Lifecycle",
+      "source_type": "EVERGREEN",
+      "topic_score": 87,
+      "topic_bucket": "APPROVED",
+      "icon_1": "Document labeled with retention category",
+      "icon_2": "Calendar assigning retention period",
+      "icon_3": "Locked archive with access log",
+      "icon_4": "Approved secure disposal certificate",
+      "palette": "Deep teal, warm gray, muted gold, coral accent, cream",
+      "status": "APPROVED",
+      "topic_finder_version": "TF_V1_1"
+    },
+    {
+      "asset_id": "AST990011",
+      "domain": "IT Administration",
+      "theme": "Employee IT Asset Handover",
+      "source_type": "EVERGREEN",
+      "topic_score": 89,
+      "topic_bucket": "APPROVED",
+      "icon_1": "Laptop and accessories checked against asset list",
+      "icon_2": "Employee handing device to IT custodian",
+      "icon_3": "Device data wipe and account removal",
+      "icon_4": "Asset condition recorded and storage bin assigned",
+      "palette": "Charcoal, cobalt, cyan, lime accent, pale gray",
+      "status": "APPROVED",
+      "topic_finder_version": "TF_V1_1"
+    },
+    {
+      "asset_id": "AST990012",
+      "domain": "Facilities Administration",
+      "theme": "Workplace Maintenance Request Triage",
+      "source_type": "EVERGREEN",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "icon_1": "Employee submitting fault photo and location",
+      "icon_2": "Facilities desk assigning urgency level",
+      "icon_3": "Work order routed to maintenance technician",
+      "icon_4": "Repair completion confirmed by requester",
+      "palette": "Petrol blue, safety orange, sage, graphite, white",
+      "status": "APPROVED",
+      "topic_finder_version": "TF_V1_1"
+    },
+    {
+      "asset_id": "AST990013",
+      "domain": "Contract Administration",
+      "theme": "Supplier Contract Renewal Control",
+      "source_type": "EVERGREEN",
+      "topic_score": 88,
+      "topic_bucket": "APPROVED",
+      "icon_1": "Contract expiry alert assigned to owner",
+      "icon_2": "Supplier performance scorecard review",
+      "icon_3": "Renewal terms and budget comparison",
+      "icon_4": "Renew, renegotiate, or terminate decision recorded",
+      "palette": "Ink blue, mauve, ochre, eucalyptus, ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "TF_V1_1"
+    }
+  ]
+}

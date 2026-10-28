@@ -11,7 +11,7 @@ from .image_generator import generate_original_image
 from .image_qc import inspect_image
 from .logging import AssetLogger
 from .metadata_generator import generate_metadata_for_asset, parse_metadata_json
-from .metadata_validator import parse_categories, validate_metadata
+from .metadata_validator import enrich_metadata, parse_categories, validate_metadata
 from .pipeline import process_batch
 from .prompt_builder import render_image_prompt_file
 from .registry import Registry, now_iso
@@ -29,6 +29,8 @@ class StockPipeline:
         minimum_resolution: int | None = None,
         temperature: float = 1.0, top_p: float = 0.95,
         max_attempts: int = 4, retry_initial_wait: float = 1.0,
+        progress: Callable[[str], None] | None = None,
+        usage_recorder: Callable[..., Any] | None = None,
         config: dict[str, Any] | None = None,
     ):
         self.project_root = project_root
@@ -46,15 +48,42 @@ class StockPipeline:
         self.aspect_ratio = str(image_config.get("aspect_ratio", "1:1"))
         self.resolution = str(image_config.get("resolution", "2K"))
         self.max_title_chars = int(metadata_config.get("max_title_chars", 70))
+        self.min_expected_keywords = int(metadata_config.get("min_expected_keywords", 35))
         self.hard_max_keywords = int(metadata_config.get("hard_max_keywords", 49))
         self.max_filename_chars = int(adobe_config.get("max_filename_chars", 30))
         self.temperature = temperature
         self.top_p = top_p
         self.max_attempts = max_attempts
         self.retry_initial_wait = retry_initial_wait
+        self.progress = progress
+        self.usage_recorder = usage_recorder
         self._image_client: Any = None
         self._metadata_client: Any = None
         self.source_root = Path(__file__).resolve().parents[1]
+
+    def _emit_progress(self, asset_id: str, message: str) -> None:
+        if self.progress is not None:
+            self.progress(f"[{asset_id}] {message}")
+
+    def _record_usage(
+        self,
+        *,
+        asset_id: str,
+        operation: str,
+        provider: str,
+        model: str,
+        usage: dict[str, int | float],
+        resolution: str | None = None,
+    ) -> None:
+        if self.usage_recorder is not None:
+            self.usage_recorder(
+                asset_id=asset_id,
+                operation=operation,
+                provider=provider,
+                model=model,
+                usage=usage,
+                resolution=resolution,
+            )
 
     def _with_retries(self, operation: Callable[[], Any], logger: AssetLogger, step: str) -> Any:
         import main as legacy
@@ -68,6 +97,10 @@ class StockPipeline:
                 logger.event(
                     f"{step}_attempt_failed", attempt=attempt, error=str(exc),
                     retry_wait_seconds=wait_seconds if retry else None,
+                )
+                self._emit_progress(
+                    logger.asset_dir.name,
+                    f"{step.replace('_', ' ')} attempt {attempt} failed: {exc}",
                 )
                 if not retry:
                     raise
@@ -121,6 +154,8 @@ class StockPipeline:
             "image_model", "metadata_model", "status",
         )
         manifest = {field: asset[field] for field in fields}
+        if asset.get("asset_type") == "commercial_background":
+            manifest.update(json.loads(asset["asset_config_json"]))
         (self._asset_dir(asset_id) / "manifest.json").write_text(
             json.dumps(manifest, indent=2, sort_keys=True) + "\n", encoding="utf-8"
         )
@@ -139,6 +174,10 @@ class StockPipeline:
         asset_dir.mkdir(parents=True, exist_ok=True)
         logger = AssetLogger(asset_dir)
         current = self.registry.get_asset(asset_id)
+        background = current.get("asset_type") == "commercial_background"
+        aspect_ratio = current["aspect_ratio"] if background else self.aspect_ratio
+        resolution = current["resolution"] if background else self.resolution
+        self._emit_progress(asset_id, f"processing status={current['status']}")
         if force_image and current["generation_prompt"]:
             self.registry.reset_for_image(asset_id)
             current = self.registry.get_asset(asset_id)
@@ -149,9 +188,14 @@ class StockPipeline:
 
         if current["status"] == "FAILED":
             if current["image_path"] and Path(current["image_path"]).exists():
-                self.registry.reset_for_metadata(asset_id)
+                # A saved image may have failed QC, not metadata. Always recheck
+                # it before allowing downstream work; never regenerate on resume.
+                self.registry.transition(asset_id, "IMAGE_READY")
             elif current["generation_prompt"]:
                 self.registry.reset_for_image(asset_id)
+            current = self.registry.get_asset(asset_id)
+        elif current["status"] == "IMAGE_QC_FAILED":
+            self.registry.transition(asset_id, "IMAGE_READY")
             current = self.registry.get_asset(asset_id)
         elif current["status"] == "METADATA_QC_FAILED":
             self.registry.transition(asset_id, "METADATA_PENDING")
@@ -171,17 +215,22 @@ class StockPipeline:
             return
 
         if current["status"] in {"QUEUED", "FAILED"}:
+            self._emit_progress(asset_id, "prompt 1/1 started type=image_generation")
             started = time.perf_counter()
             prompt = render_image_prompt_file(self._resource("config/prompts/image_prompt_v1.txt"), current)
             (asset_dir / "generation_prompt.txt").write_text(prompt + "\n", encoding="utf-8")
             self.registry.update_asset(
-                asset_id, generation_prompt=prompt, image_prompt_version="IMG_V1",
+                asset_id, generation_prompt=prompt, image_prompt_version="DIRECT_V1" if background else "IMG_V1",
                 image_model=self.image_model, metadata_prompt_version="META_V2",
                 metadata_model=self.metadata_model,
                 upload_filename=map_upload_filename(asset_id, max_chars=self.max_filename_chars),
             )
             self.registry.transition(asset_id, "PROMPT_READY")
             logger.event("prompt_build", duration_seconds=round(time.perf_counter() - started, 3))
+            self._emit_progress(
+                asset_id,
+                f"prompt 1/1 completed path={asset_dir / 'generation_prompt.txt'}",
+            )
             current = self.registry.get_asset(asset_id)
 
         if skip_image_generation and current["status"] == "PROMPT_READY":
@@ -189,6 +238,7 @@ class StockPipeline:
             return
 
         if current["status"] == "PROMPT_READY":
+            self._emit_progress(asset_id, f"image 1/1 started model={self.image_model}")
             image_client = self._get_image_client()
             self.registry.transition(asset_id, "IMAGE_GENERATING")
             started = time.perf_counter()
@@ -202,24 +252,43 @@ class StockPipeline:
                     generate_bytes=generator, client=image_client,
                     prompt=current["generation_prompt"], model=self.image_model,
                     output_path=original_path, temperature=self.temperature, top_p=self.top_p,
-                    aspect_ratio=self.aspect_ratio, resolution=self.resolution,
+                    aspect_ratio=aspect_ratio, resolution=resolution,
+                    usage_callback=(
+                        lambda usage: self._record_usage(
+                            asset_id=asset_id,
+                            operation="image_generation",
+                            provider="vertex",
+                            model=self.image_model,
+                            usage=usage,
+                            resolution=resolution,
+                        )
+                    ) if self.usage_recorder is not None else None,
                 ),
                 logger, "image_generation",
             )
             self.registry.update_asset(asset_id, image_path=str(original_path), generated_at=now_iso())
             self.registry.transition(asset_id, "IMAGE_READY")
             logger.event("image_generation", duration_seconds=round(time.perf_counter() - started, 3))
+            self._emit_progress(asset_id, f"image 1/1 completed path={original_path}")
             current = self.registry.get_asset(asset_id)
 
         if current["status"] == "IMAGE_READY":
+            self._emit_progress(asset_id, "image QC started")
             started = time.perf_counter()
-            qc = inspect_image(asset_id, Path(current["image_path"]), self.minimum_resolution)
+            qc = inspect_image(asset_id, Path(current["image_path"]), self.minimum_resolution,
+                               **({"aspect_ratio": aspect_ratio} if background else {}))
             (asset_dir / "qc.json").write_text(json.dumps(qc, indent=2, sort_keys=True) + "\n", encoding="utf-8")
             logger.event("image_qc", duration_seconds=round(time.perf_counter() - started, 3))
-            if not all((qc["image_valid"], qc["square"], qc["resolution_valid"], qc["format_valid"])):
-                self.registry.transition(asset_id, "IMAGE_QC_FAILED", error="deterministic image QC failed")
-                raise ValueError(f"deterministic image QC failed for {asset_id}")
+            if not all((qc["image_valid"], qc["aspect_ratio_valid"] if background else qc["square"], qc["resolution_valid"], qc["format_valid"])):
+                error = (f"image QC failed: actual={qc.get('width', '?')}x{qc.get('height', '?')}; "
+                         f"expected={'aspect ratio ' + aspect_ratio if background else 'square'}, "
+                         f"minimum {'long edge' if background else 'each edge'}={self.minimum_resolution}px; "
+                         "original preserved; resume will recheck without regenerating")
+                self.registry.transition(asset_id, "IMAGE_QC_FAILED", error=error)
+                self._emit_progress(asset_id, error)
+                raise ValueError(f"{asset_id}: {error}")
             self.registry.transition(asset_id, "METADATA_PENDING")
+            self._emit_progress(asset_id, "image QC completed")
             current = self.registry.get_asset(asset_id)
 
         if skip_metadata and current["status"] == "METADATA_PENDING":
@@ -227,34 +296,53 @@ class StockPipeline:
             return
 
         if current["status"] == "METADATA_PENDING":
+            self._emit_progress(
+                asset_id,
+                f"metadata prompt 1/1 started model={self.metadata_model}",
+            )
             metadata_client = self._get_metadata_client()
             category_text = self._resource("category-code.txt").read_text(encoding="utf-8").strip()
             system_prompt = self._resource("config/prompts/metadata_v2.txt").read_text(encoding="utf-8").strip()
             started = time.perf_counter()
             generator = self.metadata_generate_text or generate_metadata_for_asset
+            metadata_kwargs = dict(
+                client=metadata_client, provider=self.metadata_provider,
+                image_path=Path(current["image_path"]), theme=current["theme"],
+                generation_prompt=current["generation_prompt"], category_list=category_text,
+                system_prompt=system_prompt, model=self.metadata_model,
+                temperature=0.2, top_p=0.9, asset_id=asset_id,
+                project_root=self.project_root,
+            )
+            if self.usage_recorder is not None:
+                metadata_kwargs["usage_callback"] = lambda usage: self._record_usage(
+                    asset_id=asset_id,
+                    operation="metadata_generation",
+                    provider=self.metadata_provider,
+                    model=self.metadata_model,
+                    usage=usage,
+                )
             raw = self._with_retries(
-                lambda: generator(
-                    client=metadata_client, provider=self.metadata_provider,
-                    image_path=Path(current["image_path"]), theme=current["theme"],
-                    generation_prompt=current["generation_prompt"], category_list=category_text,
-                    system_prompt=system_prompt, model=self.metadata_model,
-                    temperature=0.2, top_p=0.9, asset_id=asset_id,
-                    project_root=self.project_root,
-                ),
+                lambda: generator(**metadata_kwargs),
                 logger, "metadata_generation",
             )
-            (asset_dir / "metadata_raw.txt").write_text(raw.strip() + "\n", encoding="utf-8")
+            (asset_dir / "metadata_raw.txt").write_bytes(raw.encode("utf-8"))
             logger.event("metadata_generation", duration_seconds=round(time.perf_counter() - started, 3))
+            self._emit_progress(asset_id, "metadata prompt 1/1 completed")
             started = time.perf_counter()
+            self._emit_progress(asset_id, "metadata validation started")
             try:
                 metadata = validate_metadata(
-                    parse_metadata_json(raw), asset_id, parse_categories(category_text),
+                    enrich_metadata(parse_metadata_json(raw), asset_id),
+                    asset_id,
+                    parse_categories(category_text),
                     max_title_chars=self.max_title_chars,
+                    min_expected_keywords=self.min_expected_keywords,
                     hard_max_keywords=self.hard_max_keywords,
                 )
             except Exception as exc:
                 self.registry.transition(asset_id, "METADATA_QC_FAILED", error=str(exc))
                 logger.event("metadata_validation_failed", error=str(exc))
+                self._emit_progress(asset_id, f"metadata validation failed: {exc}")
                 raise
             (asset_dir / "metadata.json").write_text(json.dumps(metadata, indent=2, sort_keys=True) + "\n", encoding="utf-8")
             self.registry.update_asset(
@@ -265,6 +353,7 @@ class StockPipeline:
             self.registry.transition(asset_id, "METADATA_READY")
             self.registry.transition(asset_id, "READY_TO_STAGE")
             logger.event("metadata_validation", duration_seconds=round(time.perf_counter() - started, 3))
+            self._emit_progress(asset_id, "ready to stage")
         self._manifest(asset_id)
 
     def run_queue(

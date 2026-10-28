@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "finder_candidates.schema.json",
+  "type": "array",
+  "minItems": 1,
+  "items": {
+    "type": "object",
+    "additionalProperties": false,
+    "required": ["candidate_id", "strategy", "domain", "theme", "source_type", "topic_score", "buyer_use_case", "differentiation_reason", "similarity_risk", "icon_1", "icon_2", "icon_3", "icon_4", "palette", "status"],
+    "properties": {
+      "candidate_id": {"type": "string", "minLength": 1},
+      "strategy": {"enum": ["WORKFLOW_PROCESS", "INDUSTRY_VERTICAL", "PROBLEM_RISK", "REGIONAL_COMMERCIAL", "BORING_BUSINESS_OPERATIONS", "ROLE_SPECIFIC", "EMERGING_COMMERCIAL", "EVERYDAY_SCENARIO"]},
+      "domain": {"type": "string", "minLength": 1},
+      "theme": {"type": "string", "minLength": 1},
+      "source_type": {"enum": ["EVERGREEN", "EMERGING", "SEASONAL"]},
+      "topic_score": {"type": "number", "minimum": 0, "maximum": 100},
+      "buyer_use_case": {"type": "string", "minLength": 1},
+      "differentiation_reason": {"type": "string", "minLength": 1},
+      "similarity_risk": {"enum": ["LOW", "MEDIUM", "HIGH"]},
+      "icon_1": {"type": "string", "minLength": 1},
+      "icon_2": {"type": "string", "minLength": 1},
+      "icon_3": {"type": "string", "minLength": 1},
+      "icon_4": {"type": "string", "minLength": 1},
+      "palette": {"type": "string", "minLength": 1},
+      "status": {"const": "CANDIDATE"},
+      "region": {"type": ["string", "null"]},
+      "industry": {"type": ["string", "null"]},
+      "target_role": {"type": ["string", "null"]},
+      "problem_type": {"type": ["string", "null"]}
+    }
+  }
+}

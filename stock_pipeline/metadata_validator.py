@@ -8,13 +8,37 @@ class MetadataValidationError(ValueError):
     pass
 
 
+MODEL_OUTPUT_FIELDS = {
+    "title", "keywords", "category_code", "category_name", "qc",
+}
+
+
+def enrich_metadata(model_output: dict[str, Any], asset_id: str) -> dict[str, Any]:
+    missing = MODEL_OUTPUT_FIELDS - set(model_output)
+    if missing:
+        raise MetadataValidationError(
+            f"missing model metadata fields: {', '.join(sorted(missing))}"
+        )
+    unexpected = set(model_output) - MODEL_OUTPUT_FIELDS
+    if unexpected:
+        raise MetadataValidationError(
+            f"malformed model metadata fields: {sorted(unexpected)}"
+        )
+    metadata = dict(model_output)
+    metadata["asset_id"] = asset_id
+    metadata["keyword_count"] = len(metadata["keywords"])
+    metadata["metadata_prompt_version"] = "META_V2"
+    return metadata
+
+
 def normalize_keyword(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", " ", value.casefold()).strip()
 
 
 def validate_metadata(
     metadata: dict[str, Any], asset_id: str, categories: dict[int, str],
-    *, max_title_chars: int = 70, hard_max_keywords: int = 49,
+    *, max_title_chars: int = 70, min_expected_keywords: int = 35,
+    hard_max_keywords: int = 49,
 ) -> dict[str, Any]:
     required = ("asset_id", "title", "keywords", "category_code", "category_name", "keyword_count", "metadata_prompt_version", "qc")
     allowed = set(required)
@@ -49,6 +73,10 @@ def validate_metadata(
     keywords = metadata["keywords"]
     if not isinstance(keywords, list) or not keywords or not all(isinstance(item, str) and item.strip() for item in keywords):
         raise MetadataValidationError("keywords must be a non-empty string list")
+    if len(keywords) < min_expected_keywords:
+        raise MetadataValidationError(
+            f"keywords must contain a minimum of {min_expected_keywords} entries"
+        )
     if len(keywords) > hard_max_keywords:
         raise MetadataValidationError(f"keywords exceed hard maximum of {hard_max_keywords}")
     normalized = [normalize_keyword(item) for item in keywords]

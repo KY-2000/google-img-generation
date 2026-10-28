@@ -1,0 +1,82 @@
+{
+  "run_id": "TF_EVERYDAY_SCENARIO_20260828",
+  "topic_finder_version": "TF_V1_1",
+  "generated_at": "2026-09-01T01:36:07.235454+00:00",
+  "assets": [
+    {
+      "asset_id": "AST990014",
+      "domain": "Last-Mile Delivery",
+      "theme": "Failed Home Delivery Resolution",
+      "source_type": "EVERGREEN",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "icon_1": "Recipient receives unsuccessful delivery notice",
+      "icon_2": "Address and access instructions corrected",
+      "icon_3": "Redelivery or pickup point selected",
+      "icon_4": "Parcel handover confirmed with proof of receipt",
+      "palette": "Denim blue, parcel brown, vermilion, mint, warm white",
+      "status": "APPROVED",
+      "topic_finder_version": "TF_V1_1"
+    },
+    {
+      "asset_id": "AST990015",
+      "domain": "Household Utilities",
+      "theme": "Utility Service Transfer When Moving Home",
+      "source_type": "EVERGREEN",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "icon_1": "Resident records final meter reading at old home",
+      "icon_2": "Old utility account scheduled for closure",
+      "icon_3": "Service activation requested for new address",
+      "icon_4": "Final bill and deposit adjustment reviewed",
+      "palette": "Cerulean, leaf green, terracotta, charcoal, ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "TF_V1_1"
+    },
+    {
+      "asset_id": "AST990016",
+      "domain": "Home Appliance Service",
+      "theme": "Appliance Repair Appointment Journey",
+      "source_type": "EVERGREEN",
+      "topic_score": 89,
+      "topic_bucket": "APPROVED",
+      "icon_1": "Customer uploads appliance fault photo and model number",
+      "icon_2": "Repair time window and estimated fee confirmed",
+      "icon_3": "Technician diagnoses and replaces faulty component",
+      "icon_4": "Customer tests appliance and approves service record",
+      "palette": "Slate, aqua, saffron, coral, pale stone",
+      "status": "APPROVED",
+      "topic_finder_version": "TF_V1_1"
+    },
+    {
+      "asset_id": "AST990017",
+      "domain": "Residential Property Operations",
+      "theme": "Rental Move-In Defect Reporting",
+      "source_type": "EVERGREEN",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "icon_1": "Tenant photographs pre-existing room damage",
+      "icon_2": "Defect pinned to room on move-in checklist",
+      "icon_3": "Landlord acknowledges condition and repair responsibility",
+      "icon_4": "Signed inspection record stored with tenancy file",
+      "palette": "Deep green, clay, muted blue, lemon accent, linen",
+      "status": "APPROVED",
+      "topic_finder_version": "TF_V1_1"
+    },
+    {
+      "asset_id": "AST990018",
+      "domain": "Local Service Booking",
+      "theme": "Missed Appointment Rescheduling for Small Services",
+      "source_type": "EVERGREEN",
+      "topic_score": 88,
+      "topic_bucket": "APPROVED",
+      "icon_1": "Missed appointment marked after no-show window",
+      "icon_2": "Customer reviews cancellation or rescheduling policy",
+      "icon_3": "New time slot selected with any fee disclosed",
+      "icon_4": "Replacement booking confirmed with reminder",
+      "palette": "Aubergine, peach, turquoise, mustard, soft gray",
+      "status": "APPROVED",
+      "topic_finder_version": "TF_V1_1"
+    }
+  ]
+}

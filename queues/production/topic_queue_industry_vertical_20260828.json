@@ -1,0 +1,82 @@
+{
+  "run_id": "TF_INDUSTRY_VERTICAL_20260828",
+  "topic_finder_version": "TF_V1_1",
+  "generated_at": "2026-09-02T00:42:23.507925+00:00",
+  "assets": [
+    {
+      "asset_id": "AST990019",
+      "domain": "Clinical Quality Operations",
+      "theme": "Clinic Specimen Collection Integrity",
+      "source_type": "EVERGREEN",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "icon_1": "Clinician matches patient wristband to test order",
+      "icon_2": "Specimen tube labeled beside the patient",
+      "icon_3": "Sample sealed in temperature-controlled carrier",
+      "icon_4": "Laboratory receives sample with chain-of-custody check",
+      "palette": "Medical teal, navy, raspberry, pale aqua, white",
+      "status": "APPROVED",
+      "topic_finder_version": "TF_V1_1"
+    },
+    {
+      "asset_id": "AST990020",
+      "domain": "Warehouse Receiving",
+      "theme": "Inbound Shipment Discrepancy Handling",
+      "source_type": "EVERGREEN",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "icon_1": "Receiving clerk scans shipment at loading dock",
+      "icon_2": "Pallet count compared with delivery manifest",
+      "icon_3": "Damaged or missing goods moved to discrepancy zone",
+      "icon_4": "Supplier claim and inventory adjustment recorded",
+      "palette": "Warehouse blue, forklift orange, charcoal, lime, light gray",
+      "status": "APPROVED",
+      "topic_finder_version": "TF_V1_1"
+    },
+    {
+      "asset_id": "AST990021",
+      "domain": "Construction Safety",
+      "theme": "High-Risk Work Permit Control",
+      "source_type": "EVERGREEN",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "icon_1": "Supervisor identifies task-specific site hazards",
+      "icon_2": "Energy isolation and exclusion zone verified",
+      "icon_3": "Authorized permit displayed at work area",
+      "icon_4": "Work completed and permit closed after inspection",
+      "palette": "Safety yellow, construction orange, navy, concrete gray, white",
+      "status": "APPROVED",
+      "topic_finder_version": "TF_V1_1"
+    },
+    {
+      "asset_id": "AST990022",
+      "domain": "Food Service Safety",
+      "theme": "Allergen-Safe Meal Order Handoff",
+      "source_type": "EVERGREEN",
+      "topic_score": 95,
+      "topic_bucket": "APPROVED",
+      "icon_1": "Server records guest allergen disclosure",
+      "icon_2": "Order ticket clearly flags allergen requirement",
+      "icon_3": "Kitchen uses segregated tools and preparation area",
+      "icon_4": "Server confirms protected meal at table handoff",
+      "palette": "Deep green, paprika, mustard, aqua, warm cream",
+      "status": "APPROVED",
+      "topic_finder_version": "TF_V1_1"
+    },
+    {
+      "asset_id": "AST990023",
+      "domain": "Residential Turnover Operations",
+      "theme": "Tenant Move-Out Condition Assessment",
+      "source_type": "EVERGREEN",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "icon_1": "Inspector photographs room condition at move-out",
+      "icon_2": "Keys and furnished inventory checked against record",
+      "icon_3": "Damage separated from normal wear and tear",
+      "icon_4": "Repair deductions and deposit balance documented",
+      "palette": "Forest, terracotta, muted blue, sand, ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "TF_V1_1"
+    }
+  ]
+}

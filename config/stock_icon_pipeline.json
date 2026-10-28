@@ -3,14 +3,18 @@
   "metadata_prompt_version": "META_V2",
   "image": {
     "aspect_ratio": "1:1",
-    "resolution": "2K",
-    "minimum_resolution": 2048
+    "resolution": "4K",
+    "minimum_resolution": 4096
   },
   "metadata": {
-    "min_expected_keywords": 15,
-    "recommended_max_keywords": 35,
+    "min_expected_keywords": 35,
+    "recommended_max_keywords": 49,
     "hard_max_keywords": 49,
     "max_title_chars": 70
+  },
+  "billing": {
+    "project_id": "adobe-stock-img",
+    "export_table": "adobe-stock-img.billing_export.gcp_billing_export_v1_014122_B8FF5F_35AD2B"
   },
   "adobe": {
     "max_filename_chars": 30,

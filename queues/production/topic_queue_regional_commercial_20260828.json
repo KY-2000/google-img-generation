@@ -1,0 +1,82 @@
+{
+  "run_id": "TF_REGIONAL_COMMERCIAL_20260828",
+  "topic_finder_version": "TF_V1_1",
+  "generated_at": "2026-08-30T20:19:04.305478+00:00",
+  "assets": [
+    {
+      "asset_id": "AST990004",
+      "domain": "Small Business Tax Administration",
+      "theme": "Microbusiness Receipt-to-e-Invoice Request Handling",
+      "source_type": "EMERGING",
+      "topic_score": 96,
+      "topic_bucket": "APPROVED",
+      "icon_1": "Customer requests e-invoice using purchase receipt",
+      "icon_2": "Merchant collects required buyer tax details",
+      "icon_3": "Transaction submitted for digital validation",
+      "icon_4": "Validated e-invoice delivered before monthly cutoff",
+      "palette": "Deep blue, hibiscus red, turquoise, gold, warm white",
+      "status": "APPROVED",
+      "topic_finder_version": "TF_V1_1"
+    },
+    {
+      "asset_id": "AST990005",
+      "domain": "Cross-Border Retail Payments",
+      "theme": "Cross-Border QR Merchant Reconciliation",
+      "source_type": "EMERGING",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "icon_1": "Foreign visitor scans interoperable merchant QR",
+      "icon_2": "Payer reviews converted amount in home currency",
+      "icon_3": "Merchant receives local-currency payment confirmation",
+      "icon_4": "Cross-border fee and settlement matched in daily records",
+      "palette": "Jade green, cobalt, coral, saffron, pearl gray",
+      "status": "APPROVED",
+      "topic_finder_version": "TF_V1_1"
+    },
+    {
+      "asset_id": "AST990006",
+      "domain": "Small Business Continuity",
+      "theme": "Monsoon Flood Closure and Shop Reopening",
+      "source_type": "SEASONAL",
+      "topic_score": 95,
+      "topic_bucket": "APPROVED",
+      "icon_1": "Shop owner receives monsoon and flood warning",
+      "icon_2": "Stock raised and drains cleared before heavy rain",
+      "icon_3": "Flooded premises closed with utilities isolated",
+      "icon_4": "Damage documented and shop reopened after safety check",
+      "palette": "Storm blue, rain teal, warning orange, leaf green, cloud white",
+      "status": "APPROVED",
+      "topic_finder_version": "TF_V1_1"
+    },
+    {
+      "asset_id": "AST990007",
+      "domain": "Community Public Health",
+      "theme": "Dengue Breeding-Site Inspection for Shared Premises",
+      "source_type": "EVERGREEN",
+      "topic_score": 95,
+      "topic_bucket": "APPROVED",
+      "icon_1": "Inspector checks roof gutter and outdoor drain",
+      "icon_2": "Standing water emptied from containers and trays",
+      "icon_3": "Water storage covered and treatment date recorded",
+      "icon_4": "Shared premises schedules follow-up vector inspection",
+      "palette": "Tropical green, lagoon blue, mango, crimson accent, cream",
+      "status": "APPROVED",
+      "topic_finder_version": "TF_V1_1"
+    },
+    {
+      "asset_id": "AST990008",
+      "domain": "Informal Food Commerce",
+      "theme": "Hot-Weather Prepared Food Stall Safety",
+      "source_type": "EVERGREEN",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "icon_1": "Cooked food batch marked with preparation time",
+      "icon_2": "Hot and cold foods held in separate safe zones",
+      "icon_3": "Open-air display protected from heat and pests",
+      "icon_4": "Unsafe leftovers discarded after service cutoff",
+      "palette": "Chili red, turmeric yellow, banana leaf green, aqua, rice white",
+      "status": "APPROVED",
+      "topic_finder_version": "TF_V1_1"
+    }
+  ]
+}

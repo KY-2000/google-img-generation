@@ -3,26 +3,118 @@
   "$id": "topic_queue.schema.json",
   "type": "object",
   "additionalProperties": false,
-  "required": ["run_id", "topic_finder_version", "generated_at", "assets"],
+  "required": [
+    "run_id",
+    "topic_finder_version",
+    "generated_at",
+    "assets"
+  ],
   "properties": {
     "run_id": {"type": "string", "pattern": "^TF_[A-Za-z0-9_-]+$"},
     "topic_finder_version": {"type": "string", "minLength": 1},
     "generated_at": {"type": "string", "format": "date-time"},
     "assets": {
-      "type": "array", "minItems": 1,
+      "type": "array",
+      "minItems": 1,
       "items": {
-        "type": "object", "additionalProperties": false,
-        "required": ["asset_id", "domain", "theme", "source_type", "topic_score", "topic_bucket", "icon_1", "icon_2", "icon_3", "icon_4", "palette", "status", "topic_finder_version"],
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "asset_id",
+          "domain",
+          "theme",
+          "source_type",
+          "topic_score",
+          "topic_bucket",
+          "palette",
+          "status",
+          "topic_finder_version"
+        ],
         "properties": {
-          "asset_id": {"type": "string", "pattern": "^AST[0-9]{6}$"},
-          "domain": {"type": "string", "minLength": 1}, "theme": {"type": "string", "minLength": 1},
-          "source_type": {"type": "string", "minLength": 1}, "topic_score": {"type": "number", "minimum": 0, "maximum": 100},
-          "topic_bucket": {"type": "string", "minLength": 1}, "icon_1": {"type": "string", "minLength": 1},
-          "icon_2": {"type": "string", "minLength": 1}, "icon_3": {"type": "string", "minLength": 1},
-          "icon_4": {"type": "string", "minLength": 1}, "palette": {"type": "string", "minLength": 1},
-          "status": {"const": "APPROVED"}, "topic_finder_version": {"type": "string", "minLength": 1}
-        }
+          "asset_id": {
+            "type": "string",
+            "pattern": "^AST[0-9]{6}$"
+          },
+          "domain": {"type": "string", "minLength": 1},
+          "theme": {"type": "string", "minLength": 1},
+          "source_type": {"type": "string", "minLength": 1},
+          "topic_score": {"type": "number", "minimum": 0, "maximum": 100},
+          "topic_bucket": {"type": "string", "minLength": 1},
+          "icon_1": {"type": "string", "minLength": 1},
+          "icon_2": {"type": "string", "minLength": 1},
+          "icon_3": {"type": "string", "minLength": 1},
+          "icon_4": {"type": "string", "minLength": 1},
+          "palette": {"type": "string", "minLength": 1},
+          "status": {"const": "APPROVED"},
+          "topic_finder_version": {"type": "string", "minLength": 1},
+          "asset_type": {"enum": ["icon_set", "commercial_background"]},
+          "prompt": {"type": "string", "pattern": "\\S"},
+          "negative_prompt": {"type": "string"},
+          "aspect_ratio": {"enum": ["16:9", "9:16"]},
+          "resolution": {"const": "4K"},
+          "remove_background": {"const": false},
+          "research": {"type": "object"}
+        },
+        "allOf": [
+          {
+            "if": {
+              "required": [
+                "asset_type"
+              ],
+              "properties": {
+                "asset_type": {"const": "commercial_background"}
+              }
+            },
+            "then": {
+              "required": [
+                "prompt",
+                "negative_prompt",
+                "aspect_ratio",
+                "resolution",
+                "remove_background"
+              ]
+            },
+            "else": {
+              "required": [
+                "icon_1",
+                "icon_2",
+                "icon_3",
+                "icon_4"
+              ],
+              "not": {
+                "anyOf": [
+                  {
+                    "required": [
+                      "prompt"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "negative_prompt"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "aspect_ratio"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "resolution"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "remove_background"
+                    ]
+                  }
+                ]
+              }
+            }
+          }
+        ]
       }
-    }
+    },
+    "research": {"type": "object"}
   }
 }

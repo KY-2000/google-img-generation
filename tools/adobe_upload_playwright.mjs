@@ -23,6 +23,7 @@ Browser:
   --cdp <url>                  Connect to an already-running Edge/Chrome CDP endpoint,
                                for example http://127.0.0.1:9222.
   --user-data-dir <path>       Launch a persistent browser profile directory.
+  --resume-after <count>       Skip a verified prefix of already-uploaded images.
   --channel <name>             Playwright Chromium channel. Default: msedge.
   --headless                   Run headless. Default is headed.
 
@@ -56,6 +57,7 @@ function parseArgs(argv) {
     markAi: false,
     markFictional: false,
     saveWork: false,
+    resumeAfter: 0,
   };
 
   for (let i = 0; i < argv.length; i += 1) {
@@ -71,6 +73,7 @@ function parseArgs(argv) {
     else if (arg === "--images") out.images = next();
     else if (arg === "--cdp") out.cdp = next();
     else if (arg === "--user-data-dir") out.userDataDir = next();
+    else if (arg === "--resume-after") out.resumeAfter = Number(next());
     else if (arg === "--channel") out.channel = next();
     else if (arg === "--url") out.url = next();
     else if (arg === "--file-type") out.fileType = next().toLowerCase();
@@ -87,6 +90,9 @@ function parseArgs(argv) {
   if (out.help) return out;
   if (!out.csv) throw new Error("--csv is required");
   if (!Number.isFinite(out.timeout) || out.timeout <= 0) throw new Error("--timeout must be a positive number");
+  if (!Number.isInteger(out.resumeAfter) || out.resumeAfter < 0) {
+    throw new Error("--resume-after must be a nonnegative integer");
+  }
   if (out.fileType && !["photos", "illustrations"].includes(out.fileType)) {
     throw new Error("--file-type must be one of: photos, illustrations");
   }
@@ -169,6 +175,41 @@ function resolveImages(imagesArg, csvDir, rows) {
   }
 
   return candidates;
+}
+
+function resumeImagePaths(imagePaths, resumeAfter) {
+  if (resumeAfter > imagePaths.length) {
+    throw new Error(`--resume-after ${resumeAfter} cannot exceed the ${imagePaths.length} selected images`);
+  }
+  return imagePaths.slice(resumeAfter);
+}
+
+function chunkFilesBySize(files, maxBytes, getSize = (file) => fs.statSync(file).size) {
+  const chunks = [];
+  let current = [];
+  let currentBytes = 0;
+
+  for (const file of files) {
+    const fileBytes = getSize(file);
+    if (!Number.isFinite(fileBytes) || fileBytes < 0) {
+      throw new Error(`Could not determine upload size for ${file}`);
+    }
+    if (fileBytes > maxBytes) {
+      throw new Error(
+        `File is too large for safe CDP transfer (${fileBytes} bytes, limit ${maxBytes}): ${file}`,
+      );
+    }
+    if (current.length && currentBytes + fileBytes > maxBytes) {
+      chunks.push(current);
+      current = [];
+      currentBytes = 0;
+    }
+    current.push(file);
+    currentBytes += fileBytes;
+  }
+
+  if (current.length) chunks.push(current);
+  return chunks;
 }
 
 function nextRunDir(runRoot) {
@@ -257,10 +298,15 @@ async function loadPlaywright() {
   }
 }
 
-async function screenshot(page, runDir, name) {
+async function screenshot(page, runDir, name, logger) {
   const file = path.join(runDir, "screenshots", `${String(Date.now())}_${name}.png`);
-  await page.screenshot({ path: file });
-  return file;
+  try {
+    await page.screenshot({ path: file, timeout: 15000 });
+    return file;
+  } catch (error) {
+    logger?.note(`WARNING: evidence screenshot ${name} failed: ${error.message}`);
+    return null;
+  }
 }
 
 async function clickFirstVisible(locator, label, timeout = 15000) {
@@ -285,14 +331,23 @@ async function setFilesFromChooser(page, clickAction, files, timeout) {
   await chooser.setFiles(files);
 }
 
-async function waitForNoUploadRemaining(page, timeout) {
+async function waitForNoUploadRemaining(page, timeout, initialFileCount, expectedFileCount) {
   const start = Date.now();
+  let lastText = "";
   while (Date.now() - start < timeout) {
-    const bodyText = await page.locator("body").innerText({ timeout: 5000 });
-    if (!/Upload Remaining/i.test(bodyText)) return bodyText;
+    lastText = await page.locator("body").innerText({ timeout: 5000 });
+    const countMatch = /File types:\s*All\s*\((\d+)\)/i.exec(lastText);
+    const currentFileCount = countMatch ? Number(countMatch[1]) : null;
+    const uploadPending = /Uploads?\s+Remaining/i.test(lastText);
+    const expectedTotal = initialFileCount + expectedFileCount;
+    if (!uploadPending && currentFileCount !== null && currentFileCount >= expectedTotal) {
+      return lastText;
+    }
     await page.waitForTimeout(3000);
   }
-  throw new Error("Timed out waiting for Adobe upload queue to finish");
+  throw new Error(
+    `Timed out waiting for Adobe upload queue to finish and file count to increase from ${initialFileCount} to ${initialFileCount + expectedFileCount}. Last visible text excerpt: ${lastText.slice(0, 1000)}`,
+  );
 }
 
 async function waitForCsvApplication(page, rows, timeout, logger) {
@@ -360,9 +415,12 @@ async function setAdobeFileType(page, fileType, logger) {
   if (!fileType) return;
 
   const targetLabel = fileType === "illustrations" ? "Illustrations" : "Photos";
-  const currentText = await page.locator("body").innerText({ timeout: 15000 });
-  const fileTypeBlock = /File type\s+(Photos|Illustrations)/i.exec(currentText);
-  if (fileTypeBlock?.[1]?.toLowerCase() === targetLabel.toLowerCase()) {
+  const targetValue = fileType === "illustrations" ? "2" : "1";
+  const fileTypeSelect = page.locator('select[name="contentType"]');
+  if (!(await fileTypeSelect.count())) {
+    throw new Error("Could not find Adobe File type select");
+  }
+  if (await fileTypeSelect.inputValue() === targetValue) {
     logger.write(`file type already set to ${targetLabel}`);
     return;
   }
@@ -381,10 +439,51 @@ async function setAdobeFileType(page, fileType, logger) {
   await page.getByRole("option", { name: new RegExp(`^${targetLabel}$`, "i") }).click();
   await page.waitForTimeout(1000);
 
-  const afterText = await page.locator("body").innerText({ timeout: 15000 });
-  if (!new RegExp(`File type\\s+${targetLabel}`, "i").test(afterText)) {
-    logger.note(`WARNING: did not verify File type text as ${targetLabel}; inspect screenshot.`);
+  if (await fileTypeSelect.inputValue() !== targetValue) {
+    throw new Error(`Could not verify Adobe File type as ${targetLabel}`);
   }
+}
+
+async function processUploadedRows(page, rows, configureRow) {
+  const tiles = page.locator(".upload-tile__wrapper");
+  if (await tiles.count() < rows.length) {
+    throw new Error(`Adobe grid has fewer than ${rows.length} uploaded tiles`);
+  }
+
+  const verified = [];
+  for (let index = 0; index < rows.length; index += 1) {
+    await tiles.nth(index).click();
+    await page.waitForTimeout(500);
+    const bodyText = await page.locator("body").innerText({ timeout: 15000 });
+    const originalName = /Original name\(s\):\s*([^\r\n]+)/i.exec(bodyText)?.[1]?.trim();
+    const row = rows.find((candidate) => candidate.filename === originalName);
+    if (!row) {
+      throw new Error(`Newest Adobe tile does not match this batch: ${originalName || "unknown filename"}`);
+    }
+    if (verified.includes(row.filename)) {
+      throw new Error(`Duplicate Adobe tile encountered for ${row.filename}`);
+    }
+
+    const title = await page.locator('textarea[name="title"]').inputValue();
+    if (title.trim() !== row.title.trim()) {
+      throw new Error(`Adobe title does not match CSV for ${row.filename}`);
+    }
+    const actualKeywords = (await page.locator('textarea[name="keywordsUITextArea"]').inputValue())
+      .split(",").map((keyword) => keyword.trim().toLocaleLowerCase()).filter(Boolean);
+    const expectedKeywords = row.keywords.split(",")
+      .map((keyword) => keyword.trim().toLocaleLowerCase()).filter(Boolean);
+    if (actualKeywords.join("\n") !== expectedKeywords.join("\n")) {
+      throw new Error(`Adobe keywords do not match CSV for ${row.filename}`);
+    }
+
+    await configureRow(row);
+    verified.push(row.filename);
+  }
+
+  if (verified.length !== rows.length) {
+    throw new Error(`Verified ${verified.length} of ${rows.length} Adobe uploads`);
+  }
+  return verified;
 }
 
 async function main() {
@@ -398,6 +497,7 @@ async function main() {
   if (!fs.existsSync(csvPath)) throw new Error(`CSV not found: ${csvPath}`);
   const rows = parseAdobeCsv(csvPath);
   const imagePaths = resolveImages(options.images, path.dirname(csvPath), rows);
+  const pendingImagePaths = resumeImagePaths(imagePaths, options.resumeAfter);
   if (options.dryRun) {
     await loadPlaywright();
     console.log(JSON.stringify({
@@ -405,7 +505,7 @@ async function main() {
       mode: "dry-run",
       csv: csvPath,
       rows: rows.length,
-      images: imagePaths,
+      images: pendingImagePaths,
       browser: options.cdp ? { cdp: options.cdp } : { channel: options.channel, userDataDir: options.userDataDir || ".pw-edge-adobe-profile" },
     }, null, 2));
     return;
@@ -457,37 +557,56 @@ async function main() {
     logger.write("open Adobe Contributor uploads page");
     await page.goto(options.url, { waitUntil: "domcontentloaded", timeout: options.timeout });
     await page.waitForLoadState("networkidle", { timeout: Math.min(options.timeout, 30000) }).catch(() => {});
-    await screenshot(page, runDir, "01_open_uploads");
+    await screenshot(page, runDir, "01_open_uploads", logger);
 
     const bodyAfterOpen = await page.locator("body").innerText({ timeout: 15000 });
     if (/sign in|log in|continue with adobe|enter your email/i.test(bodyAfterOpen)) {
       throw new Error("Adobe login is required. Log in manually, then rerun with the same browser profile or CDP endpoint.");
     }
+    const initialFileCountMatch = /File types:\s*All\s*\((\d+)\)/i.exec(bodyAfterOpen);
+    if (!initialFileCountMatch) {
+      throw new Error("Could not determine the initial Adobe uploaded-file count");
+    }
+    const initialFileCount = Number(initialFileCountMatch[1]);
 
-    logger.write(`upload image files: ${imagePaths.map((file) => path.basename(file)).join(", ")}`);
-    await clickFirstVisible(page.getByRole("button", { name: /^Upload$/ }), "top Upload button");
-    await page.getByText(/Upload your files to start selling/i).waitFor({ state: "visible", timeout: 20000 });
-    await screenshot(page, runDir, "02_upload_modal");
-
-    await setFilesFromChooser(
-      page,
-      async () => {
-        const browse = page.getByRole("button", { name: /^Browse$/ });
-        if (await browse.count()) await browse.first().click();
-        else await page.getByText(/^Browse$/).click();
-      },
-      imagePaths,
-      options.timeout,
+    if (options.resumeAfter) {
+      logger.write(`resume after ${options.resumeAfter} verified image(s); ${pendingImagePaths.length} remain`);
+    }
+    const imageChunks = options.cdp
+      ? chunkFilesBySize(pendingImagePaths, 45_000_000)
+      : pendingImagePaths.length ? [pendingImagePaths] : [];
+    logger.write(
+      `upload image files in ${imageChunks.length} batch(es): ${pendingImagePaths.map((file) => path.basename(file)).join(", ")}`,
     );
+    let verifiedFileCount = initialFileCount;
+    let textAfterImages = bodyAfterOpen;
+    for (let index = 0; index < imageChunks.length; index += 1) {
+      const chunk = imageChunks[index];
+      logger.write(
+        `upload image batch ${index + 1}/${imageChunks.length}: ${chunk.map((file) => path.basename(file)).join(", ")}`,
+      );
+      await clickFirstVisible(page.getByRole("button", { name: /^Upload$/ }), "top Upload button");
+      await page.getByText(/Upload your files to start selling/i).waitFor({ state: "visible", timeout: 20000 });
+      await screenshot(page, runDir, `02_upload_modal_${index + 1}`, logger);
 
-    logger.write("wait for image upload queue to finish");
-    const textAfterImages = await waitForNoUploadRemaining(page, options.timeout);
-    await screenshot(page, runDir, "03_images_uploaded");
+      await setFilesFromChooser(
+        page,
+        async () => {
+          const browse = page.getByRole("button", { name: /^Browse$/ });
+          if (await browse.count()) await browse.first().click();
+          else await page.getByText(/^Browse$/).click();
+        },
+        chunk,
+        options.timeout,
+      );
 
-    for (const row of rows) {
-      if (!textAfterImages.includes(row.filename)) {
-        logger.note(`WARNING: uploaded filename not visible yet: ${row.filename}`);
-      }
+      logger.write(`wait for image batch ${index + 1}/${imageChunks.length} to finish`);
+      textAfterImages = await waitForNoUploadRemaining(
+        page, options.timeout, verifiedFileCount, chunk.length,
+      );
+      verifiedFileCount += chunk.length;
+      await screenshot(page, runDir, `03_images_uploaded_${index + 1}`, logger);
+      logger.write(`verified Adobe file count increased to ${verifiedFileCount}`);
     }
     if (/couldn't be uploaded|resolution is too small|failed/i.test(textAfterImages)) {
       logger.note("WARNING: Adobe page contains an upload error banner. Inspect screenshot and page state before relying on this run.");
@@ -496,7 +615,7 @@ async function main() {
     logger.write(`upload CSV metadata: ${csvPath}`);
     await clickFirstVisible(page.getByRole("button", { name: /^Upload CSV$/ }), "Upload CSV button");
     await page.getByText(/Upload CSV file with your metadata/i).waitFor({ state: "visible", timeout: 20000 });
-    await screenshot(page, runDir, "04_csv_modal");
+    await screenshot(page, runDir, "04_csv_modal", logger);
 
     await setFilesFromChooser(
       page,
@@ -510,7 +629,7 @@ async function main() {
     logger.write("wait for CSV metadata application");
     const csvApplication = await waitForCsvApplication(page, rows, options.timeout, logger);
     logger.write(`CSV metadata wait finished: ${csvApplication.status}`);
-    await screenshot(page, runDir, "05_csv_uploaded");
+    await screenshot(page, runDir, "05_csv_uploaded", logger);
 
     const refreshButton = page.getByRole("button", { name: /Refresh to view changes/i });
     if (await refreshButton.count()) {
@@ -520,54 +639,44 @@ async function main() {
       await page.waitForTimeout(3000);
     }
 
-    const firstRow = rows[0];
-    if (firstRow.title) {
-      await page.getByText(firstRow.title, { exact: false }).waitFor({ state: "visible", timeout: options.timeout });
-      logger.write(`verified visible title from CSV: ${firstRow.title}`);
-    }
+    const verifiedFilenames = await processUploadedRows(page, rows, async (row) => {
+      logger.write(`verified Adobe title and keywords for ${row.filename}`);
+      await setAdobeFileType(page, options.fileType, logger);
 
-    if (firstRow.keywords) {
-      const firstKeyword = firstRow.keywords.split(",")[0]?.trim();
-      if (firstKeyword) {
-        await page.getByText(firstKeyword, { exact: false }).first().waitFor({ state: "visible", timeout: options.timeout });
-        logger.write(`verified visible keyword from CSV: ${firstKeyword}`);
+      if (options.markAi) {
+        await ensureCheckbox(page, /Created using generative AI tools/i, logger);
       }
-    }
 
-    await setAdobeFileType(page, options.fileType, logger);
+      if (options.markFictional) {
+        await ensureCheckbox(page, /People and Property are fictional/i, logger);
+      }
 
-    if (options.markAi) {
-      await ensureCheckbox(page, /Created using generative AI tools/i, logger);
-    }
-
-    if (options.markFictional) {
-      await ensureCheckbox(page, /People and Property are fictional/i, logger);
-    }
-
-    if (options.saveWork) {
-      const save = page.getByRole("button", { name: /^Save work$/ });
-      if (await save.count()) {
-        const first = save.first();
-        if (await first.isEnabled().catch(() => false)) {
-          logger.write("save Adobe draft work");
-          await first.click();
-          await page.waitForTimeout(3000);
+      if (options.saveWork) {
+        const save = page.getByRole("button", { name: /^Save work$/ });
+        if (await save.count()) {
+          const first = save.first();
+          if (await first.isEnabled().catch(() => false)) {
+            logger.write(`save Adobe draft work for ${row.filename}`);
+            await first.click();
+            await page.waitForTimeout(3000);
+          } else {
+            logger.note(`Save work button is present but disabled for ${row.filename}.`);
+          }
         } else {
-          logger.note("Save work button is present but disabled.");
+          logger.note(`Save work button was not found for ${row.filename}.`);
         }
-      } else {
-        logger.note("Save work button was not found.");
       }
-    }
+    });
+    logger.write(`verified and configured uploaded files: ${verifiedFilenames.join(", ")}`);
 
     const finalText = await page.locator("body").innerText({ timeout: 15000 });
     if (/Submit\s+\d+\s+file/i.test(finalText)) {
       logger.note("Final submit button is visible. This script intentionally did not click it.");
     }
 
-    const finalScreenshot = await screenshot(page, runDir, "06_final_verified_no_submit");
+    const finalScreenshot = await screenshot(page, runDir, "06_final_verified_no_submit", logger);
     logger.note(`FINAL_STATUS: prepared Adobe upload metadata without final submission`);
-    logger.note(`FINAL_SCREENSHOT: ${finalScreenshot}`);
+    if (finalScreenshot) logger.note(`FINAL_SCREENSHOT: ${finalScreenshot}`);
     logger.note(`RUN_DIR: ${runDir}`);
   } finally {
     if (!options.cdp) {

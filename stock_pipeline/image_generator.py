@@ -18,8 +18,9 @@ def generate_original_image(
     top_p: float = 0.95,
     aspect_ratio: str = "1:1",
     resolution: str = "2K",
+    usage_callback: Callable[[dict[str, int | float]], None] | None = None,
 ) -> Path:
-    image_bytes = generate_bytes(
+    generate_kwargs = dict(
         client=client,
         prompt=prompt,
         model=model,
@@ -28,6 +29,9 @@ def generate_original_image(
         aspect_ratio=aspect_ratio,
         resolution=resolution,
     )
+    if usage_callback is not None:
+        generate_kwargs["usage_callback"] = usage_callback
+    image_bytes = generate_bytes(**generate_kwargs)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     import io
     with Image.open(io.BytesIO(image_bytes)) as image:

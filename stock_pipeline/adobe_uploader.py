@@ -10,7 +10,8 @@ from .registry import Registry, now_iso
 
 def build_upload_command(
     csv_path: Path, images_dir: Path, *, cdp: str | None = None,
-    user_data_dir: str | None = None, dry_run: bool = False,
+    user_data_dir: str | None = None, resume_after: int = 0,
+    dry_run: bool = False,
 ) -> list[str]:
     node = "node.exe" if os.name == "nt" else "node"
     command = [
@@ -22,6 +23,8 @@ def build_upload_command(
         command.extend(["--cdp", cdp])
     if user_data_dir:
         command.extend(["--user-data-dir", user_data_dir])
+    if resume_after:
+        command.extend(["--resume-after", str(resume_after)])
     if dry_run:
         command.append("--dry-run")
     return command
@@ -29,11 +32,13 @@ def build_upload_command(
 
 def upload_draft(
     project_root: Path, batch_dir: Path, *, cdp: str | None = None,
-    user_data_dir: str | None = None, dry_run: bool = False,
+    user_data_dir: str | None = None, resume_after: int = 0,
+    dry_run: bool = False,
 ) -> None:
     command = build_upload_command(
         batch_dir / "adobe_stock_metadata.csv", batch_dir,
-        cdp=cdp, user_data_dir=user_data_dir, dry_run=dry_run,
+        cdp=cdp, user_data_dir=user_data_dir, resume_after=resume_after,
+        dry_run=dry_run,
     )
     subprocess.run(command, cwd=project_root, check=True)
 

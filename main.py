@@ -31,7 +31,7 @@ DEFAULT_TEMPERATURE = 1.0
 DEFAULT_TOP_P = 0.95
 DEFAULT_COUNT = 1
 DEFAULT_ASPECT_RATIO = "1:1"
-DEFAULT_RESOLUTION = "1K"
+DEFAULT_RESOLUTION = "4K"
 VALID_ASPECT_RATIOS = (
     "1:1",
     "1:4",
@@ -679,6 +679,10 @@ def iter_inline_images(response) -> Iterable[bytes]:
         content = getattr(candidate, "content", None)
         parts = getattr(content, "parts", None) or []
         for part in parts:
+            # Gemini thinking models may emit low-resolution draft images
+            # before the final output. These are never deliverable images.
+            if getattr(part, "thought", False):
+                continue
             inline_data = getattr(part, "inline_data", None)
             data = getattr(inline_data, "data", None)
             if data:
@@ -693,6 +697,7 @@ def generate_image_bytes(
     top_p: float,
     aspect_ratio: str,
     resolution: str,
+    usage_callback: Callable[[dict[str, int | float]], None] | None = None,
 ) -> bytes:
     try:
         from google.genai import types
@@ -713,6 +718,11 @@ def generate_image_bytes(
             ),
         ),
     )
+
+    if usage_callback is not None:
+        from stock_pipeline.ai_usage import extract_google_usage
+
+        usage_callback(extract_google_usage(response))
 
     first_image = next(iter_inline_images(response), None)
     if first_image is None:
@@ -807,6 +817,7 @@ def generate_google_metadata_text(
     model: str,
     temperature: float,
     top_p: float,
+    usage_callback: Callable[[dict[str, int | float]], None] | None = None,
 ) -> str:
     try:
         from google.genai import types
@@ -828,6 +839,11 @@ def generate_google_metadata_text(
         ),
     )
 
+    if usage_callback is not None:
+        from stock_pipeline.ai_usage import extract_google_usage
+
+        usage_callback(extract_google_usage(response))
+
     response_text = getattr(response, "text", None)
     if not response_text:
         raise RuntimeError("The metadata API response did not contain text output.")
@@ -843,6 +859,7 @@ def generate_openrouter_metadata_text(
     model: str,
     temperature: float,
     top_p: float,
+    usage_callback: Callable[[dict[str, int | float]], None] | None = None,
 ) -> str:
     image_data_url = (
         "data:image/png;base64,"
@@ -869,6 +886,11 @@ def generate_openrouter_metadata_text(
     with urllib.request.urlopen(request) as response:
         response_json = json.loads(response.read().decode("utf-8"))
 
+    if usage_callback is not None:
+        from stock_pipeline.ai_usage import extract_openai_usage
+
+        usage_callback(extract_openai_usage(response_json))
+
     response_text = response_json["choices"][0]["message"]["content"]
     if not response_text:
         raise RuntimeError("The metadata API response did not contain text output.")
@@ -884,6 +906,7 @@ def generate_nim_metadata_text(
     model: str,
     temperature: float,
     top_p: float,
+    usage_callback: Callable[[dict[str, int | float]], None] | None = None,
 ) -> str:
     image_data_url = (
         "data:image/png;base64,"
@@ -909,6 +932,11 @@ def generate_nim_metadata_text(
     )
     with urllib.request.urlopen(request) as response:
         response_json = json.loads(response.read().decode("utf-8"))
+
+    if usage_callback is not None:
+        from stock_pipeline.ai_usage import extract_openai_usage
+
+        usage_callback(extract_openai_usage(response_json))
 
     response_text = response_json["choices"][0]["message"]["content"]
     if not response_text:

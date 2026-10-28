@@ -4,8 +4,108 @@ from unittest import mock
 from pathlib import Path
 import json
 import shutil
+import sys
+from types import SimpleNamespace
 
 import main
+
+
+class FinalImageSelectionTests(unittest.TestCase):
+    def test_skips_thought_images_before_final_image(self):
+        response = SimpleNamespace(candidates=[SimpleNamespace(content=SimpleNamespace(parts=[
+            SimpleNamespace(thought=True, inline_data=SimpleNamespace(data=b"draft-1k")),
+            SimpleNamespace(thought=None, inline_data=SimpleNamespace(data=b"final-4k")),
+        ]))])
+        self.assertEqual(list(main.iter_inline_images(response)), [b"final-4k"])
+
+    def test_thought_only_response_does_not_return_a_draft(self):
+        response = SimpleNamespace(candidates=[SimpleNamespace(content=SimpleNamespace(parts=[
+            SimpleNamespace(thought=True, inline_data=SimpleNamespace(data=b"draft")),
+        ]))])
+        self.assertEqual(list(main.iter_inline_images(response)), [])
+
+
+class ApiUsageCallbackTests(unittest.TestCase):
+    def _fake_google_types(self):
+        return SimpleNamespace(
+            GenerateContentConfig=lambda **kwargs: kwargs,
+            ImageConfig=lambda **kwargs: kwargs,
+            Part=SimpleNamespace(from_bytes=lambda **kwargs: kwargs),
+        )
+
+    def test_image_generation_reports_google_usage_metadata(self):
+        usage_metadata = SimpleNamespace(
+            prompt_token_count=123,
+            candidates_token_count=2000,
+            thoughts_token_count=0,
+            cached_content_token_count=0,
+            total_token_count=2123,
+        )
+        response = SimpleNamespace(
+            candidates=[
+                SimpleNamespace(
+                    content=SimpleNamespace(
+                        parts=[SimpleNamespace(inline_data=SimpleNamespace(data=b"image"))]
+                    )
+                )
+            ],
+            usage_metadata=usage_metadata,
+        )
+        client = SimpleNamespace(
+            models=SimpleNamespace(generate_content=lambda **kwargs: response)
+        )
+        reported = []
+        fake_module = SimpleNamespace(types=self._fake_google_types())
+
+        with mock.patch.dict(sys.modules, {"google.genai": fake_module}):
+            result = main.generate_image_bytes(
+                client,
+                "prompt",
+                "gemini-3-pro-image-preview",
+                1.0,
+                0.95,
+                "1:1",
+                "4K",
+                usage_callback=reported.append,
+            )
+
+        self.assertEqual(result, b"image")
+        self.assertEqual(reported[0]["prompt_tokens"], 123)
+        self.assertEqual(reported[0]["output_tokens"], 2000)
+
+    def test_google_metadata_reports_usage_metadata(self):
+        usage_metadata = SimpleNamespace(
+            prompt_token_count=456,
+            candidates_token_count=78,
+            thoughts_token_count=9,
+            cached_content_token_count=0,
+            total_token_count=543,
+        )
+        response = SimpleNamespace(text='{"title":"example"}', usage_metadata=usage_metadata)
+        client = SimpleNamespace(
+            models=SimpleNamespace(generate_content=lambda **kwargs: response)
+        )
+        reported = []
+        fake_module = SimpleNamespace(types=self._fake_google_types())
+
+        with tempfile.TemporaryDirectory() as tmpdir:
+            image_path = Path(tmpdir) / "image.png"
+            image_path.write_bytes(b"png")
+            with mock.patch.dict(sys.modules, {"google.genai": fake_module}):
+                result = main.generate_google_metadata_text(
+                    client,
+                    image_path,
+                    "user",
+                    "system",
+                    "gemini-2.5-flash",
+                    0.2,
+                    0.9,
+                    usage_callback=reported.append,
+                )
+
+        self.assertEqual(result, '{"title":"example"}')
+        self.assertEqual(reported[0]["prompt_tokens"], 456)
+        self.assertEqual(reported[0]["thoughts_tokens"], 9)
 
 
 class EnvLoadingTests(unittest.TestCase):

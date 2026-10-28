@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 import re
 from pathlib import Path
-from typing import Any
+from typing import Any, Callable
 
 
 def build_metadata_user_prompt(theme: str, generation_prompt: str, category_list: str) -> str:
@@ -36,6 +36,7 @@ def generate_metadata_for_asset(
     generation_prompt: str, category_list: str, system_prompt: str,
     model: str, temperature: float = 0.2, top_p: float = 0.9,
     asset_id: str | None = None, project_root: Path | None = None,
+    usage_callback: Callable[[dict[str, int | float]], None] | None = None,
 ) -> str:
     import main as legacy
 
@@ -50,8 +51,11 @@ def generate_metadata_for_asset(
         generator = providers[provider]
     except KeyError as exc:
         raise ValueError(f"unsupported metadata provider: {provider}") from exc
-    return generator(
+    generator_kwargs = dict(
         client=client, image_path=image_path, user_prompt=user_prompt,
         system_prompt=system_prompt, model=model,
         temperature=temperature, top_p=top_p,
     )
+    if usage_callback is not None:
+        generator_kwargs["usage_callback"] = usage_callback
+    return generator(**generator_kwargs)

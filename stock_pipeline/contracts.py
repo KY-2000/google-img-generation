@@ -26,8 +26,9 @@ REQUIRED_ASSET_FIELDS = (
     "status",
     "topic_finder_version",
 )
-QUEUE_FIELDS = set(REQUIRED_QUEUE_FIELDS)
-ASSET_FIELDS = set(REQUIRED_ASSET_FIELDS)
+QUEUE_FIELDS = set(REQUIRED_QUEUE_FIELDS) | {"research"}
+BACKGROUND_FIELDS = {"asset_type", "prompt", "negative_prompt", "aspect_ratio", "resolution", "remove_background", "research"}
+ASSET_FIELDS = set(REQUIRED_ASSET_FIELDS) | BACKGROUND_FIELDS
 
 
 class ContractError(ValueError):
@@ -43,6 +44,8 @@ def validate_topic_queue(queue: dict[str, Any]) -> dict[str, Any]:
     unexpected = set(queue) - QUEUE_FIELDS
     if unexpected:
         raise ContractError(f"unexpected topic queue fields: {sorted(unexpected)}")
+    if "research" in queue and not isinstance(queue["research"], dict):
+        raise ContractError("queue research must be an object")
     if not isinstance(queue["run_id"], str) or not RUN_ID_PATTERN.fullmatch(queue["run_id"]):
         raise ContractError("run_id must match ^TF_[A-Za-z0-9_-]+$")
     if not isinstance(queue["topic_finder_version"], str) or not queue["topic_finder_version"].strip():
@@ -62,13 +65,31 @@ def validate_topic_queue(queue: dict[str, Any]) -> dict[str, Any]:
     for index, asset in enumerate(queue["assets"]):
         if not isinstance(asset, dict):
             raise ContractError(f"assets[{index}] must be an object")
-        for field in REQUIRED_ASSET_FIELDS:
+        asset_type = asset.get("asset_type", "icon_set")
+        if asset_type not in ("icon_set", "commercial_background"):
+            raise ContractError(f"invalid asset_type in assets[{index}]")
+        required = tuple(field for field in REQUIRED_ASSET_FIELDS
+                         if asset_type == "icon_set" or not field.startswith("icon_"))
+        for field in required:
             if field not in asset or asset[field] in (None, ""):
                 raise ContractError(f"assets[{index}] is missing required field: {field}")
         unexpected_asset = set(asset) - ASSET_FIELDS
         if unexpected_asset:
             raise ContractError(f"unexpected fields in assets[{index}]: {sorted(unexpected_asset)}")
-        for field in REQUIRED_ASSET_FIELDS:
+        if "research" in asset and not isinstance(asset["research"], dict):
+            raise ContractError(f"assets[{index}].research must be an object")
+        if asset_type == "commercial_background":
+            if not isinstance(asset.get("prompt"), str) or not asset["prompt"].strip():
+                raise ContractError("commercial_background requires a non-empty prompt")
+            if not isinstance(asset.get("negative_prompt"), str):
+                raise ContractError("commercial_background requires a negative_prompt string")
+            if asset.get("aspect_ratio") not in ("16:9", "9:16"):
+                raise ContractError("commercial_background aspect_ratio must be 16:9 or 9:16")
+            if asset.get("resolution") != "4K" or asset.get("remove_background") is not False:
+                raise ContractError("commercial_background requires resolution=4K and remove_background=false")
+        elif set(asset) & (BACKGROUND_FIELDS - {"asset_type", "research"}):
+            raise ContractError("direct prompt settings require commercial_background")
+        for field in required:
             if field == "topic_score":
                 continue
             if not isinstance(asset[field], str):

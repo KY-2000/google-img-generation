@@ -1,0 +1,20 @@
+[
+  {
+    "candidate_id": "RG_003",
+    "strategy": "REGIONAL_COMMERCIAL",
+    "domain": "Small Business Tax Administration",
+    "region": "Malaysia",
+    "theme": "Microbusiness Receipt-to-e-Invoice Request Handling",
+    "source_type": "EMERGING",
+    "topic_score": 96,
+    "buyer_use_case": "Editorial and product teams explaining Malaysian microbusiness invoicing workflows",
+    "differentiation_reason": "Combines a regional compliance workflow with concrete receipt and approval actions",
+    "similarity_risk": "LOW",
+    "icon_1": "Paper receipt with itemized purchase lines",
+    "icon_2": "Digital e-Invoice document with Malaysia marker",
+    "icon_3": "Customer request sent from mobile device",
+    "icon_4": "Merchant approval with confirmation check",
+    "palette": "deep blue, teal, warm amber accents",
+    "status": "CANDIDATE"
+  }
+]
