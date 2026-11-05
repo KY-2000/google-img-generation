@@ -19,6 +19,7 @@ from stock_pipeline.ai_usage import UsageLedger
 from stock_pipeline.billing_reconciler import BigQueryBillingReconciler
 from stock_pipeline.candidate_conversion import convert_candidates, write_queue_atomic
 from stock_pipeline.contracts import load_topic_queue
+from stock_pipeline.queue_ids import prepare_queue_asset_ids
 from stock_pipeline.logging import AssetLogger
 from stock_pipeline.orchestrator import StockPipeline
 from stock_pipeline.registry import Registry
@@ -81,6 +82,14 @@ def main(argv: list[str] | None = None) -> int:
         print(f"[pipeline] converted candidates to {generated_queue_path}", flush=True)
     else:
         queue_path = args.queue if args.queue.is_absolute() else project_root / args.queue
+        if queue_path.is_file():
+            assigned_ids = prepare_queue_asset_ids(queue_path, project_root, database_path)
+            if assigned_ids:
+                print(
+                    f"[pipeline] assigned {len(assigned_ids)} AST IDs "
+                    f"{assigned_ids[0]} to {assigned_ids[-1]} and saved {queue_path}",
+                    flush=True,
+                )
         queue = load_topic_queue(queue_path)
     config = json.loads((project_root / "config/stock_icon_pipeline.json").read_text(encoding="utf-8"))
     print(

@@ -176,6 +176,36 @@ Run from the repo root:
 python3 main.py "a studio portrait of a young woman recording a vlog at home"
 ```
 
+### Automatic AST IDs for a complete unnumbered JSON queue
+
+For \`python run_stock_pipeline.py --queue queues/incoming/my_queue.json --resume\`,
+you may omit \`asset_id\` from **every** item in \`assets\`, or leave all the IDs
+empty (\`""\` / \`null\`). The CLI assigns unique, consecutive \`AST######\` IDs,
+saves them **back into that exact queue JSON file**, and then runs the existing
+strict production contract and pipeline. Re-running the same JSON preserves
+its assigned identifiers.
+
+Allocation locks the local SQLite database (\`--database\`, default
+\`data/stock_pipeline.sqlite\`) and chooses a value above every known
+\`assets.asset_id\`, \`candidate_topics.production_asset_id\`,
+\`id_allocator.next_number\` reservation, ID found in local \`queues/\` or
+\`work_io/topic_finder/\` JSON assets, and locally generated
+\`output/assets/\` or staged PNG files. An unnumbered queue is validated before
+its file or allocator is modified; writing the completed queue uses an atomic
+file replacement.
+
+If **any** asset already has an ID, every asset must have a valid manually
+assigned ID. The CLI retains the original IDs and strict validation, and
+fails on duplicate IDs or conflicts with another local queue or registry row.
+Mixed manual/missing IDs are rejected rather than partially rewritten.
+There is no auto-repair or automatic renumbering of manually numbered queues.
+\`AST######\` is only illustrative and is not a valid identifier.
+
+This is a local SQLite lock, **not** a distributed allocator: sync other
+machines' queues/database before assigning new IDs, and avoid independent
+simultaneous producers on different computers. An unsynced remote reservation
+cannot be detected locally.
+
 ## Stock Icon Pipeline V1
 
 `run_stock_pipeline.py` is the production entry point for square Adobe Stock icon sheets. Each queue asset produces exactly one 2K, 1:1 image whose deterministic prompt requests four icon groups in a 2x2 layout. The generated white-background image is preserved as `original.png`; this workflow never runs the legacy ffmpeg background-removal step.
