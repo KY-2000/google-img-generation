@@ -1,0 +1,404 @@
+{
+  "run_id": "TF_creative_components_2026W46_r02",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-13T09:04:46+08:00",
+  "research": {
+    "finder": "creative_components",
+    "product_line": "commercial_background",
+    "screened_candidates": 36,
+    "approved_count": 8,
+    "publication_policy": "Unnumbered GitHub production queue; local queue_ids.py allocates all AST identifiers atomically before strict validation.",
+    "id_registry_access": "Remote SQLite authoritative registry unavailable; no AST IDs asserted.",
+    "live_exclusion_registry_checked": true,
+    "excluded_registry_count": 11,
+    "source_urls": [
+      "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+      "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+      "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+      "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/adobe-stock-generative-ai-faq.html",
+      "https://www.adobe.com/uk/express/learn/blog/design-trends-2026",
+      "https://docs.google.com/document/d/1_D-QBzmhaKmpC42T4hDLefIgOPQ96qHFauaBAm5BgaQ/edit",
+      "https://github.com/KY-2000/google-img-generation/blob/main/stock_pipeline/contracts.py",
+      "https://github.com/KY-2000/google-img-generation/blob/main/schemas/topic_queue.schema.json"
+    ],
+    "evidence_notes": "Adobe Artist Hub category demand is qualitative. Scores and buyer scenarios are editorial hypotheses, not measured sales."
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Carbon Transfer Paper with Irregular Graphite Impressions",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "graphite black, warm bone, soft charcoal, muted ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a reusable analog transfer texture for an editorial book cover designer, also suitable for experimental event poster artwork. Show a single unprinted cream paper sheet carrying irregular graphite-black carbon transfer impressions from an unseen pressure process. Fine dark powder lodges in porous paper fibers, with soft rubbed areas, minute interrupted lines, delicate pressure streaks, and scattered gray dust impressions. Avoid readable writing, symbols, illustrations, stationery props, and broad generic grunge splatters. Compose a horizontal 16:9 straight-on macro photograph of the continuous sheet, extending beyond every edge. Concentrate the denser carbon transfer on the lower right and outer border, leaving the left third gently marked and low contrast for later typography. Keep a physically credible distribution of abrasion and porous ink uptake, with no obvious repeat tiles. Art style: Archival Carbon Transfer Macro Photography, restrained black on warm bone, accurate fine paper grain and subtle real ink feathering. Use flat diffuse copy-stand illumination with delicate side relief, neutral archival mood. Deliver one original raster texture without logos, watermarks, lettering, false transparency, or artificial digital glitch effects.",
+      "negative_prompt": "legible words, carbon copy forms, handwriting, ink stamps, thick scratches, poster mockup",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Analog Print Transfer",
+        "material": "matte carbon transfer ink embedded in porous cream stock",
+        "designer_persona": "Editorial book cover designer",
+        "buyer_use_case": "Book jacket texture and experimental typography poster",
+        "design_placement": "Book jacket texture and experimental typography poster",
+        "design_function": "Reusable standalone design component",
+        "design_reuse_cases": [
+          "Distressed analog field behind a book jacket title",
+          "Low-contrast transfer layer for a music event poster"
+        ],
+        "integration_guidance": "Full-bleed field with calmer left third; blend in an external editor; no real alpha",
+        "reusability_rationale": "Authentic pressure-dependent ink transfers and feathered microabrasion are difficult to mimic with a stock noise filter",
+        "art_style": "Archival Carbon Transfer Macro Photography",
+        "style_rationale": "Dry transfer ghosting and hand-pressure grain, distinct from the earlier risograph offset halftone",
+        "distinctiveness": "Dry transfer ghosting and hand-pressure grain, distinct from the earlier risograph offset halftone",
+        "copy_space": "Full-bleed field with calmer left third; blend in an external editor; no real alpha",
+        "metadata_seed_keywords": [
+          "carbon transfer paper with irregular graphite impressions",
+          "analog print transfer",
+          "matte carbon transfer ink embedded in porous cream stock"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.adobe.com/uk/express/learn/blog/design-trends-2026"
+        ],
+        "originality_notes": "Screened against 11 live user-reported rejections and prior available finder themes. Original material, framing and buyer job; inspect generated output for duplicates."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Folded Dichroic Foil with Controlled Spectral Highlights",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "smoky violet, silver graphite, muted cyan, warm pearl",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a reusable optical-material background for a technology launch designer, suitable for a website hero and a keynote opening slide. Depict one large sheet of very thin dichroic polymer foil with a few carefully formed diagonal folds, gentle tension wrinkles, and physically plausible angle-dependent interference colors. The foil should reveal a restrained spectral shift from smoky violet to pale cyan and silver, with fine real microcreases and nuanced reflectance, avoiding shiny chrome liquid or fantastical light beams. Compose a horizontal 16:9 studio macro photograph, with the foil gathered and folded predominantly across the right forty percent. Preserve a softly illuminated, minimally detailed left half for externally added typography, allowing safe responsive crops and interface margins. The surface continues beyond the frame without separate props, devices, or packaging. Art style: Studio Optical Material Photography, thin-film diffraction, controlled edge reflections, and physically coherent fold shadows. Light with one large soft studio source and a narrow grazing accent that reveals the foil thickness and folds. Create an original, clean, high-resolution raster surface with no text, logos, watermarks, impossible transparency, or repeating gradient bands.",
+      "negative_prompt": "chrome blobs, plastic liquid, rainbow stripes, text, devices, overly saturated neon",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Optical Foil Surface",
+        "material": "thin dichroic polymer foil with folded creases and angle-dependent color",
+        "designer_persona": "Technology launch designer",
+        "buyer_use_case": "Product landing page and keynote title slide",
+        "design_placement": "Product landing page and keynote title slide",
+        "design_function": "Reusable standalone design component",
+        "design_reuse_cases": [
+          "Premium abstract light field behind a technology landing page headline",
+          "Prismatic accent surface for a keynote opening slide"
+        ],
+        "integration_guidance": "Right-weighted foil highlights, large low-detail left copy zone, flattened photographic raster",
+        "reusability_rationale": "Angle-dependent thin-film interference and physically credible crease reflections create more distinctive design value than a generic gradient",
+        "art_style": "Studio Optical Material Photography",
+        "style_rationale": "Angular thin-film reflection with no glass prisms or earlier copper patina",
+        "distinctiveness": "Angular thin-film reflection with no glass prisms or earlier copper patina",
+        "copy_space": "Right-weighted foil highlights, large low-detail left copy zone, flattened photographic raster",
+        "metadata_seed_keywords": [
+          "folded dichroic foil with controlled spectral highlights",
+          "optical foil surface",
+          "thin dichroic polymer foil with folded creases and angle-dependent color"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.adobe.com/uk/express/learn/blog/design-trends-2026"
+        ],
+        "originality_notes": "Screened against 11 live user-reported rejections and prior available finder themes. Original material, framing and buyer job; inspect generated output for duplicates."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Frayed Linen Selvedge Across a Neutral Textile Plane",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "flax beige, ecru, soft oat, warm gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a versatile textile-edge design component for a sustainable fashion brand designer, also useful for a craft workshop invitation. Photograph a single undyed linen cloth lying flat against a slightly darker natural-fiber backing. The cloth has a convincing plain weave with varied yarn thickness, tiny slubs, subtle tension, and one naturally frayed selvedge running vertically along the far left. Individual loose threads must follow the fabric weave and gravity realistically, with no lace motifs, stitched labels, scissors, clothing, or decorative objects. Use a portrait 9:16 composition viewed almost perpendicular to the surface. Keep the frayed edge within the left fifth, letting the uninterrupted neutral textile occupy the center and right as a calm field for future text and graphic placement. Protect the upper and lower interface margins for mobile story cropping. Art style: Natural-Light Textile Still Life, high-fidelity fiber macro detail, matte undyed flax tones, delicate shadows under loose strands, no artificial repeat seam. Soft window daylight from upper left produces warm realistic relief and a quiet handmade mood. No text, branding, watermarks, fake alpha, or synthetic thread geometry.",
+      "negative_prompt": "fashion garment, sewing tools, labels, text, fake lace, repeated thread pattern",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Fabric Edge & Craft Detail",
+        "material": "undyed woven linen with authentic selvedge fraying",
+        "designer_persona": "Fashion brand layout designer",
+        "buyer_use_case": "Sustainable apparel story and craft workshop invitation",
+        "design_placement": "Sustainable apparel story and craft workshop invitation",
+        "design_function": "Reusable standalone design component",
+        "design_reuse_cases": [
+          "Vertical brand story with type in the linen field",
+          "Craft event invitation with natural fiber edge framing"
+        ],
+        "integration_guidance": "Vertical border on far left, generous central type area; crop-safe, raster only",
+        "reusability_rationale": "A believable frayed selvedge with thread-scale weave and restrained edge geometry is a reusable tactile border",
+        "art_style": "Natural-Light Textile Still Life",
+        "style_rationale": "One continuous textile plane and irregular edge, unlike earlier felt herringbone material field",
+        "distinctiveness": "One continuous textile plane and irregular edge, unlike earlier felt herringbone material field",
+        "copy_space": "Vertical border on far left, generous central type area; crop-safe, raster only",
+        "metadata_seed_keywords": [
+          "frayed linen selvedge across a neutral textile plane",
+          "fabric edge & craft detail",
+          "undyed woven linen with authentic selvedge fraying"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.adobe.com/uk/express/learn/blog/design-trends-2026"
+        ],
+        "originality_notes": "Screened against 11 live user-reported rejections and prior available finder themes. Original material, framing and buyer job; inspect generated output for duplicates."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Fine Aggregate Terrazzo with Irregular Recycled Glass Chips",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "chalk limestone, pale sage, clear glass, light gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Generate a reusable architectural material surface for an interior architecture presentation designer, appropriate for a specification deck and a premium property brochure. Show a close, level view of one continuous matte terrazzo slab made from pale limestone-colored cement with a restrained distribution of tiny angular recycled glass chips and a few small mineral fragments. The aggregate must be genuinely embedded at different depths, with credible partial translucency, ground flush edges, subtle microvoids, and realistic polishing variations. Avoid oversized colorful chips, artificial confetti spacing, a visible floor horizon, furniture, product samples, or grout lines. Compose as a horizontal 16:9 full-bleed material photograph with natural nonuniform density and no obvious periodic motif. Keep the central-left area moderately quiet for an overlaid headline while maintaining enough microdetail for close crops. Art style: Architectural Material Sample Photography, physical aggregate geometry, restrained chalk, pale sage, and cool glass highlights, tactile matte realism. Use broad overhead diffused light with very gentle grazing shadows that show the embedded particles. Original high-resolution raster background only, no text, logo, watermark, invented seams, or unverified seamless tiling claim.",
+      "negative_prompt": "large colorful confetti, floor perspective, furniture, brand logos, tiled repeat seams",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Architectural Material Pattern",
+        "material": "matte terrazzo cement with tiny angular recycled glass inclusions",
+        "designer_persona": "Interior architecture presentation designer",
+        "buyer_use_case": "Material board and property brochure texture",
+        "design_placement": "Material board and property brochure texture",
+        "design_function": "Reusable standalone design component",
+        "design_reuse_cases": [
+          "Material background for a commercial interiors specification deck",
+          "Muted surface for a property brochure feature panel"
+        ],
+        "integration_guidance": "Full-bleed crop-friendly surface, no seamless claim, natural variation",
+        "reusability_rationale": "Plausible aggregate embedding and translucent glass chips make a specific credible material sample",
+        "art_style": "Architectural Material Sample Photography",
+        "style_rationale": "Fine-scale angular glass aggregate, unlike previous copper, felt, ceramic ribbon, and generic stone",
+        "distinctiveness": "Fine-scale angular glass aggregate, unlike previous copper, felt, ceramic ribbon, and generic stone",
+        "copy_space": "Full-bleed crop-friendly surface, no seamless claim, natural variation",
+        "metadata_seed_keywords": [
+          "fine aggregate terrazzo with irregular recycled glass chips",
+          "architectural material pattern",
+          "matte terrazzo cement with tiny angular recycled glass inclusions"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.adobe.com/uk/express/learn/blog/design-trends-2026"
+        ],
+        "originality_notes": "Screened against 11 live user-reported rejections and prior available finder themes. Original material, framing and buyer job; inspect generated output for duplicates."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Hand Marbled Endpaper with Sparse Mineral Veining",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "smoke blue, parchment, muted indigo, pale gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce an original traditional marbled-paper design component for a bookbinding and stationery designer, usable as a book endpaper and a refined editorial invitation background. Depict a single sheet of absorbent handmade paper bearing sparse aqueous ink marbling transferred from a water bath. Fine smoky-blue and muted indigo veins drift organically through warm parchment, forming delicate branching currents, small pigment dispersions, and occasional soft interruptions where the paper absorbed more liquid. The ink should follow plausible fluid flow and capillary feathering rather than precise computer bezier curves or mirrored symmetry. Use a portrait 9:16 overhead flat scan-like composition with the marbling slightly denser toward the upper right and bottom border. Preserve a lighter central vertical zone for later typesetting and safe mobile cropping. Art style: Traditional Suminagashi Paper Documentation, nuanced wet pigment boundaries, subtle paper tooth, limited mineral palette, delicate handmade imperfections. Light evenly with archival copy-stand illumination and a restrained neutral mood. Deliver one high-resolution raster composition, no text, signatures, logos, watermarks, stationery props, or seamless tiling assertion.",
+      "negative_prompt": "flowers, readable letters, psychedelic swirls, mirrored symmetry, artificial vector curves",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Traditional Marbled Paper Pattern",
+        "material": "aqueous ink floated on water and transferred to absorbent paper",
+        "designer_persona": "Bookbinding and stationery designer",
+        "buyer_use_case": "Book endpaper and editorial invitation",
+        "design_placement": "Book endpaper and editorial invitation",
+        "design_function": "Reusable standalone design component",
+        "design_reuse_cases": [
+          "Abstract printed book endpaper background",
+          "Artful invitation or stationery panel with overlaid text"
+        ],
+        "integration_guidance": "Sparse fluid veins leave a center copy region; pattern is not claimed seamless",
+        "reusability_rationale": "Physically grounded capillary ink veining and irregular marbling offer distinctive craft value",
+        "art_style": "Traditional Suminagashi Paper Documentation",
+        "style_rationale": "Loose interrupted mineral-like swirls rather than repetitive high-contrast psychedelic marble",
+        "distinctiveness": "Loose interrupted mineral-like swirls rather than repetitive high-contrast psychedelic marble",
+        "copy_space": "Sparse fluid veins leave a center copy region; pattern is not claimed seamless",
+        "metadata_seed_keywords": [
+          "hand marbled endpaper with sparse mineral veining",
+          "traditional marbled paper pattern",
+          "aqueous ink floated on water and transferred to absorbent paper"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.adobe.com/uk/express/learn/blog/design-trends-2026"
+        ],
+        "originality_notes": "Screened against 11 live user-reported rejections and prior available finder themes. Original material, framing and buyer job; inspect generated output for duplicates."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Open Honeycomb Paper Edge with Deep Cellular Shadows",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "natural kraft, warm sand, deep umber, ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a reusable sculptural paper-engineering background for a packaging concept designer, also suitable for an architectural portfolio slide. Show an expanded honeycomb kraft-paper construction viewed obliquely from close range, revealing genuine thin paper walls, regular but subtly imperfect cellular openings, compressed joins, slight edge fraying, and deep natural interior shadows. The material should read as engineered paper packaging, with believable fold thickness and continuous physical connections, not a bee nest or a flat hexagon illustration. Compose horizontally in 16:9, placing the dimensional honeycomb mass entirely within the right side and allowing a few openings to taper toward the lower right corner. Preserve a clean matte ivory left field for overlaid typography, with enough negative space for responsive cropping. Art style: Macro Paper Engineering Photography, precise paper microstructure, warm kraft, sand, and rich interior shadow, restrained physical realism. Illuminate with a large soft key light from upper left so the cavities have coherent occlusion and contact shadows. No labels, text, logos, watermarks, detached floating cells, or claims of transparent background.",
+      "negative_prompt": "beehive, insects, hexagon clip art, plastic walls, text, distorted cells",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Sculptural Paper Construction",
+        "material": "expanded kraft paper honeycomb with consistent cellular walls",
+        "designer_persona": "Packaging concept designer",
+        "buyer_use_case": "Retail packaging pitch and architectural presentation",
+        "design_placement": "Retail packaging pitch and architectural presentation",
+        "design_function": "Reusable standalone design component",
+        "design_reuse_cases": [
+          "Sculptural edge detail for a packaging concept slide",
+          "Dimensional background for an architecture portfolio page"
+        ],
+        "integration_guidance": "Cellular structure enters from right, left copy space, no isolated alpha claim",
+        "reusability_rationale": "Real paper cell thickness, compression, and depth are difficult to build as generic flat graphics",
+        "art_style": "Macro Paper Engineering Photography",
+        "style_rationale": "Cross-section of engineered honeycomb, separate from glassine hinges and ceramic ribbon geometry",
+        "distinctiveness": "Cross-section of engineered honeycomb, separate from glassine hinges and ceramic ribbon geometry",
+        "copy_space": "Cellular structure enters from right, left copy space, no isolated alpha claim",
+        "metadata_seed_keywords": [
+          "open honeycomb paper edge with deep cellular shadows",
+          "sculptural paper construction",
+          "expanded kraft paper honeycomb with consistent cellular walls"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.adobe.com/uk/express/learn/blog/design-trends-2026"
+        ],
+        "originality_notes": "Screened against 11 live user-reported rejections and prior available finder themes. Original material, framing and buyer job; inspect generated output for duplicates."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Dry Screenprint Squeegee Drag with Sparse Ink Pinholes",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 89,
+      "topic_bucket": "APPROVED",
+      "palette": "forest ink green, cream paper, charcoal, muted olive",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Make a reusable authentic screenprint texture for an independent publishing designer, suited to a zine cover and a campaign social post. Depict a single uncoated cream sheet carrying one broad dry-pulled field of deep forest-green screenprinting ink. Show directional squeegee drag, tiny mesh-related pinholes, uneven pigment loading, subtle blade pressure variation, and slight pigment accumulation at one interrupted edge. The ink must sit naturally on absorbent paper with matte reflectance and credible irregularity, without halftone dots, registration targets, lettering, logos, or a complete poster composition. Use a portrait 9:16 straight-on archival scan framing. Place the most intense ink drag through the lower two thirds and right side, leaving a comparatively calm upper quarter for an externally typeset title and protecting mobile interface margins. Art style: Documentary Screenprint Surface Scan, restrained analog imperfections, accurate fine paper tooth, one ink color with natural density variations. Light evenly with a copy stand, preserving delicate texture without harsh shadows. Output a clean original high-resolution raster surface, with no watermarks, invented readable text, decorative paint splashes, or false alpha transparency.",
+      "negative_prompt": "lettering, registration marks, poster mockup, halftone dots, thick paint drips",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Printmaking Ink Surface",
+        "material": "matte screenprinted pigment on uncoated paper with blade drag and pinholes",
+        "designer_persona": "Independent publisher designer",
+        "buyer_use_case": "Zine cover and campaign social artwork",
+        "design_placement": "Zine cover and campaign social artwork",
+        "design_function": "Reusable standalone design component",
+        "design_reuse_cases": [
+          "Tactile field for a limited-edition zine cover",
+          "Ink distress texture layer for an independent brand campaign"
+        ],
+        "integration_guidance": "Vertical dragged ink region across lower two thirds, upper type-safe zone",
+        "reusability_rationale": "Screen mesh pinholes and directional blade drag are specific print process evidence beyond random noise",
+        "art_style": "Documentary Screenprint Surface Scan",
+        "style_rationale": "Directional squeegee dry-pull and pigment buildup, unlike prior dual-color risograph misregistration",
+        "distinctiveness": "Directional squeegee dry-pull and pigment buildup, unlike prior dual-color risograph misregistration",
+        "copy_space": "Vertical dragged ink region across lower two thirds, upper type-safe zone",
+        "metadata_seed_keywords": [
+          "dry screenprint squeegee drag with sparse ink pinholes",
+          "printmaking ink surface",
+          "matte screenprinted pigment on uncoated paper with blade drag and pinholes"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.adobe.com/uk/express/learn/blog/design-trends-2026"
+        ],
+        "originality_notes": "Screened against 11 live user-reported rejections and prior available finder themes. Original material, framing and buyer job; inspect generated output for duplicates."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Retroreflective Glass Bead Coating Under Grazing Light",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 88,
+      "topic_bucket": "APPROVED",
+      "palette": "slate silver, graphite, cool white, steel blue",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a reusable functional optical-material background for an outdoor equipment brand designer, suitable for a reflective-apparel presentation and a road-safety infographic. Photograph a continuous gray retroreflective coating containing thousands of tiny spherical glass beads partially embedded in a matte binder. At macro scale, the beads must vary slightly in size and burial depth, showing plausible pinpoint retroreflection under a near-camera light source, subtle microshadows, and granular coating between spheres. Avoid metallic glitter flakes, large decorative sparkles, confetti, safety symbols, clothing, or traffic signs. Compose a horizontal 16:9 edge-to-edge material surface with moderately brighter bead reflections toward the far right and a quieter charcoal-gray left region for external annotations. Keep the bead scale consistent and the distribution naturally irregular, with no apparent periodic tiling or digital noise. Art style: Industrial Materials Laboratory Macro, precise optical bead morphology, cool slate and silver-gray, controlled physically accurate reflectance. Use a restrained coaxial fill and soft grazing side light, technical yet clean mood. One original high-resolution raster material photograph, no text, logos, watermarks, exaggerated lens flares, or unsupported seamless claim.",
+      "negative_prompt": "glitter confetti, road signs, safety logos, neon starbursts, metallic flakes",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Functional Optical Material",
+        "material": "microscopic spherical glass beads bound to matte coating",
+        "designer_persona": "Outdoor equipment brand designer",
+        "buyer_use_case": "Safety product presentation and performance infographic",
+        "design_placement": "Safety product presentation and performance infographic",
+        "design_function": "Reusable standalone design component",
+        "design_reuse_cases": [
+          "Technical material background in a reflective apparel presentation",
+          "Surface accent behind a road safety infographic"
+        ],
+        "integration_guidance": "Full-frame crop-safe close-up; no transparent or editable vector claims",
+        "reusability_rationale": "Microscopic retroreflection and embedded bead scale create a useful technical material visual",
+        "art_style": "Industrial Materials Laboratory Macro",
+        "style_rationale": "Directional reflective microbeads and real binder texture, not generic silver glitter or holiday confetti",
+        "distinctiveness": "Directional reflective microbeads and real binder texture, not generic silver glitter or holiday confetti",
+        "copy_space": "Full-frame crop-safe close-up; no transparent or editable vector claims",
+        "metadata_seed_keywords": [
+          "retroreflective glass bead coating under grazing light",
+          "functional optical material",
+          "microscopic spherical glass beads bound to matte coating"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.adobe.com/uk/express/learn/blog/design-trends-2026"
+        ],
+        "originality_notes": "Screened against 11 live user-reported rejections and prior available finder themes. Original material, framing and buyer job; inspect generated output for duplicates."
+      }
+    }
+  ]
+}
