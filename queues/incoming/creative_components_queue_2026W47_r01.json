@@ -1,0 +1,446 @@
+{
+  "run_id": "TF_creative_components_2026W47_r01",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-16T09:27:00+08:00",
+  "research": {
+    "finder": "creative_components",
+    "product_line": "commercial_background",
+    "editorial_scope": "repeat-usable design utility components",
+    "screened_candidates": 36,
+    "approved_count": 8,
+    "source_urls": [
+      "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+      "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+      "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+      "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html",
+      "https://www.adobe.com/uk/express/learn/blog/design-trends-2026",
+      "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+      "https://pubmed.ncbi.nlm.nih.gov/42655227/",
+      "https://guides.loc.gov/russell-maret/glossary",
+      "https://www.si.edu/object/basket-wicker%3Ahac_1980.034.001",
+      "https://www.nps.gov/subjects/museums/conserve-o-gram-6-5-soluble-salts-and-deterioration-of-archeological-materials.htm",
+      "https://museum.wa.gov.au/explore/lustre-online-text-panels/mother-pearl/index.html"
+    ],
+    "live_exclusion_registry_checked": true,
+    "registry_count": 11,
+    "id_registry_access": "Local authoritative SQLite unavailable; intentionally omit every asset_id for atomic local auto-allocation. Current main code checked.",
+    "id_policy": "All assets are intentionally unnumbered. Current run_stock_pipeline.py calls prepare_queue_asset_ids first, which validates temporary IDs in memory and writes reserved AST IDs to a local execution copy.",
+    "evidence_limit": "Adobe category needs are established; scores, buyers, opportunity and differentiation are editorial hypotheses. No per-asset sales or acceptance probability verified.",
+    "prior_reviewed_creative_components": 24
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Mycelium-Bound Hemp Shive Board with Organic Fiber Boundaries",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 95,
+      "topic_bucket": "APPROVED",
+      "palette": "oatmeal ivory, natural hemp beige, soft umber, pale clay",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a reusable high-resolution biomaterial texture for a circular packaging art director designing a sustainability report cover and a biodegradable packaging concept board. Depict a single dry, pressed mycelium-bound hemp-shive panel as a continuous surface, with short irregular lignocellulosic chips embedded in a fine off-white fungal binder. Show natural pores, varied tiny fiber orientations, delicate compressed boundaries, occasional warm brown plant fragments, and convincing matte thickness cues without depicting active fuzzy mold or growing mushrooms. Compose as a horizontal 16:9 close-range surface study with the camera almost perpendicular to the material. Let the subtle cellular and fiber structure become clearer toward the right edge, keeping the left forty-five percent visually quiet for typography added later. Apply Scientific Material Macro Photography with natural oatmeal, hemp beige, pale clay and softly shaded micro-relief. Use broad diffuse studio daylight with only shallow consistent directional shadowing. The full frame should crop flexibly for websites and packaging layouts, without artificial repetitions or any claim of tileable edges. Keep the image original and unbranded, with no text, logos, labels, watermarks, objects or fabricated material diagrams.",
+      "negative_prompt": "living fungus, mushroom caps, glossy plastic, cotton paper fibers only, faux moss, repeated stamp tiles, writing",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Biofabricated Composite Texture",
+        "material": "dried mycelium-bound hemp shive composite board with irregular fibrous pores",
+        "designer_persona": "Circular packaging art director",
+        "buyer_use_case": "Sustainability annual-report hero and biodegradable packaging concept board",
+        "design_placement": "Sustainability annual-report hero and biodegradable packaging concept board",
+        "design_function": "Foundational reusable design asset",
+        "design_reuse_cases": [
+          "Report cover backdrop explaining biofabricated materials",
+          "Material texture behind a packaging sustainability claim written separately"
+        ],
+        "integration_guidance": "Broad matte crop-safe material plane; quieter left half for typography; do not call the raster sample seamlessly repeating.",
+        "reusability_rationale": "Fine lignocellulosic shive fragments held by dried fungal network produce a tactile substrate more specific than generic kraft paper.",
+        "art_style": "Scientific Material Macro Photography",
+        "style_rationale": "Shows fine exposed shive fragments in a dried structural composite, different from earlier cotton pulp fibers and kraft honeycomb.",
+        "distinctiveness": "Shows fine exposed shive fragments in a dried structural composite, different from earlier cotton pulp fibers and kraft honeycomb.",
+        "copy_space": "Broad matte crop-safe material plane; quieter left half for typography; do not call the raster sample seamlessly repeating.",
+        "metadata_seed_keywords": [
+          "mycelium composite",
+          "biofabricated packaging",
+          "hemp shive",
+          "natural material",
+          "fiber board",
+          "sustainable texture"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html",
+          "https://pubmed.ncbi.nlm.nih.gov/42655227/"
+        ],
+        "originality_notes": "Original material treatment and buyer job; screened against eleven live user-reported rejections and 24 previous Creative Components. Final visual similarity remains subject to human review."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Exposed Coptic Link Stitch on an Unprinted Cotton Book Spine",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "cream cotton, natural flax, pale ash, parchment white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a reusable editorial bookbinding design component for an independent publisher, suitable for a literary magazine opener and a book arts workshop announcement. Show a close, accurate view of an unprinted handbound book oriented vertically, with a narrow exposed Coptic link-stitched spine along the left side. Distinct folded paper signatures connect with even, believable linen-thread link loops; cream cotton-covered boards and pale deckled paper edges display subtle tension and contact shadows. There must be no text, drawings, stamped marks or recognizable publication design. Use a portrait 9:16 composition shot from a precise slight three-quarter angle, retaining the stitch construction in the left third while a large quiet ivory board plane fills the right half for later typography. Protect upper and lower mobile interface zones. Art style: Conservation Bookbinding Detail Photography, accurate paper stacks, realistic thread tension, fine cotton texture and restrained natural irregularities. Soft overcast window light reveals the spine depth without obscuring stitches. Keep the scene limited to this single book structure, with no tools, furniture, branding, watermarks, invented glyphs, or decorative collage pieces.",
+      "negative_prompt": "printed pages, calligraphy, logos, damaged loops, floating book signatures, needle tools, overdecorated scrapbook",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Bookbinding Craft Design Component",
+        "material": "unprinted cotton-covered book boards, folded signatures and exposed linen link stitching",
+        "designer_persona": "Independent publishing designer",
+        "buyer_use_case": "Literary magazine opener and book arts workshop poster",
+        "design_placement": "Literary magazine opener and book arts workshop poster",
+        "design_function": "Foundational reusable design asset",
+        "design_reuse_cases": [
+          "Vertical craft border for an independent publication introduction",
+          "Bookmaking workshop promotional story with clear headline area"
+        ],
+        "integration_guidance": "Exposed stitch geometry remains along left vertical side; broad unprinted board on right provides copy space; physical book remains a raster photograph.",
+        "reusability_rationale": "Craft-accurate link stitching supplies a professional bookmaking visual with authentic material details and controllable whitespace.",
+        "art_style": "Conservation Bookbinding Detail Photography",
+        "style_rationale": "An actual exposed linked book spine, unlike prior inked endpaper and glassine collage, with no printed page content.",
+        "distinctiveness": "An actual exposed linked book spine, unlike prior inked endpaper and glassine collage, with no printed page content.",
+        "copy_space": "Exposed stitch geometry remains along left vertical side; broad unprinted board on right provides copy space; physical book remains a raster photograph.",
+        "metadata_seed_keywords": [
+          "Coptic binding",
+          "exposed book spine",
+          "link stitch",
+          "book arts",
+          "linen thread",
+          "craft background"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html",
+          "https://guides.loc.gov/russell-maret/glossary"
+        ],
+        "originality_notes": "Original material treatment and buyer job; screened against eleven live user-reported rejections and 24 previous Creative Components. Final visual similarity remains subject to human review."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Asymmetric Handwoven Willow Splint Edge with Open Paper Field",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "honey willow, pale reed, linen white, muted straw",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Design a reusable handmade-material framing background for an artisanal homeware brand, useful in an e-commerce landing banner and a craft magazine feature. Show carefully woven willow splints entering the composition only along the lower and far right edges of an unmarked warm-white paper field. Individual pale honey-colored strips follow a plausible over-under basketry construction, with gentle tapering, realistic flattened reed widths, tiny natural lengthwise grain, and subtle crossing shadows. The unfinished outer edge should curve irregularly but remain structurally coherent, with no loose impossible intersections or fully depicted basket. Compose as a wide horizontal 16:9 close-up; leave the upper left and center as generous uninterrupted copy-safe space, allowing responsive crop for website headlines. Art style: Artisanal Basketry Macro Still Life, detailed natural material fibers, matte reed finish, understated craft imperfection and refined editorial minimalism. Illuminate with soft daylight from the upper left so crossings cast consistent micro shadows onto one another and the paper beneath. No people, objects, flowers, stickers, typography, logos, watermarks, fake transparent cutouts, or seamless-pattern claims.",
+      "negative_prompt": "whole basket, human hands, floral decoration, plastic lattice, perfect chevrons, floating splints, inscriptions",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Handwoven Natural Material Frame",
+        "material": "interlaced willow splints with natural tapering woven edge on neutral surface",
+        "designer_persona": "Artisanal lifestyle branding designer",
+        "buyer_use_case": "Handmade homeware landing banner and craft editorial feature panel",
+        "design_placement": "Handmade homeware landing banner and craft editorial feature panel",
+        "design_function": "Foundational reusable design asset",
+        "design_reuse_cases": [
+          "Organic woven edging on a homeware e-commerce banner",
+          "Tactile framing for an independent makers magazine article"
+        ],
+        "integration_guidance": "A narrow L-shaped woven edge along lower and right frame with genuine blank off-white central field for responsive crops.",
+        "reusability_rationale": "Accurate over-under flexible willow strips and varied edge thickness offer a useful handmade graphic border.",
+        "art_style": "Artisanal Basketry Macro Still Life",
+        "style_rationale": "An off-center basketry construction edge only, not a complete basket or uniform material swatch; avoids previous fabric macro motifs.",
+        "distinctiveness": "An off-center basketry construction edge only, not a complete basket or uniform material swatch; avoids previous fabric macro motifs.",
+        "copy_space": "A narrow L-shaped woven edge along lower and right frame with genuine blank off-white central field for responsive crops.",
+        "metadata_seed_keywords": [
+          "willow splint",
+          "hand weaving",
+          "basketry detail",
+          "natural frame",
+          "artisan craft",
+          "woven edge"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html",
+          "https://www.si.edu/object/basket-wicker%3Ahac_1980.034.001"
+        ],
+        "originality_notes": "Original material treatment and buyer job; screened against eleven live user-reported rejections and 24 previous Creative Components. Final visual similarity remains subject to human review."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Mineral Salt Efflorescence Across Unglazed Charcoal Earthenware",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "charcoal clay, chalk white, soft ash gray, muted graphite",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a reusable physical-mineral texture for a museum editorial designer or a restrained wellness brand layout. Show a single continuous surface of porous, unglazed charcoal earthenware that has developed sparse irregular white salt efflorescence after moisture migrated through the clay and evaporated. The deposits should follow believable pore networks, forming soft crystalline edges, fine powdery clusters and interrupted growth patterns. Keep much of the matte charcoal base visible, with subtle kiln irregularities and tiny earthenware granules. Frame a horizontal 16:9 orthographic macro surface extending beyond all edges. Cluster the strongest white mineral bloom across the lower right, while the upper-left half remains a relatively dark quiet field for designers to add text, diagrams or product copy separately. Art style: Conservation Material Texture Photography, documentary clarity, physically plausible micron-scale roughness and restrained tonal contrasts. Use soft grazing sidelight to reveal shallow crystals without glitter, snow, or aggressive sharpening. This is one unbranded raster surface without separate objects, symbols, logos, text, watermarks, repeating stamps or claims of transparent background.",
+      "negative_prompt": "snowflakes, frost on window, white paint splashes, glitter, large rocks, geometric tile seams",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Mineral Bloom Surface Texture",
+        "material": "porous dark unglazed earthenware with localized white soluble-salt efflorescence",
+        "designer_persona": "Museum editorial and contemporary wellness designer",
+        "buyer_use_case": "Conservation publication graphic and mineral skincare landing background",
+        "design_placement": "Conservation publication graphic and mineral skincare landing background",
+        "design_function": "Foundational reusable design asset",
+        "design_reuse_cases": [
+          "Abstract mineral detail for a conservation-themed editorial spread",
+          "Contrasting physical texture beneath a neutral wellness campaign headline"
+        ],
+        "integration_guidance": "Crop-safe continuous material surface, with localized white salt crystallization toward outer right, dark low-contrast zone for overlay text; no tileability claim.",
+        "reusability_rationale": "Porosity-linked crystalline efflorescence offers credible organic pattern distribution absent in decorative snow-like grain.",
+        "art_style": "Conservation Material Texture Photography",
+        "style_rationale": "Localized mineral deposits on black porous earthenware, materially different from holiday frost and previous copper oxidation.",
+        "distinctiveness": "Localized mineral deposits on black porous earthenware, materially different from holiday frost and previous copper oxidation.",
+        "copy_space": "Crop-safe continuous material surface, with localized white salt crystallization toward outer right, dark low-contrast zone for overlay text; no tileability claim.",
+        "metadata_seed_keywords": [
+          "salt efflorescence",
+          "unglazed pottery",
+          "mineral texture",
+          "ceramic pores",
+          "white crystalline bloom",
+          "dark clay"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html",
+          "https://www.nps.gov/subjects/museums/conserve-o-gram-6-5-soluble-salts-and-deterioration-of-archeological-materials.htm"
+        ],
+        "originality_notes": "Original material treatment and buyer job; screened against eleven live user-reported rejections and 24 previous Creative Components. Final visual similarity remains subject to human review."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Blank Spunbond Mailing Pouch with Authentic Heat-Sealed Rim",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "soft off-white, cool pearl gray, pale lavender gray, gentle slate",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a neutral stock packaging mockup for a brand designer preparing e-commerce shipping materials and a product listing presentation. Present one unbranded flexible mailing pouch made from fine off-white spunbond nonwoven fabric, without any print, label, adhesive sticker, shipping address or visible manufacturer marks. Its front panel is broad, smooth enough for a designer to composite graphics later, yet detailed with delicate nonwoven fiber grain. Include a physically coherent sealed upper rim with subtle compressed heat-bond ridges, gentle side gusset thickness and a few understated natural handling creases; keep the overall silhouette simple and accurate. Compose a portrait 9:16 studio image with the pouch upright, front-facing and slightly angled so the front print area remains easy to map. Reserve spacious pale-gray background margins above, below and to the sides for crop flexibility; keep the pouch large enough to remain useful as a mockup. Art style: Clean Packaging Mockup Photography, soft diffused studio light, believable shadow under the lower edge and muted cool neutral tones. No text, logo, watermark, fake shipping labels, hands, props or false claims of layered editable source files.",
+      "negative_prompt": "brand text, address label, box, hands, plastic shopping bag handles, zipper, implausible welds",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Reusable Packaging Mockup",
+        "material": "generic spunbond nonwoven mailing pouch with straight heat-sealed rim and blank front",
+        "designer_persona": "E-commerce packaging brand designer",
+        "buyer_use_case": "Packaging identity pitch deck and marketplace product listing visual",
+        "design_placement": "Packaging identity pitch deck and marketplace product listing visual",
+        "design_function": "Foundational reusable design asset",
+        "design_reuse_cases": [
+          "Blank packaging base for digitally applied brand artwork",
+          "Vertical premium packaging mockup in an e-commerce presentation"
+        ],
+        "integration_guidance": "Unmarked center panel is flat and perspective-controlled for later external compositing; enough neutral background to crop; not a smart object or editable vector.",
+        "reusability_rationale": "Heat-seal bead, soft nonwoven microtexture and accurate gusset depth give a pragmatic mockup surface for packaging designers.",
+        "art_style": "Clean Packaging Mockup Photography",
+        "style_rationale": "Functional unbranded heat-sealed mailing material, different from earlier fibrous background planes and prop-rich product shoots.",
+        "distinctiveness": "Functional unbranded heat-sealed mailing material, different from earlier fibrous background planes and prop-rich product shoots.",
+        "copy_space": "Unmarked center panel is flat and perspective-controlled for later external compositing; enough neutral background to crop; not a smart object or editable vector.",
+        "metadata_seed_keywords": [
+          "blank packaging mockup",
+          "nonwoven mailer",
+          "heat sealed pouch",
+          "unbranded packaging",
+          "ecommerce template",
+          "product presentation"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Original material treatment and buyer job; screened against eleven live user-reported rejections and 24 previous Creative Components. Final visual similarity remains subject to human review."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Nacreous Shell Lamellae with Restrained Angle-Shift Color",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "pearl cream, soft silvery pink, blue gray, pale opal green",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce an original natural optical-material background for a premium beauty brand art director, suitable for a skincare website banner and an editorial magazine cover on biomaterials. Depict a close view of the smooth inner nacre layer of a generic unbranded shell, filling the entire frame without showing the animal, an exterior shell outline or jewelry. Fine overlapping aragonite growth terraces and barely visible lamellar steps create gentle angle-dependent bands of pearl cream, silvery pink, cool blue-gray and subtle green iridescence. Keep color shifts restrained and physically linked to curvature and shallow microscopic surface structure, avoiding rainbow neon and smooth synthetic foil reflections. Compose horizontally in 16:9, with the more luminous arcs gathering at the upper right while the lower-left zone remains softly neutral for future typography. Art style: Natural History Optical Macro Photography, carefully resolved surface detail, measured shallow curvature and soft specular highlights. Use one broad raking daylight source and realistic reflections, without artificially mirrored patterns. The result is a continuous original raster texture, with no text, pearls, props, logos, watermark, fake alpha or seamless tiling claim.",
+      "negative_prompt": "loose pearls, jewelry, shell outlines, synthetic dichroic foil, oversaturated prism rainbow, digital swirls",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Natural Iridescent Optical Material",
+        "material": "interior nacre surface with thin aragonite growth lamellae and soft structural iridescence",
+        "designer_persona": "Luxury beauty and editorial product designer",
+        "buyer_use_case": "Skincare website image treatment and scientific design magazine cover",
+        "design_placement": "Skincare website image treatment and scientific design magazine cover",
+        "design_function": "Foundational reusable design asset",
+        "design_reuse_cases": [
+          "Subtle iridescent base for luxury beauty website visual",
+          "Natural optical-material texture used in an editorial article layout"
+        ],
+        "integration_guidance": "Tonal shift is localized along curved growth lines; quiet lower-left for typography; raster background, no alpha.",
+        "reusability_rationale": "Genuine nacre surface steps and thin-film interference add distinctive natural coloration unavailable in a simple gradient.",
+        "art_style": "Natural History Optical Macro Photography",
+        "style_rationale": "Layered shell nacre with growth boundaries and restrained multi-angle shimmer, unlike synthetic dichroic foil and reeded glass optics.",
+        "distinctiveness": "Layered shell nacre with growth boundaries and restrained multi-angle shimmer, unlike synthetic dichroic foil and reeded glass optics.",
+        "copy_space": "Tonal shift is localized along curved growth lines; quiet lower-left for typography; raster background, no alpha.",
+        "metadata_seed_keywords": [
+          "mother of pearl",
+          "nacre",
+          "aragonite lamellae",
+          "iridescence",
+          "natural optical texture",
+          "shell surface"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html",
+          "https://museum.wa.gov.au/explore/lustre-online-text-panels/mother-pearl/index.html"
+        ],
+        "originality_notes": "Original material treatment and buyer job; screened against eleven live user-reported rejections and 24 previous Creative Components. Final visual similarity remains subject to human review."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Compression-Molded Silicone Grip with Directional Micro-Ribs",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 89,
+      "topic_bucket": "APPROVED",
+      "palette": "graphite black, midnight slate, muted gunmetal gray, soft charcoal",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a reusable high-fidelity functional-material graphic for an outdoor-equipment presentation designer, adaptable to a product feature card and a technical social advertisement. Show a single continuous plane of graphite-gray compression-molded silicone with raised short directional grip ribs and fine non-slip pebble grain. The ribs should have credible mold draft, rounded peaks, shallow inter-rib valleys, small manufacturing imperfections and subtle directional wear at a few high points. Avoid depicting any branded device, handle, phone case, tyre, or complete product. Compose as a portrait 9:16 macro surface, photographed at a slight grazing angle so rib depth is readable. Let the detailed rib field sweep across the lower-right half while the upper-left third remains darker, flatter and quietly copy-safe for a designer to place text. Preserve generous mobile top and bottom margins. Art style: Industrial Product Surface Macro, controlled elastomer roughness, believable low-sheen matte behavior, charcoal to slate-gray tonal range and sharp but natural geometric consistency. Light softly from upper right with shallow, physically coherent groove shadows. No lettering, logos, watermarks, plastic gloss, broken rib geometry or unverified seamless-tile claims.",
+      "negative_prompt": "brand device, bicycle tyre, human hands, glossy plastic, impossible rib spacing, checkerboard moire",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Technical Functional Material Pattern",
+        "material": "matte molded silicone elastomer with correctly raised grip ribs and fine pebble-like grain",
+        "designer_persona": "Outdoor equipment and wearable-product designer",
+        "buyer_use_case": "Product performance presentation and technical lifestyle advert",
+        "design_placement": "Product performance presentation and technical lifestyle advert",
+        "design_function": "Foundational reusable design asset",
+        "design_reuse_cases": [
+          "Technical surface background for an outdoor gear product pitch",
+          "Grip-performance visual in a social campaign or product feature card"
+        ],
+        "integration_guidance": "Close-up ribbed field angled across lower right; controlled dark tonal panel above for copy, no claim of seamless tiling.",
+        "reusability_rationale": "Mold seam fidelity, credible compression geometry and consistent elastomer roughness offer specific grip-material utility.",
+        "art_style": "Industrial Product Surface Macro",
+        "style_rationale": "Soft tactile functional silicone ribs with tiny mold details, different from woven fabric, metal foil and generic carbon fiber grid.",
+        "distinctiveness": "Soft tactile functional silicone ribs with tiny mold details, different from woven fabric, metal foil and generic carbon fiber grid.",
+        "copy_space": "Close-up ribbed field angled across lower right; controlled dark tonal panel above for copy, no claim of seamless tiling.",
+        "metadata_seed_keywords": [
+          "molded silicone",
+          "micro rib grip",
+          "rubber texture",
+          "functional material",
+          "outdoor equipment",
+          "macro pattern"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Original material treatment and buyer job; screened against eleven live user-reported rejections and 24 previous Creative Components. Final visual similarity remains subject to human review."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Broad Dry Bristle Pigment Drag on Smooth Warm Matboard",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 88,
+      "topic_bucket": "APPROVED",
+      "palette": "deep indigo, ochre pigment, chalk white, warm cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a reusable physical paint-mark background for an editorial graphic designer making an independent culture magazine opener and an artisan workshop website banner. On one continuous sheet of smooth warm-cream matboard, depict a single broad dry-bristle pigment sweep entering from the lower right and stopping asymmetrically before the central left field. Thick ochre pigment appears at the beginning of the drag, breaking into believable fine parallel bristle trails, sparse skipped fibers, granular dry deposits and feathered edges as the brush runs out of paint. A restrained indigo undertone may appear where pigment was lightly mixed at the stroke origin, with physically plausible matte absorption into the board. Compose as a horizontal 16:9 straight-down archival photograph. Keep most of the upper-left field clean for later independent typography and ensure the paint does not resemble letters, logos, symbols or abstract signage. Art style: Fine Art Surface Reproduction Photography, tactile analog brush mechanics, refined natural imperfections, even warm light and true pigment surface relief. Deliver one high-resolution raster composition without tools, hands, watermarks, invented text, digital splatter effects or transparency claims.",
+      "negative_prompt": "paintbrush visible, signature, brush lettering, watercolor drips, halftone, digital vector strokes, slogans",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Analog Brushstroke Design Material",
+        "material": "dry dense pigment applied by wide natural bristle brush to smooth warm matboard",
+        "designer_persona": "Editorial graphic designer",
+        "buyer_use_case": "Independent cultural magazine opener and artisan workshop campaign banner",
+        "design_placement": "Independent cultural magazine opener and artisan workshop campaign banner",
+        "design_function": "Foundational reusable design asset",
+        "design_reuse_cases": [
+          "Expressive pigment accent in a magazine cover design",
+          "Dry-brush visual treatment for an arts workshop website header"
+        ],
+        "integration_guidance": "Pigment drag concentrated along right and lower margin; quiet cream card area suitable for separate copy, not an alpha overlay.",
+        "reusability_rationale": "Bristle-strand interruptions and actual pigment loading gradient add analog authenticity beyond a uniform vector brushstroke.",
+        "art_style": "Fine Art Surface Reproduction Photography",
+        "style_rationale": "One coherent visible bristle drag with pigment skip marks on smooth board, different from halftone, Riso and screenprint surface textures.",
+        "distinctiveness": "One coherent visible bristle drag with pigment skip marks on smooth board, different from halftone, Riso and screenprint surface textures.",
+        "copy_space": "Pigment drag concentrated along right and lower margin; quiet cream card area suitable for separate copy, not an alpha overlay.",
+        "metadata_seed_keywords": [
+          "dry brush",
+          "bristle drag",
+          "pigment smear",
+          "art surface",
+          "paint texture",
+          "editorial background"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Original material treatment and buyer job; screened against eleven live user-reported rejections and 24 previous Creative Components. Final visual similarity remains subject to human review."
+      }
+    }
+  ]
+}
