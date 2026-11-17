@@ -132,6 +132,14 @@ class ManagerTests(unittest.TestCase):
         self.assertNotIn("private-token", copied)
         self.assertNotIn("Stopped by user", copied)
 
+    def test_published_commit_opens_exact_github_diff(self):
+        desktop = SimpleNamespace(commit_sha=COMMIT, commit_on_origin_main=True)
+        with patch.object(os, "startfile") as open_link:
+            stock_batch_manager.Desktop.open_commit(desktop)
+        open_link.assert_called_once_with(
+            "https://github.com/KY-2000/google-img-generation/commit/" + COMMIT,
+        )
+
     def test_upload_only_launches_edge_if_cdp_is_unreachable(self):
         endpoint = "http://127.0.0.1:9222"
         profile = self.root / "edge automation"
@@ -504,7 +512,10 @@ class GitAndPrivacyTests(unittest.TestCase):
                        old, "", COMMIT, "", "main", "", COMMIT, "", "", "main", diff, TIME]
             runner = Mock(side_effect=[SimpleNamespace(returncode=0, stdout=value) for value in outputs])
             changes = {}
-            self.assertEqual(git_sync(root, run=runner, incoming_changes=changes), (COMMIT, TIME))
+            commit_state = {}
+            self.assertEqual(git_sync(root, run=runner, incoming_changes=changes, commit_state=commit_state),
+                             (COMMIT, TIME))
+            self.assertEqual(commit_state, {"on_origin_main": True})
             self.assertEqual(changes, {"queues/incoming/New queue.json": "New",
                                        "queues/incoming/updated.json": "Updated"})
 
@@ -515,7 +526,9 @@ class GitAndPrivacyTests(unittest.TestCase):
             outputs = [str(root), "", "main", "https://github.com/KY-2000/google-img-generation.git",
                        "", upstream, "", "main", "", COMMIT, "", "", "main", TIME]
             runner = Mock(side_effect=[SimpleNamespace(returncode=0, stdout=value) for value in outputs])
-            self.assertEqual(git_sync(root, run=runner), (COMMIT, TIME))
+            commit_state = {}
+            self.assertEqual(git_sync(root, run=runner, commit_state=commit_state), (COMMIT, TIME))
+            self.assertEqual(commit_state, {"on_origin_main": False})
             self.assertIn(["git", "merge", "--ff-only", upstream], [c.args[0] for c in runner.call_args_list])
             self.assertIn(["git", "merge-base", "--is-ancestor", upstream, COMMIT],
                           [c.args[0] for c in runner.call_args_list])

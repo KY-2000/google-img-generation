@@ -65,7 +65,8 @@ def recent_error_log(root: Path, current_run: Path | None) -> str:
     return ""
 
 
-def git_sync(root: Path, run=subprocess.run, *, incoming_changes: dict | None = None) -> tuple[str, str]:
+def git_sync(root: Path, run=subprocess.run, *, incoming_changes: dict | None = None,
+             commit_state: dict | None = None) -> tuple[str, str]:
     env = {**os.environ, "GIT_TERMINAL_PROMPT": "0", "GCM_INTERACTIVE": "Never"}
     env["GIT_SSH_COMMAND"] = "ssh -o BatchMode=yes"
 
@@ -104,6 +105,8 @@ def git_sync(root: Path, run=subprocess.run, *, incoming_changes: dict | None = 
         for kind, name in zip(fields[::2], fields[1::2]):
             if kind in {"A", "M", "T"} and name.casefold().endswith(".json"):
                 incoming_changes[name] = "New" if kind == "A" else "Updated"
+    if commit_state is not None:
+        commit_state["on_origin_main"] = head == upstream
     return head, git("show", "-s", "--format=%cI", head)
 
 

@@ -5,6 +5,7 @@ import argparse
 import json
 import os
 import queue
+import re
 import subprocess
 import sys
 import threading
@@ -27,6 +28,7 @@ IMAGE_MODELS = {
 DEFAULT_METADATA_MODEL = "gemini-3.8-flash"
 SUPPORT_CHAT_FILE = Path("output/stock_manager/support_chat.txt")
 CHAT_LINK_PREFIX = "codex://threads/"
+GITHUB_COMMIT_PREFIX = "https://github.com/KY-2000/google-img-generation/commit/"
 
 
 def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bool = False,
@@ -66,8 +68,9 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
         with manager_lock(ROOT / "output" / "stock_manager" / "manager.lock"):
             log("Checking clean main and fetching GitHub…", phase="Git sync", github="Checking")
             changes = {}
-            sha, commit_time = git_sync(ROOT, incoming_changes=changes)
-            log(f"Git synced: {sha}", phase="Git sync", github="Connected", commit=sha)
+            commit_state = {}
+            sha, commit_time = git_sync(ROOT, incoming_changes=changes, commit_state=commit_state)
+            log(f"Git synced: {sha}", phase="Git sync", github="Connected", commit=sha, **commit_state)
             from stock_pipeline.batch_manager import preview_queues, run_manager
             rows, _ = preview_queues(ROOT, commit_time, changes)
             pending = [row["source_file"] for row in rows if row["selectable"]]
@@ -133,6 +136,8 @@ class Desktop:
         self.git_status = tk.StringVar(value="Not checked")
         self.browser_status = tk.StringVar(value="Not checked")
         self.commit = tk.StringVar(value="—")
+        self.commit_sha = ""
+        self.commit_on_origin_main = False
         self.stage = tk.StringVar(value="Ready")
         self.current = tk.StringVar(value="No active queue")
         self.count = tk.StringVar(value="0 / 0 assets prepared")
@@ -148,6 +153,7 @@ class Desktop:
         style.configure("TFrame", background="#edf0f3")
         style.configure("Card.TFrame", background="#ffffff")
         style.configure("TLabel", background="#edf0f3", foreground="#162230", font=("Segoe UI", 10))
+        style.configure("Link.TLabel", foreground="#194f70", font=("Segoe UI", 10, "underline"))
         style.configure("Card.TLabel", background="#ffffff")
         style.configure("Hero.TLabel", font=("Segoe UI Semibold", 24))
         style.configure("Stage.TLabel", background="#ffffff", font=("Segoe UI Semibold", 15))
@@ -165,9 +171,14 @@ class Desktop:
         ttk.Label(container, text=TITLE, style="Hero.TLabel").pack(anchor="w", pady=(3, 8))
         links = ttk.Frame(container)
         links.pack(fill="x", pady=(0, 12))
-        for label, var in (("GitHub", self.git_status), ("Adobe Browser", self.browser_status), ("Commit", self.commit)):
+        for label, var in (("GitHub", self.git_status), ("Adobe Browser", self.browser_status)):
             ttk.Label(links, text=label + ":").pack(side="left", padx=(0, 4))
             ttk.Label(links, textvariable=var).pack(side="left", padx=(0, 18))
+        ttk.Label(links, text="Commit:").pack(side="left", padx=(0, 4))
+        self.commit_link = ttk.Label(links, textvariable=self.commit)
+        self.commit_link.pack(side="left")
+        self.commit_link.bind("<Button-1>", lambda _event: self.open_commit())
+        self.commit_link.bind("<Return>", lambda _event: self.open_commit())
         stats = ttk.Frame(container)
         stats.pack(fill="x", pady=(0, 12))
         for index, key in enumerate(self.metrics):
@@ -245,6 +256,45 @@ class Desktop:
     def refresh_start_button(self):
         self.start_button.configure(text="Run Offline Test" if self.offline_test.get() else "Check Queues")
 
+    def set_commit(self, sha="", on_origin_main=False):
+        self.commit_sha = sha if re.fullmatch(r"[0-9a-f]{40}", sha) else ""
+        self.commit_on_origin_main = on_origin_main
+        if self.commit_sha:
+            self.commit.set(self.commit_sha[:12] + ("" if on_origin_main else " (local)"))
+            self.commit_link.configure(style="Link.TLabel", cursor="hand2", takefocus=True)
+        else:
+            self.commit.set("—")
+            self.commit_link.configure(style="TLabel", cursor="", takefocus=False)
+
+    def open_commit(self):
+        if not self.commit_sha:
+            return
+        try:
+            if self.commit_on_origin_main:
+                os.startfile(GITHUB_COMMIT_PREFIX + self.commit_sha)
+                return
+            result = subprocess.run(
+                ["git", "show", "--no-ext-diff", "--no-color", self.commit_sha, "--"], cwd=ROOT,
+                stdin=subprocess.DEVNULL, capture_output=True, text=True, encoding="utf-8", errors="replace",
+                timeout=15, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
+            )
+            if result.returncode:
+                raise RuntimeError("Git could not read this local commit.")
+        except (OSError, RuntimeError, subprocess.TimeoutExpired) as exc:
+            self.append(f"Could not open commit: {exc}")
+            return
+        from tkinter import ttk
+        dialog = self.tk.Toplevel(self.window)
+        dialog.title(f"Local commit {self.commit_sha[:12]}")
+        dialog.geometry("1000x660")
+        diff = self.tk.Text(dialog, wrap="word", font=("Consolas", 10), padx=12, pady=12)
+        scrollbar = ttk.Scrollbar(dialog, command=diff.yview)
+        scrollbar.pack(side="right", fill="y")
+        diff.configure(yscrollcommand=scrollbar.set)
+        diff.pack(side="left", fill="both", expand=True)
+        diff.insert("1.0", result.stdout)
+        diff.configure(state="disabled")
+
     def refresh_generation_entries(self):
         pro = self.image_model.get() == "Nano Banana Pro"
         for index, entry in enumerate(self.generation_entries):
@@ -316,7 +366,7 @@ class Desktop:
         self.bar.configure(value=0)
         self.git_status.set("Checking")
         self.browser_status.set("Not checked")
-        self.commit.set("—")
+        self.set_commit()
         python = Path(sys.executable)
         if os.name == "nt" and python.name.casefold() == "pythonw.exe":
             python = python.with_name("python.exe")
@@ -494,7 +544,7 @@ class Desktop:
                 if event.get(field):
                     var.set(event[field])
             if event.get("commit"):
-                self.commit.set(event["commit"][:12])
+                self.set_commit(event["commit"], event.get("on_origin_main", False))
             if event.get("source"):
                 self.current.set(event["source"] + ("  •  " + event["asset"] if event.get("asset") else ""))
             if "total" in event:
