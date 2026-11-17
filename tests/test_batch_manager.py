@@ -117,6 +117,18 @@ class ManagerTests(unittest.TestCase):
         self.assertEqual(generate.call_args.kwargs["model"], "gemini-nano-banana-2.1")
         self.assertEqual(report["image_model"], "gemini-nano-banana-2.1")
 
+    def test_metadata_model_selection_reaches_vertex_and_records_actual_model(self):
+        self.write("metadata.json", self.production("Metadata"))
+        (self.root / ".env").write_text("METADATA_PROVIDER=openrouter\nMETADATA_MODEL=previous-model\n")
+        self.metadata = Mock(side_effect=self.metadata)
+        report = self.run_batch(metadata_model="gemini-3.8-flash")
+        self.assertEqual(report["status"], "COMPLETE", report)
+        self.assertEqual(self.metadata.call_args.kwargs["provider"], "vertex")
+        self.assertEqual(self.metadata.call_args.kwargs["model"], "gemini-3.8-flash")
+        self.assertEqual(report["metadata_model"], "gemini-3.8-flash")
+        with Registry(self.root / "data/stock_pipeline.sqlite") as registry:
+            self.assertEqual(registry.list_assets()[0]["metadata_model"], "gemini-3.8-flash")
+
     def test_baseline_skips_old_files_but_not_new_or_changed_inputs(self):
         from stock_pipeline.manager_queues import discover
 

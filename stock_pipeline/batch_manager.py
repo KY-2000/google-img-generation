@@ -121,7 +121,8 @@ def upload_process(root, batch, receipt_dir, *, cdp, profile, log, stop_file=Non
 def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 should_stop=lambda: False, emit=lambda event: None,
                 pipeline_factory=StockPipeline, uploader=upload_process,
-                cdp="http://127.0.0.1:9222", profile=None, stop_file=None, image_model=None) -> dict:
+                cdp="http://127.0.0.1:9222", profile=None, stop_file=None, image_model=None,
+                metadata_model=None) -> dict:
     start = time.monotonic()
     log_path = run_dir / "activity.log"
     redact = redactor(root)
@@ -246,12 +247,16 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 or os.environ.get("IMAGE_MODEL") or "gemini-3-pro-image"
             )
             report["image_model"] = selected_model
+            metadata_provider = "vertex" if metadata_model else legacy.get_default_metadata_provider(root)
+            selected_metadata = metadata_model or legacy.get_default_metadata_model(root)
+            report.update(metadata_model=selected_metadata, metadata_provider=metadata_provider)
             log(f"Image model: {selected_model}", "Generation")
+            log(f"Metadata model: {selected_metadata} ({metadata_provider})", "Metadata")
             pipeline = pipeline_factory(
                 project_root=root, registry=registry, config=config, progress=progress,
                 image_model=selected_model,
-                metadata_provider=legacy.get_default_metadata_provider(root),
-                metadata_model=legacy.get_default_metadata_model(root), usage_recorder=ledger.record,
+                metadata_provider=metadata_provider,
+                metadata_model=selected_metadata, usage_recorder=ledger.record,
                 redact_error=redact,
             )
             try:

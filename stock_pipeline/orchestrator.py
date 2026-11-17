@@ -308,6 +308,7 @@ class StockPipeline:
             return
 
         if current["status"] == "METADATA_PENDING":
+            self.registry.update_asset(asset_id, metadata_model=self.metadata_model)
             self._emit_progress(
                 asset_id,
                 f"metadata prompt 1/1 started model={self.metadata_model}",

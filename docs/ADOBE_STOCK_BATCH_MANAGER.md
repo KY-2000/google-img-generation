@@ -18,8 +18,10 @@ If the virtual environment is missing, first run `python -m venv .venv`.
 Configure `.env` and Google credentials as for the single-queue pipeline.
 Choose **Nano Banana Pro** (default) or **Nano Banana 2.1** in the
 **Image model** dropdown. The choice overrides `IMAGE_MODEL` for that run
-and applies only to new generation; completed images are reused. Metadata
-still uses `METADATA_PROVIDER` and `METADATA_MODEL` from existing settings.
+and applies only to new generation; completed images are reused. The editable
+**Metadata model** dropdown defaults to `gemini-3.8-flash` and accepts other
+Vertex AI model IDs. It applies to new metadata requests via Vertex AI for
+that desktop run. Existing metadata and the prompt template are unchanged.
 Offline test mode does not invoke either model.
 
 The checkout must be on a **clean local main** with
