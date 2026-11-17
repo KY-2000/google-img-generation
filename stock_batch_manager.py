@@ -439,8 +439,8 @@ class Desktop:
         invalid = sum(row["status"] == "Invalid" for row in rows)
         dialog = self.preview_window = self.tk.Toplevel(self.window)
         dialog.title("Queue Preview")
-        dialog.geometry("1070x594")
-        dialog.minsize(760, 449)
+        dialog.geometry("1070x682")
+        dialog.minsize(760, 537)
         dialog.transient(self.window)
         dialog.grab_set()
         panel = ttk.Frame(dialog, padding=16)
@@ -470,8 +470,13 @@ class Desktop:
                 row["git_change"], row["status"], row["total"] if row["total"] else "—",
                 row["new_images"] if row["selectable"] else "—",
             ))
-        detail = self.tk.Text(panel, height=5, wrap="word", font=("Segoe UI", 10), state="disabled")
-        detail.pack(fill="x", pady=(6, 6))
+        detail_box = ttk.Frame(panel)
+        detail_box.pack(fill="x", pady=(6, 6))
+        detail = self.tk.Text(detail_box, height=9, wrap="word", font=("Segoe UI", 10), state="disabled")
+        detail_scroll = ttk.Scrollbar(detail_box, orient="vertical", command=detail.yview)
+        detail.configure(yscrollcommand=detail_scroll.set)
+        detail_scroll.pack(side="right", fill="y")
+        detail.pack(side="left", fill="x", expand=True)
 
         def show_details(_event=None):
             selection = table.selection()
@@ -479,9 +484,12 @@ class Desktop:
             detail.delete("1.0", "end")
             if selection:
                 row = visible[int(selection[0])]
-                detail.insert("end", "\n".join(filter(None, [
-                    row["source_file"], ", ".join(row["themes"]), row["error"],
-                ])))
+                lines = [row["source_file"]]
+                lines.extend(f"{number}. {theme}" for number, theme in enumerate(row["themes"], start=1))
+                if row["error"]:
+                    lines.append(row["error"])
+                detail.insert("end", "\n".join(lines))
+            detail.yview_moveto(0)
             detail.configure(state="disabled")
 
         table.bind("<<TreeviewSelect>>", show_details)
