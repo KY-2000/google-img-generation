@@ -174,6 +174,20 @@ class ManagerTests(unittest.TestCase):
         self.assertEqual(preview[0]["status"], "In progress")
         self.assertEqual(preview[0]["new_images"], 1)
 
+    def test_image_overview_counts_selected_assets_as_their_status_changes(self):
+        self.write("a.json", self.production("Coffee", two=True))
+        self.write("b.json", self.production("Spring"))
+        _, sources = preview_queues(self.root, TIME)
+        self.run_batch(sources=sources[:1], max_images=1)
+        self.assertIn(
+            {"total": 2, "pending": 1, "generated": 1, "uploaded": 0, "failed": 0},
+            [event["overview"] for event in self.events if "image 1/1 completed" in event["message"]],
+        )
+        self.events.clear()
+        self.run_batch(sources=sources[:1])
+        self.assertEqual(self.events[-1]["overview"],
+                         {"total": 2, "pending": 0, "generated": 0, "uploaded": 2, "failed": 0})
+
     def test_worker_waits_for_confirmation_and_rejects_changed_queue(self):
         self.write("a.json", self.production("Coffee"))
         run_dir = new_run_dir(self.root)
@@ -278,6 +292,8 @@ class ManagerTests(unittest.TestCase):
         first = self.run_batch()
         self.assertEqual(first["status"], "UPLOAD_INCOMPLETE", first)
         self.assertEqual(first["uploaded"], 1)
+        self.assertEqual(self.events[-1]["overview"],
+                         {"total": 2, "pending": 0, "generated": 1, "uploaded": 1, "failed": 0})
         self.partial_upload = False
         second = self.run_batch()
         self.assertEqual(second["status"], "COMPLETE", second)
@@ -338,6 +354,8 @@ class ManagerTests(unittest.TestCase):
         result = self.run_batch()
         self.assertEqual(result["status"], "BLOCKED", result)
         self.assertEqual(result["failed_assets"], 1)
+        self.assertEqual(self.events[-1]["overview"],
+                         {"total": 2, "pending": 0, "generated": 1, "uploaded": 0, "failed": 1})
         self.assertEqual(result["prepared"], 1)
         self.assertEqual(len(self.uploads), 0)
         self.assertTrue((self.root / "output/adobe_batches" / result["batch_id"] / "batch_manifest.json").exists())

@@ -6,7 +6,7 @@ import os
 import re
 import subprocess
 import time
-from collections import defaultdict
+from collections import Counter, defaultdict
 from contextlib import nullcontext
 from pathlib import Path
 from uuid import uuid4
@@ -29,6 +29,14 @@ COUNTERS = (
 )
 
 SKIPPED = {"DUPLICATE", "SKIPPED_EXAMPLE", "SKIPPED_BASELINE"}
+IMAGE_EXISTS = DONE | {"IMAGE_READY", "IMAGE_QC_FAILED", "METADATA_PENDING", "METADATA_QC_FAILED"}
+
+
+def has_generated_image(row: dict) -> bool:
+    return row["status"] in IMAGE_EXISTS or (
+        row["status"] in {"FAILED", "IMAGE_GENERATING"}
+        and bool(row["image_path"]) and Path(row["image_path"]).is_file()
+    )
 
 
 def validate_test_queue(root: Path, run_dir: Path) -> dict:
@@ -173,12 +181,7 @@ def preview_queues(root: Path, commit_time: str, changes=None) -> tuple[list[dic
                         for row, item in zip(existing, items):
                             verify_asset_identity(row, expected.get(row["asset_id"], item), source.run_id)
                     uploaded = sum(row["status"] == "UPLOADED_DRAFT" for row in existing)
-                    remaining = source.count - sum(
-                        row["status"] in DONE or row["status"] in {
-                            "IMAGE_READY", "IMAGE_QC_FAILED", "METADATA_PENDING", "METADATA_QC_FAILED",
-                        } or (row["status"] in {"FAILED", "IMAGE_GENERATING"} and row["image_path"]
-                              and Path(row["image_path"]).is_file()) for row in existing
-                    )
+                    remaining = source.count - sum(has_generated_image(row) for row in existing)
                     selectable = uploaded < source.count
                     if not selectable:
                         status = "Uploaded draft"
@@ -214,6 +217,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
     db = root / "data" / "stock_pipeline.sqlite"
     receipts = root / "output" / "stock_manager" / "adobe_receipts"
     report.update(max_images=max_images, generation_started=0, generation_deferred=0)
+    image_states = {}
 
     def reserve_image():
         if max_images is not None and report["generation_started"] >= max_images:
@@ -231,17 +235,25 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
 
     def overview():
         queues = report["queues"]
-        states = [q["queue_status"] for q in queues]
-        return {
-            "total": len(queues),
-            "pending": sum(s in {"NEW", "READY", "PARTIAL", "READY_TO_UPLOAD"} for s in states),
-            "running": sum(s in {"RUNNING", "UPLOADING"} for s in states),
-            "completed": sum(s == "UPLOADED_DRAFT" or s in SKIPPED for s in states),
-            "failed": sum(s in {"INVALID", "FAILED"} for s in states),
-        }
+        counts = Counter(image_states.values())
+        total = sum(q["total_assets"] for q in queues if q["queue_status"] not in SKIPPED)
+        failed = counts["failed"] + sum(q["total_assets"] for q in queues if q["queue_status"] == "INVALID")
+        return {"total": total, "pending": total - counts["generated"] - counts["uploaded"] - failed,
+                "generated": counts["generated"], "uploaded": counts["uploaded"], "failed": failed}
+
+    def track_image(row):
+        if row["status"] == "UPLOADED_DRAFT":
+            state = "uploaded"
+        elif row["status"] in FAILED:
+            state = "failed"
+        else:
+            state = "generated" if has_generated_image(row) else "pending"
+        image_states[row["asset_id"]] = state
 
     def refresh(record, registry, ids):
         rows = [registry.get_asset(aid) for aid in ids]
+        for row in rows:
+            track_image(row)
         record["completed_assets"] = sum(row["status"] in DONE for row in rows)
         record["failed_assets"] = sum(row["status"] in FAILED for row in rows)
         errors = [f"{row['asset_id']}: {redact(row['error'] or row['status'])}"
@@ -331,6 +343,8 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
 
             def progress(message):
                 match = re.match(r"\[(AST\d{6})\]\s*(.*)", message)
+                if match and match[1] in image_states:
+                    track_image(registry.get_asset(match[1]))
                 log(message, match[2].split(" started", 1)[0] if match else "Generation",
                     asset=match[1] if match else "", source=current_source,
                     completed=sum(q["completed_assets"] for q in report["queues"]),
@@ -347,7 +361,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
             metadata_provider = "vertex" if metadata_model else legacy.get_default_metadata_provider(root)
             selected_metadata = metadata_model or legacy.get_default_metadata_model(root)
             report.update(metadata_model=selected_metadata, metadata_provider=metadata_provider)
-            log(f"Image model: {selected_model}", "Generation")
+            log(f"Image model: {selected_model}", "Generation", overview=overview())
             log(f"Max new images: {max_images if max_images is not None else 'unlimited'}; "
                 + (f"Temperature: {temperature:g}; Top-p: {top_p:g}" if sampling else "sampling controls not sent"),
                 "Generation")
@@ -443,6 +457,8 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
 
             receipts.mkdir(parents=True, exist_ok=True)
             recovered = reconcile_receipts(registry, batch, receipts)
+            for aid in recovered:
+                track_image(registry.get_asset(aid))
             report["already_uploaded"] += len(recovered)
             outstanding = set(ready) - recovered
             upload_error = ""

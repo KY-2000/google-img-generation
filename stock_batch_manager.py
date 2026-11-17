@@ -134,7 +134,7 @@ class Desktop:
         self.stage = tk.StringVar(value="Ready")
         self.current = tk.StringVar(value="No active queue")
         self.count = tk.StringVar(value="0 / 0 assets prepared")
-        self.metrics = {key: tk.StringVar(value="—") for key in ("total", "pending", "running", "completed", "failed")}
+        self.metrics = {key: tk.StringVar(value="—") for key in ("total", "pending", "generated", "uploaded", "failed")}
         window.title(TITLE)
         window.geometry("1000x740")
         window.minsize(740, 610)
