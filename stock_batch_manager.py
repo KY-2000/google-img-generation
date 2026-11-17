@@ -44,7 +44,13 @@ ASSET_STAGES = {
     "failed": ("Failed", None, "#a33232"),
     "deferred": ("Deferred", None, "#71571f"),
     "interrupted": ("Interrupted", None, "#71571f"),
+    "local_loading": ("Loading local model", 0, "#194f70"),
+    "local_sampling": ("Sampling", None, "#194f70"),
+    "local_decoding": ("Decoding image", 2.5, "#194f70"),
+    "local_complete": ("Saved locally", 3, "#21634d"),
+    "local_stopped": ("Stopped", None, "#71571f"),
 }
+FINISHED_ASSET_STAGES = {"ready", "simulated_ready", "failed", "deferred", "interrupted", "local_complete", "local_stopped"}
 
 UPLOAD_STAGES = {
     "browser": "Connecting to Adobe browser",
@@ -104,7 +110,8 @@ def simulate_upload_progress(total, stop, log):
 def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bool = False,
            image_model: str | None = None, metadata_model: str | None = None, *,
            metadata_provider: str | None = None, temperature: float = 1.0,
-           top_p: float = 0.95, max_images: int | None = None, max_workers: int = 1) -> int:
+           top_p: float = 0.95, max_images: int | None = None, max_workers: int = 1,
+           local_queue: Path | None = None) -> int:
     # The UI generates a fresh local directory for each Start.
     home = (ROOT / "output" / "stock_manager" / "runs").resolve()
     run_dir = run_dir.resolve()
@@ -126,6 +133,17 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
         emit({"message": message, "time": stamp, **fields})
 
     try:
+        if local_queue is not None:
+            from stock_pipeline.batch_manager import write_report
+            from stock_pipeline.local_image_test import run_local_image_test
+
+            log("Running MiniMax H3 Image locally", phase="Local image test", source=local_queue.name,
+                github="Not used", browser="Not used")
+            report = run_local_image_test(ROOT, local_queue, run_dir, max_images or 1, stop.exists, log)
+            report.update(log_path=str(run_dir / "activity.log"), elapsed_seconds=round(time.monotonic() - started, 2))
+            write_report(report, run_dir)
+            log(report.get("last_error") or report["status"].replace("_", " ").title(), report=report)
+            return int(report["status"] == "LOCAL_TEST_FAILED")
         if offline_test:
             from stock_pipeline.batch_manager import validate_test_queue, write_report
             log("Validating the r02 queue. No generation or upload.", phase="Offline test",
@@ -189,7 +207,8 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
                   "log_path": str(run_dir / "activity.log")}
         (run_dir / "report.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
         (run_dir / "report.md").write_text(f"# Batch Manager\n\nStatus: FAILED\n\n{error}\n", encoding="utf-8")
-        log(error, phase="Error", github="Connected" if sha else "Disconnected", report=report)
+        github = "Not used" if local_queue is not None else "Connected" if sha else "Disconnected"
+        log(error, phase="Error", github=github, report=report)
         return 1
 
 
@@ -210,8 +229,11 @@ class Desktop:
         self.log_lines = deque(maxlen=2500)
         self.asset_slots = {}
         self.asset_cards = []
+        self.asset_timers = {}
+        self.local_run = False
         self.worker_input = None
         self.offline_test = tk.BooleanVar(value=True)
+        self.local_test = tk.BooleanVar(value=False)
         self.image_model = tk.StringVar(value="Nano Banana Pro")
         self.metadata_model = tk.StringVar(value=DEFAULT_METADATA_MODEL)
         self.temperature = tk.StringVar(value="1.0")
@@ -296,7 +318,7 @@ class Desktop:
         self.retry_button.pack(side="left")
         ttk.Button(controls, text="Open Logs", command=lambda: self.open_path(
             self.run_dir or ROOT / "output" / "stock_manager")).pack(side="right")
-        ttk.Button(controls, text="Open Output Folder", command=lambda: self.open_path(ROOT / "output")).pack(
+        ttk.Button(controls, text="Open Output Folder", command=self.open_output_folder).pack(
             side="right", padx=(0, 8))
         settings = ttk.Frame(container)
         settings.pack(fill="x", pady=(0, 8))
@@ -327,11 +349,17 @@ class Desktop:
             entry = ttk.Entry(sampling, textvariable=value, width=7)
             entry.pack(side="left", padx=(0, 14))
             self.generation_entries.append(entry)
-        ttk.Label(sampling, text="Blank = unlimited").pack(side="left")
+        self.image_limit_hint = ttk.Label(sampling, text="Blank = unlimited")
+        self.image_limit_hint.pack(side="left")
         self.model_picker.bind("<<ComboboxSelected>>", lambda _event: self.refresh_generation_entries())
-        self.test_check = ttk.Checkbutton(container, text="Offline test: validate r02 and simulate asset progress",
-                                         variable=self.offline_test, command=self.refresh_start_button)
-        self.test_check.pack(anchor="w", pady=(0, 8))
+        modes = ttk.Frame(container)
+        modes.pack(fill="x", pady=(0, 8))
+        self.test_check = ttk.Checkbutton(modes, text="Offline test (simulation)", variable=self.offline_test,
+                                         command=lambda: self.select_test_mode(self.offline_test, self.local_test))
+        self.test_check.pack(side="left", padx=(0, 16))
+        self.local_check = ttk.Checkbutton(modes, text="Local Image Test (MiniMax H3)", variable=self.local_test,
+                                          command=lambda: self.select_test_mode(self.local_test, self.offline_test))
+        self.local_check.pack(side="left")
         progress_area = ttk.Frame(container)
         progress_area.pack(fill="x", pady=(0, 8))
         self.progress_heading = ttk.Label(progress_area, text="Asset progress")
@@ -368,7 +396,8 @@ class Desktop:
             self.asset_panel.columnconfigure(index, weight=0, uniform="")
         self.asset_cards.clear()
         self.asset_slots.clear()
-        count = int(self.max_workers.get())
+        self.asset_timers.clear()
+        count = 1 if self.local_test.get() else int(self.max_workers.get())
         for index in range(count):
             self.asset_panel.columnconfigure(index, weight=1, uniform="assets")
             tile = ttk.Frame(self.asset_panel, style="Card.TFrame", padding=(12, 8))
@@ -401,11 +430,26 @@ class Desktop:
             return
         _, _, _, status, bar = self.asset_cards[slot]
         label, value, color = ASSET_STAGES[stage]
+        if event.get("local"):
+            step, steps = event["step"], event["steps"]
+            label = f"{label}  ·  Step {step}/{steps}"
+            elapsed = event["elapsed_seconds"]
+            if stage not in FINISHED_ASSET_STAGES:
+                self.asset_timers[asset_id] = (time.monotonic() - elapsed, label)
+            label = self.timed_label(label, elapsed)
+            if stage == "local_sampling":
+                value = 2.5 * step / steps
         status.configure(text=label, foreground=color)
         if value is not None:
             bar.configure(value=value)
-        if stage in {"ready", "simulated_ready", "failed", "deferred", "interrupted"}:
+        if stage in FINISHED_ASSET_STAGES:
+            self.asset_timers.pop(asset_id, None)
             del self.asset_slots[asset_id]
+
+    @staticmethod
+    def timed_label(label, elapsed):
+        minutes, seconds = divmod(int(elapsed), 60)
+        return f"{label}  ·  {minutes:02d}:{seconds:02d} elapsed"
 
     def update_upload_panel(self, event):
         if not self.upload_panel.winfo_manager():
@@ -450,7 +494,25 @@ class Desktop:
         self.log_window = self.log_text = None
 
     def refresh_start_button(self):
-        self.start_button.configure(text="Run Offline Test" if self.offline_test.get() else "Check Queues")
+        test_label = "Run Offline Test" if self.offline_test.get() else "Check Queues"
+        text = "Run Local Image Test" if self.local_test.get() else test_label
+        self.start_button.configure(text=text)
+        self.image_limit_hint.configure(text="Blank = 1 in local test" if self.local_test.get() else "Blank = unlimited")
+        self.stop_button.configure(text="Stop Local Test" if self.local_test.get() else "Stop After Active Assets")
+
+    def select_test_mode(self, selected, other):
+        if selected.get():
+            other.set(False)
+        self.refresh_start_button()
+        self.refresh_generation_entries()
+        self.reset_asset_cards()
+
+    def open_output_folder(self):
+        if self.local_run:
+            results = self.run_dir / "local_images"
+            self.open_path(results if results.is_dir() else self.run_dir)
+        else:
+            self.open_path(ROOT / "output")
 
     def set_commit(self, sha="", on_github=False):
         self.commit_sha = sha if re.fullmatch(r"[0-9a-f]{40}", sha) else ""
@@ -517,8 +579,11 @@ class Desktop:
 
     def refresh_generation_entries(self):
         pro = self.image_model.get() == "Nano Banana Pro"
+        local = self.local_test.get()
+        for widget in (self.endpoint_entry, self.model_picker, self.metadata_picker, self.worker_picker):
+            widget.state(["disabled" if self.active or local else "!disabled"])
         for index, entry in enumerate(self.generation_entries):
-            entry.state(["disabled" if self.active or (index < 2 and not pro) else "!disabled"])
+            entry.state(["disabled" if self.active or (index < 2 and (local or not pro)) else "!disabled"])
 
     def append(self, message, stamp=None):
         if stamp:
@@ -541,9 +606,11 @@ class Desktop:
         if self.active or self.pushing:
             return
         try:
-            testing = self.offline_test.get()
+            local = self.local_test.get()
+            testing = self.offline_test.get() and not local
+            live = not (testing or local)
             metadata_model = self.metadata_model.get().strip()
-            if not testing and not metadata_model:
+            if live and not metadata_model:
                 raise ValueError("Enter a metadata model ID.")
             generation_args = []
             if not testing:
@@ -556,7 +623,7 @@ class Desktop:
                     if count < 1:
                         raise ValueError("Max new images must be a positive whole number, or blank.")
                     generation_args.extend(("--max-images", str(count)))
-                if self.image_model.get() == "Nano Banana Pro":
+                if live and self.image_model.get() == "Nano Banana Pro":
                     for option, raw, maximum, label in (
                         ("--temperature", self.temperature.get(), 2, "Temperature"),
                         ("--top-p", self.top_p.get(), 1, "Top-p"),
@@ -568,28 +635,37 @@ class Desktop:
                         if not 0 <= value <= maximum:
                             raise ValueError(f"{label} must be between 0 and {maximum}.")
                         generation_args.extend((option, str(value)))
-            cdp = validate_cdp(self.endpoint.get().strip()) if not testing and self.endpoint.get().strip() else None
+            local_queue = ""
+            if local:
+                from tkinter import filedialog
+
+                local_queue = filedialog.askopenfilename(parent=self.window, title="Choose a local image queue",
+                                                         initialdir=ROOT / "queues" / "incoming",
+                                                         filetypes=[("Queue JSON", "*.json")])
+                if not local_queue:
+                    return
+            cdp = validate_cdp(self.endpoint.get().strip()) if live and self.endpoint.get().strip() else None
             self.run_dir = ROOT / "output" / "stock_manager" / "runs" / uuid4().hex
             self.run_dir.mkdir(parents=True)
         except (ValueError, OSError) as exc:
             self.append(str(exc))
+            self.current.set(str(exc))
             return
         self.active = True
+        self.local_run = local
         self.reset_asset_cards()
         self.push_button.state(["disabled"])
         self.refresh_generation_entries()
         self.start_button.state(["disabled"])
         self.retry_button.state(["disabled"])
         self.stop_button.state(["!disabled"])
-        self.endpoint_entry.state(["disabled"])
-        self.model_picker.state(["disabled"])
-        self.metadata_picker.state(["disabled"])
-        self.worker_picker.state(["disabled"])
         self.test_check.state(["disabled"])
+        self.local_check.state(["disabled"])
         for metric in self.metrics.values():
             metric.set("—")
         self.stage.set("Starting")
-        self.current.set("Preparing offline queue check" if testing else "Waiting for Git sync")
+        self.current.set(Path(local_queue).name if local else
+                         "Preparing offline queue check" if testing else "Waiting for Git sync")
         self.count.set("0 / 0 assets prepared")
         self.bar.configure(value=0)
         self.git_status.set("Checking")
@@ -600,14 +676,16 @@ class Desktop:
             python = python.with_name("python.exe")
         args = [str(python), str(Path(__file__).resolve()), "--worker", str(self.run_dir),
                 "--max-workers", self.max_workers.get()]
-        if testing:
+        if local:
+            args.extend(("--local-queue", local_queue, *generation_args))
+        elif testing:
             args.append("--offline-test")
         else:
             args.extend(("--image-model", IMAGE_MODELS[self.image_model.get()], "--metadata-model", metadata_model))
             args.extend(generation_args)
         if cdp:
             args.extend(("--cdp", cdp))
-        if not testing:
+        if live:
             profile = os.environ.get("ADOBE_USER_DATA_DIR")
             if profile:
                 args.extend(("--profile", profile))
@@ -800,7 +878,8 @@ class Desktop:
             if "total" in event:
                 done, total = event.get("completed", 0), event["total"]
                 self.bar.configure(maximum=max(total, 1), value=done)
-                self.count.set(f"{done} / {total} assets prepared")
+                unit = "local previews saved" if self.local_run else "assets prepared"
+                self.count.set(f"{done} / {total} {unit}")
             for key, value in event.get("overview", {}).items():
                 self.metrics[key].set(str(value))
             if event.get("report"):
@@ -810,7 +889,12 @@ class Desktop:
                     stage = "stopped" if report["status"] == "STOPPED" else "incomplete"
                     self.upload_step.configure(text=UPLOAD_STAGES[stage])
                     self.upload_detail.configure(text=report.get("last_error", ""))
-                if report["status"] == "TEST_PASSED":
+                if self.local_run:
+                    saved, total = report.get("generated", 0), report.get("total_assets", 0)
+                    self.count.set(f"{saved} / {total} local previews saved")
+                    if report.get("last_error"):
+                        self.current.set(report["last_error"])
+                elif report["status"] == "TEST_PASSED":
                     self.bar.configure(maximum=report["total_assets"], value=report["total_assets"])
                     self.count.set(f"{report['total_assets']} assets validated; 0 generated")
                     self.current.set(TEST_QUEUE)
@@ -830,16 +914,18 @@ class Desktop:
                 self.start_button.state(["!disabled"])
                 self.retry_button.state(["!disabled"] if event["exit"] else ["disabled"])
                 self.stop_button.state(["disabled"])
-                self.endpoint_entry.state(["!disabled"])
-                self.model_picker.state(["!disabled"])
-                self.metadata_picker.state(["!disabled"])
-                self.worker_picker.state(["!disabled"])
                 self.test_check.state(["!disabled"])
+                self.local_check.state(["!disabled"])
                 if event["exit"]:
                     self.append(f"Worker stopped (exit {event['exit']}). See Open Logs.")
             if self.closing and not (self.active or self.pushing):
                 self.window.destroy()
                 return
+        for aid, (started, label) in self.asset_timers.items():
+            status = self.asset_cards[self.asset_slots[aid]][3]
+            text = self.timed_label(label, time.monotonic() - started)
+            if status.cget("text") != text:
+                status.configure(text=text)
         self.window.after(75, self.poll)
 
     def stop(self):
@@ -854,7 +940,8 @@ class Desktop:
                 return
             self.dismiss_preview()
             self.stop_button.state(["disabled"])
-            self.append("Stop requested. Waiting for the current operation to reach a safe boundary.")
+            self.append("Stopping the local image test." if self.local_run else
+                        "Stop requested. Waiting for the current operation to reach a safe boundary.")
 
     def close(self):
         if self.active or self.pushing:
@@ -903,6 +990,7 @@ def main():
     parser.add_argument("--cdp", help=argparse.SUPPRESS)
     parser.add_argument("--profile", help=argparse.SUPPRESS)
     parser.add_argument("--offline-test", action="store_true", help=argparse.SUPPRESS)
+    parser.add_argument("--local-queue", type=Path, help=argparse.SUPPRESS)
     parser.add_argument("--image-model", choices=tuple(IMAGE_MODELS.values()), help=argparse.SUPPRESS)
     parser.add_argument("--metadata-model", help=argparse.SUPPRESS)
     parser.add_argument("--metadata-provider", choices=("vertex", "gemini-developer"),
@@ -920,7 +1008,8 @@ def main():
     if args.worker:
         return worker(args.worker, args.cdp, args.profile, args.offline_test, args.image_model, args.metadata_model,
                       metadata_provider=args.metadata_provider, temperature=args.temperature,
-                      top_p=args.top_p, max_images=args.max_images, max_workers=args.max_workers)
+                      top_p=args.top_p, max_images=args.max_images, max_workers=args.max_workers,
+                      local_queue=args.local_queue)
     import tkinter as tk
     window = tk.Tk()
     icon = ROOT / "config" / "stock_manager.ico"

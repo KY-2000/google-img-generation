@@ -89,6 +89,33 @@ draft upload. It writes a local report
 and runs without Git sync, API requests, Adobe, or SQLite updates.
 Uncheck **Offline test** to run live with the Git safety checks.
 
+### Local image test
+
+Select **Local Image Test (MiniMax H3)**, click **Run Local Image Test**, and
+select a queue JSON from `queues/incoming`. This uses the same prompt builder
+as production. **Max new images** is optional and defaults to one in this mode.
+Previews use a 2048-pixel long edge and keep the queue's aspect ratio. The app
+runs one local image at a time and displays elapsed time and the six sampling
+steps in the progress card. **Open Output Folder** opens the local results.
+Local previews and logs stay in the selected run's `local_images` directory and
+parent run directory. The test requires no cloud generation, metadata API, Git
+sync, Adobe upload, or production registry access.
+
+Configure the following paths in the repository's `.env`. Use a Windows build
+of [stable-diffusion.cpp](https://github.com/leejet/stable-diffusion.cpp/releases)
+with MiniMax H3 Image support and the three files listed in the
+[Unsloth model card](https://huggingface.co/unsloth/MiniMax-H3-Image-GGUF).
+
+```dotenv
+LOCAL_SD_CLI=C:/AI/stable-diffusion/sd-cli.exe
+LOCAL_H3_DIT=C:/AI/models/minimax_h3_image_pruned-Q4_K_M.gguf
+LOCAL_H3_TEXT_ENCODER=C:/AI/models/qwen3vl_32b_minimax_h3-Q4_K_M.gguf
+LOCAL_H3_VAE=C:/AI/models/diffusion_pytorch_model.safetensors
+```
+
+`LOCAL_SD_CLI` may be omitted if `sd-cli` is on `PATH`. The runner uses CPU
+offload and VAE tiling to reduce GPU memory pressure.
+
 The local `work_io/topic_finder/manager_baseline.json` snapshot skips the
 existing queue contents except r02 in live runs. It does not mark anything
 uploaded. New or changed content is considered normally. To create the initial
