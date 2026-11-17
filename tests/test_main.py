@@ -26,6 +26,33 @@ class FinalImageSelectionTests(unittest.TestCase):
 
 
 class ApiUsageCallbackTests(unittest.TestCase):
+    def test_nano_banana_21_omits_unsupported_sampling_parameters(self):
+        from google.genai import types
+        response = SimpleNamespace(candidates=[SimpleNamespace(content=SimpleNamespace(parts=[
+            SimpleNamespace(thought=True, inline_data=SimpleNamespace(data=b"draft")),
+            SimpleNamespace(inline_data=SimpleNamespace(data=b"final")),
+        ]))])
+        for ratio in ("16:9", "9:16"):
+            with self.subTest(ratio=ratio):
+                generate = mock.Mock(return_value=response)
+                client = SimpleNamespace(models=SimpleNamespace(generate_content=generate))
+                result = main.generate_image_bytes(client, "scene", "gemini-nano-banana-2.1",
+                                                   0.7, 0.8, ratio, "4K")
+                self.assertEqual(result, b"final")
+                config = generate.call_args.kwargs["config"].model_dump(exclude_none=True, by_alias=True)
+                self.assertEqual(config, {"imageConfig": {"aspectRatio": ratio, "imageSize": "4K"}})
+
+    def test_pro_image_keeps_sampling_parameters(self):
+        response = SimpleNamespace(candidates=[SimpleNamespace(content=SimpleNamespace(parts=[
+            SimpleNamespace(inline_data=SimpleNamespace(data=b"final")),
+        ]))])
+        generate = mock.Mock(return_value=response)
+        client = SimpleNamespace(models=SimpleNamespace(generate_content=generate))
+        main.generate_image_bytes(client, "scene", "gemini-3-pro-image", 0.7, 0.8, "16:9", "4K")
+        config = generate.call_args.kwargs["config"].model_dump(exclude_none=True, by_alias=True)
+        self.assertEqual(config["temperature"], 0.7)
+        self.assertEqual(config["topP"], 0.8)
+
     def _fake_google_types(self):
         return SimpleNamespace(
             GenerateContentConfig=lambda **kwargs: kwargs,

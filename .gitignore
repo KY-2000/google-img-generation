@@ -9,7 +9,7 @@ final_runs/
 data/*.sqlite
 data/*.sqlite-shm
 data/*.sqlite-wal
-queues/incoming/*.json
-!queues/incoming/*.example.json
+queues/incoming/**/*.json
+!queues/incoming/**/*.example.json
 work_io/**/*.json
 work_io/**/*.csv

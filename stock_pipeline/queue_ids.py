@@ -26,7 +26,7 @@ def _number(value: Any) -> int:
     return int(match.group(1)) if match else 0
 
 
-def _queue_file_ids(project_root: Path) -> dict[str, set[Path]]:
+def _queue_file_ids(project_root: Path, *, skip_invalid_json: bool = False) -> dict[str, set[Path]]:
     """Read actual asset_id fields, ignoring descriptive mentions of AST IDs."""
     used: dict[str, set[Path]] = {}
     for directory in (project_root / "queues", project_root / "work_io" / "topic_finder"):
@@ -36,6 +36,8 @@ def _queue_file_ids(project_root: Path) -> dict[str, set[Path]]:
             try:
                 document = json.loads(path.read_text(encoding="utf-8-sig"))
             except (OSError, UnicodeError, json.JSONDecodeError) as exc:
+                if skip_invalid_json and isinstance(exc, (UnicodeError, json.JSONDecodeError)):
+                    continue
                 raise ContractError(f"cannot scan queue file for used AST IDs: {path}: {exc}") from exc
             assets = document.get("assets") if isinstance(document, dict) else None
             if not isinstance(assets, list):
@@ -60,6 +62,18 @@ def _generated_asset_ids(project_root: Path) -> set[str]:
     return used
 
 
+def next_available_asset_number(project_root: Path, registry: Registry, *, skip_invalid_json: bool = False) -> int:
+    """Call inside the allocator write transaction."""
+    connection = registry.connection
+    known = set(_queue_file_ids(project_root, skip_invalid_json=skip_invalid_json)) | _generated_asset_ids(project_root)
+    known.update(row[0] for row in connection.execute("SELECT asset_id FROM assets"))
+    known.update(row[0] for row in connection.execute(
+        "SELECT production_asset_id FROM candidate_topics WHERE production_asset_id IS NOT NULL"
+    ))
+    reserved = connection.execute("SELECT next_number FROM id_allocator WHERE singleton=1").fetchone()[0]
+    return max(reserved, max((_number(identifier) for identifier in known), default=0) + 1)
+
+
 def _write_queue_atomic(queue: dict[str, Any], path: Path, previous_bytes: bytes) -> None:
     """Replace the user's JSON only after a final concurrent-edit check."""
     if path.read_bytes() != previous_bytes:
@@ -78,7 +92,9 @@ def _write_queue_atomic(queue: dict[str, Any], path: Path, previous_bytes: bytes
         Path(temporary).unlink(missing_ok=True)
 
 
-def prepare_queue_asset_ids(queue_path: Path, project_root: Path, database_path: Path) -> list[str]:
+def prepare_queue_asset_ids(
+    queue_path: Path, project_root: Path, database_path: Path, *, skip_invalid_json: bool = False,
+) -> list[str]:
     """Persist fresh IDs iff every asset_id is missing/blank; otherwise stay strict.
 
     Explicitly numbered queues are never renumbered. Mixed numbered/unnumbered
@@ -137,21 +153,7 @@ def prepare_queue_asset_ids(queue_path: Path, project_root: Path, database_path:
                     f"run_id {data['run_id']} already exists in the registry; "
                     "restore its previously assigned queue IDs before resuming"
                 )
-            queue_files = _queue_file_ids(project_root)
-            database_ids = {
-                row[0] for row in connection.execute("SELECT asset_id FROM assets")
-            }
-            database_ids.update(
-                row[0] for row in connection.execute(
-                    "SELECT production_asset_id FROM candidate_topics WHERE production_asset_id IS NOT NULL"
-                )
-            )
-            known_ids = set(queue_files) | database_ids | _generated_asset_ids(project_root)
-            highest_used = max((_number(identifier) for identifier in known_ids), default=0)
-            next_reserved = connection.execute(
-                "SELECT next_number FROM id_allocator WHERE singleton=1"
-            ).fetchone()[0]
-            first = max(highest_used + 1, next_reserved)
+            first = next_available_asset_number(project_root, registry, skip_invalid_json=skip_invalid_json)
             last = first + len(assets) - 1
             if last > 999999:
                 raise ContractError("AST six-digit ID range exhausted; refusing to reuse any identifier")

@@ -714,6 +714,14 @@ Edit these files if needed:
 
 You do not need to edit files to change the image prompt. Just pass a different prompt on the command line.
 
+## Adobe Stock Batch Manager (Windows)
+
+Run `start_stock_manager.bat` on a clean local `main`, then click **Start**.
+The manager fast-forwards from GitHub, discovers production queues and Finder
+files, resumes prepared work, and uploads one combined batch only after all
+pending assets pass QC. Adobe drafts are saved and verified per filename;
+final Submit remains manual. See [setup, recovery and offline tests](docs/ADOBE_STOCK_BATCH_MANAGER.md).
+
 ## Run Tests
 
 ```bash

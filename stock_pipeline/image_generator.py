@@ -1,5 +1,7 @@
 from __future__ import annotations
 
+import os
+import tempfile
 from collections.abc import Callable
 from pathlib import Path
 from typing import Any
@@ -38,5 +40,13 @@ def generate_original_image(
         image.verify()
         if (image.format or "").upper() != "PNG":
             raise ValueError(f"generated original must be PNG, got {image.format}")
-    output_path.write_bytes(image_bytes)
+    fd, temporary = tempfile.mkstemp(prefix=f".{output_path.name}.", suffix=".tmp", dir=output_path.parent)
+    try:
+        with os.fdopen(fd, "wb") as handle:
+            handle.write(image_bytes)
+            handle.flush()
+            os.fsync(handle.fileno())
+        os.replace(temporary, output_path)
+    finally:
+        Path(temporary).unlink(missing_ok=True)
     return output_path

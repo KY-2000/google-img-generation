@@ -4,6 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createRequire } from "node:module";
+import { managedDraftUpload } from "./adobe_managed_upload.mjs";
 
 const require = createRequire(import.meta.url);
 
@@ -35,6 +36,7 @@ Adobe:
   --save-work                  Click "Save work" if it becomes enabled.
 
 Evidence:
+  --managed-receipts <path>   Reconcile by exact filename and persist verified draft receipts.
   --run-root <path>            Default: ./final_runs
   --timeout <ms>               Default: 120000
   --dry-run                    Validate inputs and Playwright availability without opening Adobe.
@@ -74,6 +76,8 @@ function parseArgs(argv) {
     else if (arg === "--cdp") out.cdp = next();
     else if (arg === "--user-data-dir") out.userDataDir = next();
     else if (arg === "--resume-after") out.resumeAfter = Number(next());
+    else if (arg === "--managed-receipts") out.managedReceipts = next();
+    else if (arg === "--managed-stop-file") out.managedStopFile = next();
     else if (arg === "--channel") out.channel = next();
     else if (arg === "--url") out.url = next();
     else if (arg === "--file-type") out.fileType = next().toLowerCase();
@@ -92,6 +96,10 @@ function parseArgs(argv) {
   if (!Number.isFinite(out.timeout) || out.timeout <= 0) throw new Error("--timeout must be a positive number");
   if (!Number.isInteger(out.resumeAfter) || out.resumeAfter < 0) {
     throw new Error("--resume-after must be a nonnegative integer");
+  }
+  if (out.managedReceipts && (out.resumeAfter || !out.saveWork || !out.markAi || out.fileType !== "illustrations" ||
+      !/^https:\/\/contributor\.stock\.adobe\.com\/en\/uploads\/?$/.test(out.url))) {
+    throw new Error("Managed mode requires Adobe uploads, --save-work, --mark-ai and illustrations; it does not accept --resume-after");
   }
   if (out.fileType && !["photos", "illustrations"].includes(out.fileType)) {
     throw new Error("--file-type must be one of: photos, illustrations");
@@ -550,7 +558,7 @@ async function main() {
 
   context.setDefaultTimeout(options.timeout);
   const existingAdobePage = context.pages().find((candidate) => /contributor\.stock\.adobe\.com/i.test(candidate.url()));
-  const page = existingAdobePage || await context.newPage();
+  const page = (options.managedReceipts ? null : existingAdobePage) || await context.newPage();
   page.setDefaultTimeout(options.timeout);
 
   try {
@@ -568,6 +576,17 @@ async function main() {
       throw new Error("Could not determine the initial Adobe uploaded-file count");
     }
     const initialFileCount = Number(initialFileCountMatch[1]);
+
+    if (options.managedReceipts) {
+      const { createAdobeDraftAdapter } = await import("./adobe_draft_adapter.mjs");
+      await managedDraftUpload(rows, imagePaths, path.resolve(options.managedReceipts),
+        createAdobeDraftAdapter({
+          page, options, runDir, logger, clickFirstVisible, setFilesFromChooser,
+          waitForNoUploadRemaining, waitForCsvApplication, setAdobeFileType, screenshot,
+        }));
+      logger.note("FINAL_STATUS: verified saved drafts; final Submit was not clicked");
+      return;
+    }
 
     if (options.resumeAfter) {
       logger.write(`resume after ${options.resumeAfter} verified image(s); ${pendingImagePaths.length} remain`);
@@ -679,6 +698,7 @@ async function main() {
     if (finalScreenshot) logger.note(`FINAL_SCREENSHOT: ${finalScreenshot}`);
     logger.note(`RUN_DIR: ${runDir}`);
   } finally {
+    if (options.cdp && options.managedReceipts) await page.close().catch(() => {});
     if (!options.cdp) {
       await context?.close().catch(() => {});
     }

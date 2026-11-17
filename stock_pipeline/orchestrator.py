@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import json
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Callable
 
@@ -32,6 +33,7 @@ class StockPipeline:
         progress: Callable[[str], None] | None = None,
         usage_recorder: Callable[..., Any] | None = None,
         config: dict[str, Any] | None = None,
+        redact_error: Callable[[str], str] = str,
     ):
         self.project_root = project_root
         self.registry = registry
@@ -56,6 +58,7 @@ class StockPipeline:
         self.max_attempts = max_attempts
         self.retry_initial_wait = retry_initial_wait
         self.progress = progress
+        self.redact_error = redact_error
         self.usage_recorder = usage_recorder
         self._image_client: Any = None
         self._metadata_client: Any = None
@@ -94,13 +97,14 @@ class StockPipeline:
                 return operation()
             except Exception as exc:
                 retry = legacy.is_retryable_error(exc) and attempt < self.max_attempts
+                error = self.redact_error(str(exc))
                 logger.event(
-                    f"{step}_attempt_failed", attempt=attempt, error=str(exc),
+                    f"{step}_attempt_failed", attempt=attempt, error=error,
                     retry_wait_seconds=wait_seconds if retry else None,
                 )
                 self._emit_progress(
                     logger.asset_dir.name,
-                    f"{step.replace('_', ' ')} attempt {attempt} failed: {exc}",
+                    f"{step.replace('_', ' ')} attempt {attempt} failed: {error}",
                 )
                 if not retry:
                     raise
@@ -202,6 +206,9 @@ class StockPipeline:
             current = self.registry.get_asset(asset_id)
         elif current["status"] == "IMAGE_GENERATING":
             if current["image_path"] and Path(current["image_path"]).exists():
+                if not current["generated_at"]:
+                    written_at = datetime.fromtimestamp(Path(current["image_path"]).stat().st_mtime, timezone.utc)
+                    self.registry.update_asset(asset_id, generated_at=written_at.isoformat())
                 self.registry.transition(asset_id, "IMAGE_READY")
             else:
                 self.registry.reset_for_image(asset_id)
@@ -240,13 +247,18 @@ class StockPipeline:
         if current["status"] == "PROMPT_READY":
             self._emit_progress(asset_id, f"image 1/1 started model={self.image_model}")
             image_client = self._get_image_client()
+            original_path = asset_dir / "original.png"
+            # Record a new target before the request. If the process stops
+            # after the atomic image write, the next run can reuse the file.
+            # An older image left by an explicit force run is not that target.
+            self.registry.update_asset(asset_id, image_model=self.image_model,
+                                       image_path=str(original_path) if not original_path.exists() else None)
             self.registry.transition(asset_id, "IMAGE_GENERATING")
             started = time.perf_counter()
             generator = self.image_generate_bytes
             if generator is None:
                 import main as legacy
                 generator = legacy.generate_image_bytes
-            original_path = asset_dir / "original.png"
             self._with_retries(
                 lambda: generate_original_image(
                     generate_bytes=generator, client=image_client,
@@ -361,6 +373,8 @@ class StockPipeline:
         force_image: bool = False, force_metadata: bool = False,
         skip_image_generation: bool = False, skip_metadata: bool = False,
         skip_staging: bool = False, batch_id: str | None = None,
+        should_stop: Callable[[], bool] | None = None,
+        asset_finished: Callable[[str], None] | None = None,
     ) -> dict[str, int]:
         queue = validate_topic_queue(queue)
         self.registry.register_queue(queue)
@@ -373,9 +387,12 @@ class StockPipeline:
             ),
             resume=resume and not (force_image or force_metadata),
             asset_ids=queue_asset_ids,
+            should_stop=should_stop,
+            asset_finished=asset_finished,
+            redact_error=self.redact_error,
         )
         for asset in self.registry.list_assets():
-            if asset["asset_id"] not in queue_asset_ids:
+            if asset["asset_id"] not in queue_asset_ids or not self._asset_dir(asset["asset_id"]).is_dir():
                 continue
             self._manifest(asset["asset_id"])
         ready_for_queue = [

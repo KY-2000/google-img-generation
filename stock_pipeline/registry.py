@@ -107,6 +107,8 @@ class Registry:
         ).fetchone()[0] or 0
         row = self.connection.execute("SELECT next_number FROM id_allocator WHERE singleton=1").fetchone()
         number = max(maximum + 1, row[0])
+        if number > 999999:
+            raise ValueError("AST six-digit ID range exhausted")
         self.connection.execute("UPDATE id_allocator SET next_number=? WHERE singleton=1", (number + 1,))
         return f"AST{number:06d}"
 

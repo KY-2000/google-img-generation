@@ -52,6 +52,8 @@ VALID_RESOLUTIONS = ("512", "1K", "2K", "4K")
 METADATA_PROMPT_PATH = Path("prompts/adobe_stock_metadata_system_prompt.txt")
 CATEGORY_LIST_PATH = Path("category-code.txt")
 IMAGE_MODEL_ALIASES = {
+    "nanobanana21": "gemini-nano-banana-2.1",
+    "nanobanana2.1": "gemini-nano-banana-2.1",
     "nanobanana2": "gemini-3.1-flash-image-preview",
     "nanobananapro": "gemini-3-pro-image-preview",
 }
@@ -706,17 +708,18 @@ def generate_image_bytes(
             "google-genai is not installed. Install it with: pip install google-genai"
         ) from exc
 
+    model = resolve_image_model_alias(model)
+    config_kwargs = {
+        "imageConfig": types.ImageConfig(aspectRatio=aspect_ratio, imageSize=resolution),
+    }
+    # Nano Banana 2.1 rejects sampling controls instead of ignoring them.
+    # Do not send temperature/topP, including SDK defaults or null values.
+    if model.rsplit("/", 1)[-1] != "gemini-nano-banana-2.1":
+        config_kwargs.update(temperature=temperature, topP=top_p)
     response = client.models.generate_content(
         model=model,
         contents=[prompt],
-        config=types.GenerateContentConfig(
-            temperature=temperature,
-            topP=top_p,
-            imageConfig=types.ImageConfig(
-                aspectRatio=aspect_ratio,
-                imageSize=resolution,
-            ),
-        ),
+        config=types.GenerateContentConfig(**config_kwargs),
     )
 
     if usage_callback is not None:

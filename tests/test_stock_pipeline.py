@@ -117,6 +117,28 @@ def sample_model_metadata():
 
 
 class CommercialBackgroundTests(unittest.TestCase):
+    def test_model_change_after_dry_run_records_model_used_for_generation(self):
+        import io
+        with tempfile.TemporaryDirectory() as tmpdir:
+            root = Path(tmpdir)
+            with Registry(root / "registry.sqlite") as registry:
+                queue = self.background_queue()
+                StockPipeline(project_root=root, registry=registry, image_model="gemini-3-pro-image").run_queue(
+                    queue, skip_image_generation=True, skip_metadata=True, skip_staging=True)
+                calls = []
+                def generate(**kw):
+                    calls.append(kw)
+                    b = io.BytesIO()
+                    Image.new("RGB", (160, 90)).save(b, format="PNG")
+                    return b.getvalue()
+                pipeline = StockPipeline(project_root=root, registry=registry,
+                    image_model="gemini-nano-banana-2.1", image_generate_bytes=generate,
+                    minimum_resolution=160)
+                result = pipeline.run_queue(queue, resume=True, skip_metadata=True, skip_staging=True)
+                self.assertEqual(result["failed"], 0)
+                self.assertEqual(calls[0]["model"], "gemini-nano-banana-2.1")
+                self.assertEqual(registry.get_asset("AST000001")["image_model"], "gemini-nano-banana-2.1")
+
     def background_queue(self, ratio="16:9"):
         asset = sample_asset()
         for field in ("icon_1", "icon_2", "icon_3", "icon_4"):

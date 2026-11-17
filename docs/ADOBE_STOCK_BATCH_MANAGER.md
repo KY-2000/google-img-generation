@@ -1,0 +1,129 @@
+# Adobe Stock Batch Manager
+
+Windows 11 desktop front end for the existing stock pipeline. Use Python 3.11+
+with Tkinter
+(included in the current Windows Python installation) and a separate worker
+process. The single-queue CLI and manual Adobe uploader remain available.
+
+## First run
+
+From the repository directory, install the Python and Node dependencies:
+
+~~~powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+npm ci
+~~~
+
+If the virtual environment is missing, first run `python -m venv .venv`.
+Configure `.env` and Google credentials as for the single-queue pipeline.
+The manager uses `IMAGE_MODEL`, `METADATA_PROVIDER` and `METADATA_MODEL`
+from the existing configuration.
+
+The checkout must be on a **clean local main** with
+`KY-2000/google-img-generation` as `origin`. A dirty worktree, wrong branch
+or remote, network failure, or non-fast-forward update stops before reading
+queues. The manager does not reset, clean, stash, or force-checkout the repo.
+Review and integrate development changes before starting a live run.
+
+Start Edge using the Adobe Contributor profile you already use. For CDP, keep
+its local debugging endpoint open (default `http://127.0.0.1:9222`) and sign
+in if needed. Clear the CDP field to use the existing persistent
+`.pw-edge-adobe-profile`, or set `ADOBE_USER_DATA_DIR` to another local profile.
+`ADOBE_CDP` can override the UI default. Resume with the same Adobe account.
+
+Double-click `start_stock_manager.bat` or run:
+
+~~~powershell
+.\start_stock_manager.bat
+~~~
+
+To pin a Windows launcher, run `powershell -NoProfile -ExecutionPolicy Bypass -File .\build_stock_manager_launcher.ps1`.
+Right-click `output/stock_manager/Adobe Stock Batch Manager.exe` and choose
+**Show more options → Pin to taskbar**. Keep the EXE there; the launcher
+uses this checkout's existing Python virtual environment.
+
+The window opens with **Offline test** selected. In this mode, **Start** only
+validates `commercial_background_queue_2026W44_r02.json` and writes a local
+report. It does not sync Git, open Adobe, create images, or update SQLite.
+Uncheck **Offline test** to run live with the Git safety checks.
+
+The local `work_io/topic_finder/manager_baseline.json` snapshot skips the
+existing queue contents except r02 in live runs. It does not mark anything
+uploaded. New or changed content is considered normally. To create the initial
+snapshot on another installation, use `stock_batch_manager.py --snapshot-baseline`
+with the project's Python. The command refuses to overwrite an existing snapshot.
+
+Live **Start** authorizes any needed paid model calls and upload to Adobe drafts.
+Final Submit is always manual. **Retry Failed**
+runs the same recovery path. **Stop After Current Asset** and closing the
+window wait for a safe boundary; a request already running may finish.
+
+## Files, state, and ordering
+
+- Scan `queues/incoming/` recursively. Production objects and Finder arrays
+  must pass the repository JSON Schemas and Python contracts. A wholly
+  unnumbered production queue is allowed; mixed IDs are an error. Files ending
+  in `.example.json` are listed as templates and never generated or uploaded.
+- Sources sort by `generated_at`, then path. Finder arrays use the synced
+  commit time. Identical copies are skipped. Incompatible contents for a
+  known `run_id`, duplicate AST IDs, and partial overlaps with another
+  Finder batch are blocked. A complete, unchanged legacy Finder batch
+  adopts its original run and AST IDs. Use a new run ID for a new batch.
+- Production copies live under `work_io/topic_finder/runtime_queues/`.
+  Missing IDs are allocated there, considering local queues, asset outputs,
+  SQLite assets, candidate reservations and the allocator's high watermark.
+  Finder conversion uses a content-derived run ID, so distinct batches on
+  the same date do not collide. Original JSON files are left untouched.
+  Git-ignored local JSON can run; tracked incoming JSON still syncs.
+- Queue and asset states are stored in `data/stock_pipeline.sqlite`. Completed
+  assets are reused. Valid queues can prepare locally even when another fails,
+  but **any invalid, conflicting, or incomplete queue blocks combined upload**.
+  Correct the file or move unrelated files out of incoming before retrying.
+- Images and metadata retain their existing paths under `output/assets/`.
+  Combined manifests and CSVs are in `output/adobe_batches/BATCH_COMBINED_*/`.
+  Every manifest row identifies the source file, commit, content hash, run,
+  asset, and prepared image hash.
+- Activity logs, JSON and Markdown reports are under
+  `output/stock_manager/runs/`. **Open Logs** opens the current run folder.
+
+## Draft recovery and limits
+
+Managed upload reuses Playwright and reconciles exact filenames. It records
+an attempt before sending a file, imports CSV metadata, sets Illustrations
+and Generative AI, saves, then reloads to verify the filename, title,
+keywords, category and flags. It writes a saved receipt under
+`output/stock_manager/adobe_receipts/` **before** updating SQLite. If a
+database update fails, Start replays the receipt without sending the file
+again. Existing legacy `UPLOADED_DRAFT` states are respected.
+
+- **Login expired:** sign in again with the same account/profile and retry.
+  Local generation is reused.
+- **Partial upload:** retry. An attempted file still visible by exact name
+  resumes metadata and save without re-upload. An untracked draft is only
+  adopted if its saved fields and flags already match.
+- **Attempted file not visible:** stop and check drafts and submission history.
+  It might have been accepted, submitted, deleted, or hidden by the page.
+  Only after confirming Adobe never accepted it, move the corresponding
+  `*.attempt.json` out of the receipt folder if you want to retry.
+  Never remove a `*.saved.json` to retry a confirmed draft.
+- **Grid filters, pagination or DOM changes:** the worker stops if it cannot
+  enumerate the complete All uploads grid or verify a saved field. Clear
+  filters and make all drafts visible. Managed selectors target the English
+  layout; automated tests do not contact Adobe. See the run log for selector
+  issues.
+- **Sudden shutdown:** the next Start reuses local artifacts and saved
+  receipts. A model request interrupted before its result was written
+  locally may need to be retried. Do not run the manual pipeline or other
+  upload jobs against the same assets while the manager is running.
+
+## Offline checks
+
+~~~powershell
+.\.venv\Scripts\python.exe -m unittest discover -s tests -q
+node --test tests/adobe_managed_upload.test.mjs tests/adobe_upload_playwright.test.mjs
+~~~
+
+The integration tests exercise real temporary SQLite and the existing pipeline
+with mock image/metadata generation and mock upload. JavaScript tests simulate
+Adobe and check receipt-based recovery. Neither test uses paid generation or
+a live Adobe account.

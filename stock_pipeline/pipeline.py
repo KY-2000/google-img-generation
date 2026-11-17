@@ -15,6 +15,9 @@ def process_batch(
     *,
     resume: bool = False,
     asset_ids: set[str] | None = None,
+    should_stop: Callable[[], bool] | None = None,
+    asset_finished: Callable[[str], None] | None = None,
+    redact_error: Callable[[str], str] = str,
 ) -> dict[str, int]:
     assets = registry.list_assets()
     if asset_ids is not None:
@@ -22,6 +25,8 @@ def process_batch(
     failed = 0
     succeeded = 0
     for asset in assets:
+        if should_stop is not None and should_stop():
+            break
         if resume and asset["status"] in COMPLETED_OR_WAITING:
             succeeded += 1
             continue
@@ -32,9 +37,11 @@ def process_batch(
             failed += 1
             current = registry.get_asset(asset["asset_id"])
             if current and current["status"] in {"IMAGE_QC_FAILED", "METADATA_QC_FAILED"}:
-                registry.update_asset(asset["asset_id"], error=str(exc))
+                registry.update_asset(asset["asset_id"], error=redact_error(str(exc)))
             elif current and current["status"] != "FAILED":
-                registry.mark_failed(asset["asset_id"], str(exc))
+                registry.mark_failed(asset["asset_id"], redact_error(str(exc)))
+        if asset_finished is not None:
+            asset_finished(asset["asset_id"])
     states = registry.list_assets()
     if asset_ids is not None:
         states = [asset for asset in states if asset["asset_id"] in asset_ids]

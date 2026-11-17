@@ -35,7 +35,12 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     )
     parser.add_argument("--database", type=Path, default=Path("data/stock_pipeline.sqlite"))
     parser.add_argument("--max-workers", type=int, default=1)
-    parser.add_argument("--image-model")
+    parser.add_argument(
+        "--image-model", "--model", dest="image_model",
+        type=legacy.resolve_image_model_alias, default="gemini-3-pro-image",
+        help="Image model ID or alias (nanobanana21 / nanobanana2.1). "
+             "Default: gemini-3-pro-image; overrides IMAGE_MODEL in .env for this CLI.",
+    )
     parser.add_argument("--metadata-provider", choices=("google", "vertex", "openrouter", "nim"))
     parser.add_argument("--metadata-model")
     parser.add_argument("--skip-image-generation", action="store_true")
@@ -100,7 +105,8 @@ def main(argv: list[str] | None = None) -> int:
     if args.max_workers > 1:
         print("Stock Icon Pipeline V1 serializes registry writes; max-workers is currently capped at 1.", file=sys.stderr)
 
-    image_model = legacy.resolve_image_model_alias(args.image_model or legacy.get_default_image_model(project_root))
+    image_model = args.image_model
+    print(f"[pipeline] image_model={image_model}", flush=True)
     metadata_provider = (args.metadata_provider or legacy.get_default_metadata_provider(project_root)).lower()
     metadata_model = legacy.resolve_metadata_model_alias(args.metadata_model or legacy.get_default_metadata_model(project_root))
     batch_id = args.batch_id or queue["run_id"].replace("TF_", "BATCH_", 1)

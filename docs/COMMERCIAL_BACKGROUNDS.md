@@ -16,6 +16,37 @@ The uploader requires the existing authenticated browser setup. It marks AI
 content and saves work; it does not submit to Adobe for review. When using an
 existing remote-debugging browser, append `--cdp http://127.0.0.1:9222`.
 
+## Image model selection
+
+`run_stock_pipeline.py` defaults to `gemini-3-pro-image` when no image model
+option is supplied, regardless of `IMAGE_MODEL` in `.env`. Authentication and
+metadata configuration still use the existing settings. Other entry points
+retain their existing environment-based image model defaults.
+
+Select Nano Banana 2.1 using its full ID or the `nanobanana21` /
+`nanobanana2.1` aliases. `--model` is an alias for `--image-model`:
+
+```powershell
+.\.venv\Scripts\python.exe .\run_stock_pipeline.py `
+  --queue .\queues\incoming\marketing_pack_real_estate_2026W44_draft.json `
+  --image-model gemini-nano-banana-2.1 `
+  --resume `
+  --upload-draft `
+  --cdp http://127.0.0.1:9222
+```
+
+Nano Banana 2.1 requests omit unsupported sampling controls (`temperature`,
+`topP`; `seed`, `topK` and `logprobs` are not sent either). Existing Pro
+requests retain their sampling settings. Each background still uses its JSON
+aspect ratio and 4K resolution. Switching model does not regenerate completed
+assets during resume; `--force-image` explicitly regenerates them and incurs
+new API charges. Use a new queue with fresh IDs for comparisons that should
+preserve the prior originals. Metadata continues to use `--metadata-model` or
+the existing configured default, independently of the image model.
+
+The current usage ledger does not yet estimate Nano Banana 2.1 prices;
+these calls are reported as unpriced, with actual usage still recorded.
+
 For generation, metadata and staging without browser upload, omit `--upload-draft`.
 For a no-network prompt check, use `--dry-run` without `--upload-draft`.
 Dry runs still register assets and write prompts locally.

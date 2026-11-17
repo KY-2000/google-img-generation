@@ -6,6 +6,16 @@ import run_stock_pipeline
 
 
 class CommandUsageIntegrationTests(unittest.TestCase):
+    def test_model_parser_defaults_to_pro_and_accepts_full_id_or_alias(self):
+        with mock.patch.dict("os.environ", {"IMAGE_MODEL": "gemini-nano-banana-2.1"}):
+            self.assertEqual(run_stock_pipeline.parse_args(["--queue", "queue.json"]).image_model,
+                             "gemini-3-pro-image")
+        for flag in ("--image-model", "--model"):
+            for name in ("gemini-nano-banana-2.1", "nanobanana21", "nanobanana2.1"):
+                with self.subTest(flag=flag, name=name):
+                    args = run_stock_pipeline.parse_args(["--queue", "queue.json", flag, name])
+                    self.assertEqual(args.image_model, "gemini-nano-banana-2.1")
+
     @mock.patch("run_stock_pipeline.upload_draft")
     @mock.patch("run_stock_pipeline.validate_batch_ready_for_upload")
     @mock.patch("run_stock_pipeline.StockPipeline")
