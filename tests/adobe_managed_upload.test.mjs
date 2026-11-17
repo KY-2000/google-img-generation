@@ -4,6 +4,55 @@ import os from "node:os";
 import path from "node:path";
 import test from "node:test";
 import { managedDraftUpload } from "../tools/adobe_managed_upload.mjs";
+import { createAdobeDraftAdapter } from "../tools/adobe_draft_adapter.mjs";
+
+function paginatedAdapter(drafts, total = drafts.flat().length) {
+  let current = 1;
+  let target;
+  let selected;
+  const page = {
+    url: () => "https://contributor.stock.adobe.com/en/uploads",
+    waitForTimeout: async () => {},
+    locator(selector) {
+      if (selector === "body") {
+        return { innerText: async () => `File types: All (${total})\nOriginal name(s): ${selected || ""}` };
+      }
+      if (selector === ".upload-tile__wrapper") {
+        return { count: async () => drafts[current - 1].length,
+          nth: index => ({ click: async () => { selected = drafts[current - 1][index]; } }) };
+      }
+      assert.equal(selector, ".the-paginator-list");
+      return {
+        count: async () => Number(drafts.length > 1),
+        getByText: label => ({ count: async () => Number(label === "Next" && current < drafts.length) }),
+        locator(child) {
+          if (child === ".paginator-goto-input") {
+            return { fill: async value => { target = Number(value); }, press: async () => { current = target; } };
+          }
+          assert.equal(child, "a.blue");
+          return { getByText: label => ({
+            count: async () => Number(current === Number(label)),
+            waitFor: async () => assert.equal(current, Number(label)),
+          }) };
+        },
+      };
+    },
+  };
+  return createAdobeDraftAdapter({ page, options: { timeout: 2000 }, logger: { write() {} } });
+}
+
+test("Adobe inventory finds exact filenames on later pages and ignores unrelated duplicate names", async () => {
+  const adapter = paginatedAdapter([["duplicate.jpg", "preview.jpg"], ["duplicate.jpg", "AST990103.png"]]);
+  assert.deepEqual(await adapter.inventory(new Set(["AST990103.png"])),
+    new Map([["AST990103.png", { pageNumber: 2, index: 1 }]]));
+});
+
+test("Adobe inventory rejects ambiguous targets and an incomplete page count", async () => {
+  const duplicate = paginatedAdapter([["AST990103.png"], ["AST990103.png"]]);
+  await assert.rejects(duplicate.inventory(new Set(["AST990103.png"])), /duplicate original filename/);
+  const incomplete = paginatedAdapter([["different.jpg"], ["AST990103.png"]], 3);
+  await assert.rejects(incomplete.inventory(new Set(["AST990103.png"])), /read 2 of 3 drafts/);
+});
 
 function fixture(t) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "stock-upload-"));

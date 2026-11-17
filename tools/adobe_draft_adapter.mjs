@@ -11,6 +11,18 @@ export function createAdobeDraftAdapter({
 }) {
   const tiles = () => page.locator(".upload-tile__wrapper");
   const body = () => page.locator("body").innerText({ timeout: 15000 });
+  const paginator = () => page.locator(".the-paginator-list");
+  const shouldStop = () => Boolean(options.managedStopFile && fs.existsSync(options.managedStopFile));
+  const goToPage = async number => {
+    const pagination = paginator();
+    if (number === 1 && !await pagination.count()) return;
+    const active = pagination.locator("a.blue").getByText(String(number), { exact: true });
+    if (await active.count()) return;
+    const input = pagination.locator(".paginator-goto-input");
+    await input.fill(String(number), { timeout: options.timeout });
+    await input.press("Enter", { timeout: options.timeout });
+    await active.waitFor({ state: "visible", timeout: options.timeout });
+  };
   const open = async index => {
     await tiles().nth(index).click();
     await page.waitForTimeout(500);
@@ -25,30 +37,49 @@ export function createAdobeDraftAdapter({
     if (!match) throw new Error("Cannot confirm Adobe All uploads count; check login and page layout");
     return Number(match[1]);
   };
-  const inventory = async () => {
+  const inventory = async wanted => {
     const expected = await count();
-    if (await tiles().count() !== expected) {
-      throw new Error("Adobe upload grid does not expose every draft; reset filters or check for pagination before retry");
-    }
     const files = new Map();
-    for (let index = 0; index < expected; index += 1) {
-      const filename = await open(index);
-      if (!filename || files.has(filename)) {
-        throw new Error("Adobe draft inventory contains an ambiguous or duplicate original filename");
+    let scanned = 0;
+    for (let pageNumber = 1; ; pageNumber += 1) {
+      await goToPage(pageNumber);
+      const visible = await tiles().count();
+      if (scanned + visible > expected || (!visible && expected)) break;
+      if (expected) logger.write(`Checking Adobe drafts page ${pageNumber} (${scanned + visible}/${expected})`);
+      for (let index = 0; index < visible; index += 1) {
+        if (shouldStop()) throw new Error("Stopped while checking Adobe drafts");
+        const filename = await open(index);
+        if (!filename) throw new Error("Cannot read an original filename from the Adobe draft grid");
+        if (wanted && !wanted.has(filename)) continue;
+        if (files.has(filename)) throw new Error("Adobe draft inventory contains a duplicate original filename: " + filename);
+        files.set(filename, { pageNumber, index });
       }
-      files.set(filename, index);
+      scanned += visible;
+      if (!await paginator().getByText("Next", { exact: true }).count()) break;
+      if (!visible || scanned >= expected) {
+        throw new Error("Adobe grid has another page after reaching the reported draft count");
+      }
+    }
+    if (scanned !== expected) {
+      throw new Error(`Adobe upload inventory read ${scanned} of ${expected} drafts; check filters and pagination`);
     }
     if (await count() !== expected) throw new Error("Adobe drafts changed during inventory");
+    await goToPage(1);
     return files;
   };
   let indices = new Map();
+  const openLocation = async location => {
+    await goToPage(location.pageNumber);
+    if (location.index < await tiles().count()) return await open(location.index);
+  };
   const select = async row => {
-    const index = indices.get(row.filename);
-    if (index !== undefined && await open(index) === row.filename) return;
-    indices = await inventory();
-    if (!indices.has(row.filename) || await open(indices.get(row.filename)) !== row.filename) {
+    const location = indices.get(row.filename);
+    if (location && await openLocation(location) === row.filename) return;
+    const found = (await inventory(new Set([row.filename]))).get(row.filename);
+    if (!found || await openLocation(found) !== row.filename) {
       throw new Error("Adobe draft not found by exact filename: " + row.filename);
     }
+    indices.set(row.filename, found);
   };
   const keywords = value => value.split(",").map(s => s.trim().toLowerCase()).filter(Boolean).join("\n");
   const ai = () => page.getByRole("checkbox", { name: AI_LABEL });
@@ -81,8 +112,11 @@ export function createAdobeDraftAdapter({
     }
   };
   return {
-    inventory,
-    shouldStop: () => Boolean(options.managedStopFile && fs.existsSync(options.managedStopFile)),
+    async inventory(wanted) {
+      indices = await inventory(wanted);
+      return indices;
+    },
+    shouldStop,
     async upload(file, recordAttempt) {
       const before = await count();
       await clickFirstVisible(page.getByRole("button", { name: /^Upload$/ }), "top Upload button");
@@ -110,7 +144,7 @@ export function createAdobeDraftAdapter({
       const refresh = page.getByRole("button", { name: /Refresh to view changes/i });
       if (await refresh.count()) await refresh.first().click();
       await reload();
-      indices = await inventory();
+      indices = await inventory(new Set(rows.map(row => row.filename)));
     },
     verifySaved,
     async saveAndVerify(row) {

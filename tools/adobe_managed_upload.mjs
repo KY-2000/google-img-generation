@@ -66,7 +66,7 @@ export async function managedDraftUpload(rows, imagePaths, receipts, adobe) {
   }
   const pending = entries.filter(item => !item.saved);
   if (!pending.length) return;
-  const inventory = await adobe.inventory();
+  const inventory = await adobe.inventory(new Set(pending.map(item => item.row.filename)));
   // Make the ambiguity check before sending any more files.
   for (const item of pending) {
     const filename = item.row.filename;

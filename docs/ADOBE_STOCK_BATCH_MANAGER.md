@@ -132,11 +132,10 @@ again. Existing legacy `UPLOADED_DRAFT` states are respected.
   Only after confirming Adobe never accepted it, move the corresponding
   `*.attempt.json` out of the receipt folder if you want to retry.
   Never remove a `*.saved.json` to retry a confirmed draft.
-- **Grid filters, pagination or DOM changes:** the worker stops if it cannot
-  enumerate the complete All uploads grid or verify a saved field. Clear
-  filters and make all drafts visible. Managed selectors target the English
-  layout; automated tests do not contact Adobe. See the run log for selector
-  issues.
+- **Grid filters or DOM changes:** the worker scans every page of the English
+  **Uploaded Files → New → File types: All** grid before uploading. If it
+  cannot account for the reported draft count or verify a saved field, check
+  the page filter and the inventory counts in the run log.
 - **Sudden shutdown:** the next Start reuses local artifacts and saved
   receipts. A model request interrupted before its result was written
   locally may need to be retried. Do not run the manual pipeline or other
