@@ -107,6 +107,16 @@ class ManagerTests(unittest.TestCase):
                            uploader=self.uploader, should_stop=lambda: self.stop_requested,
                            emit=self.events.append, **kwargs)
 
+    def test_selected_image_model_overrides_config_and_reaches_generator(self):
+        self.write("model.json", self.production("Model"))
+        (self.root / ".env").write_text("IMAGE_MODEL=gemini-3-pro-image\n")
+        generate = Mock(side_effect=self.generate)
+        self.generate = generate
+        report = self.run_batch(image_model="gemini-nano-banana-2.1")
+        self.assertEqual(report["status"], "COMPLETE", report)
+        self.assertEqual(generate.call_args.kwargs["model"], "gemini-nano-banana-2.1")
+        self.assertEqual(report["image_model"], "gemini-nano-banana-2.1")
+
     def test_baseline_skips_old_files_but_not_new_or_changed_inputs(self):
         from stock_pipeline.manager_queues import discover
 

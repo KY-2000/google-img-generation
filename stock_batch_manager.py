@@ -18,9 +18,14 @@ from stock_pipeline.manager_baseline import TEST_QUEUE, snapshot_baseline
 
 ROOT = Path(__file__).resolve().parent
 TITLE = "Adobe Stock Batch Manager"
+IMAGE_MODELS = {
+    "Nano Banana Pro": "gemini-3-pro-image",
+    "Nano Banana 2.1": "gemini-nano-banana-2.1",
+}
 
 
-def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bool = False) -> int:
+def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bool = False,
+           image_model: str | None = None) -> int:
     # The UI generates a fresh local directory for each Start.
     home = (ROOT / "output" / "stock_manager" / "runs").resolve()
     run_dir = run_dir.resolve()
@@ -64,7 +69,7 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
                 log("Adobe will use the persistent browser profile at the upload stage", browser="Profile mode")
             from stock_pipeline.batch_manager import run_manager
             report = run_manager(ROOT, sha, commit_time, run_dir, should_stop=stop.exists, emit=emit,
-                                 cdp=cdp, profile=profile, stop_file=stop)
+                                 cdp=cdp, profile=profile, stop_file=stop, image_model=image_model)
         return 0 if report["status"] in {"COMPLETE", "NO_WORK", "STOPPED"} else 1
     except Exception as exc:
         error = redact(exc)
@@ -90,6 +95,7 @@ class Desktop:
         self.closing = False
         self.run_dir = None
         self.offline_test = tk.BooleanVar(value=True)
+        self.image_model = tk.StringVar(value="Nano Banana Pro")
         self.endpoint = tk.StringVar(value=os.environ.get("ADOBE_CDP", "http://127.0.0.1:9222"))
         self.git_status = tk.StringVar(value="Not checked")
         self.browser_status = tk.StringVar(value="Not checked")
@@ -164,9 +170,15 @@ class Desktop:
         self.endpoint_entry = ttk.Entry(settings, textvariable=self.endpoint, width=28)
         self.endpoint_entry.pack(side="left")
         ttk.Label(settings, text="Leave blank to use the existing Edge profile.").pack(side="left", padx=10)
-        self.test_check = ttk.Checkbutton(container, text="Offline test: validate r02 only (no generation or upload)",
+        options = ttk.Frame(container)
+        options.pack(fill="x", pady=(0, 8))
+        ttk.Label(options, text="Image model").pack(side="left", padx=(0, 8))
+        self.model_picker = ttk.Combobox(options, values=tuple(IMAGE_MODELS),
+                                         textvariable=self.image_model, state="readonly", width=19)
+        self.model_picker.pack(side="left", padx=(0, 16))
+        self.test_check = ttk.Checkbutton(options, text="Offline test: validate r02 only (no generation or upload)",
                                          variable=self.offline_test)
-        self.test_check.pack(anchor="w", pady=(0, 8))
+        self.test_check.pack(side="left")
         ttk.Label(container, text="Activity log").pack(anchor="w")
         logs = ttk.Frame(container)
         logs.pack(fill="both", expand=True)
@@ -206,6 +218,7 @@ class Desktop:
         self.retry_button.state(["disabled"])
         self.stop_button.state(["!disabled"])
         self.endpoint_entry.state(["disabled"])
+        self.model_picker.state(["disabled"])
         self.test_check.state(["disabled"])
         for metric in self.metrics.values():
             metric.set("—")
@@ -222,9 +235,11 @@ class Desktop:
         args = [str(python), str(Path(__file__).resolve()), "--worker", str(self.run_dir)]
         if testing:
             args.append("--offline-test")
-        elif cdp:
-            args.extend(("--cdp", cdp))
         else:
+            args.extend(("--image-model", IMAGE_MODELS[self.image_model.get()]))
+        if cdp:
+            args.extend(("--cdp", cdp))
+        elif not testing:
             profile = os.environ.get("ADOBE_USER_DATA_DIR")
             if profile:
                 args.extend(("--profile", profile))
@@ -288,6 +303,7 @@ class Desktop:
                 self.retry_button.state(["!disabled"] if event["exit"] else ["disabled"])
                 self.stop_button.state(["disabled"])
                 self.endpoint_entry.state(["!disabled"])
+                self.model_picker.state(["!disabled"])
                 self.test_check.state(["!disabled"])
                 if event["exit"]:
                     self.append(f"Worker stopped (exit {event['exit']}). See Open Logs.")
@@ -327,6 +343,7 @@ def main():
     parser.add_argument("--cdp", help=argparse.SUPPRESS)
     parser.add_argument("--profile", help=argparse.SUPPRESS)
     parser.add_argument("--offline-test", action="store_true", help=argparse.SUPPRESS)
+    parser.add_argument("--image-model", choices=tuple(IMAGE_MODELS.values()), help=argparse.SUPPRESS)
     parser.add_argument("--snapshot-baseline", action="store_true",
                         help="Skip the current incoming JSON snapshot in live runs, excluding the r02 test queue.")
     args = parser.parse_args()
@@ -334,7 +351,7 @@ def main():
         print(f"Snapshotted {snapshot_baseline(ROOT)} files; excluded {TEST_QUEUE}")
         return 0
     if args.worker:
-        return worker(args.worker, args.cdp, args.profile, args.offline_test)
+        return worker(args.worker, args.cdp, args.profile, args.offline_test, args.image_model)
     import tkinter as tk
     window = tk.Tk()
     icon = ROOT / "config" / "stock_manager.ico"

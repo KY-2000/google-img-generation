@@ -121,7 +121,7 @@ def upload_process(root, batch, receipt_dir, *, cdp, profile, log, stop_file=Non
 def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 should_stop=lambda: False, emit=lambda event: None,
                 pipeline_factory=StockPipeline, uploader=upload_process,
-                cdp="http://127.0.0.1:9222", profile=None, stop_file=None) -> dict:
+                cdp="http://127.0.0.1:9222", profile=None, stop_file=None, image_model=None) -> dict:
     start = time.monotonic()
     log_path = run_dir / "activity.log"
     redact = redactor(root)
@@ -241,12 +241,15 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                     total=report["total_assets"], overview=overview())
 
             current_source = ""
+            selected_model = legacy.resolve_image_model_alias(
+                image_model or legacy.load_env_file(root / ".env").get("IMAGE_MODEL")
+                or os.environ.get("IMAGE_MODEL") or "gemini-3-pro-image"
+            )
+            report["image_model"] = selected_model
+            log(f"Image model: {selected_model}", "Generation")
             pipeline = pipeline_factory(
                 project_root=root, registry=registry, config=config, progress=progress,
-                image_model=legacy.resolve_image_model_alias(
-                    legacy.load_env_file(root / ".env").get("IMAGE_MODEL") or
-                    os.environ.get("IMAGE_MODEL") or "gemini-3-pro-image"
-                ),
+                image_model=selected_model,
                 metadata_provider=legacy.get_default_metadata_provider(root),
                 metadata_model=legacy.get_default_metadata_model(root), usage_recorder=ledger.record,
                 redact_error=redact,

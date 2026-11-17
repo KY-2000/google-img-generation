@@ -16,8 +16,11 @@ npm ci
 
 If the virtual environment is missing, first run `python -m venv .venv`.
 Configure `.env` and Google credentials as for the single-queue pipeline.
-The manager uses `IMAGE_MODEL`, `METADATA_PROVIDER` and `METADATA_MODEL`
-from the existing configuration.
+Choose **Nano Banana Pro** (default) or **Nano Banana 2.1** in the
+**Image model** dropdown. The choice overrides `IMAGE_MODEL` for that run
+and applies only to new generation; completed images are reused. Metadata
+still uses `METADATA_PROVIDER` and `METADATA_MODEL` from existing settings.
+Offline test mode does not invoke either model.
 
 The checkout must be on a **clean local main** with
 `KY-2000/google-img-generation` as `origin`. A dirty worktree, wrong branch
