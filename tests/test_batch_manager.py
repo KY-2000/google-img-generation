@@ -192,7 +192,7 @@ class ManagerTests(unittest.TestCase):
         client = Mock()
         client.models.generate_content.return_value = SimpleNamespace(text=json.dumps(sample_model_metadata()))
         with patch("google.genai.Client", return_value=client) as build_client:
-            report = self.run_batch(metadata_provider="gemini-developer", metadata_model="gemini-4-hydrogen")
+            report = self.run_batch(metadata_model="gemini-4-hydrogen")
         self.assertEqual(report["status"], "COMPLETE", report)
         self.assertEqual(report["metadata_provider"], "gemini-developer")
         build_client.assert_called_once_with(vertexai=False, api_key="offline-test-key")
@@ -202,6 +202,14 @@ class ManagerTests(unittest.TestCase):
         self.assertEqual(request["config"].response_mime_type, "application/json")
         self.assertIsNone(request["config"].temperature)
         self.assertIsNone(request["config"].top_p)
+
+    def test_hydrogen_without_developer_key_stops_before_generation(self):
+        self.write("metadata.json", self.production("Metadata"))
+        with patch.dict(os.environ, {"GEMINI_API_KEY": ""}):
+            report = self.run_batch(metadata_model="gemini-4-hydrogen")
+        self.assertEqual(report["status"], "FAILED")
+        self.assertIn("GEMINI_API_KEY is missing", report["last_error"])
+        self.assertEqual(self.calls, [])
 
     def test_sampling_and_generation_limit_across_queues_then_resume(self):
         self.write("a.json", self.production("First", two=True))

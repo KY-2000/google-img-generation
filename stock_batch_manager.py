@@ -27,10 +27,7 @@ IMAGE_MODELS = {
     "Nano Banana 2.1": "gemini-nano-banana-2.1",
 }
 DEFAULT_METADATA_MODEL = "gemini-3.8-flash"
-METADATA_PROVIDERS = {
-    "Vertex AI": ("vertex", DEFAULT_METADATA_MODEL),
-    "Gemini Developer API": ("gemini-developer", "gemini-4-hydrogen"),
-}
+METADATA_MODELS = (DEFAULT_METADATA_MODEL, "gemini-4-hydrogen")
 SUPPORT_CHAT_FILE = Path("output/stock_manager/support_chat.txt")
 CHAT_LINK_PREFIX = "codex://threads/"
 GITHUB_COMMIT_PREFIX = "https://github.com/KY-2000/google-img-generation/commit/"
@@ -135,7 +132,6 @@ class Desktop:
         self.worker_input = None
         self.offline_test = tk.BooleanVar(value=True)
         self.image_model = tk.StringVar(value="Nano Banana Pro")
-        self.metadata_provider = tk.StringVar(value="Vertex AI")
         self.metadata_model = tk.StringVar(value=DEFAULT_METADATA_MODEL)
         self.temperature = tk.StringVar(value="1.0")
         self.top_p = tk.StringVar(value="0.95")
@@ -230,17 +226,8 @@ class Desktop:
         self.model_picker = ttk.Combobox(options, values=tuple(IMAGE_MODELS),
                                          textvariable=self.image_model, state="readonly", width=19)
         self.model_picker.pack(side="left", padx=(0, 16))
-        metadata_options = ttk.Frame(container)
-        metadata_options.pack(fill="x", pady=(0, 8))
-        ttk.Label(metadata_options, text="Metadata provider").pack(side="left", padx=(0, 8))
-        self.metadata_provider_picker = ttk.Combobox(
-            metadata_options, values=tuple(METADATA_PROVIDERS), textvariable=self.metadata_provider,
-            width=23, state="readonly",
-        )
-        self.metadata_provider_picker.pack(side="left", padx=(0, 16))
-        self.metadata_provider_picker.bind("<<ComboboxSelected>>", self.select_metadata_provider)
-        ttk.Label(metadata_options, text="Metadata model").pack(side="left", padx=(0, 8))
-        self.metadata_picker = ttk.Combobox(metadata_options, values=(DEFAULT_METADATA_MODEL,),
+        ttk.Label(options, text="Metadata model").pack(side="left", padx=(0, 8))
+        self.metadata_picker = ttk.Combobox(options, values=METADATA_MODELS,
                                             textvariable=self.metadata_model, width=23)
         self.metadata_picker.pack(side="left")
         sampling = ttk.Frame(container)
@@ -337,11 +324,6 @@ class Desktop:
         for index, entry in enumerate(self.generation_entries):
             entry.state(["disabled" if self.active or (index < 2 and not pro) else "!disabled"])
 
-    def select_metadata_provider(self, _event=None):
-        _, model = METADATA_PROVIDERS[self.metadata_provider.get()]
-        self.metadata_picker.configure(values=(model,))
-        self.metadata_model.set(model)
-
     def append(self, message, stamp=None):
         if stamp:
             stamp = datetime.fromisoformat(stamp).astimezone().strftime("%H:%M:%S")
@@ -398,7 +380,6 @@ class Desktop:
         self.stop_button.state(["!disabled"])
         self.endpoint_entry.state(["disabled"])
         self.model_picker.state(["disabled"])
-        self.metadata_provider_picker.state(["disabled"])
         self.metadata_picker.state(["disabled"])
         self.test_check.state(["disabled"])
         for metric in self.metrics.values():
@@ -417,9 +398,8 @@ class Desktop:
         if testing:
             args.append("--offline-test")
         else:
-            provider, _ = METADATA_PROVIDERS[self.metadata_provider.get()]
             args.extend(("--image-model", IMAGE_MODELS[self.image_model.get()],
-                         "--metadata-provider", provider, "--metadata-model", metadata_model))
+                         "--metadata-model", metadata_model))
             args.extend(generation_args)
         if cdp:
             args.extend(("--cdp", cdp))
@@ -634,7 +614,6 @@ class Desktop:
                 self.stop_button.state(["disabled"])
                 self.endpoint_entry.state(["!disabled"])
                 self.model_picker.state(["!disabled"])
-                self.metadata_provider_picker.state(["!disabled"])
                 self.metadata_picker.state(["!disabled"])
                 self.test_check.state(["!disabled"])
                 if event["exit"]:
@@ -706,7 +685,7 @@ def main():
     parser.add_argument("--offline-test", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--image-model", choices=tuple(IMAGE_MODELS.values()), help=argparse.SUPPRESS)
     parser.add_argument("--metadata-model", help=argparse.SUPPRESS)
-    parser.add_argument("--metadata-provider", choices=tuple(provider for provider, _ in METADATA_PROVIDERS.values()),
+    parser.add_argument("--metadata-provider", choices=("vertex", "gemini-developer"),
                         help=argparse.SUPPRESS)
     parser.add_argument("--temperature", type=float, default=1.0, help=argparse.SUPPRESS)
     parser.add_argument("--top-p", type=float, default=0.95, help=argparse.SUPPRESS)

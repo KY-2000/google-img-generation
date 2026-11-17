@@ -361,10 +361,15 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
             report["image_model"] = selected_model
             sampling = selected_model.rsplit("/", 1)[-1] != "gemini-nano-banana-2.1"
             report.update(temperature=temperature if sampling else None, top_p=top_p if sampling else None)
-            metadata_provider = metadata_provider or (
-                "vertex" if metadata_model else legacy.get_default_metadata_provider(root)
-            )
             selected_metadata = metadata_model or legacy.get_default_metadata_model(root)
+            if not metadata_provider:
+                if metadata_model:
+                    metadata_provider = (
+                        "gemini-developer" if selected_metadata.removeprefix("models/") == "gemini-4-hydrogen"
+                        else "vertex"
+                    )
+                else:
+                    metadata_provider = legacy.get_default_metadata_provider(root)
             if metadata_provider == "gemini-developer" and not should_stop() and any(
                 record["completed_assets"] < len(ids) for _, _, ids, record in prepared
             ):
