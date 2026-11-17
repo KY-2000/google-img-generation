@@ -130,7 +130,16 @@ def upload_process(root, batch, receipt_dir, *, cdp, profile, log, stop_file=Non
                           text=True, encoding="utf-8", errors="replace",
                           creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0)) as process:
         for line in process.stdout:
-            log(line.rstrip())
+            line = line.rstrip()
+            if line.startswith("ADOBE_PROGRESS "):
+                try:
+                    progress = json.loads(line.removeprefix("ADOBE_PROGRESS "))
+                except json.JSONDecodeError:
+                    progress = None
+                if isinstance(progress, dict) and isinstance(progress.get("stage"), str):
+                    log("", upload_progress=progress)
+                    continue
+            log(line)
         if process.wait():
             raise RuntimeError("Adobe uploader stopped; confirmed drafts were retained. See activity log")
 
@@ -583,7 +592,25 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 track_image(registry.get_asset(aid))
             report["already_uploaded"] += len(recovered)
             outstanding = set(ready) - recovered
+            upload_filenames = {f"{aid}.png" for aid in outstanding}
+            live_verified = set()
+
+            def show_upload(stage, detail="", done=None):
+                emit({"upload_progress": {"stage": stage, "detail": redact(detail),
+                                          "done": len(live_verified) if done is None else done,
+                                          "total": len(outstanding)}})
+
+            def log_adobe(message, *, upload_progress=None, **fields):
+                if upload_progress is None:
+                    log(message, "Adobe", **fields)
+                    return
+                filename = upload_progress.get("filename")
+                if upload_progress["stage"] == "draft_saved" and filename in upload_filenames:
+                    live_verified.add(filename)
+                show_upload(upload_progress["stage"], upload_progress.get("detail", ""))
+
             upload_error = ""
+            upload_started = False
             try:
                 if outstanding and not should_stop():
                     for source, _, ids, record in prepared:
@@ -591,14 +618,18 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                             record["queue_status"] = "UPLOADING"
                             state.save(source.run_id, source.identity, record)
                     log(f"Reconciling and uploading {len(outstanding)} drafts", "Adobe", overview=overview())
+                    upload_started = True
+                    show_upload("browser")
                     uploader(root, batch, receipts, cdp=cdp, profile=profile, stop_file=stop_file,
-                             log=lambda m, **fields: log(m, "Adobe", **fields))
+                             log=log_adobe)
                 elif outstanding:
                     report["status"] = "STOPPED"
                     return report
             except Exception as exc:
                 upload_error = redact(exc)
             finally:
+                if upload_started:
+                    show_upload("finalizing")
                 confirmed = reconcile_receipts(registry, batch, receipts)
                 report["uploaded"] = len(confirmed)
                 pipeline.refresh_manifests(list(confirmed | recovered))
@@ -612,6 +643,9 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                               last_error=upload_error or "Missing saved draft receipts")
             else:
                 report["status"] = "COMPLETE"
+            if upload_started:
+                stage = {"COMPLETE": "complete", "STOPPED": "stopped", "UPLOAD_INCOMPLETE": "incomplete"}
+                show_upload(stage[report["status"]], report["last_error"], done=len(confirmed & outstanding))
             return report
     except Exception as exc:
         report.update(status="FAILED", last_error=redact(exc))

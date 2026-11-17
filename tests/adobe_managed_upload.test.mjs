@@ -233,11 +233,20 @@ test("stop between upload groups leaves the next group without an attempt", asyn
 
 test("adopts a pre-existing verified draft without sending its file or metadata again", async t => {
   const f = fixture(t);
+  const stages = [];
+  f.adobe.progress = (stage, detail, filename) => {
+    if (stage === "draft_saved") {
+      assert.ok(fs.existsSync(path.join(f.receipts, filename + ".saved.json")));
+    }
+    stages.push([stage, filename]);
+  };
   f.inventory.add(f.rows[1].filename);
   f.verified.add(f.rows[1].filename);
   await managedDraftUpload(f.rows, f.files, f.receipts, f.adobe);
   assert.deepEqual(f.uploads, [f.rows[0].filename]);
   assert.deepEqual(f.imported, [[f.rows[0].filename]]);
+  assert.deepEqual(stages, [["draft_saved", f.rows[1].filename], ["importing", undefined],
+    ["saving", undefined], ["draft_saved", f.rows[0].filename]]);
 });
 
 test("login failure before inventory does not create an upload attempt", async t => {

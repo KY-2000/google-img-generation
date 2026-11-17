@@ -91,7 +91,7 @@ class ManagerTests(unittest.TestCase):
         return StockPipeline(**kwargs, image_generate_bytes=self.generate, metadata_generate_text=self.metadata,
                              max_attempts=1)
 
-    def uploader(self, root, batch, receipts, **_kwargs):
+    def uploader(self, root, batch, receipts, *, log, **_kwargs):
         manifest = json.loads((batch / "batch_manifest.json").read_text())
         self.uploads.append(manifest)
         self.assertEqual([row["Filename"] for row in read_adobe_csv(batch / "adobe_stock_metadata.csv")],
@@ -102,6 +102,7 @@ class ManagerTests(unittest.TestCase):
             receipt = receipts / (item["filename"] + ".saved.json")
             if not receipt.exists():
                 receipt.write_text(json.dumps({**item, "status": "saved_draft"}), encoding="utf-8")
+            log("", upload_progress={"stage": "draft_saved", "filename": item["filename"]})
             if self.partial_upload and index == 0:
                 raise RuntimeError("mock Adobe interrupted")
 
@@ -162,14 +163,18 @@ class ManagerTests(unittest.TestCase):
         receipts = self.root / "receipts"
         edge = self.root / "msedge.exe"
         edge.touch()
+        progress = {"stage": "checking", "detail": "Page 1"}
+        upload_log = Mock()
         uploader = Mock()
-        uploader.__enter__ = Mock(return_value=SimpleNamespace(stdout=[], wait=lambda: 0))
+        uploader.__enter__ = Mock(return_value=SimpleNamespace(
+            stdout=["step 2 action: opening uploads\n", f"ADOBE_PROGRESS {json.dumps(progress)}\n"], wait=lambda: 0,
+        ))
         uploader.__exit__ = Mock(return_value=False)
         runtime = "stock_pipeline.manager_runtime"
         with (patch(runtime + ".cdp_connected", side_effect=[True, False, True]),
               patch("shutil.which", return_value=str(edge)),
               patch(runtime + ".subprocess.Popen", side_effect=[uploader, Mock(), uploader]) as launch):
-            upload_process(self.root, batch, receipts, cdp=endpoint, profile=str(profile), log=Mock())
+            upload_process(self.root, batch, receipts, cdp=endpoint, profile=str(profile), log=upload_log)
             upload_process(self.root, batch, receipts, cdp=endpoint, profile=str(profile), log=Mock())
         edge_command = launch.call_args_list[1].args[0]
         self.assertEqual(edge_command[0], str(edge))
@@ -177,6 +182,8 @@ class ManagerTests(unittest.TestCase):
         self.assertIn(f"--user-data-dir={profile}", edge_command)
         self.assertTrue(launch.call_args_list[0].args[0][0].startswith("node"))
         self.assertTrue(launch.call_args_list[2].args[0][0].startswith("node"))
+        upload_log.assert_any_call("step 2 action: opening uploads")
+        upload_log.assert_any_call("", upload_progress=progress)
 
     def test_selected_image_model_overrides_config_and_reaches_generator(self):
         self.write("model.json", self.production("Model"))
@@ -547,6 +554,12 @@ class ManagerTests(unittest.TestCase):
                                                           "metadata_check", "simulated_ready"])
                 self.assertEqual(peak, workers)
                 self.assertFalse(active)
+                upload_events = [event["upload_progress"] for event in events if "upload_progress" in event]
+                self.assertGreater(next(i for i, event in enumerate(events) if "upload_progress" in event),
+                                   max(i for i, event in enumerate(events) if "asset_progress" in event))
+                self.assertTrue(all(event["simulated"] for event in upload_events))
+                self.assertEqual(upload_events[-1], {"stage": "complete", "detail": "", "done": workers,
+                                                     "total": workers, "simulated": True})
                 report = events[-1]["report"]
                 self.assertEqual((report["status"], report["total_assets"], report["generated"], report["uploaded"]),
                                  ("TEST_PASSED", 1, 0, 0))
@@ -587,14 +600,20 @@ class ManagerTests(unittest.TestCase):
         first = self.run_batch()
         self.assertEqual(first["status"], "UPLOAD_INCOMPLETE", first)
         self.assertEqual(first["uploaded"], 1)
+        progress = [event["upload_progress"] for event in self.events if "upload_progress" in event]
+        self.assertEqual([(step["stage"], step["done"], step["total"]) for step in progress],
+                         [("browser", 0, 2), ("draft_saved", 1, 2), ("finalizing", 1, 2), ("incomplete", 1, 2)])
         self.assertEqual(self.events[-1]["overview"],
                          {"total": 2, "pending": 0, "generated": 1, "uploaded": 1, "failed": 0})
         self.partial_upload = False
+        self.events.clear()
         second = self.run_batch()
         self.assertEqual(second["status"], "COMPLETE", second)
         self.assertEqual(len(self.calls), 2)
         self.assertEqual(len(self.uploads[1]["items"]), 1)
         self.assertEqual(second["already_uploaded"], 1)
+        progress = [event["upload_progress"] for event in self.events if "upload_progress" in event]
+        self.assertEqual((progress[-1]["stage"], progress[-1]["done"], progress[-1]["total"]), ("complete", 1, 1))
 
     def test_legacy_finder_reuses_original_run_and_example_does_not_claim_ids(self):
         from stock_pipeline.candidate_conversion import convert_candidates

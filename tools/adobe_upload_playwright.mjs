@@ -265,6 +265,9 @@ function makeLogger(runDir) {
 
   return {
     path: logPath,
+    progress(stage, detail = "", filename = "") {
+      console.log("ADOBE_PROGRESS " + JSON.stringify({ stage, detail, filename }));
+    },
     write(message) {
       const line = `step ${step} action: ${message}\n`;
       fs.appendFileSync(logPath, line);
@@ -576,12 +579,14 @@ async function main() {
   let context = null;
 
   if (options.cdp) {
+    if (options.managedReceipts) logger.progress("browser", "Connecting to Edge");
     logger.write(`connect to existing browser over CDP: ${options.cdp} (${localCdpFiles ? "local files, 120 MB per batch" : "45 MB per batch"})`);
     browser = localCdpFiles
       ? await chromium.connectOverCDP(options.cdp, { isLocal: true })
       : await chromium.connectOverCDP(options.cdp);
     context = browser.contexts()[0] || await browser.newContext();
   } else {
+    if (options.managedReceipts) logger.progress("browser", "Opening the Adobe browser profile");
     const userDataDir = path.resolve(options.userDataDir || path.join(".pw-edge-adobe-profile"));
     logger.write(`launch persistent browser: channel=${options.channel}; userDataDir=${userDataDir}`);
     context = await chromium.launchPersistentContext(userDataDir, {
@@ -598,6 +603,7 @@ async function main() {
   page.setDefaultTimeout(options.timeout);
 
   try {
+    if (options.managedReceipts) logger.progress("opening");
     logger.write("open Adobe Contributor uploads page");
     await page.goto(options.url, { waitUntil: "domcontentloaded", timeout: options.timeout });
     await page.waitForLoadState("networkidle", { timeout: Math.min(options.timeout, 30000) }).catch(() => {});

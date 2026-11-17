@@ -36,6 +36,8 @@ across the selected queues, theme, and current stage. **Show Activity Log** open
 the live raw log in a separate window. The image limit applies to the whole run.
 When stopped, active assets finish and queued assets wait for the next run.
 Adobe upload starts after all selected queues pass the existing quality gate.
+The asset cards then give way to the current Adobe step and the number of drafts
+verified in that upload attempt.
 The first image generation HTTP 429 stops the run automatically. Active assets
 can finish, and Adobe upload is skipped. The manager shows **Rate Limited**.
 Use **Retry Failed** later to resume and reuse images already saved.
@@ -82,7 +84,8 @@ uses this checkout's existing Python virtual environment.
 
 The window opens with **Offline test** selected. **Run Offline Test** validates
 `commercial_background_queue_2026W44_r02.json`, then simulates asset progress
-with the selected number of **Parallel assets** cards. It writes a local report
+with the selected number of **Parallel assets** cards and the switch to Adobe
+draft upload. It writes a local report
 and runs without Git sync, API requests, Adobe, or SQLite updates.
 Uncheck **Offline test** to run live with the Git safety checks.
 

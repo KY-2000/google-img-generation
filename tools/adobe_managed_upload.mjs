@@ -80,6 +80,7 @@ export async function managedDraftUpload(rows, imagePaths, receipts, adobe, spli
       await adobe.verifySaved(item.row);
       durableJson(item.receiptFile, { ...item.identity, status: "saved_draft", saved_at: new Date().toISOString() });
       item.saved = true;
+      adobe.progress?.("draft_saved", filename, filename);
     }
   }
   const remaining = pending.filter(item => !item.saved);
@@ -96,11 +97,16 @@ export async function managedDraftUpload(rows, imagePaths, receipts, adobe, spli
     });
   }
   if (adobe.shouldStop?.()) throw new Error("Managed upload stopped before metadata import");
-  if (remaining.length) await adobe.importCsv(remaining.map(item => item.row));
+  if (remaining.length) {
+    adobe.progress?.("importing", `${remaining.length} file(s)`);
+    await adobe.importCsv(remaining.map(item => item.row));
+  }
   for (const item of remaining) {
     if (adobe.shouldStop?.()) throw new Error("Managed upload stopped at a draft boundary");
+    adobe.progress?.("saving", item.row.filename);
     await adobe.saveAndVerify(item.row);
     durableJson(item.receiptFile, { ...item.identity, status: "saved_draft", saved_at: new Date().toISOString() });
     adobe.confirmed(item.row.filename);
+    adobe.progress?.("draft_saved", item.row.filename, item.row.filename);
   }
 }

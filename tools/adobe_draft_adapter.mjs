@@ -64,7 +64,7 @@ export function createAdobeDraftAdapter({
     if (!match) throw new Error("Cannot confirm Adobe All uploads count; check login and page layout");
     return Number(match[1]);
   };
-  const inventory = async wanted => {
+  const inventory = async (wanted, showProgress = false) => {
     const expected = await count();
     const files = new Map();
     let scanned = 0;
@@ -72,6 +72,9 @@ export function createAdobeDraftAdapter({
       await goToPage(pageNumber);
       const visible = await tiles().count();
       if (scanned + visible > expected || (!visible && expected)) break;
+      if (expected && showProgress) {
+        logger.progress?.("checking", `Page ${pageNumber} · ${scanned} of ${expected} existing drafts checked`);
+      }
       if (expected) logger.write(`Checking Adobe drafts page ${pageNumber} (${scanned + visible}/${expected})`);
       for (let index = 0; index < visible; index += 1) {
         if (shouldStop()) throw new Error("Stopped while checking Adobe drafts");
@@ -151,12 +154,15 @@ export function createAdobeDraftAdapter({
     }
   };
   return {
+    progress: logger.progress,
     async inventory(wanted) {
-      indices = await inventory(wanted);
+      logger.progress?.("checking");
+      indices = await inventory(wanted, true);
       return indices;
     },
     shouldStop,
     async upload(files, recordAttempts) {
+      logger.progress?.("uploading", `${files.length} file(s) in this batch`);
       const before = await count();
       logger.write(`Uploading image batch (${files.length} files)`);
       await clickFirstVisible(page.getByRole("button", { name: /^Upload$/ }), "top Upload button");

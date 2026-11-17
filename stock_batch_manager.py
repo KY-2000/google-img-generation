@@ -46,6 +46,20 @@ ASSET_STAGES = {
     "interrupted": ("Interrupted", None, "#71571f"),
 }
 
+UPLOAD_STAGES = {
+    "browser": "Connecting to Adobe browser",
+    "opening": "Opening Contributor uploads",
+    "checking": "Checking existing drafts",
+    "uploading": "Uploading image files",
+    "importing": "Importing metadata CSV",
+    "saving": "Saving and verifying draft",
+    "draft_saved": "Draft verified",
+    "finalizing": "Reconciling saved drafts",
+    "complete": "Draft upload complete",
+    "stopped": "Draft upload stopped",
+    "incomplete": "Draft upload incomplete",
+}
+
 
 def simulate_asset_progress(max_workers, stop, log):
     themes = ("Botanical illustration", "Textured paper background", "Abstract geometric shapes")
@@ -67,6 +81,23 @@ def simulate_asset_progress(max_workers, stop, log):
             log(f"[{aid}] {ASSET_STAGES[stage][0]}", asset_progress=progress)
         if tick + 1 < ticks:
             time.sleep(0.8)
+    return True
+
+
+def simulate_upload_progress(total, stop, log):
+    for stage, detail, done in (
+        ("browser", "", 0), ("opening", "", 0), ("checking", "Page 1", 0),
+        ("uploading", f"{total} file(s) in this batch", 0), ("importing", f"{total} file(s)", 0),
+        *(("saving", f"DEMO-{index + 1:02d}.png", index) for index in range(total)),
+        ("finalizing", "", total), ("complete", "", total),
+    ):
+        if stop.exists():
+            return False
+        log(f"[Simulation] {UPLOAD_STAGES[stage]}", upload_progress={
+            "stage": stage, "detail": detail, "done": done, "total": total, "simulated": True,
+        })
+        if stage != "complete":
+            time.sleep(0.6)
     return True
 
 
@@ -102,7 +133,8 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
             report = validate_test_queue(ROOT, run_dir)
             log(f"Validated {report['total_assets']} assets. Simulating {max_workers} progress card(s).",
                 phase="Offline layout test", source="Simulated assets")
-            if not simulate_asset_progress(max_workers, stop, log):
+            if not (simulate_asset_progress(max_workers, stop, log)
+                    and simulate_upload_progress(max_workers, stop, log)):
                 report["status"] = "STOPPED"
             report["layout_test"] = {"cards": max_workers, "status": report["status"]}
             report["elapsed_seconds"] = round(time.monotonic() - started, 2)
@@ -300,9 +332,22 @@ class Desktop:
         self.test_check = ttk.Checkbutton(container, text="Offline test: validate r02 and simulate asset progress",
                                          variable=self.offline_test, command=self.refresh_start_button)
         self.test_check.pack(anchor="w", pady=(0, 8))
-        ttk.Label(container, text="Asset progress").pack(anchor="w", pady=(0, 5))
-        self.asset_panel = ttk.Frame(container)
-        self.asset_panel.pack(fill="x", pady=(0, 8))
+        progress_area = ttk.Frame(container)
+        progress_area.pack(fill="x", pady=(0, 8))
+        self.progress_heading = ttk.Label(progress_area, text="Asset progress")
+        self.progress_heading.pack(anchor="w", pady=(0, 5))
+        self.asset_panel = ttk.Frame(progress_area)
+        self.upload_panel = ttk.Frame(progress_area, style="Card.TFrame", padding=(12, 8))
+        upload_header = ttk.Frame(self.upload_panel, style="Card.TFrame")
+        upload_header.pack(fill="x")
+        self.upload_step = ttk.Label(upload_header, style="AssetTitle.TLabel")
+        self.upload_step.pack(side="left")
+        self.upload_count = ttk.Label(upload_header, style="Card.TLabel")
+        self.upload_count.pack(side="right")
+        self.upload_detail = ttk.Label(self.upload_panel, style="Card.TLabel", wraplength=650)
+        self.upload_detail.pack(anchor="w", pady=(4, 6))
+        self.upload_bar = ttk.Progressbar(self.upload_panel)
+        self.upload_bar.pack(fill="x")
         self.reset_asset_cards()
         self.max_workers.trace_add("write", lambda *_args: self.reset_asset_cards())
         log_controls = ttk.Frame(container)
@@ -315,6 +360,9 @@ class Desktop:
     def reset_asset_cards(self):
         from tkinter import ttk
 
+        self.upload_panel.pack_forget()
+        self.progress_heading.configure(text="Asset progress")
+        self.asset_panel.pack(fill="x")
         for index, (tile, *_) in enumerate(self.asset_cards):
             tile.destroy()
             self.asset_panel.columnconfigure(index, weight=0, uniform="")
@@ -358,6 +406,20 @@ class Desktop:
             bar.configure(value=value)
         if stage in {"ready", "simulated_ready", "failed", "deferred", "interrupted"}:
             del self.asset_slots[asset_id]
+
+    def update_upload_panel(self, event):
+        if not self.upload_panel.winfo_manager():
+            self.asset_panel.pack_forget()
+            heading = "Adobe draft upload"
+            if event.get("simulated"):
+                heading += " · Offline simulation"
+            self.progress_heading.configure(text=heading)
+            self.upload_panel.pack(fill="x")
+        self.upload_step.configure(text=UPLOAD_STAGES.get(event["stage"], "Processing Adobe drafts"))
+        self.upload_detail.configure(text=event["detail"])
+        done, total = event["done"], event["total"]
+        self.upload_count.configure(text=f"{done} / {total} drafts verified")
+        self.upload_bar.configure(maximum=max(total, 1), value=done)
 
     def show_activity_log(self):
         from tkinter import ttk
@@ -717,6 +779,8 @@ class Desktop:
                 self.append(event["message"], event.get("time"))
             if event.get("asset_progress"):
                 self.update_asset_card(event["asset_progress"])
+            if event.get("upload_progress"):
+                self.update_upload_panel(event["upload_progress"])
             for field, var in (("github", self.git_status), ("browser", self.browser_status), ("phase", self.stage)):
                 if event.get(field) and (field != "phase" or not event.get("asset")):
                     var.set(event[field])
@@ -742,6 +806,10 @@ class Desktop:
             if event.get("report"):
                 report = event["report"]
                 self.stage.set(report["status"].replace("_", " ").title())
+                if self.upload_panel.winfo_manager() and report["status"] in {"FAILED", "STOPPED"}:
+                    stage = "stopped" if report["status"] == "STOPPED" else "incomplete"
+                    self.upload_step.configure(text=UPLOAD_STAGES[stage])
+                    self.upload_detail.configure(text=report.get("last_error", ""))
                 if report["status"] == "TEST_PASSED":
                     self.bar.configure(maximum=report["total_assets"], value=report["total_assets"])
                     self.count.set(f"{report['total_assets']} assets validated; 0 generated")
