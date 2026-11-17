@@ -31,9 +31,11 @@ Offline test mode does not invoke either model.
 
 **Parallel assets** runs up to 1, 2, or 3 assets from the active queue at
 once. Default is 1. Each asset runs image generation, QC, and metadata in
-order. The image limit applies to the whole run. When stopped, active assets
-finish and queued assets wait for the next run. Adobe upload starts after
-all selected queues pass the existing quality gate.
+order. The dashboard shows one progress card per slot with the asset's position
+across the selected queues, theme, and current stage. **Show Activity Log** opens
+the live raw log in a separate window. The image limit applies to the whole run.
+When stopped, active assets finish and queued assets wait for the next run.
+Adobe upload starts after all selected queues pass the existing quality gate.
 The first image generation HTTP 429 stops the run automatically. Active assets
 can finish, and Adobe upload is skipped. The manager shows **Rate Limited**.
 Use **Retry Failed** later to resume and reuse images already saved.

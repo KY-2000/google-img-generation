@@ -376,6 +376,22 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                     total=report["total_assets"], overview=overview())
 
             current_source = ""
+            asset_positions = {
+                aid: index
+                for index, aid in enumerate((aid for _, _, ids, _ in prepared for aid in sorted(ids)), 1)
+            }
+
+            def show_asset_stage(aid, stage):
+                event = {"asset_id": aid, "stage": stage}
+                if stage == "preparing":
+                    event.update(index=asset_positions[aid], total=report["total_assets"],
+                                 theme=redact(registry.get_asset(aid)["theme"]))
+                emit({"asset_progress": event})
+
+            def finish_asset(aid, status):
+                stage = "failed" if status in FAILED else "ready" if status in DONE else "deferred"
+                show_asset_stage(aid, stage)
+
             selected_model = legacy.resolve_image_model_alias(
                 image_model or legacy.load_env_file(root / ".env").get("IMAGE_MODEL")
                 or os.environ.get("IMAGE_MODEL") or "gemini-3-pro-image"
@@ -412,7 +428,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 on_image_rate_limit=on_image_rate_limit,
             )
             pipeline = pipeline_factory(**pipeline_options, registry=registry,
-                                        progress=progress, usage_recorder=ledger.record)
+                                        progress=progress, usage_recorder=ledger.record, asset_stage=show_asset_stage)
 
             def run_parallel(ids, checkpoint):
                 events = Queue()
@@ -430,12 +446,14 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                             **pipeline_options, registry=asset_registry,
                             progress=lambda message: events.put(("progress", message)),
                             usage_recorder=lambda **usage: events.put(("usage", usage)),
+                            asset_stage=lambda asset_id, stage: events.put(("stage", (asset_id, stage))),
                         )
                         succeeded = process_one_asset(asset_registry, asset, lambda row: worker.process_asset(
                             row, reserve_image=reserve_image,
                         ), redact)
                         if not succeeded and (root / "output" / "assets" / aid).is_dir():
                             worker.refresh_manifests([aid])
+                        events.put(("finish", (aid, asset_registry.get_asset(aid)["status"])))
                         return aid
 
                 def drain():
@@ -446,6 +464,10 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                             return
                         if kind == "usage":
                             ledger.record(**payload)
+                        elif kind == "stage":
+                            show_asset_stage(*payload)
+                        elif kind == "finish":
+                            finish_asset(*payload)
                         else:
                             progress(payload)
 
@@ -479,7 +501,10 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                             refresh(record, registry, ids)
                             record["queue_status"] = "RUNNING"
                             state.save(source.run_id, source.identity, record)
-                            log(f"{aid}: {registry.get_asset(aid)['status']}", "Generation",
+                            status = registry.get_asset(aid)["status"]
+                            if max_workers == 1:
+                                finish_asset(aid, status)
+                            log(f"{aid}: {status}", "Generation",
                                 source=current_source, asset=aid, overview=overview(),
                                 completed=sum(q["completed_assets"] for q in report["queues"]),
                                 total=report["total_assets"])

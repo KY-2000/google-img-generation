@@ -40,6 +40,7 @@ class StockPipeline:
         redact_error: Callable[[str], str] = str,
         metadata_fallback: Event | None = None,
         on_image_rate_limit: Callable[[str], bool] | None = None,
+        asset_stage: Callable[[str, str], None] | None = None,
     ):
         self.project_root = project_root
         self.registry = registry
@@ -50,6 +51,7 @@ class StockPipeline:
         self.metadata_model = metadata_model
         self._metadata_fallback = metadata_fallback if metadata_fallback is not None else Event()
         self.on_image_rate_limit = on_image_rate_limit
+        self.asset_stage = asset_stage
         config = config or {}
         image_config = config.get("image", {})
         metadata_config = config.get("metadata", {})
@@ -72,7 +74,9 @@ class StockPipeline:
         self._metadata_client: Any = None
         self.source_root = Path(__file__).resolve().parents[1]
 
-    def _emit_progress(self, asset_id: str, message: str) -> None:
+    def _emit_progress(self, asset_id: str, message: str, *, stage: str | None = None) -> None:
+        if stage is not None and self.asset_stage is not None:
+            self.asset_stage(asset_id, stage)
         if self.progress is not None:
             self.progress(f"[{asset_id}] {message}")
 
@@ -199,7 +203,7 @@ class StockPipeline:
         background = current.get("asset_type") == "commercial_background"
         aspect_ratio = current["aspect_ratio"] if background else self.aspect_ratio
         resolution = current["resolution"] if background else self.resolution
-        self._emit_progress(asset_id, f"processing status={current['status']}")
+        self._emit_progress(asset_id, f"processing status={current['status']}", stage="preparing")
         if force_image and current["generation_prompt"]:
             self.registry.reset_for_image(asset_id)
             current = self.registry.get_asset(asset_id)
@@ -262,7 +266,7 @@ class StockPipeline:
             if skip_image_generation or (reserve_image is not None and not reserve_image()):
                 self._manifest(asset_id)
                 return
-            self._emit_progress(asset_id, f"image 1/1 started model={self.image_model}")
+            self._emit_progress(asset_id, f"image 1/1 started model={self.image_model}", stage="image")
             image_client = self._get_image_client()
             original_path = asset_dir / "original.png"
             # Record a new target before the request. If the process stops
@@ -302,7 +306,7 @@ class StockPipeline:
             current = self.registry.get_asset(asset_id)
 
         if current["status"] == "IMAGE_READY":
-            self._emit_progress(asset_id, "image QC started")
+            self._emit_progress(asset_id, "image QC started", stage="qc")
             started = time.perf_counter()
             qc = inspect_image(asset_id, Path(current["image_path"]), self.minimum_resolution,
                                **({"aspect_ratio": aspect_ratio} if background else {}))
@@ -332,7 +336,8 @@ class StockPipeline:
 
             def request_metadata(provider: str, model: str) -> str:
                 self.registry.update_asset(asset_id, metadata_model=model)
-                self._emit_progress(asset_id, f"metadata prompt 1/1 started model={model} provider={provider}")
+                self._emit_progress(asset_id, f"metadata prompt 1/1 started model={model} provider={provider}",
+                                    stage="metadata")
                 metadata_kwargs = dict(
                     client=self._get_metadata_client(provider), provider=provider,
                     image_path=Path(current["image_path"]), theme=current["theme"],
@@ -367,7 +372,7 @@ class StockPipeline:
             logger.event("metadata_generation", duration_seconds=round(time.perf_counter() - started, 3))
             self._emit_progress(asset_id, "metadata prompt 1/1 completed")
             started = time.perf_counter()
-            self._emit_progress(asset_id, "metadata validation started")
+            self._emit_progress(asset_id, "metadata validation started", stage="metadata_check")
             try:
                 metadata = validate_metadata(
                     enrich_metadata(parse_metadata_json(raw), asset_id),

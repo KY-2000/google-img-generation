@@ -10,6 +10,7 @@ import subprocess
 import sys
 import threading
 import time
+from collections import deque
 from datetime import datetime
 from pathlib import Path
 from uuid import UUID, uuid4
@@ -31,6 +32,18 @@ METADATA_MODELS = (DEFAULT_METADATA_MODEL, "gemini-4-hydrogen")
 SUPPORT_CHAT_FILE = Path("output/stock_manager/support_chat.txt")
 CHAT_LINK_PREFIX = "codex://threads/"
 GITHUB_COMMIT_PREFIX = "https://github.com/KY-2000/google-img-generation/commit/"
+
+ASSET_STAGES = {
+    "preparing": ("Preparing", 0, "#536879"),
+    "image": ("Generating image", 0.5, "#194f70"),
+    "qc": ("Checking image", 1.5, "#194f70"),
+    "metadata": ("Generating metadata", 2.5, "#194f70"),
+    "metadata_check": ("Checking metadata", 2.5, "#194f70"),
+    "ready": ("Ready for draft upload", 3, "#21634d"),
+    "failed": ("Failed", None, "#a33232"),
+    "deferred": ("Deferred", None, "#71571f"),
+    "interrupted": ("Interrupted", None, "#71571f"),
+}
 
 
 def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bool = False,
@@ -129,6 +142,11 @@ class Desktop:
         self.closing = False
         self.run_dir = None
         self.preview_window = None
+        self.log_window = None
+        self.log_text = None
+        self.log_lines = deque(maxlen=2500)
+        self.asset_slots = {}
+        self.asset_cards = []
         self.worker_input = None
         self.offline_test = tk.BooleanVar(value=True)
         self.image_model = tk.StringVar(value="Nano Banana Pro")
@@ -149,7 +167,7 @@ class Desktop:
         self.metrics = {key: tk.StringVar(value="—") for key in ("total", "pending", "generated", "uploaded", "failed")}
         window.title(TITLE)
         window.geometry("1000x740")
-        window.minsize(780, 610)
+        window.minsize(780, 690)
         window.configure(bg="#edf0f3")
         window.protocol("WM_DELETE_WINDOW", self.close)
 
@@ -162,6 +180,7 @@ class Desktop:
         style.configure("Card.TLabel", background="#ffffff")
         style.configure("Hero.TLabel", font=("Segoe UI Semibold", 24))
         style.configure("Stage.TLabel", background="#ffffff", font=("Segoe UI Semibold", 15))
+        style.configure("AssetTitle.TLabel", background="#ffffff", font=("Segoe UI Semibold", 12))
         style.configure("Metric.TLabel", background="#ffffff", font=("Segoe UI Semibold", 22))
         style.configure("TButton", font=("Segoe UI", 10), padding=(13, 7))
         style.configure("Start.TButton", background="#194f70", foreground="#ffffff",
@@ -170,12 +189,11 @@ class Desktop:
                   foreground=[("disabled", "#ffffff")])
         style.configure("Horizontal.TProgressbar", troughcolor="#e3ebef", background="#217b7d")
 
-        container = ttk.Frame(window, padding=24)
+        container = ttk.Frame(window, padding=(24, 14))
         container.pack(fill="both", expand=True)
-        ttk.Label(container, text="PRODUCTION  /  DRAFT UPLOAD").pack(anchor="w")
-        ttk.Label(container, text=TITLE, style="Hero.TLabel").pack(anchor="w", pady=(3, 8))
+        ttk.Label(container, text=TITLE, style="Hero.TLabel").pack(anchor="w", pady=(0, 4))
         links = ttk.Frame(container)
-        links.pack(fill="x", pady=(0, 12))
+        links.pack(fill="x", pady=(0, 8))
         for label, var in (("GitHub", self.git_status), ("Adobe Browser", self.browser_status)):
             ttk.Label(links, text=label + ":").pack(side="left", padx=(0, 4))
             ttk.Label(links, textvariable=var).pack(side="left", padx=(0, 18))
@@ -187,21 +205,23 @@ class Desktop:
         self.push_button = ttk.Button(links, text="Push to main", command=self.push_code)
         self.push_button.pack(side="right")
         stats = ttk.Frame(container)
-        stats.pack(fill="x", pady=(0, 12))
+        stats.pack(fill="x", pady=(0, 8))
         for index, key in enumerate(self.metrics):
             stats.columnconfigure(index, weight=1, uniform="stats")
-            tile = ttk.Frame(stats, style="Card.TFrame", padding=(12, 8))
+            tile = ttk.Frame(stats, style="Card.TFrame", padding=(12, 5))
             tile.grid(row=0, column=index, sticky="nsew", padx=(0, 8 if index < 4 else 0))
             ttk.Label(tile, text=key.title(), style="Card.TLabel").pack(anchor="w")
             ttk.Label(tile, textvariable=self.metrics[key], style="Metric.TLabel").pack(anchor="w")
 
-        progress = ttk.Frame(container, style="Card.TFrame", padding=(16, 12))
-        progress.pack(fill="x", pady=(0, 12))
-        ttk.Label(progress, textvariable=self.stage, style="Stage.TLabel").pack(anchor="w")
-        ttk.Label(progress, textvariable=self.current, style="Card.TLabel", wraplength=650).pack(anchor="w", pady=(2, 5))
+        progress = ttk.Frame(container, style="Card.TFrame", padding=(16, 8))
+        progress.pack(fill="x", pady=(0, 8))
+        progress_header = ttk.Frame(progress, style="Card.TFrame")
+        progress_header.pack(fill="x")
+        ttk.Label(progress_header, textvariable=self.stage, style="Stage.TLabel").pack(side="left")
+        ttk.Label(progress_header, textvariable=self.count, style="Card.TLabel").pack(side="right")
+        ttk.Label(progress, textvariable=self.current, style="Card.TLabel", wraplength=650).pack(anchor="w", pady=(1, 4))
         self.bar = ttk.Progressbar(progress, maximum=1, value=0)
         self.bar.pack(fill="x")
-        ttk.Label(progress, textvariable=self.count, style="Card.TLabel").pack(anchor="e", pady=(5, 0))
 
         controls = ttk.Frame(container)
         controls.pack(fill="x", pady=(0, 8))
@@ -249,20 +269,92 @@ class Desktop:
         self.test_check = ttk.Checkbutton(container, text="Offline test: validate r02 only (no generation or upload)",
                                          variable=self.offline_test, command=self.refresh_start_button)
         self.test_check.pack(anchor="w", pady=(0, 8))
+        ttk.Label(container, text="Asset progress").pack(anchor="w", pady=(0, 5))
+        self.asset_panel = ttk.Frame(container)
+        self.asset_panel.pack(fill="x", pady=(0, 8))
+        self.reset_asset_cards()
+        self.max_workers.trace_add("write", lambda *_args: self.reset_asset_cards())
         log_controls = ttk.Frame(container)
         log_controls.pack(fill="x")
-        ttk.Label(log_controls, text="Activity log").pack(side="left")
+        ttk.Button(log_controls, text="Show Activity Log", command=self.show_activity_log).pack(side="left")
         ttk.Button(log_controls, text="Open ChatGPT + Copy Error Log",
                    command=self.open_error_in_chatgpt).pack(side="right")
-        logs = ttk.Frame(container)
+        window.after(75, self.poll)
+
+    def reset_asset_cards(self):
+        from tkinter import ttk
+
+        for index, (tile, *_) in enumerate(self.asset_cards):
+            tile.destroy()
+            self.asset_panel.columnconfigure(index, weight=0, uniform="")
+        self.asset_cards.clear()
+        self.asset_slots.clear()
+        count = int(self.max_workers.get())
+        for index in range(count):
+            self.asset_panel.columnconfigure(index, weight=1, uniform="assets")
+            tile = ttk.Frame(self.asset_panel, style="Card.TFrame", padding=(12, 8))
+            tile.grid(row=0, column=index, sticky="nsew", padx=(0, 8 if index < count - 1 else 0))
+            title = ttk.Label(tile, text="Waiting for an asset", style="AssetTitle.TLabel")
+            title.pack(anchor="w")
+            theme = self.tk.Label(tile, text="", height=2, bg="#ffffff", fg="#162230",
+                                  font=("Segoe UI", 10), justify="left", anchor="nw")
+            theme.pack(fill="x")
+            tile.bind("<Configure>", lambda event, label=theme: label.configure(wraplength=max(1, event.width - 24)))
+            status = ttk.Label(tile, text="", style="Card.TLabel")
+            status.pack(anchor="w", pady=(2, 4))
+            bar = ttk.Progressbar(tile, maximum=3, value=0)
+            bar.pack(fill="x")
+            self.asset_cards.append((tile, title, theme, status, bar))
+
+    def update_asset_card(self, event):
+        asset_id, stage = event["asset_id"], event["stage"]
+        if stage == "preparing":
+            used = self.asset_slots.values()
+            slot = next((index for index in range(len(self.asset_cards)) if index not in used), None)
+            if slot is None:
+                return
+            self.asset_slots[asset_id] = slot
+            _, title, theme, _, _ = self.asset_cards[slot]
+            title.configure(text=f"Image {event['index']} of {event['total']}  ·  {asset_id}")
+            theme.configure(text=event["theme"])
+        slot = self.asset_slots.get(asset_id)
+        if slot is None:
+            return
+        _, _, _, status, bar = self.asset_cards[slot]
+        label, value, color = ASSET_STAGES[stage]
+        status.configure(text=label, foreground=color)
+        if value is not None:
+            bar.configure(value=value)
+        if stage in {"ready", "failed", "deferred", "interrupted"}:
+            del self.asset_slots[asset_id]
+
+    def show_activity_log(self):
+        from tkinter import ttk
+
+        if self.log_window is not None:
+            self.log_window.lift()
+            self.log_window.focus_set()
+            return
+        self.log_window = self.tk.Toplevel(self.window)
+        self.log_window.title("Activity Log")
+        self.log_window.geometry("940x440")
+        self.log_window.protocol("WM_DELETE_WINDOW", self.close_activity_log)
+        self.log_window.bind("<Escape>", lambda _event: self.close_activity_log())
+        logs = ttk.Frame(self.log_window, padding=12)
         logs.pack(fill="both", expand=True)
-        self.log_text = tk.Text(logs, wrap="word", background="#142331", foreground="#e6eff4", height=6,
-                                font=("Consolas", 10), relief="flat", padx=10, pady=8, state="disabled")
+        self.log_text = self.tk.Text(logs, wrap="word", background="#142331", foreground="#e6eff4",
+                                     font=("Consolas", 10), relief="flat", padx=10, pady=8)
         scroll = ttk.Scrollbar(logs, command=self.log_text.yview)
         scroll.pack(side="right", fill="y")
         self.log_text.configure(yscrollcommand=scroll.set)
         self.log_text.pack(side="left", fill="both", expand=True)
-        window.after(75, self.poll)
+        self.log_text.insert("end", "".join(self.log_lines))
+        self.log_text.configure(state="disabled")
+        self.log_text.see("end")
+
+    def close_activity_log(self):
+        self.log_window.destroy()
+        self.log_window = self.log_text = None
 
     def refresh_start_button(self):
         self.start_button.configure(text="Run Offline Test" if self.offline_test.get() else "Check Queues")
@@ -340,12 +432,17 @@ class Desktop:
             stamp = datetime.fromisoformat(stamp).astimezone().strftime("%H:%M:%S")
         else:
             stamp = datetime.now().strftime("%H:%M:%S")
-        self.log_text.configure(state="normal")
-        self.log_text.insert("end", f"{stamp}  {message}\n")
-        if int(self.log_text.index("end-1c").split(".")[0]) > 2500:
-            self.log_text.delete("1.0", "301.0")
-        self.log_text.see("end")
-        self.log_text.configure(state="disabled")
+        line = f"{stamp}  {message}\n"
+        self.log_lines.append(line)
+        if self.log_text is not None:
+            following = self.log_text.yview()[1] == 1.0
+            self.log_text.configure(state="normal")
+            self.log_text.insert("end", line)
+            if int(self.log_text.index("end-1c").split(".")[0]) > 3000:
+                self.log_text.delete("1.0", "501.0")
+            if following:
+                self.log_text.see("end")
+            self.log_text.configure(state="disabled")
 
     def start(self):
         if self.active or self.pushing:
@@ -385,6 +482,7 @@ class Desktop:
             self.append(str(exc))
             return
         self.active = True
+        self.reset_asset_cards()
         self.push_button.state(["disabled"])
         self.refresh_generation_entries()
         self.start_button.state(["disabled"])
@@ -586,8 +684,10 @@ class Desktop:
                 break
             if event.get("message"):
                 self.append(event["message"], event.get("time"))
+            if event.get("asset_progress"):
+                self.update_asset_card(event["asset_progress"])
             for field, var in (("github", self.git_status), ("browser", self.browser_status), ("phase", self.stage)):
-                if event.get(field):
+                if event.get(field) and (field != "phase" or not event.get("asset")):
                     var.set(event[field])
             if event.get("commit"):
                 self.set_commit(event["commit"], event.get("on_github", False))
@@ -601,7 +701,7 @@ class Desktop:
                 if pushed_commit and (not self.active or self.commit_sha == pushed_commit):
                     self.set_commit(pushed_commit, True)
             if event.get("source"):
-                self.current.set(event["source"] + ("  •  " + event["asset"] if event.get("asset") else ""))
+                self.current.set(event["source"])
             if "total" in event:
                 done, total = event.get("completed", 0), event["total"]
                 self.bar.configure(maximum=max(total, 1), value=done)
@@ -622,6 +722,8 @@ class Desktop:
             if event.get("preview") and not (self.closing or (self.run_dir / "stop.request").exists()):
                 self.show_preview(event["preview"])
             if "exit" in event:
+                for asset_id in list(self.asset_slots):
+                    self.update_asset_card({"asset_id": asset_id, "stage": "interrupted"})
                 self.dismiss_preview()
                 self.active = False
                 self.refresh_generation_entries()

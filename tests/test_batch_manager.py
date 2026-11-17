@@ -283,6 +283,32 @@ class ManagerTests(unittest.TestCase):
         self.assertEqual(first["status"], "LIMIT_REACHED", first)
         self.assertEqual((first["generation_started"], first["generated"], first["generation_deferred"]), (2, 2, 1))
         self.assertFalse(self.uploads)
+        progress = [event["asset_progress"] for event in self.events if "asset_progress" in event]
+        stages = {}
+        active = set()
+        peak = 0
+        positions = []
+        for event in progress:
+            aid, stage = event["asset_id"], event["stage"]
+            if stage == "preparing":
+                self.assertNotIn(aid, active)
+                active.add(aid)
+                peak = max(peak, len(active))
+                positions.append(event["index"])
+                self.assertEqual(event["total"], 3)
+                self.assertTrue(event["theme"])
+            self.assertIn(aid, active)
+            stages.setdefault(aid, []).append(stage)
+            if stage in {"ready", "deferred"}:
+                active.remove(aid)
+        self.assertFalse(active)
+        self.assertEqual(peak, 2)
+        self.assertCountEqual(positions, [1, 2, 3])
+        self.assertCountEqual(list(stages.values()), [
+            ["preparing", "image", "qc", "metadata", "metadata_check", "ready"],
+            ["preparing", "image", "qc", "metadata", "metadata_check", "ready"],
+            ["preparing", "deferred"],
+        ])
         self.generate = generate
         second = self.run_batch(max_workers=3)
         self.assertEqual(second["status"], "COMPLETE", second)
@@ -321,7 +347,7 @@ class ManagerTests(unittest.TestCase):
         class ProgressEvents(list):
             def append(self, event):
                 super().append(event)
-                if "stopping after active assets" in event["message"]:
+                if "stopping after active assets" in event.get("message", ""):
                     auto_stop.set()
 
         def rate_limited_generation(**kwargs):
@@ -412,7 +438,7 @@ class ManagerTests(unittest.TestCase):
         self.run_batch(sources=sources[:1], max_images=1)
         self.assertIn(
             {"total": 2, "pending": 1, "generated": 1, "uploaded": 0, "failed": 0},
-            [event["overview"] for event in self.events if "image 1/1 completed" in event["message"]],
+            [event["overview"] for event in self.events if "image 1/1 completed" in event.get("message", "")],
         )
         self.events.clear()
         self.run_batch(sources=sources[:1])
