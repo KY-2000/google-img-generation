@@ -32,7 +32,9 @@ function paginatedAdapter(drafts, total = drafts.flat().length) {
         },
       };
       try {
-        assert.equal(probe(index), false, "stale filename must not pass after the header changes");
+        if (details?.id !== selected?.id) {
+          assert.equal(probe(index), false, "stale filename must not pass after the header changes");
+        }
         details = selected;
         const filename = probe(index);
         return { jsonValue: async () => filename, dispose: async () => {} };
@@ -67,20 +69,45 @@ function paginatedAdapter(drafts, total = drafts.flat().length) {
       };
     },
   };
-  return createAdobeDraftAdapter({ page, options: { timeout: 2000 }, logger: { write() {} } });
+  const adapter = createAdobeDraftAdapter({ page, options: { timeout: 2000 }, logger: { write() {} } });
+  return { adapter, page };
 }
 
 test("Adobe inventory finds exact filenames on later pages and ignores unrelated duplicate names", async () => {
-  const adapter = paginatedAdapter([["duplicate.jpg", "preview.jpg"], ["duplicate.jpg", "AST990103.png"]]);
+  const { adapter } = paginatedAdapter([["duplicate.jpg", "preview.jpg"], ["duplicate.jpg", "AST990103.png"]]);
   assert.deepEqual(await adapter.inventory(new Set(["AST990103.png"])),
     new Map([["AST990103.png", { pageNumber: 2, index: 1 }]]));
 });
 
 test("Adobe inventory rejects ambiguous targets and an incomplete page count", async () => {
-  const duplicate = paginatedAdapter([["AST990103.png"], ["AST990103.png"]]);
+  const { adapter: duplicate } = paginatedAdapter([["AST990103.png"], ["AST990103.png"]]);
   await assert.rejects(duplicate.inventory(new Set(["AST990103.png"])), /duplicate original filename/);
-  const incomplete = paginatedAdapter([["different.jpg"], ["AST990103.png"]], 3);
+  const { adapter: incomplete } = paginatedAdapter([["different.jpg"], ["AST990103.png"]], 3);
   await assert.rejects(incomplete.inventory(new Set(["AST990103.png"])), /read 2 of 3 drafts/);
+});
+
+test("saved category uses Adobe's label, independent of its internal option ID", async () => {
+  const row = { filename: "AST990088.png", title: "Title", keywords: "one,two", category: "8" };
+  const { adapter, page } = paginatedAdapter([[row.filename]]);
+  const originalLocator = page.locator;
+  let label = "Graphic Resources";
+  page.reload = async () => {};
+  page.waitForLoadState = async () => {};
+  page.getByText = () => ({ first: () => ({ waitFor: async () => {} }) });
+  page.getByRole = role => ({ count: async () => role === "checkbox" ? 1 : 0, isChecked: async () => true });
+  page.locator = selector => {
+    if (selector.includes('select[name="category"]')) {
+      return { count: async () => 1, inputValue: async () => "10432",
+        evaluate: async inspect => inspect({ selectedOptions: [{ label }] }) };
+    }
+    if (selector.includes("contentType")) return { inputValue: async () => "2" };
+    if (selector.includes("title")) return { inputValue: async () => row.title };
+    if (selector.includes("keywords")) return { inputValue: async () => row.keywords };
+    return originalLocator(selector);
+  };
+  await adapter.verifySaved(row);
+  label = "Business";
+  await assert.rejects(adapter.verifySaved(row), /category differs.*Graphic Resources.*Business/);
 });
 
 test("batch adapter records attempts before selecting multiple images and waits for every slot", async () => {

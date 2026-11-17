@@ -3,6 +3,12 @@ import path from "node:path";
 
 const TOTAL = /File types:\s*All\s*\((\d+)\)/i;
 const AI_LABEL = /Created using generative AI tools/i;
+const CATEGORY_NAMES = new Map(
+  Array.from(
+    fs.readFileSync(new URL("../category-code.txt", import.meta.url), "utf8").matchAll(/^(\d+)\.\s+(.+)$/gm),
+    ([, code, name]) => [code, name.trim()],
+  ),
+);
 
 export function createAdobeDraftAdapter({
   page, options, runDir, logger, clickFirstVisible, setFilesFromChooser,
@@ -106,12 +112,21 @@ export function createAdobeDraftAdapter({
   const ai = () => page.getByRole("checkbox", { name: AI_LABEL });
   const verifyMetadata = async row => {
     const title = await page.locator('textarea[name="title"]').inputValue();
+    if (title.trim() !== row.title.trim()) {
+      throw new Error("Adobe title differs from CSV for " + row.filename);
+    }
     const actualKeywords = await page.locator('textarea[name="keywordsUITextArea"]').inputValue();
+    if (keywords(actualKeywords) !== keywords(row.keywords)) {
+      throw new Error("Adobe keywords differ from CSV for " + row.filename);
+    }
     const category = page.locator('select[name="category"], select[name="categoryId"], select[name="contentCategory"]');
     if (await category.count() !== 1) throw new Error("Cannot verify Adobe category selector");
-    if (title.trim() !== row.title.trim() || keywords(actualKeywords) !== keywords(row.keywords) ||
-        await category.inputValue() !== row.category) {
-      throw new Error("Adobe title, keywords or category differ from CSV for " + row.filename);
+    const expected = CATEGORY_NAMES.get(String(row.category));
+    if (!expected) throw new Error("Unknown Adobe CSV category code for " + row.filename);
+    // The CSV code and the website's taxonomy option ID use different numbering.
+    const actual = await category.evaluate(select => select.selectedOptions[0]?.label?.trim() || "");
+    if (actual.toLowerCase() !== expected.toLowerCase()) {
+      throw new Error(`Adobe category differs from CSV for ${row.filename}: expected ${expected}, found ${actual || "(empty)"}`);
     }
   };
   const reload = async () => {
