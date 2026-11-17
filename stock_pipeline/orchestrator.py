@@ -4,6 +4,7 @@ import json
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+from threading import Event
 from typing import Any, Callable
 
 from .contracts import validate_topic_queue
@@ -37,6 +38,7 @@ class StockPipeline:
         usage_recorder: Callable[..., Any] | None = None,
         config: dict[str, Any] | None = None,
         redact_error: Callable[[str], str] = str,
+        metadata_fallback: Event | None = None,
     ):
         self.project_root = project_root
         self.registry = registry
@@ -45,7 +47,7 @@ class StockPipeline:
         self.image_model = image_model
         self.metadata_provider = metadata_provider
         self.metadata_model = metadata_model
-        self._metadata_fallback_active = False
+        self._metadata_fallback = metadata_fallback if metadata_fallback is not None else Event()
         config = config or {}
         image_config = config.get("image", {})
         metadata_config = config.get("metadata", {})
@@ -337,7 +339,7 @@ class StockPipeline:
                 return self._with_retries(lambda: generator(**metadata_kwargs), logger, "metadata_generation")
 
             provider, model = (
-                FLASH_METADATA_FALLBACK if self._metadata_fallback_active
+                FLASH_METADATA_FALLBACK if self._metadata_fallback.is_set()
                 else (self.metadata_provider, self.metadata_model)
             )
             try:
@@ -346,7 +348,7 @@ class StockPipeline:
                 if (provider != "gemini-developer" or model.removeprefix("models/") != "gemini-4-hydrogen"
                         or getattr(exc, "code", None) != 503):
                     raise
-                self._metadata_fallback_active = True
+                self._metadata_fallback.set()
                 self._emit_progress(
                     asset_id, "Hydrogen returned HTTP 503; switching remaining metadata to gemini-3.8-flash (Vertex AI)",
                 )

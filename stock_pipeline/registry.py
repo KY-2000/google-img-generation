@@ -54,7 +54,7 @@ def now_iso() -> str:
 
 
 class Registry:
-    def __init__(self, path: Path, *, read_only: bool = False):
+    def __init__(self, path: Path, *, read_only: bool = False, initialize: bool = True):
         self.path = path
         if read_only:
             self.connection = sqlite3.connect(path.resolve().as_uri() + "?mode=ro", uri=True)
@@ -62,7 +62,7 @@ class Registry:
             path.parent.mkdir(parents=True, exist_ok=True)
             self.connection = sqlite3.connect(path)
         self.connection.row_factory = sqlite3.Row
-        if not read_only:
+        if initialize and not read_only:
             self._create_schema()
 
     def _create_schema(self) -> None:

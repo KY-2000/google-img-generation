@@ -29,6 +29,12 @@ If Hydrogen returns HTTP 503, the rest of that run's metadata uses
 `gemini-3.8-flash` through Vertex AI. Vertex AI billing applies to those requests.
 Offline test mode does not invoke either model.
 
+**Parallel assets** runs up to 1, 2, or 3 assets from the active queue at
+once. Default is 1. Each asset runs image generation, QC, and metadata in
+order. The image limit applies to the whole run. When stopped, active assets
+finish and queued assets wait for the next run. Adobe upload starts after
+all selected queues pass the existing quality gate.
+
 For Nano Banana Pro, **Temperature** defaults to 1.0 and **Top-p** to 0.95.
 Nano Banana 2.1 disables these controls. **Max new images** works with both:
 leave it blank for unlimited, or enter a positive whole number. The limit is
@@ -88,7 +94,7 @@ Choose how many of the first queues to run in the displayed order.
 those queues. Closing the preview cancels the run. If the checkout, queues, or
 their previewed progress change while it is open, check queues again.
 Final Submit is always manual. **Retry Failed** opens the same preview.
-**Stop After Current Asset** and closing the window wait for a safe boundary;
+**Stop After Active Assets** and closing the window wait for a safe boundary;
 a request already running may finish.
 
 ## Files, state, and ordering

@@ -36,7 +36,7 @@ GITHUB_COMMIT_PREFIX = "https://github.com/KY-2000/google-img-generation/commit/
 def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bool = False,
            image_model: str | None = None, metadata_model: str | None = None, *,
            metadata_provider: str | None = None, temperature: float = 1.0,
-           top_p: float = 0.95, max_images: int | None = None) -> int:
+           top_p: float = 0.95, max_images: int | None = None, max_workers: int = 1) -> int:
     # The UI generates a fresh local directory for each Start.
     home = (ROOT / "output" / "stock_manager" / "runs").resolve()
     run_dir = run_dir.resolve()
@@ -101,7 +101,7 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
             report = run_manager(ROOT, sha, commit_time, run_dir, should_stop=stop.exists, emit=emit,
                                  cdp=cdp, profile=profile, stop_file=stop, image_model=image_model,
                                  metadata_model=metadata_model, metadata_provider=metadata_provider, temperature=temperature,
-                                 top_p=top_p, max_images=max_images,
+                                 top_p=top_p, max_images=max_images, max_workers=max_workers,
                                  sources=[source for source in sources if source.source_file in selected])
         return 0 if report["status"] in {"COMPLETE", "NO_WORK", "STOPPED", "LIMIT_REACHED"} else 1
     except Exception as exc:
@@ -136,6 +136,7 @@ class Desktop:
         self.temperature = tk.StringVar(value="1.0")
         self.top_p = tk.StringVar(value="0.95")
         self.max_images = tk.StringVar()
+        self.max_workers = tk.StringVar(value="1")
         self.endpoint = tk.StringVar(value=os.environ.get("ADOBE_CDP", "http://127.0.0.1:9222"))
         self.git_status = tk.StringVar(value="Not checked")
         self.browser_status = tk.StringVar(value="Not checked")
@@ -148,7 +149,7 @@ class Desktop:
         self.metrics = {key: tk.StringVar(value="—") for key in ("total", "pending", "generated", "uploaded", "failed")}
         window.title(TITLE)
         window.geometry("1000x740")
-        window.minsize(740, 610)
+        window.minsize(780, 610)
         window.configure(bg="#edf0f3")
         window.protocol("WM_DELETE_WINDOW", self.close)
 
@@ -206,7 +207,7 @@ class Desktop:
         controls.pack(fill="x", pady=(0, 8))
         self.start_button = ttk.Button(controls, text="Run Offline Test", command=self.start, style="Start.TButton")
         self.start_button.pack(side="left", padx=(0, 8))
-        self.stop_button = ttk.Button(controls, text="Stop After Current Asset", command=self.stop, state="disabled")
+        self.stop_button = ttk.Button(controls, text="Stop After Active Assets", command=self.stop, state="disabled")
         self.stop_button.pack(side="left", padx=(0, 8))
         self.retry_button = ttk.Button(controls, text="Retry Failed", command=self.start, state="disabled")
         self.retry_button.pack(side="left")
@@ -229,7 +230,11 @@ class Desktop:
         ttk.Label(options, text="Metadata model").pack(side="left", padx=(0, 8))
         self.metadata_picker = ttk.Combobox(options, values=METADATA_MODELS,
                                             textvariable=self.metadata_model, width=23)
-        self.metadata_picker.pack(side="left")
+        self.metadata_picker.pack(side="left", padx=(0, 16))
+        ttk.Label(options, text="Parallel assets").pack(side="left", padx=(0, 8))
+        self.worker_picker = ttk.Combobox(options, values=("1", "2", "3"), textvariable=self.max_workers,
+                                          width=3, state="readonly")
+        self.worker_picker.pack(side="left")
         sampling = ttk.Frame(container)
         sampling.pack(fill="x", pady=(0, 8))
         self.generation_entries = []
@@ -388,6 +393,7 @@ class Desktop:
         self.endpoint_entry.state(["disabled"])
         self.model_picker.state(["disabled"])
         self.metadata_picker.state(["disabled"])
+        self.worker_picker.state(["disabled"])
         self.test_check.state(["disabled"])
         for metric in self.metrics.values():
             metric.set("—")
@@ -406,7 +412,7 @@ class Desktop:
             args.append("--offline-test")
         else:
             args.extend(("--image-model", IMAGE_MODELS[self.image_model.get()],
-                         "--metadata-model", metadata_model))
+                         "--metadata-model", metadata_model, "--max-workers", self.max_workers.get()))
             args.extend(generation_args)
         if cdp:
             args.extend(("--cdp", cdp))
@@ -626,6 +632,7 @@ class Desktop:
                 self.endpoint_entry.state(["!disabled"])
                 self.model_picker.state(["!disabled"])
                 self.metadata_picker.state(["!disabled"])
+                self.worker_picker.state(["!disabled"])
                 self.test_check.state(["!disabled"])
                 if event["exit"]:
                     self.append(f"Worker stopped (exit {event['exit']}). See Open Logs.")
@@ -702,6 +709,7 @@ def main():
     parser.add_argument("--temperature", type=float, default=1.0, help=argparse.SUPPRESS)
     parser.add_argument("--top-p", type=float, default=0.95, help=argparse.SUPPRESS)
     parser.add_argument("--max-images", type=int, help=argparse.SUPPRESS)
+    parser.add_argument("--max-workers", type=int, choices=(1, 2, 3), default=1, help=argparse.SUPPRESS)
     parser.add_argument("--snapshot-baseline", action="store_true",
                         help="Skip the current incoming JSON snapshot in live runs, excluding the r02 test queue.")
     args = parser.parse_args()
@@ -711,7 +719,7 @@ def main():
     if args.worker:
         return worker(args.worker, args.cdp, args.profile, args.offline_test, args.image_model, args.metadata_model,
                       metadata_provider=args.metadata_provider, temperature=args.temperature,
-                      top_p=args.top_p, max_images=args.max_images)
+                      top_p=args.top_p, max_images=args.max_images, max_workers=args.max_workers)
     import tkinter as tk
     window = tk.Tk()
     icon = ROOT / "config" / "stock_manager.ico"

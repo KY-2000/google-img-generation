@@ -8,7 +8,7 @@ import tempfile
 import unittest
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
-from threading import Event
+from threading import Barrier, Event
 from types import SimpleNamespace
 from unittest.mock import Mock, patch
 
@@ -266,6 +266,67 @@ class ManagerTests(unittest.TestCase):
         self.assertEqual(second["status"], "COMPLETE", second)
         self.assertEqual(self.generate.call_count, 3)
         self.assertEqual(len(self.uploads[0]["items"]), 3)
+
+    def test_parallel_generation_overlaps_calls_and_honors_image_limit(self):
+        queue = self.production("Parallel", two=True)
+        queue["assets"].append(dict(queue["assets"][0], theme="Third"))
+        self.write("parallel.json", queue)
+        simultaneous = Barrier(2, timeout=4)
+        generate = self.generate
+
+        def synchronized_generation(**kwargs):
+            simultaneous.wait()
+            return generate(**kwargs)
+
+        self.generate = synchronized_generation
+        first = self.run_batch(max_workers=2, max_images=2)
+        self.assertEqual(first["status"], "LIMIT_REACHED", first)
+        self.assertEqual((first["generation_started"], first["generated"], first["generation_deferred"]), (2, 2, 1))
+        self.assertFalse(self.uploads)
+        self.generate = generate
+        second = self.run_batch(max_workers=3)
+        self.assertEqual(second["status"], "COMPLETE", second)
+        self.assertEqual(len(self.calls), 3)
+        self.assertEqual(len(self.uploads[0]["items"]), 3)
+
+    def test_parallel_stop_finishes_active_assets_without_starting_another(self):
+        queue = self.production("Parallel", two=True)
+        queue["assets"].append(dict(queue["assets"][0], theme="Third"))
+        self.write("parallel.json", queue)
+        simultaneous = Barrier(2, action=lambda: setattr(self, "stop_requested", True), timeout=4)
+        generate = self.generate
+
+        def stop_when_both_are_generating(**kwargs):
+            simultaneous.wait()
+            return generate(**kwargs)
+
+        self.generate = stop_when_both_are_generating
+        report = self.run_batch(max_workers=2)
+        self.assertEqual(report["status"], "STOPPED", report)
+        self.assertEqual((report["generated"], report["completed_assets"]), (2, 2))
+        self.assertFalse(self.uploads)
+
+    def test_parallel_hydrogen_overload_routes_queued_assets_to_flash(self):
+        from google.genai.errors import ServerError
+
+        queue = self.production("Parallel", two=True)
+        queue["assets"].append(dict(queue["assets"][0], theme="Third"))
+        self.write("parallel.json", queue)
+        (self.root / ".env").write_text("GEMINI_API_KEY=offline-test-key\n", encoding="utf-8")
+        attempts = []
+
+        def metadata(**kwargs):
+            attempts.append((kwargs["theme"], kwargs["provider"], kwargs["model"]))
+            if kwargs["provider"] == "gemini-developer":
+                raise ServerError(503, {"error": {"status": "UNAVAILABLE", "message": "High demand"}})
+            return json.dumps(sample_model_metadata())
+
+        self.metadata = metadata
+        report = self.run_batch(max_workers=2, metadata_model="gemini-4-hydrogen")
+        self.assertEqual(report["status"], "COMPLETE", report)
+        self.assertTrue(any(provider == "gemini-developer" for _, provider, _ in attempts))
+        self.assertEqual([(provider, model) for theme, provider, model in attempts if theme == "Third"],
+                         [("vertex", "gemini-3.8-flash")])
 
     def test_preview_is_read_only_and_only_confirmed_queues_run(self):
         self.write("a.json", self.production("Coffee", two=True))

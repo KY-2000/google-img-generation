@@ -1,4 +1,4 @@
-"""Queue preview, sequential generation and one gated, resumable Adobe upload."""
+"""Queue preview, asset processing and one gated, resumable Adobe upload."""
 from __future__ import annotations
 
 import json
@@ -7,8 +7,11 @@ import re
 import subprocess
 import time
 from collections import Counter, defaultdict
+from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 from contextlib import nullcontext
 from pathlib import Path
+from queue import Empty, Queue
+from threading import Event, Lock
 from uuid import uuid4
 
 import main as legacy
@@ -19,6 +22,7 @@ from .manager_baseline import TEST_QUEUE
 from .manager_queues import QueueSource, adopt_existing_finder_run, discover, runtime_queue
 from .manager_runtime import ensure_edge_cdp, redactor
 from .orchestrator import StockPipeline
+from .pipeline import COMPLETED_OR_WAITING, process_one_asset
 from .registry import Registry, now_iso, verify_asset_identity
 
 DONE = {"METADATA_READY", "READY_TO_STAGE", "STAGED", "READY_TO_UPLOAD", "UPLOADED_DRAFT"}
@@ -210,7 +214,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 pipeline_factory=StockPipeline, uploader=upload_process,
                 cdp="http://127.0.0.1:9222", profile=None, stop_file=None, image_model=None,
                 metadata_model=None, metadata_provider=None, temperature=1.0, top_p=0.95, max_images=None,
-                sources: list[QueueSource] | None = None) -> dict:
+                sources: list[QueueSource] | None = None, max_workers: int = 1) -> dict:
     start = time.monotonic()
     log_path = run_dir / "activity.log"
     redact = redactor(root)
@@ -219,15 +223,17 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                   log_path=str(log_path), last_error="")
     db = root / "data" / "stock_pipeline.sqlite"
     receipts = root / "output" / "stock_manager" / "adobe_receipts"
-    report.update(max_images=max_images, generation_started=0, generation_deferred=0)
+    report.update(max_images=max_images, max_workers=max_workers, generation_started=0, generation_deferred=0)
     image_states = {}
+    generation_lock = Lock()
 
     def reserve_image():
-        if max_images is not None and report["generation_started"] >= max_images:
-            report["generation_deferred"] += 1
-            return False
-        report["generation_started"] += 1
-        return True
+        with generation_lock:
+            if max_images is not None and report["generation_started"] >= max_images:
+                report["generation_deferred"] += 1
+                return False
+            report["generation_started"] += 1
+            return True
 
     def log(message, phase=None, **fields):
         message = redact(message)
@@ -282,6 +288,8 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
             raise ValueError("Temperature must be 0–2 and Top-p must be 0–1.")
         if max_images is not None and (type(max_images) is not int or max_images < 1):
             raise ValueError("Max new images must be a positive whole number, or blank.")
+        if type(max_workers) is not int or not 1 <= max_workers <= 3:
+            raise ValueError("Parallel assets must be 1, 2, or 3.")
         log(f"Scanning queues at {commit}", "Discovery")
         if sources is None:
             sources = discover(root, commit_time)
@@ -376,18 +384,69 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 legacy.get_gemini_developer_api_key(root)
             report.update(metadata_model=selected_metadata, metadata_provider=metadata_provider)
             log(f"Image model: {selected_model}", "Generation", overview=overview())
+            log(f"Parallel assets: {max_workers}", "Generation")
             log(f"Max new images: {max_images if max_images is not None else 'unlimited'}; "
                 + (f"Temperature: {temperature:g}; Top-p: {top_p:g}" if sampling else "sampling controls not sent"),
                 "Generation")
             log(f"Metadata model: {selected_metadata} ({metadata_provider})", "Metadata")
-            pipeline = pipeline_factory(
-                project_root=root, registry=registry, config=config, progress=progress,
+            pipeline_options = dict(
+                project_root=root, config=config,
                 image_model=selected_model,
                 temperature=temperature, top_p=top_p,
                 metadata_provider=metadata_provider,
-                metadata_model=selected_metadata, usage_recorder=ledger.record,
-                redact_error=redact,
+                metadata_model=selected_metadata, redact_error=redact, metadata_fallback=Event(),
             )
+            pipeline = pipeline_factory(**pipeline_options, registry=registry,
+                                        progress=progress, usage_recorder=ledger.record)
+
+            def run_parallel(ids, checkpoint):
+                events = Queue()
+
+                def process(aid):
+                    if should_stop():
+                        return None
+                    # Each asset owns a connection. SQLite serializes its short
+                    # writes while requests and image QC can overlap.
+                    with Registry(db, initialize=False) as asset_registry:
+                        asset = asset_registry.get_asset(aid)
+                        if asset["status"] in COMPLETED_OR_WAITING:
+                            return None
+                        worker = pipeline_factory(
+                            **pipeline_options, registry=asset_registry,
+                            progress=lambda message: events.put(("progress", message)),
+                            usage_recorder=lambda **usage: events.put(("usage", usage)),
+                        )
+                        succeeded = process_one_asset(asset_registry, asset, lambda row: worker.process_asset(
+                            row, reserve_image=reserve_image,
+                        ), redact)
+                        if not succeeded and (root / "output" / "assets" / aid).is_dir():
+                            worker.refresh_manifests([aid])
+                        return aid
+
+                def drain():
+                    while True:
+                        try:
+                            kind, payload = events.get_nowait()
+                        except Empty:
+                            return
+                        if kind == "usage":
+                            ledger.record(**payload)
+                        else:
+                            progress(payload)
+
+                try:
+                    with ThreadPoolExecutor(max_workers=max_workers) as pool:
+                        pending = {pool.submit(process, aid) for aid in sorted(ids)}
+                        while pending:
+                            finished, pending = wait(pending, timeout=0.1, return_when=FIRST_COMPLETED)
+                            drain()
+                            for future in finished:
+                                aid = future.result()
+                                if aid is not None:
+                                    checkpoint(aid)
+                finally:
+                    drain()
+
             try:
                 for source, queue, ids, record in prepared:
                     if should_stop():
@@ -410,8 +469,11 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                                 completed=sum(q["completed_assets"] for q in report["queues"]),
                                 total=report["total_assets"])
 
-                        pipeline.run_queue(queue, resume=True, skip_staging=True, should_stop=should_stop,
-                                           asset_finished=checkpoint, reserve_image=reserve_image)
+                        if max_workers == 1:
+                            pipeline.run_queue(queue, resume=True, skip_staging=True, should_stop=should_stop,
+                                               asset_finished=checkpoint, reserve_image=reserve_image)
+                        else:
+                            run_parallel(ids, checkpoint)
                         refresh(record, registry, ids)
                     except Exception as exc:
                         refresh(record, registry, ids)

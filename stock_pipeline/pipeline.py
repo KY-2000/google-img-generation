@@ -9,6 +9,22 @@ from .registry import Registry
 COMPLETED_OR_WAITING = {"METADATA_READY", "READY_TO_STAGE", "STAGED", "READY_TO_UPLOAD", "UPLOADED_DRAFT"}
 
 
+def process_one_asset(
+    registry: Registry, asset: dict[str, Any], processor: Callable[[dict[str, Any]], None],
+    redact_error: Callable[[str], str],
+) -> bool:
+    try:
+        processor(asset)
+        return True
+    except Exception as exc:
+        current = registry.get_asset(asset["asset_id"])
+        if current and current["status"] in {"IMAGE_QC_FAILED", "METADATA_QC_FAILED"}:
+            registry.update_asset(asset["asset_id"], error=redact_error(str(exc)))
+        elif current and current["status"] != "FAILED":
+            registry.mark_failed(asset["asset_id"], redact_error(str(exc)))
+        return False
+
+
 def process_batch(
     registry: Registry,
     processor: Callable[[dict[str, Any]], None],
@@ -30,16 +46,10 @@ def process_batch(
         if resume and asset["status"] in COMPLETED_OR_WAITING:
             succeeded += 1
             continue
-        try:
-            processor(asset)
+        if process_one_asset(registry, asset, processor, redact_error):
             succeeded += 1
-        except Exception as exc:
+        else:
             failed += 1
-            current = registry.get_asset(asset["asset_id"])
-            if current and current["status"] in {"IMAGE_QC_FAILED", "METADATA_QC_FAILED"}:
-                registry.update_asset(asset["asset_id"], error=redact_error(str(exc)))
-            elif current and current["status"] != "FAILED":
-                registry.mark_failed(asset["asset_id"], redact_error(str(exc)))
         if asset_finished is not None:
             asset_finished(asset["asset_id"])
     states = registry.list_assets()
