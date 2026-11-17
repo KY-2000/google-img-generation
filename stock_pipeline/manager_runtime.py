@@ -65,14 +65,25 @@ def recent_error_log(root: Path, current_run: Path | None) -> str:
     return ""
 
 
-def git_sync(root: Path, run=subprocess.run, *, incoming_changes: dict | None = None,
-             commit_state: dict | None = None) -> tuple[str, str]:
+def _manager_git(root: Path, run, *args):
     env = {**os.environ, "GIT_TERMINAL_PROMPT": "0", "GCM_INTERACTIVE": "Never"}
     env["GIT_SSH_COMMAND"] = "ssh -o BatchMode=yes"
+    return run(["git", *args], cwd=root, env=env, stdin=subprocess.DEVNULL, capture_output=True,
+               text=True, encoding="utf-8", errors="replace", timeout=90,
+               creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
 
+
+def _expected_github_remote(url: str) -> bool:
+    return bool(re.fullmatch(
+        r"(?:https://github\.com/|git@github\.com:|ssh://git@github\.com/)KY-2000/google-img-generation(?:\.git)?/?",
+        url, re.I,
+    ))
+
+
+def git_sync(root: Path, run=subprocess.run, *, incoming_changes: dict | None = None,
+             commit_state: dict | None = None) -> tuple[str, str]:
     def git(*args):
-        result = run(["git", *args], cwd=root, env=env, capture_output=True, text=True,
-                     encoding="utf-8", errors="replace", timeout=90)
+        result = _manager_git(root, run, *args)
         if result.returncode:
             # Remote command errors can include credential-bearing URLs.
             raise RuntimeError(f"Git {args[0]} failed (exit {result.returncode}); check GitHub access or diverging branches")
@@ -85,7 +96,7 @@ def git_sync(root: Path, run=subprocess.run, *, incoming_changes: dict | None = 
     if git("branch", "--show-current") != "main":
         raise RuntimeError("Switch to the local main branch before Start")
     remote = git("remote", "get-url", "origin")
-    if not re.fullmatch(r"(?:https://github\.com/|git@github\.com:|ssh://git@github\.com/)KY-2000/google-img-generation(?:\.git)?/?", remote, re.I):
+    if not _expected_github_remote(remote):
         raise RuntimeError("origin is not github.com/KY-2000/google-img-generation")
     previous = git("rev-parse", "HEAD") if incoming_changes is not None else None
     git("fetch", "--no-tags", "origin", "refs/heads/main:refs/remotes/origin/main")
@@ -106,8 +117,33 @@ def git_sync(root: Path, run=subprocess.run, *, incoming_changes: dict | None = 
             if kind in {"A", "M", "T"} and name.casefold().endswith(".json"):
                 incoming_changes[name] = "New" if kind == "A" else "Updated"
     if commit_state is not None:
-        commit_state["on_origin_main"] = head == upstream
+        commit_state["on_github"] = head == upstream or _manager_git(
+            root, run, "merge-base", "--is-ancestor", head, "refs/remotes/origin/master",
+        ).returncode == 0
     return head, git("show", "-s", "--format=%cI", head)
+
+
+def push_to_master(root: Path, run=subprocess.run) -> str:
+    remote = _manager_git(root, run, "remote", "get-url", "--push", "--all", "origin")
+    urls = remote.stdout.splitlines()
+    if remote.returncode or len(urls) != 1 or not _expected_github_remote(urls[0].strip()):
+        raise RuntimeError("origin push URL must point to github.com/KY-2000/google-img-generation")
+
+    local = _manager_git(root, run, "rev-parse", "--verify", "refs/heads/main")
+    sha = local.stdout.strip()
+    if local.returncode or not re.fullmatch(r"[0-9a-f]{40}", sha):
+        raise RuntimeError("Could not read the committed tip of local main")
+
+    pushed = _manager_git(root, run, "-c", "remote.origin.mirror=false", "push", "--porcelain",
+                          "--no-follow-tags", "origin", f"{sha}:refs/heads/master")
+    if pushed.returncode:
+        output = pushed.stdout + "\n" + pushed.stderr
+        if re.search(r"non-fast-forward|\(fetch first\)", output, re.I):
+            raise RuntimeError("origin/master has commits missing from local main. Integrate them before pushing.")
+        detail = redactor(root)(next((line.strip() for line in reversed(output.splitlines())
+                                     if line.startswith(("remote:", "fatal:"))), "Check GitHub access and branch rules."))
+        raise RuntimeError(f"Git push to origin/master failed (exit {pushed.returncode}). {detail}")
+    return sha
 
 
 def verify_reviewed_checkout(root: Path, commit: str) -> None:

@@ -38,6 +38,10 @@ The checkout must be on a **clean local main** with
 or remote, network failure, or non-fast-forward update stops before reading
 queues. The manager does not reset, clean, stash, or force-checkout the repo.
 Review and integrate development changes before starting a live run.
+**Push to master** publishes the committed tip of local `main` to
+`origin/master`. It uses the same GitHub credentials as Git and reports
+success or rejection in the activity log. A successful push makes the commit
+hash open its GitHub diff.
 
 The default CDP endpoint is `http://127.0.0.1:9222`. When upload is ready, the
 manager reuses a connected Edge session or starts Edge with the user profile

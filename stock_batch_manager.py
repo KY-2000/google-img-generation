@@ -15,7 +15,8 @@ from pathlib import Path
 from uuid import UUID, uuid4
 
 from stock_pipeline.manager_runtime import (
-    cdp_connected, git_sync, manager_lock, recent_error_log, redactor, validate_cdp, verify_reviewed_checkout,
+    cdp_connected, git_sync, manager_lock, push_to_master, recent_error_log, redactor, validate_cdp,
+    verify_reviewed_checkout,
 )
 from stock_pipeline.manager_baseline import TEST_QUEUE, snapshot_baseline
 
@@ -122,6 +123,7 @@ class Desktop:
         self.window, self.tk = window, tk
         self.events = queue.Queue()
         self.active = False
+        self.pushing = False
         self.closing = False
         self.run_dir = None
         self.preview_window = None
@@ -137,7 +139,7 @@ class Desktop:
         self.browser_status = tk.StringVar(value="Not checked")
         self.commit = tk.StringVar(value="—")
         self.commit_sha = ""
-        self.commit_on_origin_main = False
+        self.commit_on_github = False
         self.stage = tk.StringVar(value="Ready")
         self.current = tk.StringVar(value="No active queue")
         self.count = tk.StringVar(value="0 / 0 assets prepared")
@@ -179,6 +181,8 @@ class Desktop:
         self.commit_link.pack(side="left")
         self.commit_link.bind("<Button-1>", lambda _event: self.open_commit())
         self.commit_link.bind("<Return>", lambda _event: self.open_commit())
+        self.push_button = ttk.Button(links, text="Push to master", command=self.push_code)
+        self.push_button.pack(side="right")
         stats = ttk.Frame(container)
         stats.pack(fill="x", pady=(0, 12))
         for index, key in enumerate(self.metrics):
@@ -256,11 +260,11 @@ class Desktop:
     def refresh_start_button(self):
         self.start_button.configure(text="Run Offline Test" if self.offline_test.get() else "Check Queues")
 
-    def set_commit(self, sha="", on_origin_main=False):
+    def set_commit(self, sha="", on_github=False):
         self.commit_sha = sha if re.fullmatch(r"[0-9a-f]{40}", sha) else ""
-        self.commit_on_origin_main = on_origin_main
+        self.commit_on_github = on_github
         if self.commit_sha:
-            self.commit.set(self.commit_sha[:12] + ("" if on_origin_main else " (local)"))
+            self.commit.set(self.commit_sha[:12] + ("" if on_github else " (local)"))
             self.commit_link.configure(style="Link.TLabel", cursor="hand2", takefocus=True)
         else:
             self.commit.set("—")
@@ -270,7 +274,7 @@ class Desktop:
         if not self.commit_sha:
             return
         try:
-            if self.commit_on_origin_main:
+            if self.commit_on_github:
                 os.startfile(GITHUB_COMMIT_PREFIX + self.commit_sha)
                 return
             result = subprocess.run(
@@ -294,6 +298,24 @@ class Desktop:
         diff.pack(side="left", fill="both", expand=True)
         diff.insert("1.0", result.stdout)
         diff.configure(state="disabled")
+
+    def push_code(self):
+        if self.pushing or self.closing:
+            return
+        self.pushing = True
+        self.push_button.configure(text="Pushing to master…", state="disabled")
+        self.append("Pushing committed local main to origin/master…")
+
+        def push():
+            try:
+                sha = push_to_master(ROOT)
+            except (OSError, RuntimeError, subprocess.TimeoutExpired) as exc:
+                self.events.put({"push_done": True, "message": f"Push failed: {exc}"})
+                return
+            self.events.put({"push_done": True, "pushed_commit": sha,
+                             "message": f"origin/master is at {sha[:12]}."})
+
+        threading.Thread(target=push, daemon=True).start()
 
     def refresh_generation_entries(self):
         pro = self.image_model.get() == "Nano Banana Pro"
@@ -544,7 +566,13 @@ class Desktop:
                 if event.get(field):
                     var.set(event[field])
             if event.get("commit"):
-                self.set_commit(event["commit"], event.get("on_origin_main", False))
+                self.set_commit(event["commit"], event.get("on_github", False))
+            if event.get("push_done"):
+                self.pushing = False
+                self.push_button.configure(text="Push to master", state="normal")
+                pushed_commit = event.get("pushed_commit")
+                if pushed_commit and (not self.active or self.commit_sha == pushed_commit):
+                    self.set_commit(pushed_commit, True)
             if event.get("source"):
                 self.current.set(event["source"] + ("  •  " + event["asset"] if event.get("asset") else ""))
             if "total" in event:
@@ -579,9 +607,9 @@ class Desktop:
                 self.test_check.state(["!disabled"])
                 if event["exit"]:
                     self.append(f"Worker stopped (exit {event['exit']}). See Open Logs.")
-                if self.closing:
-                    self.window.destroy()
-                    return
+            if self.closing and not (self.active or self.pushing):
+                self.window.destroy()
+                return
         self.window.after(75, self.poll)
 
     def stop(self):
@@ -599,9 +627,10 @@ class Desktop:
             self.append("Stop requested. Waiting for the current operation to reach a safe boundary.")
 
     def close(self):
-        if self.active:
+        if self.active or self.pushing:
             self.closing = True
-            self.stop()
+            if self.active:
+                self.stop()
         else:
             self.window.destroy()
 

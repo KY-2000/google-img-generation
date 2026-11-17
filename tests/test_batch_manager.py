@@ -18,7 +18,7 @@ import stock_batch_manager
 from stock_pipeline.adobe_csv import read_adobe_csv
 from stock_pipeline.batch_manager import new_run_dir, preview_queues, run_manager, upload_process, validate_test_queue
 from stock_pipeline.manager_baseline import TEST_QUEUE, snapshot_baseline
-from stock_pipeline.manager_runtime import git_sync, redactor
+from stock_pipeline.manager_runtime import git_sync, push_to_master, redactor
 from stock_pipeline.orchestrator import StockPipeline
 from stock_pipeline.registry import Registry
 from tests.test_candidate_import import candidate
@@ -133,7 +133,7 @@ class ManagerTests(unittest.TestCase):
         self.assertNotIn("Stopped by user", copied)
 
     def test_published_commit_opens_exact_github_diff(self):
-        desktop = SimpleNamespace(commit_sha=COMMIT, commit_on_origin_main=True)
+        desktop = SimpleNamespace(commit_sha=COMMIT, commit_on_github=True)
         with patch.object(os, "startfile") as open_link:
             stock_batch_manager.Desktop.open_commit(desktop)
         open_link.assert_called_once_with(
@@ -503,6 +503,37 @@ class ManagerTests(unittest.TestCase):
 
 
 class GitAndPrivacyTests(unittest.TestCase):
+    def test_push_only_sends_committed_main_to_master(self):
+        runner = Mock(side_effect=[
+            SimpleNamespace(returncode=0, stdout="git@github.com:KY-2000/google-img-generation.git\n", stderr=""),
+            SimpleNamespace(returncode=0, stdout=COMMIT + "\n", stderr=""),
+            SimpleNamespace(returncode=0, stdout="", stderr=""),
+        ])
+        self.assertEqual(push_to_master(SOURCE_ROOT, run=runner), COMMIT)
+        self.assertIn("--push", runner.call_args_list[0].args[0])
+        command = runner.call_args.args[0]
+        self.assertIn("--no-follow-tags", command)
+        self.assertNotIn("--force", command)
+        self.assertEqual(command[-2:], ["origin", f"{COMMIT}:refs/heads/master"])
+
+    def test_push_rejects_unexpected_push_url_before_sending(self):
+        runner = Mock(return_value=SimpleNamespace(
+            returncode=0, stdout="https://example.test/unrelated/project.git\n", stderr="",
+        ))
+        with self.assertRaisesRegex(RuntimeError, "origin push URL"):
+            push_to_master(SOURCE_ROOT, run=runner)
+        self.assertEqual(runner.call_count, 1)
+
+    def test_push_reports_non_fast_forward_without_retrying(self):
+        runner = Mock(side_effect=[
+            SimpleNamespace(returncode=0, stdout="https://github.com/KY-2000/google-img-generation", stderr=""),
+            SimpleNamespace(returncode=0, stdout=COMMIT, stderr=""),
+            SimpleNamespace(returncode=1, stdout="! [rejected] (fetch first)", stderr=""),
+        ])
+        with self.assertRaisesRegex(RuntimeError, "origin/master has commits missing"):
+            push_to_master(SOURCE_ROOT, run=runner)
+        self.assertEqual(runner.call_count, 3)
+
     def test_sync_counts_only_new_or_updated_jsons_at_the_applied_commit(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp).resolve()
@@ -515,7 +546,7 @@ class GitAndPrivacyTests(unittest.TestCase):
             commit_state = {}
             self.assertEqual(git_sync(root, run=runner, incoming_changes=changes, commit_state=commit_state),
                              (COMMIT, TIME))
-            self.assertEqual(commit_state, {"on_origin_main": True})
+            self.assertEqual(commit_state, {"on_github": True})
             self.assertEqual(changes, {"queues/incoming/New queue.json": "New",
                                        "queues/incoming/updated.json": "Updated"})
 
@@ -524,11 +555,15 @@ class GitAndPrivacyTests(unittest.TestCase):
             root = Path(tmp).resolve()
             upstream = "b" * 40
             outputs = [str(root), "", "main", "https://github.com/KY-2000/google-img-generation.git",
-                       "", upstream, "", "main", "", COMMIT, "", "", "main", TIME]
-            runner = Mock(side_effect=[SimpleNamespace(returncode=0, stdout=value) for value in outputs])
+                       "", upstream, "", "main", "", COMMIT, "", "", "main"]
+            runner = Mock(side_effect=[
+                *(SimpleNamespace(returncode=0, stdout=value) for value in outputs),
+                SimpleNamespace(returncode=128, stdout=""),
+                SimpleNamespace(returncode=0, stdout=TIME),
+            ])
             commit_state = {}
             self.assertEqual(git_sync(root, run=runner, commit_state=commit_state), (COMMIT, TIME))
-            self.assertEqual(commit_state, {"on_origin_main": False})
+            self.assertEqual(commit_state, {"on_github": False})
             self.assertIn(["git", "merge", "--ff-only", upstream], [c.args[0] for c in runner.call_args_list])
             self.assertIn(["git", "merge-base", "--is-ancestor", upstream, COMMIT],
                           [c.args[0] for c in runner.call_args_list])
