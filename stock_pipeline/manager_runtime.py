@@ -80,6 +80,11 @@ def _expected_github_remote(url: str) -> bool:
     ))
 
 
+def _name_status(output: str) -> list[tuple[str, str]]:
+    fields = output.rstrip("\0").split("\0") if output else []
+    return list(zip(fields[::2], fields[1::2], strict=True))
+
+
 def git_sync(root: Path, run=subprocess.run, *, incoming_changes: dict | None = None,
              commit_state: dict | None = None) -> tuple[str, str]:
     def git(*args):
@@ -103,27 +108,44 @@ def git_sync(root: Path, run=subprocess.run, *, incoming_changes: dict | None = 
     upstream = git("rev-parse", "origin/main")
     if git("status", "--porcelain", "--untracked-files=normal") or git("branch", "--show-current") != "main":
         raise RuntimeError("Git worktree or branch changed during fetch; start again")
-    # A clean local main may already contain upstream plus a local commit.
-    # A divergent branch fails; merge never creates a merge commit.
-    git("merge", "--ff-only", upstream)
+    fast_forward = _manager_git(root, run, "merge", "--ff-only", "--no-overwrite-ignore", upstream)
+    if fast_forward.returncode:
+        local = git("rev-parse", "HEAD")
+        if previous and local != previous:
+            raise RuntimeError("Local main changed during sync; check queues again")
+        bases = git("merge-base", "--all", local, upstream).splitlines()
+        if len(bases) != 1 or bases[0] in {local, upstream}:
+            explanation = redactor(root)(fast_forward.stderr.strip())
+            raise RuntimeError(f"Git could not fast-forward origin/main: {explanation}" if explanation else
+                               "Git could not fast-forward origin/main; check the local checkout")
+        incoming = _name_status(git("diff", "--name-status", "-z", "--no-renames", bases[0], upstream))
+        if not incoming or any(
+            kind != "A" or not name.startswith("queues/incoming/") or not name.lower().endswith(".json")
+            for kind, name in incoming
+        ):
+            raise RuntimeError("Local main and origin/main diverged. The remote has changes other than new incoming "
+                               "JSON queues; merge origin/main locally before checking queues again.")
+        for _, name in incoming:
+            target = root / name
+            if target.exists() or target.is_symlink() or target.resolve() != root.resolve() / name:
+                raise RuntimeError(f"A local path already exists or redirects the incoming queue {name}. "
+                                   "Resolve that path locally before checking queues again.")
+        git("merge", "--no-ff", "--no-edit", "--no-overwrite-ignore", "-Xno-renames", upstream)
     head = git("rev-parse", "HEAD")
     git("merge-base", "--is-ancestor", upstream, head)
     if git("status", "--porcelain", "--untracked-files=normal") or git("branch", "--show-current") != "main":
         raise RuntimeError("Git worktree or branch changed during sync; start again")
     if incoming_changes is not None and previous != head:
         changes = git("diff", "--name-status", "-z", "--no-renames", previous, head, "--", "queues/incoming")
-        fields = changes.rstrip("\0").split("\0") if changes else []
-        for kind, name in zip(fields[::2], fields[1::2]):
+        for kind, name in _name_status(changes):
             if kind in {"A", "M", "T"} and name.casefold().endswith(".json"):
                 incoming_changes[name] = "New" if kind == "A" else "Updated"
     if commit_state is not None:
-        commit_state["on_github"] = head == upstream or _manager_git(
-            root, run, "merge-base", "--is-ancestor", head, "refs/remotes/origin/master",
-        ).returncode == 0
+        commit_state["on_github"] = head == upstream
     return head, git("show", "-s", "--format=%cI", head)
 
 
-def push_to_master(root: Path, run=subprocess.run) -> str:
+def push_to_main(root: Path, run=subprocess.run) -> str:
     remote = _manager_git(root, run, "remote", "get-url", "--push", "--all", "origin")
     urls = remote.stdout.splitlines()
     if remote.returncode or len(urls) != 1 or not _expected_github_remote(urls[0].strip()):
@@ -135,14 +157,14 @@ def push_to_master(root: Path, run=subprocess.run) -> str:
         raise RuntimeError("Could not read the committed tip of local main")
 
     pushed = _manager_git(root, run, "-c", "remote.origin.mirror=false", "push", "--porcelain",
-                          "--no-follow-tags", "origin", f"{sha}:refs/heads/master")
+                          "--no-follow-tags", "origin", f"{sha}:refs/heads/main")
     if pushed.returncode:
         output = pushed.stdout + "\n" + pushed.stderr
         if re.search(r"non-fast-forward|\(fetch first\)", output, re.I):
-            raise RuntimeError("origin/master has commits missing from local main. Integrate them before pushing.")
+            raise RuntimeError("origin/main advanced before the push. Sync and retry.")
         detail = redactor(root)(next((line.strip() for line in reversed(output.splitlines())
                                      if line.startswith(("remote:", "fatal:"))), "Check GitHub access and branch rules."))
-        raise RuntimeError(f"Git push to origin/master failed (exit {pushed.returncode}). {detail}")
+        raise RuntimeError(f"Git push to origin/main failed (exit {pushed.returncode}). {detail}")
     return sha
 
 

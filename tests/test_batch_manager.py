@@ -18,7 +18,7 @@ import stock_batch_manager
 from stock_pipeline.adobe_csv import read_adobe_csv
 from stock_pipeline.batch_manager import new_run_dir, preview_queues, run_manager, upload_process, validate_test_queue
 from stock_pipeline.manager_baseline import TEST_QUEUE, snapshot_baseline
-from stock_pipeline.manager_runtime import git_sync, push_to_master, redactor
+from stock_pipeline.manager_runtime import git_sync, push_to_main, redactor
 from stock_pipeline.orchestrator import StockPipeline
 from stock_pipeline.registry import Registry
 from tests.test_candidate_import import candidate
@@ -529,25 +529,66 @@ class ManagerTests(unittest.TestCase):
 
 
 class GitAndPrivacyTests(unittest.TestCase):
-    def test_push_only_sends_committed_main_to_master(self):
+    def divergent_sync(self, root, remote_diff, *, merge=False):
+        base, upstream, merged = "b" * 40, "c" * 40, "d" * 40
+        outputs = [str(root), "", "main", "https://github.com/KY-2000/google-img-generation.git",
+                   COMMIT, "", upstream, "", "main"]
+        replies = [SimpleNamespace(returncode=0, stdout=value) for value in outputs]
+        replies.append(SimpleNamespace(returncode=128, stderr="Not possible to fast-forward"))
+        replies.extend(SimpleNamespace(returncode=0, stdout=value) for value in (COMMIT, base, remote_diff))
+        if merge:
+            replies.extend(SimpleNamespace(returncode=0, stdout=value)
+                           for value in ("", merged, "", "", "main", remote_diff, TIME))
+        return Mock(side_effect=replies), merged, upstream
+
+    def test_diverged_sync_merges_new_incoming_json_without_rewriting_local_history(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp).resolve()
+            queue = "queues/incoming/holiday.json"
+            runner, merged, upstream = self.divergent_sync(root, "A\0" + queue + "\0", merge=True)
+            changes = {}
+            self.assertEqual(git_sync(root, run=runner, incoming_changes=changes), (merged, TIME))
+            self.assertEqual(changes, {queue: "New"})
+            self.assertIn(["git", "merge", "--no-ff", "--no-edit", "--no-overwrite-ignore", "-Xno-renames", upstream],
+                          [c.args[0] for c in runner.call_args_list])
+
+    def test_diverged_sync_refuses_remote_code_and_overwriting_local_queue_files(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp).resolve()
+            queue = "queues/incoming/holiday.json"
+            (root / queue).parent.mkdir(parents=True)
+            (root / queue).write_text("my local queue", encoding="utf-8")
+            for diff, message in (
+                ("A\0README.md\0", "changes other than new incoming JSON queues"),
+                ("M\0" + queue + "\0", "changes other than new incoming JSON queues"),
+                ("A\0" + queue + "\0", "A local path already exists"),
+            ):
+                with self.subTest(diff=diff):
+                    runner, _, _ = self.divergent_sync(root, diff)
+                    with self.assertRaisesRegex(RuntimeError, message):
+                        git_sync(root, run=runner, incoming_changes={})
+                    self.assertFalse(any("--no-ff" in call.args[0] for call in runner.call_args_list))
+            self.assertEqual((root / queue).read_text(encoding="utf-8"), "my local queue")
+
+    def test_push_only_sends_committed_main_to_remote_main(self):
         runner = Mock(side_effect=[
             SimpleNamespace(returncode=0, stdout="git@github.com:KY-2000/google-img-generation.git\n", stderr=""),
             SimpleNamespace(returncode=0, stdout=COMMIT + "\n", stderr=""),
             SimpleNamespace(returncode=0, stdout="", stderr=""),
         ])
-        self.assertEqual(push_to_master(SOURCE_ROOT, run=runner), COMMIT)
+        self.assertEqual(push_to_main(SOURCE_ROOT, run=runner), COMMIT)
         self.assertIn("--push", runner.call_args_list[0].args[0])
         command = runner.call_args.args[0]
         self.assertIn("--no-follow-tags", command)
         self.assertNotIn("--force", command)
-        self.assertEqual(command[-2:], ["origin", f"{COMMIT}:refs/heads/master"])
+        self.assertEqual(command[-2:], ["origin", f"{COMMIT}:refs/heads/main"])
 
     def test_push_rejects_unexpected_push_url_before_sending(self):
         runner = Mock(return_value=SimpleNamespace(
             returncode=0, stdout="https://example.test/unrelated/project.git\n", stderr="",
         ))
         with self.assertRaisesRegex(RuntimeError, "origin push URL"):
-            push_to_master(SOURCE_ROOT, run=runner)
+            push_to_main(SOURCE_ROOT, run=runner)
         self.assertEqual(runner.call_count, 1)
 
     def test_push_reports_non_fast_forward_without_retrying(self):
@@ -556,8 +597,8 @@ class GitAndPrivacyTests(unittest.TestCase):
             SimpleNamespace(returncode=0, stdout=COMMIT, stderr=""),
             SimpleNamespace(returncode=1, stdout="! [rejected] (fetch first)", stderr=""),
         ])
-        with self.assertRaisesRegex(RuntimeError, "origin/master has commits missing"):
-            push_to_master(SOURCE_ROOT, run=runner)
+        with self.assertRaisesRegex(RuntimeError, "origin/main advanced"):
+            push_to_main(SOURCE_ROOT, run=runner)
         self.assertEqual(runner.call_count, 3)
 
     def test_sync_counts_only_new_or_updated_jsons_at_the_applied_commit(self):
@@ -584,13 +625,13 @@ class GitAndPrivacyTests(unittest.TestCase):
                        "", upstream, "", "main", "", COMMIT, "", "", "main"]
             runner = Mock(side_effect=[
                 *(SimpleNamespace(returncode=0, stdout=value) for value in outputs),
-                SimpleNamespace(returncode=128, stdout=""),
                 SimpleNamespace(returncode=0, stdout=TIME),
             ])
             commit_state = {}
             self.assertEqual(git_sync(root, run=runner, commit_state=commit_state), (COMMIT, TIME))
             self.assertEqual(commit_state, {"on_github": False})
-            self.assertIn(["git", "merge", "--ff-only", upstream], [c.args[0] for c in runner.call_args_list])
+            self.assertIn(["git", "merge", "--ff-only", "--no-overwrite-ignore", upstream],
+                          [c.args[0] for c in runner.call_args_list])
             self.assertIn(["git", "merge-base", "--is-ancestor", upstream, COMMIT],
                           [c.args[0] for c in runner.call_args_list])
 

@@ -15,7 +15,7 @@ from pathlib import Path
 from uuid import UUID, uuid4
 
 from stock_pipeline.manager_runtime import (
-    cdp_connected, git_sync, manager_lock, push_to_master, recent_error_log, redactor, validate_cdp,
+    cdp_connected, git_sync, manager_lock, push_to_main, recent_error_log, redactor, validate_cdp,
     verify_reviewed_checkout,
 )
 from stock_pipeline.manager_baseline import TEST_QUEUE, snapshot_baseline
@@ -183,7 +183,7 @@ class Desktop:
         self.commit_link.pack(side="left")
         self.commit_link.bind("<Button-1>", lambda _event: self.open_commit())
         self.commit_link.bind("<Return>", lambda _event: self.open_commit())
-        self.push_button = ttk.Button(links, text="Push to master", command=self.push_code)
+        self.push_button = ttk.Button(links, text="Push to main", command=self.push_code)
         self.push_button.pack(side="right")
         stats = ttk.Frame(container)
         stats.pack(fill="x", pady=(0, 12))
@@ -302,20 +302,26 @@ class Desktop:
         diff.configure(state="disabled")
 
     def push_code(self):
-        if self.pushing or self.closing:
+        if self.active or self.pushing or self.closing:
             return
         self.pushing = True
-        self.push_button.configure(text="Pushing to master…", state="disabled")
-        self.append("Pushing committed local main to origin/master…")
+        retry_enabled = self.retry_button.instate(["!disabled"])
+        self.start_button.state(["disabled"])
+        self.retry_button.state(["disabled"])
+        self.push_button.configure(text="Pushing to main…", state="disabled")
+        self.append("Syncing origin/main before pushing committed local changes…")
 
         def push():
+            event = {"push_done": True, "retry_enabled": retry_enabled}
             try:
-                sha = push_to_master(ROOT)
+                with manager_lock(ROOT / "output" / "stock_manager" / "manager.lock"):
+                    git_sync(ROOT)
+                    sha = push_to_main(ROOT)
             except (OSError, RuntimeError, subprocess.TimeoutExpired) as exc:
-                self.events.put({"push_done": True, "message": f"Push failed: {exc}"})
-                return
-            self.events.put({"push_done": True, "pushed_commit": sha,
-                             "message": f"origin/master is at {sha[:12]}."})
+                event["message"] = f"Push failed: {exc}"
+            else:
+                event.update(pushed_commit=sha, message=f"origin/main is at {sha[:12]}.")
+            self.events.put(event)
 
         threading.Thread(target=push, daemon=True).start()
 
@@ -337,7 +343,7 @@ class Desktop:
         self.log_text.configure(state="disabled")
 
     def start(self):
-        if self.active:
+        if self.active or self.pushing:
             return
         try:
             testing = self.offline_test.get()
@@ -374,6 +380,7 @@ class Desktop:
             self.append(str(exc))
             return
         self.active = True
+        self.push_button.state(["disabled"])
         self.refresh_generation_entries()
         self.start_button.state(["disabled"])
         self.retry_button.state(["disabled"])
@@ -580,7 +587,10 @@ class Desktop:
                 self.set_commit(event["commit"], event.get("on_github", False))
             if event.get("push_done"):
                 self.pushing = False
-                self.push_button.configure(text="Push to master", state="normal")
+                self.push_button.configure(text="Push to main", state="normal")
+                self.start_button.state(["!disabled"])
+                if event.get("retry_enabled"):
+                    self.retry_button.state(["!disabled"])
                 pushed_commit = event.get("pushed_commit")
                 if pushed_commit and (not self.active or self.commit_sha == pushed_commit):
                     self.set_commit(pushed_commit, True)
@@ -609,6 +619,7 @@ class Desktop:
                 self.dismiss_preview()
                 self.active = False
                 self.refresh_generation_entries()
+                self.push_button.state(["!disabled"])
                 self.start_button.state(["!disabled"])
                 self.retry_button.state(["!disabled"] if event["exit"] else ["disabled"])
                 self.stop_button.state(["disabled"])

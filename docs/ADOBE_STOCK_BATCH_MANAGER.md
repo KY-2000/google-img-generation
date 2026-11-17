@@ -37,14 +37,16 @@ The combined upload waits if a selected queue still has unfinished work. The que
 resolution and one-image-per-asset behavior are unchanged.
 
 The checkout must be on a **clean local main** with
-`KY-2000/google-img-generation` as `origin`. A dirty worktree, wrong branch
-or remote, network failure, or non-fast-forward update stops before reading
-queues. The manager does not reset, clean, stash, or force-checkout the repo.
-Review and integrate development changes before starting a live run.
-**Push to master** publishes the committed tip of local `main` to
-`origin/master`. It uses the same GitHub credentials as Git and reports
-success or rejection in the activity log. A successful push makes the commit
-hash open its GitHub diff.
+`KY-2000/google-img-generation` as `origin`. The manager fast-forwards from
+`origin/main` when possible. If the branches diverge, it creates a local merge
+only when the remote changes exclusively add new JSON files under
+`queues/incoming/` and those paths do not collide with local files. Other
+divergence, an invalid branch or remote, and network errors stop before queue
+discovery. Review and integrate code changes locally before starting a live run.
+**Push to main** syncs with `origin/main` first, then publishes the committed
+tip of local `main` to `origin/main`. It uses the same GitHub credentials as
+Git and reports success or rejection in the activity log. A successful
+push makes the commit hash open its GitHub diff.
 
 The default CDP endpoint is `http://127.0.0.1:9222`. When upload is ready, the
 manager reuses a connected Edge session or starts Edge with the user profile
