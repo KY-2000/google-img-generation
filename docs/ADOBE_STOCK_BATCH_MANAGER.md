@@ -106,6 +106,11 @@ a request already running may finish.
   asset, and prepared image hash.
 - Activity logs, JSON and Markdown reports are under
   `output/stock_manager/runs/`. **Open Logs** opens the current run folder.
+- **Open ChatGPT + Copy Error Log** copies a redacted excerpt from the failed
+  run and opens the local chat configured in
+  `output/stock_manager/support_chat.txt`. Paste it into the composer with
+  **Ctrl+V**. To change the destination, save the chat's desktop deep link in
+  that file.
 
 ## Draft recovery and limits
 

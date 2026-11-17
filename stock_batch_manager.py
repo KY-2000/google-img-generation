@@ -11,10 +11,10 @@ import threading
 import time
 from datetime import datetime
 from pathlib import Path
-from uuid import uuid4
+from uuid import UUID, uuid4
 
 from stock_pipeline.manager_runtime import (
-    cdp_connected, git_sync, manager_lock, redactor, validate_cdp, verify_reviewed_checkout,
+    cdp_connected, git_sync, manager_lock, recent_error_log, redactor, validate_cdp, verify_reviewed_checkout,
 )
 from stock_pipeline.manager_baseline import TEST_QUEUE, snapshot_baseline
 
@@ -25,6 +25,8 @@ IMAGE_MODELS = {
     "Nano Banana 2.1": "gemini-nano-banana-2.1",
 }
 DEFAULT_METADATA_MODEL = "gemini-3.8-flash"
+SUPPORT_CHAT_FILE = Path("output/stock_manager/support_chat.txt")
+CHAT_LINK_PREFIX = "codex://threads/"
 
 
 def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bool = False,
@@ -225,7 +227,11 @@ class Desktop:
         self.test_check = ttk.Checkbutton(container, text="Offline test: validate r02 only (no generation or upload)",
                                          variable=self.offline_test, command=self.refresh_start_button)
         self.test_check.pack(anchor="w", pady=(0, 8))
-        ttk.Label(container, text="Activity log").pack(anchor="w")
+        log_controls = ttk.Frame(container)
+        log_controls.pack(fill="x")
+        ttk.Label(log_controls, text="Activity log").pack(side="left")
+        ttk.Button(log_controls, text="Open ChatGPT + Copy Error Log",
+                   command=self.open_error_in_chatgpt).pack(side="right")
         logs = ttk.Frame(container)
         logs.pack(fill="both", expand=True)
         self.log_text = tk.Text(logs, wrap="word", background="#142331", foreground="#e6eff4", height=6,
@@ -555,6 +561,30 @@ class Desktop:
             os.startfile(str(path))
         except OSError as exc:
             self.append(str(exc))
+
+    def open_error_in_chatgpt(self):
+        from tkinter import TclError
+
+        try:
+            log = recent_error_log(ROOT, self.run_dir)
+            if not log:
+                self.append("No failed run log was found.")
+                return
+            self.window.clipboard_clear()
+            self.window.clipboard_append(log)
+        except (OSError, ValueError, TclError) as exc:
+            self.append(f"Could not copy the error log: {exc}")
+            return
+        try:
+            link = (ROOT / SUPPORT_CHAT_FILE).read_text(encoding="utf-8-sig").strip()
+            if not link.startswith(CHAT_LINK_PREFIX):
+                raise ValueError()
+            thread_id = UUID(link.removeprefix(CHAT_LINK_PREFIX))
+            os.startfile(CHAT_LINK_PREFIX + str(thread_id))
+        except (OSError, ValueError):
+            self.append(f"Error log copied. To open the support chat automatically, check {SUPPORT_CHAT_FILE}.")
+        else:
+            self.append("Error log copied. Press Ctrl+V in the ChatGPT message box to review it.")
 
 
 def main():

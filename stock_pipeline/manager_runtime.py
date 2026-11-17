@@ -1,9 +1,11 @@
 """Local runtime boundaries: safe Git sync, single instance lock and log redaction."""
 from __future__ import annotations
 
+import json
 import os
 import re
 import subprocess
+from collections import deque
 from contextlib import contextmanager
 from pathlib import Path
 from urllib.parse import urlsplit
@@ -31,6 +33,34 @@ def redactor(root: Path):
             r"\1[REDACTED]", value,
         )
     return redact
+
+
+def recent_error_log(root: Path, current_run: Path | None) -> str:
+    reports = sorted((root / "output" / "stock_manager" / "runs").glob("*/report.json"),
+                     key=lambda path: path.stat().st_mtime_ns, reverse=True)
+    if current_run:
+        reports.insert(0, current_run / "report.json")
+    for path in dict.fromkeys(reports):
+        try:
+            report = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        if not isinstance(report, dict) or report.get("status") not in {"FAILED", "BLOCKED", "UPLOAD_INCOMPLETE"}:
+            continue
+        lines = [
+            "Please troubleshoot this error from Adobe Stock Batch Manager.",
+            f"Run {path.parent.name} | {report['status']} | Commit {report.get('git_commit') or 'unavailable'}",
+            f"Error: {report.get('last_error') or 'See activity below.'}",
+        ]
+        try:
+            with path.with_name("activity.log").open(encoding="utf-8", errors="replace") as stream:
+                tail = "".join(deque(stream, maxlen=30))[-6000:].strip()
+        except OSError:
+            tail = ""
+        if tail:
+            lines.extend(("", "Recent activity", tail))
+        return redactor(root)("\n".join(lines))
+    return ""
 
 
 def git_sync(root: Path, run=subprocess.run, *, incoming_changes: dict | None = None) -> tuple[str, str]:

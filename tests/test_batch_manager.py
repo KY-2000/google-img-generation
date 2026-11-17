@@ -111,6 +111,27 @@ class ManagerTests(unittest.TestCase):
                            uploader=self.uploader, should_stop=lambda: self.stop_requested,
                            emit=self.events.append, **kwargs)
 
+    def test_error_log_button_copies_redacted_failure_and_opens_exact_chat(self):
+        run_dir = new_run_dir(self.root)
+        (run_dir / "report.json").write_text(json.dumps({
+            "status": "FAILED", "last_error": "API request failed: Bearer private-token",
+        }), encoding="utf-8")
+        (run_dir / "activity.log").write_text("Provider rejected request\n", encoding="utf-8")
+        later_run = new_run_dir(self.root)
+        (later_run / "report.json").write_text('{"status":"STOPPED","last_error":"Stopped by user"}', encoding="utf-8")
+        chat = "codex://threads/01a00000-0000-0000-0000-000000000001"
+        (run_dir.parent.parent / "support_chat.txt").write_text(chat, encoding="utf-8")
+        desktop = SimpleNamespace(run_dir=None, window=Mock(), append=Mock())
+        with (patch.object(stock_batch_manager, "ROOT", self.root),
+              patch.object(os, "startfile") as open_chat):
+            stock_batch_manager.Desktop.open_error_in_chatgpt(desktop)
+        open_chat.assert_called_once_with(chat)
+        copied = desktop.window.clipboard_append.call_args.args[0]
+        self.assertIn("Provider rejected request", copied)
+        self.assertIn("Bearer [REDACTED]", copied)
+        self.assertNotIn("private-token", copied)
+        self.assertNotIn("Stopped by user", copied)
+
     def test_selected_image_model_overrides_config_and_reaches_generator(self):
         self.write("model.json", self.production("Model"))
         (self.root / ".env").write_text("IMAGE_MODEL=gemini-3-pro-image\n")
