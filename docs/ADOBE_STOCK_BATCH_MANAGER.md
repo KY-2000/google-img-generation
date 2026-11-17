@@ -80,9 +80,10 @@ Right-click `output/stock_manager/Adobe Stock Batch Manager.exe` and choose
 **Show more options → Pin to taskbar**. Keep the EXE there; the launcher
 uses this checkout's existing Python virtual environment.
 
-The window opens with **Offline test** selected. In this mode, **Run Offline Test** only
-validates `commercial_background_queue_2026W44_r02.json` and writes a local
-report. It does not sync Git, open Adobe, create images, or update SQLite.
+The window opens with **Offline test** selected. **Run Offline Test** validates
+`commercial_background_queue_2026W44_r02.json`, then simulates asset progress
+with the selected number of **Parallel assets** cards. It writes a local report
+and runs without Git sync, API requests, Adobe, or SQLite updates.
 Uncheck **Offline test** to run live with the Git safety checks.
 
 The local `work_io/topic_finder/manager_baseline.json` snapshot skips the

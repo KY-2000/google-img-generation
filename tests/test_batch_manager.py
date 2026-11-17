@@ -515,6 +515,44 @@ class ManagerTests(unittest.TestCase):
         self.assertFalse((self.root / "data").exists())
         self.assertFalse((self.root / "output/assets").exists())
 
+    def test_offline_worker_simulates_selected_parallel_layout(self):
+        self.write(Path(TEST_QUEUE).name, self.production("Test"))
+        for workers in (1, 2, 3):
+            with self.subTest(workers=workers):
+                output = io.StringIO()
+                run_dir = new_run_dir(self.root)
+                with (patch.object(stock_batch_manager, "ROOT", self.root),
+                      patch.object(stock_batch_manager.time, "sleep"),
+                      patch.object(stock_batch_manager, "git_sync") as git_sync_mock,
+                      patch("stock_pipeline.batch_manager.run_manager") as production_worker,
+                      patch("sys.stdout", output)):
+                    result = stock_batch_manager.worker(run_dir, None, None, offline_test=True, max_workers=workers)
+                self.assertEqual(result, 0)
+                git_sync_mock.assert_not_called()
+                production_worker.assert_not_called()
+                events = [json.loads(line) for line in output.getvalue().splitlines()]
+                active, peak = {}, 0
+                for event in events:
+                    if "asset_progress" not in event:
+                        continue
+                    progress = event["asset_progress"]
+                    aid, stage = progress["asset_id"], progress["stage"]
+                    if stage == "preparing":
+                        self.assertEqual(progress["total"], workers)
+                        active[aid] = []
+                        peak = max(peak, len(active))
+                    active[aid].append(stage)
+                    if stage == "simulated_ready":
+                        self.assertEqual(active.pop(aid), ["preparing", "image", "qc", "metadata",
+                                                          "metadata_check", "simulated_ready"])
+                self.assertEqual(peak, workers)
+                self.assertFalse(active)
+                report = events[-1]["report"]
+                self.assertEqual((report["status"], report["total_assets"], report["generated"], report["uploaded"]),
+                                 ("TEST_PASSED", 1, 0, 0))
+        self.assertFalse((self.root / "data").exists())
+        self.assertFalse((self.root / "output/assets").exists())
+
     def test_production_finder_order_combined_batch_and_idempotency(self):
         production = self.write("b.json", self.production("Production", "2026-11-11T09:00:00+08:00"))
         duplicate = self.write("c.json", json.loads(production.read_text()))

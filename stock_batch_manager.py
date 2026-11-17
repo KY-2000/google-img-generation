@@ -40,10 +40,34 @@ ASSET_STAGES = {
     "metadata": ("Generating metadata", 2.5, "#194f70"),
     "metadata_check": ("Checking metadata", 2.5, "#194f70"),
     "ready": ("Ready for draft upload", 3, "#21634d"),
+    "simulated_ready": ("Simulation complete", 3, "#21634d"),
     "failed": ("Failed", None, "#a33232"),
     "deferred": ("Deferred", None, "#71571f"),
     "interrupted": ("Interrupted", None, "#71571f"),
 }
+
+
+def simulate_asset_progress(max_workers, stop, log):
+    themes = ("Botanical illustration", "Textured paper background", "Abstract geometric shapes")
+    stages = ("preparing", "image", "qc", "metadata", "metadata_check", "simulated_ready")
+    # Start each sample one step apart so the cards show different stages together.
+    ticks = len(stages) + max_workers - 1
+    for tick in range(ticks):
+        if stop.exists():
+            return False
+        for slot in range(max_workers):
+            stage_index = tick - slot
+            if not 0 <= stage_index < len(stages):
+                continue
+            aid = f"DEMO-{slot + 1:02d}"
+            stage = stages[stage_index]
+            progress = {"asset_id": aid, "stage": stage}
+            if stage == "preparing":
+                progress.update(index=slot + 1, total=max_workers, theme=themes[slot])
+            log(f"[{aid}] {ASSET_STAGES[stage][0]}", asset_progress=progress)
+        if tick + 1 < ticks:
+            time.sleep(0.8)
+    return True
 
 
 def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bool = False,
@@ -72,12 +96,19 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
 
     try:
         if offline_test:
-            from stock_pipeline.batch_manager import validate_test_queue
-            log("Validating only the r02 queue. No generation or upload.", phase="Offline test",
+            from stock_pipeline.batch_manager import validate_test_queue, write_report
+            log("Validating the r02 queue. No generation or upload.", phase="Offline test",
                 source=TEST_QUEUE, github="Not used", browser="Not used")
             report = validate_test_queue(ROOT, run_dir)
-            log(f"Validated {report['total_assets']} assets. No generation or upload.",
-                phase="Offline test", report=report)
+            log(f"Validated {report['total_assets']} assets. Simulating {max_workers} progress card(s).",
+                phase="Offline layout test", source="Simulated assets")
+            if not simulate_asset_progress(max_workers, stop, log):
+                report["status"] = "STOPPED"
+            report["layout_test"] = {"cards": max_workers, "status": report["status"]}
+            report["elapsed_seconds"] = round(time.monotonic() - started, 2)
+            write_report(report, run_dir)
+            outcome = "complete" if report["status"] == "TEST_PASSED" else "stopped"
+            log(f"Layout test {outcome}. No generation or upload.", report=report)
             return 0
         if cdp:
             cdp = validate_cdp(cdp)
@@ -266,7 +297,7 @@ class Desktop:
             self.generation_entries.append(entry)
         ttk.Label(sampling, text="Blank = unlimited").pack(side="left")
         self.model_picker.bind("<<ComboboxSelected>>", lambda _event: self.refresh_generation_entries())
-        self.test_check = ttk.Checkbutton(container, text="Offline test: validate r02 only (no generation or upload)",
+        self.test_check = ttk.Checkbutton(container, text="Offline test: validate r02 and simulate asset progress",
                                          variable=self.offline_test, command=self.refresh_start_button)
         self.test_check.pack(anchor="w", pady=(0, 8))
         ttk.Label(container, text="Asset progress").pack(anchor="w", pady=(0, 5))
@@ -325,7 +356,7 @@ class Desktop:
         status.configure(text=label, foreground=color)
         if value is not None:
             bar.configure(value=value)
-        if stage in {"ready", "failed", "deferred", "interrupted"}:
+        if stage in {"ready", "simulated_ready", "failed", "deferred", "interrupted"}:
             del self.asset_slots[asset_id]
 
     def show_activity_log(self):
@@ -505,12 +536,12 @@ class Desktop:
         python = Path(sys.executable)
         if os.name == "nt" and python.name.casefold() == "pythonw.exe":
             python = python.with_name("python.exe")
-        args = [str(python), str(Path(__file__).resolve()), "--worker", str(self.run_dir)]
+        args = [str(python), str(Path(__file__).resolve()), "--worker", str(self.run_dir),
+                "--max-workers", self.max_workers.get()]
         if testing:
             args.append("--offline-test")
         else:
-            args.extend(("--image-model", IMAGE_MODELS[self.image_model.get()],
-                         "--metadata-model", metadata_model, "--max-workers", self.max_workers.get()))
+            args.extend(("--image-model", IMAGE_MODELS[self.image_model.get()], "--metadata-model", metadata_model))
             args.extend(generation_args)
         if cdp:
             args.extend(("--cdp", cdp))
