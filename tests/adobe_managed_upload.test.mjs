@@ -10,16 +10,45 @@ function paginatedAdapter(drafts, total = drafts.flat().length) {
   let current = 1;
   let target;
   let selected;
+  let details;
+  const thumbnail = item => item ? `https://example.test/240_F_${item.id}_thumbnail.jpg` : "";
   const page = {
     url: () => "https://contributor.stock.adobe.com/en/uploads",
-    waitForTimeout: async () => {},
+    waitForTimeout: async () => assert.fail("draft selection must wait for matching details"),
+    async waitForFunction(probe, index) {
+      const tile = {
+        closest: () => selected?.index === index ? {} : null,
+        querySelector: () => ({ getAttribute: () => thumbnail(selected) }),
+      };
+      const oldDocument = globalThis.document;
+      globalThis.document = {
+        querySelectorAll: () => ({ [index]: tile }),
+        querySelector: selector => {
+          if (selector.includes("asset-sidebar-header-thumbnail")) {
+            return { getAttribute: () => thumbnail(selected) };
+          }
+          assert.match(selector, /asset-sidebar-footer-file-ids/);
+          return { innerText: details ? `File ID(s): ${details.id}\nOriginal name(s): ${details.filename}` : "" };
+        },
+      };
+      try {
+        assert.equal(probe(index), false, "stale filename must not pass after the header changes");
+        details = selected;
+        const filename = probe(index);
+        return { jsonValue: async () => filename, dispose: async () => {} };
+      } finally {
+        globalThis.document = oldDocument;
+      }
+    },
     locator(selector) {
       if (selector === "body") {
-        return { innerText: async () => `File types: All (${total})\nOriginal name(s): ${selected || ""}` };
+        return { innerText: async () => `File types: All (${total})` };
       }
       if (selector === ".upload-tile__wrapper") {
         return { count: async () => drafts[current - 1].length,
-          nth: index => ({ click: async () => { selected = drafts[current - 1][index]; } }) };
+          nth: index => ({ click: async () => {
+            selected = { index, id: current * 100 + index, filename: drafts[current - 1][index] };
+          } }) };
       }
       assert.equal(selector, ".the-paginator-list");
       return {

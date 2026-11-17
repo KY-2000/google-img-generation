@@ -1,7 +1,6 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const ORIGINAL = /Original name\(s\):\s*([^\r\n]+)/i;
 const TOTAL = /File types:\s*All\s*\((\d+)\)/i;
 const AI_LABEL = /Created using generative AI tools/i;
 
@@ -26,8 +25,29 @@ export function createAdobeDraftAdapter({
   };
   const open = async index => {
     await tiles().nth(index).click();
-    await page.waitForTimeout(500);
-    return ORIGINAL.exec(await body())?.[1]?.trim();
+    const details = await page.waitForFunction(position => {
+      const tile = document.querySelectorAll(".upload-tile__wrapper")[position];
+      if (!tile?.closest('[aria-selected="true"]')) return false;
+      const thumbnail = tile.querySelector("img")?.getAttribute("src");
+      const panel = '[data-t="content-side-panel"]';
+      const preview = document.querySelector(`${panel} [data-t="asset-sidebar-header-thumbnail"]`);
+      if (!thumbnail || preview?.getAttribute("src") !== thumbnail) return false;
+      const footer = document.querySelector(`${panel} [data-t="asset-sidebar-footer-file-ids"]`)?.innerText;
+      const match = /File ID\(s\):\s*([\s\S]*?)Original name\(s\):\s*([^\r\n]+)/i.exec(footer || "");
+      const fileIds = match?.[1].match(/\d+/g);
+      const thumbnailIds = thumbnail.match(/\d+/g);
+      // The header image can update before the filename. Require the footer's
+      // own file ID to agree with the selected thumbnail before reading it.
+      if (!fileIds?.some(id => thumbnailIds?.includes(id))) return false;
+      return match[2].trim() || false;
+    }, index, { timeout: Math.min(options.timeout, 10000) }).catch(error => {
+      throw new Error(`Cannot confirm Adobe details for draft tile ${index + 1}`, { cause: error });
+    });
+    try {
+      return await details.jsonValue();
+    } finally {
+      await details.dispose();
+    }
   };
   const count = async () => {
     const current = new URL(page.url());
