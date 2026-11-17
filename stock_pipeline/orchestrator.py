@@ -19,6 +19,9 @@ from .registry import Registry, now_iso
 from .staging import stage_ready_assets
 
 
+FLASH_METADATA_FALLBACK = ("vertex", "gemini-3.8-flash")
+
+
 class StockPipeline:
     def __init__(
         self, *, project_root: Path, registry: Registry,
@@ -42,6 +45,7 @@ class StockPipeline:
         self.image_model = image_model
         self.metadata_provider = metadata_provider
         self.metadata_model = metadata_model
+        self._metadata_fallback_active = False
         config = config or {}
         image_config = config.get("image", {})
         metadata_config = config.get("metadata", {})
@@ -135,21 +139,21 @@ class StockPipeline:
                 raise ValueError(f"unsupported GOOGLE_AUTH_MODE: {mode}")
         return self._image_client
 
-    def _get_metadata_client(self) -> Any:
+    def _get_metadata_client(self, provider: str) -> Any:
         if self.metadata_generate_text is not None:
             return object()
+        if provider in {"google", "vertex"}:
+            return self._get_image_client()
         import main as legacy
         if self._metadata_client is None:
-            if self.metadata_provider in {"google", "vertex"}:
-                self._metadata_client = self._get_image_client()
-            elif self.metadata_provider == "gemini-developer":
+            if provider == "gemini-developer":
                 self._metadata_client = legacy.build_gemini_developer_client(self.project_root)
-            elif self.metadata_provider == "openrouter":
+            elif provider == "openrouter":
                 self._metadata_client = legacy.build_openrouter_metadata_client(legacy.get_openrouter_api_key(self.project_root))
-            elif self.metadata_provider == "nim":
+            elif provider == "nim":
                 self._metadata_client = legacy.build_nim_metadata_client(legacy.get_nim_api_key(self.project_root))
             else:
-                raise ValueError(f"unsupported metadata provider: {self.metadata_provider}")
+                raise ValueError(f"unsupported metadata provider: {provider}")
         return self._metadata_client
 
     def _manifest(self, asset_id: str) -> None:
@@ -309,36 +313,44 @@ class StockPipeline:
             return
 
         if current["status"] == "METADATA_PENDING":
-            self.registry.update_asset(asset_id, metadata_model=self.metadata_model)
-            self._emit_progress(
-                asset_id,
-                f"metadata prompt 1/1 started model={self.metadata_model}",
-            )
-            metadata_client = self._get_metadata_client()
             category_text = self._resource("category-code.txt").read_text(encoding="utf-8").strip()
             system_prompt = self._resource("config/prompts/metadata_v2.txt").read_text(encoding="utf-8").strip()
             started = time.perf_counter()
             generator = self.metadata_generate_text or generate_metadata_for_asset
-            metadata_kwargs = dict(
-                client=metadata_client, provider=self.metadata_provider,
-                image_path=Path(current["image_path"]), theme=current["theme"],
-                generation_prompt=current["generation_prompt"], category_list=category_text,
-                system_prompt=system_prompt, model=self.metadata_model,
-                temperature=0.2, top_p=0.9, asset_id=asset_id,
-                project_root=self.project_root,
-            )
-            if self.usage_recorder is not None:
-                metadata_kwargs["usage_callback"] = lambda usage: self._record_usage(
-                    asset_id=asset_id,
-                    operation="metadata_generation",
-                    provider=self.metadata_provider,
-                    model=self.metadata_model,
-                    usage=usage,
+
+            def request_metadata(provider: str, model: str) -> str:
+                self.registry.update_asset(asset_id, metadata_model=model)
+                self._emit_progress(asset_id, f"metadata prompt 1/1 started model={model} provider={provider}")
+                metadata_kwargs = dict(
+                    client=self._get_metadata_client(provider), provider=provider,
+                    image_path=Path(current["image_path"]), theme=current["theme"],
+                    generation_prompt=current["generation_prompt"], category_list=category_text,
+                    system_prompt=system_prompt, model=model,
+                    temperature=0.2, top_p=0.9, asset_id=asset_id,
+                    project_root=self.project_root,
                 )
-            raw = self._with_retries(
-                lambda: generator(**metadata_kwargs),
-                logger, "metadata_generation",
+                if self.usage_recorder is not None:
+                    metadata_kwargs["usage_callback"] = lambda usage: self._record_usage(
+                        asset_id=asset_id, operation="metadata_generation", provider=provider, model=model,
+                        usage=usage,
+                    )
+                return self._with_retries(lambda: generator(**metadata_kwargs), logger, "metadata_generation")
+
+            provider, model = (
+                FLASH_METADATA_FALLBACK if self._metadata_fallback_active
+                else (self.metadata_provider, self.metadata_model)
             )
+            try:
+                raw = request_metadata(provider, model)
+            except Exception as exc:
+                if (provider != "gemini-developer" or model.removeprefix("models/") != "gemini-4-hydrogen"
+                        or getattr(exc, "code", None) != 503):
+                    raise
+                self._metadata_fallback_active = True
+                self._emit_progress(
+                    asset_id, "Hydrogen returned HTTP 503; switching remaining metadata to gemini-3.8-flash (Vertex AI)",
+                )
+                raw = request_metadata(*FLASH_METADATA_FALLBACK)
             (asset_dir / "metadata_raw.txt").write_bytes(raw.encode("utf-8"))
             logger.event("metadata_generation", duration_seconds=round(time.perf_counter() - started, 3))
             self._emit_progress(asset_id, "metadata prompt 1/1 completed")

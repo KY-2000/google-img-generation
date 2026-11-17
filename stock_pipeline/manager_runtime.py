@@ -38,29 +38,43 @@ def redactor(root: Path):
 
 
 def recent_error_log(root: Path, current_run: Path | None) -> str:
-    reports = sorted((root / "output" / "stock_manager" / "runs").glob("*/report.json"),
-                     key=lambda path: path.stat().st_mtime_ns, reverse=True)
+    runs = root / "output" / "stock_manager" / "runs"
+    evidence = sorted([*runs.glob("*/report.json"), *runs.glob("*/activity.log")],
+                      key=lambda path: path.stat().st_mtime_ns, reverse=True)
+    candidates = [path.parent for path in evidence]
     if current_run:
-        reports.insert(0, current_run / "report.json")
-    for path in dict.fromkeys(reports):
+        candidates.insert(0, current_run)
+    for directory in dict.fromkeys(candidates):
         try:
-            report = json.loads(path.read_text(encoding="utf-8"))
+            report = json.loads((directory / "report.json").read_text(encoding="utf-8"))
         except (OSError, ValueError):
-            continue
-        if not isinstance(report, dict) or report.get("status") not in {"FAILED", "BLOCKED", "UPLOAD_INCOMPLETE"}:
+            report = {}
+        if not isinstance(report, dict):
+            report = {}
+        status = report.get("status", "NO FINAL REPORT")
+        tail = deque(maxlen=30)
+        latest_failure = ""
+        try:
+            with (directory / "activity.log").open(encoding="utf-8", errors="replace") as stream:
+                for line in stream:
+                    tail.append(line)
+                    if re.search(r"\battempt \d+ failed:|\bError:|\bmetadata validation failed:", line):
+                        latest_failure = line.strip()
+        except OSError:
+            pass
+        failed = status in {"FAILED", "BLOCKED", "UPLOAD_INCOMPLETE"}
+        if not (failed or latest_failure or report.get("failed_assets") or (directory == current_run and tail)):
             continue
         lines = [
-            "Please troubleshoot this error from Adobe Stock Batch Manager.",
-            f"Run {path.parent.name} | {report['status']} | Commit {report.get('git_commit') or 'unavailable'}",
-            f"Error: {report.get('last_error') or 'See activity below.'}",
+            "Please troubleshoot this run from Adobe Stock Batch Manager.",
+            f"Run {directory.name} | {status} | Commit {report.get('git_commit') or 'unavailable'}",
         ]
-        try:
-            with path.with_name("activity.log").open(encoding="utf-8", errors="replace") as stream:
-                tail = "".join(deque(stream, maxlen=30))[-6000:].strip()
-        except OSError:
-            tail = ""
+        if failed and report.get("last_error"):
+            lines.append(f"Error: {report['last_error']}")
+        if latest_failure:
+            lines.append(f"Latest error in the log: {latest_failure}")
         if tail:
-            lines.extend(("", "Recent activity", tail))
+            lines.extend(("", "Recent activity", "".join(tail)[-6000:].strip()))
         return redactor(root)("\n".join(lines))
     return ""
 

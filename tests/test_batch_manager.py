@@ -132,6 +132,21 @@ class ManagerTests(unittest.TestCase):
         self.assertNotIn("private-token", copied)
         self.assertNotIn("Stopped by user", copied)
 
+    def test_error_log_button_recopies_the_current_run_before_a_report_exists(self):
+        run_dir = new_run_dir(self.root)
+        activity = run_dir / "activity.log"
+        activity.write_text("metadata generation attempt 1 failed: 503 UNAVAILABLE\n", encoding="utf-8")
+        desktop = SimpleNamespace(run_dir=run_dir, window=Mock(), append=Mock())
+        with (patch.object(stock_batch_manager, "ROOT", self.root), patch.object(os, "startfile")):
+            stock_batch_manager.Desktop.open_error_in_chatgpt(desktop)
+            with activity.open("a", encoding="utf-8") as log:
+                log.write("metadata generation attempt 2 failed: new error\n")
+            stock_batch_manager.Desktop.open_error_in_chatgpt(desktop)
+        first, second = [call.args[0] for call in desktop.window.clipboard_append.call_args_list]
+        self.assertIn("503 UNAVAILABLE", first)
+        self.assertNotIn("new error", first)
+        self.assertIn("new error", second)
+
     def test_published_commit_opens_exact_github_diff(self):
         desktop = SimpleNamespace(commit_sha=COMMIT, commit_on_github=True)
         with patch.object(os, "startfile") as open_link:
@@ -202,6 +217,31 @@ class ManagerTests(unittest.TestCase):
         self.assertEqual(request["config"].response_mime_type, "application/json")
         self.assertIsNone(request["config"].temperature)
         self.assertIsNone(request["config"].top_p)
+
+    def test_hydrogen_503_switches_remaining_metadata_to_vertex_flash(self):
+        from google.genai.errors import ServerError
+
+        self.write("metadata.json", self.production("Metadata", two=True))
+        (self.root / ".env").write_text("GEMINI_API_KEY=offline-test-key\n", encoding="utf-8")
+        attempts = []
+
+        def metadata(**kwargs):
+            attempts.append((kwargs["provider"], kwargs["model"]))
+            if kwargs["provider"] == "gemini-developer":
+                raise ServerError(503, {"error": {"status": "UNAVAILABLE", "message": "High demand"}})
+            kwargs["usage_callback"]({"prompt_tokens": 1, "output_tokens": 2})
+            return json.dumps(sample_model_metadata())
+
+        self.metadata = metadata
+        report = self.run_batch(metadata_model="gemini-4-hydrogen")
+        self.assertEqual(report["status"], "COMPLETE", report)
+        self.assertEqual(attempts, [
+            ("gemini-developer", "gemini-4-hydrogen"),
+            ("vertex", "gemini-3.8-flash"), ("vertex", "gemini-3.8-flash"),
+        ])
+        self.assertEqual(len(self.calls), 2)
+        with Registry(self.root / "data/stock_pipeline.sqlite") as registry:
+            self.assertEqual({row["metadata_model"] for row in registry.list_assets()}, {"gemini-3.8-flash"})
 
     def test_hydrogen_without_developer_key_stops_before_generation(self):
         self.write("metadata.json", self.production("Metadata"))

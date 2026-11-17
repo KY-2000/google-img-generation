@@ -669,10 +669,11 @@ class Desktop:
         try:
             log = recent_error_log(ROOT, self.run_dir)
             if not log:
-                self.append("No failed run log was found.")
+                self.append("No current activity or failed run log was found.")
                 return
             self.window.clipboard_clear()
             self.window.clipboard_append(log)
+            self.window.update_idletasks()
         except (OSError, ValueError, TclError) as exc:
             self.append(f"Could not copy the error log: {exc}")
             return

@@ -25,6 +25,8 @@ in the editable field use Vertex AI. For Hydrogen, add `GEMINI_API_KEY` from
 your AI Studio project to the repository's
 `.env`. Your AI Studio project's billing tier and quota apply to these metadata
 requests. Image generation still uses Vertex AI.
+If Hydrogen returns HTTP 503, the rest of that run's metadata uses
+`gemini-3.8-flash` through Vertex AI. Vertex AI billing applies to those requests.
 Offline test mode does not invoke either model.
 
 For Nano Banana Pro, **Temperature** defaults to 1.0 and **Top-p** to 0.95.
@@ -117,8 +119,8 @@ a request already running may finish.
   asset, and prepared image hash.
 - Activity logs, JSON and Markdown reports are under
   `output/stock_manager/runs/`. **Open Logs** opens the current run folder.
-- **Open ChatGPT + Copy Error Log** copies a redacted excerpt from the failed
-  run and opens the local chat configured in
+- **Open ChatGPT + Copy Error Log** refreshes the redacted excerpt from the
+  current run, or the most recent run with an error, and opens the local chat configured in
   `output/stock_manager/support_chat.txt`. Paste it into the composer with
   **Ctrl+V**. To change the destination, save the chat's desktop deep link in
   that file.
