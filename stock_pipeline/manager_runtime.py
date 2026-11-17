@@ -4,7 +4,9 @@ from __future__ import annotations
 import json
 import os
 import re
+import shutil
 import subprocess
+import time
 from collections import deque
 from contextlib import contextmanager
 from pathlib import Path
@@ -127,9 +129,57 @@ def validate_cdp(url: str) -> str:
 def cdp_connected(url: str) -> bool:
     try:
         with build_opener(ProxyHandler({})).open(validate_cdp(url) + "/json/version", timeout=2) as response:
-            return response.status == 200
+            version = json.load(response)
+            return (response.status == 200 and isinstance(version, dict)
+                    and bool(version.get("webSocketDebuggerUrl")))
     except (OSError, ValueError):
         return False
+
+
+def ensure_edge_cdp(root: Path, url: str, profile: str | None, *, log, should_stop) -> bool:
+    url = validate_cdp(url)
+    if should_stop():
+        return False
+    if cdp_connected(url):
+        log("Connected to the existing Edge session.", browser="Connected")
+        return True
+    if os.name != "nt":
+        raise RuntimeError(f"Edge CDP is unavailable at {url}. Automatic startup requires Windows.")
+
+    executable = shutil.which("msedge.exe")
+    if not executable:
+        for key in ("ProgramFiles(x86)", "ProgramFiles", "LOCALAPPDATA"):
+            folder = os.environ.get(key)
+            if not folder:
+                continue
+            candidate = Path(folder) / "Microsoft" / "Edge" / "Application" / "msedge.exe"
+            if candidate.is_file():
+                executable = str(candidate)
+                break
+    if not executable:
+        raise RuntimeError("Microsoft Edge executable was not found. Launch the automation profile manually.")
+
+    directory = Path(profile).expanduser() if profile else Path.home() / ".edge-xhs-adobe-automation"
+    directory = (root / directory).resolve()
+    port = urlsplit(url).port
+    log(f"Starting Edge for Adobe upload on port {port} with profile {directory}", browser="Starting Edge")
+    subprocess.Popen(
+        [executable, f"--remote-debugging-port={port}", f"--user-data-dir={directory}",
+         "--no-first-run", "--new-window", "about:blank"],
+        cwd=root, stdin=subprocess.DEVNULL, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+        creationflags=subprocess.CREATE_NEW_PROCESS_GROUP,
+    )
+    deadline = time.monotonic() + 20
+    while time.monotonic() < deadline:
+        if should_stop():
+            return False
+        if cdp_connected(url):
+            log("Edge started and is ready for Adobe upload.", browser="Connected")
+            return True
+        time.sleep(0.4)
+    log(f"Edge did not open its CDP endpoint at {url}.", browser="Disconnected")
+    raise RuntimeError(f"Edge CDP did not become ready at {url}. If the automation profile is already open "
+                       "without remote debugging, close that window and retry.")
 
 
 @contextmanager

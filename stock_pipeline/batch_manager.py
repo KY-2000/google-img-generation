@@ -17,7 +17,7 @@ from .ai_usage import UsageLedger
 from .managed_adobe import build_combined_batch, managed_upload_command, reconcile_receipts
 from .manager_baseline import TEST_QUEUE
 from .manager_queues import QueueSource, adopt_existing_finder_run, discover, runtime_queue
-from .manager_runtime import redactor
+from .manager_runtime import ensure_edge_cdp, redactor
 from .orchestrator import StockPipeline
 from .registry import Registry, now_iso, verify_asset_identity
 
@@ -118,7 +118,10 @@ class QueueState:
 
 
 def upload_process(root, batch, receipt_dir, *, cdp, profile, log, stop_file=None):
-    command = managed_upload_command(batch, receipt_dir, cdp, profile, stop_file)
+    if cdp and not ensure_edge_cdp(root, cdp, profile, log=log,
+                                   should_stop=lambda: stop_file is not None and stop_file.exists()):
+        return
+    command = managed_upload_command(batch, receipt_dir, cdp, profile if not cdp else None, stop_file)
     with subprocess.Popen(command, cwd=root, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
                           text=True, encoding="utf-8", errors="replace",
                           creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0)) as process:
@@ -470,7 +473,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                             state.save(source.run_id, source.identity, record)
                     log(f"Reconciling and uploading {len(outstanding)} drafts", "Adobe", overview=overview())
                     uploader(root, batch, receipts, cdp=cdp, profile=profile, stop_file=stop_file,
-                             log=lambda m: log(m, "Adobe"))
+                             log=lambda m, **fields: log(m, "Adobe", **fields))
                 elif outstanding:
                     report["status"] = "STOPPED"
                     return report

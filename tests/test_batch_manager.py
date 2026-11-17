@@ -16,7 +16,7 @@ from PIL import Image
 
 import stock_batch_manager
 from stock_pipeline.adobe_csv import read_adobe_csv
-from stock_pipeline.batch_manager import new_run_dir, preview_queues, run_manager, validate_test_queue
+from stock_pipeline.batch_manager import new_run_dir, preview_queues, run_manager, upload_process, validate_test_queue
 from stock_pipeline.manager_baseline import TEST_QUEUE, snapshot_baseline
 from stock_pipeline.manager_runtime import git_sync, redactor
 from stock_pipeline.orchestrator import StockPipeline
@@ -131,6 +131,29 @@ class ManagerTests(unittest.TestCase):
         self.assertIn("Bearer [REDACTED]", copied)
         self.assertNotIn("private-token", copied)
         self.assertNotIn("Stopped by user", copied)
+
+    def test_upload_only_launches_edge_if_cdp_is_unreachable(self):
+        endpoint = "http://127.0.0.1:9222"
+        profile = self.root / "edge automation"
+        batch = self.root / "batch"
+        receipts = self.root / "receipts"
+        edge = self.root / "msedge.exe"
+        edge.touch()
+        uploader = Mock()
+        uploader.__enter__ = Mock(return_value=SimpleNamespace(stdout=[], wait=lambda: 0))
+        uploader.__exit__ = Mock(return_value=False)
+        runtime = "stock_pipeline.manager_runtime"
+        with (patch(runtime + ".cdp_connected", side_effect=[True, False, True]),
+              patch("shutil.which", return_value=str(edge)),
+              patch(runtime + ".subprocess.Popen", side_effect=[uploader, Mock(), uploader]) as launch):
+            upload_process(self.root, batch, receipts, cdp=endpoint, profile=str(profile), log=Mock())
+            upload_process(self.root, batch, receipts, cdp=endpoint, profile=str(profile), log=Mock())
+        edge_command = launch.call_args_list[1].args[0]
+        self.assertEqual(edge_command[0], str(edge))
+        self.assertIn("--remote-debugging-port=9222", edge_command)
+        self.assertIn(f"--user-data-dir={profile}", edge_command)
+        self.assertTrue(launch.call_args_list[0].args[0][0].startswith("node"))
+        self.assertTrue(launch.call_args_list[2].args[0][0].startswith("node"))
 
     def test_selected_image_model_overrides_config_and_reaches_generator(self):
         self.write("model.json", self.production("Model"))

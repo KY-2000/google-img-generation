@@ -39,11 +39,13 @@ or remote, network failure, or non-fast-forward update stops before reading
 queues. The manager does not reset, clean, stash, or force-checkout the repo.
 Review and integrate development changes before starting a live run.
 
-Start Edge using the Adobe Contributor profile you already use. For CDP, keep
-its local debugging endpoint open (default `http://127.0.0.1:9222`) and sign
-in if needed. Clear the CDP field to use the existing persistent
-`.pw-edge-adobe-profile`, or set `ADOBE_USER_DATA_DIR` to another local profile.
-`ADOBE_CDP` can override the UI default. Resume with the same Adobe account.
+The default CDP endpoint is `http://127.0.0.1:9222`. When upload is ready, the
+manager reuses a connected Edge session or starts Edge with the user profile
+`.edge-xhs-adobe-automation` in your home directory. Sign in to Adobe if the
+profile's session has expired. Clear the CDP field to let Playwright launch
+the repository's persistent `.pw-edge-adobe-profile` instead. Set
+`ADOBE_USER_DATA_DIR` to override the launch profile in either mode, or
+`ADOBE_CDP` to override the default endpoint. Resume with the same Adobe account.
 
 Double-click `start_stock_manager.bat` or run:
 

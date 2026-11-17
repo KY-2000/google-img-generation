@@ -88,7 +88,7 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
             selected = set(pending[:count])
             if cdp:
                 connected = cdp_connected(cdp)
-                log("Edge CDP is reachable" if connected else "Edge CDP is not reachable; upload will need Edge",
+                log("Edge CDP is reachable" if connected else "Edge is closed or unreachable; will try to start it for upload",
                     browser="Connected" if connected else "Disconnected")
             else:
                 log("Adobe will use the persistent browser profile at the upload stage", browser="Profile mode")
@@ -202,7 +202,7 @@ class Desktop:
         ttk.Label(settings, text="Adobe CDP").pack(side="left", padx=(0, 8))
         self.endpoint_entry = ttk.Entry(settings, textvariable=self.endpoint, width=28)
         self.endpoint_entry.pack(side="left")
-        ttk.Label(settings, text="Leave blank to use the existing Edge profile.").pack(side="left", padx=10)
+        ttk.Label(settings, text="Starts Edge at upload if needed. Leave blank for profile mode.").pack(side="left", padx=10)
         options = ttk.Frame(container)
         options.pack(fill="x", pady=(0, 8))
         ttk.Label(options, text="Image model").pack(side="left", padx=(0, 8))
@@ -328,7 +328,7 @@ class Desktop:
             args.extend(generation_args)
         if cdp:
             args.extend(("--cdp", cdp))
-        elif not testing:
+        if not testing:
             profile = os.environ.get("ADOBE_USER_DATA_DIR")
             if profile:
                 args.extend(("--profile", profile))
