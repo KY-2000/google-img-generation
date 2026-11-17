@@ -69,28 +69,16 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
             from stock_pipeline.batch_manager import preview_queues, run_manager
             rows, _ = preview_queues(ROOT, commit_time, changes)
             pending = [row["source_file"] for row in rows if row["selectable"]]
-            request = run_dir / "start.request"
-            disconnected = threading.Event()
-
-            def watch_window():
-                try:
-                    os.read(sys.stdin.fileno(), 1)
-                except (AttributeError, OSError, ValueError):
-                    pass
-                finally:
-                    disconnected.set()
-
-            threading.Thread(target=watch_window, daemon=True).start()
             log(f"{len(pending)} runnable queue(s) awaiting review", phase="Queue preview",
                 preview={"queues": rows, "max_images": max_images})
-            while not (stop.exists() or request.exists() or disconnected.wait(0.15)):
-                pass
-            if stop.exists() or disconnected.is_set():
+            selection = "" if stop.exists() else sys.stdin.readline(32).strip()
+            if stop.exists() or not selection:
                 log("Queue preview closed.", phase="Preview closed")
                 return 0
-            count = int(request.read_text(encoding="ascii"))
+            count = int(selection)
             if not 1 <= count <= len(pending):
                 raise ValueError("Choose a valid number of queues and check the preview again.")
+            log(f"Confirmed {count} queue(s). Verifying the preview before starting…", phase="Verifying queues")
             verify_reviewed_checkout(ROOT, sha)
             current_rows, sources = preview_queues(ROOT, commit_time, changes)
             if current_rows != rows:
@@ -132,6 +120,7 @@ class Desktop:
         self.closing = False
         self.run_dir = None
         self.preview_window = None
+        self.worker_input = None
         self.offline_test = tk.BooleanVar(value=True)
         self.image_model = tk.StringVar(value="Nano Banana Pro")
         self.metadata_model = tk.StringVar(value=DEFAULT_METADATA_MODEL)
@@ -345,6 +334,7 @@ class Desktop:
             with subprocess.Popen(args, cwd=ROOT, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
                                   text=True, encoding="utf-8", errors="replace",
                                   creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0)) as child:
+                self.worker_input = child.stdin
                 for line in child.stdout:
                     try:
                         event = json.loads(line)
@@ -358,6 +348,8 @@ class Desktop:
                 self.events.put({"exit": child.wait()})
         except Exception as exc:
             self.events.put({"message": redact(exc), "exit": 1})
+        finally:
+            self.worker_input = None
 
     def show_preview(self, preview):
         from tkinter import ttk
@@ -439,10 +431,12 @@ class Desktop:
             if not 1 <= value <= len(pending):
                 return
             try:
-                temporary = self.run_dir / "start.tmp"
-                temporary.write_text(str(value), encoding="ascii")
-                temporary.replace(self.run_dir / "start.request")
-            except OSError as exc:
+                stream = self.worker_input
+                if stream is None or stream.closed:
+                    raise OSError("The worker is no longer waiting for confirmation.")
+                stream.write(f"{value}\n")
+                stream.flush()
+            except (OSError, ValueError) as exc:
                 self.append(f"Could not start: {exc}")
                 return
             self.dismiss_preview()
@@ -538,6 +532,9 @@ class Desktop:
         if self.active and self.run_dir:
             try:
                 (self.run_dir / "stop.request").touch()
+                stream = self.worker_input
+                if stream is not None and not stream.closed:
+                    stream.close()
             except OSError as exc:
                 self.append(f"Could not request stop: {exc}")
                 return

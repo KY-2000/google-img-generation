@@ -185,7 +185,7 @@ class ManagerTests(unittest.TestCase):
                 preview_ready.set()
 
         read_fd, write_fd = os.pipe()
-        with os.fdopen(read_fd, "rb") as read_pipe, os.fdopen(write_fd, "wb") as write_pipe:
+        with os.fdopen(read_fd, "r", encoding="ascii") as read_pipe, os.fdopen(write_fd, "w", encoding="ascii") as write_pipe:
             with (patch.object(stock_batch_manager, "ROOT", self.root),
                   patch.object(stock_batch_manager, "git_sync", return_value=(COMMIT, TIME)),
                   patch.object(stock_batch_manager, "verify_reviewed_checkout"),
@@ -198,8 +198,8 @@ class ManagerTests(unittest.TestCase):
                     self.assertTrue(preview_ready.wait(timeout=10))
                     production_run.assert_not_called()
                     self.write("a.json", self.production("Changed"))
-                    (run_dir / "start.tmp").write_text("1", encoding="ascii")
-                    (run_dir / "start.tmp").replace(run_dir / "start.request")
+                    write_pipe.write("1\n")
+                    write_pipe.flush()
                     self.assertEqual(future.result(timeout=10), 1)
                     production_run.assert_not_called()
                     self.assertIn("changed since preview", (run_dir / "report.json").read_text(encoding="utf-8"))

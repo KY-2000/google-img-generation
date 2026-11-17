@@ -77,7 +77,8 @@ def git_sync(root: Path, run=subprocess.run, *, incoming_changes: dict | None = 
 
 def verify_reviewed_checkout(root: Path, commit: str) -> None:
     result = subprocess.run(["git", "status", "--porcelain=v2", "--branch", "--untracked-files=normal"],
-                            cwd=root, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=30)
+                            cwd=root, stdin=subprocess.DEVNULL, capture_output=True, text=True,
+                            encoding="utf-8", errors="replace", timeout=30)
     lines = result.stdout.splitlines()
     if (result.returncode or f"# branch.oid {commit}" not in lines or "# branch.head main" not in lines
             or any(not line.startswith("# ") for line in lines)):
