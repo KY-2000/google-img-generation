@@ -171,7 +171,7 @@ class StockPipeline:
     def process_asset(
         self, asset: dict[str, Any], *, force_image: bool = False,
         force_metadata: bool = False, skip_image_generation: bool = False,
-        skip_metadata: bool = False,
+        skip_metadata: bool = False, reserve_image: Callable[[], bool] | None = None,
     ) -> None:
         asset_id = asset["asset_id"]
         asset_dir = self._asset_dir(asset_id)
@@ -240,11 +240,10 @@ class StockPipeline:
             )
             current = self.registry.get_asset(asset_id)
 
-        if skip_image_generation and current["status"] == "PROMPT_READY":
-            self._manifest(asset_id)
-            return
-
         if current["status"] == "PROMPT_READY":
+            if skip_image_generation or (reserve_image is not None and not reserve_image()):
+                self._manifest(asset_id)
+                return
             self._emit_progress(asset_id, f"image 1/1 started model={self.image_model}")
             image_client = self._get_image_client()
             original_path = asset_dir / "original.png"
@@ -376,6 +375,7 @@ class StockPipeline:
         skip_staging: bool = False, batch_id: str | None = None,
         should_stop: Callable[[], bool] | None = None,
         asset_finished: Callable[[str], None] | None = None,
+        reserve_image: Callable[[], bool] | None = None,
     ) -> dict[str, int]:
         queue = validate_topic_queue(queue)
         self.registry.register_queue(queue)
@@ -385,6 +385,7 @@ class StockPipeline:
             lambda asset: self.process_asset(
                 asset, force_image=force_image, force_metadata=force_metadata,
                 skip_image_generation=skip_image_generation, skip_metadata=skip_metadata,
+                reserve_image=reserve_image,
             ),
             resume=resume and not (force_image or force_metadata),
             asset_ids=queue_asset_ids,

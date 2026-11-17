@@ -24,6 +24,15 @@ Vertex AI model IDs. It applies to new metadata requests via Vertex AI for
 that desktop run. Existing metadata and the prompt template are unchanged.
 Offline test mode does not invoke either model.
 
+For Nano Banana Pro, **Temperature** defaults to 1.0 and **Top-p** to 0.95.
+Nano Banana 2.1 disables these controls. **Max new images** works with both:
+leave it blank for unlimited, or enter a positive whole number. The limit is
+per Start, across queues. One slot is used per asset that starts generation,
+even if it fails; the existing retries for that asset still apply. Images
+already on disk do not use a slot. Deferred assets resume on the next Start.
+The combined upload waits if any queue still has unfinished work. The queue's
+resolution and one-image-per-asset behavior are unchanged.
+
 The checkout must be on a **clean local main** with
 `KY-2000/google-img-generation` as `origin`. A dirty worktree, wrong branch
 or remote, network failure, or non-fast-forward update stops before reading

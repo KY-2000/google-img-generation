@@ -26,7 +26,8 @@ DEFAULT_METADATA_MODEL = "gemini-3.8-flash"
 
 
 def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bool = False,
-           image_model: str | None = None, metadata_model: str | None = None) -> int:
+           image_model: str | None = None, metadata_model: str | None = None, *,
+           temperature: float = 1.0, top_p: float = 0.95, max_images: int | None = None) -> int:
     # The UI generates a fresh local directory for each Start.
     home = (ROOT / "output" / "stock_manager" / "runs").resolve()
     run_dir = run_dir.resolve()
@@ -71,8 +72,9 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
             from stock_pipeline.batch_manager import run_manager
             report = run_manager(ROOT, sha, commit_time, run_dir, should_stop=stop.exists, emit=emit,
                                  cdp=cdp, profile=profile, stop_file=stop, image_model=image_model,
-                                 metadata_model=metadata_model)
-        return 0 if report["status"] in {"COMPLETE", "NO_WORK", "STOPPED"} else 1
+                                 metadata_model=metadata_model, temperature=temperature,
+                                 top_p=top_p, max_images=max_images)
+        return 0 if report["status"] in {"COMPLETE", "NO_WORK", "STOPPED", "LIMIT_REACHED"} else 1
     except Exception as exc:
         error = redact(exc)
         if isinstance(exc, ModuleNotFoundError):
@@ -99,6 +101,9 @@ class Desktop:
         self.offline_test = tk.BooleanVar(value=True)
         self.image_model = tk.StringVar(value="Nano Banana Pro")
         self.metadata_model = tk.StringVar(value=DEFAULT_METADATA_MODEL)
+        self.temperature = tk.StringVar(value="1.0")
+        self.top_p = tk.StringVar(value="0.95")
+        self.max_images = tk.StringVar()
         self.endpoint = tk.StringVar(value=os.environ.get("ADOBE_CDP", "http://127.0.0.1:9222"))
         self.git_status = tk.StringVar(value="Not checked")
         self.browser_status = tk.StringVar(value="Not checked")
@@ -183,6 +188,17 @@ class Desktop:
         self.metadata_picker = ttk.Combobox(options, values=(DEFAULT_METADATA_MODEL,),
                                             textvariable=self.metadata_model, width=23)
         self.metadata_picker.pack(side="left")
+        sampling = ttk.Frame(container)
+        sampling.pack(fill="x", pady=(0, 8))
+        self.generation_entries = []
+        for label, value in (("Temperature", self.temperature), ("Top-p", self.top_p),
+                             ("Max new images", self.max_images)):
+            ttk.Label(sampling, text=label).pack(side="left", padx=(0, 6))
+            entry = ttk.Entry(sampling, textvariable=value, width=7)
+            entry.pack(side="left", padx=(0, 14))
+            self.generation_entries.append(entry)
+        ttk.Label(sampling, text="Blank = unlimited").pack(side="left")
+        self.model_picker.bind("<<ComboboxSelected>>", lambda _event: self.refresh_generation_entries())
         self.test_check = ttk.Checkbutton(container, text="Offline test: validate r02 only (no generation or upload)",
                                          variable=self.offline_test)
         self.test_check.pack(anchor="w", pady=(0, 8))
@@ -196,6 +212,11 @@ class Desktop:
         self.log_text.configure(yscrollcommand=scroll.set)
         self.log_text.pack(side="left", fill="both", expand=True)
         window.after(75, self.poll)
+
+    def refresh_generation_entries(self):
+        pro = self.image_model.get() == "Nano Banana Pro"
+        for index, entry in enumerate(self.generation_entries):
+            entry.state(["disabled" if self.active or (index < 2 and not pro) else "!disabled"])
 
     def append(self, message, stamp=None):
         if stamp:
@@ -217,6 +238,29 @@ class Desktop:
             metadata_model = self.metadata_model.get().strip()
             if not testing and not metadata_model:
                 raise ValueError("Enter a Vertex AI metadata model ID.")
+            generation_args = []
+            if not testing:
+                limit = self.max_images.get().strip()
+                if limit:
+                    try:
+                        count = int(limit)
+                    except ValueError:
+                        count = 0
+                    if count < 1:
+                        raise ValueError("Max new images must be a positive whole number, or blank.")
+                    generation_args.extend(("--max-images", str(count)))
+                if self.image_model.get() == "Nano Banana Pro":
+                    for option, raw, maximum, label in (
+                        ("--temperature", self.temperature.get(), 2, "Temperature"),
+                        ("--top-p", self.top_p.get(), 1, "Top-p"),
+                    ):
+                        try:
+                            value = float(raw)
+                        except ValueError:
+                            value = -1
+                        if not 0 <= value <= maximum:
+                            raise ValueError(f"{label} must be between 0 and {maximum}.")
+                        generation_args.extend((option, str(value)))
             cdp = validate_cdp(self.endpoint.get().strip()) if not testing and self.endpoint.get().strip() else None
             self.run_dir = ROOT / "output" / "stock_manager" / "runs" / uuid4().hex
             self.run_dir.mkdir(parents=True)
@@ -224,6 +268,7 @@ class Desktop:
             self.append(str(exc))
             return
         self.active = True
+        self.refresh_generation_entries()
         self.start_button.state(["disabled"])
         self.retry_button.state(["disabled"])
         self.stop_button.state(["!disabled"])
@@ -248,6 +293,7 @@ class Desktop:
             args.append("--offline-test")
         else:
             args.extend(("--image-model", IMAGE_MODELS[self.image_model.get()], "--metadata-model", metadata_model))
+            args.extend(generation_args)
         if cdp:
             args.extend(("--cdp", cdp))
         elif not testing:
@@ -310,6 +356,7 @@ class Desktop:
                                  f"  •  Already uploaded {report.get('already_uploaded', 0)}")
             if "exit" in event:
                 self.active = False
+                self.refresh_generation_entries()
                 self.start_button.state(["!disabled"])
                 self.retry_button.state(["!disabled"] if event["exit"] else ["disabled"])
                 self.stop_button.state(["disabled"])
@@ -357,6 +404,9 @@ def main():
     parser.add_argument("--offline-test", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--image-model", choices=tuple(IMAGE_MODELS.values()), help=argparse.SUPPRESS)
     parser.add_argument("--metadata-model", help=argparse.SUPPRESS)
+    parser.add_argument("--temperature", type=float, default=1.0, help=argparse.SUPPRESS)
+    parser.add_argument("--top-p", type=float, default=0.95, help=argparse.SUPPRESS)
+    parser.add_argument("--max-images", type=int, help=argparse.SUPPRESS)
     parser.add_argument("--snapshot-baseline", action="store_true",
                         help="Skip the current incoming JSON snapshot in live runs, excluding the r02 test queue.")
     args = parser.parse_args()
@@ -364,7 +414,8 @@ def main():
         print(f"Snapshotted {snapshot_baseline(ROOT)} files; excluded {TEST_QUEUE}")
         return 0
     if args.worker:
-        return worker(args.worker, args.cdp, args.profile, args.offline_test, args.image_model, args.metadata_model)
+        return worker(args.worker, args.cdp, args.profile, args.offline_test, args.image_model, args.metadata_model,
+                      temperature=args.temperature, top_p=args.top_p, max_images=args.max_images)
     import tkinter as tk
     window = tk.Tk()
     icon = ROOT / "config" / "stock_manager.ico"

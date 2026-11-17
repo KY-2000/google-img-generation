@@ -129,6 +129,32 @@ class ManagerTests(unittest.TestCase):
         with Registry(self.root / "data/stock_pipeline.sqlite") as registry:
             self.assertEqual(registry.list_assets()[0]["metadata_model"], "gemini-3.8-flash")
 
+    def test_sampling_and_generation_limit_across_queues_then_resume(self):
+        self.write("a.json", self.production("First", two=True))
+        self.write("b.json", self.production("Second"))
+        self.generate = Mock(side_effect=self.generate)
+        first = self.run_batch(temperature=0.6, top_p=0.8, max_images=2)
+        self.assertEqual(first["status"], "LIMIT_REACHED", first)
+        self.assertEqual(self.generate.call_count, 2)
+        self.assertEqual(self.generate.call_args.kwargs["temperature"], 0.6)
+        self.assertEqual(self.generate.call_args.kwargs["top_p"], 0.8)
+        self.assertEqual(first["failed_assets"], 0)
+        self.assertFalse(self.uploads)
+        second = self.run_batch(max_images=1)
+        self.assertEqual(second["status"], "COMPLETE", second)
+        self.assertEqual(self.generate.call_count, 3)
+        self.assertEqual(len(self.uploads[0]["items"]), 3)
+
+    def test_failed_generation_consumes_one_slot_and_defers_the_next_asset(self):
+        self.write("a.json", self.production("Timeout", two=True))
+        self.failure = "Timeout"
+        first = self.run_batch(max_images=1)
+        self.assertEqual(first["status"], "BLOCKED", first)
+        self.assertEqual(len(self.calls), 1)
+        self.assertEqual(first["failed_assets"], 1)
+        self.assertEqual(first["generation_deferred"], 1)
+        self.assertFalse(self.uploads)
+
     def test_baseline_skips_old_files_but_not_new_or_changed_inputs(self):
         from stock_pipeline.manager_queues import discover
 

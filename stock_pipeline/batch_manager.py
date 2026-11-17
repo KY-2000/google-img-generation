@@ -122,7 +122,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 should_stop=lambda: False, emit=lambda event: None,
                 pipeline_factory=StockPipeline, uploader=upload_process,
                 cdp="http://127.0.0.1:9222", profile=None, stop_file=None, image_model=None,
-                metadata_model=None) -> dict:
+                metadata_model=None, temperature=1.0, top_p=0.95, max_images=None) -> dict:
     start = time.monotonic()
     log_path = run_dir / "activity.log"
     redact = redactor(root)
@@ -131,6 +131,14 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                   log_path=str(log_path), last_error="")
     db = root / "data" / "stock_pipeline.sqlite"
     receipts = root / "output" / "stock_manager" / "adobe_receipts"
+    report.update(max_images=max_images, generation_started=0, generation_deferred=0)
+
+    def reserve_image():
+        if max_images is not None and report["generation_started"] >= max_images:
+            report["generation_deferred"] += 1
+            return False
+        report["generation_started"] += 1
+        return True
 
     def log(message, phase=None, **fields):
         message = redact(message)
@@ -173,6 +181,10 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
         return rows
 
     try:
+        if not (0 <= temperature <= 2 and 0 <= top_p <= 1):
+            raise ValueError("Temperature must be 0–2 and Top-p must be 0–1.")
+        if max_images is not None and (type(max_images) is not int or max_images < 1):
+            raise ValueError("Max new images must be a positive whole number, or blank.")
         log(f"Scanning queues at {commit}", "Discovery")
         sources = discover(root, commit_time)
         report["scanned"] = len(sources)
@@ -247,14 +259,20 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 or os.environ.get("IMAGE_MODEL") or "gemini-3-pro-image"
             )
             report["image_model"] = selected_model
+            sampling = selected_model.rsplit("/", 1)[-1] != "gemini-nano-banana-2.1"
+            report.update(temperature=temperature if sampling else None, top_p=top_p if sampling else None)
             metadata_provider = "vertex" if metadata_model else legacy.get_default_metadata_provider(root)
             selected_metadata = metadata_model or legacy.get_default_metadata_model(root)
             report.update(metadata_model=selected_metadata, metadata_provider=metadata_provider)
             log(f"Image model: {selected_model}", "Generation")
+            log(f"Max new images: {max_images if max_images is not None else 'unlimited'}; "
+                + (f"Temperature: {temperature:g}; Top-p: {top_p:g}" if sampling else "sampling controls not sent"),
+                "Generation")
             log(f"Metadata model: {selected_metadata} ({metadata_provider})", "Metadata")
             pipeline = pipeline_factory(
                 project_root=root, registry=registry, config=config, progress=progress,
                 image_model=selected_model,
+                temperature=temperature, top_p=top_p,
                 metadata_provider=metadata_provider,
                 metadata_model=selected_metadata, usage_recorder=ledger.record,
                 redact_error=redact,
@@ -282,7 +300,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                                 total=report["total_assets"])
 
                         pipeline.run_queue(queue, resume=True, skip_staging=True, should_stop=should_stop,
-                                           asset_finished=checkpoint)
+                                           asset_finished=checkpoint, reserve_image=reserve_image)
                         refresh(record, registry, ids)
                     except Exception as exc:
                         refresh(record, registry, ids)
@@ -323,7 +341,16 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
             blockers = [q["source_file"] for q in report["queues"]
                         if q["queue_status"] not in {"READY_TO_UPLOAD", "UPLOADED_DRAFT"} | SKIPPED]
             if blockers:
-                report.update(status="BLOCKED", last_error="Upload blocked: " + ", ".join(blockers))
+                message = "Upload blocked: " + ", ".join(blockers)
+                status = "BLOCKED"
+                if report["generation_deferred"]:
+                    message = (f"Generation limit reached: {report['generation_deferred']} asset(s) deferred. "
+                               "Press Start to resume. " + message)
+                    if not report["failed_assets"] and not any(
+                        q["queue_status"] in {"FAILED", "INVALID"} for q in report["queues"]
+                    ):
+                        status = "LIMIT_REACHED"
+                report.update(status=status, last_error=message)
                 log(report["last_error"], "Quality gate")
                 return report
             if not batch:
