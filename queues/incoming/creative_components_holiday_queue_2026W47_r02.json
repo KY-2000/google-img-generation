@@ -1,0 +1,458 @@
+{
+  "run_id": "TF_creative_components_holiday_2026W47_r02",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-17T16:38:09+08:00",
+  "research": {
+    "finder": "creative_components",
+    "product_line": "commercial_background",
+    "campaign": "Christmas 2026 and Lunar New Year 2027",
+    "editorial_focus": "8 new substantive ideas with 8 separate NON-PHOTOGRAPHIC design media, differing from previous macro-photo holidays W47",
+    "screened_count": 36,
+    "approved_count": 8,
+    "previous_holiday_run": "TF_creative_components_holiday_2026W47_r01",
+    "similar_content_registry_checked": "11 user-reported rejections SC-001 through SC-011; SC-012 template not a rejection",
+    "source_urls": [
+      "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+      "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+      "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+      "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html",
+      "https://finland.fi/christmas/the-original-finnish-christmas-ornament/",
+      "https://asia.si.edu/whats-on/events/celebrations/lunar-new-year-celebration/",
+      "https://asia.si.edu/whats-on/blog/posts/memories-of-a-lunar-new-year-past/",
+      "https://apa.si.edu/picklesandtea/chinese-new-year-cake/",
+      "https://apa.si.edu/now/lunar-new-year/",
+      "https://www.info.gov.hk/gia/general/202605/15/P2026051400300.htm",
+      "https://docs.google.com/document/d/1_D-QBzmhaKmpC42T4hDLefIgOPQ96qHFauaBAm5BgaQ/edit",
+      "https://github.com/KY-2000/google-img-generation/blob/main/stock_pipeline/contracts.py",
+      "https://github.com/KY-2000/google-img-generation/blob/main/stock_pipeline/queue_ids.py"
+    ],
+    "content_date_notes": {
+      "christmas_2026": "2026-12-25",
+      "lunar_new_year_2027": "2027-02-06"
+    },
+    "sales_evidence": "No asset-level download, sales, royalty, or acceptance metrics verified. Scores are editorial hypotheses.",
+    "asset_ids": "All asset_id keys intentionally omitted for LOCAL queue_ids.py atomic allocator on first run; full strict schema validation occurs after IDs are allocated. No GitHub repo code edits.",
+    "technical_notes": "Each theme is an opaque raster design asset; no alpha, editable vector, or verified seamless/tile claims.",
+    "prompt_stats": {
+      "positive_word_min": 167,
+      "positive_word_max": 182,
+      "positive_word_mean": 173.5,
+      "positive_character_min": 1177,
+      "positive_character_max": 1282,
+      "positive_character_mean": 1212.6
+    }
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Winter Pinecone Scale Linocut Giftwrap Field",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "forest charcoal, muted spruce green, natural ivory, warm paper",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original reusable Christmas design texture for an artisan wrapping-paper and stationery brand. Depict a field of simplified pinecone scale clusters cut into two hand-carved linoleum printing blocks, with each cluster built from uneven nested wedges and short irregular gouge marks. Print in deep spruce green and near-black charcoal over matte warm ivory stock. The relief-print process must remain visible through small ink skips, natural registration drift, dry edge chatter and varied pressure; do not simulate a digitally perfect tile. Compose one horizontal 16:9 full-bleed artwork with organic clusters gathering along the right and lower margins while the middle-left remains quieter for later typography. Maintain consistent motif scale but avoid mirrored duplication and refrain from claiming the pattern is seamless. Art style: Hand-Carved Two-Ink Linocut, bold high-contrast graphic rhythm with physical ink texture and crisp carved negative shapes. Lighting is even like a flat archival print scan, with no photographic scene or cast-object shadow. No text, numbers, logos, watermarks, brand marks, stock labels, digital gradients or holiday clip-art icons.",
+      "negative_prompt": "fir-needle embossing, Christmas tree photo, smooth vector shapes, perfect repeating tile, lettering, logos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "Printmaking Pattern and Texture",
+        "material": "hand-carved linoleum blocks on uncoated paper, simplified pinecone scales",
+        "designer_persona": "Artisan gift-wrap and stationery designer",
+        "buyer_use_case": "Holiday wrapping-paper artwork and retail campaign background",
+        "design_placement": "Holiday wrapping-paper artwork and retail campaign background",
+        "design_function": "Cropped Christmas gift-wrap panel with typography added by designer",
+        "design_reuse_cases": [
+          "Cropped Christmas gift-wrap panel with typography added by designer",
+          "Bookshop or stationery website banner with festive printed texture"
+        ],
+        "integration_guidance": "Full-bleed crop-friendly ink field; visual rhythm not certified as seamless; quieter left central zone",
+        "reusability_rationale": "Detailed relief-carving chatter and intentionally irregular pinecone silhouettes provide greater art-direction value than basic clip-art foliage.",
+        "art_style": "Hand-Carved Two-Ink Linocut",
+        "art_style_zh": "双版手工油毡刻印",
+        "style_rationale": "Pinecone-scale cut marks rather than fir needle emboss, tinsel, stars, gingerbread or generic snowflakes; unique hand-cut block seams, no recycled original contributor artwork.",
+        "distinctiveness": "Pinecone-scale cut marks rather than fir needle emboss, tinsel, stars, gingerbread or generic snowflakes; unique hand-cut block seams, no recycled original contributor artwork.",
+        "copy_space": "Full-bleed crop-friendly ink field; visual rhythm not certified as seamless; quieter left central zone",
+        "metadata_seed_keywords": [
+          "winter pinecone scale linocut giftwrap field",
+          "printmaking pattern and texture",
+          "hand-carved linoleum blocks on uncoated paper, simplified pinecone scales",
+          "christmas"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html"
+        ],
+        "originality_notes": "Pinecone-scale cut marks rather than fir needle emboss, tinsel, stars, gingerbread or generic snowflakes; unique hand-cut block seams, no recycled original contributor artwork.",
+        "required_output_type": "opaque 4K raster illustration, no transparent alpha or editable vector claim"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Mulled Spice Expressive Ink Corner with Open Cream Field",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "sepia umber, pale parchment, muted cinnamon, warm gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Make a reusable illustrated Christmas-season corner component for hospitality menu designers and winter recipe newsletters. Use an energetic dark sepia brush and diluted brown-gray washes to describe three recognizable whole spice forms: a curling cinnamon-bark quill, a single radial star-anise pod, and two small clove buds. Each object should be legible through disciplined brush economy, with slight dry-brush breaks, wet-on-dry granulation and varied ink weight; retain accurate basic spice anatomy without copying a historical painting. Arrange the spice shapes in a small diagonal cluster occupying the lower right and extending slightly beyond the edge. Compose horizontally at 16:9, keeping most of the left and upper center an uninterrupted pale cream field suitable for separately typeset menu prices or a greeting. Art style: Expressive Monochrome Ink-Wash Illustration, contemporary calligraphic energy, subtle handcrafted imperfections and restrained sepia tonal values. A gentle paper tone is acceptable, but avoid loud decorative flowers or paint splatters across the copy zone. Even illustration lighting, no table, cups, people, lettering, watermark, logos or fake labels.",
+      "negative_prompt": "coffee and croissant, cups, fake calligraphy, magnolia branch, decorative flowers, oversaturated watercolor",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "Ink Illustration and Decorative Corner",
+        "material": "ink-wash illustration of cinnamon bark curls, star anise pod and clove stems",
+        "designer_persona": "Seasonal food and hospitality menu designer",
+        "buyer_use_case": "Winter menu banner and Christmas cafe newsletter header",
+        "design_placement": "Winter menu banner and Christmas cafe newsletter header",
+        "design_function": "Holiday mulled-drink menu with readable central typography",
+        "design_reuse_cases": [
+          "Holiday mulled-drink menu with readable central typography",
+          "Winter recipe newsletter header incorporating separately typeset text"
+        ],
+        "integration_guidance": "Asymmetric corner illustration with blank open cream background; suited for cropping and dark type overlay",
+        "reusability_rationale": "Hand-drawn angular botanical-spice geometry acts as a theme-specific frame that can support menu text without staged cups or photography.",
+        "art_style": "Expressive Monochrome Ink-Wash Illustration",
+        "art_style_zh": "单色写意水墨笔刷插画",
+        "style_rationale": "Actual beverage spices drawn in expressive ink; avoids gingerbread food-crust photo and croissant-with-coffee rejected still life.",
+        "distinctiveness": "Actual beverage spices drawn in expressive ink; avoids gingerbread food-crust photo and croissant-with-coffee rejected still life.",
+        "copy_space": "Asymmetric corner illustration with blank open cream background; suited for cropping and dark type overlay",
+        "metadata_seed_keywords": [
+          "mulled spice expressive ink corner with open cream field",
+          "ink illustration and decorative corner",
+          "ink-wash illustration of cinnamon bark curls, star anise pod and clove stems",
+          "christmas"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html"
+        ],
+        "originality_notes": "Actual beverage spices drawn in expressive ink; avoids gingerbread food-crust photo and croissant-with-coffee rejected still life.",
+        "required_output_type": "opaque 4K raster illustration, no transparent alpha or editable vector claim"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Modular Holiday Bell Arcs with Open Editorial Band",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "persimmon red, cobalt teal, warm mustard, off-white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a vertical 9:16 Christmas graphic component for a contemporary retail designer assembling campaign stories and printed gift-market flyers. Construct a playful yet disciplined arrangement of abstract hanging bell forms using only solid trapezoids, cropped semicircles, narrow rings and one compact clapper circle for each bell. Use a coherent midcentury-inspired palette of persimmon red, cobalt teal, muted mustard and warm off-white, without gradients or photographic textures. Vary the bell scale and orientation meaningfully, allowing three large cropped motifs to enter from the far left and upper right, while a central vertical column remains clean and quiet for a separately designed headline. Keep important contours outside phone interface margins and maintain measured spacing rather than a clip-art scatter. Art style: Midcentury Geometric Flat Editorial, strong shape reduction, purposeful negative space, exact flat fills and modest off-register printing warmth. Visual output remains a finished raster illustration; do not claim editable vector paths. No letters, numbers, icons resembling brands, bells with facial features, labels, watermarks or decorative template text.",
+      "negative_prompt": "photoreal bells, 3d chrome, hanging text, fake logo, gradient, random confetti, vector editability claim",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "Graphic Shapes and Banner Elements",
+        "material": "flat geometric circle-segments and trapezoids suggesting hanging holiday bells",
+        "designer_persona": "Contemporary retail campaign graphic designer",
+        "buyer_use_case": "Vertical holiday sale story and printed gift-market flyer",
+        "design_placement": "Vertical holiday sale story and printed gift-market flyer",
+        "design_function": "Vertical retail Christmas campaign story with editable headline area",
+        "design_reuse_cases": [
+          "Vertical retail Christmas campaign story with editable headline area",
+          "Printed seasonal craft market flyer with small graphic rhythm"
+        ],
+        "integration_guidance": "Group clear flat shapes at outer sides, unencumbered middle vertical copy band; raster image, not editable vector",
+        "reusability_rationale": "Geometric component language offers large-scale readability and flexible typography zone across poster and mobile formats.",
+        "art_style": "Midcentury Geometric Flat Editorial",
+        "art_style_zh": "中世纪现代主义几何平面插画",
+        "style_rationale": "Strongly reduced bell arc silhouettes rather than metallic tinsel, stars, ribbon or festive macro photography.",
+        "distinctiveness": "Strongly reduced bell arc silhouettes rather than metallic tinsel, stars, ribbon or festive macro photography.",
+        "copy_space": "Group clear flat shapes at outer sides, unencumbered middle vertical copy band; raster image, not editable vector",
+        "metadata_seed_keywords": [
+          "modular holiday bell arcs with open editorial band",
+          "graphic shapes and banner elements",
+          "flat geometric circle-segments and trapezoids suggesting hanging holiday bells",
+          "christmas"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html"
+        ],
+        "originality_notes": "Strongly reduced bell arc silhouettes rather than metallic tinsel, stars, ribbon or festive macro photography.",
+        "required_output_type": "opaque 4K raster illustration, no transparent alpha or editable vector claim"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Finnish Himmeli Straw Tetrahedron Technical Layout",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "wheat straw, soft slate, warm ivory, muted forest green",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce an original Christmas craft design illustration for a workshop landing page and sustainable holiday craft brochure, inspired by the Finnish himmeli tradition. Show one small suspended decorative structure assembled from slender hollow rye-straw segments joined at clean corners into a physically coherent family of linked tetrahedra. The straw tubes must be straight, consistent in diameter and convincingly joined; intersections cannot pass through one another and no impossible extra rods should appear. Render the structure using a carefully controlled isometric view with fine warm-gray contour lines, sparse muted-wheat flat shading, occasional delicate green accent and only a few soft projected alignment shadows. Compose a horizontal 16:9 artwork with the structure occupying the right third and large uninterrupted warm-ivory copy space on the left. Keep the assembly readable without labels or numbered build steps. Art style: Fine-Line Isometric Craft Illustration, airy architectural draftsmanship and precise geometrical clarity, intentionally drawn rather than photographic. Preserve a clean design grid implicitly without showing grid lines. No people, tables, Christmas trees, words, logos, watermarks, construction instructions or invented cultural symbols.",
+      "negative_prompt": "photoreal installation, glowing neon pipes, twisted straw, impossible joins, instruction labels, stock watermark",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "Craft Structure Technical Illustration",
+        "material": "hollow straight rye-straw segments joined into structurally coherent tetrahedral himmeli mobiles",
+        "designer_persona": "Craft workshop designer and design-school publisher",
+        "buyer_use_case": "Christmas craft course page hero and decorative craft brochure",
+        "design_placement": "Christmas craft course page hero and decorative craft brochure",
+        "design_function": "Workshop landing-page visual with an empty header space",
+        "design_reuse_cases": [
+          "Workshop landing-page visual with an empty header space",
+          "Sustainable Christmas craft brochure or tutorial cover illustration"
+        ],
+        "integration_guidance": "Hollow geometric frame clusters on right, flat quiet field on left; line work legible when reduced and crops preserve main structure",
+        "reusability_rationale": "Recognizable craft geometry and meaningful structural detail offer a culturally grounded visual for DIY learning and winter design.",
+        "art_style": "Fine-Line Isometric Craft Illustration",
+        "art_style_zh": "精细等轴测手作结构绘图",
+        "style_rationale": "Empty straw tetrahedra shown as technical structure, distinct from festive foil, paper tab, paper fan and 3D commercial product shots.",
+        "distinctiveness": "Empty straw tetrahedra shown as technical structure, distinct from festive foil, paper tab, paper fan and 3D commercial product shots.",
+        "copy_space": "Hollow geometric frame clusters on right, flat quiet field on left; line work legible when reduced and crops preserve main structure",
+        "metadata_seed_keywords": [
+          "finnish himmeli straw tetrahedron technical layout",
+          "craft structure technical illustration",
+          "hollow straight rye-straw segments joined into structurally coherent tetrahedral himmeli mobiles",
+          "christmas"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://finland.fi/christmas/the-original-finnish-christmas-ornament/",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html"
+        ],
+        "originality_notes": "Empty straw tetrahedra shown as technical structure, distinct from festive foil, paper tab, paper fan and 3D commercial product shots.",
+        "required_output_type": "opaque 4K raster illustration, no transparent alpha or editable vector claim"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Lion Dance Fringe Rhythm in Three-Layer Screenprint",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "vermilion red, warm golden ochre, deep peacock teal, natural cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a reusable Lunar New Year festival graphic for an event designer who needs a memorable banner and print-program cover. Depict a joyful abstract close motif of layered fringe associated with a traditional lion-dance costume: short curved fabric tassel shapes, scalloped trim and rounded repeating movement arcs, without showing a lion face, eyes, performers or a recognisable individual troupe design. Build the shapes as three independent hand-pulled screenprint ink layers in vermilion, golden ochre and deep peacock teal over natural-cream stock. Fine ink pinholes, slight edge registration shifts and modest silk-screen pressure marks should remain visible, while color fields read clearly at thumbnail size. Compose one horizontal 16:9 graphic with fringe rhythm sweeping up from lower right into the edge and leave the upper-left half calm and open for a separately typeset event title. Art style: Three-Color Hand-Pulled Screenprint, bold rhythmic silhouettes, tightly curated limited palette and tactile print irregularity. Use flat print illumination with no stage, crowd or photographic depth. No characters, words, faux Chinese lettering, logos, watermarks, fake vector promise or literal firework objects.",
+      "negative_prompt": "full lion head, copy of real costume artwork, stage performers, generic clouds, detailed characters, fake Chinese text",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Lunar New Year",
+        "component_category": "Cultural Celebration Print Component",
+        "material": "rhythmic bands of curved lion-dance costume fringe and rounded fabric trim in printed ink",
+        "designer_persona": "Cultural event designer and community publisher",
+        "buyer_use_case": "Lunar New Year festival landing banner and community event brochure",
+        "design_placement": "Lunar New Year festival landing banner and community event brochure",
+        "design_function": "Festival webpage hero with added date and venue lettering",
+        "design_reuse_cases": [
+          "Festival webpage hero with added date and venue lettering",
+          "Printed cultural event program cover or email banner"
+        ],
+        "integration_guidance": "Fringe sweeps through lower right, open copy-safe upper-left field; layers rasterized, no transparent claim",
+        "reusability_rationale": "Distinctive rhythm from fabric fringe, stencil gaps and registration shifts suggests lion dance without cloning costume designs.",
+        "art_style": "Three-Color Hand-Pulled Screenprint",
+        "art_style_zh": "三色手工丝网版画",
+        "style_rationale": "Abstract costume trim detail, not a full literal lion face or lantern, red packet, paper cut or lucky knot; printmaking focus.",
+        "distinctiveness": "Abstract costume trim detail, not a full literal lion face or lantern, red packet, paper cut or lucky knot; printmaking focus.",
+        "copy_space": "Fringe sweeps through lower right, open copy-safe upper-left field; layers rasterized, no transparent claim",
+        "metadata_seed_keywords": [
+          "lion dance fringe rhythm in three-layer screenprint",
+          "cultural celebration print component",
+          "rhythmic bands of curved lion-dance costume fringe and rounded fabric trim in printed ink",
+          "lunar new year"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://asia.si.edu/whats-on/events/celebrations/lunar-new-year-celebration/",
+          "https://apa.si.edu/now/lunar-new-year/",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html"
+        ],
+        "originality_notes": "Abstract costume trim detail, not a full literal lion face or lantern, red packet, paper cut or lucky knot; printmaking focus.",
+        "required_output_type": "opaque 4K raster illustration, no transparent alpha or editable vector claim"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Amber Nian Gao Watercolor Slices on Minimal Wash",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "warm amber, caramel brown, light rice-cream, muted tea",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original Lunar New Year ingredient illustration component for a specialty-food packaging designer and a vertical traditional-recipe story. Paint three believable simple slices of steamed sweet glutinous rice cake, nian gao, with softly rounded cut faces and a gentle amber-brown translucency. The internal density should look cohesive and slightly glutinous, with restrained darker caramel edges; avoid bread crumb, frosted cake, eggs, bean paste filling or any plated meal. Give each slice a different natural angle and loosely arranged spacing, drawn with transparent layered washes and finely controlled wet edges. Compose a portrait 9:16 airy background with two slices near the lower right and one modest slice at the outer bottom left. Preserve the entire upper half as a clean lightly tinted field for later typography and mobile UI margins. Art style: Transparent Layered Food Watercolor, realistic watercolor pigment pooling and delicately controlled contours with no inked outlines. Soft uniform paper illumination, warm welcoming understated food editorial mood. No product labels, invented words, printed recipes, logos, watermarks or cropped plate props.",
+      "negative_prompt": "gingerbread, bread crumb, jelly candy, cake frosting, plate, forks, table, letters, logo",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Lunar New Year",
+        "component_category": "Food Ingredient and Illustrated Motif",
+        "material": "translucent steamed glutinous rice cake slices, represented in watercolor pigment on blank pale ground",
+        "designer_persona": "Seasonal food packaging and recipe card designer",
+        "buyer_use_case": "Chinese New Year specialty-food label or vertical recipe social card",
+        "design_placement": "Chinese New Year specialty-food label or vertical recipe social card",
+        "design_function": "Traditional rice-cake food product card with overlay copy",
+        "design_reuse_cases": [
+          "Traditional rice-cake food product card with overlay copy",
+          "Lunar New Year cooking-class recipe story"
+        ],
+        "integration_guidance": "Three floating watercolor nian gao slice studies at bottom and right; blank pale upper-middle for product text",
+        "reusability_rationale": "Specific translucent rice-cake visual, hand-painted pigment edges and simple form provide clear culinary utility beyond generic festive decorations.",
+        "art_style": "Transparent Layered Food Watercolor",
+        "art_style_zh": "透明叠色食物水彩插画",
+        "style_rationale": "Illustrated amber rice cake texture, no gingerbread surface, mandarins, croissants or photographed meal still life.",
+        "distinctiveness": "Illustrated amber rice cake texture, no gingerbread surface, mandarins, croissants or photographed meal still life.",
+        "copy_space": "Three floating watercolor nian gao slice studies at bottom and right; blank pale upper-middle for product text",
+        "metadata_seed_keywords": [
+          "amber nian gao watercolor slices on minimal wash",
+          "food ingredient and illustrated motif",
+          "translucent steamed glutinous rice cake slices, represented in watercolor pigment on blank pale ground",
+          "lunar new year"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://apa.si.edu/picklesandtea/chinese-new-year-cake/",
+          "https://asia.si.edu/whats-on/blog/posts/memories-of-a-lunar-new-year-past/",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html"
+        ],
+        "originality_notes": "Illustrated amber rice cake texture, no gingerbread surface, mandarins, croissants or photographed meal still life.",
+        "required_output_type": "opaque 4K raster illustration, no transparent alpha or editable vector claim"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Festive Firecracker Paper Echoes in Kinetic Collage",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "vermillion paper, matte charcoal, amber yellow, creamy white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a reusable Lunar New Year festival paper-collage background for a cultural venue poster and a vertical social announcement. Use small, loose abstract fragments inspired by red celebration-paper wrappers after a festive event: curved vermilion paper strips, a few short square torn pieces, limited charcoal shadows and small amber paper accents. These are only nonfunctional decorative scraps; depict no assembled firecrackers, explosive devices, fuses, sparks or construction steps. Their visual motion should be suggested by an elegant clockwise sweep from the lower left toward the upper right, with believable overlapping paper thickness, torn fibrous edges, small bends and crisp shadows on an opaque warm-cream backing surface. Compose portrait 9:16, keeping a generous calm middle band for separately typeset festival copy and clear phone UI margins. Art style: Kinetic Handmade Paper Collage, bold directional cut shapes, sparse asymmetry and tasteful physical depth, clearly a flattened art composition rather than isolated transparent PNG pieces. Lighting is a simple soft overhead studio source supporting paper edges. No text, dates, logos, watermarks, lettering-like marks or branded patterns.",
+      "negative_prompt": "functional firecracker, explosives, fuse, flames, red envelope, paper fan, Chinese text, alpha grid",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Lunar New Year",
+        "component_category": "Collage Movement and Festival Embellishments",
+        "material": "nonfunctional discarded red celebration-paper wrappers as abstract curled strips and square fragments",
+        "designer_persona": "Festival visual identity designer and cultural venue publisher",
+        "buyer_use_case": "New Year vertical story, festival flyer panel and stage-program wrapper",
+        "design_placement": "New Year vertical story, festival flyer panel and stage-program wrapper",
+        "design_function": "Vertical cultural festival poster background with added event title",
+        "design_reuse_cases": [
+          "Vertical cultural festival poster background with added event title",
+          "Graphic social media announcement with dynamic peripheral ornaments"
+        ],
+        "integration_guidance": "Abstract loose curl strips along perimeter with calm centered field; finished flattened opaque raster, no alpha or editable layers",
+        "reusability_rationale": "Thick-to-thin curl edges and physical overlapping shadows make expressive real-paper movement usable for culturally grounded celebratory layouts.",
+        "art_style": "Kinetic Handmade Paper Collage",
+        "art_style_zh": "动势手工剪贴拼贴艺术",
+        "style_rationale": "Post-celebration non-functional wrapper shapes in dynamic paper collage, different from red packet, paper cut border, fan folds, and knot/tassel imagery.",
+        "distinctiveness": "Post-celebration non-functional wrapper shapes in dynamic paper collage, different from red packet, paper cut border, fan folds, and knot/tassel imagery.",
+        "copy_space": "Abstract loose curl strips along perimeter with calm centered field; finished flattened opaque raster, no alpha or editable layers",
+        "metadata_seed_keywords": [
+          "festive firecracker paper echoes in kinetic collage",
+          "collage movement and festival embellishments",
+          "nonfunctional discarded red celebration-paper wrappers as abstract curled strips and square fragments",
+          "lunar new year"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://apa.si.edu/now/lunar-new-year/",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html"
+        ],
+        "originality_notes": "Post-celebration non-functional wrapper shapes in dynamic paper collage, different from red packet, paper cut border, fan folds, and knot/tassel imagery.",
+        "required_output_type": "opaque 4K raster illustration, no transparent alpha or editable vector claim"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Auspicious Carp Ripple Relief on Matte Porcelain",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "bone ivory, mist jade, muted coral, pale celadon",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Design a reusable Lunar New Year visual component for a premium gifting website hero and a contemporary seasonal greeting layout. Build one simple recognisable carp silhouette and two broad water-ripple arcs as a shallow sculpted relief in matte porcelain-like ceramic, resting within a continuous bone-ivory ceramic surface. Its form should remain culturally respectful and calmly symbolic: a coherent fish body with balanced fins and tail, no dragon features, no human face and no imitation of historical collectible porcelain designs. Use gentle rounded relief edges, believable shallow thickness, subtle clay grain and soft celadon-tinted depressions; a tiny coral accent can trace one peripheral ridge. Compose horizontally in 16:9 and keep the entire motif on the lower right, partially emerging from the frame while the left half stays open and low contrast for separate headlines. Art style: Soft Matte Ceramic 3D Relief Illustration, clean modern sculptural geometry, restrained surfaces and softly shaded depth rather than product photography or metallic glamour. Diffused studio skylight gives coherent gentle cavity shadows. No text, year numbers, trademarks, labels, logos, watermarks, physical room setting or false vector claims.",
+      "negative_prompt": "live fish photo, blue-and-white historic imitation, overly ornate scales, glossy glaze, fortune lettering, text, logo",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Lunar New Year",
+        "component_category": "Stylized Ceramic 3D Background",
+        "material": "abstract shallow relief of carp body and rounded water ripple ridges in porcelain-like ceramic",
+        "designer_persona": "Premium New Year gifting brand visual designer",
+        "buyer_use_case": "Gift packaging website hero and Lunar New Year editorial banner",
+        "design_placement": "Gift packaging website hero and Lunar New Year editorial banner",
+        "design_function": "Premium greeting card or gifting landing page with text overlaid",
+        "design_reuse_cases": [
+          "Premium greeting card or gifting landing page with text overlaid",
+          "Seasonal product promotion header or branded presentation slide"
+        ],
+        "integration_guidance": "One shallow embossed carp motif along lower-right edge, open left copy field; original raster 3D still only",
+        "reusability_rationale": "Dimensional ceramic embossing with symbolic fish gives premium tactile space for seasonal branding; avoids default red-gold metallic decoration.",
+        "art_style": "Soft Matte Ceramic 3D Relief Illustration",
+        "art_style_zh": "柔和哑光陶瓷浮雕三维插画",
+        "style_rationale": "Relief carp plus concentric ceramic water rings in ivory/celadon, no red lantern, silk brocade, gilded red packet, foil or photographed clay surface.",
+        "distinctiveness": "Relief carp plus concentric ceramic water rings in ivory/celadon, no red lantern, silk brocade, gilded red packet, foil or photographed clay surface.",
+        "copy_space": "One shallow embossed carp motif along lower-right edge, open left copy field; original raster 3D still only",
+        "metadata_seed_keywords": [
+          "auspicious carp ripple relief on matte porcelain",
+          "stylized ceramic 3d background",
+          "abstract shallow relief of carp body and rounded water ripple ridges in porcelain-like ceramic",
+          "lunar new year"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://asia.si.edu/whats-on/events/celebrations/lunar-new-year-celebration/",
+          "https://asia.si.edu/whats-on/blog/posts/memories-of-a-lunar-new-year-past/",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html"
+        ],
+        "originality_notes": "Relief carp plus concentric ceramic water rings in ivory/celadon, no red lantern, silk brocade, gilded red packet, foil or photographed clay surface.",
+        "required_output_type": "opaque 4K raster illustration, no transparent alpha or editable vector claim"
+      }
+    }
+  ]
+}
