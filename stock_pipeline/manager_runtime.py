@@ -62,7 +62,7 @@ def recent_error_log(root: Path, current_run: Path | None) -> str:
                         latest_failure = line.strip()
         except OSError:
             pass
-        failed = status in {"FAILED", "BLOCKED", "UPLOAD_INCOMPLETE"}
+        failed = status in {"FAILED", "BLOCKED", "UPLOAD_INCOMPLETE", "RATE_LIMITED"}
         if not (failed or latest_failure or report.get("failed_assets") or (directory == current_run and tail)):
             continue
         lines = [

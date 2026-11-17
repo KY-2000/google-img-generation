@@ -306,6 +306,58 @@ class ManagerTests(unittest.TestCase):
         self.assertEqual((report["generated"], report["completed_assets"]), (2, 2))
         self.assertFalse(self.uploads)
 
+    def test_image_429_stops_queued_assets_and_resume_reuses_active_success(self):
+        from google.genai.errors import ClientError
+
+        queue = self.production("RateLimited", two=True)
+        queue["assets"][1]["theme"] = "ActivePeer"
+        queue["assets"].append(dict(queue["assets"][0], theme="Third"))
+        self.write("parallel.json", queue)
+        simultaneous = Barrier(2, timeout=4)
+        auto_stop = Event()
+        attempted = []
+        generate = self.generate
+
+        class ProgressEvents(list):
+            def append(self, event):
+                super().append(event)
+                if "stopping after active assets" in event["message"]:
+                    auto_stop.set()
+
+        def rate_limited_generation(**kwargs):
+            prompt = kwargs["prompt"]
+            attempted.append(prompt)
+            simultaneous.wait()
+            if "RateLimited" in prompt:
+                raise ClientError(429, {"error": {"status": "RESOURCE_EXHAUSTED", "message": "capacity"}})
+            if not auto_stop.wait(timeout=4):
+                raise AssertionError("429 did not trigger automatic stop")
+            return generate(**kwargs)
+
+        self.events = ProgressEvents()
+        self.generate = rate_limited_generation
+        pipeline = self.pipeline
+
+        def multi_attempt_pipeline(**kwargs):
+            worker = pipeline(**kwargs)
+            worker.max_attempts = 4
+            worker.retry_initial_wait = 0
+            return worker
+
+        self.pipeline = multi_attempt_pipeline
+        first = self.run_batch(max_workers=2)
+        self.assertEqual(first["status"], "RATE_LIMITED", first)
+        self.assertEqual((first["generated"], first["failed_assets"]), (1, 1))
+        self.assertEqual(len(attempted), 2)
+        self.assertFalse(self.uploads)
+
+        self.generate = generate
+        second = self.run_batch(max_workers=2)
+        self.assertEqual(second["status"], "COMPLETE", second)
+        self.assertEqual(second["generation_started"], 2)
+        self.assertEqual(sum("ActivePeer" in prompt for prompt in self.calls), 1)
+        self.assertEqual(len(self.uploads[0]["items"]), 3)
+
     def test_parallel_hydrogen_overload_routes_queued_assets_to_flash(self):
         from google.genai.errors import ServerError
 

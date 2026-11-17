@@ -34,12 +34,15 @@ once. Default is 1. Each asset runs image generation, QC, and metadata in
 order. The image limit applies to the whole run. When stopped, active assets
 finish and queued assets wait for the next run. Adobe upload starts after
 all selected queues pass the existing quality gate.
+The first image generation HTTP 429 stops the run automatically. Active assets
+can finish, and Adobe upload is skipped. The manager shows **Rate Limited**.
+Use **Retry Failed** later to resume and reuse images already saved.
 
 For Nano Banana Pro, **Temperature** defaults to 1.0 and **Top-p** to 0.95.
 Nano Banana 2.1 disables these controls. **Max new images** works with both:
 leave it blank for unlimited, or enter a positive whole number. The limit is
 per confirmed run, across the selected queues. One slot is used per asset that starts generation,
-even if it fails; the existing retries for that asset still apply. Images
+even if it fails. Images
 already on disk do not use a slot. Select that queue again to resume deferred assets.
 The combined upload waits if a selected queue still has unfinished work. The queue's
 resolution and one-image-per-asset behavior are unchanged.

@@ -39,6 +39,7 @@ class StockPipeline:
         config: dict[str, Any] | None = None,
         redact_error: Callable[[str], str] = str,
         metadata_fallback: Event | None = None,
+        on_image_rate_limit: Callable[[str], bool] | None = None,
     ):
         self.project_root = project_root
         self.registry = registry
@@ -48,6 +49,7 @@ class StockPipeline:
         self.metadata_provider = metadata_provider
         self.metadata_model = metadata_model
         self._metadata_fallback = metadata_fallback if metadata_fallback is not None else Event()
+        self.on_image_rate_limit = on_image_rate_limit
         config = config or {}
         image_config = config.get("image", {})
         metadata_config = config.get("metadata", {})
@@ -102,16 +104,24 @@ class StockPipeline:
             try:
                 return operation()
             except Exception as exc:
-                retry = legacy.is_retryable_error(exc) and attempt < self.max_attempts
+                rate_limited = (
+                    step == "image_generation" and self.on_image_rate_limit is not None
+                    and getattr(exc, "code", None) == 429
+                )
+                asset_id = logger.asset_dir.name
+                first_rate_limit = rate_limited and self.on_image_rate_limit(asset_id)
+                retry = not rate_limited and legacy.is_retryable_error(exc) and attempt < self.max_attempts
                 error = self.redact_error(str(exc))
                 logger.event(
                     f"{step}_attempt_failed", attempt=attempt, error=error,
                     retry_wait_seconds=wait_seconds if retry else None,
                 )
                 self._emit_progress(
-                    logger.asset_dir.name,
+                    asset_id,
                     f"{step.replace('_', ' ')} attempt {attempt} failed: {error}",
                 )
+                if first_rate_limit:
+                    self._emit_progress(asset_id, "Vertex AI image generation returned HTTP 429; stopping after active assets")
                 if not retry:
                     raise
                 if wait_seconds:

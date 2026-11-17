@@ -226,9 +226,23 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
     report.update(max_images=max_images, max_workers=max_workers, generation_started=0, generation_deferred=0)
     image_states = {}
     generation_lock = Lock()
+    rate_limit = Event()
+
+    def on_image_rate_limit(asset_id):
+        with generation_lock:
+            if rate_limit.is_set():
+                return False
+            report["rate_limited_asset"] = asset_id
+            rate_limit.set()
+            return True
+
+    def stop_generation():
+        return rate_limit.is_set() or should_stop()
 
     def reserve_image():
         with generation_lock:
+            if rate_limit.is_set():
+                return False
             if max_images is not None and report["generation_started"] >= max_images:
                 report["generation_deferred"] += 1
                 return False
@@ -395,6 +409,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 temperature=temperature, top_p=top_p,
                 metadata_provider=metadata_provider,
                 metadata_model=selected_metadata, redact_error=redact, metadata_fallback=Event(),
+                on_image_rate_limit=on_image_rate_limit,
             )
             pipeline = pipeline_factory(**pipeline_options, registry=registry,
                                         progress=progress, usage_recorder=ledger.record)
@@ -403,7 +418,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 events = Queue()
 
                 def process(aid):
-                    if should_stop():
+                    if stop_generation():
                         return None
                     # Each asset owns a connection. SQLite serializes its short
                     # writes while requests and image QC can overlap.
@@ -449,7 +464,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
 
             try:
                 for source, queue, ids, record in prepared:
-                    if should_stop():
+                    if stop_generation():
                         break
                     if record["completed_assets"] == len(ids):
                         continue
@@ -470,7 +485,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                                 total=report["total_assets"])
 
                         if max_workers == 1:
-                            pipeline.run_queue(queue, resume=True, skip_staging=True, should_stop=should_stop,
+                            pipeline.run_queue(queue, resume=True, skip_staging=True, should_stop=stop_generation,
                                                asset_finished=checkpoint, reserve_image=reserve_image)
                         else:
                             run_parallel(ids, checkpoint)
@@ -495,6 +510,12 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
             report["failed_assets"] = sum(q["failed_assets"] for q in report["queues"])
             report["completed_assets"] = sum(q["completed_assets"] for q in report["queues"])
             report["prepared"] = len(ready)
+            if rate_limit.is_set():
+                report.update(status="RATE_LIMITED", last_error=(
+                    f"{report['rate_limited_asset']}: Vertex AI image generation returned HTTP 429. "
+                    "Stopped after active assets; no upload started. Resume later to reuse generated images."
+                ))
+                return report
             if should_stop():
                 report.update(status="STOPPED", last_error="Stopped at asset boundary; no upload started")
                 return report
