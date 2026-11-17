@@ -8,6 +8,7 @@ const AI_LABEL = /Created using generative AI tools/i;
 export function createAdobeDraftAdapter({
   page, options, runDir, logger, clickFirstVisible, setFilesFromChooser,
   waitForNoUploadRemaining, waitForCsvApplication, setAdobeFileType, screenshot,
+  imageUploadTimeout = () => options.timeout,
 }) {
   const tiles = () => page.locator(".upload-tile__wrapper");
   const body = () => page.locator("body").innerText({ timeout: 15000 });
@@ -129,7 +130,7 @@ export function createAdobeDraftAdapter({
         // Record every file before the chooser dispatches this batch.
         recordAttempts();
       }, files, options.timeout);
-      await waitForNoUploadRemaining(page, options.timeout, before, files.length);
+      await waitForNoUploadRemaining(page, imageUploadTimeout(files), before, files.length);
       logger.write(`Adobe received image batch (${files.length} files): ${files.map(file => path.basename(file)).join(", ")}`);
     },
     async importCsv(rows) {

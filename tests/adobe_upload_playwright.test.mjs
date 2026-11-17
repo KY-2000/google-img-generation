@@ -60,6 +60,13 @@ function loadChunkFilesBySize() {
   return new Function(`${source.slice(start, end)}; return chunkFilesBySize;`)();
 }
 
+function loadUploadTransport() {
+  const source = fs.readFileSync(new URL("../tools/adobe_upload_playwright.mjs", import.meta.url), "utf8");
+  const start = source.indexOf("function chunkFilesBySize");
+  const end = source.indexOf("function nextRunDir", start);
+  return new Function(`${source.slice(start, end)}; return { usesLocalCdpFiles, imageUploadTransport };`)();
+}
+
 
 function loadScreenshot() {
   const testDir = path.dirname(fileURLToPath(import.meta.url));
@@ -114,6 +121,23 @@ test("waits for plural upload queue text and confirmed file-count increase", asy
 
   assert.equal(reads, 3);
   assert.match(result, /All \(232\)/);
+});
+
+test("local CDP sends larger PNG groups with a longer wait and leaves remote groups capped", () => {
+  const { usesLocalCdpFiles, imageUploadTransport } = loadUploadTransport();
+  const options = { cdp: "http://127.0.0.1:9222", localCdpFiles: true, timeout: 120000 };
+  assert.equal(usesLocalCdpFiles(options, "1.60.0"), true);
+  assert.equal(usesLocalCdpFiles(options, "1.57.0"), false);
+  assert.equal(usesLocalCdpFiles({ ...options, cdp: "http://edge.example:9222" }, "1.60.0"), false);
+  assert.equal(usesLocalCdpFiles({ ...options, localCdpFiles: false }, "1.60.0"), false);
+  const files = ["a.png", "b.png", "c.png", "d.png", "e.png"];
+  const size = () => 30_000_000;
+  const local = imageUploadTransport(options, true, size);
+  assert.deepEqual(local.split(files), [files.slice(0, 4), files.slice(4)]);
+  assert.equal(local.wait(files.slice(0, 4)), 600000);
+  const remote = imageUploadTransport(options, false, size);
+  assert.deepEqual(remote.split(files), files.map(file => [file]));
+  assert.equal(remote.wait(files), 120000);
 });
 
 

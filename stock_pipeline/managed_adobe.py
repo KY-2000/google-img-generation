@@ -110,6 +110,8 @@ def managed_upload_command(batch: Path, receipt_dir: Path, cdp: str | None, prof
     command = build_upload_command(
         batch / "adobe_stock_metadata.csv", batch, cdp=cdp, user_data_dir=profile,
     ) + ["--managed-receipts", str(receipt_dir)]
+    if cdp:
+        command += ["--local-cdp-files"]
     if stop_file:
         command += ["--managed-stop-file", str(stop_file)]
     return command

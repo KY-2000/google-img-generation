@@ -23,6 +23,7 @@ Image selection:
 Browser:
   --cdp <url>                  Connect to an already-running Edge/Chrome CDP endpoint,
                                for example http://127.0.0.1:9222.
+  --local-cdp-files            Use larger batches when the local CDP browser shares this filesystem.
   --user-data-dir <path>       Launch a persistent browser profile directory.
   --resume-after <count>       Skip a verified prefix of already-uploaded images.
   --channel <name>             Playwright Chromium channel. Default: msedge.
@@ -74,6 +75,7 @@ function parseArgs(argv) {
     else if (arg === "--csv") out.csv = next();
     else if (arg === "--images") out.images = next();
     else if (arg === "--cdp") out.cdp = next();
+    else if (arg === "--local-cdp-files") out.localCdpFiles = true;
     else if (arg === "--user-data-dir") out.userDataDir = next();
     else if (arg === "--resume-after") out.resumeAfter = Number(next());
     else if (arg === "--managed-receipts") out.managedReceipts = next();
@@ -218,6 +220,30 @@ function chunkFilesBySize(files, maxBytes, getSize = (file) => fs.statSync(file)
 
   if (current.length) chunks.push(current);
   return chunks;
+}
+
+function usesLocalCdpFiles(options, playwrightVersion) {
+  if (!options.localCdpFiles || !options.cdp || !playwrightVersion) return false;
+  const { hostname, protocol } = new URL(options.cdp);
+  const [major, minor] = playwrightVersion.split(".").map(Number);
+  return ["127.0.0.1", "localhost", "[::1]"].includes(hostname) &&
+    ["http:", "https:", "ws:", "wss:"].includes(protocol) &&
+    (major > 1 || (major === 1 && minor >= 58));
+}
+
+function imageUploadTransport(options, localCdpFiles, getSize = file => fs.statSync(file).size) {
+  return {
+    split(files) {
+      if (!options.cdp) return files.length ? [files] : [];
+      return chunkFilesBySize(files, localCdpFiles ? 120_000_000 : 45_000_000, getSize);
+    },
+    wait(files) {
+      if (!localCdpFiles) return options.timeout;
+      const bytes = files.reduce((sum, file) => sum + getSize(file), 0);
+      // The larger local selection can still take several minutes to reach Adobe.
+      return Math.max(options.timeout, Math.ceil(bytes / 1_000_000) * 5000);
+    },
+  };
 }
 
 function nextRunDir(runRoot) {
@@ -538,12 +564,22 @@ async function main() {
   logger.write(`params: csv=${csvPath}; images=${imagePaths.join(", ")}; url=${options.url}`);
 
   const { chromium } = await loadPlaywright();
+  let playwrightVersion;
+  try {
+    playwrightVersion = require("playwright/package.json").version;
+  } catch {
+    // A custom Playwright location can still use the compatible transfer size.
+  }
+  const localCdpFiles = usesLocalCdpFiles(options, playwrightVersion);
+  const transport = imageUploadTransport(options, localCdpFiles);
   let browser = null;
   let context = null;
 
   if (options.cdp) {
-    logger.write(`connect to existing browser over CDP: ${options.cdp}`);
-    browser = await chromium.connectOverCDP(options.cdp);
+    logger.write(`connect to existing browser over CDP: ${options.cdp} (${localCdpFiles ? "local files, 120 MB per batch" : "45 MB per batch"})`);
+    browser = localCdpFiles
+      ? await chromium.connectOverCDP(options.cdp, { isLocal: true })
+      : await chromium.connectOverCDP(options.cdp);
     context = browser.contexts()[0] || await browser.newContext();
   } else {
     const userDataDir = path.resolve(options.userDataDir || path.join(".pw-edge-adobe-profile"));
@@ -576,17 +612,14 @@ async function main() {
       throw new Error("Could not determine the initial Adobe uploaded-file count");
     }
     const initialFileCount = Number(initialFileCountMatch[1]);
-    const splitImageUploads = files => options.cdp
-      ? chunkFilesBySize(files, 45_000_000)
-      : files.length ? [files] : [];
-
     if (options.managedReceipts) {
       const { createAdobeDraftAdapter } = await import("./adobe_draft_adapter.mjs");
       await managedDraftUpload(rows, imagePaths, path.resolve(options.managedReceipts),
         createAdobeDraftAdapter({
           page, options, runDir, logger, clickFirstVisible, setFilesFromChooser,
           waitForNoUploadRemaining, waitForCsvApplication, setAdobeFileType, screenshot,
-        }), splitImageUploads);
+          imageUploadTimeout: transport.wait,
+        }), transport.split);
       logger.note("FINAL_STATUS: verified saved drafts; final Submit was not clicked");
       return;
     }
@@ -594,7 +627,7 @@ async function main() {
     if (options.resumeAfter) {
       logger.write(`resume after ${options.resumeAfter} verified image(s); ${pendingImagePaths.length} remain`);
     }
-    const imageChunks = splitImageUploads(pendingImagePaths);
+    const imageChunks = transport.split(pendingImagePaths);
     logger.write(
       `upload image files in ${imageChunks.length} batch(es): ${pendingImagePaths.map((file) => path.basename(file)).join(", ")}`,
     );
@@ -622,7 +655,7 @@ async function main() {
 
       logger.write(`wait for image batch ${index + 1}/${imageChunks.length} to finish`);
       textAfterImages = await waitForNoUploadRemaining(
-        page, options.timeout, verifiedFileCount, chunk.length,
+        page, transport.wait(chunk), verifiedFileCount, chunk.length,
       );
       verifiedFileCount += chunk.length;
       await screenshot(page, runDir, `03_images_uploaded_${index + 1}`, logger);
