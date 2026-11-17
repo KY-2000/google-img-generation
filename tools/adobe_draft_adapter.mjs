@@ -117,19 +117,20 @@ export function createAdobeDraftAdapter({
       return indices;
     },
     shouldStop,
-    async upload(file, recordAttempt) {
+    async upload(files, recordAttempts) {
       const before = await count();
+      logger.write(`Uploading image batch (${files.length} files)`);
       await clickFirstVisible(page.getByRole("button", { name: /^Upload$/ }), "top Upload button");
       await page.getByText(/Upload your files to start selling/i).waitFor({ state: "visible", timeout: 20000 });
       await setFilesFromChooser(page, async () => {
         const browse = page.getByRole("button", { name: /^Browse$/ });
         if (await browse.count()) await browse.first().click();
         else await page.getByText(/^Browse$/).click();
-        // Persist before Playwright receives permission to select the file.
-        recordAttempt();
-      }, [file], options.timeout);
-      await waitForNoUploadRemaining(page, options.timeout, before, 1);
-      logger.write("Adobe received " + path.basename(file));
+        // Record every file before the chooser dispatches this batch.
+        recordAttempts();
+      }, files, options.timeout);
+      await waitForNoUploadRemaining(page, options.timeout, before, files.length);
+      logger.write(`Adobe received image batch (${files.length} files): ${files.map(file => path.basename(file)).join(", ")}`);
     },
     async importCsv(rows) {
       const quote = cell => '"' + String(cell).replace(/"/g, '""') + '"';

@@ -117,12 +117,14 @@ a request already running may finish.
 ## Draft recovery and limits
 
 Managed upload reuses Playwright and reconciles exact filenames. It records
-an attempt before sending a file, imports CSV metadata, sets Illustrations
+an attempt for each file before sending an image batch (up to 45 MB per
+batch over CDP), imports CSV metadata, sets Illustrations
 and Generative AI, saves, then reloads to verify the filename, title,
 keywords, category and flags. It writes a saved receipt under
 `output/stock_manager/adobe_receipts/` **before** updating SQLite. If a
 database update fails, Start replays the receipt without sending the file
 again. Existing legacy `UPLOADED_DRAFT` states are respected.
+During upload, a stop request takes effect between image batches or drafts.
 
 - **Login expired:** sign in again with the same account/profile and retry.
   Local generation is reused.

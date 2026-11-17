@@ -576,6 +576,9 @@ async function main() {
       throw new Error("Could not determine the initial Adobe uploaded-file count");
     }
     const initialFileCount = Number(initialFileCountMatch[1]);
+    const splitImageUploads = files => options.cdp
+      ? chunkFilesBySize(files, 45_000_000)
+      : files.length ? [files] : [];
 
     if (options.managedReceipts) {
       const { createAdobeDraftAdapter } = await import("./adobe_draft_adapter.mjs");
@@ -583,7 +586,7 @@ async function main() {
         createAdobeDraftAdapter({
           page, options, runDir, logger, clickFirstVisible, setFilesFromChooser,
           waitForNoUploadRemaining, waitForCsvApplication, setAdobeFileType, screenshot,
-        }));
+        }), splitImageUploads);
       logger.note("FINAL_STATUS: verified saved drafts; final Submit was not clicked");
       return;
     }
@@ -591,9 +594,7 @@ async function main() {
     if (options.resumeAfter) {
       logger.write(`resume after ${options.resumeAfter} verified image(s); ${pendingImagePaths.length} remain`);
     }
-    const imageChunks = options.cdp
-      ? chunkFilesBySize(pendingImagePaths, 45_000_000)
-      : pendingImagePaths.length ? [pendingImagePaths] : [];
+    const imageChunks = splitImageUploads(pendingImagePaths);
     logger.write(
       `upload image files in ${imageChunks.length} batch(es): ${pendingImagePaths.map((file) => path.basename(file)).join(", ")}`,
     );

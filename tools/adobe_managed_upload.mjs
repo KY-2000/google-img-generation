@@ -36,7 +36,7 @@ function recordNewAttempt(file, value) {
   }
 }
 
-export async function managedDraftUpload(rows, imagePaths, receipts, adobe) {
+export async function managedDraftUpload(rows, imagePaths, receipts, adobe, splitUploads) {
   fs.mkdirSync(receipts, { recursive: true });
   const files = new Map(imagePaths.map(file => [path.basename(file), file]));
   const entries = rows.map(row => {
@@ -83,13 +83,17 @@ export async function managedDraftUpload(rows, imagePaths, receipts, adobe) {
     }
   }
   const remaining = pending.filter(item => !item.saved);
-  for (const item of remaining) {
-    if (adobe.shouldStop?.()) throw new Error("Managed upload stopped at a file boundary");
-    if (!inventory.has(item.row.filename)) {
-      await adobe.upload(item.image, () => {
+  const unsent = new Map(remaining.filter(item => !inventory.has(item.row.filename)).map(item => [item.image, item]));
+  const images = [...unsent.keys()];
+  const chunks = images.length ? (splitUploads ? splitUploads(images) : [images]) : [];
+  for (const chunk of chunks) {
+    if (adobe.shouldStop?.()) throw new Error("Managed upload stopped between image batches");
+    await adobe.upload(chunk, () => {
+      for (const image of chunk) {
+        const item = unsent.get(image);
         recordNewAttempt(item.attemptFile, { ...item.identity, attempted_at: new Date().toISOString() });
-      });
-    }
+      }
+    });
   }
   if (adobe.shouldStop?.()) throw new Error("Managed upload stopped before metadata import");
   if (remaining.length) await adobe.importCsv(remaining.map(item => item.row));

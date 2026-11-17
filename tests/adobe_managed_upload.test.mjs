@@ -54,6 +54,30 @@ test("Adobe inventory rejects ambiguous targets and an incomplete page count", a
   await assert.rejects(incomplete.inventory(new Set(["AST990103.png"])), /read 2 of 3 drafts/);
 });
 
+test("batch adapter records attempts before selecting multiple images and waits for every slot", async () => {
+  const actions = [];
+  const files = ["AST990102.png", "AST990103.png"];
+  const page = {
+    url: () => "https://contributor.stock.adobe.com/en/uploads",
+    locator: () => ({ innerText: async () => "File types: All (233)" }),
+    getByRole: () => ({ count: async () => 1, first: () => ({ click: async () => {} }) }),
+    getByText: () => ({ waitFor: async () => {} }),
+  };
+  const adapter = createAdobeDraftAdapter({
+    page, options: { timeout: 2000 }, logger: { write() {} },
+    clickFirstVisible: async () => {},
+    setFilesFromChooser: async (_page, click, selected) => {
+      await click();
+      actions.push(selected);
+    },
+    waitForNoUploadRemaining: async (_page, _timeout, before, expected) => {
+      actions.push([before, expected]);
+    },
+  });
+  await adapter.upload(files, () => actions.push("attempts"));
+  assert.deepEqual(actions, ["attempts", files, [233, 2]]);
+});
+
 function fixture(t) {
   const dir = fs.mkdtempSync(path.join(os.tmpdir(), "stock-upload-"));
   t.after(() => fs.rmSync(dir, { recursive: true, force: true }));
@@ -68,16 +92,20 @@ function fixture(t) {
   });
   const inventory = new Set();
   const uploads = [];
+  const groups = [];
   const imported = [];
   const verified = new Set();
   const adobe = {
     async inventory() { return inventory; },
-    async upload(file, checkpoint) {
-      const filename = path.basename(file);
+    async upload(group, checkpoint) {
       checkpoint();
-      assert.ok(fs.existsSync(path.join(receipts, filename + ".attempt.json")));
-      uploads.push(filename);
-      inventory.add(filename);
+      const filenames = group.map(file => path.basename(file));
+      groups.push(filenames);
+      for (const filename of filenames) {
+        assert.ok(fs.existsSync(path.join(receipts, filename + ".attempt.json")));
+        uploads.push(filename);
+        inventory.add(filename);
+      }
     },
     async importCsv(pending) { imported.push(pending.map(row => row.filename)); },
     async verifySaved(row) {
@@ -86,7 +114,7 @@ function fixture(t) {
     async saveAndVerify(row) { verified.add(row.filename); },
     confirmed() {},
   };
-  return { rows, files, receipts, inventory, uploads, imported, verified, adobe };
+  return { rows, files, receipts, inventory, uploads, groups, imported, verified, adobe };
 }
 
 test("resume reconciles partial images and saved drafts by name, not prefix", async t => {
@@ -102,6 +130,7 @@ test("resume reconciles partial images and saved drafts by name, not prefix", as
   f.adobe.saveAndVerify = realSave;
   await managedDraftUpload(f.rows, f.files, f.receipts, f.adobe);
   assert.deepEqual(f.uploads, f.rows.map(row => row.filename));
+  assert.deepEqual(f.groups, [f.rows.map(row => row.filename)]);
   assert.deepEqual(f.imported[1], [f.rows[1].filename]);
   await managedDraftUpload(f.rows, f.files, f.receipts, f.adobe);
   assert.equal(f.imported.length, 2);
@@ -110,14 +139,27 @@ test("resume reconciles partial images and saved drafts by name, not prefix", as
 test("missing attempted file stops rather than uploading again", async t => {
   const f = fixture(t);
   const upload = f.adobe.upload;
-  f.adobe.upload = async (_file, checkpoint) => {
+  f.adobe.upload = async (group, checkpoint) => {
     checkpoint();
+    f.inventory.add(path.basename(group[0]));
     throw new Error("Disconnected before Adobe confirmed receipt");
   };
   await assert.rejects(managedDraftUpload(f.rows, f.files, f.receipts, f.adobe), /Disconnected/);
   f.adobe.upload = upload;
   await assert.rejects(managedDraftUpload(f.rows, f.files, f.receipts, f.adobe), /Previous upload is not visible/);
   assert.equal(f.uploads.length, 0);
+});
+
+test("stop between upload groups leaves the next group without an attempt", async t => {
+  const f = fixture(t);
+  f.adobe.shouldStop = () => f.groups.length > 0;
+  await assert.rejects(
+    managedDraftUpload(f.rows, f.files, f.receipts, f.adobe, files => files.map(file => [file])),
+    /stopped between image batches/,
+  );
+  assert.deepEqual(f.groups, [[f.rows[0].filename]]);
+  assert.ok(fs.existsSync(path.join(f.receipts, f.rows[0].filename + ".attempt.json")));
+  assert.ok(!fs.existsSync(path.join(f.receipts, f.rows[1].filename + ".attempt.json")));
 });
 
 test("adopts a pre-existing verified draft without sending its file or metadata again", async t => {
