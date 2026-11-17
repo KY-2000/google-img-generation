@@ -129,10 +129,13 @@ export function createAdobeDraftAdapter({
       throw new Error(`Adobe category differs from CSV for ${row.filename}: expected ${expected}, found ${actual || "(empty)"}`);
     }
   };
-  const reload = async () => {
+  const reload = async ({ afterCsv = false } = {}) => {
     await page.reload({ waitUntil: "domcontentloaded", timeout: options.timeout });
-    await page.waitForLoadState("networkidle", { timeout: Math.min(options.timeout, 15000) }).catch(() => {});
+    if (afterCsv) {
+      await page.waitForLoadState("networkidle", { timeout: Math.min(options.timeout, 15000) }).catch(() => {});
+    }
     await page.getByText(/File types:/i).first().waitFor({ state: "visible", timeout: options.timeout });
+    await tiles().first().waitFor({ state: "visible", timeout: options.timeout });
   };
   const verifySaved = async row => {
     await reload();
@@ -180,7 +183,7 @@ export function createAdobeDraftAdapter({
       await waitForCsvApplication(page, rows, options.timeout, logger);
       const refresh = page.getByRole("button", { name: /Refresh to view changes/i });
       if (await refresh.count()) await refresh.first().click();
-      await reload();
+      await reload({ afterCsv: true });
       indices = await inventory(new Set(rows.map(row => row.filename)));
     },
     verifySaved,

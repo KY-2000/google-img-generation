@@ -91,11 +91,24 @@ test("saved category uses Adobe's label, independent of its internal option ID",
   const { adapter, page } = paginatedAdapter([[row.filename]]);
   const originalLocator = page.locator;
   let label = "Graphic Resources";
-  page.reload = async () => {};
-  page.waitForLoadState = async () => {};
+  let reloaded = false;
+  let tilesReady = false;
+  page.reload = async () => { reloaded = true; tilesReady = false; };
+  page.waitForLoadState = async () => assert.fail("saved draft verification must not wait for networkidle");
   page.getByText = () => ({ first: () => ({ waitFor: async () => {} }) });
   page.getByRole = role => ({ count: async () => role === "checkbox" ? 1 : 0, isChecked: async () => true });
   page.locator = selector => {
+    if (selector === ".upload-tile__wrapper") {
+      const tiles = originalLocator(selector);
+      return {
+        ...tiles,
+        first: () => ({ waitFor: async () => { tilesReady = true; } }),
+        nth: index => {
+          assert.ok(!reloaded || tilesReady, "wait for the reloaded grid before selecting a draft");
+          return tiles.nth(index);
+        },
+      };
+    }
     if (selector.includes('select[name="category"]')) {
       return { count: async () => 1, inputValue: async () => "10432",
         evaluate: async inspect => inspect({ selectedOptions: [{ label }] }) };
