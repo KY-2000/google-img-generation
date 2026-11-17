@@ -13,7 +13,9 @@ from datetime import datetime
 from pathlib import Path
 from uuid import uuid4
 
-from stock_pipeline.manager_runtime import cdp_connected, git_sync, manager_lock, redactor, validate_cdp
+from stock_pipeline.manager_runtime import (
+    cdp_connected, git_sync, manager_lock, redactor, validate_cdp, verify_reviewed_checkout,
+)
 from stock_pipeline.manager_baseline import TEST_QUEUE, snapshot_baseline
 
 ROOT = Path(__file__).resolve().parent
@@ -61,19 +63,50 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
             cdp = validate_cdp(cdp)
         with manager_lock(ROOT / "output" / "stock_manager" / "manager.lock"):
             log("Checking clean main and fetching GitHub…", phase="Git sync", github="Checking")
-            sha, commit_time = git_sync(ROOT)
+            changes = {}
+            sha, commit_time = git_sync(ROOT, incoming_changes=changes)
             log(f"Git synced: {sha}", phase="Git sync", github="Connected", commit=sha)
+            from stock_pipeline.batch_manager import preview_queues, run_manager
+            rows, _ = preview_queues(ROOT, commit_time, changes)
+            pending = [row["source_file"] for row in rows if row["selectable"]]
+            request = run_dir / "start.request"
+            disconnected = threading.Event()
+
+            def watch_window():
+                try:
+                    os.read(sys.stdin.fileno(), 1)
+                except (AttributeError, OSError, ValueError):
+                    pass
+                finally:
+                    disconnected.set()
+
+            threading.Thread(target=watch_window, daemon=True).start()
+            log(f"{len(pending)} runnable queue(s) awaiting review", phase="Queue preview",
+                preview={"queues": rows, "max_images": max_images})
+            while not (stop.exists() or request.exists() or disconnected.wait(0.15)):
+                pass
+            if stop.exists() or disconnected.is_set():
+                log("Queue preview closed.", phase="Preview closed")
+                return 0
+            count = int(request.read_text(encoding="ascii"))
+            if not 1 <= count <= len(pending):
+                raise ValueError("Choose a valid number of queues and check the preview again.")
+            verify_reviewed_checkout(ROOT, sha)
+            current_rows, sources = preview_queues(ROOT, commit_time, changes)
+            if current_rows != rows:
+                raise RuntimeError("Queues or local progress changed since preview. Check queues again.")
+            selected = set(pending[:count])
             if cdp:
                 connected = cdp_connected(cdp)
                 log("Edge CDP is reachable" if connected else "Edge CDP is not reachable; upload will need Edge",
                     browser="Connected" if connected else "Disconnected")
             else:
                 log("Adobe will use the persistent browser profile at the upload stage", browser="Profile mode")
-            from stock_pipeline.batch_manager import run_manager
             report = run_manager(ROOT, sha, commit_time, run_dir, should_stop=stop.exists, emit=emit,
                                  cdp=cdp, profile=profile, stop_file=stop, image_model=image_model,
                                  metadata_model=metadata_model, temperature=temperature,
-                                 top_p=top_p, max_images=max_images)
+                                 top_p=top_p, max_images=max_images,
+                                 sources=[source for source in sources if source.source_file in selected])
         return 0 if report["status"] in {"COMPLETE", "NO_WORK", "STOPPED", "LIMIT_REACHED"} else 1
     except Exception as exc:
         error = redact(exc)
@@ -98,6 +131,7 @@ class Desktop:
         self.active = False
         self.closing = False
         self.run_dir = None
+        self.preview_window = None
         self.offline_test = tk.BooleanVar(value=True)
         self.image_model = tk.StringVar(value="Nano Banana Pro")
         self.metadata_model = tk.StringVar(value=DEFAULT_METADATA_MODEL)
@@ -162,7 +196,7 @@ class Desktop:
 
         controls = ttk.Frame(container)
         controls.pack(fill="x", pady=(0, 8))
-        self.start_button = ttk.Button(controls, text="Start", command=self.start, style="Start.TButton")
+        self.start_button = ttk.Button(controls, text="Run Offline Test", command=self.start, style="Start.TButton")
         self.start_button.pack(side="left", padx=(0, 8))
         self.stop_button = ttk.Button(controls, text="Stop After Current Asset", command=self.stop, state="disabled")
         self.stop_button.pack(side="left", padx=(0, 8))
@@ -200,7 +234,7 @@ class Desktop:
         ttk.Label(sampling, text="Blank = unlimited").pack(side="left")
         self.model_picker.bind("<<ComboboxSelected>>", lambda _event: self.refresh_generation_entries())
         self.test_check = ttk.Checkbutton(container, text="Offline test: validate r02 only (no generation or upload)",
-                                         variable=self.offline_test)
+                                         variable=self.offline_test, command=self.refresh_start_button)
         self.test_check.pack(anchor="w", pady=(0, 8))
         ttk.Label(container, text="Activity log").pack(anchor="w")
         logs = ttk.Frame(container)
@@ -212,6 +246,9 @@ class Desktop:
         self.log_text.configure(yscrollcommand=scroll.set)
         self.log_text.pack(side="left", fill="both", expand=True)
         window.after(75, self.poll)
+
+    def refresh_start_button(self):
+        self.start_button.configure(text="Run Offline Test" if self.offline_test.get() else "Check Queues")
 
     def refresh_generation_entries(self):
         pro = self.image_model.get() == "Nano Banana Pro"
@@ -305,7 +342,7 @@ class Desktop:
     def read_worker(self, args):
         redact = redactor(ROOT)
         try:
-            with subprocess.Popen(args, cwd=ROOT, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
+            with subprocess.Popen(args, cwd=ROOT, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
                                   text=True, encoding="utf-8", errors="replace",
                                   creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0)) as child:
                 for line in child.stdout:
@@ -321,6 +358,129 @@ class Desktop:
                 self.events.put({"exit": child.wait()})
         except Exception as exc:
             self.events.put({"message": redact(exc), "exit": 1})
+
+    def show_preview(self, preview):
+        from tkinter import ttk
+
+        rows = preview["queues"]
+        pending = [row for row in rows if row["selectable"]]
+        new = sum(row["git_change"] == "New" for row in rows)
+        updated = sum(row["git_change"] == "Updated" for row in rows)
+        invalid = sum(row["status"] == "Invalid" for row in rows)
+        dialog = self.preview_window = self.tk.Toplevel(self.window)
+        dialog.title("Queue Preview")
+        dialog.geometry("1070x550")
+        dialog.minsize(760, 405)
+        dialog.transient(self.window)
+        dialog.grab_set()
+        panel = ttk.Frame(dialog, padding=16)
+        panel.pack(fill="both", expand=True)
+        ttk.Label(panel, text=f"Pulled {new} new and {updated} updated JSON files  •  "
+                             f"{len(pending)} runnable queues / {sum(row['total'] for row in pending)} images"
+                             f"  •  {invalid} invalid").pack(anchor="w", pady=(0, 10))
+        table_box = ttk.Frame(panel)
+        table_box.pack(fill="both", expand=True)
+        table = ttk.Treeview(table_box, show="headings", selectmode="browse",
+                             columns=("file", "themes", "git", "status", "total", "remaining"))
+        scroll = ttk.Scrollbar(table_box, orient="vertical", command=table.yview)
+        table.configure(yscrollcommand=scroll.set)
+        scroll.pack(side="right", fill="y")
+        table.pack(side="left", fill="both", expand=True)
+        for key, title, width in (
+            ("file", "JSON file", 275), ("themes", "Themes", 320), ("git", "Git", 70),
+            ("status", "Status", 135), ("total", "Images", 65), ("remaining", "To generate", 95),
+        ):
+            table.heading(key, text=title)
+            table.column(key, width=width, minwidth=55, stretch=key in {"file", "themes"})
+        table.tag_configure("planned", background="#dcecf3")
+        visible = [row for row in rows if row["selectable"] or row["git_change"] or row["error"]]
+        for index, row in enumerate(visible):
+            table.insert("", "end", iid=str(index), values=(
+                row["source_file"].removeprefix("queues/incoming/"), ", ".join(row["themes"]),
+                row["git_change"], row["status"], row["total"] if row["total"] else "—",
+                row["new_images"] if row["selectable"] else "—",
+            ))
+        detail = self.tk.Text(panel, height=3, wrap="word", font=("Segoe UI", 10), state="disabled")
+        detail.pack(fill="x", pady=(6, 6))
+
+        def show_details(_event=None):
+            selection = table.selection()
+            detail.configure(state="normal")
+            detail.delete("1.0", "end")
+            if selection:
+                row = visible[int(selection[0])]
+                detail.insert("end", "\n".join(filter(None, [
+                    row["source_file"], ", ".join(row["themes"]), row["error"],
+                ])))
+            detail.configure(state="disabled")
+
+        table.bind("<<TreeviewSelect>>", show_details)
+        controls = ttk.Frame(panel)
+        controls.pack(fill="x")
+        ttk.Label(controls, text="Run first").pack(side="left")
+        count = self.tk.StringVar(value=str(len(pending)))
+        picker = ttk.Spinbox(controls, from_=1, to=max(1, len(pending)), textvariable=count, width=6)
+        picker.pack(side="left", padx=6)
+        ttk.Label(controls, text="JSON files").pack(side="left")
+        summary = ttk.Label(controls)
+        summary.pack(side="left", padx=12)
+
+        def chosen_count():
+            try:
+                return int(count.get())
+            except ValueError:
+                return 0
+
+        def close_preview():
+            self.stop()
+
+        def confirm():
+            value = chosen_count()
+            if not 1 <= value <= len(pending):
+                return
+            try:
+                temporary = self.run_dir / "start.tmp"
+                temporary.write_text(str(value), encoding="ascii")
+                temporary.replace(self.run_dir / "start.request")
+            except OSError as exc:
+                self.append(f"Could not start: {exc}")
+                return
+            self.dismiss_preview()
+            self.stage.set("Starting selected queues")
+
+        ttk.Button(controls, text="Cancel" if pending else "Close", command=close_preview).pack(side="right")
+        start = ttk.Button(controls, text="Start Selected", command=confirm, style="Start.TButton")
+        if pending:
+            start.pack(side="right", padx=8)
+        else:
+            picker.state(["disabled"])
+
+        def update_selection(*_args):
+            value = chosen_count()
+            valid = 1 <= value <= len(pending)
+            start.state(["!disabled" if valid else "disabled"])
+            chosen = pending[:value] if valid else []
+            selected_paths = {row["source_file"] for row in chosen}
+            for index, row in enumerate(visible):
+                table.item(str(index), tags=("planned",) if row["source_file"] in selected_paths else ())
+            if valid:
+                images = sum(row["new_images"] for row in chosen)
+                if preview["max_images"] is not None:
+                    images = min(images, preview["max_images"])
+                summary.configure(text=f"{sum(row['total'] for row in chosen)} images  •  "
+                                       f"{images} estimated new")
+            else:
+                summary.configure(text="Choose a queue count" if pending else "No runnable queues")
+
+        count.trace_add("write", update_selection)
+        update_selection()
+        dialog.protocol("WM_DELETE_WINDOW", close_preview)
+        dialog.bind("<Escape>", lambda _event: close_preview())
+
+    def dismiss_preview(self):
+        if self.preview_window:
+            self.preview_window.destroy()
+            self.preview_window = None
 
     def poll(self):
         for _ in range(100):
@@ -354,7 +514,10 @@ class Desktop:
                     self.current.set(f"Generated {report.get('generated', 0)}  •  Failed {report.get('failed_assets', 0)}"
                                  f"  •  Drafts saved {report.get('uploaded', 0)}"
                                  f"  •  Already uploaded {report.get('already_uploaded', 0)}")
+            if event.get("preview") and not (self.closing or (self.run_dir / "stop.request").exists()):
+                self.show_preview(event["preview"])
             if "exit" in event:
+                self.dismiss_preview()
                 self.active = False
                 self.refresh_generation_entries()
                 self.start_button.state(["!disabled"])
@@ -378,6 +541,7 @@ class Desktop:
             except OSError as exc:
                 self.append(f"Could not request stop: {exc}")
                 return
+            self.dismiss_preview()
             self.stop_button.state(["disabled"])
             self.append("Stop requested. Waiting for the current operation to reach a safe boundary.")
 

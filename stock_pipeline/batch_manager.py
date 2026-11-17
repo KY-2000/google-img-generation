@@ -1,4 +1,4 @@
-"""Sequential generation and one gated, resumable Adobe upload per Start."""
+"""Queue preview, sequential generation and one gated, resumable Adobe upload."""
 from __future__ import annotations
 
 import json
@@ -6,6 +6,8 @@ import os
 import re
 import subprocess
 import time
+from collections import defaultdict
+from contextlib import nullcontext
 from pathlib import Path
 from uuid import uuid4
 
@@ -14,10 +16,10 @@ import main as legacy
 from .ai_usage import UsageLedger
 from .managed_adobe import build_combined_batch, managed_upload_command, reconcile_receipts
 from .manager_baseline import TEST_QUEUE
-from .manager_queues import adopt_existing_finder_run, discover, runtime_queue
+from .manager_queues import QueueSource, adopt_existing_finder_run, discover, runtime_queue
 from .manager_runtime import redactor
 from .orchestrator import StockPipeline
-from .registry import Registry, now_iso
+from .registry import Registry, now_iso, verify_asset_identity
 
 DONE = {"METADATA_READY", "READY_TO_STAGE", "STAGED", "READY_TO_UPLOAD", "UPLOADED_DRAFT"}
 FAILED = {"FAILED", "IMAGE_QC_FAILED", "METADATA_QC_FAILED"}
@@ -118,11 +120,91 @@ def upload_process(root, batch, receipt_dir, *, cdp, profile, log, stop_file=Non
             raise RuntimeError("Adobe uploader stopped; confirmed drafts were retained. See activity log")
 
 
+def preview_queues(root: Path, commit_time: str, changes=None) -> tuple[list[dict], list[QueueSource]]:
+    sources = discover(root, commit_time)
+    redact = redactor(root)
+    db = root / "data" / "stock_pipeline.sqlite"
+    rows = []
+    changes = changes or {}
+    with Registry(db, read_only=True) if db.is_file() else nullcontext() as registry:
+        assets = defaultdict(list)
+        identities = {}
+        tables = set()
+        if registry:
+            tables = {row[0] for row in registry.connection.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+            if "assets" in tables:
+                for row in registry.connection.execute("SELECT * FROM assets ORDER BY asset_id"):
+                    assets[row["run_id"]].append(dict(row))
+            if "manager_queues" in tables:
+                identities = dict(registry.connection.execute("SELECT queue_key, identity FROM manager_queues"))
+        all_asset_ids = {row["asset_id"] for group in assets.values() for row in group}
+        for source in sources:
+            items = source.data if isinstance(source.data, list) else (source.data or {}).get("assets", [])
+            status = "Not started"
+            selectable = False
+            remaining = 0
+            if source.example:
+                status = "Example"
+            elif source.baseline:
+                status = "Previously handled"
+            elif source.duplicate:
+                status = "Duplicate"
+            else:
+                try:
+                    if source.error:
+                        raise ValueError(source.error)
+                    if "candidate_topics" in tables:
+                        adopt_existing_finder_run(registry, source)
+                    if identities.get(source.run_id, source.identity) != source.identity:
+                        raise ValueError(f"Content changed for existing run_id {source.run_id}; use a new run_id")
+                    existing = assets[source.run_id]
+                    numbered = {item["asset_id"] for item in items if item.get("asset_id")}
+                    if numbered:
+                        owned_ids = {row["asset_id"] for row in existing}
+                        if existing and owned_ids != numbered:
+                            raise ValueError("Existing registry run has a different asset set")
+                        conflicts = (numbered & all_asset_ids) - owned_ids
+                        if conflicts:
+                            raise ValueError(f"Asset ID already belongs to another run: {min(conflicts)}")
+                    elif existing and len(existing) != source.count:
+                        raise ValueError("Existing registry run has a different number of assets")
+                    if source.queue_type == "PRODUCTION":
+                        expected = {item["asset_id"]: item for item in items} if numbered else {}
+                        for row, item in zip(existing, items):
+                            verify_asset_identity(row, expected.get(row["asset_id"], item), source.run_id)
+                    uploaded = sum(row["status"] == "UPLOADED_DRAFT" for row in existing)
+                    remaining = source.count - sum(
+                        row["status"] in DONE or row["status"] in {
+                            "IMAGE_READY", "IMAGE_QC_FAILED", "METADATA_PENDING", "METADATA_QC_FAILED",
+                        } or (row["status"] in {"FAILED", "IMAGE_GENERATING"} and row["image_path"]
+                              and Path(row["image_path"]).is_file()) for row in existing
+                    )
+                    selectable = uploaded < source.count
+                    if not selectable:
+                        status = "Uploaded draft"
+                    elif existing and all(row["status"] in DONE for row in existing):
+                        status = "Ready to upload"
+                    elif any(row["status"] != "QUEUED" for row in existing):
+                        status = "In progress"
+                except ValueError as exc:
+                    status = "Invalid"
+                    source.error = str(exc)
+            rows.append({
+                "source_file": source.source_file, "sha256": source.source_content_sha256,
+                "git_change": changes.get(source.source_file, ""), "status": status,
+                "themes": list(dict.fromkeys(redact(item["theme"]) for item in items)),
+                "total": source.count, "new_images": remaining, "selectable": selectable,
+                "error": redact(source.error),
+            })
+    return rows, sources
+
+
 def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 should_stop=lambda: False, emit=lambda event: None,
                 pipeline_factory=StockPipeline, uploader=upload_process,
                 cdp="http://127.0.0.1:9222", profile=None, stop_file=None, image_model=None,
-                metadata_model=None, temperature=1.0, top_p=0.95, max_images=None) -> dict:
+                metadata_model=None, temperature=1.0, top_p=0.95, max_images=None,
+                sources: list[QueueSource] | None = None) -> dict:
     start = time.monotonic()
     log_path = run_dir / "activity.log"
     redact = redactor(root)
@@ -186,7 +268,8 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
         if max_images is not None and (type(max_images) is not int or max_images < 1):
             raise ValueError("Max new images must be a positive whole number, or blank.")
         log(f"Scanning queues at {commit}", "Discovery")
-        sources = discover(root, commit_time)
+        if sources is None:
+            sources = discover(root, commit_time)
         report["scanned"] = len(sources)
         config = json.loads((root / "config" / "stock_icon_pipeline.json").read_text(encoding="utf-8"))
         ledger = UsageLedger(usage_dir=root / "output" / "usage", command_id="manager_" + run_dir.name,
@@ -345,7 +428,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 status = "BLOCKED"
                 if report["generation_deferred"]:
                     message = (f"Generation limit reached: {report['generation_deferred']} asset(s) deferred. "
-                               "Press Start to resume. " + message)
+                               "Select the queue again to resume. " + message)
                     if not report["failed_assets"] and not any(
                         q["queue_status"] in {"FAILED", "INVALID"} for q in report["queues"]
                     ):

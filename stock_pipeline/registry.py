@@ -33,17 +33,37 @@ class InvalidTransition(ValueError):
     pass
 
 
+def asset_config(item: dict[str, Any]) -> dict[str, Any]:
+    fields = ("asset_type", "prompt", "negative_prompt", "aspect_ratio", "resolution", "remove_background", "research")
+    config = {key: item[key] for key in fields if key in item}
+    if config.get("asset_type") == "icon_set":
+        config.pop("asset_type")
+    return config
+
+
+def verify_asset_identity(existing: dict[str, Any], incoming: dict[str, Any], run_id: str) -> None:
+    fields = ("domain", "theme", "source_type", "topic_score", "topic_bucket", "topic_finder_version",
+              "icon_1", "icon_2", "icon_3", "icon_4", "palette")
+    if (existing["run_id"] != run_id or any(existing[field] != incoming.get(field, "") for field in fields)
+            or json.loads(existing.get("asset_config_json", "{}")) != asset_config(incoming)):
+        raise ValueError(f"asset_id {existing['asset_id']} conflicts with existing identity")
+
+
 def now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
 
 
 class Registry:
-    def __init__(self, path: Path):
-        path.parent.mkdir(parents=True, exist_ok=True)
+    def __init__(self, path: Path, *, read_only: bool = False):
         self.path = path
-        self.connection = sqlite3.connect(path)
+        if read_only:
+            self.connection = sqlite3.connect(path.resolve().as_uri() + "?mode=ro", uri=True)
+        else:
+            path.parent.mkdir(parents=True, exist_ok=True)
+            self.connection = sqlite3.connect(path)
         self.connection.row_factory = sqlite3.Row
-        self._create_schema()
+        if not read_only:
+            self._create_schema()
 
     def _create_schema(self) -> None:
         self.connection.executescript(
@@ -161,26 +181,16 @@ class Registry:
     def register_queue(self, queue: dict[str, Any]) -> None:
         from .contracts import validate_topic_queue
         queue = validate_topic_queue(queue)
-        identity_fields = (
-            "run_id", "domain", "theme", "source_type", "topic_score", "topic_bucket",
-            "topic_finder_version", "icon_1", "icon_2", "icon_3", "icon_4", "palette",
-        )
         pending: list[dict[str, Any]] = []
         for item in queue["assets"]:
             existing = self.get_asset(item["asset_id"])
             incoming = {**item, "run_id": queue["run_id"]}
             for field in ("icon_1", "icon_2", "icon_3", "icon_4"):
                 incoming.setdefault(field, "")
-            config = {key: item[key] for key in ("asset_type", "prompt", "negative_prompt", "aspect_ratio", "resolution", "remove_background", "research") if key in item}
-            # Explicit icon_set is equivalent to the legacy omitted default.
-            if config.get("asset_type") == "icon_set":
-                config.pop("asset_type")
             if existing:
-                if (any(existing[field] != incoming[field] for field in identity_fields)
-                        or json.loads(existing["asset_config_json"]) != config):
-                    raise ValueError(f"asset_id {item['asset_id']} conflicts with existing identity")
+                verify_asset_identity(existing, item, queue["run_id"])
                 continue
-            pending.append({**incoming, "asset_config_json": json.dumps(config, sort_keys=True)})
+            pending.append({**incoming, "asset_config_json": json.dumps(asset_config(item), sort_keys=True)})
         with self.connection:
             for item in pending:
                 self.connection.execute(

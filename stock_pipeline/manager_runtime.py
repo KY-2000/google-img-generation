@@ -33,7 +33,7 @@ def redactor(root: Path):
     return redact
 
 
-def git_sync(root: Path, run=subprocess.run) -> tuple[str, str]:
+def git_sync(root: Path, run=subprocess.run, *, incoming_changes: dict | None = None) -> tuple[str, str]:
     env = {**os.environ, "GIT_TERMINAL_PROMPT": "0", "GCM_INTERACTIVE": "Never"}
     env["GIT_SSH_COMMAND"] = "ssh -o BatchMode=yes"
 
@@ -54,6 +54,7 @@ def git_sync(root: Path, run=subprocess.run) -> tuple[str, str]:
     remote = git("remote", "get-url", "origin")
     if not re.fullmatch(r"(?:https://github\.com/|git@github\.com:|ssh://git@github\.com/)KY-2000/google-img-generation(?:\.git)?/?", remote, re.I):
         raise RuntimeError("origin is not github.com/KY-2000/google-img-generation")
+    previous = git("rev-parse", "HEAD") if incoming_changes is not None else None
     git("fetch", "--no-tags", "origin", "refs/heads/main:refs/remotes/origin/main")
     upstream = git("rev-parse", "origin/main")
     if git("status", "--porcelain", "--untracked-files=normal") or git("branch", "--show-current") != "main":
@@ -65,7 +66,22 @@ def git_sync(root: Path, run=subprocess.run) -> tuple[str, str]:
     git("merge-base", "--is-ancestor", upstream, head)
     if git("status", "--porcelain", "--untracked-files=normal") or git("branch", "--show-current") != "main":
         raise RuntimeError("Git worktree or branch changed during sync; start again")
+    if incoming_changes is not None and previous != head:
+        changes = git("diff", "--name-status", "-z", "--no-renames", previous, head, "--", "queues/incoming")
+        fields = changes.rstrip("\0").split("\0") if changes else []
+        for kind, name in zip(fields[::2], fields[1::2]):
+            if kind in {"A", "M", "T"} and name.casefold().endswith(".json"):
+                incoming_changes[name] = "New" if kind == "A" else "Updated"
     return head, git("show", "-s", "--format=%cI", head)
+
+
+def verify_reviewed_checkout(root: Path, commit: str) -> None:
+    result = subprocess.run(["git", "status", "--porcelain=v2", "--branch", "--untracked-files=normal"],
+                            cwd=root, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=30)
+    lines = result.stdout.splitlines()
+    if (result.returncode or f"# branch.oid {commit}" not in lines or "# branch.head main" not in lines
+            or any(not line.startswith("# ") for line in lines)):
+        raise RuntimeError("Git checkout changed since preview. Close it and check queues again.")
 
 
 def validate_cdp(url: str) -> str:

@@ -2,17 +2,21 @@ from __future__ import annotations
 
 import io
 import json
+import os
 import shutil
 import tempfile
 import unittest
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
+from threading import Event
 from types import SimpleNamespace
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 from PIL import Image
 
+import stock_batch_manager
 from stock_pipeline.adobe_csv import read_adobe_csv
-from stock_pipeline.batch_manager import new_run_dir, run_manager, validate_test_queue
+from stock_pipeline.batch_manager import new_run_dir, preview_queues, run_manager, validate_test_queue
 from stock_pipeline.manager_baseline import TEST_QUEUE, snapshot_baseline
 from stock_pipeline.manager_runtime import git_sync, redactor
 from stock_pipeline.orchestrator import StockPipeline
@@ -144,6 +148,63 @@ class ManagerTests(unittest.TestCase):
         self.assertEqual(second["status"], "COMPLETE", second)
         self.assertEqual(self.generate.call_count, 3)
         self.assertEqual(len(self.uploads[0]["items"]), 3)
+
+    def test_preview_is_read_only_and_only_confirmed_queues_run(self):
+        self.write("a.json", self.production("Coffee", two=True))
+        self.write("b.json", self.production("Spring"))
+        self.write("broken.json", None)
+        preview, sources = preview_queues(self.root, TIME)
+        self.assertFalse((self.root / "data").exists())
+        self.assertFalse(self.calls)
+        self.assertEqual([(row["themes"], row["total"], row["status"]) for row in preview], [
+            (["Coffee"], 2, "Not started"), (["Spring"], 1, "Not started"), ([], 0, "Invalid"),
+        ])
+        first = self.run_batch(sources=sources[:1])
+        self.assertEqual(first["status"], "COMPLETE", first)
+        self.assertEqual(len(self.calls), 2)
+        self.assertEqual(len(self.uploads[0]["items"]), 2)
+        preview, _ = preview_queues(self.root, TIME)
+        self.assertEqual(preview[0]["status"], "Uploaded draft")
+        self.assertEqual(preview[1]["status"], "Not started")
+
+    def test_preview_reports_images_already_generated(self):
+        self.write("a.json", self.production("Coffee", two=True))
+        self.run_batch(max_images=1)
+        preview, _ = preview_queues(self.root, TIME)
+        self.assertEqual(preview[0]["status"], "In progress")
+        self.assertEqual(preview[0]["new_images"], 1)
+
+    def test_worker_waits_for_confirmation_and_rejects_changed_queue(self):
+        self.write("a.json", self.production("Coffee"))
+        run_dir = new_run_dir(self.root)
+        preview_ready = Event()
+
+        def capture(line, **_kwargs):
+            event = json.loads(line)
+            if "preview" in event:
+                preview_ready.set()
+
+        read_fd, write_fd = os.pipe()
+        with os.fdopen(read_fd, "rb") as read_pipe, os.fdopen(write_fd, "wb") as write_pipe:
+            with (patch.object(stock_batch_manager, "ROOT", self.root),
+                  patch.object(stock_batch_manager, "git_sync", return_value=(COMMIT, TIME)),
+                  patch.object(stock_batch_manager, "verify_reviewed_checkout"),
+                  patch.object(stock_batch_manager.sys, "stdin", read_pipe),
+                  patch.object(stock_batch_manager, "print", side_effect=capture, create=True),
+                  patch("stock_pipeline.batch_manager.run_manager") as production_run,
+                  ThreadPoolExecutor(max_workers=1) as pool):
+                future = pool.submit(stock_batch_manager.worker, run_dir, None, None)
+                try:
+                    self.assertTrue(preview_ready.wait(timeout=10))
+                    production_run.assert_not_called()
+                    self.write("a.json", self.production("Changed"))
+                    (run_dir / "start.tmp").write_text("1", encoding="ascii")
+                    (run_dir / "start.tmp").replace(run_dir / "start.request")
+                    self.assertEqual(future.result(timeout=10), 1)
+                    production_run.assert_not_called()
+                    self.assertIn("changed since preview", (run_dir / "report.json").read_text(encoding="utf-8"))
+                finally:
+                    write_pipe.close()
 
     def test_failed_generation_consumes_one_slot_and_defers_the_next_asset(self):
         self.write("a.json", self.production("Timeout", two=True))
@@ -372,6 +433,19 @@ class ManagerTests(unittest.TestCase):
 
 
 class GitAndPrivacyTests(unittest.TestCase):
+    def test_sync_counts_only_new_or_updated_jsons_at_the_applied_commit(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = Path(tmp).resolve()
+            old = "b" * 40
+            diff = "A\0queues/incoming/New queue.json\0M\0queues/incoming/updated.json\0D\0queues/incoming/deleted.json\0"
+            outputs = [str(root), "", "main", "https://github.com/KY-2000/google-img-generation.git",
+                       old, "", COMMIT, "", "main", "", COMMIT, "", "", "main", diff, TIME]
+            runner = Mock(side_effect=[SimpleNamespace(returncode=0, stdout=value) for value in outputs])
+            changes = {}
+            self.assertEqual(git_sync(root, run=runner, incoming_changes=changes), (COMMIT, TIME))
+            self.assertEqual(changes, {"queues/incoming/New queue.json": "New",
+                                       "queues/incoming/updated.json": "Updated"})
+
     def test_clean_local_main_may_already_contain_fetched_main(self):
         with tempfile.TemporaryDirectory() as tmp:
             root = Path(tmp).resolve()

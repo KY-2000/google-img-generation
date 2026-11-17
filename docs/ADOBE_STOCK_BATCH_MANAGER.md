@@ -27,10 +27,10 @@ Offline test mode does not invoke either model.
 For Nano Banana Pro, **Temperature** defaults to 1.0 and **Top-p** to 0.95.
 Nano Banana 2.1 disables these controls. **Max new images** works with both:
 leave it blank for unlimited, or enter a positive whole number. The limit is
-per Start, across queues. One slot is used per asset that starts generation,
+per confirmed run, across the selected queues. One slot is used per asset that starts generation,
 even if it fails; the existing retries for that asset still apply. Images
-already on disk do not use a slot. Deferred assets resume on the next Start.
-The combined upload waits if any queue still has unfinished work. The queue's
+already on disk do not use a slot. Select that queue again to resume deferred assets.
+The combined upload waits if a selected queue still has unfinished work. The queue's
 resolution and one-image-per-asset behavior are unchanged.
 
 The checkout must be on a **clean local main** with
@@ -56,7 +56,7 @@ Right-click `output/stock_manager/Adobe Stock Batch Manager.exe` and choose
 **Show more options → Pin to taskbar**. Keep the EXE there; the launcher
 uses this checkout's existing Python virtual environment.
 
-The window opens with **Offline test** selected. In this mode, **Start** only
+The window opens with **Offline test** selected. In this mode, **Run Offline Test** only
 validates `commercial_background_queue_2026W44_r02.json` and writes a local
 report. It does not sync Git, open Adobe, create images, or update SQLite.
 Uncheck **Offline test** to run live with the Git safety checks.
@@ -67,10 +67,16 @@ uploaded. New or changed content is considered normally. To create the initial
 snapshot on another installation, use `stock_batch_manager.py --snapshot-baseline`
 with the project's Python. The command refuses to overwrite an existing snapshot.
 
-Live **Start** authorizes any needed paid model calls and upload to Adobe drafts.
-Final Submit is always manual. **Retry Failed**
-runs the same recovery path. **Stop After Current Asset** and closing the
-window wait for a safe boundary; a request already running may finish.
+In live mode, **Check Queues** syncs Git and opens a read-only preview.
+It reports new and updated JSONs pulled in that sync, pending queues, themes,
+the total images in each queue, and how many are estimated to need generation.
+Choose how many of the first queues to run in the displayed order.
+**Start Selected** authorizes paid model calls and upload to Adobe drafts for
+those queues. Closing the preview cancels the run. If the checkout, queues, or
+their previewed progress change while it is open, check queues again.
+Final Submit is always manual. **Retry Failed** opens the same preview.
+**Stop After Current Asset** and closing the window wait for a safe boundary;
+a request already running may finish.
 
 ## Files, state, and ordering
 
@@ -90,9 +96,10 @@ window wait for a safe boundary; a request already running may finish.
   the same date do not collide. Original JSON files are left untouched.
   Git-ignored local JSON can run; tracked incoming JSON still syncs.
 - Queue and asset states are stored in `data/stock_pipeline.sqlite`. Completed
-  assets are reused. Valid queues can prepare locally even when another fails,
-  but **any invalid, conflicting, or incomplete queue blocks combined upload**.
-  Correct the file or move unrelated files out of incoming before retrying.
+  assets are reused. Invalid files are visible in the preview and cannot be
+  selected. Discovery checks conflicts across all incoming queues before
+  selection. Any selected queue that fails or stays incomplete blocks the
+  combined upload for that selection.
 - Images and metadata retain their existing paths under `output/assets/`.
   Combined manifests and CSVs are in `output/adobe_batches/BATCH_COMBINED_*/`.
   Every manifest row identifies the source file, commit, content hash, run,
