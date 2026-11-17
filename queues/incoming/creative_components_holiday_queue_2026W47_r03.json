@@ -1,0 +1,458 @@
+{
+  "run_id": "TF_creative_components_holiday_2026W47_r03",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-17T16:53:04+08:00",
+  "research": {
+    "finder": "creative_components",
+    "product_line": "commercial_background",
+    "seasonal_focus": [
+      "Christmas",
+      "Lunar New Year"
+    ],
+    "creative_brief": "Classic mainstream commercial visual styles with high utility in greetings, packaging, ecommerce, ads, print and social. Selected concepts must also be substantially distinct from previous experiments.",
+    "style_strategy": "Different conventional commercially familiar styles matched to actual design jobs; no forced esoteric techniques.",
+    "screened_candidate_count": 36,
+    "approved_count": 8,
+    "live_exclusion_registry_checked": true,
+    "confirmed_similar_rejection_count": 11,
+    "prior_runs_compared": [
+      "TF_creative_components_holiday_2026W47_r01",
+      "TF_creative_components_holiday_2026W47_r02",
+      "TF_creative_components_2026W47_r01",
+      "TF_creative_components_2026W46_r02",
+      "TF_creative_components_holidays_2026W46_r01"
+    ],
+    "publication_note": "Fully unnumbered production queue; local runner assigns unique AST IDs atomically using the SQLite registry after pulling to a working copy. Do not guess IDs.",
+    "sources": [
+      "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+      "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+      "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-distinct-content/distinct-content-submission-best-practices.html",
+      "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html",
+      "https://stock.adobe.com/collections/ZIFi42f9ihaL2CjQ5m3xFZkQuttvVnJd",
+      "https://www.roots.gov.sg/ich-landing/ich/chinese-new-year",
+      "https://www.visitsingapore.com/content/visitsingapore/vi_vn/whats-happening/all-happenings/festivals/chinese-new-year/",
+      "https://nysm.nysed.gov/exhibitions/news/lunar-new-year-at-tuck-high-co",
+      "https://docs.google.com/document/d/1_D-QBzmhaKmpC42T4hDLefIgOPQ96qHFauaBAm5BgaQ/edit",
+      "https://github.com/KY-2000/google-img-generation/blob/main/stock_pipeline/contracts.py",
+      "https://github.com/KY-2000/google-img-generation/blob/main/schemas/topic_queue.schema.json"
+    ],
+    "scores_are_editorial_not_sales_metrics": true
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Cedar Citrus and Berry Watercolor Double Corner Frame",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "warm ivory, evergreen, red berry, burnt orange, pale sage",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create a familiar, commercially versatile Christmas botanical watercolor border for holiday stationery designers, suitable for a greeting card and a boutique retail newsletter with typography inserted later.\nSubject: Paint small mixed clusters of cedar sprays, dried orange wheels, modest red berry stems and a few slender winter leaves. Each botanical element has plausible scale, soft translucent pigment accumulation and varied hand-painted edges, without detailed photographic textures.\nComposition: Horizontal 16:9 composition on a smooth warm ivory field. One compact cluster extends from the upper right corner, balanced by a smaller complementary cluster in the lower left; preserve the entire middle and left-center as clean, quiet copy space. Keep decorative details away from important text margins and avoid a closed wreath.\nArt Style: Classic Botanical Watercolor Illustration, traditional translucent washes, restrained wet-on-dry leaf contours, organic brush variation and subtle color granulation.\nLighting and mood: Even softly illuminated paper impression, gentle festive warmth and refined boutique stationery character.\nConstraints: Original Christmas design ingredient only, no lettering, numbers, logos, watermark, packaged products, fake alpha background or imitated contributor artwork.",
+      "negative_prompt": "pink magnolia, lone flowering branch, parchment grain, lettering, full wreath, floral frame around every edge",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "theme_category": "festival",
+        "holiday": "Christmas",
+        "component_category": "Watercolor Botanical Border",
+        "art_style": "Classic Botanical Watercolor Illustration",
+        "material": "softly painted cedar sprays, dried orange slices, bright red berries",
+        "designer_persona": "Holiday stationery and boutique gifting designer",
+        "buyer_use_case": "Holiday greeting card, retail email header",
+        "design_placement": "Holiday greeting card, retail email header",
+        "design_function": "Reusable foundational visual design component; not a complete promotional scene",
+        "design_reuse_cases": [
+          "Christmas card border with independently typeset greeting",
+          "Seasonal ecommerce newsletter masthead for boutique gifts"
+        ],
+        "integration_guidance": "Asymmetric upper-right and lower-left corner clusters; broad empty central field, easy 16:9 cropping; flattened raster.",
+        "reusability_rationale": "Two complementary mixed winter botanical corner clusters on completely smooth ivory, avoiding SC-001 single pink magnolia branch on textured paper and earlier pinecone giftwrap.",
+        "style_rationale": "Traditional commercially familiar art medium aligned with retail/print buyer usage",
+        "distinctiveness": "Two complementary mixed winter botanical corner clusters on completely smooth ivory, avoiding SC-001 single pink magnolia branch on textured paper and earlier pinecone giftwrap.",
+        "copy_space": "Asymmetric upper-right and lower-left corner clusters; broad empty central field, easy 16:9 cropping; flattened raster.",
+        "originality_notes": "Avoid botanical single branch poster; retain varied recognizable foliage and coherent soft watercolors.",
+        "metadata_seed_keywords": [
+          "christmas watercolor botanical border",
+          "cedar branch",
+          "dried orange",
+          "red berries",
+          "holiday invitation",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://stock.adobe.com/collections/ZIFi42f9ihaL2CjQ5m3xFZkQuttvVnJd"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Candy Cane Pinstripe and Berry Dot Holiday Wrap Field",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "candy red, evergreen, soft white, pale blush",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Supply a classic retail-ready Christmas wrapping pattern for packaging designers, also useful as a festive ecommerce panel or social promotion background.\nSubject: Build a disciplined field of narrow diagonal candy-red stripes in two alternating widths, separated by generous soft-white channels. Add minute deep-green diamond dots at widely spaced intervals so the pattern has recognizable festive rhythm without becoming childish. Every element must be a simple crisp flat shape with consistent scale and restrained geometry.\nComposition: Horizontal 16:9 edge-to-edge raster illustration, nearly orthographic, with no horizon, objects, typography or central product staging. The striping remains calm enough for external headline and product overlays. Preserve an intentional but modest contrast rhythm and crop-safe edges; avoid suggesting guaranteed seamless repeat because the generated boundaries have not been tile-tested.\nArt Style: Clean Commercial Flat Vector-Style Illustration, sharply defined solid fills, no simulated paper texture, no photorealistic shadows, and classic red, green and creamy white palette.\nLighting and mood: Even graphic color, fresh and cheerful mass-market seasonal packaging tone.\nConstraints: One original, flat pattern image, no letters, logos, trademarks, watermarks, gradients or vector-file claims.",
+      "negative_prompt": "three-dimensional candy canes, actual ribbon bows, star foil, ornate snowflakes, visible seams, logos, text",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "theme_category": "festival",
+        "holiday": "Christmas",
+        "component_category": "Flat Packaging Pattern",
+        "art_style": "Clean Commercial Flat Vector-Style Illustration",
+        "material": "two-weight diagonal red stripes, tiny green diamond dots, white negative channels",
+        "designer_persona": "Consumer packaging and retail promotional designer",
+        "buyer_use_case": "Gift wrapping paper concept, website promotional panels",
+        "design_placement": "Gift wrapping paper concept, website promotional panels",
+        "design_function": "Reusable foundational visual design component; not a complete promotional scene",
+        "design_reuse_cases": [
+          "Gift wrap and packaging graphic field for holiday products",
+          "Simple Christmas e-commerce promotion background behind separately placed products"
+        ],
+        "integration_guidance": "Uniform crop-safe 16:9 flat motif with subtle density variation and no central copy-space mandate; edge tiling has not been verified; raster illustration.",
+        "reusability_rationale": "Abstract fine stripe rhythm and minute diamond accents, no photographic red ribbon border, ornaments, ice, gift tags, or gold foil stars.",
+        "style_rationale": "Traditional commercially familiar art medium aligned with retail/print buyer usage",
+        "distinctiveness": "Abstract fine stripe rhythm and minute diamond accents, no photographic red ribbon border, ornaments, ice, gift tags, or gold foil stars.",
+        "copy_space": "Uniform crop-safe 16:9 flat motif with subtle density variation and no central copy-space mandate; edge tiling has not been verified; raster illustration.",
+        "originality_notes": "Do not market as seamless. Ensure double-line stripe spacing legible at mobile scale and avoid aliasing.",
+        "metadata_seed_keywords": [
+          "christmas wrapping pattern",
+          "candy cane stripe",
+          "minimal flat illustration",
+          "holiday geometric",
+          "gift wrap",
+          "retail background"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://stock.adobe.com/collections/ZIFi42f9ihaL2CjQ5m3xFZkQuttvVnJd"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Traditional Rocking Horse Copperplate Corner Cartouche",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "deep sepia, warm parchment ivory, pale umber",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create a traditional seasonal engraving ingredient for a heritage toy-shop holiday postcard and a family charity invitation with separately typeset information.\nSubject: Illustrate one unbranded old-fashioned wooden rocking horse, with a balanced saddle outline, correctly connected curved wooden runners and modest carved details. Surround it with sparse ornamental pen scrolls using restrained antique copperplate hatching, delicate crosshatching and fine tapering brown-black strokes. Keep the toy readable at card size without any lettering or maker marks.\nComposition: Vertical 9:16 editorial page. Place one narrow asymmetrical cartouche across the upper left corner and a complementary smaller engraved accent at the lower right, leaving a large uninterrupted blank central area and safe top and bottom text margins. Avoid a complete rectangular frame or a crowded collection of festive props.\nArt Style: Traditional Copperplate Engraving Illustration with restrained sepia ink, crisp antique line weight, varying hatching density and a clean ivory backdrop, without artificial photographic effects.\nLighting and mood: Flat printed artwork with classic understated formal elegance suitable for business and hospitality communications.\nConstraints: Entirely original graphic, no letters, numerals, logos, signatures, watermarks, copyrighted illustrations or claims of editable vector paths.",
+      "negative_prompt": "legible antique text, copied historical print, carousel horse, modern cartoon character, toy brand, oversized bells",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "theme_category": "festival",
+        "holiday": "Christmas",
+        "component_category": "Classic Engraved Decorative Frame",
+        "art_style": "Traditional Copperplate Engraving Illustration",
+        "material": "unbranded folk wooden rocking horse, fine ornamental scrolls, thin hatched ink lines",
+        "designer_persona": "Heritage toy retail and charity stationery designer",
+        "buyer_use_case": "Vintage toy-store postcard, family charity invitation",
+        "design_placement": "Vintage toy-store postcard, family charity invitation",
+        "design_function": "Reusable foundational visual design component; not a complete promotional scene",
+        "design_reuse_cases": [
+          "Toy-shop seasonal postcard with its own holiday greeting",
+          "Family fundraising holiday invitation with separate typeset details"
+        ],
+        "integration_guidance": "A slim ornamental band in upper and lower corners on 9:16 portrait page; empty center for designer-added words; single raster illustration.",
+        "reusability_rationale": "One classic engraved folk rocking horse with restrained fine scrolls, distinct from previous abstract bell geometry, stars, gift wraps and material close-ups.",
+        "style_rationale": "Traditional commercially familiar art medium aligned with retail/print buyer usage",
+        "distinctiveness": "One classic engraved folk rocking horse with restrained fine scrolls, distinct from previous abstract bell geometry, stars, gift wraps and material close-ups.",
+        "copy_space": "A slim ornamental band in upper and lower corners on 9:16 portrait page; empty center for designer-added words; single raster illustration.",
+        "originality_notes": "Generic folk wooden rocking horse silhouette; avoid replicating any historical print or branded toy character.",
+        "metadata_seed_keywords": [
+          "traditional rocking horse",
+          "vintage christmas invitation",
+          "copperplate engraving",
+          "toy shop holiday postcard",
+          "decorative frame"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://stock.adobe.com/collections/ZIFi42f9ihaL2CjQ5m3xFZkQuttvVnJd"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Two Blank Holiday Gift Tags with Natural Twine Loops",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 88,
+      "topic_bucket": "APPROVED",
+      "palette": "warm beige, natural kraft, cream white, soft shadow",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Make a classic holiday retail mockup background for packaging studios and small online merchants, suitable for placing their own brand graphics on blank gift tags and producing a seasonal social promotion.\nSubject: Show exactly two distinct unprinted heavyweight card tags, one natural kraft with gently clipped corners and one warm ivory with rounded corners. Each has a small clean punched hole and an accurately tied short neutral cotton twine loop. Paper edges have credible thickness and the twine follows a believable path without duplicated strands.\nComposition: Portrait 9:16 direct overhead studio view, both tag fronts broadly visible and largely blank, placed in the lower center with slight separation. A softly neutral surrounding plane fills the top third for additional layout typography, with comfortable mobile interface margins; no other products or staging props.\nArt Style: Classic Premium Retail Studio Photography, precise believable stationery construction, refined neutral color management, high-resolution clean edges and subtle paper grain.\nLighting and mood: Broad diffused studio daylight, restrained contact shadows, quiet trustworthy holiday merchandising feel.\nConstraints: One original raster mockup photograph, no written placeholder text, logos, watermarks, fake transparent background or incorrectly interlaced twine.",
+      "negative_prompt": "printed words, promotional price, barcodes, taped ribbons, wrapped gift boxes, advent calendar flaps, red packets",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "theme_category": "festival",
+        "holiday": "Christmas",
+        "component_category": "Stationery Product Mockup",
+        "art_style": "Classic Premium Retail Studio Photography",
+        "material": "two unprinted heavyweight ivory and kraft gift tags, discreet punched eyelets and tied twine",
+        "designer_persona": "Small retailer and packaging brand designer",
+        "buyer_use_case": "Retail seasonal offer story, gift-tag packaging mockup",
+        "design_placement": "Retail seasonal offer story, gift-tag packaging mockup",
+        "design_function": "Reusable foundational visual design component; not a complete promotional scene",
+        "design_reuse_cases": [
+          "Overlay custom logo and price on blank hanging gift tags in an ecommerce campaign",
+          "Holiday stationery mockup for personalized printed enclosure cards"
+        ],
+        "integration_guidance": "Perspective-controlled close overhead mockup with fully visible blank tag surfaces for raster compositing, center area calm and 9:16 UI safe.",
+        "reusability_rationale": "Two functionally blank tags with realistic twine holes, not the previous unnumbered advent calendar structure or red packets, twine ribbon frame or wrapping paper macro.",
+        "style_rationale": "Traditional commercially familiar art medium aligned with retail/print buyer usage",
+        "distinctiveness": "Two functionally blank tags with realistic twine holes, not the previous unnumbered advent calendar structure or red packets, twine ribbon frame or wrapping paper macro.",
+        "copy_space": "Perspective-controlled close overhead mockup with fully visible blank tag surfaces for raster compositing, center area calm and 9:16 UI safe.",
+        "originality_notes": "Realistic loops and paper surfaces; no visible logo or placeholders; raster compositing only.",
+        "metadata_seed_keywords": [
+          "blank gift tag mockup",
+          "christmas retail",
+          "kraft paper label",
+          "holiday packaging mockup",
+          "twine loop",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/collections/ZIFi42f9ihaL2CjQ5m3xFZkQuttvVnJd",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Blank Spring Couplet Pair with Fine Gold Ruled Borders",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "vermilion red, antique gold, warm ivory, light shadow",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create a highly reusable traditional Lunar New Year stationery background for Chinese-language event organizers and retailers, with empty spaces for real typeset festival couplets and sales copy.\nSubject: Present two long vertical vermilion paper couplet panels with narrow antique-gold ruled borders, subtly imperfect matte paper edges and accurate rectangular proportions. Both interiors must remain completely unprinted so a graphic designer can later place professionally typeset Chinese characters without dealing with AI-generated pseudo-writing.\nComposition: Portrait 9:16 straight-on editorial composition on a clean warm ivory background. Place the two couplet strips parallel but asymmetrically spaced, with a broad uncluttered central gap and clear outer margins for titles, small campaign information or subsequent product images. Show no house entrance or doors and allow safe cropping for social-story interfaces.\nArt Style: Traditional Chinese Stationery Print Design, classic red and gold screenprint-like solid fills, hairline borders and elegant restrained alignment, flattened as a single high-resolution raster.\nLighting and mood: Uniform commercial print illumination, crisp and celebratory without glossy effects.\nConstraints: No characters, numbers, logos, watermarks, prefilled blessings, ornamental borders that invade the empty panels or false editable-vector claims.",
+      "negative_prompt": "Chinese characters, legible calligraphy, doors, architecture, paper-cut silhouettes, red envelopes, logo",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "theme_category": "festival",
+        "holiday": "Lunar New Year",
+        "component_category": "Blank Festival Typography Layout",
+        "art_style": "Traditional Chinese Stationery Print Design",
+        "material": "two blank vermilion vertical festival couplet paper strips with hairline gold frame",
+        "designer_persona": "Chinese New Year event and retail designer",
+        "buyer_use_case": "Community invitation, ecommerce spring-festival vertical poster",
+        "design_placement": "Community invitation, ecommerce spring-festival vertical poster",
+        "design_function": "Reusable foundational visual design component; not a complete promotional scene",
+        "design_reuse_cases": [
+          "Add custom Chinese-language couplets to empty vertical panels in a digital event invite",
+          "Seasonal retail campaign poster with separate headline and product image"
+        ],
+        "integration_guidance": "Two elongated blank editable-looking print zones as flat raster surface, centered and spaced for later compositing; no actual live text or vector objects.",
+        "reusability_rationale": "Pair of ceremonial blank couplet panels rather than red packet flap, paper-cut border, or doorway; composition centers on blank vertical typography columns with no motifs inside.",
+        "style_rationale": "Traditional commercially familiar art medium aligned with retail/print buyer usage",
+        "distinctiveness": "Pair of ceremonial blank couplet panels rather than red packet flap, paper-cut border, or doorway; composition centers on blank vertical typography columns with no motifs inside.",
+        "copy_space": "Two elongated blank editable-looking print zones as flat raster surface, centered and spaced for later compositing; no actual live text or vector objects.",
+        "originality_notes": "Traditional spring couplet form confirmed by Singapore heritage; avoid AI invented characters; no house or doorway.",
+        "metadata_seed_keywords": [
+          "blank spring couplet",
+          "chunlian",
+          "lunar new year poster",
+          "red and gold stationery",
+          "festival invitation",
+          "typography template background"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.roots.gov.sg/ich-landing/ich/chinese-new-year"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Golden Sycee Outline Festival Ornament Band",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "dark crimson, muted metallic gold, subtle warm red",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Produce a conventional premium Lunar New Year decorative line background for packaging graphic designers and festival advertising teams, usable on a gift-box sleeve or horizontal promotion banner.\nSubject: Draw a small family of original simplified gold sycee ingot contours, interlinked with restrained circular framing lines and delicate geometric corner rules. Preserve recognizable curved ingot profiles and consistent thin stroke weights while avoiding coin denominations, characters, fake calligraphy or elaborate cultural insignia. The ornament is a graphic line treatment, not a rendered metal object.\nComposition: Horizontal 16:9 layout on a rich matte crimson field. Concentrate the ornamental gold linework along the far right border and upper-right edge; keep over half of the left and center visually uninterrupted for separately typeset product descriptions, greetings or promotional text. Maintain clean margins and practical cropping options.\nArt Style: Classic Festive Gold Line Illustration, confident balanced stroke geometry, restrained simulated gold ink, flat layered graphic treatment and premium stationery clarity.\nLighting and mood: Even lithographic print appearance, dignified warm festive atmosphere, no cast shadows or photorealistic foil macro.\nConstraints: One original flattened raster artwork, no words, logos, watermarks, brand marks, unverified seamless pattern claims or actual vector-editability promise.",
+      "negative_prompt": "currency denomination, logos, Chinese writing, cloud brocade, lanterns, gold foil star texture, excessive pattern density",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "theme_category": "festival",
+        "holiday": "Lunar New Year",
+        "component_category": "Line Ornament Background",
+        "art_style": "Classic Festive Gold Line Illustration",
+        "material": "simplified gold sycee ingot contours, gentle decorative rings and thin border rules",
+        "designer_persona": "Traditional gift packaging and seasonal advertising designer",
+        "buyer_use_case": "Product packaging sleeve, horizontal festival promotion banner",
+        "design_placement": "Product packaging sleeve, horizontal festival promotion banner",
+        "design_function": "Reusable foundational visual design component; not a complete promotional scene",
+        "design_reuse_cases": [
+          "Decorative ornamental band on festive gift packaging sleeve",
+          "Low-density festive website banner behind separately composited promotional message"
+        ],
+        "integration_guidance": "Right-edge line-art ornament strip with large left empty field, crop-safe horizontal design; simulated metallic print on raster, no spot-color guarantee.",
+        "reusability_rationale": "Gold sycee-shaped contour motif distinct from gold foil stars, coin repeats, elaborate knots, carp relief, cloud brocade and lanterns; avoids fake currency inscriptions.",
+        "style_rationale": "Traditional commercially familiar art medium aligned with retail/print buyer usage",
+        "distinctiveness": "Gold sycee-shaped contour motif distinct from gold foil stars, coin repeats, elaborate knots, carp relief, cloud brocade and lanterns; avoids fake currency inscriptions.",
+        "copy_space": "Right-edge line-art ornament strip with large left empty field, crop-safe horizontal design; simulated metallic print on raster, no spot-color guarantee.",
+        "originality_notes": "Focus on gold sycee ingot as abstract conventional cultural form; verify no encoded characters or fake coins.",
+        "metadata_seed_keywords": [
+          "gold sycee",
+          "chinese new year ornament",
+          "red gold festive line art",
+          "packaging border",
+          "lunar new year commercial banner"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.roots.gov.sg/ich-landing/ich/chinese-new-year"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Golden Pineapple Tart Colored Pencil Side Motifs",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "butter gold, toasted amber, pale mint, warm white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create an approachable classic colored-pencil food decoration for Southeast Asian Chinese New Year bakery promotions and pineapple tart gift-box enclosures, leaving plenty of room for real text to be added later.\nSubject: Illustrate three small traditional golden pineapple tart pastries, each with convincing buttery shortcrust structure and amber pineapple jam filling. Include subtle crimped pastry edges and light golden-brown baked shading, with each pastry angled slightly differently. Make the food clearly recognizable and appetizing without adding plates, shop counters or product packaging.\nComposition: Portrait 9:16 warm off-white canvas. Place two modest illustrated tart motifs near the lower right border and one smaller motif along the bottom-left edge. Preserve a generous clean upper and central field for a bakery brand to place preorder details or a product photograph. Keep safe margins for mobile story overlays.\nArt Style: Traditional Colored Pencil Food Illustration, carefully layered pencil strokes, soft buttery gradations, fine tooth of illustration paper and subtle cream, amber and toasted-gold accents.\nLighting and mood: Gentle warm illustration shading, friendly nostalgic festive-bakery tone with moderate visual detail.\nConstraints: Original raster food artwork only, no text, characters, logos, watermarks, faux packaging labels or physically impossible pastry fillings.",
+      "negative_prompt": "gingerbread, nian gao, tangerine skins, misleading food anatomy, pastry plate, café table, typography",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "theme_category": "festival",
+        "holiday": "Lunar New Year",
+        "component_category": "Regional Food Illustration Frame",
+        "art_style": "Traditional Colored Pencil Food Illustration",
+        "material": "three Southeast Asian pineapple tart pastries with golden jam centers and fine butter pastry grooves",
+        "designer_persona": "Southeast Asian festive bakery marketer",
+        "buyer_use_case": "Chinese New Year cookie pre-order story, pastry gift-box insert",
+        "design_placement": "Chinese New Year cookie pre-order story, pastry gift-box insert",
+        "design_function": "Reusable foundational visual design component; not a complete promotional scene",
+        "design_reuse_cases": [
+          "Bakery Chinese New Year preorder vertical advertisement with separate offer text",
+          "Pineapple tart gift packaging enclosure print with food motif border"
+        ],
+        "integration_guidance": "Small pastry motifs along a single side and bottom edge, central zone kept blank for text and product photography; illustrative raster.",
+        "reusability_rationale": "Golden pineapple tart pastry illustrations in colored-pencil style, no mandarin peel macro, nian gao watercolor, gingerbread crust macro or staged food table.",
+        "style_rationale": "Traditional commercially familiar art medium aligned with retail/print buyer usage",
+        "distinctiveness": "Golden pineapple tart pastry illustrations in colored-pencil style, no mandarin peel macro, nian gao watercolor, gingerbread crust macro or staged food table.",
+        "copy_space": "Small pastry motifs along a single side and bottom edge, central zone kept blank for text and product photography; illustrative raster.",
+        "originality_notes": "Match known Singapore/Malaysia festive pineapple tart shape, avoid describing generic biscuits or invented text.",
+        "metadata_seed_keywords": [
+          "pineapple tart illustration",
+          "cny bakery",
+          "lunar new year pastry",
+          "colored pencil food",
+          "cookie packaging",
+          "seasonal banner"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.visitsingapore.com/content/visitsingapore/vi_vn/whats-happening/all-happenings/festivals/chinese-new-year/",
+          "https://www.roots.gov.sg/ich-landing/ich/chinese-new-year"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Eight Section Tray of Togetherness Soft 3D Festive Layout",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 89,
+      "topic_bucket": "APPROVED",
+      "palette": "festival red, muted gold, warm cream, jade green",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Deliver a familiar commercial soft-3D Lunar New Year design ingredient for cultural event posters and seasonal snack advertising, with a culturally recognizable hospitality object and room for added text.\nSubject: Illustrate one traditional round tray of togetherness from a controlled three-quarter top view. Divide it visibly into exactly eight clear wedge-like compartments, each containing small unbranded assortments such as dried melon seeds, candied lotus seeds, candied coconut and plain festive sweets. The tray has simple matte red lacquer-like sides and thin gold accent edging, with no copied maker mark or historical artifact detailing.\nComposition: Horizontal 16:9 advertising background. Place the complete round tray on the right third, leaving the majority of the left half a very smooth warm cream area for separate typography and promotional product content. Maintain generous safe margins and strong silhouette readability at thumbnail size.\nArt Style: Classic Soft 3D Advertising Illustration, rounded clean forms, deliberately simplified food textures, smooth tonal gradients, restrained highlights and realistic contact shadows.\nLighting and mood: Warm diffuse commercial studio lighting, bright welcoming festive tone with calm visual hierarchy.\nConstraints: One original raster illustration, eight readable compartments, no brand wrappers, characters, year numbers, watermark, extraneous banquet setting or false editable 3D model claim.",
+      "negative_prompt": "branded candy wrappers, invented characters, nine compartments, ambiguous partition geometry, red packet, banquet scene, product labels",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "theme_category": "festival",
+        "holiday": "Lunar New Year",
+        "component_category": "Festive Cultural Object Graphic",
+        "art_style": "Classic Soft 3D Advertising Illustration",
+        "material": "traditional round eight-compartment candy tray with generic unbranded candied fruit and seeds",
+        "designer_persona": "Cultural event marketing and family retail designer",
+        "buyer_use_case": "Community festive digital banner, cultural campaign graphic",
+        "design_placement": "Community festive digital banner, cultural campaign graphic",
+        "design_function": "Reusable foundational visual design component; not a complete promotional scene",
+        "design_reuse_cases": [
+          "Lunar New Year hospitality event header with culturally specific festive tray on one side",
+          "Retail digital campaign graphic about seasonal snacks, using left-side open copy area"
+        ],
+        "integration_guidance": "Single tray arranged on right third with unambiguous eight compartments, left-side smooth clean text field; raster 3D illustration not 3D model.",
+        "reusability_rationale": "Traditional eight-well snack hospitality object differs from prior festive red packet, fan, lacquer surface, lantern material and lion-dance fringe; does not imitate museum artefacts.",
+        "style_rationale": "Traditional commercially familiar art medium aligned with retail/print buyer usage",
+        "distinctiveness": "Traditional eight-well snack hospitality object differs from prior festive red packet, fan, lacquer surface, lantern material and lion-dance fringe; does not imitate museum artefacts.",
+        "copy_space": "Single tray arranged on right third with unambiguous eight compartments, left-side smooth clean text field; raster 3D illustration not 3D model.",
+        "originality_notes": "New York State Museum documents traditional tray with six or eight compartments. Draw exactly eight if used; generic unbranded foods only; no claims all regions use same exact foods.",
+        "metadata_seed_keywords": [
+          "tray of togetherness",
+          "chuen hup",
+          "chinese new year snacks",
+          "soft 3d illustration",
+          "lunar holiday banner",
+          "cultural marketing"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://nysm.nysed.gov/exhibitions/news/lunar-new-year-at-tuck-high-co"
+        ]
+      }
+    }
+  ]
+}
