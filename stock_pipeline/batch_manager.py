@@ -209,7 +209,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 should_stop=lambda: False, emit=lambda event: None,
                 pipeline_factory=StockPipeline, uploader=upload_process,
                 cdp="http://127.0.0.1:9222", profile=None, stop_file=None, image_model=None,
-                metadata_model=None, temperature=1.0, top_p=0.95, max_images=None,
+                metadata_model=None, metadata_provider=None, temperature=1.0, top_p=0.95, max_images=None,
                 sources: list[QueueSource] | None = None) -> dict:
     start = time.monotonic()
     log_path = run_dir / "activity.log"
@@ -361,8 +361,14 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
             report["image_model"] = selected_model
             sampling = selected_model.rsplit("/", 1)[-1] != "gemini-nano-banana-2.1"
             report.update(temperature=temperature if sampling else None, top_p=top_p if sampling else None)
-            metadata_provider = "vertex" if metadata_model else legacy.get_default_metadata_provider(root)
+            metadata_provider = metadata_provider or (
+                "vertex" if metadata_model else legacy.get_default_metadata_provider(root)
+            )
             selected_metadata = metadata_model or legacy.get_default_metadata_model(root)
+            if metadata_provider == "gemini-developer" and not should_stop() and any(
+                record["completed_assets"] < len(ids) for _, _, ids, record in prepared
+            ):
+                legacy.get_gemini_developer_api_key(root)
             report.update(metadata_model=selected_metadata, metadata_provider=metadata_provider)
             log(f"Image model: {selected_model}", "Generation", overview=overview())
             log(f"Max new images: {max_images if max_images is not None else 'unlimited'}; "

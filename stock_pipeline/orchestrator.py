@@ -142,6 +142,8 @@ class StockPipeline:
         if self._metadata_client is None:
             if self.metadata_provider in {"google", "vertex"}:
                 self._metadata_client = self._get_image_client()
+            elif self.metadata_provider == "gemini-developer":
+                self._metadata_client = legacy.build_gemini_developer_client(self.project_root)
             elif self.metadata_provider == "openrouter":
                 self._metadata_client = legacy.build_openrouter_metadata_client(legacy.get_openrouter_api_key(self.project_root))
             elif self.metadata_provider == "nim":

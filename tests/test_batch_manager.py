@@ -185,6 +185,24 @@ class ManagerTests(unittest.TestCase):
         with Registry(self.root / "data/stock_pipeline.sqlite") as registry:
             self.assertEqual(registry.list_assets()[0]["metadata_model"], "gemini-3.8-flash")
 
+    def test_hydrogen_metadata_uses_developer_key_and_a_separate_client(self):
+        self.write("metadata.json", self.production("Metadata"))
+        (self.root / ".env").write_text("GEMINI_API_KEY=offline-test-key\n", encoding="utf-8")
+        self.pipeline = lambda **kwargs: StockPipeline(**kwargs, image_generate_bytes=self.generate, max_attempts=1)
+        client = Mock()
+        client.models.generate_content.return_value = SimpleNamespace(text=json.dumps(sample_model_metadata()))
+        with patch("google.genai.Client", return_value=client) as build_client:
+            report = self.run_batch(metadata_provider="gemini-developer", metadata_model="gemini-4-hydrogen")
+        self.assertEqual(report["status"], "COMPLETE", report)
+        self.assertEqual(report["metadata_provider"], "gemini-developer")
+        build_client.assert_called_once_with(vertexai=False, api_key="offline-test-key")
+        request = client.models.generate_content.call_args.kwargs
+        self.assertEqual(request["model"], "gemini-4-hydrogen")
+        self.assertEqual(request["contents"][0].inline_data.mime_type, "image/png")
+        self.assertEqual(request["config"].response_mime_type, "application/json")
+        self.assertIsNone(request["config"].temperature)
+        self.assertIsNone(request["config"].top_p)
+
     def test_sampling_and_generation_limit_across_queues_then_resume(self):
         self.write("a.json", self.production("First", two=True))
         self.write("b.json", self.production("Second"))

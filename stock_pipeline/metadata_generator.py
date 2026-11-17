@@ -44,6 +44,7 @@ def generate_metadata_for_asset(
     providers = {
         "google": legacy.generate_google_metadata_text,
         "vertex": legacy.generate_google_metadata_text,
+        "gemini-developer": legacy.generate_google_metadata_text,
         "openrouter": legacy.generate_openrouter_metadata_text,
         "nim": legacy.generate_nim_metadata_text,
     }

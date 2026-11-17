@@ -27,6 +27,10 @@ IMAGE_MODELS = {
     "Nano Banana 2.1": "gemini-nano-banana-2.1",
 }
 DEFAULT_METADATA_MODEL = "gemini-3.8-flash"
+METADATA_PROVIDERS = {
+    "Vertex AI": ("vertex", DEFAULT_METADATA_MODEL),
+    "Gemini Developer API": ("gemini-developer", "gemini-4-hydrogen"),
+}
 SUPPORT_CHAT_FILE = Path("output/stock_manager/support_chat.txt")
 CHAT_LINK_PREFIX = "codex://threads/"
 GITHUB_COMMIT_PREFIX = "https://github.com/KY-2000/google-img-generation/commit/"
@@ -34,7 +38,8 @@ GITHUB_COMMIT_PREFIX = "https://github.com/KY-2000/google-img-generation/commit/
 
 def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bool = False,
            image_model: str | None = None, metadata_model: str | None = None, *,
-           temperature: float = 1.0, top_p: float = 0.95, max_images: int | None = None) -> int:
+           metadata_provider: str | None = None, temperature: float = 1.0,
+           top_p: float = 0.95, max_images: int | None = None) -> int:
     # The UI generates a fresh local directory for each Start.
     home = (ROOT / "output" / "stock_manager" / "runs").resolve()
     run_dir = run_dir.resolve()
@@ -98,7 +103,7 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
                 log("Adobe will use the persistent browser profile at the upload stage", browser="Profile mode")
             report = run_manager(ROOT, sha, commit_time, run_dir, should_stop=stop.exists, emit=emit,
                                  cdp=cdp, profile=profile, stop_file=stop, image_model=image_model,
-                                 metadata_model=metadata_model, temperature=temperature,
+                                 metadata_model=metadata_model, metadata_provider=metadata_provider, temperature=temperature,
                                  top_p=top_p, max_images=max_images,
                                  sources=[source for source in sources if source.source_file in selected])
         return 0 if report["status"] in {"COMPLETE", "NO_WORK", "STOPPED", "LIMIT_REACHED"} else 1
@@ -130,6 +135,7 @@ class Desktop:
         self.worker_input = None
         self.offline_test = tk.BooleanVar(value=True)
         self.image_model = tk.StringVar(value="Nano Banana Pro")
+        self.metadata_provider = tk.StringVar(value="Vertex AI")
         self.metadata_model = tk.StringVar(value=DEFAULT_METADATA_MODEL)
         self.temperature = tk.StringVar(value="1.0")
         self.top_p = tk.StringVar(value="0.95")
@@ -224,8 +230,17 @@ class Desktop:
         self.model_picker = ttk.Combobox(options, values=tuple(IMAGE_MODELS),
                                          textvariable=self.image_model, state="readonly", width=19)
         self.model_picker.pack(side="left", padx=(0, 16))
-        ttk.Label(options, text="Metadata model").pack(side="left", padx=(0, 8))
-        self.metadata_picker = ttk.Combobox(options, values=(DEFAULT_METADATA_MODEL,),
+        metadata_options = ttk.Frame(container)
+        metadata_options.pack(fill="x", pady=(0, 8))
+        ttk.Label(metadata_options, text="Metadata provider").pack(side="left", padx=(0, 8))
+        self.metadata_provider_picker = ttk.Combobox(
+            metadata_options, values=tuple(METADATA_PROVIDERS), textvariable=self.metadata_provider,
+            width=23, state="readonly",
+        )
+        self.metadata_provider_picker.pack(side="left", padx=(0, 16))
+        self.metadata_provider_picker.bind("<<ComboboxSelected>>", self.select_metadata_provider)
+        ttk.Label(metadata_options, text="Metadata model").pack(side="left", padx=(0, 8))
+        self.metadata_picker = ttk.Combobox(metadata_options, values=(DEFAULT_METADATA_MODEL,),
                                             textvariable=self.metadata_model, width=23)
         self.metadata_picker.pack(side="left")
         sampling = ttk.Frame(container)
@@ -322,6 +337,11 @@ class Desktop:
         for index, entry in enumerate(self.generation_entries):
             entry.state(["disabled" if self.active or (index < 2 and not pro) else "!disabled"])
 
+    def select_metadata_provider(self, _event=None):
+        _, model = METADATA_PROVIDERS[self.metadata_provider.get()]
+        self.metadata_picker.configure(values=(model,))
+        self.metadata_model.set(model)
+
     def append(self, message, stamp=None):
         if stamp:
             stamp = datetime.fromisoformat(stamp).astimezone().strftime("%H:%M:%S")
@@ -341,7 +361,7 @@ class Desktop:
             testing = self.offline_test.get()
             metadata_model = self.metadata_model.get().strip()
             if not testing and not metadata_model:
-                raise ValueError("Enter a Vertex AI metadata model ID.")
+                raise ValueError("Enter a metadata model ID.")
             generation_args = []
             if not testing:
                 limit = self.max_images.get().strip()
@@ -378,6 +398,7 @@ class Desktop:
         self.stop_button.state(["!disabled"])
         self.endpoint_entry.state(["disabled"])
         self.model_picker.state(["disabled"])
+        self.metadata_provider_picker.state(["disabled"])
         self.metadata_picker.state(["disabled"])
         self.test_check.state(["disabled"])
         for metric in self.metrics.values():
@@ -396,7 +417,9 @@ class Desktop:
         if testing:
             args.append("--offline-test")
         else:
-            args.extend(("--image-model", IMAGE_MODELS[self.image_model.get()], "--metadata-model", metadata_model))
+            provider, _ = METADATA_PROVIDERS[self.metadata_provider.get()]
+            args.extend(("--image-model", IMAGE_MODELS[self.image_model.get()],
+                         "--metadata-provider", provider, "--metadata-model", metadata_model))
             args.extend(generation_args)
         if cdp:
             args.extend(("--cdp", cdp))
@@ -611,6 +634,7 @@ class Desktop:
                 self.stop_button.state(["disabled"])
                 self.endpoint_entry.state(["!disabled"])
                 self.model_picker.state(["!disabled"])
+                self.metadata_provider_picker.state(["!disabled"])
                 self.metadata_picker.state(["!disabled"])
                 self.test_check.state(["!disabled"])
                 if event["exit"]:
@@ -682,6 +706,8 @@ def main():
     parser.add_argument("--offline-test", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--image-model", choices=tuple(IMAGE_MODELS.values()), help=argparse.SUPPRESS)
     parser.add_argument("--metadata-model", help=argparse.SUPPRESS)
+    parser.add_argument("--metadata-provider", choices=tuple(provider for provider, _ in METADATA_PROVIDERS.values()),
+                        help=argparse.SUPPRESS)
     parser.add_argument("--temperature", type=float, default=1.0, help=argparse.SUPPRESS)
     parser.add_argument("--top-p", type=float, default=0.95, help=argparse.SUPPRESS)
     parser.add_argument("--max-images", type=int, help=argparse.SUPPRESS)
@@ -693,7 +719,8 @@ def main():
         return 0
     if args.worker:
         return worker(args.worker, args.cdp, args.profile, args.offline_test, args.image_model, args.metadata_model,
-                      temperature=args.temperature, top_p=args.top_p, max_images=args.max_images)
+                      metadata_provider=args.metadata_provider, temperature=args.temperature,
+                      top_p=args.top_p, max_images=args.max_images)
     import tkinter as tk
     window = tk.Tk()
     icon = ROOT / "config" / "stock_manager.ico"

@@ -41,7 +41,7 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         help="Image model ID or alias (nanobanana21 / nanobanana2.1). "
              "Default: gemini-3-pro-image; overrides IMAGE_MODEL in .env for this CLI.",
     )
-    parser.add_argument("--metadata-provider", choices=("google", "vertex", "openrouter", "nim"))
+    parser.add_argument("--metadata-provider", choices=("google", "vertex", "gemini-developer", "openrouter", "nim"))
     parser.add_argument("--metadata-model")
     parser.add_argument("--skip-image-generation", action="store_true")
     parser.add_argument("--skip-metadata", action="store_true")

@@ -18,10 +18,12 @@ If the virtual environment is missing, first run `python -m venv .venv`.
 Configure `.env` and Google credentials as for the single-queue pipeline.
 Choose **Nano Banana Pro** (default) or **Nano Banana 2.1** in the
 **Image model** dropdown. The choice overrides `IMAGE_MODEL` for that run
-and applies only to new generation; completed images are reused. The editable
-**Metadata model** dropdown defaults to `gemini-3.8-flash` and accepts other
-Vertex AI model IDs. It applies to new metadata requests via Vertex AI for
-that desktop run. Existing metadata and the prompt template are unchanged.
+and applies only to new generation; completed images are reused. **Metadata provider**
+defaults to **Vertex AI** with `gemini-3.8-flash`. Select **Gemini Developer API**
+to use `gemini-4-hydrogen` for new metadata. The **Metadata model** field is
+editable. Add `GEMINI_API_KEY` from your AI Studio project to the repository's
+`.env`. Your AI Studio project's billing tier and quota apply to these metadata
+requests. Image generation still uses Vertex AI.
 Offline test mode does not invoke either model.
 
 For Nano Banana Pro, **Temperature** defaults to 1.0 and **Top-p** to 0.95.

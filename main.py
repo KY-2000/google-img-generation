@@ -118,6 +118,14 @@ def get_google_api_key(project_root: Path) -> str:
     return api_key
 
 
+def get_gemini_developer_api_key(project_root: Path) -> str:
+    env_vars = load_env_file(project_root / ".env")
+    api_key = env_vars.get("GEMINI_API_KEY") or os.getenv("GEMINI_API_KEY")
+    if not api_key:
+        raise RuntimeError("GEMINI_API_KEY is missing. Add it to the project root .env file.")
+    return api_key
+
+
 def get_openrouter_api_key(project_root: Path) -> str:
     env_vars = load_env_file(project_root / ".env")
     api_key = env_vars.get("OPENROUTER_API_KEY") or os.getenv("OPENROUTER_API_KEY")
@@ -643,6 +651,8 @@ def build_client(
     project: str | None = None,
     location: str | None = None,
     api_key: str | None = None,
+    *,
+    vertexai: bool = True,
 ):
     try:
         from google import genai
@@ -652,7 +662,7 @@ def build_client(
         ) from exc
 
     if api_key:
-        return genai.Client(vertexai=True, api_key=api_key)
+        return genai.Client(vertexai=vertexai, api_key=api_key)
     return genai.Client(vertexai=True, project=project, location=location)
 
 
@@ -662,6 +672,10 @@ def build_google_client(
     api_key: str | None = None,
 ):
     return build_client(project=project, location=location, api_key=api_key)
+
+
+def build_gemini_developer_client(project_root: Path):
+    return build_client(api_key=get_gemini_developer_api_key(project_root), vertexai=False)
 
 
 def build_openrouter_metadata_client(api_key: str) -> dict[str, str]:
@@ -832,13 +846,16 @@ def generate_google_metadata_text(
     image_bytes = image_path.read_bytes()
     image_part = types.Part.from_bytes(data=image_bytes, mime_type="image/png")
 
+    # Hydrogen uses model-default sampling and supports JSON responses.
+    config = {"response_mime_type": "application/json"} if model.rsplit("/", 1)[-1] == "gemini-4-hydrogen" else {
+        "temperature": temperature, "topP": top_p,
+    }
     response = client.models.generate_content(
         model=model,
         contents=[image_part, user_prompt],
         config=types.GenerateContentConfig(
             systemInstruction=system_prompt,
-            temperature=temperature,
-            topP=top_p,
+            **config,
         ),
     )
 
@@ -960,7 +977,7 @@ def generate_metadata_text(
     top_p: float,
 ) -> str:
     user_prompt = build_metadata_user_prompt(generation_prompt, category_list)
-    if provider == "google":
+    if provider in {"google", "gemini-developer"}:
         return generate_google_metadata_text(
             client=client,
             image_path=image_path,
@@ -1082,6 +1099,8 @@ def run(
         raise RuntimeError(f"Unsupported GOOGLE_AUTH_MODE: {google_auth_mode}")
     if metadata_provider == "google":
         metadata_client = image_client
+    elif metadata_provider == "gemini-developer":
+        metadata_client = build_gemini_developer_client(project_root)
     elif metadata_provider == "openrouter":
         metadata_api_key = get_openrouter_api_key(project_root)
         metadata_client = build_openrouter_metadata_client(metadata_api_key)
@@ -1264,7 +1283,7 @@ def parse_args(
     )
     parser.add_argument(
         "--metadata-provider",
-        choices=("google", "openrouter", "nim"),
+        choices=("google", "gemini-developer", "openrouter", "nim"),
         default=get_default_metadata_provider(resolved_project_root),
         help=(
             "Metadata provider to use. Default: METADATA_PROVIDER from .env or "
