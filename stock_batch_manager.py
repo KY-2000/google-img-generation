@@ -369,8 +369,8 @@ class Desktop:
         invalid = sum(row["status"] == "Invalid" for row in rows)
         dialog = self.preview_window = self.tk.Toplevel(self.window)
         dialog.title("Queue Preview")
-        dialog.geometry("1070x550")
-        dialog.minsize(760, 405)
+        dialog.geometry("1070x594")
+        dialog.minsize(760, 449)
         dialog.transient(self.window)
         dialog.grab_set()
         panel = ttk.Frame(dialog, padding=16)
@@ -400,7 +400,7 @@ class Desktop:
                 row["git_change"], row["status"], row["total"] if row["total"] else "—",
                 row["new_images"] if row["selectable"] else "—",
             ))
-        detail = self.tk.Text(panel, height=3, wrap="word", font=("Segoe UI", 10), state="disabled")
+        detail = self.tk.Text(panel, height=5, wrap="word", font=("Segoe UI", 10), state="disabled")
         detail.pack(fill="x", pady=(6, 6))
 
         def show_details(_event=None):
