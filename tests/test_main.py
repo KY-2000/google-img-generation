@@ -109,8 +109,9 @@ class ApiUsageCallbackTests(unittest.TestCase):
             total_token_count=543,
         )
         response = SimpleNamespace(text='{"title":"example"}', usage_metadata=usage_metadata)
+        generate_content = mock.Mock(return_value=response)
         client = SimpleNamespace(
-            models=SimpleNamespace(generate_content=lambda **kwargs: response)
+            models=SimpleNamespace(generate_content=generate_content)
         )
         reported = []
         fake_module = SimpleNamespace(types=self._fake_google_types())
@@ -131,6 +132,7 @@ class ApiUsageCallbackTests(unittest.TestCase):
                 )
 
         self.assertEqual(result, '{"title":"example"}')
+        self.assertEqual(generate_content.call_args.kwargs["config"]["http_options"], {"timeout": 90000})
         self.assertEqual(reported[0]["prompt_tokens"], 456)
         self.assertEqual(reported[0]["thoughts_tokens"], 9)
 

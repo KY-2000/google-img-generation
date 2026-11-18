@@ -26,6 +26,7 @@ DEFAULT_MODEL = "gemini-3-pro-image-preview"
 DEFAULT_GOOGLE_AUTH_MODE = "adc"
 DEFAULT_METADATA_PROVIDER = "google"
 DEFAULT_METADATA_MODEL = "gemini-2.5-flash"
+GOOGLE_METADATA_TIMEOUT_SECONDS = 90
 DEFAULT_NIM_BASE_URL = "https://integrate.api.nvidia.com"
 DEFAULT_TEMPERATURE = 1.0
 DEFAULT_TOP_P = 0.95
@@ -850,14 +851,22 @@ def generate_google_metadata_text(
     config = {"response_mime_type": "application/json"} if model.rsplit("/", 1)[-1] == "gemini-4-hydrogen" else {
         "temperature": temperature, "topP": top_p,
     }
-    response = client.models.generate_content(
-        model=model,
-        contents=[image_part, user_prompt],
-        config=types.GenerateContentConfig(
-            systemInstruction=system_prompt,
-            **config,
-        ),
-    )
+    from httpx import TimeoutException
+    from requests.exceptions import Timeout as RequestsTimeout
+
+    try:
+        response = client.models.generate_content(
+            model=model,
+            contents=[image_part, user_prompt],
+            config=types.GenerateContentConfig(
+                systemInstruction=system_prompt,
+                http_options={"timeout": GOOGLE_METADATA_TIMEOUT_SECONDS * 1000},
+                **config,
+            ),
+        )
+    except (TimeoutException, RequestsTimeout) as exc:
+        raise TimeoutError(f"Google metadata request timed out ({GOOGLE_METADATA_TIMEOUT_SECONDS}s timeout). "
+                           "Retry can reuse the saved image.") from exc
 
     if usage_callback is not None:
         from stock_pipeline.ai_usage import extract_google_usage
