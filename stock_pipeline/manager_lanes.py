@@ -9,7 +9,7 @@ from threading import Lock
 import time
 
 from .batch_manager import preview_queues, run_manager
-from .local_image_test import ANSI_ESCAPE, STEP_LINE, STEPS, local_command, run_sd_cli
+from .local_image_test import ANSI_ESCAPE, LOCAL_IMAGE_MODELS, STEP_LINE, STEPS, local_command, run_sd_cli
 from .manager_queues import adopt_existing_finder_run, fingerprint, runtime_queue
 from .manager_runtime import redactor
 from .orchestrator import StockPipeline
@@ -62,12 +62,13 @@ def local_sources(sources):
 
 
 class LocalStockPipeline(StockPipeline):
-    def __init__(self, *, should_stop, text_encoder=None, **kwargs):
+    def __init__(self, *, should_stop, text_encoder=None, image_quant="Q4", **kwargs):
         self.should_stop = should_stop
         self.text_encoder = text_encoder
+        self.image_quant = image_quant
         self.local_started = 0
         self.local_step = 0
-        kwargs.update(image_model="minimax-h3-image-UD-Q4_K_XL", image_generate_bytes=self.generate_local)
+        kwargs.update(image_model=LOCAL_IMAGE_MODELS[image_quant], image_generate_bytes=self.generate_local)
         super().__init__(**kwargs)
 
     def process_asset(self, asset, **kwargs):
@@ -83,7 +84,7 @@ class LocalStockPipeline(StockPipeline):
         super()._emit_progress(asset_id, message)
 
     def generate_local(self, *, prompt, aspect_ratio, resolution, **_kwargs):
-        cli, command = local_command(self.project_root, self.text_encoder)
+        cli, command = local_command(self.project_root, self.text_encoder, self.image_quant)
         sizes = {"16:9": (4096, 2304), "9:16": (2304, 4096), "1:1": (4096, 4096)}
         width, height = sizes[aspect_ratio]
         if resolution != "4K":
@@ -120,7 +121,7 @@ class LocalStockPipeline(StockPipeline):
 
 def run_lanes(root, commit, commit_time, run_dir, sources, *, route, emit, should_stop, stop_file,
               cdp, profile, image_model, metadata_model, metadata_provider, temperature, top_p,
-              max_images, max_workers, selected_by_lane=None, text_encoder=None, manager=run_manager):
+              max_images, max_workers, selected_by_lane=None, text_encoder=None, image_quant="Q4", manager=run_manager):
     lanes = ("cloud", "local") if route == "both" else (route,)
     plans = {lane: [source for source in sources
                     if selected_by_lane is None or source.source_file in selected_by_lane[lane]] for lane in lanes}
@@ -174,8 +175,8 @@ def run_lanes(root, commit, commit_time, run_dir, sources, *, route, emit, shoul
             options["upload_slot"] = upload_slot
         if lane == "local":
             options.update(pipeline_factory=lambda **kwargs: LocalStockPipeline(
-                               should_stop=should_stop, text_encoder=text_encoder, **kwargs),
-                           image_model="minimax-h3-image-UD-Q4_K_XL", receipt_subdir="local")
+                               should_stop=should_stop, text_encoder=text_encoder, image_quant=image_quant, **kwargs),
+                           image_model=LOCAL_IMAGE_MODELS[image_quant], receipt_subdir="local")
         else:
             options.update(image_model=image_model)
         try:

@@ -139,7 +139,8 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
            image_model: str | None = None, metadata_model: str | None = None, *,
            metadata_provider: str | None = None, temperature: float = 1.0,
            top_p: float = 0.95, max_images: int | None = None, max_workers: int = 1,
-           local_queue: Path | None = None, generation_route: str = "cloud", text_encoder: str | None = None) -> int:
+           local_queue: Path | None = None, generation_route: str = "cloud", text_encoder: str | None = None,
+           image_quant: str = "Q4") -> int:
     # The UI generates a fresh local directory for each Start.
     home = (ROOT / "output" / "stock_manager" / "runs").resolve()
     run_dir = run_dir.resolve()
@@ -165,10 +166,10 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
             from stock_pipeline.batch_manager import write_report
             from stock_pipeline.local_image_test import run_local_image_test
 
-            log("Running MiniMax H3 Image locally", phase="Local image test", source=local_queue.name,
+            log(f"Running MiniMax H3 Image {image_quant} locally", phase="Local image test", source=local_queue.name,
                 github="Not used", browser="Not used")
             report = run_local_image_test(ROOT, local_queue, run_dir, max_images or 1, stop.exists, log,
-                                          text_encoder=text_encoder)
+                                          text_encoder=text_encoder, image_quant=image_quant)
             report.update(log_path=str(run_dir / "activity.log"), elapsed_seconds=round(time.monotonic() - started, 2))
             write_report(report, run_dir)
             log(report.get("last_error") or report["status"].replace("_", " ").title(), report=report)
@@ -233,7 +234,7 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
                                  metadata_model=metadata_model, metadata_provider=metadata_provider, temperature=temperature,
                                  top_p=top_p, max_images=max_images, max_workers=max_workers,
                                  sources=sources, route=generation_route, selected_by_lane=selected,
-                                 text_encoder=text_encoder)
+                                 text_encoder=text_encoder, image_quant=image_quant)
             from stock_pipeline.batch_manager import write_report
             write_report({**report, "log_path": str(run_dir / "activity.log")}, run_dir)
             log(report["status"].replace("_", " ").title(), report=report)
@@ -277,6 +278,7 @@ class Desktop:
         self.local_test = tk.BooleanVar(value=False)
         self.generation_route = tk.StringVar(value="Cloud")
         self.text_encoder = tk.StringVar(value="Q4")
+        self.local_image_quant = tk.StringVar(value="Q4")
         self.image_model = tk.StringVar(value="Nano Banana Pro")
         self.cloud_image_model = self.image_model.get()
         self.metadata_model = tk.StringVar(value=DEFAULT_METADATA_MODEL)
@@ -403,7 +405,7 @@ class Desktop:
                                                 values=("Q2", "Q4"), width=4, state="readonly")
         self.text_encoder_picker.pack(side="left")
         self.text_encoder_picker.state(["disabled"])
-        self.model_picker.bind("<<ComboboxSelected>>", lambda _event: self.refresh_generation_entries())
+        self.model_picker.bind("<<ComboboxSelected>>", self.choose_image_model)
         modes = ttk.Frame(container)
         modes.pack(fill="x", pady=(0, 8))
         self.test_check = ttk.Checkbutton(modes, text="Offline test (simulation)", variable=self.offline_test,
@@ -417,6 +419,12 @@ class Desktop:
                                           state="readonly", width=8)
         self.route_picker.pack(side="left")
         self.route_picker.bind("<<ComboboxSelected>>", lambda _event: self.refresh_route())
+        self.both_local_model = ttk.Frame(modes)
+        ttk.Label(self.both_local_model, text="Local model").pack(side="left", padx=(0, 6))
+        self.local_model_picker = ttk.Combobox(self.both_local_model, textvariable=self.local_image_quant,
+                                               state="readonly", width=5)
+        self.local_model_picker.pack(side="left")
+        self.local_model_picker.bind("<<ComboboxSelected>>", lambda _event: self.reset_asset_cards())
         self.progress_tabs = ttk.Notebook(container)
         self.progress_tabs.pack(fill="x", pady=(0, 8))
         self.reset_asset_cards()
@@ -444,7 +452,7 @@ class Desktop:
         from tkinter import ttk
         for lane in lanes:
             frame = ttk.Frame(self.progress_tabs)
-            title = "Local · MiniMax H3 Image" if lane == "local" and len(lanes) == 2 else lane.title()
+            title = f"Local · MiniMax H3 Image {self.local_image_quant.get()}" if lane == "local" else lane.title()
             self.progress_tabs.add(frame, text=title)
             count = 1 if lane == "local" else int(self.max_workers.get())
             self.progress_panels[lane] = ProgressPanel(frame, count, ASSET_STAGES, UPLOAD_STAGES, FINISHED_ASSET_STAGES)
@@ -576,14 +584,33 @@ class Desktop:
 
         threading.Thread(target=push, daemon=True).start()
 
+    def choose_image_model(self, _event=None):
+        label = self.image_model.get()
+        if label.startswith("MiniMax H3 Image "):
+            self.local_image_quant.set(label.rsplit(" ", 1)[-1])
+            self.reset_asset_cards()
+        self.refresh_generation_entries()
+
     def refresh_generation_entries(self):
+        from stock_pipeline.local_image_test import configured_local_image_models
+
         local = self.local_test.get() or self.generation_route.get() == "Local"
         encoder_enabled = not self.active and (local or self.generation_route.get() == "Both")
         self.text_encoder_picker.state(["!disabled" if encoder_enabled else "disabled"])
         if self.image_model.get() in IMAGE_MODELS:
             self.cloud_image_model = self.image_model.get()
-        self.model_picker.configure(values=("MiniMax H3 Image",) if local else tuple(IMAGE_MODELS))
-        self.image_model.set("MiniMax H3 Image" if local else self.cloud_image_model)
+        quantizations = configured_local_image_models(ROOT) if encoder_enabled else (self.local_image_quant.get(),)
+        if self.local_image_quant.get() not in quantizations:
+            self.local_image_quant.set("Q4")
+        self.local_model_picker.configure(values=quantizations)
+        self.local_model_picker.state(["disabled" if self.active else "!disabled"])
+        if not local and self.generation_route.get() == "Both":
+            self.both_local_model.pack(side="left", padx=(6, 0))
+        else:
+            self.both_local_model.pack_forget()
+        models = tuple(f"MiniMax H3 Image {quant}" for quant in quantizations) if local else tuple(IMAGE_MODELS)
+        self.model_picker.configure(values=models)
+        self.image_model.set(f"MiniMax H3 Image {self.local_image_quant.get()}" if local else self.cloud_image_model)
         self.image_model_label.configure(text="Cloud image model" if not local and self.generation_route.get() == "Both" else "Image model")
         self.model_picker.state(["disabled" if self.active else "!disabled"])
         pro = self.image_model.get() == "Nano Banana Pro"
@@ -689,7 +716,7 @@ class Desktop:
         args = [str(python), str(Path(__file__).resolve()), "--worker", str(self.run_dir),
                 "--max-workers", self.max_workers.get(), "--generation-route", self.generation_route.get().lower()]
         if local or self.generation_route.get() in {"Local", "Both"}:
-            args.extend(("--local-text-encoder", self.text_encoder.get()))
+            args.extend(("--local-text-encoder", self.text_encoder.get(), "--local-image-model", self.local_image_quant.get()))
         if local:
             args.extend(("--local-queue", local_queue, *generation_args))
         elif testing:
@@ -1041,6 +1068,7 @@ def main():
     parser.add_argument("--offline-test", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--local-queue", type=Path, help=argparse.SUPPRESS)
     parser.add_argument("--local-text-encoder", choices=("Q2", "Q4"), help=argparse.SUPPRESS)
+    parser.add_argument("--local-image-model", choices=("Q4", "Q5"), default="Q4", help=argparse.SUPPRESS)
     parser.add_argument("--generation-route", choices=("cloud", "local", "both"), default="cloud", help=argparse.SUPPRESS)
     parser.add_argument("--image-model", choices=tuple(IMAGE_MODELS.values()), help=argparse.SUPPRESS)
     parser.add_argument("--metadata-model", help=argparse.SUPPRESS)
@@ -1061,7 +1089,7 @@ def main():
                       metadata_provider=args.metadata_provider, temperature=args.temperature,
                       top_p=args.top_p, max_images=args.max_images, max_workers=args.max_workers,
                       local_queue=args.local_queue, generation_route=args.generation_route,
-                      text_encoder=args.local_text_encoder)
+                      text_encoder=args.local_text_encoder, image_quant=args.local_image_model)
     import tkinter as tk
     window = tk.Tk()
     icon = ROOT / "config" / "stock_manager.ico"

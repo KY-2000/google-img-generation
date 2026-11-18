@@ -73,10 +73,25 @@ def run_sd_cli(command, cwd, should_stop, on_line):
     return None
 
 
-def local_command(root, text_encoder=None):
+LOCAL_IMAGE_MODELS = {"Q4": "minimax-h3-image-UD-Q4_K_XL", "Q5": "minimax-h3-image-Q5"}
+
+
+def configured_local_image_models(root):
     from main import load_env_file
 
     settings = {**load_env_file(root / ".env"), **os.environ}
+    q5 = settings.get("LOCAL_H3_DIT_Q5")
+    return ("Q4", "Q5") if q5 and (root / q5).is_file() else ("Q4",)
+
+
+def local_command(root, text_encoder=None, image_quant="Q4"):
+    from main import load_env_file
+
+    settings = {**load_env_file(root / ".env"), **os.environ}
+    model_key = f"LOCAL_H3_DIT_{image_quant}"
+    model_path = settings.get(model_key, "")
+    if image_quant == "Q4" and not model_path:
+        model_path = settings.get("LOCAL_H3_DIT", "")
     encoder_key = "LOCAL_H3_TEXT_ENCODER"
     if text_encoder is not None:
         encoder_key += f"_{text_encoder}"
@@ -87,7 +102,7 @@ def local_command(root, text_encoder=None):
             encoder = legacy_encoder
     paths = {
         "LOCAL_SD_CLI": settings.get("LOCAL_SD_CLI") or shutil.which("sd-cli") or "",
-        "LOCAL_H3_DIT": settings.get("LOCAL_H3_DIT", ""),
+        model_key: model_path,
         encoder_key: encoder,
         "LOCAL_H3_VAE": settings.get("LOCAL_H3_VAE", ""),
     }
@@ -96,7 +111,7 @@ def local_command(root, text_encoder=None):
     if missing:
         raise ValueError("Local MiniMax H3 setup needs valid file paths in .env: " + ", ".join(missing))
     cli = resolved["LOCAL_SD_CLI"]
-    command = [str(cli), "--diffusion-model", str(resolved["LOCAL_H3_DIT"]),
+    command = [str(cli), "--diffusion-model", str(resolved[model_key]),
                "--llm", str(resolved[encoder_key]), "--vae", str(resolved["LOCAL_H3_VAE"]),
                "--steps", str(STEPS), "--cfg-scale", "1.0", "--sampling-method", "euler",
                "--sigmas", "minimax-h3-image", "--rng", "cpu", "--offload-to-cpu", "--vae-tiling",
@@ -106,7 +121,7 @@ def local_command(root, text_encoder=None):
     return cli, command
 
 
-def run_local_image_test(root, queue_path, run_dir, limit, should_stop, log, *, text_encoder=None):
+def run_local_image_test(root, queue_path, run_dir, limit, should_stop, log, *, text_encoder=None, image_quant="Q4"):
     incoming = (root / "queues" / "incoming").resolve()
     path = queue_path.resolve()
     if not path.is_relative_to(incoming):
@@ -119,7 +134,7 @@ def run_local_image_test(root, queue_path, run_dir, limit, should_stop, log, *, 
         raise ValueError(source.error)
     assets = (source.data if source.queue_type == "FINDER" else source.data["assets"])[:limit]
 
-    cli, command = local_command(root, text_encoder)
+    cli, command = local_command(root, text_encoder, image_quant)
 
     results = run_dir / "local_images"
     results.mkdir()
