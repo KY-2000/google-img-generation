@@ -323,6 +323,7 @@ class ManagerTests(unittest.TestCase):
         self.assertEqual(len(self.uploads[0]["items"]), 3)
 
     def test_both_lanes_upload_independently_and_resume_with_distinct_ids(self):
+        from google.genai.errors import ServerError
         from stock_pipeline.manager_lanes import preview_for_route, run_lanes
         from stock_pipeline.manager_queues import discover
 
@@ -350,6 +351,8 @@ class ManagerTests(unittest.TestCase):
             metadata_calls.append((kwargs["provider"], kwargs["model"]))
             if fail_metadata:
                 raise RuntimeError("local metadata unavailable")
+            if len(metadata_calls) == 1:
+                raise ServerError(503, {"error": {"message": "high demand", "status": "UNAVAILABLE"}})
             return self.metadata(**kwargs)
 
         def manager(root, commit, stamp, run_dir, **options):
@@ -382,17 +385,18 @@ class ManagerTests(unittest.TestCase):
                     local_waiting.set()
 
             with (patch("stock_pipeline.manager_lanes.local_command", return_value=(self.root / "sd-cli.exe", ["sd-cli"])),
+                  patch("main.get_gemini_developer_api_key", return_value="mock-key"),
                   patch("stock_pipeline.manager_lanes.run_sd_cli", side_effect=cli)):
                 return run_lanes(self.root, COMMIT, TIME, directory, discover(self.root, TIME), route="both",
                                  emit=emit, should_stop=lambda: False, stop_file=None,
                                  cdp="http://127.0.0.1:9222", profile=None, image_model=None,
-                                 metadata_model=None, metadata_provider=None, temperature=1, top_p=.95,
+                                 metadata_model="gemini-4-hydrogen", metadata_provider=None, temperature=1, top_p=.95,
                                  max_images=None, max_workers=2, manager=manager)
 
         first = run()
         self.assertEqual(first["status"], "COMPLETE", first)
         self.assertEqual(len(calls), 1)
-        self.assertEqual(metadata_calls, [("vertex", "gemini-3.8-flash")])
+        self.assertEqual(metadata_calls, [("gemini-developer", "gemini-4-hydrogen"), ("vertex", "gemini-3.8-flash")])
         self.assertEqual(endpoints["cloud"], ("http://127.0.0.1:9222", None))
         self.assertEqual(endpoints["local"], endpoints["cloud"])
         ids = [item["asset_id"] for batch in self.uploads for item in batch["items"]]

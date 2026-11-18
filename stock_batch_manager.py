@@ -27,8 +27,8 @@ IMAGE_MODELS = {
     "Nano Banana Pro": "gemini-3-pro-image",
     "Nano Banana 2.1": "gemini-nano-banana-2.1",
 }
-DEFAULT_METADATA_MODEL = "gemini-3.8-flash"
-METADATA_MODELS = (DEFAULT_METADATA_MODEL, "gemini-4-hydrogen")
+DEFAULT_METADATA_MODEL = "gemini-4-hydrogen"
+METADATA_MODELS = (DEFAULT_METADATA_MODEL, "gemini-3.8-flash")
 SUPPORT_CHAT_FILE = Path("output/stock_manager/support_chat.txt")
 CHAT_LINK_PREFIX = "codex://threads/"
 GITHUB_COMMIT_PREFIX = "https://github.com/KY-2000/google-img-generation/commit/"
@@ -495,8 +495,6 @@ class Desktop:
         self.stop_button.configure(text="Stop Local Test" if self.local_test.get() else stop_text)
 
     def refresh_route(self):
-        if self.generation_route.get() == "Local":
-            self.metadata_model.set(DEFAULT_METADATA_MODEL)
         self.refresh_start_button()
         self.refresh_generation_entries()
         self.reset_asset_cards()
@@ -590,8 +588,8 @@ class Desktop:
         self.model_picker.state(["disabled" if self.active else "!disabled"])
         pro = self.image_model.get() == "Nano Banana Pro"
         self.endpoint_entry.state(["disabled" if self.active or self.local_test.get() else "!disabled"])
-        for widget in (self.metadata_picker, self.worker_picker):
-            widget.state(["disabled" if self.active or local else "!disabled"])
+        self.metadata_picker.state(["disabled" if self.active or self.local_test.get() else "!disabled"])
+        self.worker_picker.state(["disabled" if self.active or local else "!disabled"])
         for index, entry in enumerate(self.generation_entries):
             entry.state(["disabled" if self.active or (index < 2 and (local or not pro)) else "!disabled"])
 
@@ -620,7 +618,7 @@ class Desktop:
             testing = self.offline_test.get() and not local
             live = not (testing or local)
             metadata_model = self.metadata_model.get().strip()
-            if live and self.generation_route.get() != "Local" and not metadata_model:
+            if live and not metadata_model:
                 raise ValueError("Enter a metadata model ID.")
             generation_args = []
             if not testing:
@@ -697,8 +695,9 @@ class Desktop:
         elif testing:
             args.append("--offline-test")
         else:
+            args.extend(("--metadata-model", metadata_model))
             if self.generation_route.get() != "Local":
-                args.extend(("--image-model", IMAGE_MODELS[self.image_model.get()], "--metadata-model", metadata_model))
+                args.extend(("--image-model", IMAGE_MODELS[self.image_model.get()]))
             args.extend(generation_args)
         if cdp:
             args.extend(("--cdp", cdp))

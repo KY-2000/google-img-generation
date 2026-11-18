@@ -19,8 +19,8 @@ Configure `.env` and Google credentials as for the single-queue pipeline.
 Choose **Nano Banana Pro** (default) or **Nano Banana 2.1** in the
 **Image model** dropdown. The choice overrides `IMAGE_MODEL` for that run
 and applies only to new generation; completed images are reused. For new
-metadata, select `gemini-3.8-flash` (default) to use Vertex AI, or
-`gemini-4-hydrogen` to use the Gemini Developer API. Other model IDs entered
+metadata, select `gemini-4-hydrogen` (default) to use the Gemini Developer API, or
+`gemini-3.8-flash` to use Vertex AI. Other model IDs entered
 in the editable field use Vertex AI. For Hydrogen, add `GEMINI_API_KEY` from
 your AI Studio project to the repository's
 `.env`. Your AI Studio project's billing tier and quota apply to these metadata
@@ -95,7 +95,7 @@ Choose **Cloud**, **Local**, or **Both** under **Production images model**. Both
 use the same reviewed JSON selection and the existing QC, metadata, staging,
 and draft upload pipeline. Cloud uses the selected Google image model and
 metadata model. Local generates with MiniMax H3 Image at the queue's resolution
-and aspect ratio, then uses `gemini-3.8-flash` through Vertex AI for metadata.
+and aspect ratio, then uses the same selected metadata model and fallback as Cloud.
 Local processes one asset at a time. **Max new images** applies separately to
 each selected route. Cloud retains the **Parallel assets** setting.
 

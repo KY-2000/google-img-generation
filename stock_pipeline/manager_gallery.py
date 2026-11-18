@@ -1,5 +1,6 @@
 """Read saved image provenance and display a paged queue gallery."""
-from collections import defaultdict
+from collections import OrderedDict, defaultdict
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
 import json
@@ -7,7 +8,7 @@ import os
 import sqlite3
 from tkinter import StringVar, Toplevel, ttk
 
-from PIL import Image, ImageOps, ImageTk
+from PIL import Image, ImageTk
 
 from .prompt_builder import render_image_prompt
 
@@ -97,6 +98,7 @@ def saved_images(root):
 
 class ImageGallery:
     PAGE_SIZE = 6
+    CACHE_SIZE = 96
 
     def __init__(self, parent, root):
         self.root = root
@@ -105,6 +107,7 @@ class ImageGallery:
         self.window.geometry("860x740")
         self.window.minsize(750, 710)
         self.window.bind("<Escape>", lambda _event: self.window.destroy())
+        self.window.bind("<Destroy>", self.on_destroy)
         layout = ttk.Frame(self.window, padding=16)
         layout.pack(expand=True, fill="both")
         filters = ttk.Frame(layout)
@@ -132,21 +135,35 @@ class ImageGallery:
         self.previous = ttk.Button(footer, text="Previous", command=lambda: self.turn_page(-1))
         self.previous.pack(side="right", padx=6)
         self.page = 0
-        self.photos = []
-        self.images = []
+        self.images = {}
+        self.cache = OrderedDict()
+        self.executor = ThreadPoolExecutor(max_workers=3, thread_name_prefix="gallery")
+        self.index_job = None
+        self.thumbnails = []
+        self.poll_id = self.window.after(40, self.poll)
         self.refresh()
 
     def refresh(self):
+        if self.index_job is None:
+            self.caption.configure(text="Loading saved images…")
+            self.index_job = self.executor.submit(saved_images, self.root)
+
+    def update_index(self, job):
         try:
-            self.images = saved_images(self.root)
+            images = job.result()
         except (OSError, ValueError, sqlite3.Error) as exc:
             self.caption.configure(text=f"Could not read saved images: {exc}")
             return
-        queues = sorted({item.queue for item in self.images}, key=str.casefold)
+        grouped = defaultdict(list)
+        for item in images:
+            grouped[item.queue, item.lane].append(item)
+        self.images = grouped
+        queues = sorted({item.queue for item in images}, key=str.casefold)
         self.picker.configure(values=queues)
         if self.queue.get() not in queues:
             self.queue.set(queues[0] if queues else "")
-        self.reset_page()
+            self.page = 0
+        self.show_page()
 
     def reset_page(self, _event=None):
         self.page = 0
@@ -158,17 +175,20 @@ class ImageGallery:
 
     def show_page(self):
         lane = self.tabs.tab(self.tabs.select(), "text")
-        for grid in self.grids.values():
-            for child in grid.winfo_children():
-                child.destroy()
-        self.photos.clear()
+        for job, _key, _button in self.thumbnails:
+            job.cancel()
+        self.thumbnails.clear()
         grid = self.grids[lane]
-        rows = [item for item in self.images if item.lane == lane and item.queue == self.queue.get()]
+        for child in grid.winfo_children():
+            child.destroy()
+        rows = self.images.get((self.queue.get(), lane), ())
+        self.page = min(self.page, max(0, (len(rows) - 1) // self.PAGE_SIZE))
         offset = self.page * self.PAGE_SIZE
         self.previous.state(["!disabled" if offset else "disabled"])
         self.next.state(["!disabled" if offset + self.PAGE_SIZE < len(rows) else "disabled"])
         if not rows:
-            self.caption.configure(text=f"No {lane.lower()} images saved for this queue.")
+            if self.index_job is None:
+                self.caption.configure(text=f"No {lane.lower()} images saved for this queue.")
             return
         self.caption.configure(text=f"{offset + 1}–{min(offset + self.PAGE_SIZE, len(rows))} of {len(rows)} · Click a thumbnail to open")
         for column in range(3):
@@ -176,17 +196,62 @@ class ImageGallery:
         for index, item in enumerate(rows[offset:offset + self.PAGE_SIZE]):
             card = ttk.Frame(grid, padding=6)
             card.grid(row=index // 3, column=index % 3, sticky="nsew")
+            thumbnail_frame = ttk.Frame(card, width=224, height=166)
+            thumbnail_frame.pack(anchor="w")
+            thumbnail_frame.pack_propagate(False)
+            button = ttk.Button(thumbnail_frame, text="Open image", command=lambda path=item.path: self.open_image(path))
+            button.pack(expand=True)
             try:
-                with Image.open(item.path) as source:
-                    thumb = ImageOps.contain(source, (214, 156))
-                photo = ImageTk.PhotoImage(thumb, master=self.window)
-                self.photos.append(photo)
-                button = ttk.Button(card, image=photo, command=lambda path=item.path: self.open_image(path))
-            except (OSError, ValueError):
-                button = ttk.Button(card, text="Open image", command=lambda path=item.path: self.open_image(path))
-            button.pack(anchor="w")
+                stat = item.path.stat()
+            except OSError:
+                stat = None
+            if stat is not None:
+                key = (item.path, stat.st_mtime_ns, stat.st_size)
+                if key in self.cache:
+                    self.cache.move_to_end(key)
+                    self.display_thumbnail(button, self.cache[key])
+                else:
+                    job = self.executor.submit(self.load_thumbnail, item.path)
+                    self.thumbnails.append((job, key, button))
             ttk.Label(card, text=item.theme, wraplength=214, justify="left").pack(anchor="w", pady=(4, 0))
             ttk.Label(card, text=item.asset_id or item.path.name).pack(anchor="w")
+
+    @staticmethod
+    def load_thumbnail(path):
+        with Image.open(path) as source:
+            source.thumbnail((214, 156), Image.Resampling.BILINEAR, reducing_gap=2)
+            return source.copy()
+
+    def display_thumbnail(self, button, thumbnail):
+        photo = ImageTk.PhotoImage(thumbnail, master=self.window)
+        button.configure(image=photo, text="")
+        button.thumbnail = photo
+
+    def poll(self):
+        if self.index_job is not None and self.index_job.done():
+            job, self.index_job = self.index_job, None
+            self.update_index(job)
+        pending = []
+        for job, key, button in self.thumbnails:
+            if not job.done():
+                pending.append((job, key, button))
+                continue
+            try:
+                thumbnail = job.result()
+            except (OSError, ValueError, Image.DecompressionBombError):
+                continue
+            self.cache[key] = thumbnail
+            self.cache.move_to_end(key)
+            if len(self.cache) > self.CACHE_SIZE:
+                self.cache.popitem(last=False)
+            self.display_thumbnail(button, thumbnail)
+        self.thumbnails = pending
+        self.poll_id = self.window.after(40, self.poll)
+
+    def on_destroy(self, event):
+        if event.widget is self.window:
+            self.window.after_cancel(self.poll_id)
+            self.executor.shutdown(wait=False, cancel_futures=True)
 
     def open_image(self, path):
         try:

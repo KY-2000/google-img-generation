@@ -168,16 +168,16 @@ def run_lanes(root, commit, commit_time, run_dir, sources, *, route, emit, shoul
         options = dict(should_stop=should_stop, emit=lambda event: send(lane, event),
                        stop_file=stop_file, sources=plans[lane], max_images=max_images,
                        max_workers=max_workers if lane == "cloud" else 1,
-                       temperature=temperature, top_p=top_p, cdp=cdp, profile=profile)
+                       temperature=temperature, top_p=top_p, cdp=cdp, profile=profile,
+                       metadata_model=metadata_model, metadata_provider=metadata_provider)
         if route == "both":
             options["upload_slot"] = upload_slot
         if lane == "local":
             options.update(pipeline_factory=lambda **kwargs: LocalStockPipeline(
                                should_stop=should_stop, text_encoder=text_encoder, **kwargs),
-                           image_model="minimax-h3-image-UD-Q4_K_XL", metadata_model="gemini-3.8-flash",
-                           metadata_provider="vertex", receipt_subdir="local")
+                           image_model="minimax-h3-image-UD-Q4_K_XL", receipt_subdir="local")
         else:
-            options.update(image_model=image_model, metadata_model=metadata_model, metadata_provider=metadata_provider)
+            options.update(image_model=image_model)
         try:
             return manager(root, commit, commit_time, directory, **options)
         except Exception as exc:
