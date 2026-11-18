@@ -64,7 +64,7 @@ export function createAdobeDraftAdapter({
     if (!match) throw new Error("Cannot confirm Adobe All uploads count; check login and page layout");
     return Number(match[1]);
   };
-  const inventory = async (wanted, showProgress = false) => {
+  const readInventory = async (wanted, showProgress) => {
     const expected = await count();
     const files = new Map();
     let scanned = 0;
@@ -96,6 +96,17 @@ export function createAdobeDraftAdapter({
     if (await count() !== expected) throw new Error("Adobe drafts changed during inventory");
     await goToPage(1);
     return files;
+  };
+  const inventory = async (wanted, showProgress = false) => {
+    for (let attempt = 0; ; attempt += 1) {
+      const before = await count();
+      try {
+        return await readInventory(wanted, showProgress);
+      } catch (error) {
+        if (shouldStop() || attempt >= 2 || await count() === before) throw error;
+        logger.write("Adobe draft count changed during inventory; rescanning the current grid");
+      }
+    }
   };
   let indices = new Map();
   const openLocation = async location => {

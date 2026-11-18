@@ -6,6 +6,7 @@ node_modules/
 final_runs/
 .pw-edge-adobe-profile/
 .pw-edge-adobe-cdp/
+.pw-edge-adobe-local/
 data/*.sqlite
 data/*.sqlite-shm
 data/*.sqlite-wal

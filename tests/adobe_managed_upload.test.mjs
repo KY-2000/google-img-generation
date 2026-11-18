@@ -86,6 +86,21 @@ test("Adobe inventory rejects ambiguous targets and an incomplete page count", a
   await assert.rejects(incomplete.inventory(new Set(["AST990103.png"])), /read 2 of 3 drafts/);
 });
 
+test("Adobe inventory rescans if another upload changes the draft count", async () => {
+  const drafts = [["AST990103.png"]];
+  const { adapter, page } = paginatedAdapter(drafts);
+  const locator = page.locator;
+  let reads = 0;
+  page.locator = selector => selector === "body" ? { innerText: async () => {
+    reads += 1;
+    if (reads === 3) drafts[0].push("AST990104.png");
+    return `File types: All (${drafts.flat().length})`;
+  } } : locator(selector);
+  assert.deepEqual(await adapter.inventory(new Set(["AST990103.png"])),
+    new Map([["AST990103.png", { pageNumber: 1, index: 0 }]]));
+  assert.ok(reads >= 7);
+});
+
 test("saved category uses Adobe's label, independent of its internal option ID", async () => {
   const row = { filename: "AST990088.png", title: "Title", keywords: "one,two", category: "8" };
   const { adapter, page } = paginatedAdapter([[row.filename]]);

@@ -89,6 +89,34 @@ draft upload. It writes a local report
 and runs without Git sync, API requests, Adobe, or SQLite updates.
 Uncheck **Offline test** to run live with the Git safety checks.
 
+### Production generation routes
+
+Choose **Cloud**, **Local**, or **Both** under **Production images**. Both routes
+use the same reviewed JSON selection and the existing QC, metadata, staging,
+and draft upload pipeline. Cloud uses the selected Google image model and
+metadata model. Local generates with MiniMax H3 Image at the queue's resolution
+and aspect ratio, then uses `gemini-3.8-flash` through Vertex AI for metadata.
+Local processes one asset at a time. **Max new images** applies separately to
+each selected route. Cloud retains the **Parallel assets** setting.
+
+**Both** runs the routes concurrently. Cloud and Local progress tabs show their
+own generation, metadata, and Adobe upload steps. Each route uploads when its
+batch is ready. A failure in one route leaves the other route running. Resume
+reuses each route's saved images and uploaded-draft receipts independently.
+Local variants receive distinct AST IDs in the existing registry, so both
+images can be uploaded with distinct filenames. Local upload receipts live
+under `output/stock_manager/adobe_receipts/local`.
+
+The local Adobe browser uses CDP port **9223** and the repository's
+`.pw-edge-adobe-local` profile. On first use, sign in to Adobe in that browser.
+Cloud uses the configured Adobe CDP/profile. Keep those browser profiles and
+ports distinct. Each run's `cloud` and `local` folders contain its lane reports
+and logs. The parent report contains both outcomes. Production images remain
+under `output/assets/<AST ID>`.
+
+**Offline test** simulates the selected routes without API calls or uploads.
+**Local Image Test** remains a preview-only mode with a default of one image.
+
 ### Local image test
 
 Select **Local Image Test (MiniMax H3)**, click **Run Local Image Test**, and
@@ -116,6 +144,7 @@ LOCAL_H3_VAE=C:/AI/models/diffusion_pytorch_model.safetensors
 `LOCAL_SD_CLI` may be omitted if `sd-cli` is on `PATH`. The runner uses CPU
 offload, memory mapping, and VAE tiling. The text encoder executes on CPU,
 while the diffusion model and tiled VAE use CUDA with a 5 GiB GPU budget.
+VAE tiles default to **1024×1024** in preview and production modes.
 The diffusion model requests native CUDA SageAttention, with the runtime's
 flash/default attention fallback for unsupported operations.
 

@@ -72,20 +72,8 @@ def run_sd_cli(command, cwd, should_stop, on_line):
     return None
 
 
-def run_local_image_test(root, queue_path, run_dir, limit, should_stop, log):
+def local_command(root):
     from main import load_env_file
-
-    incoming = (root / "queues" / "incoming").resolve()
-    path = queue_path.resolve()
-    if not path.is_relative_to(incoming):
-        raise ValueError("Choose an existing JSON from queues/incoming for the local test.")
-    sources = discover(root, datetime.now(timezone.utc).isoformat(), only=path.relative_to(root.resolve()).as_posix())
-    if not sources or sources[0].example:
-        raise ValueError("Choose a real image queue from queues/incoming.")
-    source = sources[0]
-    if source.error:
-        raise ValueError(source.error)
-    assets = (source.data if source.queue_type == "FINDER" else source.data["assets"])[:limit]
 
     settings = {**load_env_file(root / ".env"), **os.environ}
     paths = {
@@ -103,7 +91,26 @@ def run_local_image_test(root, queue_path, run_dir, limit, should_stop, log):
                "--llm", str(resolved["LOCAL_H3_TEXT_ENCODER"]), "--vae", str(resolved["LOCAL_H3_VAE"]),
                "--steps", str(STEPS), "--cfg-scale", "1.0", "--sampling-method", "euler",
                "--sigmas", "minimax-h3-image", "--rng", "cpu", "--offload-to-cpu", "--vae-tiling",
-               "--backend", "diffusion=cuda0,te=cpu,vae=cuda0", "--max-vram", "5", "--mmap", "--sage-attn"]
+               "--backend", "diffusion=cuda0,te=cpu,vae=cuda0", "--max-vram", "5", "--mmap", "--sage-attn",
+               "--vae-tile-size", "1024x1024"]
+
+    return cli, command
+
+
+def run_local_image_test(root, queue_path, run_dir, limit, should_stop, log):
+    incoming = (root / "queues" / "incoming").resolve()
+    path = queue_path.resolve()
+    if not path.is_relative_to(incoming):
+        raise ValueError("Choose an existing JSON from queues/incoming for the local test.")
+    sources = discover(root, datetime.now(timezone.utc).isoformat(), only=path.relative_to(root.resolve()).as_posix())
+    if not sources or sources[0].example:
+        raise ValueError("Choose a real image queue from queues/incoming.")
+    source = sources[0]
+    if source.error:
+        raise ValueError(source.error)
+    assets = (source.data if source.queue_type == "FINDER" else source.data["assets"])[:limit]
+
+    cli, command = local_command(root)
 
     results = run_dir / "local_images"
     results.mkdir()

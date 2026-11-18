@@ -322,6 +322,99 @@ class ManagerTests(unittest.TestCase):
         self.assertEqual(len(self.calls), 3)
         self.assertEqual(len(self.uploads[0]["items"]), 3)
 
+    def test_both_lanes_upload_independently_and_resume_with_distinct_ids(self):
+        from stock_pipeline.manager_lanes import preview_for_route, run_lanes
+        from stock_pipeline.manager_queues import discover
+
+        self.write("both.json", self.production("Both"))
+        (self.root / "config/stock_icon_pipeline.json").write_text(
+            '{"image":{"minimum_resolution":32,"resolution":"4K"}}')
+        cloud_uploaded = Event()
+        calls, endpoints = [], {}
+        metadata_calls = []
+        fail_metadata = False
+        events = []
+
+        def cli(args, _cwd, _stop, on_line):
+            self.assertTrue(cloud_uploaded.wait(timeout=5), "Cloud waited for local generation before uploading")
+            calls.append(args)
+            self.assertEqual((args[args.index("-W") + 1], args[args.index("-H") + 1]), ("4096", "4096"))
+            on_line(" |====>| 3/6 - 1.00s/it")
+            on_line(" |====>| 6/6 - 1.00s/it")
+            Image.new("RGB", (4096, 4096)).save(args[args.index("-o") + 1])
+            return 0
+
+        def metadata(**kwargs):
+            metadata_calls.append((kwargs["provider"], kwargs["model"]))
+            if fail_metadata:
+                raise RuntimeError("local metadata unavailable")
+            return self.metadata(**kwargs)
+
+        def manager(root, commit, stamp, run_dir, **options):
+            lane = run_dir.name
+            endpoints[lane] = (options["cdp"], options["profile"])
+            factory = options.get("pipeline_factory", self.pipeline)
+            if lane == "local":
+                options["pipeline_factory"] = lambda **kwargs: factory(**kwargs, metadata_generate_text=metadata)
+            else:
+                options["pipeline_factory"] = self.pipeline
+
+            def upload(*args, **kwargs):
+                self.uploader(*args, **kwargs)
+                if lane == "cloud":
+                    cloud_uploaded.set()
+
+            return run_manager(root, commit, stamp, run_dir, uploader=upload, **options)
+
+        def run():
+            directory = new_run_dir(self.root)
+            with (patch("stock_pipeline.manager_lanes.local_command", return_value=(self.root / "sd-cli.exe", ["sd-cli"])),
+                  patch("stock_pipeline.manager_lanes.run_sd_cli", side_effect=cli)):
+                return run_lanes(self.root, COMMIT, TIME, directory, discover(self.root, TIME), route="both",
+                                 emit=events.append, should_stop=lambda: False, stop_file=None,
+                                 cdp="http://127.0.0.1:9222", profile=None, image_model=None,
+                                 metadata_model=None, metadata_provider=None, temperature=1, top_p=.95,
+                                 max_images=None, max_workers=2, manager=manager)
+
+        first = run()
+        self.assertEqual(first["status"], "COMPLETE", first)
+        self.assertEqual(len(calls), 1)
+        self.assertEqual(metadata_calls, [("vertex", "gemini-3.8-flash")])
+        self.assertEqual(endpoints["cloud"], ("http://127.0.0.1:9222", None))
+        self.assertEqual(endpoints["local"], ("http://127.0.0.1:9223", str(self.root / ".pw-edge-adobe-local")))
+        ids = [item["asset_id"] for batch in self.uploads for item in batch["items"]]
+        self.assertEqual(len(ids), len(set(ids)))
+        self.assertEqual(len(ids), 2)
+        local_stages = [e["asset_progress"] for e in events if e.get("lane") == "local" and "asset_progress" in e]
+        self.assertIn("metadata", [stage["stage"] for stage in local_stages])
+        self.assertIn(3, [stage.get("step") for stage in local_stages])
+        self.assertEqual(run()["status"], "COMPLETE")
+        self.assertEqual((len(calls), len(self.calls), len(self.uploads)), (1, 1, 2))
+        rows, _ = preview_for_route(self.root, TIME, {}, "both")
+        self.assertFalse(any(row["selectable"] for row in rows))
+        self.write("retry.json", self.production("RetryLocalMetadata"))
+        fail_metadata = True
+        partial = run()
+        self.assertEqual(partial["lanes"]["cloud"]["status"], "COMPLETE", partial)
+        self.assertEqual(partial["lanes"]["local"]["status"], "BLOCKED", partial)
+        self.assertEqual(len(calls), 2)
+        rows, _ = preview_for_route(self.root, TIME, {}, "both")
+        pending = [row for row in rows if row["selectable"]]
+        self.assertEqual(len(pending), 1)
+        self.assertEqual(pending[0]["new_images"], 0)
+        fail_metadata = False
+        self.assertEqual(run()["status"], "COMPLETE")
+        self.assertEqual((len(calls), len(self.calls), len(self.uploads)), (2, 2, 4))
+
+    def test_local_image_adapter_still_creates_vertex_metadata_client(self):
+        marker = object()
+        pipeline = StockPipeline(project_root=self.root, registry=Mock(), image_generate_bytes=Mock())
+        with (patch("main.get_google_auth_mode", return_value="adc"),
+              patch("main.get_vertex_ai_config", return_value={"project": "test", "location": "global"}),
+              patch("main.build_google_client", return_value=marker) as build):
+            self.assertIs(pipeline._get_metadata_client("vertex"), marker)
+        build.assert_called_once_with(project="test", location="global")
+
     def test_parallel_stop_finishes_active_assets_without_starting_another(self):
         queue = self.production("Parallel", two=True)
         queue["assets"].append(dict(queue["assets"][0], theme="Third"))

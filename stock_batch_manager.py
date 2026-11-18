@@ -111,7 +111,7 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
            image_model: str | None = None, metadata_model: str | None = None, *,
            metadata_provider: str | None = None, temperature: float = 1.0,
            top_p: float = 0.95, max_images: int | None = None, max_workers: int = 1,
-           local_queue: Path | None = None) -> int:
+           local_queue: Path | None = None, generation_route: str = "cloud") -> int:
     # The UI generates a fresh local directory for each Start.
     home = (ROOT / "output" / "stock_manager" / "runs").resolve()
     run_dir = run_dir.resolve()
@@ -151,9 +151,15 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
             report = validate_test_queue(ROOT, run_dir)
             log(f"Validated {report['total_assets']} assets. Simulating {max_workers} progress card(s).",
                 phase="Offline layout test", source="Simulated assets")
-            if not (simulate_asset_progress(max_workers, stop, log)
-                    and simulate_upload_progress(max_workers, stop, log)):
-                report["status"] = "STOPPED"
+            simulation_lanes = ("cloud", "local") if generation_route == "both" else (generation_route,)
+            for lane in simulation_lanes:
+                def simulation_log(message, **fields):
+                    log(message, lane=lane, **fields)
+                cards = 1 if lane == "local" else max_workers
+                if not (simulate_asset_progress(cards, stop, simulation_log)
+                        and simulate_upload_progress(cards, stop, simulation_log)):
+                    report["status"] = "STOPPED"
+                    break
             report["layout_test"] = {"cards": max_workers, "status": report["status"]}
             report["elapsed_seconds"] = round(time.monotonic() - started, 2)
             write_report(report, run_dir)
@@ -162,14 +168,16 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
             return 0
         if cdp:
             cdp = validate_cdp(cdp)
+        if generation_route in {"local", "both"} and cdp == "http://127.0.0.1:9223":
+            raise ValueError("Port 9223 is reserved for the local lane's independent Adobe profile.")
         with manager_lock(ROOT / "output" / "stock_manager" / "manager.lock"):
             log("Checking clean main and fetching GitHub…", phase="Git sync", github="Checking")
             changes = {}
             commit_state = {}
             sha, commit_time = git_sync(ROOT, incoming_changes=changes, commit_state=commit_state)
             log(f"Git synced: {sha}", phase="Git sync", github="Connected", commit=sha, **commit_state)
-            from stock_pipeline.batch_manager import preview_queues, run_manager
-            rows, _ = preview_queues(ROOT, commit_time, changes)
+            from stock_pipeline.manager_lanes import preview_for_route, run_lanes
+            rows, _ = preview_for_route(ROOT, commit_time, changes, generation_route)
             pending = [row["source_file"] for row in rows if row["selectable"]]
             log(f"{len(pending)} runnable queue(s) awaiting review", phase="Queue preview",
                 preview={"queues": rows, "max_images": max_images})
@@ -182,7 +190,7 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
                 raise ValueError("Choose a valid number of queues and check the preview again.")
             log(f"Confirmed {count} queue(s). Verifying the preview before starting…", phase="Verifying queues")
             verify_reviewed_checkout(ROOT, sha)
-            current_rows, sources = preview_queues(ROOT, commit_time, changes)
+            current_rows, sources = preview_for_route(ROOT, commit_time, changes, generation_route)
             if current_rows != rows:
                 raise RuntimeError("Queues or local progress changed since preview. Check queues again.")
             selected = set(pending[:count])
@@ -192,11 +200,15 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
                     browser="Connected" if connected else "Disconnected")
             else:
                 log("Adobe will use the persistent browser profile at the upload stage", browser="Profile mode")
-            report = run_manager(ROOT, sha, commit_time, run_dir, should_stop=stop.exists, emit=emit,
+            report = run_lanes(ROOT, sha, commit_time, run_dir, should_stop=stop.exists, emit=emit,
                                  cdp=cdp, profile=profile, stop_file=stop, image_model=image_model,
                                  metadata_model=metadata_model, metadata_provider=metadata_provider, temperature=temperature,
                                  top_p=top_p, max_images=max_images, max_workers=max_workers,
-                                 sources=[source for source in sources if source.source_file in selected])
+                                 sources=[source for source in sources if source.source_file in selected],
+                                 route=generation_route)
+            from stock_pipeline.batch_manager import write_report
+            write_report({**report, "log_path": str(run_dir / "activity.log")}, run_dir)
+            log(report["status"].replace("_", " ").title(), report=report)
         return 0 if report["status"] in {"COMPLETE", "NO_WORK", "STOPPED", "LIMIT_REACHED"} else 1
     except Exception as exc:
         error = redact(exc)
@@ -227,13 +239,14 @@ class Desktop:
         self.log_window = None
         self.log_text = None
         self.log_lines = deque(maxlen=2500)
-        self.asset_slots = {}
-        self.asset_cards = []
-        self.asset_timers = {}
+        self.progress_panels = {}
+        self.lane_overviews = {}
+        self.lane_totals = {}
         self.local_run = False
         self.worker_input = None
         self.offline_test = tk.BooleanVar(value=True)
         self.local_test = tk.BooleanVar(value=False)
+        self.generation_route = tk.StringVar(value="Cloud")
         self.image_model = tk.StringVar(value="Nano Banana Pro")
         self.metadata_model = tk.StringVar(value=DEFAULT_METADATA_MODEL)
         self.temperature = tk.StringVar(value="1.0")
@@ -252,7 +265,7 @@ class Desktop:
         self.metrics = {key: tk.StringVar(value="—") for key in ("total", "pending", "generated", "uploaded", "failed")}
         window.title(TITLE)
         window.geometry("1000x740")
-        window.minsize(780, 690)
+        window.minsize(780, 730)
         window.configure(bg="#edf0f3")
         window.protocol("WM_DELETE_WINDOW", self.close)
 
@@ -360,22 +373,13 @@ class Desktop:
         self.local_check = ttk.Checkbutton(modes, text="Local Image Test (MiniMax H3)", variable=self.local_test,
                                           command=lambda: self.select_test_mode(self.local_test, self.offline_test))
         self.local_check.pack(side="left")
-        progress_area = ttk.Frame(container)
-        progress_area.pack(fill="x", pady=(0, 8))
-        self.progress_heading = ttk.Label(progress_area, text="Asset progress")
-        self.progress_heading.pack(anchor="w", pady=(0, 5))
-        self.asset_panel = ttk.Frame(progress_area)
-        self.upload_panel = ttk.Frame(progress_area, style="Card.TFrame", padding=(12, 8))
-        upload_header = ttk.Frame(self.upload_panel, style="Card.TFrame")
-        upload_header.pack(fill="x")
-        self.upload_step = ttk.Label(upload_header, style="AssetTitle.TLabel")
-        self.upload_step.pack(side="left")
-        self.upload_count = ttk.Label(upload_header, style="Card.TLabel")
-        self.upload_count.pack(side="right")
-        self.upload_detail = ttk.Label(self.upload_panel, style="Card.TLabel", wraplength=650)
-        self.upload_detail.pack(anchor="w", pady=(4, 6))
-        self.upload_bar = ttk.Progressbar(self.upload_panel)
-        self.upload_bar.pack(fill="x")
+        ttk.Label(modes, text="Production images").pack(side="left", padx=(16, 6))
+        self.route_picker = ttk.Combobox(modes, textvariable=self.generation_route, values=("Cloud", "Local", "Both"),
+                                          state="readonly", width=8)
+        self.route_picker.pack(side="left")
+        self.route_picker.bind("<<ComboboxSelected>>", lambda _event: self.refresh_route())
+        self.progress_tabs = ttk.Notebook(container)
+        self.progress_tabs.pack(fill="x", pady=(0, 8))
         self.reset_asset_cards()
         self.max_workers.trace_add("write", lambda *_args: self.reset_asset_cards())
         log_controls = ttk.Frame(container)
@@ -386,84 +390,23 @@ class Desktop:
         window.after(75, self.poll)
 
     def reset_asset_cards(self):
+        from stock_pipeline.manager_progress import ProgressPanel
+
+        for tab in self.progress_tabs.tabs():
+            self.progress_tabs.forget(tab)
+        for child in self.progress_tabs.winfo_children():
+            child.destroy()
+        self.progress_panels = {}
+        route = self.generation_route.get()
+        lanes = ("cloud", "local") if route == "Both" else ("local",) if route == "Local" else ("cloud",)
+        if self.local_test.get():
+            lanes = ("local",)
         from tkinter import ttk
-
-        self.upload_panel.pack_forget()
-        self.progress_heading.configure(text="Asset progress")
-        self.asset_panel.pack(fill="x")
-        for index, (tile, *_) in enumerate(self.asset_cards):
-            tile.destroy()
-            self.asset_panel.columnconfigure(index, weight=0, uniform="")
-        self.asset_cards.clear()
-        self.asset_slots.clear()
-        self.asset_timers.clear()
-        count = 1 if self.local_test.get() else int(self.max_workers.get())
-        for index in range(count):
-            self.asset_panel.columnconfigure(index, weight=1, uniform="assets")
-            tile = ttk.Frame(self.asset_panel, style="Card.TFrame", padding=(12, 8))
-            tile.grid(row=0, column=index, sticky="nsew", padx=(0, 8 if index < count - 1 else 0))
-            title = ttk.Label(tile, text="Waiting for an asset", style="AssetTitle.TLabel")
-            title.pack(anchor="w")
-            theme = self.tk.Label(tile, text="", height=2, bg="#ffffff", fg="#162230",
-                                  font=("Segoe UI", 10), justify="left", anchor="nw")
-            theme.pack(fill="x")
-            tile.bind("<Configure>", lambda event, label=theme: label.configure(wraplength=max(1, event.width - 24)))
-            status = ttk.Label(tile, text="", style="Card.TLabel")
-            status.pack(anchor="w", pady=(2, 4))
-            bar = ttk.Progressbar(tile, maximum=3, value=0)
-            bar.pack(fill="x")
-            self.asset_cards.append((tile, title, theme, status, bar))
-
-    def update_asset_card(self, event):
-        asset_id, stage = event["asset_id"], event["stage"]
-        if stage == "preparing":
-            used = self.asset_slots.values()
-            slot = next((index for index in range(len(self.asset_cards)) if index not in used), None)
-            if slot is None:
-                return
-            self.asset_slots[asset_id] = slot
-            _, title, theme, _, _ = self.asset_cards[slot]
-            title.configure(text=f"Image {event['index']} of {event['total']}  ·  {asset_id}")
-            theme.configure(text=event["theme"])
-        slot = self.asset_slots.get(asset_id)
-        if slot is None:
-            return
-        _, _, _, status, bar = self.asset_cards[slot]
-        label, value, color = ASSET_STAGES[stage]
-        if event.get("local"):
-            step, steps = event["step"], event["steps"]
-            label = f"{label}  ·  Step {step}/{steps}"
-            elapsed = event["elapsed_seconds"]
-            if stage not in FINISHED_ASSET_STAGES:
-                self.asset_timers[asset_id] = (time.monotonic() - elapsed, label)
-            label = self.timed_label(label, elapsed)
-            if stage == "local_sampling":
-                value = 2.5 * step / steps
-        status.configure(text=label, foreground=color)
-        if value is not None:
-            bar.configure(value=value)
-        if stage in FINISHED_ASSET_STAGES:
-            self.asset_timers.pop(asset_id, None)
-            del self.asset_slots[asset_id]
-
-    @staticmethod
-    def timed_label(label, elapsed):
-        minutes, seconds = divmod(int(elapsed), 60)
-        return f"{label}  ·  {minutes:02d}:{seconds:02d} elapsed"
-
-    def update_upload_panel(self, event):
-        if not self.upload_panel.winfo_manager():
-            self.asset_panel.pack_forget()
-            heading = "Adobe draft upload"
-            if event.get("simulated"):
-                heading += " · Offline simulation"
-            self.progress_heading.configure(text=heading)
-            self.upload_panel.pack(fill="x")
-        self.upload_step.configure(text=UPLOAD_STAGES.get(event["stage"], "Processing Adobe drafts"))
-        self.upload_detail.configure(text=event["detail"])
-        done, total = event["done"], event["total"]
-        self.upload_count.configure(text=f"{done} / {total} drafts verified")
-        self.upload_bar.configure(maximum=max(total, 1), value=done)
+        for lane in lanes:
+            frame = ttk.Frame(self.progress_tabs)
+            self.progress_tabs.add(frame, text=lane.title())
+            count = 1 if lane == "local" else int(self.max_workers.get())
+            self.progress_panels[lane] = ProgressPanel(frame, count, ASSET_STAGES, UPLOAD_STAGES, FINISHED_ASSET_STAGES)
 
     def show_activity_log(self):
         from tkinter import ttk
@@ -498,7 +441,15 @@ class Desktop:
         text = "Run Local Image Test" if self.local_test.get() else test_label
         self.start_button.configure(text=text)
         self.image_limit_hint.configure(text="Blank = 1 in local test" if self.local_test.get() else "Blank = unlimited")
-        self.stop_button.configure(text="Stop Local Test" if self.local_test.get() else "Stop After Active Assets")
+        stop_text = "Stop Production" if self.generation_route.get() != "Cloud" else "Stop After Active Assets"
+        self.stop_button.configure(text="Stop Local Test" if self.local_test.get() else stop_text)
+
+    def refresh_route(self):
+        if self.generation_route.get() == "Local":
+            self.metadata_model.set(DEFAULT_METADATA_MODEL)
+        self.refresh_start_button()
+        self.refresh_generation_entries()
+        self.reset_asset_cards()
 
     def select_test_mode(self, selected, other):
         if selected.get():
@@ -579,7 +530,7 @@ class Desktop:
 
     def refresh_generation_entries(self):
         pro = self.image_model.get() == "Nano Banana Pro"
-        local = self.local_test.get()
+        local = self.local_test.get() or self.generation_route.get() == "Local"
         for widget in (self.endpoint_entry, self.model_picker, self.metadata_picker, self.worker_picker):
             widget.state(["disabled" if self.active or local else "!disabled"])
         for index, entry in enumerate(self.generation_entries):
@@ -610,7 +561,7 @@ class Desktop:
             testing = self.offline_test.get() and not local
             live = not (testing or local)
             metadata_model = self.metadata_model.get().strip()
-            if live and not metadata_model:
+            if live and self.generation_route.get() != "Local" and not metadata_model:
                 raise ValueError("Enter a metadata model ID.")
             generation_args = []
             if not testing:
@@ -623,7 +574,7 @@ class Desktop:
                     if count < 1:
                         raise ValueError("Max new images must be a positive whole number, or blank.")
                     generation_args.extend(("--max-images", str(count)))
-                if live and self.image_model.get() == "Nano Banana Pro":
+                if live and self.generation_route.get() != "Local" and self.image_model.get() == "Nano Banana Pro":
                     for option, raw, maximum, label in (
                         ("--temperature", self.temperature.get(), 2, "Temperature"),
                         ("--top-p", self.top_p.get(), 1, "Top-p"),
@@ -644,7 +595,8 @@ class Desktop:
                                                          filetypes=[("Queue JSON", "*.json")])
                 if not local_queue:
                     return
-            cdp = validate_cdp(self.endpoint.get().strip()) if live and self.endpoint.get().strip() else None
+            cdp = (validate_cdp(self.endpoint.get().strip())
+                   if live and self.generation_route.get() != "Local" and self.endpoint.get().strip() else None)
             self.run_dir = ROOT / "output" / "stock_manager" / "runs" / uuid4().hex
             self.run_dir.mkdir(parents=True)
         except (ValueError, OSError) as exc:
@@ -654,6 +606,8 @@ class Desktop:
         self.active = True
         self.local_run = local
         self.reset_asset_cards()
+        self.lane_overviews.clear()
+        self.lane_totals.clear()
         self.push_button.state(["disabled"])
         self.refresh_generation_entries()
         self.start_button.state(["disabled"])
@@ -661,6 +615,7 @@ class Desktop:
         self.stop_button.state(["!disabled"])
         self.test_check.state(["disabled"])
         self.local_check.state(["disabled"])
+        self.route_picker.state(["disabled"])
         for metric in self.metrics.values():
             metric.set("—")
         self.stage.set("Starting")
@@ -675,7 +630,7 @@ class Desktop:
         if os.name == "nt" and python.name.casefold() == "pythonw.exe":
             python = python.with_name("python.exe")
         args = [str(python), str(Path(__file__).resolve()), "--worker", str(self.run_dir),
-                "--max-workers", self.max_workers.get()]
+                "--max-workers", self.max_workers.get(), "--generation-route", self.generation_route.get().lower()]
         if local:
             args.extend(("--local-queue", local_queue, *generation_args))
         elif testing:
@@ -829,9 +784,12 @@ class Desktop:
             for index, row in enumerate(visible):
                 table.item(str(index), tags=("planned",) if row["source_file"] in selected_paths else ())
             if valid:
-                images = sum(row["new_images"] for row in chosen)
-                if preview["max_images"] is not None:
-                    images = min(images, preview["max_images"])
+                remaining = [sum(row["new_images"] for row in chosen)]
+                if "new_images_by_lane" in chosen[0]:
+                    remaining = [sum(row["new_images_by_lane"][lane] for row in chosen)
+                                 for lane in ("cloud", "local")]
+                limit = preview["max_images"]
+                images = sum(min(count, limit) if limit is not None else count for count in remaining)
                 summary.configure(text=f"{sum(row['total'] for row in chosen)} images  •  "
                                        f"{images} estimated new")
             else:
@@ -855,13 +813,19 @@ class Desktop:
                 break
             if event.get("message"):
                 self.append(event["message"], event.get("time"))
-            if event.get("asset_progress"):
-                self.update_asset_card(event["asset_progress"])
-            if event.get("upload_progress"):
-                self.update_upload_panel(event["upload_progress"])
+            lane = event.get("lane", "local" if self.local_run or self.generation_route.get() == "Local" else "cloud")
+            panel = self.progress_panels.get(lane)
+            if event.get("asset_progress") and panel:
+                panel.update_asset_card(event["asset_progress"])
+            if event.get("upload_progress") and panel:
+                panel.update_upload_panel(event["upload_progress"])
+            if event.get("phase") and panel:
+                panel.summary.configure(text=event["phase"])
+
             for field, var in (("github", self.git_status), ("browser", self.browser_status), ("phase", self.stage)):
                 if event.get(field) and (field != "phase" or not event.get("asset")):
-                    var.set(event[field])
+                    var.set("Production running" if field == "phase" and event.get("lane") and not self.offline_test.get()
+                            else event[field])
             if event.get("commit"):
                 self.set_commit(event["commit"], event.get("on_github", False))
             if event.get("push_done"):
@@ -877,18 +841,26 @@ class Desktop:
                 self.current.set(event["source"])
             if "total" in event:
                 done, total = event.get("completed", 0), event["total"]
+                if event.get("lane"):
+                    self.lane_totals[lane] = (done, total)
+                    done = sum(value[0] for value in self.lane_totals.values())
+                    total = sum(value[1] for value in self.lane_totals.values())
                 self.bar.configure(maximum=max(total, 1), value=done)
                 unit = "local previews saved" if self.local_run else "assets prepared"
                 self.count.set(f"{done} / {total} {unit}")
-            for key, value in event.get("overview", {}).items():
-                self.metrics[key].set(str(value))
+            if event.get("overview"):
+                self.lane_overviews[lane] = event["overview"]
+                for key, variable in self.metrics.items():
+                    variable.set(str(sum(value.get(key, 0) for value in self.lane_overviews.values())))
             if event.get("report"):
                 report = event["report"]
+                if event.get("lane"):
+                    if panel:
+                        panel.finish(report["status"], report.get("last_error", ""))
+                    continue
                 self.stage.set(report["status"].replace("_", " ").title())
-                if self.upload_panel.winfo_manager() and report["status"] in {"FAILED", "STOPPED"}:
-                    stage = "stopped" if report["status"] == "STOPPED" else "incomplete"
-                    self.upload_step.configure(text=UPLOAD_STAGES[stage])
-                    self.upload_detail.configure(text=report.get("last_error", ""))
+                if "lanes" not in report and panel:
+                    panel.finish(report["status"], report.get("last_error", ""))
                 if self.local_run:
                     saved, total = report.get("generated", 0), report.get("total_assets", 0)
                     self.count.set(f"{saved} / {total} local previews saved")
@@ -905,8 +877,9 @@ class Desktop:
             if event.get("preview") and not (self.closing or (self.run_dir / "stop.request").exists()):
                 self.show_preview(event["preview"])
             if "exit" in event:
-                for asset_id in list(self.asset_slots):
-                    self.update_asset_card({"asset_id": asset_id, "stage": "interrupted"})
+                for panel in self.progress_panels.values():
+                    for asset_id in list(panel.asset_slots):
+                        panel.update_asset_card({"asset_id": asset_id, "stage": "interrupted"})
                 self.dismiss_preview()
                 self.active = False
                 self.refresh_generation_entries()
@@ -916,16 +889,14 @@ class Desktop:
                 self.stop_button.state(["disabled"])
                 self.test_check.state(["!disabled"])
                 self.local_check.state(["!disabled"])
+                self.route_picker.state(["!disabled"])
                 if event["exit"]:
                     self.append(f"Worker stopped (exit {event['exit']}). See Open Logs.")
             if self.closing and not (self.active or self.pushing):
                 self.window.destroy()
                 return
-        for aid, (started, label) in self.asset_timers.items():
-            status = self.asset_cards[self.asset_slots[aid]][3]
-            text = self.timed_label(label, time.monotonic() - started)
-            if status.cget("text") != text:
-                status.configure(text=text)
+        for panel in self.progress_panels.values():
+            panel.tick()
         self.window.after(75, self.poll)
 
     def stop(self):
@@ -991,6 +962,7 @@ def main():
     parser.add_argument("--profile", help=argparse.SUPPRESS)
     parser.add_argument("--offline-test", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--local-queue", type=Path, help=argparse.SUPPRESS)
+    parser.add_argument("--generation-route", choices=("cloud", "local", "both"), default="cloud", help=argparse.SUPPRESS)
     parser.add_argument("--image-model", choices=tuple(IMAGE_MODELS.values()), help=argparse.SUPPRESS)
     parser.add_argument("--metadata-model", help=argparse.SUPPRESS)
     parser.add_argument("--metadata-provider", choices=("vertex", "gemini-developer"),
@@ -1009,7 +981,7 @@ def main():
         return worker(args.worker, args.cdp, args.profile, args.offline_test, args.image_model, args.metadata_model,
                       metadata_provider=args.metadata_provider, temperature=args.temperature,
                       top_p=args.top_p, max_images=args.max_images, max_workers=args.max_workers,
-                      local_queue=args.local_queue)
+                      local_queue=args.local_queue, generation_route=args.generation_route)
     import tkinter as tk
     window = tk.Tk()
     icon = ROOT / "config" / "stock_manager.ico"

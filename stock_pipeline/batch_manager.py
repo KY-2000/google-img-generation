@@ -126,6 +126,7 @@ def upload_process(root, batch, receipt_dir, *, cdp, profile, log, stop_file=Non
                                    should_stop=lambda: stop_file is not None and stop_file.exists()):
         return
     command = managed_upload_command(batch, receipt_dir, cdp, profile if not cdp else None, stop_file)
+    command += ["--run-root", str(batch / "browser_runs")]
     with subprocess.Popen(command, cwd=root, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
                           text=True, encoding="utf-8", errors="replace",
                           creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0)) as process:
@@ -144,8 +145,10 @@ def upload_process(root, batch, receipt_dir, *, cdp, profile, log, stop_file=Non
             raise RuntimeError("Adobe uploader stopped; confirmed drafts were retained. See activity log")
 
 
-def preview_queues(root: Path, commit_time: str, changes=None) -> tuple[list[dict], list[QueueSource]]:
+def preview_queues(root: Path, commit_time: str, changes=None, *, source_transform=None) -> tuple[list[dict], list[QueueSource]]:
     sources = discover(root, commit_time)
+    if source_transform is not None:
+        sources = source_transform(sources)
     redact = redactor(root)
     db = root / "data" / "stock_pipeline.sqlite"
     rows = []
@@ -223,7 +226,8 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 pipeline_factory=StockPipeline, uploader=upload_process,
                 cdp="http://127.0.0.1:9222", profile=None, stop_file=None, image_model=None,
                 metadata_model=None, metadata_provider=None, temperature=1.0, top_p=0.95, max_images=None,
-                sources: list[QueueSource] | None = None, max_workers: int = 1) -> dict:
+                sources: list[QueueSource] | None = None, max_workers: int = 1,
+                receipt_subdir: str | None = None) -> dict:
     start = time.monotonic()
     log_path = run_dir / "activity.log"
     redact = redactor(root)
@@ -232,6 +236,8 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                   log_path=str(log_path), last_error="")
     db = root / "data" / "stock_pipeline.sqlite"
     receipts = root / "output" / "stock_manager" / "adobe_receipts"
+    if receipt_subdir:
+        receipts = receipts / receipt_subdir
     report.update(max_images=max_images, max_workers=max_workers, generation_started=0, generation_deferred=0)
     image_states = {}
     generation_lock = Lock()
@@ -318,7 +324,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
             sources = discover(root, commit_time)
         report["scanned"] = len(sources)
         config = json.loads((root / "config" / "stock_icon_pipeline.json").read_text(encoding="utf-8"))
-        ledger = UsageLedger(usage_dir=root / "output" / "usage", command_id="manager_" + run_dir.name,
+        ledger = UsageLedger(usage_dir=root / "output" / "usage", command_id="manager_" + run_dir.parent.name + "_" + run_dir.name,
                              progress=log)
         with Registry(db) as registry:
             state = QueueState(registry)
@@ -390,8 +396,8 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 for index, aid in enumerate((aid for _, _, ids, _ in prepared for aid in sorted(ids)), 1)
             }
 
-            def show_asset_stage(aid, stage):
-                event = {"asset_id": aid, "stage": stage}
+            def show_asset_stage(aid, stage, **fields):
+                event = {"asset_id": aid, "stage": stage, **fields}
                 if stage == "preparing":
                     event.update(index=asset_positions[aid], total=report["total_assets"],
                                  theme=redact(registry.get_asset(aid)["theme"]))

@@ -143,6 +143,9 @@ class StockPipeline:
     def _get_image_client(self) -> Any:
         if self.image_generate_bytes is not None:
             return object()
+        return self._get_google_client()
+
+    def _get_google_client(self) -> Any:
         import main as legacy
         if self._image_client is None:
             mode = legacy.get_google_auth_mode(self.project_root)
@@ -159,7 +162,7 @@ class StockPipeline:
         if self.metadata_generate_text is not None:
             return object()
         if provider in {"google", "vertex"}:
-            return self._get_image_client()
+            return self._get_google_client()
         import main as legacy
         if self._metadata_client is None:
             if provider == "gemini-developer":
