@@ -103,7 +103,7 @@ def run_local_image_test(root, queue_path, run_dir, limit, should_stop, log):
                "--llm", str(resolved["LOCAL_H3_TEXT_ENCODER"]), "--vae", str(resolved["LOCAL_H3_VAE"]),
                "--steps", str(STEPS), "--cfg-scale", "1.0", "--sampling-method", "euler",
                "--sigmas", "minimax-h3-image", "--rng", "cpu", "--offload-to-cpu", "--vae-tiling",
-               "--backend", "diffusion=cuda0,te=cpu,vae=cuda0", "--max-vram", "5", "--mmap"]
+               "--backend", "diffusion=cuda0,te=cpu,vae=cuda0", "--max-vram", "5", "--mmap", "--sage-attn"]
 
     results = run_dir / "local_images"
     results.mkdir()

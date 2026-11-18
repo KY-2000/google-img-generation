@@ -116,6 +116,8 @@ LOCAL_H3_VAE=C:/AI/models/diffusion_pytorch_model.safetensors
 `LOCAL_SD_CLI` may be omitted if `sd-cli` is on `PATH`. The runner uses CPU
 offload, memory mapping, and VAE tiling. The text encoder executes on CPU,
 while the diffusion model and tiled VAE use CUDA with a 5 GiB GPU budget.
+The diffusion model requests native CUDA SageAttention, with the runtime's
+flash/default attention fallback for unsupported operations.
 
 The local `work_io/topic_finder/manager_baseline.json` snapshot skips the
 existing queue contents except r02 in live runs. It does not mark anything

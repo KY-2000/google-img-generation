@@ -58,6 +58,7 @@ class LocalImageTestTests(unittest.TestCase):
                 self.assertEqual(args[args.index("--backend") + 1], "diffusion=cuda0,te=cpu,vae=cuda0")
                 self.assertEqual(args[args.index("--max-vram") + 1], "5")
                 self.assertIn("--mmap", args)
+                self.assertIn("--sage-attn", args)
                 width, height = (int(args[args.index(flag) + 1]) for flag in ("-W", "-H"))
                 prompt = Path(args[args.index("--prompt-file") + 1]).read_text(encoding="utf-8")
                 self.assertIn("Negative prompt:\nNo text", prompt)
