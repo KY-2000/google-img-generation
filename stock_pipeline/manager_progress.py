@@ -16,6 +16,14 @@ class ProgressPanel:
         self.frame.pack(fill="x")
         self.summary = ttk.Label(self.frame, text="Waiting")
         self.summary.pack(anchor="w")
+        self.metrics = {}
+        metrics = ttk.Frame(self.frame)
+        metrics.pack(fill="x", pady=(2, 4))
+        for index, key in enumerate(("total", "pending", "generated", "uploaded", "failed")):
+            metrics.columnconfigure(index, weight=1, uniform="metrics")
+            label = ttk.Label(metrics, text=f"{key.title()}  —", anchor="center")
+            label.grid(row=0, column=index, sticky="ew")
+            self.metrics[key] = label
         self.progress_heading = ttk.Label(self.frame, text="Asset progress")
         self.progress_heading.pack(anchor="w", pady=(0, 5))
         self.asset_panel = ttk.Frame(self.frame)
@@ -38,6 +46,10 @@ class ProgressPanel:
             text = self.timed_label(label, time.monotonic() - started)
             if status.cget("text") != text:
                 status.configure(text=text)
+
+    def update_overview(self, overview):
+        for key, label in self.metrics.items():
+            label.configure(text=f"{key.title()}  {overview[key]}")
 
     def finish(self, status, error=""):
         for aid in list(self.asset_slots):

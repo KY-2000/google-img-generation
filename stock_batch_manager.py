@@ -53,6 +53,7 @@ ASSET_STAGES = {
 FINISHED_ASSET_STAGES = {"ready", "simulated_ready", "failed", "deferred", "interrupted", "local_complete", "local_stopped"}
 
 UPLOAD_STAGES = {
+    "waiting": "Waiting to upload",
     "browser": "Connecting to Adobe browser",
     "opening": "Opening Contributor uploads",
     "checking": "Checking existing drafts",
@@ -72,6 +73,7 @@ def simulate_asset_progress(max_workers, stop, log):
     stages = ("preparing", "image", "qc", "metadata", "metadata_check", "simulated_ready")
     # Start each sample one step apart so the cards show different stages together.
     ticks = len(stages) + max_workers - 1
+    generated = 0
     for tick in range(ticks):
         if stop.exists():
             return False
@@ -84,7 +86,10 @@ def simulate_asset_progress(max_workers, stop, log):
             progress = {"asset_id": aid, "stage": stage}
             if stage == "preparing":
                 progress.update(index=slot + 1, total=max_workers, theme=themes[slot])
-            log(f"[{aid}] {ASSET_STAGES[stage][0]}", asset_progress=progress)
+            generated += stage == "qc"
+            log(f"[{aid}] {ASSET_STAGES[stage][0]}", asset_progress=progress,
+                overview=dict(total=max_workers, pending=max_workers - generated, generated=generated,
+                              uploaded=0, failed=0))
         if tick + 1 < ticks:
             time.sleep(0.8)
     return True
@@ -99,7 +104,8 @@ def simulate_upload_progress(total, stop, log):
     ):
         if stop.exists():
             return False
-        log(f"[Simulation] {UPLOAD_STAGES[stage]}", upload_progress={
+        log(f"[Simulation] {UPLOAD_STAGES[stage]}", overview=dict(total=total, pending=0, generated=total - done,
+                                                                  uploaded=done, failed=0), upload_progress={
             "stage": stage, "detail": detail, "done": done, "total": total, "simulated": True,
         })
         if stage != "complete":
@@ -248,6 +254,7 @@ class Desktop:
         self.local_test = tk.BooleanVar(value=False)
         self.generation_route = tk.StringVar(value="Cloud")
         self.image_model = tk.StringVar(value="Nano Banana Pro")
+        self.cloud_image_model = self.image_model.get()
         self.metadata_model = tk.StringVar(value=DEFAULT_METADATA_MODEL)
         self.temperature = tk.StringVar(value="1.0")
         self.top_p = tk.StringVar(value="0.95")
@@ -264,8 +271,8 @@ class Desktop:
         self.count = tk.StringVar(value="0 / 0 assets prepared")
         self.metrics = {key: tk.StringVar(value="—") for key in ("total", "pending", "generated", "uploaded", "failed")}
         window.title(TITLE)
-        window.geometry("1000x740")
-        window.minsize(780, 730)
+        window.minsize(780, 755)
+        window.geometry("1000x775")
         window.configure(bg="#edf0f3")
         window.protocol("WM_DELETE_WINDOW", self.close)
 
@@ -341,7 +348,8 @@ class Desktop:
         ttk.Label(settings, text="Starts Edge at upload if needed. Leave blank for profile mode.").pack(side="left", padx=10)
         options = ttk.Frame(container)
         options.pack(fill="x", pady=(0, 8))
-        ttk.Label(options, text="Image model").pack(side="left", padx=(0, 8))
+        self.image_model_label = ttk.Label(options, text="Image model")
+        self.image_model_label.pack(side="left", padx=(0, 8))
         self.model_picker = ttk.Combobox(options, values=tuple(IMAGE_MODELS),
                                          textvariable=self.image_model, state="readonly", width=19)
         self.model_picker.pack(side="left", padx=(0, 16))
@@ -373,7 +381,7 @@ class Desktop:
         self.local_check = ttk.Checkbutton(modes, text="Local Image Test (MiniMax H3)", variable=self.local_test,
                                           command=lambda: self.select_test_mode(self.local_test, self.offline_test))
         self.local_check.pack(side="left")
-        ttk.Label(modes, text="Production images").pack(side="left", padx=(16, 6))
+        ttk.Label(modes, text="Production images model").pack(side="left", padx=(16, 6))
         self.route_picker = ttk.Combobox(modes, textvariable=self.generation_route, values=("Cloud", "Local", "Both"),
                                           state="readonly", width=8)
         self.route_picker.pack(side="left")
@@ -404,7 +412,8 @@ class Desktop:
         from tkinter import ttk
         for lane in lanes:
             frame = ttk.Frame(self.progress_tabs)
-            self.progress_tabs.add(frame, text=lane.title())
+            title = "Local · MiniMax H3 Image" if lane == "local" and len(lanes) == 2 else lane.title()
+            self.progress_tabs.add(frame, text=title)
             count = 1 if lane == "local" else int(self.max_workers.get())
             self.progress_panels[lane] = ProgressPanel(frame, count, ASSET_STAGES, UPLOAD_STAGES, FINISHED_ASSET_STAGES)
 
@@ -529,9 +538,15 @@ class Desktop:
         threading.Thread(target=push, daemon=True).start()
 
     def refresh_generation_entries(self):
-        pro = self.image_model.get() == "Nano Banana Pro"
         local = self.local_test.get() or self.generation_route.get() == "Local"
-        for widget in (self.endpoint_entry, self.model_picker, self.metadata_picker, self.worker_picker):
+        if self.image_model.get() in IMAGE_MODELS:
+            self.cloud_image_model = self.image_model.get()
+        self.model_picker.configure(values=("MiniMax H3 Image",) if local else tuple(IMAGE_MODELS))
+        self.image_model.set("MiniMax H3 Image" if local else self.cloud_image_model)
+        self.image_model_label.configure(text="Cloud image model" if not local and self.generation_route.get() == "Both" else "Image model")
+        self.model_picker.state(["disabled" if self.active else "!disabled"])
+        pro = self.image_model.get() == "Nano Banana Pro"
+        for widget in (self.endpoint_entry, self.metadata_picker, self.worker_picker):
             widget.state(["disabled" if self.active or local else "!disabled"])
         for index, entry in enumerate(self.generation_entries):
             entry.state(["disabled" if self.active or (index < 2 and (local or not pro)) else "!disabled"])
@@ -636,7 +651,8 @@ class Desktop:
         elif testing:
             args.append("--offline-test")
         else:
-            args.extend(("--image-model", IMAGE_MODELS[self.image_model.get()], "--metadata-model", metadata_model))
+            if self.generation_route.get() != "Local":
+                args.extend(("--image-model", IMAGE_MODELS[self.image_model.get()], "--metadata-model", metadata_model))
             args.extend(generation_args)
         if cdp:
             args.extend(("--cdp", cdp))
@@ -850,6 +866,8 @@ class Desktop:
                 self.count.set(f"{done} / {total} {unit}")
             if event.get("overview"):
                 self.lane_overviews[lane] = event["overview"]
+                if panel:
+                    panel.update_overview(event["overview"])
                 for key, variable in self.metrics.items():
                     variable.set(str(sum(value.get(key, 0) for value in self.lane_overviews.values())))
             if event.get("report"):

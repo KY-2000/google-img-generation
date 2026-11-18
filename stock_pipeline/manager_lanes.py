@@ -1,5 +1,6 @@
 """Independent generation lanes sharing the repository's production pipeline."""
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from contextlib import contextmanager
 from copy import deepcopy
 from dataclasses import replace
 from pathlib import Path
@@ -135,6 +136,20 @@ def run_lanes(root, commit, commit_time, run_dir, sources, *, route, emit, shoul
                     except Exception as exc:
                         source.error = redact(exc)
     event_lock = Lock()
+    upload_lock = Lock()
+
+    @contextmanager
+    def upload_slot(on_wait):
+        acquired = upload_lock.acquire(blocking=False)
+        try:
+            if not acquired and not should_stop():
+                on_wait()
+                while not acquired and not should_stop():
+                    acquired = upload_lock.acquire(timeout=0.2)
+            yield acquired
+        finally:
+            if acquired:
+                upload_lock.release()
 
     def send(lane, event):
         with event_lock:
@@ -150,6 +165,8 @@ def run_lanes(root, commit, commit_time, run_dir, sources, *, route, emit, shoul
                        stop_file=stop_file, sources=plans[lane], max_images=max_images,
                        max_workers=max_workers if lane == "cloud" else 1,
                        temperature=temperature, top_p=top_p)
+        if route == "both":
+            options["upload_slot"] = upload_slot
         if lane == "local":
             options.update(pipeline_factory=lambda **kwargs: LocalStockPipeline(should_stop=should_stop, **kwargs),
                            image_model="minimax-h3-image-UD-Q4_K_XL", metadata_model="gemini-3.8-flash",

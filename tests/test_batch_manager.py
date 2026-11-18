@@ -329,14 +329,16 @@ class ManagerTests(unittest.TestCase):
         self.write("both.json", self.production("Both"))
         (self.root / "config/stock_icon_pipeline.json").write_text(
             '{"image":{"minimum_resolution":32,"resolution":"4K"}}')
-        cloud_uploaded = Event()
+        cloud_upload_started = Event()
+        local_waiting = Event()
+        cloud_upload_finished = Event()
         calls, endpoints = [], {}
         metadata_calls = []
         fail_metadata = False
         events = []
 
         def cli(args, _cwd, _stop, on_line):
-            self.assertTrue(cloud_uploaded.wait(timeout=5), "Cloud waited for local generation before uploading")
+            self.assertTrue(cloud_upload_started.wait(timeout=5), "Cloud waited for local generation before uploading")
             calls.append(args)
             self.assertEqual((args[args.index("-W") + 1], args[args.index("-H") + 1]), ("4096", "4096"))
             on_line(" |====>| 3/6 - 1.00s/it")
@@ -360,18 +362,29 @@ class ManagerTests(unittest.TestCase):
                 options["pipeline_factory"] = self.pipeline
 
             def upload(*args, **kwargs):
-                self.uploader(*args, **kwargs)
                 if lane == "cloud":
-                    cloud_uploaded.set()
+                    cloud_upload_started.set()
+                    self.assertTrue(local_waiting.wait(timeout=5), "Local did not wait for the cloud upload")
+                    self.uploader(*args, **kwargs)
+                    cloud_upload_finished.set()
+                else:
+                    self.assertTrue(cloud_upload_finished.is_set(), "Local upload overlapped the cloud upload")
+                    self.uploader(*args, **kwargs)
 
             return run_manager(root, commit, stamp, run_dir, uploader=upload, **options)
 
         def run():
             directory = new_run_dir(self.root)
+
+            def emit(event):
+                events.append(event)
+                if event.get("lane") == "local" and event.get("upload_progress", {}).get("stage") == "waiting":
+                    local_waiting.set()
+
             with (patch("stock_pipeline.manager_lanes.local_command", return_value=(self.root / "sd-cli.exe", ["sd-cli"])),
                   patch("stock_pipeline.manager_lanes.run_sd_cli", side_effect=cli)):
                 return run_lanes(self.root, COMMIT, TIME, directory, discover(self.root, TIME), route="both",
-                                 emit=events.append, should_stop=lambda: False, stop_file=None,
+                                 emit=emit, should_stop=lambda: False, stop_file=None,
                                  cdp="http://127.0.0.1:9222", profile=None, image_model=None,
                                  metadata_model=None, metadata_provider=None, temperature=1, top_p=.95,
                                  max_images=None, max_workers=2, manager=manager)

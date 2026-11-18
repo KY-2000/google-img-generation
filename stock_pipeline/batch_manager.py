@@ -227,7 +227,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 cdp="http://127.0.0.1:9222", profile=None, stop_file=None, image_model=None,
                 metadata_model=None, metadata_provider=None, temperature=1.0, top_p=0.95, max_images=None,
                 sources: list[QueueSource] | None = None, max_workers: int = 1,
-                receipt_subdir: str | None = None) -> dict:
+                receipt_subdir: str | None = None, upload_slot=None) -> dict:
     start = time.monotonic()
     log_path = run_dir / "activity.log"
     redact = redactor(root)
@@ -602,7 +602,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
             live_verified = set()
 
             def show_upload(stage, detail="", done=None):
-                emit({"upload_progress": {"stage": stage, "detail": redact(detail),
+                emit({"overview": overview(), "upload_progress": {"stage": stage, "detail": redact(detail),
                                           "done": len(live_verified) if done is None else done,
                                           "total": len(outstanding)}})
 
@@ -613,21 +613,30 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 filename = upload_progress.get("filename")
                 if upload_progress["stage"] == "draft_saved" and filename in upload_filenames:
                     live_verified.add(filename)
+                    image_states[filename.removesuffix(".png")] = "uploaded"
                 show_upload(upload_progress["stage"], upload_progress.get("detail", ""))
 
             upload_error = ""
             upload_started = False
             try:
                 if outstanding and not should_stop():
-                    for source, _, ids, record in prepared:
-                        if outstanding.intersection(ids):
-                            record["queue_status"] = "UPLOADING"
-                            state.save(source.run_id, source.identity, record)
-                    log(f"Reconciling and uploading {len(outstanding)} drafts", "Adobe", overview=overview())
-                    upload_started = True
-                    show_upload("browser")
-                    uploader(root, batch, receipts, cdp=cdp, profile=profile, stop_file=stop_file,
-                             log=log_adobe)
+                    def waiting_for_upload():
+                        log("Waiting for the other lane to finish uploading", "Adobe")
+                        show_upload("waiting", "The other lane is uploading its drafts.")
+
+                    with upload_slot(waiting_for_upload) if upload_slot else nullcontext(True) as acquired:
+                        if not acquired or should_stop():
+                            report["status"] = "STOPPED"
+                            return report
+                        for source, _, ids, record in prepared:
+                            if outstanding.intersection(ids):
+                                record["queue_status"] = "UPLOADING"
+                                state.save(source.run_id, source.identity, record)
+                        log(f"Reconciling and uploading {len(outstanding)} drafts", "Adobe", overview=overview())
+                        upload_started = True
+                        show_upload("browser")
+                        uploader(root, batch, receipts, cdp=cdp, profile=profile, stop_file=stop_file,
+                                 log=log_adobe)
                 elif outstanding:
                     report["status"] = "STOPPED"
                     return report

@@ -91,7 +91,7 @@ Uncheck **Offline test** to run live with the Git safety checks.
 
 ### Production generation routes
 
-Choose **Cloud**, **Local**, or **Both** under **Production images**. Both routes
+Choose **Cloud**, **Local**, or **Both** under **Production images model**. Both routes
 use the same reviewed JSON selection and the existing QC, metadata, staging,
 and draft upload pipeline. Cloud uses the selected Google image model and
 metadata model. Local generates with MiniMax H3 Image at the queue's resolution
@@ -99,9 +99,10 @@ and aspect ratio, then uses `gemini-3.8-flash` through Vertex AI for metadata.
 Local processes one asset at a time. **Max new images** applies separately to
 each selected route. Cloud retains the **Parallel assets** setting.
 
-**Both** runs the routes concurrently. Cloud and Local progress tabs show their
-own generation, metadata, and Adobe upload steps. Each route uploads when its
-batch is ready. A failure in one route leaves the other route running. Resume
+**Both** generates images concurrently. The first batch to finish preparation
+starts uploading. The other batch waits for that upload to finish. Cloud and
+Local tabs show their own totals, generation, metadata, and upload progress.
+The top counters combine both routes. A failure in one route leaves the other route running. Resume
 reuses each route's saved images and uploaded-draft receipts independently.
 Local variants receive distinct AST IDs in the existing registry, so both
 images can be uploaded with distinct filenames. Local upload receipts live
