@@ -590,6 +590,34 @@ class ManagerTests(unittest.TestCase):
                 finally:
                     write_pipe.close()
 
+    def test_both_preview_confirms_exact_queues_per_lane(self):
+        from stock_pipeline.manager_lanes import run_lanes
+
+        for name in ("a", "b", "c"):
+            self.write(f"{name}.json", self.production(name))
+        payload = {"cloud": [f"queues/incoming/{name}.json" for name in ("a", "b", "c")],
+                   "local": ["queues/incoming/b.json"]}
+        calls = {}
+
+        def manager(_root, _commit, _time, lane_dir, **options):
+            calls[lane_dir.name] = [source.source_file for source in options["sources"]]
+            return {"status": "COMPLETE"}
+
+        def run(root, sha, stamp, run_dir, **options):
+            return run_lanes(root, sha, stamp, run_dir, manager=manager, **options)
+
+        for selection in (payload, {**payload, "local": []}):
+            calls.clear()
+            directory = new_run_dir(self.root)
+            with (patch.object(stock_batch_manager, "ROOT", self.root),
+                  patch.object(stock_batch_manager, "git_sync", return_value=(COMMIT, TIME)),
+                  patch.object(stock_batch_manager, "verify_reviewed_checkout"),
+                  patch.object(stock_batch_manager.sys, "stdin", io.StringIO(json.dumps(selection) + "\n")),
+                  patch.object(stock_batch_manager, "print", create=True),
+                  patch("stock_pipeline.manager_lanes.run_lanes", side_effect=run)):
+                self.assertEqual(stock_batch_manager.worker(directory, None, None, generation_route="both"), 0)
+            self.assertEqual(calls, {lane: paths for lane, paths in selection.items() if paths})
+
     def test_failed_generation_consumes_one_slot_and_defers_the_next_asset(self):
         self.write("a.json", self.production("Timeout", two=True))
         self.failure = "Timeout"

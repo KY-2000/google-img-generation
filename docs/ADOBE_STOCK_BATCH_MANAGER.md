@@ -158,9 +158,11 @@ with the project's Python. The command refuses to overwrite an existing snapshot
 In live mode, **Check Queues** syncs Git and opens a read-only preview.
 It reports new and updated JSONs pulled in that sync, pending queues, themes,
 the total images in each queue, and how many are estimated to need generation.
-Choose how many of the first queues to run in the displayed order.
+Click the Cloud or Local status checkbox to choose individual JSON files for
+that route. Each route has its own **All** and **Clear** controls, and its
+selected JSON and image counts appear below the table.
 **Start Selected** authorizes paid model calls and upload to Adobe drafts for
-those queues. Closing the preview cancels the run. If the checkout, queues, or
+the checked queues in each route. Closing the preview cancels the run. If the checkout, queues, or
 their previewed progress change while it is open, check queues again.
 Final Submit is always manual. **Retry Failed** opens the same preview.
 **Stop After Active Assets** and closing the window wait for a safe boundary;

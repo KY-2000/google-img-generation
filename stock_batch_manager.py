@@ -113,6 +113,28 @@ def simulate_upload_progress(total, stop, log):
     return True
 
 
+def reviewed_selection(selection, rows, lanes):
+    requested = json.loads(selection)
+    if type(requested) is int:
+        # Older desktop windows send the number of rows from the same preview.
+        pending = [row for row in rows if row["selectable"]]
+        if not 1 <= requested <= len(pending):
+            raise ValueError("Choose a valid number of queues and check the preview again.")
+        requested = {lane: [row["source_file"] for row in pending[:requested]
+                            if row["lanes"][lane]["selectable"]] for lane in lanes}
+    if not isinstance(requested, dict) or set(requested) != set(lanes):
+        raise ValueError("Choose JSON queues for the displayed production routes.")
+    selected = {}
+    for lane, paths in requested.items():
+        allowed = {row["source_file"] for row in rows if row["lanes"][lane]["selectable"]}
+        if not isinstance(paths, list) or any(not isinstance(path, str) or path not in allowed for path in paths):
+            raise ValueError(f"Choose runnable JSON queues for {lane.title()} and check the preview again.")
+        selected[lane] = set(paths)
+    if not any(selected.values()):
+        raise ValueError("Choose at least one runnable JSON queue.")
+    return selected
+
+
 def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bool = False,
            image_model: str | None = None, metadata_model: str | None = None, *,
            metadata_provider: str | None = None, temperature: float = 1.0,
@@ -174,8 +196,6 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
             return 0
         if cdp:
             cdp = validate_cdp(cdp)
-        if generation_route in {"local", "both"} and cdp == "http://127.0.0.1:9223":
-            raise ValueError("Port 9223 is reserved for the local lane's independent Adobe profile.")
         with manager_lock(ROOT / "output" / "stock_manager" / "manager.lock"):
             log("Checking clean main and fetching GitHub…", phase="Git sync", github="Checking")
             changes = {}
@@ -184,34 +204,32 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
             log(f"Git synced: {sha}", phase="Git sync", github="Connected", commit=sha, **commit_state)
             from stock_pipeline.manager_lanes import preview_for_route, run_lanes
             rows, _ = preview_for_route(ROOT, commit_time, changes, generation_route)
+            lanes = ("cloud", "local") if generation_route == "both" else (generation_route,)
             pending = [row["source_file"] for row in rows if row["selectable"]]
             log(f"{len(pending)} runnable queue(s) awaiting review", phase="Queue preview",
-                preview={"queues": rows, "max_images": max_images})
-            selection = "" if stop.exists() else sys.stdin.readline(32).strip()
+                preview={"queues": rows, "max_images": max_images, "lanes": lanes})
+            selection = "" if stop.exists() else sys.stdin.readline().strip()
             if stop.exists() or not selection:
                 log("Queue preview closed.", phase="Preview closed")
                 return 0
-            count = int(selection)
-            if not 1 <= count <= len(pending):
-                raise ValueError("Choose a valid number of queues and check the preview again.")
-            log(f"Confirmed {count} queue(s). Verifying the preview before starting…", phase="Verifying queues")
+            selected = reviewed_selection(selection, rows, lanes)
+            counts = ", ".join(f"{lane.title()} {len(paths)} JSON" for lane, paths in selected.items())
+            log(f"Confirmed {counts}. Verifying the preview before starting…", phase="Verifying queues")
             verify_reviewed_checkout(ROOT, sha)
             current_rows, sources = preview_for_route(ROOT, commit_time, changes, generation_route)
             if current_rows != rows:
                 raise RuntimeError("Queues or local progress changed since preview. Check queues again.")
-            selected = set(pending[:count])
-            if cdp:
+            if cdp and selected.get("cloud"):
                 connected = cdp_connected(cdp)
                 log("Edge CDP is reachable" if connected else "Edge is closed or unreachable; will try to start it for upload",
                     browser="Connected" if connected else "Disconnected")
-            else:
+            elif selected.get("cloud"):
                 log("Adobe will use the persistent browser profile at the upload stage", browser="Profile mode")
             report = run_lanes(ROOT, sha, commit_time, run_dir, should_stop=stop.exists, emit=emit,
                                  cdp=cdp, profile=profile, stop_file=stop, image_model=image_model,
                                  metadata_model=metadata_model, metadata_provider=metadata_provider, temperature=temperature,
                                  top_p=top_p, max_images=max_images, max_workers=max_workers,
-                                 sources=[source for source in sources if source.source_file in selected],
-                                 route=generation_route)
+                                 sources=sources, route=generation_route, selected_by_lane=selected)
             from stock_pipeline.batch_manager import write_report
             write_report({**report, "log_path": str(run_dir / "activity.log")}, run_dir)
             log(report["status"].replace("_", " ").title(), report=report)
@@ -689,10 +707,14 @@ class Desktop:
         from tkinter import ttk
 
         rows = preview["queues"]
+        lanes = preview["lanes"]
         pending = [row for row in rows if row["selectable"]]
+        eligible = {lane: {row["source_file"] for row in pending if row["lanes"][lane]["selectable"]} for lane in lanes}
+        selected = {lane: set(paths) for lane, paths in eligible.items()}
         new = sum(row["git_change"] == "New" for row in rows)
         updated = sum(row["git_change"] == "Updated" for row in rows)
-        invalid = sum(row["status"] == "Invalid" for row in rows)
+        invalid = sum(any(data["status"] == "Invalid" for data in row["lanes"].values()) for row in rows)
+        runnable_images = sum(data["total"] for row in pending for data in row["lanes"].values() if data["selectable"])
         dialog = self.preview_window = self.tk.Toplevel(self.window)
         dialog.title("Queue Preview")
         dialog.geometry("1070x682")
@@ -702,19 +724,19 @@ class Desktop:
         panel = ttk.Frame(dialog, padding=16)
         panel.pack(fill="both", expand=True)
         ttk.Label(panel, text=f"Pulled {new} new and {updated} updated JSON files  •  "
-                             f"{len(pending)} runnable queues / {sum(row['total'] for row in pending)} images"
+                             f"{len(pending)} runnable queues / {runnable_images} images"
                              f"  •  {invalid} invalid").pack(anchor="w", pady=(0, 10))
         table_box = ttk.Frame(panel)
         table_box.pack(fill="both", expand=True)
-        table = ttk.Treeview(table_box, show="headings", selectmode="browse",
-                             columns=("file", "themes", "git", "status", "total", "remaining"))
+        columns = ("file", "themes", "git", *lanes, "total", "remaining")
+        table = ttk.Treeview(table_box, show="headings", selectmode="browse", columns=columns)
         scroll = ttk.Scrollbar(table_box, orient="vertical", command=table.yview)
         table.configure(yscrollcommand=scroll.set)
         scroll.pack(side="right", fill="y")
         table.pack(side="left", fill="both", expand=True)
         for key, title, width in (
-            ("file", "JSON file", 275), ("themes", "Themes", 320), ("git", "Git", 70),
-            ("status", "Status", 135), ("total", "Images", 65), ("remaining", "To generate", 95),
+            ("file", "JSON file", 265), ("themes", "Themes", 285), ("git", "Git", 60),
+            *((lane, f"{lane.title()} status", 140) for lane in lanes), ("total", "Images", 65), ("remaining", "To generate", 95),
         ):
             table.heading(key, text=title)
             table.column(key, width=width, minwidth=55, stretch=key in {"file", "themes"})
@@ -723,7 +745,8 @@ class Desktop:
         for index, row in enumerate(visible):
             table.insert("", "end", iid=str(index), values=(
                 row["source_file"].removeprefix("queues/incoming/"), ", ".join(row["themes"]),
-                row["git_change"], row["status"], row["total"] if row["total"] else "—",
+                row["git_change"], *(row["lanes"][lane]["status"] for lane in lanes),
+                sum(data["total"] for data in row["lanes"].values() if data["selectable"]) or "—",
                 row["new_images"] if row["selectable"] else "—",
             ))
         detail_box = ttk.Frame(panel)
@@ -751,32 +774,20 @@ class Desktop:
         table.bind("<<TreeviewSelect>>", show_details)
         controls = ttk.Frame(panel)
         controls.pack(fill="x")
-        ttk.Label(controls, text="Run first").pack(side="left")
-        count = self.tk.StringVar(value=str(len(pending)))
-        picker = ttk.Spinbox(controls, from_=1, to=max(1, len(pending)), textvariable=count, width=6)
-        picker.pack(side="left", padx=6)
-        ttk.Label(controls, text="JSON files").pack(side="left")
-        summary = ttk.Label(controls)
-        summary.pack(side="left", padx=12)
-
-        def chosen_count():
-            try:
-                return int(count.get())
-            except ValueError:
-                return 0
+        summary = ttk.Label(panel)
+        summary.pack(anchor="w", pady=(6, 0))
 
         def close_preview():
             self.stop()
 
         def confirm():
-            value = chosen_count()
-            if not 1 <= value <= len(pending):
+            if not any(selected.values()):
                 return
             try:
                 stream = self.worker_input
                 if stream is None or stream.closed:
                     raise OSError("The worker is no longer waiting for confirmation.")
-                stream.write(f"{value}\n")
+                stream.write(json.dumps({lane: sorted(paths) for lane, paths in selected.items()}) + "\n")
                 stream.flush()
             except (OSError, ValueError) as exc:
                 self.append(f"Could not start: {exc}")
@@ -786,32 +797,54 @@ class Desktop:
 
         ttk.Button(controls, text="Cancel" if pending else "Close", command=close_preview).pack(side="right")
         start = ttk.Button(controls, text="Start Selected", command=confirm, style="Start.TButton")
-        if pending:
-            start.pack(side="right", padx=8)
-        else:
-            picker.state(["disabled"])
+        start.pack(side="right", padx=8)
 
-        def update_selection(*_args):
-            value = chosen_count()
-            valid = 1 <= value <= len(pending)
-            start.state(["!disabled" if valid else "disabled"])
-            chosen = pending[:value] if valid else []
-            selected_paths = {row["source_file"] for row in chosen}
+        def update_selection():
+            start.state(["!disabled" if any(selected.values()) else "disabled"])
             for index, row in enumerate(visible):
-                table.item(str(index), tags=("planned",) if row["source_file"] in selected_paths else ())
-            if valid:
-                remaining = [sum(row["new_images"] for row in chosen)]
-                if "new_images_by_lane" in chosen[0]:
-                    remaining = [sum(row["new_images_by_lane"][lane] for row in chosen)
-                                 for lane in ("cloud", "local")]
+                path = row["source_file"]
+                for lane in lanes:
+                    status = row["lanes"][lane]["status"]
+                    if path in eligible[lane]:
+                        checked = "☑" if path in selected[lane] else "☐"
+                        status = f"{checked}  {status}"
+                    table.set(str(index), lane, status)
+                table.item(str(index), tags=("planned",) if any(path in paths for paths in selected.values()) else ())
+            totals = []
+            for lane in lanes:
+                chosen = [row["lanes"][lane] for row in pending if row["source_file"] in selected[lane]]
+                new_images = sum(data["new_images"] for data in chosen)
                 limit = preview["max_images"]
-                images = sum(min(count, limit) if limit is not None else count for count in remaining)
-                summary.configure(text=f"{sum(row['total'] for row in chosen)} images  •  "
-                                       f"{images} estimated new")
-            else:
-                summary.configure(text="Choose a queue count" if pending else "No runnable queues")
+                if limit is not None:
+                    new_images = min(new_images, limit)
+                totals.append(f"{lane.title()}  {len(chosen)} JSON / {sum(data['total'] for data in chosen)} images ({new_images} new)")
+            summary.configure(text="  •  ".join(totals))
 
-        count.trace_add("write", update_selection)
+        def select_lane(lane, all_files):
+            selected[lane] = eligible[lane].copy() if all_files else set()
+            update_selection()
+
+        def toggle(lane, row_id):
+            path = visible[int(row_id)]["source_file"]
+            if path in eligible[lane]:
+                selected[lane].symmetric_difference_update({path})
+                update_selection()
+
+        def click_status(event):
+            row_id = table.identify_row(event.y)
+            column = table.identify_column(event.x)
+            if row_id and column:
+                lane = columns[int(column[1:]) - 1]
+                if lane in lanes:
+                    toggle(lane, row_id)
+
+        table.bind("<ButtonRelease-1>", click_status)
+        for lane in lanes:
+            for label, all_files in (("All", True), ("Clear", False)):
+                ttk.Button(controls, text=f"{lane.title()} {label}", padding=(5, 4),
+                           command=lambda lane=lane, all_files=all_files: select_lane(lane, all_files)).pack(side="left", padx=(0, 4))
+            table.bind(f"<KeyPress-{lane[0]}>",
+                       lambda _event, lane=lane: toggle(lane, table.focus()) if table.focus() else None)
         update_selection()
         dialog.protocol("WM_DELETE_WINDOW", close_preview)
         dialog.bind("<Escape>", lambda _event: close_preview())

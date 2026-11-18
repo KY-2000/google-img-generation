@@ -20,21 +20,24 @@ from .registry import Registry, now_iso
 def preview_for_route(root, commit_time, changes, route):
     cloud, sources = preview_queues(root, commit_time, changes)
     if route == "cloud":
-        return cloud, sources
+        return [{**row, "lanes": {"cloud": preview_lane(row)}} for row in cloud], sources
     local, _ = preview_queues(root, commit_time, changes, source_transform=local_sources)
     if route == "local":
-        return local, sources
+        return [{**row, "lanes": {"local": preview_lane(row)}} for row in local], sources
     local_rows = {row["source_file"]: row for row in local}
     combined = []
     for row in cloud:
         peer = local_rows[row["source_file"]]
         combined.append({**row, "selectable": row["selectable"] or peer["selectable"],
-                         "status": f"Cloud {row['status']} / Local {peer['status']}",
                          "total": row["total"] + peer["total"],
                          "new_images": row["new_images"] + peer["new_images"],
-                         "new_images_by_lane": {"cloud": row["new_images"], "local": peer["new_images"]},
+                         "lanes": {"cloud": preview_lane(row), "local": preview_lane(peer)},
                          "error": row["error"] or peer["error"]})
     return combined, sources
+
+
+def preview_lane(row):
+    return {key: row[key] for key in ("status", "selectable", "total", "new_images")}
 
 
 def local_sources(sources):
@@ -117,13 +120,16 @@ class LocalStockPipeline(StockPipeline):
 
 def run_lanes(root, commit, commit_time, run_dir, sources, *, route, emit, should_stop, stop_file,
               cdp, profile, image_model, metadata_model, metadata_provider, temperature, top_p,
-              max_images, max_workers, manager=run_manager):
+              max_images, max_workers, selected_by_lane=None, manager=run_manager):
     lanes = ("cloud", "local") if route == "both" else (route,)
-    if route == "both" and ((cdp and urlsplit(cdp).port == 9223)
+    plans = {lane: [source for source in sources
+                    if selected_by_lane is None or source.source_file in selected_by_lane[lane]] for lane in lanes}
+    if all(plans.values()) and route == "both" and ((cdp and urlsplit(cdp).port == 9223)
                              or (profile and Path(profile).resolve() == (root / ".pw-edge-adobe-local").resolve())):
         raise ValueError("Cloud and local Adobe uploads need different ports and profiles. Port 9223 and "
                          ".pw-edge-adobe-local are reserved for local uploads.")
-    plans = {lane: local_sources(sources) if lane == "local" else sources for lane in lanes}
+    if "local" in plans:
+        plans["local"] = local_sources(plans["local"])
     # Allocate every lane's identifiers before concurrent registry writes begin.
     redact = redactor(root)
     with Registry(root / "data/stock_pipeline.sqlite") as registry:
@@ -183,8 +189,12 @@ def run_lanes(root, commit, commit_time, run_dir, sources, *, route, emit, shoul
             return report
 
     reports = {}
+    for lane in lanes:
+        if not plans[lane]:
+            reports[lane] = {"status": "NO_WORK"}
+            send(lane, {"report": reports[lane]})
     with ThreadPoolExecutor(max_workers=len(lanes)) as pool:
-        pending = {pool.submit(run, lane): lane for lane in lanes}
+        pending = {pool.submit(run, lane): lane for lane in lanes if plans[lane]}
         for future in as_completed(pending):
             reports[pending[future]] = future.result()
     success = {"COMPLETE", "NO_WORK", "STOPPED", "LIMIT_REACHED"}
