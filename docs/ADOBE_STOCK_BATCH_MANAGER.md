@@ -114,7 +114,8 @@ LOCAL_H3_VAE=C:/AI/models/diffusion_pytorch_model.safetensors
 ```
 
 `LOCAL_SD_CLI` may be omitted if `sd-cli` is on `PATH`. The runner uses CPU
-offload and VAE tiling to reduce GPU memory pressure.
+offload, memory mapping, and VAE tiling. The text encoder and VAE execute on
+CPU, while the diffusion model uses CUDA with a 3 GiB GPU budget.
 
 The local `work_io/topic_finder/manager_baseline.json` snapshot skips the
 existing queue contents except r02 in live runs. It does not mark anything

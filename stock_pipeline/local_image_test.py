@@ -17,7 +17,8 @@ from .prompt_builder import render_image_prompt_file
 
 
 STEPS = 6
-STEP_LINE = re.compile(r"\|\s*(\d+)\s*/\s*(\d+)")
+STEP_LINE = re.compile(r"\|\s*(\d+)\s*/\s*(\d+)\s*-\s*[\d.]+\s*(?:s/it|it/s)")
+ANSI_ESCAPE = re.compile(r"\x1b\[[0-?]*[ -/]*[@-~]")
 
 
 def preview_size(aspect_ratio: str) -> tuple[int, int]:
@@ -101,7 +102,8 @@ def run_local_image_test(root, queue_path, run_dir, limit, should_stop, log):
     command = [str(cli), "--diffusion-model", str(resolved["LOCAL_H3_DIT"]),
                "--llm", str(resolved["LOCAL_H3_TEXT_ENCODER"]), "--vae", str(resolved["LOCAL_H3_VAE"]),
                "--steps", str(STEPS), "--cfg-scale", "1.0", "--sampling-method", "euler",
-               "--sigmas", "minimax-h3-image", "--rng", "cpu", "--offload-to-cpu", "--vae-tiling"]
+               "--sigmas", "minimax-h3-image", "--rng", "cpu", "--offload-to-cpu", "--vae-tiling",
+               "--backend", "diffusion=cuda0,te=cpu,vae=cpu", "--max-vram", "3", "--mmap"]
 
     results = run_dir / "local_images"
     results.mkdir()
@@ -115,6 +117,7 @@ def run_local_image_test(root, queue_path, run_dir, limit, should_stop, log):
         width, height = preview_size(aspect_ratio)
         started = time.monotonic()
         step = 0
+        out_of_memory = False
 
         def progress(stage, message):
             event = {"asset_id": aid, "stage": stage, "step": step, "steps": STEPS, "local": True,
@@ -124,7 +127,10 @@ def run_local_image_test(root, queue_path, run_dir, limit, should_stop, log):
             log(f"[{aid}] {message}", asset_progress=event, total=len(assets), completed=report["generated"])
 
         def on_line(line):
-            nonlocal step
+            nonlocal step, out_of_memory
+            line = ANSI_ESCAPE.sub("", line)
+            if "out of memory" in line.lower():
+                out_of_memory = True
             match = STEP_LINE.search(line)
             if match and int(match[2]) == STEPS and step < int(match[1]) <= STEPS:
                 step = int(match[1])
@@ -138,7 +144,7 @@ def run_local_image_test(root, queue_path, run_dir, limit, should_stop, log):
         png = results / f"{index:03d}.png"
         try:
             prompt.write_text(render_image_prompt_file(root / "config/prompts/image_prompt_v1.txt", asset), encoding="utf-8")
-            progress("local_loading", "Loading MiniMax H3 Image")
+            progress("local_loading", "Loading MiniMax H3 Image with a 3 GiB CUDA budget; text encoder and VAE on CPU")
             status = run_sd_cli([*command, "--prompt-file", str(prompt), "-W", str(width), "-H", str(height),
                                  "-o", str(png)], cli.parent, should_stop, on_line)
             if status is None:
@@ -147,6 +153,9 @@ def run_local_image_test(root, queue_path, run_dir, limit, should_stop, log):
                 report["status"] = "STOPPED"
                 break
             if status:
+                if out_of_memory:
+                    raise RuntimeError("Local GPU memory exhausted. Close GPU-heavy applications and retry. "
+                                       "The local runner uses a 3 GiB GPU budget with the text encoder and VAE on CPU.")
                 raise RuntimeError(f"sd-cli exited with code {status}. See Activity Log.")
             step = STEPS
             progress("qc", "Checking preview PNG")
