@@ -138,8 +138,13 @@ with MiniMax H3 Image support and the three files listed in the
 LOCAL_SD_CLI=C:/AI/stable-diffusion/sd-cli.exe
 LOCAL_H3_DIT=C:/AI/models/minimax_h3_image_pruned-Q4_K_M.gguf
 LOCAL_H3_TEXT_ENCODER=C:/AI/models/qwen3vl_32b_minimax_h3-Q4_K_M.gguf
+LOCAL_H3_TEXT_ENCODER_Q2=C:/AI/models/qwen3vl_32b_minimax_h3-Q2_K_M.gguf
+LOCAL_H3_TEXT_ENCODER_Q4=C:/AI/models/qwen3vl_32b_minimax_h3-Q4_K_M.gguf
 LOCAL_H3_VAE=C:/AI/models/diffusion_pytorch_model.safetensors
 ```
+
+**Local text encoder** selects Q2 or Q4 for Local Image Test and the Local
+production route. The desktop defaults to Q4.
 
 `LOCAL_SD_CLI` may be omitted if `sd-cli` is on `PATH`. The runner uses CPU
 offload, memory mapping, and VAE tiling. The text encoder executes on CPU,

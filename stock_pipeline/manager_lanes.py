@@ -62,8 +62,9 @@ def local_sources(sources):
 
 
 class LocalStockPipeline(StockPipeline):
-    def __init__(self, *, should_stop, **kwargs):
+    def __init__(self, *, should_stop, text_encoder=None, **kwargs):
         self.should_stop = should_stop
+        self.text_encoder = text_encoder
         self.local_started = 0
         self.local_step = 0
         kwargs.update(image_model="minimax-h3-image-UD-Q4_K_XL", image_generate_bytes=self.generate_local)
@@ -82,7 +83,7 @@ class LocalStockPipeline(StockPipeline):
         super()._emit_progress(asset_id, message)
 
     def generate_local(self, *, prompt, aspect_ratio, resolution, **_kwargs):
-        cli, command = local_command(self.project_root)
+        cli, command = local_command(self.project_root, self.text_encoder)
         sizes = {"16:9": (4096, 2304), "9:16": (2304, 4096), "1:1": (4096, 4096)}
         width, height = sizes[aspect_ratio]
         if resolution != "4K":
@@ -119,7 +120,7 @@ class LocalStockPipeline(StockPipeline):
 
 def run_lanes(root, commit, commit_time, run_dir, sources, *, route, emit, should_stop, stop_file,
               cdp, profile, image_model, metadata_model, metadata_provider, temperature, top_p,
-              max_images, max_workers, selected_by_lane=None, manager=run_manager):
+              max_images, max_workers, selected_by_lane=None, text_encoder=None, manager=run_manager):
     lanes = ("cloud", "local") if route == "both" else (route,)
     plans = {lane: [source for source in sources
                     if selected_by_lane is None or source.source_file in selected_by_lane[lane]] for lane in lanes}
@@ -171,7 +172,8 @@ def run_lanes(root, commit, commit_time, run_dir, sources, *, route, emit, shoul
         if route == "both":
             options["upload_slot"] = upload_slot
         if lane == "local":
-            options.update(pipeline_factory=lambda **kwargs: LocalStockPipeline(should_stop=should_stop, **kwargs),
+            options.update(pipeline_factory=lambda **kwargs: LocalStockPipeline(
+                               should_stop=should_stop, text_encoder=text_encoder, **kwargs),
                            image_model="minimax-h3-image-UD-Q4_K_XL", metadata_model="gemini-3.8-flash",
                            metadata_provider="vertex", receipt_subdir="local")
         else:
