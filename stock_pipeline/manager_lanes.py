@@ -6,7 +6,6 @@ from dataclasses import replace
 from pathlib import Path
 from tempfile import TemporaryDirectory
 from threading import Lock
-from urllib.parse import urlsplit
 import time
 
 from .batch_manager import preview_queues, run_manager
@@ -124,10 +123,8 @@ def run_lanes(root, commit, commit_time, run_dir, sources, *, route, emit, shoul
     lanes = ("cloud", "local") if route == "both" else (route,)
     plans = {lane: [source for source in sources
                     if selected_by_lane is None or source.source_file in selected_by_lane[lane]] for lane in lanes}
-    if all(plans.values()) and route == "both" and ((cdp and urlsplit(cdp).port == 9223)
-                             or (profile and Path(profile).resolve() == (root / ".pw-edge-adobe-local").resolve())):
-        raise ValueError("Cloud and local Adobe uploads need different ports and profiles. Port 9223 and "
-                         ".pw-edge-adobe-local are reserved for local uploads.")
+    if plans.get("local") and not cdp:
+        cdp = "http://127.0.0.1:9222"
     if "local" in plans:
         plans["local"] = local_sources(plans["local"])
     # Allocate every lane's identifiers before concurrent registry writes begin.
@@ -170,17 +167,15 @@ def run_lanes(root, commit, commit_time, run_dir, sources, *, route, emit, shoul
         options = dict(should_stop=should_stop, emit=lambda event: send(lane, event),
                        stop_file=stop_file, sources=plans[lane], max_images=max_images,
                        max_workers=max_workers if lane == "cloud" else 1,
-                       temperature=temperature, top_p=top_p)
+                       temperature=temperature, top_p=top_p, cdp=cdp, profile=profile)
         if route == "both":
             options["upload_slot"] = upload_slot
         if lane == "local":
             options.update(pipeline_factory=lambda **kwargs: LocalStockPipeline(should_stop=should_stop, **kwargs),
                            image_model="minimax-h3-image-UD-Q4_K_XL", metadata_model="gemini-3.8-flash",
-                           metadata_provider="vertex", cdp="http://127.0.0.1:9223",
-                           profile=str(root / ".pw-edge-adobe-local"), receipt_subdir="local")
+                           metadata_provider="vertex", receipt_subdir="local")
         else:
-            options.update(image_model=image_model, metadata_model=metadata_model, metadata_provider=metadata_provider,
-                           cdp=cdp, profile=profile)
+            options.update(image_model=image_model, metadata_model=metadata_model, metadata_provider=metadata_provider)
         try:
             return manager(root, commit, commit_time, directory, **options)
         except Exception as exc:

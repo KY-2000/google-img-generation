@@ -108,10 +108,9 @@ Local variants receive distinct AST IDs in the existing registry, so both
 images can be uploaded with distinct filenames. Local upload receipts live
 under `output/stock_manager/adobe_receipts/local`.
 
-The local Adobe browser uses CDP port **9223** and the repository's
-`.pw-edge-adobe-local` profile. On first use, sign in to Adobe in that browser.
-Cloud uses the configured Adobe CDP/profile. Keep those browser profiles and
-ports distinct. Each run's `cloud` and `local` folders contain its lane reports
+Cloud and Local upload through the same configured Adobe Edge session in
+sequence. The default CDP endpoint is **9222**. With Local selected, a blank
+endpoint also uses **9222**. Each run's `cloud` and `local` folders contain its lane reports
 and logs. The parent report contains both outcomes. Production images remain
 under `output/assets/<AST ID>`.
 

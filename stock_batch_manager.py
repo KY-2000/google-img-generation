@@ -219,7 +219,9 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
             current_rows, sources = preview_for_route(ROOT, commit_time, changes, generation_route)
             if current_rows != rows:
                 raise RuntimeError("Queues or local progress changed since preview. Check queues again.")
-            if cdp and selected.get("cloud"):
+            if not cdp and selected.get("local"):
+                cdp = "http://127.0.0.1:9222"
+            if cdp:
                 connected = cdp_connected(cdp)
                 log("Edge CDP is reachable" if connected else "Edge is closed or unreachable; will try to start it for upload",
                     browser="Connected" if connected else "Disconnected")
@@ -363,7 +365,7 @@ class Desktop:
         ttk.Label(settings, text="Adobe CDP").pack(side="left", padx=(0, 8))
         self.endpoint_entry = ttk.Entry(settings, textvariable=self.endpoint, width=28)
         self.endpoint_entry.pack(side="left")
-        ttk.Label(settings, text="Starts Edge at upload if needed. Leave blank for profile mode.").pack(side="left", padx=10)
+        ttk.Label(settings, text="Shared by Cloud and Local. Blank uses port 9222 when Local runs.").pack(side="left", padx=10)
         options = ttk.Frame(container)
         options.pack(fill="x", pady=(0, 8))
         self.image_model_label = ttk.Label(options, text="Image model")
@@ -564,7 +566,8 @@ class Desktop:
         self.image_model_label.configure(text="Cloud image model" if not local and self.generation_route.get() == "Both" else "Image model")
         self.model_picker.state(["disabled" if self.active else "!disabled"])
         pro = self.image_model.get() == "Nano Banana Pro"
-        for widget in (self.endpoint_entry, self.metadata_picker, self.worker_picker):
+        self.endpoint_entry.state(["disabled" if self.active or self.local_test.get() else "!disabled"])
+        for widget in (self.metadata_picker, self.worker_picker):
             widget.state(["disabled" if self.active or local else "!disabled"])
         for index, entry in enumerate(self.generation_entries):
             entry.state(["disabled" if self.active or (index < 2 and (local or not pro)) else "!disabled"])
@@ -629,7 +632,7 @@ class Desktop:
                 if not local_queue:
                     return
             cdp = (validate_cdp(self.endpoint.get().strip())
-                   if live and self.generation_route.get() != "Local" and self.endpoint.get().strip() else None)
+                   if live and self.endpoint.get().strip() else None)
             self.run_dir = ROOT / "output" / "stock_manager" / "runs" / uuid4().hex
             self.run_dir.mkdir(parents=True)
         except (ValueError, OSError) as exc:

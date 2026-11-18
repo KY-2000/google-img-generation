@@ -394,7 +394,7 @@ class ManagerTests(unittest.TestCase):
         self.assertEqual(len(calls), 1)
         self.assertEqual(metadata_calls, [("vertex", "gemini-3.8-flash")])
         self.assertEqual(endpoints["cloud"], ("http://127.0.0.1:9222", None))
-        self.assertEqual(endpoints["local"], ("http://127.0.0.1:9223", str(self.root / ".pw-edge-adobe-local")))
+        self.assertEqual(endpoints["local"], endpoints["cloud"])
         ids = [item["asset_id"] for batch in self.uploads for item in batch["items"]]
         self.assertEqual(len(ids), len(set(ids)))
         self.assertEqual(len(ids), 2)
