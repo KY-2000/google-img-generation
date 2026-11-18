@@ -149,7 +149,8 @@ production route. The desktop defaults to Q4.
 **Image model** selects the local image weights in Local mode and Local Image
 Test. In **Both** mode, use **Local model**. The current Q4 weights use
 `LOCAL_H3_DIT`, with `LOCAL_H3_DIT_Q4` available as an override. Set
-`LOCAL_H3_DIT_Q5` to the Q5 GGUF file to add Q5 to the picker.
+`LOCAL_H3_DIT_Q5` or `LOCAL_H3_DIT_Q8` to the corresponding GGUF file to add
+that model to the picker.
 
 `LOCAL_SD_CLI` may be omitted if `sd-cli` is on `PATH`. The runner uses CPU
 offload, memory mapping, and VAE tiling. The text encoder executes on CPU,

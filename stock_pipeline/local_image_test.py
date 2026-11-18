@@ -73,15 +73,23 @@ def run_sd_cli(command, cwd, should_stop, on_line):
     return None
 
 
-LOCAL_IMAGE_MODELS = {"Q4": "minimax-h3-image-UD-Q4_K_XL", "Q5": "minimax-h3-image-Q5"}
+LOCAL_IMAGE_MODELS = {
+    "Q4": "minimax-h3-image-UD-Q4_K_XL",
+    "Q5": "minimax-h3-image-Q5",
+    "Q8": "minimax-h3-image-Q8",
+}
 
 
 def configured_local_image_models(root):
     from main import load_env_file
 
     settings = {**load_env_file(root / ".env"), **os.environ}
-    q5 = settings.get("LOCAL_H3_DIT_Q5")
-    return ("Q4", "Q5") if q5 and (root / q5).is_file() else ("Q4",)
+    options = ["Q4"]
+    for quant in LOCAL_IMAGE_MODELS:
+        model = settings.get(f"LOCAL_H3_DIT_{quant}")
+        if quant != "Q4" and model and (root / model).is_file():
+            options.append(quant)
+    return tuple(options)
 
 
 def local_command(root, text_encoder=None, image_quant="Q4"):

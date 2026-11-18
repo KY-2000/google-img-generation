@@ -1068,7 +1068,9 @@ def main():
     parser.add_argument("--offline-test", action="store_true", help=argparse.SUPPRESS)
     parser.add_argument("--local-queue", type=Path, help=argparse.SUPPRESS)
     parser.add_argument("--local-text-encoder", choices=("Q2", "Q4"), help=argparse.SUPPRESS)
-    parser.add_argument("--local-image-model", choices=("Q4", "Q5"), default="Q4", help=argparse.SUPPRESS)
+    from stock_pipeline.local_image_test import LOCAL_IMAGE_MODELS
+
+    parser.add_argument("--local-image-model", choices=tuple(LOCAL_IMAGE_MODELS), default="Q4", help=argparse.SUPPRESS)
     parser.add_argument("--generation-route", choices=("cloud", "local", "both"), default="cloud", help=argparse.SUPPRESS)
     parser.add_argument("--image-model", choices=tuple(IMAGE_MODELS.values()), help=argparse.SUPPRESS)
     parser.add_argument("--metadata-model", help=argparse.SUPPRESS)
