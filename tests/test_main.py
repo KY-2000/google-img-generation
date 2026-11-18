@@ -132,7 +132,7 @@ class ApiUsageCallbackTests(unittest.TestCase):
                 )
 
         self.assertEqual(result, '{"title":"example"}')
-        self.assertEqual(generate_content.call_args.kwargs["config"]["http_options"], {"timeout": 90000})
+        self.assertEqual(generate_content.call_args.kwargs["config"]["http_options"], {"timeout": 180000})
         self.assertEqual(reported[0]["prompt_tokens"], 456)
         self.assertEqual(reported[0]["thoughts_tokens"], 9)
 
