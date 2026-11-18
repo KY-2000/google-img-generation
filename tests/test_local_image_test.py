@@ -83,6 +83,11 @@ class LocalImageTestTests(unittest.TestCase):
             production.assert_not_called()
             self.assertEqual(calls, [(2048, 1152, "Illustration for 16:9"), (1152, 2048, "Illustration for 9:16")])
             self.assertEqual(len(list((run_dir / "local_images").glob("*.png"))), 2)
+            from stock_pipeline.manager_gallery import saved_images
+
+            previews = saved_images(root)
+            self.assertEqual([(item.queue, item.lane, item.theme) for item in previews],
+                             [(TEST_QUEUE, "Local", asset["theme"]) for asset in source["assets"]])
             self.assertFalse((root / "data").exists())
             self.assertFalse((root / "output/assets").exists())
             events = [json.loads(line) for line in output.getvalue().splitlines()]

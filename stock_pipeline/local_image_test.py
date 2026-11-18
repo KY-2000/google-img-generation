@@ -1,6 +1,7 @@
 """Run a local MiniMax H3 Image smoke test without touching production assets."""
 from __future__ import annotations
 
+import json
 import os
 import re
 import shutil
@@ -122,6 +123,7 @@ def run_local_image_test(root, queue_path, run_dir, limit, should_stop, log, *, 
 
     results = run_dir / "local_images"
     results.mkdir()
+    gallery = {"queue": source.source_file, "images": []}
     report = {"status": "LOCAL_TEST_COMPLETE", "total_assets": len(assets), "generated": 0, "failed_assets": 0}
     for index, asset in enumerate(assets, 1):
         if should_stop():
@@ -177,6 +179,10 @@ def run_local_image_test(root, queue_path, run_dir, limit, should_stop, log, *, 
             qc = inspect_image(aid, png, 1, aspect_ratio=aspect_ratio)
             if not qc["image_valid"] or qc.get("format") != "PNG" or (qc.get("width"), qc.get("height")) != (width, height):
                 raise ValueError(f"Expected a valid {width}×{height} PNG")
+            gallery["images"].append({"file": png.name, "theme": asset["theme"], "asset_id": aid})
+            gallery_tmp = results / "gallery.json.tmp"
+            gallery_tmp.write_text(json.dumps(gallery, ensure_ascii=False), encoding="utf-8")
+            gallery_tmp.replace(results / "gallery.json")
             report["generated"] += 1
             progress("local_complete", f"Saved {png}")
         except (OSError, RuntimeError, ValueError) as exc:

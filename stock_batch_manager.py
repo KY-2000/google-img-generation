@@ -265,6 +265,7 @@ class Desktop:
         self.run_dir = None
         self.preview_window = None
         self.log_window = None
+        self.gallery = None
         self.log_text = None
         self.log_lines = deque(maxlen=2500)
         self.progress_panels = {}
@@ -423,6 +424,7 @@ class Desktop:
         log_controls = ttk.Frame(container)
         log_controls.pack(fill="x")
         ttk.Button(log_controls, text="Show Activity Log", command=self.show_activity_log).pack(side="left")
+        ttk.Button(log_controls, text="Generated Images", command=self.show_generated_images).pack(side="left", padx=8)
         ttk.Button(log_controls, text="Open ChatGPT + Copy Error Log",
                    command=self.open_error_in_chatgpt).pack(side="right")
         window.after(75, self.poll)
@@ -446,6 +448,15 @@ class Desktop:
             self.progress_tabs.add(frame, text=title)
             count = 1 if lane == "local" else int(self.max_workers.get())
             self.progress_panels[lane] = ProgressPanel(frame, count, ASSET_STAGES, UPLOAD_STAGES, FINISHED_ASSET_STAGES)
+
+    def show_generated_images(self):
+        from stock_pipeline.manager_gallery import ImageGallery
+
+        if self.gallery is None or not self.gallery.window.winfo_exists():
+            self.gallery = ImageGallery(self.window, ROOT)
+        else:
+            self.gallery.refresh()
+            self.gallery.window.lift()
 
     def show_activity_log(self):
         from tkinter import ttk
