@@ -55,8 +55,8 @@ class LocalImageTestTests(unittest.TestCase):
             calls = []
 
             def generate(args, cwd, should_stop, on_line):
-                self.assertEqual(args[args.index("--backend") + 1], "diffusion=cuda0,te=cpu,vae=cpu")
-                self.assertEqual(args[args.index("--max-vram") + 1], "3")
+                self.assertEqual(args[args.index("--backend") + 1], "diffusion=cuda0,te=cpu,vae=cuda0")
+                self.assertEqual(args[args.index("--max-vram") + 1], "5")
                 self.assertIn("--mmap", args)
                 width, height = (int(args[args.index(flag) + 1]) for flag in ("-W", "-H"))
                 prompt = Path(args[args.index("--prompt-file") + 1]).read_text(encoding="utf-8")

@@ -103,7 +103,7 @@ def run_local_image_test(root, queue_path, run_dir, limit, should_stop, log):
                "--llm", str(resolved["LOCAL_H3_TEXT_ENCODER"]), "--vae", str(resolved["LOCAL_H3_VAE"]),
                "--steps", str(STEPS), "--cfg-scale", "1.0", "--sampling-method", "euler",
                "--sigmas", "minimax-h3-image", "--rng", "cpu", "--offload-to-cpu", "--vae-tiling",
-               "--backend", "diffusion=cuda0,te=cpu,vae=cpu", "--max-vram", "3", "--mmap"]
+               "--backend", "diffusion=cuda0,te=cpu,vae=cuda0", "--max-vram", "5", "--mmap"]
 
     results = run_dir / "local_images"
     results.mkdir()
@@ -144,7 +144,7 @@ def run_local_image_test(root, queue_path, run_dir, limit, should_stop, log):
         png = results / f"{index:03d}.png"
         try:
             prompt.write_text(render_image_prompt_file(root / "config/prompts/image_prompt_v1.txt", asset), encoding="utf-8")
-            progress("local_loading", "Loading MiniMax H3 Image with a 3 GiB CUDA budget; text encoder and VAE on CPU")
+            progress("local_loading", "Loading MiniMax H3 Image with a 5 GiB CUDA budget; text encoder on CPU, tiled VAE on CUDA")
             status = run_sd_cli([*command, "--prompt-file", str(prompt), "-W", str(width), "-H", str(height),
                                  "-o", str(png)], cli.parent, should_stop, on_line)
             if status is None:
@@ -155,7 +155,7 @@ def run_local_image_test(root, queue_path, run_dir, limit, should_stop, log):
             if status:
                 if out_of_memory:
                     raise RuntimeError("Local GPU memory exhausted. Close GPU-heavy applications and retry. "
-                                       "The local runner uses a 3 GiB GPU budget with the text encoder and VAE on CPU.")
+                                       "The local runner uses a 5 GiB GPU budget with the text encoder on CPU and tiled VAE on CUDA.")
                 raise RuntimeError(f"sd-cli exited with code {status}. See Activity Log.")
             step = STEPS
             progress("qc", "Checking preview PNG")
