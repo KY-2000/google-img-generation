@@ -1,0 +1,423 @@
+{
+  "run_id": "TF_creative_components_2026W47_r02",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-18T09:00:00+08:00",
+  "research": {
+    "finder": "creative_components",
+    "product_line": "commercial_background",
+    "editorial_scope": "Reusable foundational design components",
+    "candidate_count": 36,
+    "approved_count": 8,
+    "selection_method": "buyer utility 30, differentiation 25, composition 15, material credibility 10, feasibility 10, timeliness 5, diversity 5",
+    "exclusion_registry": "Google Doc 11 confirmed rejections; SC-012 placeholder excluded",
+    "source_urls": [
+      "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+      "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+      "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+      "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+    ],
+    "ast_allocation": "All asset_id fields omitted; run_stock_pipeline.py allocates locally using SQLite before strict validation."
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Embossed Blind Deboss Cotton Paper with Offset Registration Wells",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "warm white, pale ivory, natural cotton, soft gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable foundational design component for a luxury packaging designer, suitable for minimal skincare box sleeve background and annual report title page with overprinted typography. The visual subject is thick uncoated cotton rag paper with blind deboss registration wells. Shallow circular and rectangular debossed depressions pressed into dense long cotton fibers, natural compressed lips, no ink, convincing edge bevel and subtle fiber nap. Compose a 16:9 raster image at genuine 4K detail. Perpendicular horizontal surface with depressions confined to a measured lower-right grid; upper-left broad quiet flat paper for typography, crop-safe margins. Art style: Fine Art Printmaking Macro Photography, with material-specific edge behavior, restrained natural imperfections, precise physical structure and no decorative storytelling. Lighting: Large grazing softbox from upper left creates very shallow relief shadows without metallic glare. Maintain coherent real-world scale, crisp local texture and smooth tonal transitions without artificial sharpening. The result must work as a crop-friendly layer or background when the buyer adds typography, brand colors or product cutouts separately. Keep it original and anonymous, without words, numbers, trademarks, logos, watermarks, identifiable protected artworks or brand packaging. This is a flattened raster component with an opaque background; do not imply editable vector paths, actual transparency or verified seamless tiling.",
+      "negative_prompt": "printed words, embossed letters, logo, wrinkles, parchment stains, fake metallic foil",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Stationery Print Surface",
+        "material": "thick uncoated cotton rag paper with blind deboss registration wells",
+        "designer_persona": "Luxury packaging designer",
+        "buyer_use_case": "Minimal skincare box sleeve background; Annual report title page with overprinted typography",
+        "design_placement": "Minimal skincare box sleeve background; Annual report title page with overprinted typography",
+        "design_function": "Reusable composable background, material surface or print design ingredient",
+        "design_reuse_cases": [
+          "Minimal skincare box sleeve background",
+          "Annual report title page with overprinted typography"
+        ],
+        "integration_guidance": "Perpendicular horizontal surface with depressions confined to a measured lower-right grid; upper-left broad quiet flat paper for typography, crop-safe margins; flattened raster, crop and layer in a design application; no alpha or seamless guarantee.",
+        "reusability_rationale": "Specific blind deboss registration wells give real print-finishing vocabulary beyond generic paper grain",
+        "art_style": "Fine Art Printmaking Macro Photography",
+        "style_rationale": "Documentary or analog medium selected to represent the physical material and intended graphic-design placement.",
+        "distinctiveness": "Specific blind deboss registration wells give real print-finishing vocabulary beyond generic paper grain",
+        "copy_space": "Perpendicular horizontal surface with depressions confined to a measured lower-right grid; upper-left broad quiet flat paper for typography, crop-safe margins",
+        "metadata_seed_keywords": [
+          "stationery print surface",
+          "thick uncoated cotton rag paper",
+          "fine art printmaking macro photography",
+          "design background",
+          "commercial texture"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Checked against live 11-entry user rejection registry and accessible earlier Creative Components queues; visual review remains necessary."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Cast Glass Fluted Rib Refraction on Neutral Wall",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "mist gray, pearl white, pale sand, transparent clear",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable foundational design component for a editorial web art director, suitable for hospitality website hero backdrop and architectural brochure section divider. The visual subject is clear ribbed cast glass with vertical parallel flutes and refracted daylight. Realistic thick clear fluted glass sheet refracting a soft sunlit neutral wall; each rib has subtle displacement, localized caustic highlights and imperfect cast-glass edge behavior. Compose a 16:9 raster image at genuine 4K detail. Glass occupies right two-thirds, with calm diffuse stone-colored left third for dark headline; flutes remain vertical and crop cleanly, no literal objects behind glass. Art style: Architectural Optical Still Life Photography, with material-specific edge behavior, restrained natural imperfections, precise physical structure and no decorative storytelling. Lighting: Late-morning indirect sunlight, gentle luminous refractions, controlled highlights. Maintain coherent real-world scale, crisp local texture and smooth tonal transitions without artificial sharpening. The result must work as a crop-friendly layer or background when the buyer adds typography, brand colors or product cutouts separately. Keep it original and anonymous, without words, numbers, trademarks, logos, watermarks, identifiable protected artworks or brand packaging. This is a flattened raster component with an opaque background; do not imply editable vector paths, actual transparency or verified seamless tiling.",
+      "negative_prompt": "prism rainbow explosion, fake alpha, impossible floating reflections, windows, text, people",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Optical Architectural Overlay",
+        "material": "clear ribbed cast glass with vertical parallel flutes and refracted daylight",
+        "designer_persona": "Editorial web art director",
+        "buyer_use_case": "Hospitality website hero backdrop; Architectural brochure section divider",
+        "design_placement": "Hospitality website hero backdrop; Architectural brochure section divider",
+        "design_function": "Reusable composable background, material surface or print design ingredient",
+        "design_reuse_cases": [
+          "Hospitality website hero backdrop",
+          "Architectural brochure section divider"
+        ],
+        "integration_guidance": "Glass occupies right two-thirds, with calm diffuse stone-colored left third for dark headline; flutes remain vertical and crop cleanly, no literal objects behind glass; flattened raster, crop and layer in a design application; no alpha or seamless guarantee.",
+        "reusability_rationale": "Optical distortion provides reusable architectural atmosphere with plausible physical light transport",
+        "art_style": "Architectural Optical Still Life Photography",
+        "style_rationale": "Documentary or analog medium selected to represent the physical material and intended graphic-design placement.",
+        "distinctiveness": "Optical distortion provides reusable architectural atmosphere with plausible physical light transport",
+        "copy_space": "Glass occupies right two-thirds, with calm diffuse stone-colored left third for dark headline; flutes remain vertical and crop cleanly, no literal objects behind glass",
+        "metadata_seed_keywords": [
+          "optical architectural overlay",
+          "clear ribbed cast glass",
+          "architectural optical still life photography",
+          "design background",
+          "commercial texture"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Checked against live 11-entry user rejection registry and accessible earlier Creative Components queues; visual review remains necessary."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Hand Torn Mulberry Paper Overlap with Fiber Feather Edges",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "charcoal, warm ivory, smoke gray, natural fiber beige",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable foundational design component for a editorial collage designer, suitable for museum exhibition social tile background and literary journal chapter opener. The visual subject is two layers of fibrous mulberry washi-like handmade paper. One narrow translucent ivory strip overlaps a broad charcoal-gray sheet; torn edges show long irregular plant fibers and tiny lifted strands with realistic shadow contact. Compose a 9:16 raster image at genuine 4K detail. Vertical layout, narrow torn seam runs asymmetrically along left third; right two-thirds dark quiet plane for independently added copy; safe space at top and bottom. Art style: Tactile Handmade Paper Collage Photography, with material-specific edge behavior, restrained natural imperfections, precise physical structure and no decorative storytelling. Lighting: Soft side-lit tabletop documentation, subtle depth, no harsh shadows. Maintain coherent real-world scale, crisp local texture and smooth tonal transitions without artificial sharpening. The result must work as a crop-friendly layer or background when the buyer adds typography, brand colors or product cutouts separately. Keep it original and anonymous, without words, numbers, trademarks, logos, watermarks, identifiable protected artworks or brand packaging. This is a flattened raster component with an opaque background; do not imply editable vector paths, actual transparency or verified seamless tiling.",
+      "negative_prompt": "masking tape, stickers, printed text, multiple scraps, scissors, faux transparent background",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Paper Collage Construction",
+        "material": "two layers of fibrous mulberry washi-like handmade paper",
+        "designer_persona": "Editorial collage designer",
+        "buyer_use_case": "Museum exhibition social tile background; Literary journal chapter opener",
+        "design_placement": "Museum exhibition social tile background; Literary journal chapter opener",
+        "design_function": "Reusable composable background, material surface or print design ingredient",
+        "design_reuse_cases": [
+          "Museum exhibition social tile background",
+          "Literary journal chapter opener"
+        ],
+        "integration_guidance": "Vertical layout, narrow torn seam runs asymmetrically along left third; right two-thirds dark quiet plane for independently added copy; safe space at top and bottom; flattened raster, crop and layer in a design application; no alpha or seamless guarantee.",
+        "reusability_rationale": "Actual feathered torn plant fibers and single overlapping seam, unlike generic ripped notebook collage",
+        "art_style": "Tactile Handmade Paper Collage Photography",
+        "style_rationale": "Documentary or analog medium selected to represent the physical material and intended graphic-design placement.",
+        "distinctiveness": "Actual feathered torn plant fibers and single overlapping seam, unlike generic ripped notebook collage",
+        "copy_space": "Vertical layout, narrow torn seam runs asymmetrically along left third; right two-thirds dark quiet plane for independently added copy; safe space at top and bottom",
+        "metadata_seed_keywords": [
+          "paper collage construction",
+          "two layers of fibrous mulberry washi-like handmade paper",
+          "tactile handmade paper collage photography",
+          "design background",
+          "commercial texture"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Checked against live 11-entry user rejection registry and accessible earlier Creative Components queues; visual review remains necessary."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Recycled Denim Twill with Subtle Indigo Slub Direction",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "washed indigo, deep blue, faded cobalt, natural cotton white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable foundational design component for a sustainable apparel brand designer, suitable for circular fashion report cover texture and denim repair workshop promotional card. The visual subject is recycled indigo cotton denim with uneven twill and reclaimed yarn slubs. Diagonal 3-by-1 twill ridges with occasional lighter reclaimed cotton slubs, tiny real yarn fuzz, restrained irregular dye uptake, no tears or sewn seams. Compose a 16:9 raster image at genuine 4K detail. Nearly perpendicular fabric study, diagonal twill across entire 16:9 plane; central region even enough for overlaid white typography; natural variation, no asserted seamless repeat. Art style: Textile Conservation Macro Photography, with material-specific edge behavior, restrained natural imperfections, precise physical structure and no decorative storytelling. Lighting: Broad raking daylight reveals weave depth while keeping tonal field coherent. Maintain coherent real-world scale, crisp local texture and smooth tonal transitions without artificial sharpening. The result must work as a crop-friendly layer or background when the buyer adds typography, brand colors or product cutouts separately. Keep it original and anonymous, without words, numbers, trademarks, logos, watermarks, identifiable protected artworks or brand packaging. This is a flattened raster component with an opaque background; do not imply editable vector paths, actual transparency or verified seamless tiling.",
+      "negative_prompt": "jeans pockets, labels, logos, stitched garment, fake tiled repeat, exaggerated fraying",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Textile Surface",
+        "material": "recycled indigo cotton denim with uneven twill and reclaimed yarn slubs",
+        "designer_persona": "Sustainable apparel brand designer",
+        "buyer_use_case": "Circular fashion report cover texture; Denim repair workshop promotional card",
+        "design_placement": "Circular fashion report cover texture; Denim repair workshop promotional card",
+        "design_function": "Reusable composable background, material surface or print design ingredient",
+        "design_reuse_cases": [
+          "Circular fashion report cover texture",
+          "Denim repair workshop promotional card"
+        ],
+        "integration_guidance": "Nearly perpendicular fabric study, diagonal twill across entire 16:9 plane; central region even enough for overlaid white typography; natural variation, no asserted seamless repeat; flattened raster, crop and layer in a design application; no alpha or seamless guarantee.",
+        "reusability_rationale": "Reclaimed slub yarn gives specific authentic textile structure distinct from generic smooth denim",
+        "art_style": "Textile Conservation Macro Photography",
+        "style_rationale": "Documentary or analog medium selected to represent the physical material and intended graphic-design placement.",
+        "distinctiveness": "Reclaimed slub yarn gives specific authentic textile structure distinct from generic smooth denim",
+        "copy_space": "Nearly perpendicular fabric study, diagonal twill across entire 16:9 plane; central region even enough for overlaid white typography; natural variation, no asserted seamless repeat",
+        "metadata_seed_keywords": [
+          "textile surface",
+          "recycled indigo cotton denim",
+          "textile conservation macro photography",
+          "design background",
+          "commercial texture"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Checked against live 11-entry user rejection registry and accessible earlier Creative Components queues; visual review remains necessary."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Offset Halftone Print Misregistration with Open Type Field",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "carbon black, burnt orange, bone white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable foundational design component for a independent magazine art director, suitable for music festival editorial spread background and creative studio pitch deck divider. The visual subject is two-color coarse paper halftone screen printing with imperfect ink registration. Visible black dot screen and restrained burnt-orange offset ink edge, selective ink starvation and subtle fibrous paper tooth, geometric printed bands with physically consistent dot scale. Compose a 16:9 raster image at genuine 4K detail. Abstract ink band crosses lower quarter and a short vertical fragment at far right; upper central two-thirds uncluttered for typesetting; no words or symbols. Art style: Analog Two-Ink Halftone Print Texture, with material-specific edge behavior, restrained natural imperfections, precise physical structure and no decorative storytelling. Lighting: Even archival scan illumination, matte ink with credible print bleed. Maintain coherent real-world scale, crisp local texture and smooth tonal transitions without artificial sharpening. The result must work as a crop-friendly layer or background when the buyer adds typography, brand colors or product cutouts separately. Keep it original and anonymous, without words, numbers, trademarks, logos, watermarks, identifiable protected artworks or brand packaging. This is a flattened raster component with an opaque background; do not imply editable vector paths, actual transparency or verified seamless tiling.",
+      "negative_prompt": "readable lettering, comic character, random paint splatter, excessive moire, logos, fake vector editability",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Print Wear Graphic Surface",
+        "material": "two-color coarse paper halftone screen printing with imperfect ink registration",
+        "designer_persona": "Independent magazine art director",
+        "buyer_use_case": "Music festival editorial spread background; Creative studio pitch deck divider",
+        "design_placement": "Music festival editorial spread background; Creative studio pitch deck divider",
+        "design_function": "Reusable composable background, material surface or print design ingredient",
+        "design_reuse_cases": [
+          "Music festival editorial spread background",
+          "Creative studio pitch deck divider"
+        ],
+        "integration_guidance": "Abstract ink band crosses lower quarter and a short vertical fragment at far right; upper central two-thirds uncluttered for typesetting; no words or symbols; flattened raster, crop and layer in a design application; no alpha or seamless guarantee.",
+        "reusability_rationale": "Purposeful halftone band and registration drift as functional layout accents, no generic all-over noise",
+        "art_style": "Analog Two-Ink Halftone Print Texture",
+        "style_rationale": "Documentary or analog medium selected to represent the physical material and intended graphic-design placement.",
+        "distinctiveness": "Purposeful halftone band and registration drift as functional layout accents, no generic all-over noise",
+        "copy_space": "Abstract ink band crosses lower quarter and a short vertical fragment at far right; upper central two-thirds uncluttered for typesetting; no words or symbols",
+        "metadata_seed_keywords": [
+          "print wear graphic surface",
+          "two-color coarse paper halftone screen printing",
+          "analog two-ink halftone print texture",
+          "design background",
+          "commercial texture"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Checked against live 11-entry user rejection registry and accessible earlier Creative Components queues; visual review remains necessary."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Soft Leaf Vein Shadow Lattice Across Plaster Panel",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "chalk ivory, warm gray, olive shadow, soft beige",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable foundational design component for a wellness website designer, suitable for spa booking page hero and natural skincare campaign presentation background. The visual subject is soft projected shadow of compound leaves on fine lime plaster. Layered compound leaf shadows show believable thin midrib and secondary vein silhouettes, differing edge softness from depth, subtle lime-plaster mineral granularity. Compose a 9:16 raster image at genuine 4K detail. Leaf shadow enters from upper-left and falls toward left edge; clean central-right vertical column for mobile headline, generous UI-safe margins. Art style: Natural Daylight Shadow Photography, with material-specific edge behavior, restrained natural imperfections, precise physical structure and no decorative storytelling. Lighting: Warm late afternoon angled daylight, gentle penumbra and natural falloff. Maintain coherent real-world scale, crisp local texture and smooth tonal transitions without artificial sharpening. The result must work as a crop-friendly layer or background when the buyer adds typography, brand colors or product cutouts separately. Keep it original and anonymous, without words, numbers, trademarks, logos, watermarks, identifiable protected artworks or brand packaging. This is a flattened raster component with an opaque background; do not imply editable vector paths, actual transparency or verified seamless tiling.",
+      "negative_prompt": "visible leaves, flower branches, window frames, fake alpha, dark hard-edged shadow, text",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Natural Shadow Surface",
+        "material": "soft projected shadow of compound leaves on fine lime plaster",
+        "designer_persona": "Wellness website designer",
+        "buyer_use_case": "Spa booking page hero; Natural skincare campaign presentation background",
+        "design_placement": "Spa booking page hero; Natural skincare campaign presentation background",
+        "design_function": "Reusable composable background, material surface or print design ingredient",
+        "design_reuse_cases": [
+          "Spa booking page hero",
+          "Natural skincare campaign presentation background"
+        ],
+        "integration_guidance": "Leaf shadow enters from upper-left and falls toward left edge; clean central-right vertical column for mobile headline, generous UI-safe margins; flattened raster, crop and layer in a design application; no alpha or seamless guarantee.",
+        "reusability_rationale": "Vein-specific projected geometry adds plausible shadow detail while preserving legible mobile copy field",
+        "art_style": "Natural Daylight Shadow Photography",
+        "style_rationale": "Documentary or analog medium selected to represent the physical material and intended graphic-design placement.",
+        "distinctiveness": "Vein-specific projected geometry adds plausible shadow detail while preserving legible mobile copy field",
+        "copy_space": "Leaf shadow enters from upper-left and falls toward left edge; clean central-right vertical column for mobile headline, generous UI-safe margins",
+        "metadata_seed_keywords": [
+          "natural shadow surface",
+          "soft projected shadow of compound leaves on fine lime plaster",
+          "natural daylight shadow photography",
+          "design background",
+          "commercial texture"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Checked against live 11-entry user rejection registry and accessible earlier Creative Components queues; visual review remains necessary."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Architectural Travertine Pore Crosscut with Mineral Bands",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "cream limestone, pale sand, warm taupe, mineral ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable foundational design component for a interior specification designer, suitable for hotel materials lookbook cover and real estate presentation neutral background. The visual subject is crosscut unfilled travertine limestone with elongated natural pores. Plausible crosscut travertine shows small aligned lenticular cavities, discontinuous pale mineral bands, tiny natural micro-pits and matte honed limestone grains, not synthetic marble veins. Compose a 16:9 raster image at genuine 4K detail. Full-bleed stone plane viewed perpendicular, subtle pore density concentrated toward lower-left, upper-right smooth enough for typography; no claimed seamless tile. Art style: Geological Material Study Photography, with material-specific edge behavior, restrained natural imperfections, precise physical structure and no decorative storytelling. Lighting: Large diffuse overhead daylight, restrained tactile micro-shadows. Maintain coherent real-world scale, crisp local texture and smooth tonal transitions without artificial sharpening. The result must work as a crop-friendly layer or background when the buyer adds typography, brand colors or product cutouts separately. Keep it original and anonymous, without words, numbers, trademarks, logos, watermarks, identifiable protected artworks or brand packaging. This is a flattened raster component with an opaque background; do not imply editable vector paths, actual transparency or verified seamless tiling.",
+      "negative_prompt": "marble swirls, polished glossy stone, tiles, grout, sink, artificial repeating holes",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Stone Surface",
+        "material": "crosscut unfilled travertine limestone with elongated natural pores",
+        "designer_persona": "Interior specification designer",
+        "buyer_use_case": "Hotel materials lookbook cover; Real estate presentation neutral background",
+        "design_placement": "Hotel materials lookbook cover; Real estate presentation neutral background",
+        "design_function": "Reusable composable background, material surface or print design ingredient",
+        "design_reuse_cases": [
+          "Hotel materials lookbook cover",
+          "Real estate presentation neutral background"
+        ],
+        "integration_guidance": "Full-bleed stone plane viewed perpendicular, subtle pore density concentrated toward lower-left, upper-right smooth enough for typography; no claimed seamless tile; flattened raster, crop and layer in a design application; no alpha or seamless guarantee.",
+        "reusability_rationale": "Specific elongated travertine voids distinguish this from generic beige stone and prior salt-crusted pottery",
+        "art_style": "Geological Material Study Photography",
+        "style_rationale": "Documentary or analog medium selected to represent the physical material and intended graphic-design placement.",
+        "distinctiveness": "Specific elongated travertine voids distinguish this from generic beige stone and prior salt-crusted pottery",
+        "copy_space": "Full-bleed stone plane viewed perpendicular, subtle pore density concentrated toward lower-left, upper-right smooth enough for typography; no claimed seamless tile",
+        "metadata_seed_keywords": [
+          "stone surface",
+          "crosscut unfilled travertine limestone",
+          "geological material study photography",
+          "design background",
+          "commercial texture"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Checked against live 11-entry user rejection registry and accessible earlier Creative Components queues; visual review remains necessary."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Ceramic Glaze Crawling Islands on Speckled Clay",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 89,
+      "topic_bucket": "APPROVED",
+      "palette": "celadon green, dark clay, warm gray, muted olive",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable foundational design component for a ceramic craft brand designer, suitable for pottery studio workshop poster backdrop and artisan product catalog chapter divider. The visual subject is controlled glaze crawling on hand-thrown speckled stoneware. Realistic islands of matte celadon glaze separated by narrow exposed dark clay channels, tiny iron speckles, natural rounded glaze edges and kiln-fired texture, no perfect cellular tiling. Compose a 9:16 raster image at genuine 4K detail. Near-perpendicular vertical close-up of a continuous gently curved vessel wall with no visible vessel silhouette; center-left fairly calm, stronger crawling texture toward right edge. Art style: Ceramic Surface Documentation Macro Photography, with material-specific edge behavior, restrained natural imperfections, precise physical structure and no decorative storytelling. Lighting: Soft museum-grade side light reveals shallow glaze relief without shiny hotspots. Maintain coherent real-world scale, crisp local texture and smooth tonal transitions without artificial sharpening. The result must work as a crop-friendly layer or background when the buyer adds typography, brand colors or product cutouts separately. Keep it original and anonymous, without words, numbers, trademarks, logos, watermarks, identifiable protected artworks or brand packaging. This is a flattened raster component with an opaque background; do not imply editable vector paths, actual transparency or verified seamless tiling.",
+      "negative_prompt": "broken pot, bowl rim, glossy dripping glaze, salt crystals, repeated honeycomb, text",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Craft Material Texture",
+        "material": "controlled glaze crawling on hand-thrown speckled stoneware",
+        "designer_persona": "Ceramic craft brand designer",
+        "buyer_use_case": "Pottery studio workshop poster backdrop; Artisan product catalog chapter divider",
+        "design_placement": "Pottery studio workshop poster backdrop; Artisan product catalog chapter divider",
+        "design_function": "Reusable composable background, material surface or print design ingredient",
+        "design_reuse_cases": [
+          "Pottery studio workshop poster backdrop",
+          "Artisan product catalog chapter divider"
+        ],
+        "integration_guidance": "Near-perpendicular vertical close-up of a continuous gently curved vessel wall with no visible vessel silhouette; center-left fairly calm, stronger crawling texture toward right edge; flattened raster, crop and layer in a design application; no alpha or seamless guarantee.",
+        "reusability_rationale": "Kiln-crawled glaze islands form recognizable craft surface distinct from salt efflorescence on unglazed charcoal earthenware",
+        "art_style": "Ceramic Surface Documentation Macro Photography",
+        "style_rationale": "Documentary or analog medium selected to represent the physical material and intended graphic-design placement.",
+        "distinctiveness": "Kiln-crawled glaze islands form recognizable craft surface distinct from salt efflorescence on unglazed charcoal earthenware",
+        "copy_space": "Near-perpendicular vertical close-up of a continuous gently curved vessel wall with no visible vessel silhouette; center-left fairly calm, stronger crawling texture toward right edge",
+        "metadata_seed_keywords": [
+          "craft material texture",
+          "controlled glaze crawling on hand-thrown speckled stoneware",
+          "ceramic surface documentation macro photography",
+          "design background",
+          "commercial texture"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/ie/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Checked against live 11-entry user rejection registry and accessible earlier Creative Components queues; visual review remains necessary."
+      }
+    }
+  ]
+}
