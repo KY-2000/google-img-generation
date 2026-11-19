@@ -1,0 +1,1032 @@
+{
+  "run_id": "TF_category_crawler_20261119_r104158",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-19T10:41:58+08:00",
+  "research": {
+    "finder": "creative_components",
+    "product_line": "commercial_background",
+    "research_method": "public_page_category_crawler",
+    "theme_focus": "Food, plants, education, sustainability and technology reusable assets",
+    "discovered_categories": [
+      {
+        "name": "Christmas illustrations",
+        "url": "https://stock.adobe.com/my/Category/Christmas/457?filters%5Bcontent_type%3Aillustration%5D=1&hide_panel=1&load_type=illustrations+lp"
+      },
+      {
+        "name": "Fashion illustrations",
+        "url": "https://stock.adobe.com/my/Category/Fashion/665?filters%5Bcontent_type%3Aillustration%5D=1&hide_panel=1&load_type=illustrations+lp"
+      },
+      {
+        "name": "Food illustrations",
+        "url": "https://stock.adobe.com/my/Category/Food/289?filters%5Bcontent_type%3Aillustration%5D=1&hide_panel=1&load_type=illustrations+lp"
+      },
+      {
+        "name": "Nature",
+        "url": "https://stock.adobe.com/my/inspiration/nature"
+      },
+      {
+        "name": "Backgrounds",
+        "url": "https://stock.adobe.com/my/inspiration/backgrounds"
+      },
+      {
+        "name": "Plants and Flowers",
+        "url": "https://stock.adobe.com/my/inspiration/plants-and-flowers"
+      },
+      {
+        "name": "Icons",
+        "url": "https://stock.adobe.com/my/inspiration/icons"
+      },
+      {
+        "name": "Artificial Intelligence",
+        "url": "https://stock.adobe.com/my/inspiration/artificial-intelligence"
+      },
+      {
+        "name": "Education",
+        "url": "https://stock.adobe.com/my/inspiration/education"
+      },
+      {
+        "name": "Sustainability and Environment",
+        "url": "https://stock.adobe.com/my/inspiration/sustainability-and-environment"
+      },
+      {
+        "name": "Technology",
+        "url": "https://stock.adobe.com/my/inspiration/technology"
+      },
+      {
+        "name": "Humor",
+        "url": "https://stock.adobe.com/my/inspiration/humor"
+      }
+    ],
+    "selected_categories": [
+      "Food illustrations",
+      "Plants and Flowers",
+      "Education",
+      "Sustainability and Environment",
+      "Technology"
+    ],
+    "screened_candidate_count": 36,
+    "approved_concepts_count": 7,
+    "source_urls": [
+      "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+      "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+      "https://docs.google.com/document/d/1_D-QBzmhaKmpC42T4hDLefIgOPQ96qHFauaBAm5BgaQ/edit",
+      "https://www.mathlearningcenter.org/apps/fractions",
+      "https://www.huhtamaki.com/en/fiber-packaging/",
+      "https://openstax.org/books/biology-2e/pages/30-3-roots",
+      "https://www.rhs.org.uk/getmedia/688ef603-ad54-435f-a875-af77cb39b203/seed-sowing-glossary.pdf",
+      "https://www.corning.com/optical-communications/worldwide/en/home/products/fiber/optical-fiber-basics/lesson-in-a-box.html",
+      "https://www.mccormick.com/blogs/how-to/about-cardamom-uses-pairings-and-recipes",
+      "https://www.thermofisher.com/blog/proteomics/microfluidics-and-mass-spectrometry-based-proteomics/",
+      "https://stock.adobe.com/my/Category/Food/289?filters%5Bcontent_type%3Aillustration%5D=1&hide_panel=1&load_type=illustrations+lp",
+      "https://stock.adobe.com/my/search?k=ingredient+frame&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=watercolor+herbs+border&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=spice+cross+section&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/inspiration/plants-and-flowers",
+      "https://stock.adobe.com/my/search?k=seed+germination+stages&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=root+system+illustration&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=leaf+skeleton+texture&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/inspiration/education",
+      "https://stock.adobe.com/my/search?k=fraction+circles+manipulatives&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=base+ten+blocks&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=number+line+blank&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/inspiration/sustainability-and-environment",
+      "https://stock.adobe.com/my/search?k=molded+pulp+packaging&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=corrugated+cardboard+cross+section&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=recycled+plastic+pellets&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/inspiration/technology",
+      "https://stock.adobe.com/my/search?k=fiber+optic+cross+section&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=microfluidic+channel&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=data+connector+isolated&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=pulp+packaging&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=corrugated+cardboard&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=microfluidic&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=fraction+bars&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=cardamom&filters%5Bcontent_type%3Aillustration%5D=1"
+    ],
+    "crawl_page_count": 25,
+    "crawl_card_count": 842,
+    "unique_asset_ids": 835,
+    "duplicate_cards_removed": 7,
+    "visually_reviewed_preview_count": 17,
+    "crawl_summary": [
+      {
+        "label": "Food illustrations",
+        "kind": "category",
+        "url": "https://stock.adobe.com/my/Category/Food/289?filters%5Bcontent_type%3Aillustration%5D=1&hide_panel=1&load_type=illustrations+lp",
+        "timestamp": "2026-11-19T10:35:43+08:00",
+        "status": 200,
+        "reported_count": 13115,
+        "matching": "query results reported; exact-match semantics unverified",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 100
+      },
+      {
+        "label": "ingredient frame",
+        "kind": "search",
+        "url": "https://stock.adobe.com/my/search?k=ingredient+frame&filters%5Bcontent_type%3Aillustration%5D=1",
+        "timestamp": "2026-11-19T10:35:44+08:00",
+        "status": 200,
+        "reported_count": 201,
+        "matching": "query results reported; exact-match semantics unverified",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 100
+      },
+      {
+        "label": "watercolor herbs border",
+        "kind": "search",
+        "url": "https://stock.adobe.com/my/search?k=watercolor+herbs+border&filters%5Bcontent_type%3Aillustration%5D=1",
+        "timestamp": "2026-11-19T10:35:44+08:00",
+        "status": 200,
+        "reported_count": 694,
+        "matching": "query results reported; exact-match semantics unverified",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 98
+      },
+      {
+        "label": "spice cross section",
+        "kind": "search",
+        "url": "https://stock.adobe.com/my/search?k=spice+cross+section&filters%5Bcontent_type%3Aillustration%5D=1",
+        "timestamp": "2026-11-19T10:35:51+08:00",
+        "status": 200,
+        "reported_count": 5,
+        "matching": "query results reported; exact-match semantics unverified",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 5
+      },
+      {
+        "label": "Plants and Flowers",
+        "kind": "category",
+        "url": "https://stock.adobe.com/my/inspiration/plants-and-flowers",
+        "timestamp": "2026-11-19T10:35:52+08:00",
+        "status": 200,
+        "reported_count": null,
+        "matching": "extraction empty; zero competition cannot be inferred",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 0
+      },
+      {
+        "label": "seed germination stages",
+        "kind": "search",
+        "url": "https://stock.adobe.com/my/search?k=seed+germination+stages&filters%5Bcontent_type%3Aillustration%5D=1",
+        "timestamp": "2026-11-19T10:35:52+08:00",
+        "status": 200,
+        "reported_count": 14,
+        "matching": "query results reported; exact-match semantics unverified",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 14
+      },
+      {
+        "label": "root system illustration",
+        "kind": "search",
+        "url": "https://stock.adobe.com/my/search?k=root+system+illustration&filters%5Bcontent_type%3Aillustration%5D=1",
+        "timestamp": "2026-11-19T10:35:59+08:00",
+        "status": 200,
+        "reported_count": 36,
+        "matching": "query results reported; exact-match semantics unverified",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 36
+      },
+      {
+        "label": "leaf skeleton texture",
+        "kind": "search",
+        "url": "https://stock.adobe.com/my/search?k=leaf+skeleton+texture&filters%5Bcontent_type%3Aillustration%5D=1",
+        "timestamp": "2026-11-19T10:36:00+08:00",
+        "status": 200,
+        "reported_count": 37,
+        "matching": "query results reported; exact-match semantics unverified",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 37
+      },
+      {
+        "label": "Education",
+        "kind": "category",
+        "url": "https://stock.adobe.com/my/inspiration/education",
+        "timestamp": "2026-11-19T10:36:00+08:00",
+        "status": 200,
+        "reported_count": null,
+        "matching": "extraction empty; zero competition cannot be inferred",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 0
+      },
+      {
+        "label": "fraction circles manipulatives",
+        "kind": "search",
+        "url": "https://stock.adobe.com/my/search?k=fraction+circles+manipulatives&filters%5Bcontent_type%3Aillustration%5D=1",
+        "timestamp": "2026-11-19T10:36:07+08:00",
+        "status": 200,
+        "reported_count": 1,
+        "matching": "query results reported; exact-match semantics unverified",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 1
+      },
+      {
+        "label": "base ten blocks",
+        "kind": "search",
+        "url": "https://stock.adobe.com/my/search?k=base+ten+blocks&filters%5Bcontent_type%3Aillustration%5D=1",
+        "timestamp": "2026-11-19T10:36:07+08:00",
+        "status": 200,
+        "reported_count": 1,
+        "matching": "query results reported; exact-match semantics unverified",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 1
+      },
+      {
+        "label": "number line blank",
+        "kind": "search",
+        "url": "https://stock.adobe.com/my/search?k=number+line+blank&filters%5Bcontent_type%3Aillustration%5D=1",
+        "timestamp": "2026-11-19T10:36:08+08:00",
+        "status": 200,
+        "reported_count": 136,
+        "matching": "query results reported; exact-match semantics unverified",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 100
+      },
+      {
+        "label": "Sustainability and Environment",
+        "kind": "category",
+        "url": "https://stock.adobe.com/my/inspiration/sustainability-and-environment",
+        "timestamp": "2026-11-19T10:36:15+08:00",
+        "status": 200,
+        "reported_count": null,
+        "matching": "extraction empty; zero competition cannot be inferred",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 0
+      },
+      {
+        "label": "molded pulp packaging",
+        "kind": "search",
+        "url": "https://stock.adobe.com/my/search?k=molded+pulp+packaging&filters%5Bcontent_type%3Aillustration%5D=1",
+        "timestamp": "2026-11-19T10:36:15+08:00",
+        "status": 200,
+        "reported_count": null,
+        "matching": "extraction empty; zero competition cannot be inferred",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 0
+      },
+      {
+        "label": "corrugated cardboard cross section",
+        "kind": "search",
+        "url": "https://stock.adobe.com/my/search?k=corrugated+cardboard+cross+section&filters%5Bcontent_type%3Aillustration%5D=1",
+        "timestamp": "2026-11-19T10:36:16+08:00",
+        "status": 200,
+        "reported_count": null,
+        "matching": "extraction empty; zero competition cannot be inferred",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 0
+      },
+      {
+        "label": "recycled plastic pellets",
+        "kind": "search",
+        "url": "https://stock.adobe.com/my/search?k=recycled+plastic+pellets&filters%5Bcontent_type%3Aillustration%5D=1",
+        "timestamp": "2026-11-19T10:36:23+08:00",
+        "status": 200,
+        "reported_count": 46,
+        "matching": "query results reported; exact-match semantics unverified",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 46
+      },
+      {
+        "label": "Technology",
+        "kind": "category",
+        "url": "https://stock.adobe.com/my/inspiration/technology",
+        "timestamp": "2026-11-19T10:36:23+08:00",
+        "status": 200,
+        "reported_count": null,
+        "matching": "extraction empty; zero competition cannot be inferred",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 0
+      },
+      {
+        "label": "fiber optic cross section",
+        "kind": "search",
+        "url": "https://stock.adobe.com/my/search?k=fiber+optic+cross+section&filters%5Bcontent_type%3Aillustration%5D=1",
+        "timestamp": "2026-11-19T10:36:24+08:00",
+        "status": 200,
+        "reported_count": 20,
+        "matching": "query results reported; exact-match semantics unverified",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 20
+      },
+      {
+        "label": "microfluidic channel",
+        "kind": "search",
+        "url": "https://stock.adobe.com/my/search?k=microfluidic+channel&filters%5Bcontent_type%3Aillustration%5D=1",
+        "timestamp": "2026-11-19T10:36:30+08:00",
+        "status": 200,
+        "reported_count": null,
+        "matching": "extraction empty; zero competition cannot be inferred",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 0
+      },
+      {
+        "label": "data connector isolated",
+        "kind": "search",
+        "url": "https://stock.adobe.com/my/search?k=data+connector+isolated&filters%5Bcontent_type%3Aillustration%5D=1",
+        "timestamp": "2026-11-19T10:36:31+08:00",
+        "status": 200,
+        "reported_count": 100,
+        "matching": "query results reported; exact-match semantics unverified",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 100
+      },
+      {
+        "label": "pulp packaging",
+        "kind": "search",
+        "url": "https://stock.adobe.com/my/search?k=pulp+packaging&filters%5Bcontent_type%3Aillustration%5D=1",
+        "timestamp": "2026-11-19T10:37:02+08:00",
+        "status": 200,
+        "reported_count": 13,
+        "matching": "query results reported; exact-match semantics unverified",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 13
+      },
+      {
+        "label": "corrugated cardboard",
+        "kind": "search",
+        "url": "https://stock.adobe.com/my/search?k=corrugated+cardboard&filters%5Bcontent_type%3Aillustration%5D=1",
+        "timestamp": "2026-11-19T10:37:03+08:00",
+        "status": 200,
+        "reported_count": 413,
+        "matching": "query results reported; exact-match semantics unverified",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 100
+      },
+      {
+        "label": "microfluidic",
+        "kind": "search",
+        "url": "https://stock.adobe.com/my/search?k=microfluidic&filters%5Bcontent_type%3Aillustration%5D=1",
+        "timestamp": "2026-11-19T10:37:03+08:00",
+        "status": 200,
+        "reported_count": 2,
+        "matching": "query results reported; exact-match semantics unverified",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 2
+      },
+      {
+        "label": "fraction bars",
+        "kind": "search",
+        "url": "https://stock.adobe.com/my/search?k=fraction+bars&filters%5Bcontent_type%3Aillustration%5D=1",
+        "timestamp": "2026-11-19T10:37:10+08:00",
+        "status": 200,
+        "reported_count": 51,
+        "matching": "query results reported; exact-match semantics unverified",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 51
+      },
+      {
+        "label": "cardamom",
+        "kind": "search",
+        "url": "https://stock.adobe.com/my/search?k=cardamom&filters%5Bcontent_type%3Aillustration%5D=1",
+        "timestamp": "2026-11-19T10:37:10+08:00",
+        "status": 200,
+        "reported_count": 18,
+        "matching": "query results reported; exact-match semantics unverified",
+        "messages": [],
+        "selected_sort": "unverified",
+        "sample_count": 18
+      }
+    ],
+    "data_limits": "Counts are supply snapshots. Default sort unverified. Missing card extraction is not zero competition. Preview files are watermarked web previews, not alpha-verified originals. No sales metrics or demand estimates.",
+    "scores": "Editorial judgment using buyer utility 30, differentiation 25, composition 15, physical credibility 10, 4K feasibility 10, timeliness 5, portfolio diversity 5.",
+    "duplicate_registry_url": "https://docs.google.com/document/d/1_D-QBzmhaKmpC42T4hDLefIgOPQ96qHFauaBAm5BgaQ/edit",
+    "duplicate_registry_status": "Read live, 11 confirmed records; SC-012 is blank. Compared 11 current incoming queues and two recent reports. Other local/offline outputs cannot be exhaustively checked.",
+    "prior_queue_comparison": [
+      {
+        "path": "queues/incoming/commercial_background_queue_2026W44.json",
+        "run_id": "TF_commercial_background_2026W44_initial"
+      },
+      {
+        "path": "queues/incoming/commercial_background_queue_2026W44_1.json",
+        "run_id": "TF_commercial_background_2026W44_1"
+      },
+      {
+        "path": "queues/incoming/commercial_background_queue_2026W44_r02.json",
+        "run_id": "TF_commercial_background_2026W44_r02"
+      },
+      {
+        "path": "queues/incoming/creative_components_holiday_queue_2026W47_r01.json",
+        "run_id": "TF_creative_components_holiday_2026W47_r01"
+      },
+      {
+        "path": "queues/incoming/creative_components_holiday_queue_2026W47_r02.json",
+        "run_id": "TF_creative_components_holiday_2026W47_r02"
+      },
+      {
+        "path": "queues/incoming/creative_components_holiday_queue_2026W47_r03.json",
+        "run_id": "TF_creative_components_holiday_2026W47_r03"
+      },
+      {
+        "path": "queues/incoming/creative_components_queue_2026W46_christmas_pilot.json",
+        "run_id": "TF_creative_components_2026W46_r02"
+      },
+      {
+        "path": "queues/incoming/creative_components_queue_2026W46_fashion_pilot.json",
+        "run_id": "TF_creative_components_2026W46_r03"
+      },
+      {
+        "path": "queues/incoming/creative_components_queue_2026W46_r02.json",
+        "run_id": "TF_creative_components_2026W46_r02"
+      },
+      {
+        "path": "queues/incoming/creative_components_queue_2026W47_r01.json",
+        "run_id": "TF_creative_components_2026W47_r01"
+      },
+      {
+        "path": "queues/incoming/creative_components_queue_2026W47_r02.json",
+        "run_id": "TF_creative_components_2026W47_r02"
+      }
+    ],
+    "id_allocation": "All asset_id fields omitted. Local runner assigns IDs before strict contract validation using its authoritative SQLite and files.",
+    "schema_checks": {
+      "contracts_sha": "2462b0b2d68b214d4acbdea3204f579e801d9250",
+      "schema_sha": "d07c586ca5efd546c8c418b7c4d8bdba21c53e1c",
+      "queue_ids_sha": "bfa4f37ebdd11906124521f454598d5d60616fec"
+    }
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Molded Fiber Packaging Corner Cutaway with Open Specification Field",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "natural taupe, warm grey, soft ivory, muted charcoal",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create a reusable technical visual for a packaging supplier capability page and a brand packaging proposal, with space for independently added specifications.\nSubject and Material: Depict one generic molded fiber corner protector with a shallow rounded recess, two supporting ribs and a compact cut face revealing compressed short fibers. Keep the structure continuous, with plausible thickness and softly rounded manufacturing edges.\nComposition: Use a horizontal 16:9 canvas with the complete protector in the right 40 percent. Show a restrained three quarter cutaway angle. Leave the left half and upper margin clean on a continuous warm ivory surface.\nArt Direction: Use tactile industrial illustration with matte taupe fibers, carefully defined cavities and subtle material variation.\nLighting and Mood: Apply diffuse side lighting that reveals the ribs through short, coherent shadows.\nConstraints: Deliver a detailed 4K raster image with no text, dimension arrows, certification symbols, product contents, logos, watermark or environmental claims.",
+      "negative_prompt": "egg tray, honeycomb paper, shipping box scene, mycelium board, recycling symbols, impossible cavities, text, logos, grunge paper backdrop",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "candidate_ref": "C01",
+        "component_category": "Sustainability and Environment",
+        "material": "自然灰褐色模塑纤维、圆角筋条和可见纤维断面",
+        "designer_persona": "包装供应商的产品设计师与品牌包装顾问",
+        "buyer_use_case": "包装供应商能力介绍页的缓冲结构配图",
+        "design_placement": "包装供应商能力介绍页的缓冲结构配图 / 品牌包装提案的材料与形态说明页",
+        "design_function": "Reusable illustration with independently typeset annotation area",
+        "design_reuse_cases": [
+          "包装供应商能力介绍页的缓冲结构配图",
+          "品牌包装提案的材料与形态说明页"
+        ],
+        "integration_guidance": "右侧约 40% 放一件纸浆护角，左侧约 50% 连续浅色留白；主体完整且裁切安全。",
+        "reusability_rationale": "可读的剖面结构和完整外轮廓能省去设计师建模及清理纤维细节的时间。",
+        "art_style": "Tactile Industrial Cutaway Illustration",
+        "style_rationale": "护角的凹腔和压制筋条呈现包装功能，和历史蜂窝纸边缘、菌丝板及普通纸纹理区分。",
+        "distinctiveness": "护角的凹腔和压制筋条呈现包装功能，和历史蜂窝纸边缘、菌丝板及普通纸纹理区分。",
+        "copy_space": "右侧约 40% 放一件纸浆护角，左侧约 50% 连续浅色留白；主体完整且裁切安全。",
+        "production_risks": "检查压制筋条、壁厚和凹腔是否连通；图像无法证明真实回收比例、可堆肥性或缓冲性能。",
+        "score_breakdown": {
+          "buyer_utility": 29,
+          "differentiation": 23,
+          "composition": 15,
+          "material_credibility": 9,
+          "technical_feasibility": 9,
+          "timeliness": 5,
+          "portfolio_diversity": 4
+        },
+        "metadata_seed_keywords": [
+          "molded",
+          "fiber",
+          "packaging",
+          "corner",
+          "cutaway",
+          "with",
+          "open",
+          "specification",
+          "field"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/my/search?k=molded+pulp+packaging&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=pulp+packaging&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://www.huhtamaki.com/en/fiber-packaging/",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html"
+        ],
+        "comparison_assets": [
+          {
+            "id": "560618037",
+            "url": "https://stock.adobe.com/my/images/seamless-recycled-kraft-fiber-paper-background-texture-overlay-tileable-textured-rice-paper-or-cardstock-pattern-organic-artisan-eco-friendly-packaging-backdrop-high-resolution-3d-rendering/560618037",
+            "title": "Seamless recycled kraft fiber paper background texture overlay. Tileable textured rice paper or cardstock pattern. Organic artisan eco friendly packaging backdrop. High resolution 3D rendering..",
+            "preview": "https://t3.ftcdn.net/jpg/05/60/61/80/360_F_560618037_3jlCwljfgVKtjM5N0Cc1AdcpLauQt9fB.jpg"
+          },
+          {
+            "id": "136269824",
+            "url": "https://stock.adobe.com/my/images/brown-corrugated-cardboard-box-from-side-closeup-angle-blank-horizontal-and-rectangle-shape/136269824",
+            "title": "Brown corrugated cardboard box from side closeup angle. Blank, horizontal, and rectangle shape.",
+            "preview": "https://t3.ftcdn.net/jpg/01/36/26/98/360_F_136269824_fU7SsFjvmcxX8pe2W7dvqyfTmtHCMrrr.jpg"
+          }
+        ],
+        "originality_notes": "Original authored composition. Comparators identify category overlap only; never use competitor previews as image-generation references.",
+        "positive_prompt_words": 151,
+        "positive_prompt_characters": 1063
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Whole Half and Quarter Fraction Strips with Annotation Space",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "muted teal, ochre, terracotta, warm white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create a reusable fraction comparison module for a primary mathematics worksheet and a teacher presentation, allowing the designer to add their own labels and equations.\nSubject and Material: Show three horizontal strips of equal overall length and height. The first is one complete teal strip. The second consists of two equal ochre halves. The third consists of four equal terracotta quarters. Use very narrow white separator lines that preserve matching outer boundaries.\nComposition: Build a horizontal 16:9 layout in an orthographic overhead view. Align every strip to the same left and right endpoints within the left 52 percent. Keep generous vertical spacing and reserve the right 40 percent for annotation.\nArt Direction: Use clean tactile educational illustration with matte card surfaces and tiny bevels, preserving precise rectangular geometry.\nLighting and Mood: Use even neutral illumination with minimal shadows.\nConstraints: Deliver clean 4K artwork without numbers, lettering, equations, decorative objects, logos, watermark or perspective distortion.",
+      "negative_prompt": "unequal lengths, unequal quarters, labels, pie chart, scattered blocks, strong perspective, thick gaps, extra strips, shadow hiding dividers",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "candidate_ref": "C02",
+        "component_category": "Education",
+        "material": "厚实哑光教学卡条、轻微倒角和浅灰分隔间隙",
+        "designer_persona": "教材出版编辑和小学数学课件设计师",
+        "buyer_use_case": "分数等值练习单的示意模块",
+        "design_placement": "分数等值练习单的示意模块 / 教师演示文稿的分数比较页",
+        "design_function": "Reusable illustration with independently typeset annotation area",
+        "design_reuse_cases": [
+          "分数等值练习单的示意模块",
+          "教师演示文稿的分数比较页"
+        ],
+        "integration_guidance": "三条等长条带左对齐，分别一整条、两半和四等份，右侧约 40% 保持清爽。",
+        "reusability_rationale": "统一透视、对齐和轻微触感能直接嵌入课程版式，价值取决于生成后几何校验。",
+        "art_style": "Orthographic Tactile Educational Illustration",
+        "style_rationale": "从随机散落的圆形分数转向对齐的等长条，便于买家后加算式与语言。",
+        "distinctiveness": "从随机散落的圆形分数转向对齐的等长条，便于买家后加算式与语言。",
+        "copy_space": "三条等长条带左对齐，分别一整条、两半和四等份，右侧约 40% 保持清爽。",
+        "production_risks": "逐条核对总长一致、二等分及四等分正确，不能将未检验的 AI 几何直接用于测验。",
+        "score_breakdown": {
+          "buyer_utility": 28,
+          "differentiation": 21,
+          "composition": 15,
+          "material_credibility": 9,
+          "technical_feasibility": 9,
+          "timeliness": 5,
+          "portfolio_diversity": 4
+        },
+        "metadata_seed_keywords": [
+          "whole",
+          "half",
+          "and",
+          "quarter",
+          "fraction",
+          "strips",
+          "with",
+          "annotation",
+          "space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/my/search?k=fraction+circles+manipulatives&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=fraction+bars&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://www.mathlearningcenter.org/apps/fractions",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html"
+        ],
+        "comparison_assets": [
+          {
+            "id": "172850",
+            "url": "https://stock.adobe.com/my/images/isolated-fraction-circles-around-a-circle-graph/172850",
+            "title": "isolated fraction circles around a circle graph",
+            "preview": "https://t3.ftcdn.net/jpg/00/00/17/28/360_F_172850_qyUHEWylDsXym5FB8HjWyl4s2KlZ1B.jpg"
+          }
+        ],
+        "originality_notes": "Original authored composition. Comparators identify category overlap only; never use competitor previews as image-generation references.",
+        "positive_prompt_words": 155,
+        "positive_prompt_characters": 1077
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Bean Seedling with Exposed Cotyledons and Primary Root",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "fresh green, pale yellow, warm ivory, fine sepia",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create a reusable botanical study for a classroom observation sheet and a seed brand germination guide, with room for independently added annotations.\nSubject and Material: Depict one young bean seedling at an early stage after the cotyledons have risen. Show two plump pale green cotyledons, a slender curved hypocotyl, one descending primary root and a few fine lateral roots. Include a small loose remnant of seed coat beside the cotyledons without obscuring the anatomy.\nComposition: Use a portrait 9:16 canvas with the complete seedling in the lower middle. Preserve clear margins around every root tip, a quiet upper third and open side areas for later leader lines.\nArt Direction: Use natural history colored pencil with restrained watercolor washes, crisp anatomical contours and delicate root detail.\nLighting and Mood: Use soft neutral illumination on a smooth ivory field.\nConstraints: Deliver 4K without labels, pots, soil scenery, decorative flowers, timeline claims, logos, watermark or repeated growth stages.",
+      "negative_prompt": "flowering plant, multiple stages, floating root segments, fused cotyledons, pot, soil block, magnolia branch, printed paper texture, labels",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "candidate_ref": "C03",
+        "component_category": "Plants and Flowers",
+        "material": "浅绿子叶、柔嫩胚轴、米白主根与薄种皮残片",
+        "designer_persona": "园艺教育编辑和种子品牌的科普内容设计师",
+        "buyer_use_case": "学校植物观察工作纸的标注底图",
+        "design_placement": "学校植物观察工作纸的标注底图 / 种子品牌的萌发说明竖版卡片",
+        "design_function": "Reusable illustration with independently typeset annotation area",
+        "design_reuse_cases": [
+          "学校植物观察工作纸的标注底图",
+          "种子品牌的萌发说明竖版卡片"
+        ],
+        "integration_guidance": "单株位于中下部，根与芽完整露出；上方约 35% 留给标题，侧边留出引线空间。",
+        "reusability_rationale": "清晰的根、子叶和胚轴关系适用于多语言后期标注，减少不必要的场景元素。",
+        "art_style": "Natural History Colored Pencil and Watercolor",
+        "style_rationale": "限定一个萌发阶段和可辨认的种子结构，避开多棵树从小到大的成长阶梯及历史花枝纸面构图。",
+        "distinctiveness": "限定一个萌发阶段和可辨认的种子结构，避开多棵树从小到大的成长阶梯及历史花枝纸面构图。",
+        "copy_space": "单株位于中下部，根与芽完整露出；上方约 35% 留给标题，侧边留出引线空间。",
+        "production_risks": "检查子叶、胚轴及根的连接；萌发阶段的物种细节须人工核查，不附通用时间承诺。",
+        "score_breakdown": {
+          "buyer_utility": 28,
+          "differentiation": 22,
+          "composition": 14,
+          "material_credibility": 9,
+          "technical_feasibility": 9,
+          "timeliness": 5,
+          "portfolio_diversity": 4
+        },
+        "metadata_seed_keywords": [
+          "bean",
+          "seedling",
+          "with",
+          "exposed",
+          "cotyledons",
+          "and",
+          "primary",
+          "root"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/my/search?k=seed+germination+stages&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://openstax.org/books/biology-2e/pages/30-3-roots",
+          "https://www.rhs.org.uk/getmedia/688ef603-ad54-435f-a875-af77cb39b203/seed-sowing-glossary.pdf",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html"
+        ],
+        "comparison_assets": [
+          {
+            "id": "414444508",
+            "url": "https://stock.adobe.com/my/images/stages-growth-of-tree-from-seed-watering-the-plants-collection-of-trees-from-small-to-large-green-tree-with-leaf-growth-diagram-business-cycle-development/414444508",
+            "title": "Stages growth of tree from seed. Watering the plants. Collection of trees from small to large. Green tree with leaf growth diagram. Business cycle development",
+            "preview": "https://t4.ftcdn.net/jpg/04/14/44/45/360_F_414444508_AeHy9lKW2Od31U9ymlj667AA8pEriSAj.jpg"
+          }
+        ],
+        "originality_notes": "Original authored composition. Comparators identify category overlap only; never use competitor previews as image-generation references.",
+        "positive_prompt_words": 156,
+        "positive_prompt_characters": 1033
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Taproot and Fibrous Root Comparison on a Shared Soil Line",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "muted leaf green, pale tan, charcoal grey, ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create a reusable comparison illustration for a plant biology lesson and an introductory gardening handbook, leaving room for localized labels.\nSubject and Material: Show two small generic plants at matching scale. The first has a broadleaf shoot above one clearly dominant descending taproot with smaller lateral branches. The second has a short grass shoot above many slender roots arising from the stem base, with no dominant central root.\nComposition: Use a horizontal 16:9 canvas. Arrange the two examples in the left two thirds on a shared thin grey soil level. Keep the roots completely visible against ivory, separate the examples clearly and reserve the right third for explanatory copy.\nArt Direction: Use botanical line and wash with controlled green foliage, pale tan roots and simple consistent contours.\nLighting and Mood: Keep the rendering evenly lit and easy to read in print.\nConstraints: Deliver 4K without labels, arrows, soil strata, decorative borders, microscopic anatomy, logos, watermark or species claims.",
+      "negative_prompt": "blood vessels, human anatomy, duplicated root systems, single central root on grass, soil scenery, clipped roots, labels, flowers",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "candidate_ref": "C04",
+        "component_category": "Plants and Flowers",
+        "material": "浅色根部、草状叶和简单双子叶植株基部",
+        "designer_persona": "生物教材编辑与园艺培训讲师",
+        "buyer_use_case": "植物根系比较课件",
+        "design_placement": "植物根系比较课件 / 园艺入门手册的根系基础图解",
+        "design_function": "Reusable illustration with independently typeset annotation area",
+        "design_reuse_cases": [
+          "植物根系比较课件",
+          "园艺入门手册的根系基础图解"
+        ],
+        "integration_guidance": "左侧两幅简洁根系共用一条水平土面，右侧约 30% 留白，不画复杂土壤断层。",
+        "reusability_rationale": "完整对齐的两类根系可供设计师添加本地化名称，准确性和易读性决定授权价值。",
+        "art_style": "Clean Botanical Educational Line and Wash",
+        "style_rationale": "比较主根与细根群的组织关系，用途和单株萌发、旧雨水花园土壤课程不同。",
+        "distinctiveness": "比较主根与细根群的组织关系，用途和单株萌发、旧雨水花园土壤课程不同。",
+        "copy_space": "左侧两幅简洁根系共用一条水平土面，右侧约 30% 留白，不画复杂土壤断层。",
+        "production_risks": "明确直根主轴与须根群的区别，避免用相同根形只换叶片；生物教材用前须核图。",
+        "score_breakdown": {
+          "buyer_utility": 28,
+          "differentiation": 22,
+          "composition": 14,
+          "material_credibility": 9,
+          "technical_feasibility": 8,
+          "timeliness": 5,
+          "portfolio_diversity": 4
+        },
+        "metadata_seed_keywords": [
+          "taproot",
+          "and",
+          "fibrous",
+          "root",
+          "comparison",
+          "on",
+          "a",
+          "shared",
+          "soil",
+          "line"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/my/search?k=root+system+illustration&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://openstax.org/books/biology-2e/pages/30-3-roots",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html"
+        ],
+        "comparison_assets": [
+          {
+            "id": "70426632",
+            "url": "https://stock.adobe.com/my/images/nervous-or-blood-system-medical-illustration/70426632",
+            "title": "Nervous or blood system. Medical illustration",
+            "preview": "https://t3.ftcdn.net/jpg/00/70/42/66/360_F_70426632_we96Rx83ZGbJbCWrcpz4J2bgNqToIcf4.jpg"
+          },
+          {
+            "id": "804425770",
+            "url": "https://stock.adobe.com/my/images/3d-isometric-flat-illustration-of-root-structure-plant-anatomy/804425770",
+            "title": "3D Isometric Flat Illustration of Root Structure, Plant Anatomy",
+            "preview": "https://t4.ftcdn.net/jpg/08/04/42/57/360_F_804425770_lgkex3ZR54HpX73cLIYEh95ISyG6EbIs.jpg"
+          }
+        ],
+        "originality_notes": "Original authored composition. Comparators identify category overlap only; never use competitor previews as image-generation references.",
+        "positive_prompt_words": 159,
+        "positive_prompt_characters": 1040
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Single Optical Fiber Core Cladding and Coating Cutaway",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "cool pale cyan, smoke grey, warm ivory, muted violet",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create a reusable optical fiber structure visual for a telecommunications training slide and an optical component supplier article, with space for independently added labels.\nSubject and Material: Depict one short straight optical fiber with three concentric components: a small glass core, a surrounding clear cladding layer and an outer protective polymer coating. Use a simple stepped cutaway so each layer is visible while remaining aligned on one axis.\nComposition: Use a horizontal 16:9 canvas with the entire fiber segment on the right half. Angle it gently toward the viewer to reveal a circular end face. Preserve the left 48 percent as a quiet ivory annotation field and keep all layers inside safe margins.\nArt Direction: Use restrained engineering illustration with subtle glass translucency, matte coating and precise boundaries.\nLighting and Mood: Apply diffuse studio illumination and restrained reflections.\nConstraints: Deliver 4K without text, dimensions, bundled wires, armor, connector brands, light beams, logos, watermark or performance claims.",
+      "negative_prompt": "submarine cable, copper wires, multiple cores, neon beam, tangled bundle, offset layers, large opaque core, dimension labels, ground grid",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "candidate_ref": "C05",
+        "component_category": "Technology",
+        "material": "玻璃芯、同心包层与哑光保护涂覆层",
+        "designer_persona": "通信培训教材编辑和光学供应商内容设计师",
+        "buyer_use_case": "通信基础培训的光纤结构页",
+        "design_placement": "通信基础培训的光纤结构页 / 光学组件供应商技术文章的页首图",
+        "design_function": "Reusable illustration with independently typeset annotation area",
+        "design_reuse_cases": [
+          "通信基础培训的光纤结构页",
+          "光学组件供应商技术文章的页首图"
+        ],
+        "integration_guidance": "右侧展示一根短直光纤的阶梯剖面，左侧约 48% 留白；保持三层同心。",
+        "reusability_rationale": "分层清楚且留有标注位，适用于技术文章和教学，不依赖复杂发光背景。",
+        "art_style": "Restrained Optical Engineering Cutaway Illustration",
+        "style_rationale": "以单根光纤材料层为主题，避开样本中的铠装海底电缆和多导体英雄图。",
+        "distinctiveness": "以单根光纤材料层为主题，避开样本中的铠装海底电缆和多导体英雄图。",
+        "copy_space": "右侧展示一根短直光纤的阶梯剖面，左侧约 48% 留白；保持三层同心。",
+        "production_risks": "三层应同心，芯部小于包层；图为结构示意，尺寸比例与型号参数需买家另核。",
+        "score_breakdown": {
+          "buyer_utility": 27,
+          "differentiation": 23,
+          "composition": 14,
+          "material_credibility": 9,
+          "technical_feasibility": 8,
+          "timeliness": 5,
+          "portfolio_diversity": 4
+        },
+        "metadata_seed_keywords": [
+          "single",
+          "optical",
+          "fiber",
+          "core",
+          "cladding",
+          "and",
+          "coating",
+          "cutaway"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/my/search?k=fiber+optic+cross+section&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://www.corning.com/optical-communications/worldwide/en/home/products/fiber/optical-fiber-basics/lesson-in-a-box.html",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html"
+        ],
+        "comparison_assets": [
+          {
+            "id": "819229844",
+            "url": "https://stock.adobe.com/my/images/armoured-submarine-fiber-optic-cable-structure-on-black-background/819229844",
+            "title": "Armoured submarine fiber optic cable structure on black background.",
+            "preview": "https://t3.ftcdn.net/jpg/08/19/22/98/360_F_819229844_f4XWsk917ln5lmLLACjZoVR6U5IGXl4r.jpg"
+          },
+          {
+            "id": "338187254",
+            "url": "https://stock.adobe.com/my/images/the-concept-of-fiber-optic-cable-isolated-on-white-background-future-cable-technology-detailed-curved-cable-in-cross-section-powerful-communication-technology-network-concept-3d-rendering/338187254",
+            "title": "The concept of fiber optic cable isolated on white background. Future cable technology. Detailed curved cable in cross section. Powerful communication technology. Network concept, 3d rendering",
+            "preview": "https://t3.ftcdn.net/jpg/03/38/18/72/360_F_338187254_ifP2K81ZLP6Zy3HkCjoKgobKtsPh0tdY.jpg"
+          }
+        ],
+        "originality_notes": "Original authored composition. Comparators identify category overlap only; never use competitor previews as image-generation references.",
+        "positive_prompt_words": 157,
+        "positive_prompt_characters": 1075
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Opened Green Cardamom Pod with Dark Seeds and Copy Space",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 89,
+      "topic_bucket": "APPROVED",
+      "palette": "sage green, muted olive, dark umber, ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create a reusable ingredient study for a spice brand information insert and a culinary teaching card, with generous space for independently added copy.\nSubject and Material: Depict one green cardamom pod opened lengthwise to reveal its small dark brown seeds. Render a pale olive ribbed husk, thin matte inner walls and compact irregular seed forms. Place a few loose seeds directly beside the opening, keeping the ingredient recognizable and restrained.\nComposition: Use a portrait 9:16 canvas. Place the opened pod diagonally across the lower third on smooth warm ivory. Preserve the upper 45 percent as quiet copy space, with clear side margins for alternative crops.\nArt Direction: Use botanical colored pencil with soft watercolor underpainting, controlled highlights and fine tactile husk lines.\nLighting and Mood: Use neutral daylight and a tiny contact shadow.\nConstraints: Deliver 4K without printed words, coffee cups, other spices, utensils, ornamental frames, health claims, logos or watermarks.",
+      "negative_prompt": "coffee cup, cinnamon frame, multiple ingredient set, seedless husk, oversized seeds, printed species name, botanical branch on textured paper",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "candidate_ref": "C06",
+        "component_category": "Food illustrations",
+        "material": "淡绿带肋荚壳、深褐细小种子与哑光内壁",
+        "designer_persona": "香料品牌包装编辑和烹饪教材设计师",
+        "buyer_use_case": "香料原料介绍插页",
+        "design_placement": "香料原料介绍插页 / 烹饪教学卡片的豆蔻识别模块",
+        "design_function": "Reusable illustration with independently typeset annotation area",
+        "design_reuse_cases": [
+          "香料原料介绍插页",
+          "烹饪教学卡片的豆蔻识别模块"
+        ],
+        "integration_guidance": "下部放一枚纵向打开的豆蔻荚，上方约 45% 留白，少量种子靠近荚壳。",
+        "reusability_rationale": "可为香料辨识提供一个干净模块，买家能添加配料说明与使用提示，市场需求仍待试做验证。",
+        "art_style": "Botanical Colored Pencil Ingredient Illustration",
+        "style_rationale": "将视觉任务收窄到荚壳包裹种子的关系，避开整组香料、水彩边框及咖啡道具。",
+        "distinctiveness": "将视觉任务收窄到荚壳包裹种子的关系，避开整组香料、水彩边框及咖啡道具。",
+        "copy_space": "下部放一枚纵向打开的豆蔻荚，上方约 45% 留白，少量种子靠近荚壳。",
+        "production_risks": "检查荚壳与种子尺寸关系和开口形态，不生成未经来源支持的健康功效。",
+        "score_breakdown": {
+          "buyer_utility": 26,
+          "differentiation": 22,
+          "composition": 14,
+          "material_credibility": 9,
+          "technical_feasibility": 9,
+          "timeliness": 5,
+          "portfolio_diversity": 4
+        },
+        "metadata_seed_keywords": [
+          "opened",
+          "green",
+          "cardamom",
+          "pod",
+          "with",
+          "dark",
+          "seeds",
+          "and",
+          "copy",
+          "space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/my/search?k=cardamom&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=spice+cross+section&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://www.mccormick.com/blogs/how-to/about-cardamom-uses-pairings-and-recipes",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html"
+        ],
+        "comparison_assets": [
+          {
+            "id": "705290000",
+            "url": "https://stock.adobe.com/my/images/watercolor-illustration-of-cardamom-on-tranparent-background-realistic-botanical-illustration-of-spices/705290000",
+            "title": "Watercolor illustration of cardamom on tranparent background. Realistic botanical illustration of spices.",
+            "preview": "https://t3.ftcdn.net/jpg/07/05/29/00/360_F_705290000_NYXPLUxy0Cj7VIhoAupql64f81O4mur6.jpg"
+          },
+          {
+            "id": "73636826",
+            "url": "https://stock.adobe.com/my/images/cardamom-isolated-on-white/73636826",
+            "title": "Cardamom isolated on white",
+            "preview": "https://t3.ftcdn.net/jpg/00/73/63/68/360_F_73636826_3ZqXV8j1s9q1HJ5pcrFAIFRXqDFAh83a.jpg"
+          }
+        ],
+        "originality_notes": "Original authored composition. Comparators identify category overlap only; never use competitor previews as image-generation references.",
+        "positive_prompt_words": 152,
+        "positive_prompt_characters": 1016
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Transparent Microfluidic Y Channel Chip with Open Editorial Field",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 88,
+      "topic_bucket": "APPROVED",
+      "palette": "clear pale blue, muted cyan, soft graphite, ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create a reusable science editorial visual for an introductory microfluidics article and a supplier explainer page, allowing the designer to add their own title and annotations.\nSubject and Material: Depict one small transparent rectangular chip with a single embedded Y shaped channel. Two short inlet branches meet one straight outlet channel. Connect each end to a small round port. Use a faint blue tint inside the channel to make its continuous path visible through the clear plate.\nComposition: Build a horizontal 16:9 canvas with the complete chip on the right 42 percent, seen from a gently elevated angle. Keep the left half clean on warm ivory and preserve margins around the chip.\nArt Direction: Use minimal scientific product illustration with crisp machined edges, subtle refraction and restrained material depth.\nLighting and Mood: Use diffuse neutral studio light and a soft compact shadow.\nConstraints: Deliver 4K without organs, cells, electronics, labels, arrows, logos, watermark or diagnostic claims.",
+      "negative_prompt": "organ on chip, tissue wells, circuit boards, detached channels, crossing tubes, bubbles, decorative neon, illegible labels, medical symbols",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "candidate_ref": "C07",
+        "component_category": "Technology",
+        "material": "透明板体、嵌入式 Y 形细通道与三个简单圆形端口",
+        "designer_persona": "科学仪器编辑和微流控科普文章设计师",
+        "buyer_use_case": "科研供应商的微流控基础介绍页",
+        "design_placement": "科研供应商的微流控基础介绍页 / 科学展览或杂志的芯片概念说明",
+        "design_function": "Reusable illustration with independently typeset annotation area",
+        "design_reuse_cases": [
+          "科研供应商的微流控基础介绍页",
+          "科学展览或杂志的芯片概念说明"
+        ],
+        "integration_guidance": "芯片在右侧 42%，采用稍抬高视角；左侧连续留白供标题和结构说明。",
+        "reusability_rationale": "明确且克制的通道形态适合说明芯片概念，多语言文字由买家添加。",
+        "art_style": "Minimal Scientific Product Illustration",
+        "style_rationale": "仅保留一条可追踪的 Y 形通道，避开预览中多组织孔、复杂电路的器官芯片造型。",
+        "distinctiveness": "仅保留一条可追踪的 Y 形通道，避开预览中多组织孔、复杂电路的器官芯片造型。",
+        "copy_space": "芯片在右侧 42%，采用稍抬高视角；左侧连续留白供标题和结构说明。",
+        "production_risks": "通道和端口连通，避免交叉悬空。仅为概念配图，不能据此推断流量、检测能力或医用功能。",
+        "score_breakdown": {
+          "buyer_utility": 25,
+          "differentiation": 23,
+          "composition": 14,
+          "material_credibility": 9,
+          "technical_feasibility": 8,
+          "timeliness": 5,
+          "portfolio_diversity": 4
+        },
+        "metadata_seed_keywords": [
+          "transparent",
+          "microfluidic",
+          "y",
+          "channel",
+          "chip",
+          "with",
+          "open",
+          "editorial",
+          "field"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/my/search?k=microfluidic+channel&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=microfluidic&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://www.thermofisher.com/blog/proteomics/microfluidics-and-mass-spectrometry-based-proteomics/",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html"
+        ],
+        "comparison_assets": [
+          {
+            "id": "219162457",
+            "url": "https://stock.adobe.com/my/images/physiomimetic-technology-organs-on-a-chip-3d-rendering/219162457",
+            "title": "Physiomimetic technology. Organs on a chip. 3d rendering",
+            "preview": "https://t3.ftcdn.net/jpg/02/19/16/24/360_F_219162457_KBA0Tb8iaJMkrhEEdQLnvy3TI73KT8we.jpg"
+          },
+          {
+            "id": "219162442",
+            "url": "https://stock.adobe.com/my/images/physiomimetic-technology-organs-on-a-chip-3d-rendering/219162442",
+            "title": "Physiomimetic technology. Organs on a chip. 3d rendering",
+            "preview": "https://t3.ftcdn.net/jpg/02/19/16/24/360_F_219162442_2DuDygHvp8mqu7f0nOvVJQTzczQuuXFn.jpg"
+          }
+        ],
+        "originality_notes": "Original authored composition. Comparators identify category overlap only; never use competitor previews as image-generation references.",
+        "positive_prompt_words": 157,
+        "positive_prompt_characters": 1029
+      }
+    }
+  ]
+}

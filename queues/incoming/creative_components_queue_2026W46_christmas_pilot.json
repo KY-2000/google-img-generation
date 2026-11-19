@@ -1,0 +1,134 @@
+{
+  "run_id": "TF_creative_components_2026W46_r02",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-12T15:47:06+08:00",
+  "research": {
+    "finder": "creative_components",
+    "product_line": "commercial_background",
+    "theme_focus": "Targeted Christmas 2026 pilot based on Adobe Stock MY public search sampling",
+    "screened_candidate_count": 8,
+    "approved_queue_count": 2,
+    "manual_alpha_brief_count": 1,
+    "scores": "Editorial priority; no sales or acceptance metrics.",
+    "id_allocation": "All asset_id fields omitted for local prepare_queue_asset_ids before validation.",
+    "duplicate_registry_url": "https://docs.google.com/document/d/1_D-QBzmhaKmpC42T4hDLefIgOPQ96qHFauaBAm5BgaQ/edit",
+    "source_urls": [
+      "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+      "https://stock.adobe.com/my/search?k=christmas+bakery&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=christmas+cookie+banner&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=christmas+tools&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=christmas+tools+transparent&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-pngs/submit-png-files.html",
+      "https://helpx.adobe.com/id_id/stock/contributor/submit-your-content/submit-pngs/technical-requirements-png-submission.html",
+      "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html"
+    ]
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Open Christmas Cookie Gift Box with Copy Space for Bakery Preorders",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "oat cream, baked amber, muted cranberry, kraft brown",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create a reusable header for bakery preorder pages and holiday email campaigns, with a calm area for price, cutoff date and pickup information.\nSubject and Material: Show one open unbranded kraft pastry box with six cookies held in folded parchment compartments. Use a restrained mix of star cookies and round shortbread, with browned edges, fine baked pores and modest icing accents.\nComposition: Create a horizontal 16:9 layout. Position the entire box within the right 40 percent of a continuous oat cream paper surface. Reserve the left 55 percent as quiet, evenly toned copy space, with at least seven percent clearance from the outer edges.\nArt Direction: Render tactile product illustration in matte gouache with clean paper edges, subtle tooth and controlled food detail.\nLighting and Mood: Use diffuse daylight and a short contact shadow tucked beneath the box.\nConstraints: Output a clean 4K composition, free of lettering, logos, watermarks, brand packaging and extra props.",
+      "negative_prompt": "pine branch borders, café drinks, scattered ornaments, icing text, deep shadows in copy space, cropped pastry box",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "festival": "Christmas",
+        "event_date": "2026-12-25",
+        "component_category": "Retail layout background",
+        "material": "牛皮纸食品盒、烘焙纸隔层、烤制曲奇、哑光奶油色纸面",
+        "designer_persona": "独立烘焙店的电商设计师",
+        "buyer_use_case": "预购落地页横幅，叠加价格与截单日期",
+        "design_placement": "预购落地页横幅，叠加价格与截单日期 / 节日促销邮件页眉，叠加取货日期及订购链接",
+        "design_function": "Reusable copy-safe retail composition",
+        "design_reuse_cases": [
+          "预购落地页横幅，叠加价格与截单日期",
+          "节日促销邮件页眉，叠加取货日期及订购链接"
+        ],
+        "integration_guidance": "礼盒位于右侧 40%，左侧约 55% 保持连续低对比，关键物件距边缘至少 7%。",
+        "reusability_rationale": "开放礼盒让买家一眼认出可购买的商品，纸面形成连续排版区，避开松枝边框与咖啡桌静物。",
+        "art_style": "Tactile Paper and Gouache Product Illustration",
+        "style_rationale": "开放礼盒让买家一眼认出可购买的商品，纸面形成连续排版区，避开松枝边框与咖啡桌静物。",
+        "distinctiveness": "开放礼盒让买家一眼认出可购买的商品，纸面形成连续排版区，避开松枝边框与咖啡桌静物。",
+        "copy_space": "礼盒位于右侧 40%，左侧约 55% 保持连续低对比，关键物件距边缘至少 7%。",
+        "metadata_seed_keywords": [
+          "christmas cookie box",
+          "holiday bakery",
+          "preorder banner",
+          "copy space",
+          "gift packaging",
+          "gouache illustration"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/my/search?k=christmas+bakery&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=christmas+cookie+banner&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html"
+        ],
+        "originality_notes": "Original authored layout; no reference image used."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Sealed Christmas Bakery Takeaway Box for Pickup Notices",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "warm ivory, muted spruce, natural kraft, burgundy",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create a vertical design background for bakery pickup reminders and portrait store signage with space for an address, opening hours or collection instructions.\nSubject and Material: Show one closed kraft pastry carrier with a folded paper handle, a narrow spruce green paper band and one blank burgundy paper seal. Show believable scored folds and layered paper tabs, with a simple cookie star silhouette embossed on the band.\nComposition: Build a vertical 9:16 image on a continuous warm ivory paper surface. Set the carrier in the lower third. Leave the upper and middle areas evenly toned for a text block and preserve clear top and bottom interface margins.\nArt Direction: Use matte editorial packaging illustration with crisp folds, gentle paper grain and restrained spot color.\nLighting and Mood: Use soft side light and a compact grounded shadow.\nConstraints: Deliver a clean 4K composition with no legible text, logos, watermark, branded shapes, scenery or extra props.",
+      "negative_prompt": "open cookie tray, café table, wreath, ornament scatter, fake label lettering, shadows crossing the text area",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "festival": "Christmas",
+        "event_date": "2026-12-25",
+        "component_category": "Retail layout background",
+        "material": "封闭的牛皮纸手提点心盒、素色无字纸封、哑光纸面",
+        "designer_persona": "负责门店取货通知的烘焙品牌设计师",
+        "buyer_use_case": "手机 Story 取货提醒，放日期、时间与地址",
+        "design_placement": "手机 Story 取货提醒，放日期、时间与地址 / 门店电子屏竖版取货指引，放大号标题和步骤",
+        "design_function": "Reusable copy-safe retail composition",
+        "design_reuse_cases": [
+          "手机 Story 取货提醒，放日期、时间与地址",
+          "门店电子屏竖版取货指引，放大号标题和步骤"
+        ],
+        "integration_guidance": "盒体居于下方，顶部与中部保留连贯排版区，底部安全区留给应用界面。",
+        "reusability_rationale": "封好的提盒和空白纸封提示已备货，视觉重心和信息层级服务取货通知，和开盒展示食品的横版不同。",
+        "art_style": "Matte Paper Packaging Editorial Illustration",
+        "style_rationale": "封好的提盒和空白纸封提示已备货，视觉重心和信息层级服务取货通知，和开盒展示食品的横版不同。",
+        "distinctiveness": "封好的提盒和空白纸封提示已备货，视觉重心和信息层级服务取货通知，和开盒展示食品的横版不同。",
+        "copy_space": "盒体居于下方，顶部与中部保留连贯排版区，底部安全区留给应用界面。",
+        "metadata_seed_keywords": [
+          "bakery pickup",
+          "holiday takeaway box",
+          "pastry packaging",
+          "mobile story",
+          "copy space",
+          "christmas bakery"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/my/search?k=christmas+bakery&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=christmas+cookie+banner&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html"
+        ],
+        "originality_notes": "Original authored layout; no reference image used."
+      }
+    }
+  ]
+}
