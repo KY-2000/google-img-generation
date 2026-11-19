@@ -1,0 +1,514 @@
+{
+  "run_id": "TF_category_crawler_20261119_r105928",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-19T10:59:28+08:00",
+  "research": {
+    "finder": "creative_components",
+    "product_line": "commercial_background",
+    "method": "public HTML sampling",
+    "discovered_categories": [
+      {
+        "name": "Christmas illustrations",
+        "url": "https://stock.adobe.com/my/Category/Christmas/457?filters%5Bcontent_type%3Aillustration%5D=1&hide_panel=1&load_type=illustrations+lp"
+      },
+      {
+        "name": "Fashion illustrations",
+        "url": "https://stock.adobe.com/my/Category/Fashion/665?filters%5Bcontent_type%3Aillustration%5D=1&hide_panel=1&load_type=illustrations+lp"
+      },
+      {
+        "name": "Food illustrations",
+        "url": "https://stock.adobe.com/my/Category/Food/289?filters%5Bcontent_type%3Aillustration%5D=1&hide_panel=1&load_type=illustrations+lp"
+      },
+      {
+        "name": "Nature",
+        "url": "https://stock.adobe.com/my/inspiration/nature"
+      },
+      {
+        "name": "Backgrounds",
+        "url": "https://stock.adobe.com/my/inspiration/backgrounds"
+      },
+      {
+        "name": "Plants and Flowers",
+        "url": "https://stock.adobe.com/my/inspiration/plants-and-flowers"
+      },
+      {
+        "name": "Icons",
+        "url": "https://stock.adobe.com/my/inspiration/icons"
+      },
+      {
+        "name": "Artificial Intelligence",
+        "url": "https://stock.adobe.com/my/inspiration/artificial-intelligence"
+      },
+      {
+        "name": "Education",
+        "url": "https://stock.adobe.com/my/inspiration/education"
+      },
+      {
+        "name": "Sustainability and Environment",
+        "url": "https://stock.adobe.com/my/inspiration/sustainability-and-environment"
+      },
+      {
+        "name": "Technology",
+        "url": "https://stock.adobe.com/my/inspiration/technology"
+      },
+      {
+        "name": "Humor",
+        "url": "https://stock.adobe.com/my/inspiration/humor"
+      }
+    ],
+    "crawl_page_count": 26,
+    "crawl_card_count": 718,
+    "unique_asset_ids": 707,
+    "duplicates_removed": 11,
+    "visually_reviewed_count": 14,
+    "candidate_count": 34,
+    "pass_threshold": 85,
+    "quantity_limit": null,
+    "source_urls": [
+      "https://stock.adobe.com/my/illustrations",
+      "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+      "https://docs.google.com/document/d/1_D-QBzmhaKmpC42T4hDLefIgOPQ96qHFauaBAm5BgaQ/edit",
+      "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+      "https://stock.adobe.com/my/inspiration/backgrounds",
+      "https://stock.adobe.com/my/search?k=book+gutter+shadow&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=blank+thermal+receipt&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=perforated+paper+edge&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/inspiration/nature",
+      "https://stock.adobe.com/my/search?k=river+contour+map&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=wind+ripple+sand&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=water+caustic+shadow&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/inspiration/icons",
+      "https://stock.adobe.com/my/search?k=laundry+symbols&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=return+parcel+icon&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=keyboard+focus+icon&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/inspiration/artificial-intelligence",
+      "https://stock.adobe.com/my/search?k=document+redaction+illustration&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=human+review+AI+illustration&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=audio+waveform+annotation&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/inspiration/humor",
+      "https://stock.adobe.com/my/search?k=speech+bubble+halftone&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=comic+timing+panel&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=comic+impact+burst&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=open+book+blank&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=redacted+document&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=comic+panel+blank&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=sand+ripple+texture&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=focus+ring&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=flowing+river+topographic&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://pe.usps.com/text/dmm300/505.htm",
+      "https://guides.loc.gov/digitization-preparation/imaging-equipment",
+      "https://repository.library.noaa.gov/view/noaa/39225/noaa_39225_DS1.pdf",
+      "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible",
+      "https://helpx.adobe.com/acrobat/desktop/protect-documents/redact-pdfs/redacting-sanitizing.html",
+      "https://manual.audacityteam.org/man/creating_and_selecting_labels.html",
+      "https://www.nps.gov/slbe/learn/nature/sand-dune-geology.htm"
+    ],
+    "duplicate_registry": "SC-001 through SC-011 reviewed. SC-012 is an empty template.",
+    "screened_prior_queue_paths": [
+      "queues/incoming/adobe_stock_crawler_queue_20261119_r104158.json",
+      "queues/incoming/commercial_background_queue_2026W44.json",
+      "queues/incoming/commercial_background_queue_2026W44_1.json",
+      "queues/incoming/commercial_background_queue_2026W44_r02.json",
+      "queues/incoming/creative_components_holiday_queue_2026W47_r01.json",
+      "queues/incoming/creative_components_holiday_queue_2026W47_r02.json",
+      "queues/incoming/creative_components_holiday_queue_2026W47_r03.json",
+      "queues/incoming/creative_components_queue_2026W46_christmas_pilot.json",
+      "queues/incoming/creative_components_queue_2026W46_fashion_pilot.json",
+      "queues/incoming/creative_components_queue_2026W46_r02.json",
+      "queues/incoming/creative_components_queue_2026W47_r01.json",
+      "queues/incoming/creative_components_queue_2026W47_r02.json"
+    ],
+    "id_allocation": "Leave all asset_id fields absent. Current local queue runner allocates IDs before strict validation.",
+    "data_limits": "Counts and cards reflect visible supply only. Default sort unverified. A missing count or card is not proof of zero supply."
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Return Parcel with a Blank Replacement Label",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "kraft brown, slate blue, blue gray, ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a reusable 4K horizontal landscape illustration in a 16:9 aspect ratio. Use the visual language of matte isometric service illustration and this restrained palette: kraft brown, slate blue, blue gray, ivory.\n\nRender one plain closed kraft shipping box in a gentle isometric view on the left. Show a single large blank replacement label applied on the upper face, with one slightly lifted corner and a small unprinted backing strip visible beneath it. Keep the sealed box edges physically coherent and show only one unobtrusive closure seam. The entire box sits within the left half on an uninterrupted pale background, leaving the right 45 percent for a custom returns step or headline. Use broad soft light and small contact shadows.\n\nPreserve a deliberate separation between the visual subject and the area where a designer will place copy. Keep the edges clean, the visual hierarchy clear and the essential detail legible at reduced size. Use one coherent composition on an opaque canvas with no typography, brand marks or watermark.",
+      "negative_prompt": "Christmas parcels, tape dispenser, fake barcode, arrows, recycling emblem, packing worker, brand mark",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "退货包裹与空白标签",
+        "designer_persona": "电商客服与物流服务设计师",
+        "buyer_use_case": "退货帮助中心",
+        "design_placement": "退货帮助中心 / 商家售后邮件",
+        "design_reuse_cases": [
+          "退货帮助中心",
+          "商家售后邮件"
+        ],
+        "integration_guidance": "一只离散纸箱贴空白新面单，主物置左，右侧保留步骤说明区",
+        "reusability_rationale": "一只离散纸箱贴空白新面单，主物置左，右侧保留步骤说明区",
+        "distinctiveness": "面单保留无字表面，检查贴纸是否贴合箱体。画面避开已用的圣诞打包场景和常见循环箭头。",
+        "art_style": "Matte Isometric Service Illustration",
+        "source_urls": [
+          "https://stock.adobe.com/my/search?k=return+parcel+icon&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://pe.usps.com/text/dmm300/505.htm",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs"
+        ],
+        "score_breakdown": {
+          "buyer_utility": 29,
+          "differentiation": 23,
+          "composition": 15,
+          "physical_credibility": 9,
+          "technical_feasibility": 9,
+          "timeliness": 5,
+          "portfolio_diversity": 4
+        },
+        "positive_prompt_words": 168,
+        "positive_prompt_characters": 1043
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Open Book Gutter Shadow with a Quiet Right Page",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "warm ivory, cool gray, charcoal",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a reusable 4K horizontal landscape illustration in a 16:9 aspect ratio. Use the visual language of archival paper still life photography and this restrained palette: warm ivory, cool gray, charcoal.\n\nA single open blank book, seen from directly above, fills the canvas with two uncoated warm ivory pages. The inner gutter lies left of center. The sheet edges curve smoothly into the gutter and broad daylight casts a soft narrow shadow that dissipates across the pages. Keep the right page comparatively flat and even, with enough clear area for an independent heading and two narrow text columns. Allow the outer page edges to extend beyond the frame.\n\nPreserve a deliberate separation between the visual subject and the area where a designer will place copy. Keep the edges clean, the visual hierarchy clear and the essential detail legible at reduced size. Use one coherent composition on an opaque canvas with no typography, brand marks or watermark.",
+      "negative_prompt": "printed text, torn mulberry overlap, rigid symmetrical black line, strong vignette, visible cover branding",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "书脊中缝阴影留白",
+        "designer_persona": "出版社版式设计师",
+        "buyer_use_case": "电子书章节扉页",
+        "design_placement": "电子书章节扉页 / 档案展览图文底图",
+        "design_reuse_cases": [
+          "电子书章节扉页",
+          "档案展览图文底图"
+        ],
+        "integration_guidance": "横向摊开的无字册页，左偏书脊，两侧纸页在折弯处柔和变暗，右页保留可排版平面",
+        "reusability_rationale": "横向摊开的无字册页，左偏书脊，两侧纸页在折弯处柔和变暗，右页保留可排版平面",
+        "distinctiveness": "检查中缝的阴影渐变和右页均匀度。可局部裁切，区别于灰背景上的完整杂志样机和锁线装帧。",
+        "art_style": "Archival Paper Still Life Photography",
+        "source_urls": [
+          "https://stock.adobe.com/my/search?k=book+gutter+shadow&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=open+book+blank&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://guides.loc.gov/digitization-preparation/imaging-equipment",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs"
+        ],
+        "score_breakdown": {
+          "buyer_utility": 27,
+          "differentiation": 22,
+          "composition": 15,
+          "physical_credibility": 9,
+          "technical_feasibility": 10,
+          "timeliness": 5,
+          "portfolio_diversity": 4
+        },
+        "positive_prompt_words": 156,
+        "positive_prompt_characters": 961
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "River Valley Contour Lines with Open Legend Area",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "slate blue, muted clay, warm ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a reusable 4K horizontal landscape illustration in a 16:9 aspect ratio. Use the visual language of restrained cartographic editorial illustration and this restrained palette: slate blue, muted clay, warm ivory.\n\nRender an original fictional valley in a top down map view. A slim muted blue stream runs from the upper left toward the lower middle through several sets of nested clay contour lines. At each crossing, the contours bend gently upstream and maintain coherent spacing without touching each other. The map treatment stays within the left half and lower left edge. The right two fifths remain a uniform ivory area for a custom legend and explanatory copy. Use disciplined line weights and keep the contours readable when reduced.\n\nPreserve a deliberate separation between the visual subject and the area where a designer will place copy. Keep the edges clean, the visual hierarchy clear and the essential detail legible at reduced size. Use one coherent composition on an opaque canvas with no typography, brand marks or watermark.",
+      "negative_prompt": "real place names, scale bar, compass labels, crisscrossing contours, tributaries flowing uphill, coastal photo, tidal pools",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "河谷等高线局部示意",
+        "designer_persona": "环境教育及地图编辑",
+        "buyer_use_case": "河谷地貌课件",
+        "design_placement": "河谷地貌课件 / 公共展板的地形示意",
+        "design_reuse_cases": [
+          "河谷地貌课件",
+          "公共展板的地形示意"
+        ],
+        "integration_guidance": "左部抽象河谷，等高线呈向上游的 V 形，右侧留低对比图例区",
+        "reusability_rationale": "左部抽象河谷，等高线呈向上游的 V 形，右侧留低对比图例区",
+        "distinctiveness": "检查线条不会相交，过河 V 形方向正确。使用虚构地形，成图不提供导航用途。",
+        "art_style": "Restrained Cartographic Editorial Illustration",
+        "source_urls": [
+          "https://stock.adobe.com/my/search?k=river+contour+map&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=flowing+river+topographic&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://repository.library.noaa.gov/view/noaa/39225/noaa_39225_DS1.pdf",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs"
+        ],
+        "score_breakdown": {
+          "buyer_utility": 27,
+          "differentiation": 23,
+          "composition": 14,
+          "physical_credibility": 9,
+          "technical_feasibility": 9,
+          "timeliness": 5,
+          "portfolio_diversity": 4
+        },
+        "positive_prompt_words": 167,
+        "positive_prompt_characters": 1047
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Visible Keyboard Focus Ring on a Neutral Control Pair",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "ink blue, cool gray, light ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a reusable 4K horizontal landscape illustration in a 16:9 aspect ratio. Use the visual language of accessible interface editorial diagram and this restrained palette: ink blue, cool gray, light ivory.\n\nDraw two generic empty rectangular interface controls arranged side by side in the left half. Use the same size, matte pale fill and subtle corner radius for both. Around the first control show a continuous, clearly separated dark blue outline with a thin lighter offset gap. Leave the second control with its original neutral border. Set the module on a smooth ivory field with a quiet right half for independently typeset explanation. Keep the frontal geometry exact and the difference clear even as a small inset.\n\nPreserve a deliberate separation between the visual subject and the area where a designer will place copy. Keep the edges clean, the visual hierarchy clear and the essential detail legible at reduced size. Use one coherent composition on an opaque canvas with no typography, brand marks or watermark.",
+      "negative_prompt": "cursor pointer, hover glow, real software theme, letters, buttons with words, dashboard, multiple outlines, shadows",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "双控件键盘焦点环示意",
+        "designer_persona": "无障碍内容设计师和前端课程编辑",
+        "buyer_use_case": "键盘可达性培训课件",
+        "design_placement": "键盘可达性培训课件 / 设计系统焦点样式说明",
+        "design_reuse_cases": [
+          "键盘可达性培训课件",
+          "设计系统焦点样式说明"
+        ],
+        "integration_guidance": "两个同形空白控件，左控件外有清晰焦点描边，右侧留给说明，不画真实软件",
+        "reusability_rationale": "两个同形空白控件，左控件外有清晰焦点描边，右侧留给说明，不画真实软件",
+        "distinctiveness": "检查两控件尺寸一致、焦点轮廓辨识清楚。视觉示意不能作为无障碍测试结果。",
+        "art_style": "Accessible Interface Editorial Diagram",
+        "source_urls": [
+          "https://stock.adobe.com/my/search?k=keyboard+focus+icon&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=focus+ring&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://www.w3.org/WAI/WCAG22/Understanding/focus-visible",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs"
+        ],
+        "score_breakdown": {
+          "buyer_utility": 28,
+          "differentiation": 22,
+          "composition": 15,
+          "physical_credibility": 8,
+          "technical_feasibility": 9,
+          "timeliness": 5,
+          "portfolio_diversity": 4
+        },
+        "positive_prompt_words": 165,
+        "positive_prompt_characters": 1027
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Editorial Document Redaction Concept with Blank Annotation Field",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "dove gray, ink navy, soft teal, ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a reusable 4K vertical portrait illustration in a 9:16 aspect ratio. Use the visual language of flat privacy education illustration and this restrained palette: dove gray, ink navy, soft teal, ivory.\n\nCreate two compact generic paper panels in the lower half of the frame. Treat their document content as short abstract gray rule groups, with no glyphs or personal identifiers. In the second panel replace one complete group with an opaque navy bar placed within the same content position. Make each panel freestanding and readable, with a small balanced gap between them. Keep upper space uninterrupted for later wording about document redaction. Use a flat editorial palette and a faint paper edge shadow. Present the panels as explanatory artwork without imitating any application or document format.\n\nPreserve a deliberate separation between the visual subject and the area where a designer will place copy. Keep the edges clean, the visual hierarchy clear and the essential detail legible at reduced size. Use one coherent composition on an opaque canvas with no typography, brand marks or watermark.",
+      "negative_prompt": "real personal data, pseudo writing, branded PDF interface, QR codes, implied software controls, watermark",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "文档遮盖前后示意模块",
+        "designer_persona": "文档隐私培训编辑和技术市场设计师",
+        "buyer_use_case": "隐私入门移动课件",
+        "design_placement": "隐私入门移动课件 / 面向客户的文档处理说明",
+        "design_reuse_cases": [
+          "隐私入门移动课件",
+          "面向客户的文档处理说明"
+        ],
+        "integration_guidance": "下部两张合成纸页展示灰线与移除位置，顶部留文案，避免教人用覆盖实现真实清理",
+        "reusability_rationale": "下部两张合成纸页展示灰线与移除位置，顶部留文案，避免教人用覆盖实现真实清理",
+        "distinctiveness": "检查两页位置对应，无个人信息。成片面向隐私课程，文字说明须明确真正删节与画面黑条的区别。",
+        "art_style": "Flat Privacy Education Illustration",
+        "source_urls": [
+          "https://stock.adobe.com/my/search?k=document+redaction+illustration&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=redacted+document&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://helpx.adobe.com/acrobat/desktop/protect-documents/redact-pdfs/redacting-sanitizing.html",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs"
+        ],
+        "score_breakdown": {
+          "buyer_utility": 28,
+          "differentiation": 22,
+          "composition": 14,
+          "physical_credibility": 8,
+          "technical_feasibility": 9,
+          "timeliness": 5,
+          "portfolio_diversity": 4
+        },
+        "positive_prompt_words": 175,
+        "positive_prompt_characters": 1112
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Audio Waveform with Three Blank Chapter Marker Positions",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "muted teal, charcoal, cool ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a reusable 4K horizontal landscape illustration in a 16:9 aspect ratio. Use the visual language of minimal audio editorial diagram and this restrained palette: muted teal, charcoal, cool ivory.\n\nDraw one generic audio waveform as a thin teal amplitude silhouette centered across the lower half of the canvas. Give it three asymmetrical speech like clusters with visible quiet intervals. Use exactly three short neutral vertical markers aligned to different intervals, leaving an empty strip above those markers for chapter names added later. Use no actual recorded waveform, timestamps, grid, interface bars, or labels. Keep the top third quiet and the left and right margins generous. Render clean edges and restrained contrast, with a readable contour at small sizes.\n\nPreserve a deliberate separation between the visual subject and the area where a designer will place copy. Keep the edges clean, the visual hierarchy clear and the essential detail legible at reduced size. Use one coherent composition on an opaque canvas with no typography, brand marks or watermark.",
+      "negative_prompt": "actual software UI, timeline timecodes, duplicated waves, equalizer bars, lettered markers, gradients, glowing waveform",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "音频波形的空白分段版式",
+        "designer_persona": "播客制作与媒体课程设计师",
+        "buyer_use_case": "播客剪辑教程插图",
+        "design_placement": "播客剪辑教程插图 / 音频章节说明页",
+        "design_reuse_cases": [
+          "播客剪辑教程插图",
+          "音频章节说明页"
+        ],
+        "integration_guidance": "波形集中下半部，三个不等距空心标线与波形对齐，上部留文案",
+        "reusability_rationale": "波形集中下半部，三个不等距空心标线与波形对齐，上部留文案",
+        "distinctiveness": "检查 3 个标线分别对应静段，不代替实际时间码。编辑可覆写语言和章节名。",
+        "art_style": "Minimal Audio Editorial Diagram",
+        "source_urls": [
+          "https://stock.adobe.com/my/search?k=audio+waveform+annotation&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://manual.audacityteam.org/man/creating_and_selecting_labels.html",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs"
+        ],
+        "score_breakdown": {
+          "buyer_utility": 28,
+          "differentiation": 22,
+          "composition": 14,
+          "physical_credibility": 8,
+          "technical_feasibility": 9,
+          "timeliness": 5,
+          "portfolio_diversity": 4
+        },
+        "positive_prompt_words": 167,
+        "positive_prompt_characters": 1078
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Ticket Stub Perforation on Blank Warm Card",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 88,
+      "topic_bucket": "APPROVED",
+      "palette": "warm cream, pale apricot, graphite",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a reusable 4K vertical portrait illustration in a 9:16 aspect ratio. Use the visual language of print finishing macro photography and this restrained palette: warm cream, pale apricot, graphite.\n\nOne contiguous warm white card with a single straight line of tiny equal perforations near its lower quarter, seen slightly obliquely at close range. A short part of the stub is gently separated at one end, showing a few realistic paper fibers and a shadow only a millimeter or two wide in visual scale. Keep the upper two thirds an even matte field suitable for custom event copy. Use consistently small holes with subtle pressure marks around each rim.\n\nPreserve a deliberate separation between the visual subject and the area where a designer will place copy. Keep the edges clean, the visual hierarchy clear and the essential detail legible at reduced size. Use one coherent composition on an opaque canvas with no typography, brand marks or watermark.",
+      "negative_prompt": "binder holes, calendar windows, random torn edge, printed ticket, type, foil stars, embossed branding",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "可撕存根的点孔边缘",
+        "designer_persona": "活动品牌与票务设计师",
+        "buyer_use_case": "活动报名页封面",
+        "design_placement": "活动报名页封面 / 票券印刷工艺说明",
+        "design_reuse_cases": [
+          "活动报名页封面",
+          "票券印刷工艺说明"
+        ],
+        "integration_guidance": "竖图下方一条干净点孔边，边缘细小残纤维，大片哑光纸面支持后加日期",
+        "reusability_rationale": "竖图下方一条干净点孔边，边缘细小残纤维，大片哑光纸面支持后加日期",
+        "distinctiveness": "检查孔距连贯、连接点自然。差异在局部半撕的票券边，避开邮票整框、星形箔纸和日历开窗。",
+        "art_style": "Print Finishing Macro Photography",
+        "source_urls": [
+          "https://stock.adobe.com/my/search?k=perforated+paper+edge&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs"
+        ],
+        "score_breakdown": {
+          "buyer_utility": 25,
+          "differentiation": 21,
+          "composition": 14,
+          "physical_credibility": 9,
+          "technical_feasibility": 9,
+          "timeliness": 5,
+          "portfolio_diversity": 5
+        },
+        "positive_prompt_words": 157,
+        "positive_prompt_characters": 959
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Wind Ripple Sand with a Sheltered Smooth Field",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 87,
+      "topic_bucket": "APPROVED",
+      "palette": "sand beige, pale ochre, warm gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a reusable 4K horizontal landscape illustration in a 16:9 aspect ratio. Use the visual language of raking light geological surface study and this restrained palette: sand beige, pale ochre, warm gray.\n\nShow an unbroken patch of fine dry sand. Concentrate a short run of shallow rounded ridges near the lower right, with irregular crest spacing and one common wind direction across the textured region. Let the ridge relief gradually fade into a real smooth sheltered patch on the left, without a hard transition or a second surface. Use oblique low sunlight, long enough to describe the small relief but soft enough to keep the smooth field legible under overlaid titles. Keep the view close and nearly perpendicular to the ground.\n\nPreserve a deliberate separation between the visual subject and the area where a designer will place copy. Keep the edges clean, the visual hierarchy clear and the essential detail legible at reduced size. Use one coherent composition on an opaque canvas with no typography, brand marks or watermark.",
+      "negative_prompt": "dramatic dune landscape, footprints, glitter, wave foam, separate background plate, harsh black shadows",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "风成砂纹与均匀排字区",
+        "designer_persona": "户外教育媒体与旅行版式设计师",
+        "buyer_use_case": "沙丘形态解说页",
+        "design_placement": "沙丘形态解说页 / 自然旅行图文标题底图",
+        "design_reuse_cases": [
+          "沙丘形态解说页",
+          "自然旅行图文标题底图"
+        ],
+        "integration_guidance": "砂脊只占右下并渐弱，左侧自然平砂让文字可读",
+        "reusability_rationale": "砂脊只占右下并渐弱，左侧自然平砂让文字可读",
+        "distinctiveness": "检查砂脊同向且逐渐消退，左侧平砂保证排字。优于整幅满铺砂纹在版式中的可读性。",
+        "art_style": "Raking Light Geological Surface Study",
+        "source_urls": [
+          "https://stock.adobe.com/my/search?k=wind+ripple+sand&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=sand+ripple+texture&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://www.nps.gov/slbe/learn/nature/sand-dune-geology.htm",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs"
+        ],
+        "score_breakdown": {
+          "buyer_utility": 24,
+          "differentiation": 20,
+          "composition": 14,
+          "physical_credibility": 10,
+          "technical_feasibility": 9,
+          "timeliness": 5,
+          "portfolio_diversity": 5
+        },
+        "positive_prompt_words": 169,
+        "positive_prompt_characters": 1040
+      }
+    }
+  ]
+}
