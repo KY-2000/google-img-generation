@@ -1,0 +1,192 @@
+{
+  "run_id": "TF_creative_components_2026W46_r03",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-12T15:52:14+08:00",
+  "research": {
+    "finder": "creative_components",
+    "product_line": "commercial_background",
+    "theme_focus": "Fashion utility assets based on Adobe Stock MY illustration results",
+    "screened_candidate_count": 12,
+    "approved_queue_count": 3,
+    "manual_alpha_brief_count": 1,
+    "scores": "Editorial priority only. No sales, buyer demand or acceptance metrics.",
+    "id_allocation": "All asset_id fields omitted for local prepare_queue_asset_ids before validation.",
+    "duplicate_registry_url": "https://docs.google.com/document/d/1_D-QBzmhaKmpC42T4hDLefIgOPQ96qHFauaBAm5BgaQ/edit",
+    "source_urls": [
+      "https://stock.adobe.com/my/Category/Fashion/665?filters%5Bcontent_type%3Aillustration%5D=1&hide_panel=1&load_type=illustrations+lp",
+      "https://stock.adobe.com/my/search?k=fashion+illustration&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=clothing+size+guide&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=garment+measurement&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=denim+seam+texture&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=sewing+pattern+paper&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=garment+care+label&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=clothing+hang+tag+mockup&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=zipper+pull+isolated&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=jacket+zipper+detail&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/my/search?k=clothing+resale+condition&filters%5Bcontent_type%3Aillustration%5D=1",
+      "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+      "https://faq-th.uniqlo.com/articles/en_US/Knowledge/About-how-to-measure",
+      "https://depophelp.zendesk.com/hc/en-gb/articles/360009418014-Selling-on-Depop",
+      "https://depophelp.zendesk.com/hc/en-gb/articles/360050410093-Improving-the-search-ranking-of-your-items",
+      "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+      "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-pngs/submit-png-files.html"
+    ]
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Flat Lay T Shirt Chest Measurement Guide with Copy Space",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "chalk white, slate blue, muted rust, charcoal",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create an apparel measurement illustration for a product size chart and a customer support guide. Leave room for the designer to add localized instructions and sizing values.\nSubject and Material: Show one generic short sleeve cotton T shirt laid completely flat, with the sleeves relaxed and the side seams straight. Draw one fine rust colored horizontal measurement line from one underarm seam junction to the opposite underarm seam junction. End the line exactly at the junctions with small clear ticks.\nComposition: Use a horizontal 16:9 canvas. Keep the shirt entirely in the left half on a pale chalk surface. Leave the right 43 percent consistently pale and clear, with generous outer margins.\nArt Direction: Use precise apparel editorial linework with subtle matte knit texture and simple seam construction.\nLighting and Mood: Use even diffuse light with minimal shadow.\nConstraints: Output clean 4K artwork without text, measurements, logos, brand details, additional arrows, props or watermarks.",
+      "negative_prompt": "body measurement, tape measure with numerals, chest circumference, diagonal arrow, missing underarm seams, text, labels",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Technical Apparel Editorial Illustration",
+        "material": "哑光棉质针织，清晰的腋下和领口接缝",
+        "designer_persona": "服装电商商品页设计师与客服内容编辑",
+        "buyer_use_case": "商品详情页尺码表旁的胸宽示意",
+        "design_placement": "商品详情页尺码表旁的胸宽示意 / 客服中心的服装平铺测量说明",
+        "design_function": "Reusable apparel layout asset",
+        "design_reuse_cases": [
+          "商品详情页尺码表旁的胸宽示意",
+          "客服中心的服装平铺测量说明"
+        ],
+        "integration_guidance": "左侧放服装示意，右侧约 43% 留给尺寸表或说明。仅画一条从腋下接缝到另一侧腋下接缝的水平测量线。",
+        "reusability_rationale": "用单个服装实物的平铺测量演示胸宽，买家可以自行叠加单位、尺码和说明。",
+        "art_style": "Technical Apparel Editorial Illustration",
+        "style_rationale": "用单个服装实物的平铺测量演示胸宽，买家可以自行叠加单位、尺码和说明。",
+        "distinctiveness": "用单个服装实物的平铺测量演示胸宽，买家可以自行叠加单位、尺码和说明。",
+        "copy_space": "左侧放服装示意，右侧约 43% 留给尺寸表或说明。仅画一条从腋下接缝到另一侧腋下接缝的水平测量线。",
+        "metadata_seed_keywords": [
+          "garment measurement",
+          "chest width",
+          "size guide",
+          "t shirt",
+          "product measurements",
+          "apparel ecommerce"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/my/search?k=clothing+size+guide&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=garment+measurement&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://faq-th.uniqlo.com/articles/en_US/Knowledge/About-how-to-measure",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html"
+        ],
+        "originality_notes": "Original authored design. Review generated image and metadata before submission."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Indigo Denim Flat Felled Seam with Quiet Copy Space",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "washed indigo, deep navy, warm ochre, soft blue",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create a textile background for apparel material pages and denim collection brochures. Reserve a calm field for material specifications or a short headline.\nSubject and Material: Depict one continuous indigo cotton denim surface with a single flat felled seam. Show a low folded ridge and two restrained parallel rows of ochre topstitching. Render a consistent diagonal twill with subtle variation in the yarn and believable tension near the stitches.\nComposition: Use a horizontal 16:9 macro crop viewed square to the fabric. Run the seam close to the right quarter of the canvas. Keep the left 56 percent flat, evenly colored and low contrast while allowing the weave to remain visible.\nArt Direction: Use restrained textile macro illustration with clean stitch geometry and fine tactile detail.\nLighting and Mood: Apply broad raking daylight from the upper right with shallow, soft relief.\nConstraints: Deliver 4K without pockets, rivets, labels, text, logos, watermarks or claims of seamless tiling.",
+      "negative_prompt": "back pocket, belt loops, denim brand patch, torn hole, frayed rip, crossing seams, oversharpened weave, repeating tile",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Textile Macro Illustration with Fine Twill Detail",
+        "material": "靛蓝斜纹牛仔布，平整包缝，低饱和赭色双线",
+        "designer_persona": "牛仔品牌面料编辑与服装材料供应商设计师",
+        "buyer_use_case": "面料详情页的车线与织纹解说页眉",
+        "design_placement": "面料详情页的车线与织纹解说页眉 / 服装系列宣传册或面料样册的章节底图",
+        "design_function": "Reusable apparel layout asset",
+        "design_reuse_cases": [
+          "面料详情页的车线与织纹解说页眉",
+          "服装系列宣传册或面料样册的章节底图"
+        ],
+        "integration_guidance": "缝线沿画面右侧延伸，左侧约 56% 保持同色低对比，便于放短文案。",
+        "reusability_rationale": "展示具体车缝结构，留白来自同一块布的平整区域，可和品牌图层组合。",
+        "art_style": "Textile Macro Illustration with Fine Twill Detail",
+        "style_rationale": "展示具体车缝结构，留白来自同一块布的平整区域，可和品牌图层组合。",
+        "distinctiveness": "展示具体车缝结构，留白来自同一块布的平整区域，可和品牌图层组合。",
+        "copy_space": "缝线沿画面右侧延伸，左侧约 56% 保持同色低对比，便于放短文案。",
+        "metadata_seed_keywords": [
+          "denim seam",
+          "indigo denim",
+          "twill texture",
+          "topstitching",
+          "copy space",
+          "fabric construction"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/my/search?k=denim+seam+texture&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html"
+        ],
+        "originality_notes": "Original authored design. Review generated image and metadata before submission."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Knitwear Pilling Detail for Garment Condition Guides",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "warm oatmeal, muted pebble, soft ivory, taupe",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create an educational portrait background for knitwear care articles and secondhand seller training. The designer will add their own explanatory text.\nSubject and Material: Show the ribbed cuff of one plain oatmeal knit sleeve with a small realistic cluster of pills attached to the yarn near the cuff edge. Keep the adjoining knitting intact and let the cuff ribs curve naturally along a single loose fold.\nComposition: Use a 9:16 vertical canvas. Place the cuff in the lower third, fully inside the side margins, with the pilled area legible at mobile size. Leave the upper half and top margin clear on a continuous warm ivory surface.\nArt Direction: Use tactile macro editorial illustration with accurately shaped knit loops, fine fuzz and restrained color.\nLighting and Mood: Use diffuse side light with soft shadows and a quiet instructional mood.\nConstraints: Deliver 4K with no hands, labels, lettering, magnifier graphics, brand marks or watermarks.",
+      "negative_prompt": "fabric holes, stains, dust scatter, floating fuzz, heavy distress, before and after split, brand label, actual listing photo",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Tactile Knitwear Macro Editorial Illustration",
+        "material": "燕麦色罗纹袖口与细小、附着于纱线的毛球",
+        "designer_persona": "二手服装平台的卖家教育编辑及针织品牌护理内容团队",
+        "buyer_use_case": "平台卖家学院的衣况披露教程",
+        "design_placement": "平台卖家学院的衣况披露教程 / 针织品牌如何辨认起球的护理指南",
+        "design_function": "Reusable apparel layout asset",
+        "design_reuse_cases": [
+          "平台卖家学院的衣况披露教程",
+          "针织品牌如何辨认起球的护理指南"
+        ],
+        "integration_guidance": "袖口与局部起球在下方，顶部和中段用低对比暖白给步骤或标注留位。",
+        "reusability_rationale": "展示一种具体磨损，构图适用于图解。实际商品上架应使用卖家拍摄的真实衣况照片。",
+        "art_style": "Tactile Knitwear Macro Editorial Illustration",
+        "style_rationale": "展示一种具体磨损，构图适用于图解。实际商品上架应使用卖家拍摄的真实衣况照片。",
+        "distinctiveness": "展示一种具体磨损，构图适用于图解。实际商品上架应使用卖家拍摄的真实衣况照片。",
+        "copy_space": "袖口与局部起球在下方，顶部和中段用低对比暖白给步骤或标注留位。",
+        "metadata_seed_keywords": [
+          "knitwear pilling",
+          "garment condition guide",
+          "sweater cuff",
+          "fabric care",
+          "resale education",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/my/search?k=clothing+resale+condition&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=garment+care+label&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://depophelp.zendesk.com/hc/en-gb/articles/360009418014-Selling-on-Depop",
+          "https://depophelp.zendesk.com/hc/en-gb/articles/360050410093-Improving-the-search-ranking-of-your-items",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html"
+        ],
+        "originality_notes": "Original authored design. Review generated image and metadata before submission."
+      }
+    }
+  ]
+}
