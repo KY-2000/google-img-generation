@@ -9,6 +9,12 @@ from typing import Any
 from PIL import Image
 
 
+IMAGE_THINKING_LEVELS = {
+    "gemini-3-pro-image": ("HIGH",),
+    "gemini-nano-banana-2.1": ("MINIMAL", "MEDIUM", "HIGH"),
+}
+
+
 def generate_original_image(
     *,
     generate_bytes: Callable[..., bytes],
@@ -21,6 +27,7 @@ def generate_original_image(
     aspect_ratio: str = "1:1",
     resolution: str = "2K",
     usage_callback: Callable[[dict[str, int | float]], None] | None = None,
+    thinking_level: str | None = None,
 ) -> Path:
     generate_kwargs = dict(
         client=client,
@@ -33,6 +40,8 @@ def generate_original_image(
     )
     if usage_callback is not None:
         generate_kwargs["usage_callback"] = usage_callback
+    if thinking_level is not None:
+        generate_kwargs["thinking_level"] = thinking_level
     image_bytes = generate_bytes(**generate_kwargs)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     import io

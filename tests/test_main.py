@@ -27,20 +27,22 @@ class FinalImageSelectionTests(unittest.TestCase):
 
 class ApiUsageCallbackTests(unittest.TestCase):
     def test_nano_banana_21_omits_unsupported_sampling_parameters(self):
-        from google.genai import types
         response = SimpleNamespace(candidates=[SimpleNamespace(content=SimpleNamespace(parts=[
             SimpleNamespace(thought=True, inline_data=SimpleNamespace(data=b"draft")),
             SimpleNamespace(inline_data=SimpleNamespace(data=b"final")),
         ]))])
-        for ratio in ("16:9", "9:16"):
-            with self.subTest(ratio=ratio):
+        for ratio, level in (("16:9", None), ("9:16", "MINIMAL"), ("16:9", "MEDIUM"), ("9:16", "HIGH")):
+            with self.subTest(ratio=ratio, level=level):
                 generate = mock.Mock(return_value=response)
                 client = SimpleNamespace(models=SimpleNamespace(generate_content=generate))
                 result = main.generate_image_bytes(client, "scene", "gemini-nano-banana-2.1",
-                                                   0.7, 0.8, ratio, "4K")
+                                                   0.7, 0.8, ratio, "4K", thinking_level=level)
                 self.assertEqual(result, b"final")
                 config = generate.call_args.kwargs["config"].model_dump(exclude_none=True, by_alias=True)
-                self.assertEqual(config, {"imageConfig": {"aspectRatio": ratio, "imageSize": "4K"}})
+                expected = {"imageConfig": {"aspectRatio": ratio, "imageSize": "4K"}}
+                if level:
+                    expected["thinkingConfig"] = {"thinkingLevel": level}
+                self.assertEqual(config, expected)
 
     def test_pro_image_keeps_sampling_parameters(self):
         response = SimpleNamespace(candidates=[SimpleNamespace(content=SimpleNamespace(parts=[
@@ -48,10 +50,19 @@ class ApiUsageCallbackTests(unittest.TestCase):
         ]))])
         generate = mock.Mock(return_value=response)
         client = SimpleNamespace(models=SimpleNamespace(generate_content=generate))
-        main.generate_image_bytes(client, "scene", "gemini-3-pro-image", 0.7, 0.8, "16:9", "4K")
-        config = generate.call_args.kwargs["config"].model_dump(exclude_none=True, by_alias=True)
-        self.assertEqual(config["temperature"], 0.7)
-        self.assertEqual(config["topP"], 0.8)
+        for level in (None, "HIGH"):
+            with self.subTest(level=level):
+                main.generate_image_bytes(client, "scene", "gemini-3-pro-image", 0.7, 0.8, "16:9", "4K",
+                                          thinking_level=level)
+                config = generate.call_args.kwargs["config"].model_dump(exclude_none=True, by_alias=True)
+                self.assertEqual(config["temperature"], 0.7)
+                self.assertEqual(config["topP"], 0.8)
+                self.assertEqual(config.get("thinkingConfig"), {"thinkingLevel": level} if level else None)
+        generate.reset_mock()
+        with self.assertRaisesRegex(ValueError, "unsupported for gemini-3-pro-image"):
+            main.generate_image_bytes(client, "scene", "gemini-3-pro-image", 0.7, 0.8, "16:9", "4K",
+                                      thinking_level="MEDIUM")
+        generate.assert_not_called()
 
     def _fake_google_types(self):
         return SimpleNamespace(

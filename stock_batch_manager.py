@@ -140,7 +140,7 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
            metadata_provider: str | None = None, temperature: float = 1.0,
            top_p: float = 0.95, max_images: int | None = None, max_workers: int = 1,
            local_queue: Path | None = None, generation_route: str = "cloud", text_encoder: str | None = None,
-           image_quant: str = "Q4") -> int:
+           image_quant: str = "Q4", image_thinking_level: str | None = None) -> int:
     # The UI generates a fresh local directory for each Start.
     home = (ROOT / "output" / "stock_manager" / "runs").resolve()
     run_dir = run_dir.resolve()
@@ -234,7 +234,8 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
                                  metadata_model=metadata_model, metadata_provider=metadata_provider, temperature=temperature,
                                  top_p=top_p, max_images=max_images, max_workers=max_workers,
                                  sources=sources, route=generation_route, selected_by_lane=selected,
-                                 text_encoder=text_encoder, image_quant=image_quant)
+                                 text_encoder=text_encoder, image_quant=image_quant,
+                                 image_thinking_level=image_thinking_level)
             from stock_pipeline.batch_manager import write_report
             write_report({**report, "log_path": str(run_dir / "activity.log")}, run_dir)
             log(report["status"].replace("_", " ").title(), report=report)
@@ -281,6 +282,7 @@ class Desktop:
         self.local_image_quant = tk.StringVar(value="Q4")
         self.image_model = tk.StringVar(value="Nano Banana Pro")
         self.cloud_image_model = self.image_model.get()
+        self.image_thinking_level = tk.StringVar(value="Default")
         self.metadata_model = tk.StringVar(value=DEFAULT_METADATA_MODEL)
         self.temperature = tk.StringVar(value="1.0")
         self.top_p = tk.StringVar(value="0.95")
@@ -297,8 +299,8 @@ class Desktop:
         self.count = tk.StringVar(value="0 / 0 assets prepared")
         self.metrics = {key: tk.StringVar(value="—") for key in ("total", "pending", "generated", "uploaded", "failed")}
         window.title(TITLE)
-        window.minsize(780, 755)
-        window.geometry("1000x775")
+        window.minsize(780, 785)
+        window.geometry("1000x805")
         window.configure(bg="#edf0f3")
         window.protocol("WM_DELETE_WINDOW", self.close)
 
@@ -398,8 +400,14 @@ class Desktop:
             self.generation_entries.append(entry)
         self.image_limit_hint = ttk.Label(sampling, text="Blank = unlimited")
         self.image_limit_hint.pack(side="left")
-        encoder_settings = ttk.Frame(sampling)
-        encoder_settings.pack(side="left", padx=(12, 0))
+        model_settings = ttk.Frame(container)
+        model_settings.pack(fill="x", pady=(0, 8))
+        ttk.Label(model_settings, text="Thinking level").pack(side="left", padx=(0, 6))
+        self.thinking_picker = ttk.Combobox(model_settings, textvariable=self.image_thinking_level,
+                                            width=10, state="readonly")
+        self.thinking_picker.pack(side="left")
+        encoder_settings = ttk.Frame(model_settings)
+        encoder_settings.pack(side="left", padx=(16, 0))
         ttk.Label(encoder_settings, text="Local text encoder").pack(side="left", padx=(0, 6))
         self.text_encoder_picker = ttk.Combobox(encoder_settings, textvariable=self.text_encoder,
                                                 values=("Q2", "Q4"), width=4, state="readonly")
@@ -435,6 +443,7 @@ class Desktop:
         ttk.Button(log_controls, text="Generated Images", command=self.show_generated_images).pack(side="left", padx=8)
         ttk.Button(log_controls, text="Open ChatGPT + Copy Error Log",
                    command=self.open_error_in_chatgpt).pack(side="right")
+        self.refresh_generation_entries()
         window.after(75, self.poll)
 
     def reset_asset_cards(self):
@@ -592,6 +601,7 @@ class Desktop:
         self.refresh_generation_entries()
 
     def refresh_generation_entries(self):
+        from stock_pipeline.image_generator import IMAGE_THINKING_LEVELS
         from stock_pipeline.local_image_test import configured_local_image_models
 
         local = self.local_test.get() or self.generation_route.get() == "Local"
@@ -613,6 +623,12 @@ class Desktop:
         self.image_model.set(f"MiniMax H3 Image {self.local_image_quant.get()}" if local else self.cloud_image_model)
         self.image_model_label.configure(text="Cloud image model" if not local and self.generation_route.get() == "Both" else "Image model")
         self.model_picker.state(["disabled" if self.active else "!disabled"])
+        levels = IMAGE_THINKING_LEVELS[IMAGE_MODELS[self.cloud_image_model]]
+        choices = ("Default", *(level.title() for level in levels))
+        self.thinking_picker.configure(values=choices)
+        if self.image_thinking_level.get() not in choices:
+            self.image_thinking_level.set("Default")
+        self.thinking_picker.state(["disabled" if self.active or local else "!disabled"])
         pro = self.image_model.get() == "Nano Banana Pro"
         self.endpoint_entry.state(["disabled" if self.active or self.local_test.get() else "!disabled"])
         self.metadata_picker.state(["disabled" if self.active or self.local_test.get() else "!disabled"])
@@ -725,6 +741,8 @@ class Desktop:
             args.extend(("--metadata-model", metadata_model))
             if self.generation_route.get() != "Local":
                 args.extend(("--image-model", IMAGE_MODELS[self.image_model.get()]))
+                if self.image_thinking_level.get() != "Default":
+                    args.extend(("--image-thinking-level", self.image_thinking_level.get().upper()))
             args.extend(generation_args)
         if cdp:
             args.extend(("--cdp", cdp))
@@ -1073,6 +1091,7 @@ def main():
     parser.add_argument("--local-image-model", choices=tuple(LOCAL_IMAGE_MODELS), default="Q4", help=argparse.SUPPRESS)
     parser.add_argument("--generation-route", choices=("cloud", "local", "both"), default="cloud", help=argparse.SUPPRESS)
     parser.add_argument("--image-model", choices=tuple(IMAGE_MODELS.values()), help=argparse.SUPPRESS)
+    parser.add_argument("--image-thinking-level", choices=("MINIMAL", "MEDIUM", "HIGH"), help=argparse.SUPPRESS)
     parser.add_argument("--metadata-model", help=argparse.SUPPRESS)
     parser.add_argument("--metadata-provider", choices=("vertex", "gemini-developer"),
                         help=argparse.SUPPRESS)
@@ -1091,7 +1110,8 @@ def main():
                       metadata_provider=args.metadata_provider, temperature=args.temperature,
                       top_p=args.top_p, max_images=args.max_images, max_workers=args.max_workers,
                       local_queue=args.local_queue, generation_route=args.generation_route,
-                      text_encoder=args.local_text_encoder, image_quant=args.local_image_model)
+                      text_encoder=args.local_text_encoder, image_quant=args.local_image_model,
+                      image_thinking_level=args.image_thinking_level)
     import tkinter as tk
     window = tk.Tk()
     icon = ROOT / "config" / "stock_manager.ico"

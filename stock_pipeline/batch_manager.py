@@ -227,7 +227,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 cdp="http://127.0.0.1:9222", profile=None, stop_file=None, image_model=None,
                 metadata_model=None, metadata_provider=None, temperature=1.0, top_p=0.95, max_images=None,
                 sources: list[QueueSource] | None = None, max_workers: int = 1,
-                receipt_subdir: str | None = None, upload_slot=None) -> dict:
+                receipt_subdir: str | None = None, upload_slot=None, image_thinking_level: str | None = None) -> dict:
     start = time.monotonic()
     log_path = run_dir / "activity.log"
     redact = redactor(root)
@@ -429,6 +429,9 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 legacy.get_gemini_developer_api_key(root)
             report.update(metadata_model=selected_metadata, metadata_provider=metadata_provider)
             log(f"Image model: {selected_model}", "Generation", overview=overview())
+            if image_thinking_level is not None:
+                report["image_thinking_level"] = image_thinking_level
+                log(f"Image thinking level: {image_thinking_level}", "Generation")
             log(f"Parallel assets: {max_workers}", "Generation")
             log(f"Max new images: {max_images if max_images is not None else 'unlimited'}; "
                 + (f"Temperature: {temperature:g}; Top-p: {top_p:g}" if sampling else "sampling controls not sent"),
@@ -442,6 +445,8 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 metadata_model=selected_metadata, redact_error=redact, metadata_fallback=Event(),
                 on_image_rate_limit=on_image_rate_limit,
             )
+            if image_thinking_level is not None:
+                pipeline_options["image_thinking_level"] = image_thinking_level
             pipeline = pipeline_factory(**pipeline_options, registry=registry,
                                         progress=progress, usage_recorder=ledger.record, asset_stage=show_asset_stage)
 

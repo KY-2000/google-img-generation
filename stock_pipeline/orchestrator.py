@@ -33,6 +33,7 @@ class StockPipeline:
         metadata_model: str = "gemini-2.5-flash",
         minimum_resolution: int | None = None,
         temperature: float = 1.0, top_p: float = 0.95,
+        image_thinking_level: str | None = None,
         max_attempts: int = 4, retry_initial_wait: float = 1.0,
         progress: Callable[[str], None] | None = None,
         usage_recorder: Callable[..., Any] | None = None,
@@ -64,6 +65,7 @@ class StockPipeline:
         self.hard_max_keywords = int(metadata_config.get("hard_max_keywords", 49))
         self.max_filename_chars = int(adobe_config.get("max_filename_chars", 30))
         self.temperature = temperature
+        self.image_thinking_level = image_thinking_level
         self.top_p = top_p
         self.max_attempts = max_attempts
         self.retry_initial_wait = retry_initial_wait
@@ -289,6 +291,7 @@ class StockPipeline:
                     prompt=current["generation_prompt"], model=self.image_model,
                     output_path=original_path, temperature=self.temperature, top_p=self.top_p,
                     aspect_ratio=aspect_ratio, resolution=resolution,
+                    thinking_level=self.image_thinking_level,
                     usage_callback=(
                         lambda usage: self._record_usage(
                             asset_id=asset_id,

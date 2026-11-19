@@ -121,7 +121,8 @@ class LocalStockPipeline(StockPipeline):
 
 def run_lanes(root, commit, commit_time, run_dir, sources, *, route, emit, should_stop, stop_file,
               cdp, profile, image_model, metadata_model, metadata_provider, temperature, top_p,
-              max_images, max_workers, selected_by_lane=None, text_encoder=None, image_quant="Q4", manager=run_manager):
+              max_images, max_workers, selected_by_lane=None, text_encoder=None, image_quant="Q4",
+              image_thinking_level=None, manager=run_manager):
     lanes = ("cloud", "local") if route == "both" else (route,)
     plans = {lane: [source for source in sources
                     if selected_by_lane is None or source.source_file in selected_by_lane[lane]] for lane in lanes}
@@ -179,6 +180,8 @@ def run_lanes(root, commit, commit_time, run_dir, sources, *, route, emit, shoul
                            image_model=LOCAL_IMAGE_MODELS[image_quant], receipt_subdir="local")
         else:
             options.update(image_model=image_model)
+            if image_thinking_level is not None:
+                options["image_thinking_level"] = image_thinking_level
         try:
             return manager(root, commit, commit_time, directory, **options)
         except Exception as exc:

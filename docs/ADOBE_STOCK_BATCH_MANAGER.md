@@ -43,7 +43,12 @@ can finish, and Adobe upload is skipped. The manager shows **Rate Limited**.
 Use **Retry Failed** later to resume and reuse images already saved.
 
 For Nano Banana Pro, **Temperature** defaults to 1.0 and **Top-p** to 0.95.
-Nano Banana 2.1 disables these controls. **Max new images** works with both:
+Nano Banana 2.1 disables these controls. The **Thinking level** dropdown offers
+Minimal, Medium, and High for Nano Banana 2.1, and High for Nano Banana Pro.
+**Default** uses Google's model setting (Medium for 2.1 and High for Pro).
+In Both mode this setting applies to cloud images only.
+
+**Max new images** works with both:
 leave it blank for unlimited, or enter a positive whole number. The limit is
 per confirmed run, across the selected queues. One slot is used per asset that starts generation,
 even if it fails. Images

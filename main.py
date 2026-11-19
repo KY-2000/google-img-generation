@@ -715,6 +715,8 @@ def generate_image_bytes(
     aspect_ratio: str,
     resolution: str,
     usage_callback: Callable[[dict[str, int | float]], None] | None = None,
+    *,
+    thinking_level: str | None = None,
 ) -> bytes:
     try:
         from google.genai import types
@@ -729,8 +731,15 @@ def generate_image_bytes(
     }
     # Nano Banana 2.1 rejects sampling controls instead of ignoring them.
     # Do not send temperature/topP, including SDK defaults or null values.
-    if model.rsplit("/", 1)[-1] != "gemini-nano-banana-2.1":
+    model_id = model.rsplit("/", 1)[-1]
+    if model_id != "gemini-nano-banana-2.1":
         config_kwargs.update(temperature=temperature, topP=top_p)
+    if thinking_level is not None:
+        from stock_pipeline.image_generator import IMAGE_THINKING_LEVELS
+
+        if thinking_level not in IMAGE_THINKING_LEVELS.get(model_id, ()):
+            raise ValueError(f"Thinking level {thinking_level} is unsupported for {model}.")
+        config_kwargs["thinking_config"] = types.ThinkingConfig(thinking_level=thinking_level)
     response = client.models.generate_content(
         model=model,
         contents=[prompt],

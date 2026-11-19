@@ -190,10 +190,12 @@ class ManagerTests(unittest.TestCase):
         (self.root / ".env").write_text("IMAGE_MODEL=gemini-3-pro-image\n")
         generate = Mock(side_effect=self.generate)
         self.generate = generate
-        report = self.run_batch(image_model="gemini-nano-banana-2.1")
+        report = self.run_batch(image_model="gemini-nano-banana-2.1", image_thinking_level="MINIMAL")
         self.assertEqual(report["status"], "COMPLETE", report)
         self.assertEqual(generate.call_args.kwargs["model"], "gemini-nano-banana-2.1")
         self.assertEqual(report["image_model"], "gemini-nano-banana-2.1")
+        self.assertEqual(generate.call_args.kwargs["thinking_level"], "MINIMAL")
+        self.assertEqual(report["image_thinking_level"], "MINIMAL")
 
     def test_metadata_model_selection_reaches_vertex_and_records_actual_model(self):
         self.write("metadata.json", self.production("Metadata"))
