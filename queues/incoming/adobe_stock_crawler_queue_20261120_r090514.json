@@ -1,0 +1,497 @@
+{
+  "run_id": "TF_category_crawler_20261120_r090514",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-20T09:05:14+08:00",
+  "research": {
+    "finder": "creative_components",
+    "strategy": "category_crawler",
+    "product_line": "commercial_background",
+    "market": "Adobe Stock Malaysia public web",
+    "research_language": "zh-CN",
+    "candidate_count": 34,
+    "first_tests": [
+      "Extruded Aluminum Heat Sink with Open Fin Channels",
+      "Sedimentary Strata Specimen with Blank Correlation Field"
+    ],
+    "sample_counts": {
+      "pages": 32,
+      "entry_links": 12,
+      "pages_with_cards": 19,
+      "cards_before_global_dedupe": 577,
+      "distinct_ids": 574,
+      "duplicate_appearances": 3,
+      "visual_previews_reviewed": 31
+    },
+    "evidence_file": "adobe_stock_crawler_cards_20261120_r090514.csv",
+    "source_urls": [
+      "https://stock.adobe.com/my/illustrations",
+      "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+      "https://helpx.adobe.com/in/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html",
+      "https://helpx.adobe.com/stock/contributor/content-moderation/content-moderation.html",
+      "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+      "https://docs.google.com/document/d/1_D-QBzmhaKmpC42T4hDLefIgOPQ96qHFauaBAm5BgaQ/edit"
+    ],
+    "limitations": "排名为页面公开供给信息；主题检索含相关回退、误匹配和缺卡。SQLite 由使用者实际运行环境分配资产编号。"
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Dough Scoring: Raw Cut and Baked Ear Comparison",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 95,
+      "topic_bucket": "APPROVED",
+      "palette": "oat cream, pale dough, baked amber, graphite",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Build a horizontal 16:9 reference plate at 4K for a sourdough lesson or a flour brand technique guide. Place two similarly sized, oblong bread forms on an unbroken oat cream field, one on the left and one on the right, with matching viewing angles and matching long axes. On the left, show raw shaped dough with a thin skin, a faint dusting of flour, and one relaxed diagonal incision that opens slightly into pale dough. On the right, render the same silhouette after baking, with a raised amber ear created by that incision and a crumbly ridge following the same direction. Work in dry gouache with sparse colored pencil marks and believable pores, lit by a broad window from the upper left. Reserve a clear strip above each form for buyer supplied captions and keep the central gutter unmarked for cropping or separate layout placement. Keep edges clean at full size and omit utensils, lettering, trademarks, and decoration.",
+      "negative_prompt": "knife, hands, wheat ornaments, flour explosion, mirrored cuts, exaggerated hollow loaf, labels, logos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "component_category": "食品双状态教程图",
+        "material": "面团皮层与烘烤表壳",
+        "designer_persona": "烘焙教材编辑、原料品牌内容设计师",
+        "buyer_use_case": "酸种面包评分与割包教学",
+        "design_placement": "食谱网站教程内图",
+        "design_function": "同轮廓双态展示刀口与烤后展开",
+        "art_style": "Reference Food Illustration in Dry Gouache and Colored Pencil",
+        "style_rationale": "同一轮廓的前后对照减轻读者理解负担，缺口厚度与真实面包表皮有区别",
+        "distinctiveness": "同轮廓双态展示刀口与烤后展开",
+        "copy_space": "分隔明确可拆成两格，顶部和中缝能添加双语标签",
+        "metadata_seed_keywords": [
+          "烘焙割包",
+          "raw dough",
+          "baked ear",
+          "bread scoring",
+          "tutorial comparison"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://www.kingarthurbaking.com/blog/2017/08/04/scoring-bread-dough",
+          "https://stock.adobe.com/my/search?k=bread+dough+scoring&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=scored+dough&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=bread+crumb&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/Category/Food/289?filters%5Bcontent_type%3Aillustration%5D=1&hide_panel=1&load_type=illustrations+lp",
+          "https://stock.adobe.com/my/images/watercolor-food-clipart-baking-isolated/101940787",
+          "https://stock.adobe.com/my/images/filipino-man-making-ensaymada/551797830",
+          "https://stock.adobe.com/my/images/a-baker-adds-flour-and-kneading-dough-to-make-bread/43799933"
+        ],
+        "originality_notes": "插画精确词缺卡；近义词明确回退。已看样本包括长棍套组、揉面人物和揉面手势。对照教学用途由烘焙机构材料确认。",
+        "design_reuse_cases": [
+          "食谱网站教程内图",
+          "面粉品牌课程手册"
+        ],
+        "integration_guidance": "分隔明确可拆成两格，顶部和中缝能添加双语标签",
+        "reusability_rationale": "同一轮廓的前后对照减轻读者理解负担，缺口厚度与真实面包表皮有区别",
+        "quality_check": "烤后裂口必须沿原割线延伸，别做成两条相反方向",
+        "score_breakdown": {
+          "utility": 29,
+          "differentiation": 23,
+          "composition": 15,
+          "material": 10,
+          "feasibility": 9,
+          "timeliness": 5,
+          "diversity": 4
+        },
+        "evidence_ids": [
+          "101940787",
+          "551797830",
+          "43799933"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Extruded Aluminum Heat Sink with Open Fin Channels",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 95,
+      "topic_bucket": "APPROVED",
+      "palette": "satin silver, cool gray, slate, chalk",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a 4K horizontal 16:9 industrial illustration for a thermal component catalog or an engineering lesson on passive air cooling. Show a short, generic aluminum extrusion from a shallow three quarter angle, looking down the length of the open fin channels. Use a flat integral base and straight parallel fins with constant spacing and realistic thickness. The near end faces should reveal subtle extrusion grain and deburred edges, with darker reflected tones only where surfaces shelter one another. Place the component entirely in the left 54 percent, slightly below center, on a cool light gray field with a narrow contact shadow. Leave the right side clear for an editor to add a parts legend and keep the perimeter safe for a thumbnail crop. Use restrained product illustration, satin metal, and one broad overhead softbox that preserves the fin openings. Deliver a single opaque artwork with crisp silhouettes and omit arrows, gauges, text, branding, fasteners, and electronics.",
+      "negative_prompt": "CPU, circuit board, fan, colored arrows, warped fins, chrome reflection, digits, logos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "component_category": "工业部件注释底图",
+        "material": "挤压铝和拉丝切口",
+        "designer_persona": "硬件供应商编辑、工程课程设计师",
+        "buyer_use_case": "说明鳍片与空气通道",
+        "design_placement": "散热器技术目录",
+        "design_function": "以正视略俯角保留连续通道，方便叠加气流说明",
+        "art_style": "Orthographic Industrial Product Illustration with Material Study",
+        "style_rationale": "清楚表达机械结构和负空间，省去找实物及重建高光",
+        "distinctiveness": "以正视略俯角保留连续通道，方便叠加气流说明",
+        "copy_space": "左侧组件和右侧标注可分别进入图片框，底座完整保留",
+        "metadata_seed_keywords": [
+          "heat sink",
+          "extrusion",
+          "aluminum fins",
+          "convection",
+          "thermal design"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://info.boydcorp.com/hubfs/Thermal/Air-Cooling/Boyd-How-to-Select-a-Heat-Sink.pdf",
+          "https://stock.adobe.com/my/search?k=heat+sink+fins&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/images/exploded-detail-of-fan-and-heatsink-on-cpu-3d-illustration/190207852",
+          "https://stock.adobe.com/my/images/aluminum-heat-sink/80991129"
+        ],
+        "originality_notes": "插画命中 CPU 组件分解；混合结果有铝散热件，后者仅标题核对。真正矢量试查唯一结果为灯泡，属误匹配。",
+        "design_reuse_cases": [
+          "散热器技术目录",
+          "硬件课程的对流示意"
+        ],
+        "integration_guidance": "左侧组件和右侧标注可分别进入图片框，底座完整保留",
+        "reusability_rationale": "清楚表达机械结构和负空间，省去找实物及重建高光",
+        "quality_check": "平行通道贯通、鳍片等高，底座无额外装配件",
+        "score_breakdown": {
+          "utility": 28,
+          "differentiation": 24,
+          "composition": 15,
+          "material": 10,
+          "feasibility": 10,
+          "timeliness": 4,
+          "diversity": 4
+        },
+        "evidence_ids": [
+          "190207852",
+          "80991129"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Tucked Gift Wrap Seam with Twin Diagonal Folds",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "cranberry, oat cream, warm red, rosewood",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Illustrate a tucked gift wrapping seam as a quiet vertical 9:16 design component for a retailer gift wrap option or a holiday story card. Work at 4K and show only two converging folding creases and a flat tucked flap with a narrow wedge of exposed reverse near the lower left. Use matte cranberry paper with a warm oat reverse, fine fibers aligned with the sheet, and a slim highlight where the fold has compressed the pigment. Let the intact sheet become the background, and make the central and upper right area an even low contrast red for added pricing or instructions. Keep the seam away from the bottom interface margin and place all hard edges below the lower half. Use soft oblique studio light from the upper left and use a fine contact shadow where the upper flap slips under the lower fold. Preserve the physical paper thickness and avoid ribbons, gift boxes, text, logos, foil, confetti, and overt seasonal symbols.",
+      "negative_prompt": "box, bow, ribbon, printed holly, snowfall, ornate frame, torn edge, labels",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "component_category": "季节性包装服务背景",
+        "material": "双色背面的哑光包装纸",
+        "designer_persona": "零售品牌美术、DTC 商城运营设计师",
+        "buyer_use_case": "标示包装服务并保留交易文案",
+        "design_placement": "节日礼品包装服务卡",
+        "design_function": "只见双折线与插入式贴合纸缝，局部露出反面",
+        "art_style": "Matte Paper Still Life Illustration with Oblique Soft Light",
+        "style_rationale": "纤维方向与同向折痕的质感在短图版仍可辨，比通用礼盒图更适合作功能组件",
+        "distinctiveness": "只见双折线与插入式贴合纸缝，局部露出反面",
+        "copy_space": "纵向中央安静区容纳文字，顶部底部各留接口安全区",
+        "metadata_seed_keywords": [
+          "gift wrap",
+          "wrapping service",
+          "folded paper",
+          "holiday retail",
+          "paper crease"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://www.shopify.com/enterprise/blog/gift-wrapping-ecommerce",
+          "https://stock.adobe.com/my/search?k=gift+wrapping+paper+fold&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=ribbon+curl+shadow&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/Category/Christmas/457?filters%5Bcontent_type%3Aillustration%5D=1&hide_panel=1&load_type=illustrations+lp",
+          "https://stock.adobe.com/my/images/3d-render-white-wrapping-paper-mock-up-template/491058453",
+          "https://stock.adobe.com/my/images/3d-render-pink-blue-note-paper-curled-corner-page-curl-abstract-creative-background-modern-mock-up-design-element-for-advertising-and-promotional-message/256072783",
+          "https://stock.adobe.com/my/images/christmas-and-new-year-vector-greeting-card/94022527"
+        ],
+        "originality_notes": "已看卷纸和蓝色便签；形成竞品相似性警戒。选题改为平放插入式双折缝，留白供服务条款。",
+        "design_reuse_cases": [
+          "节日礼品包装服务卡",
+          "社媒礼赠选项说明"
+        ],
+        "integration_guidance": "纵向中央安静区容纳文字，顶部底部各留接口安全区",
+        "reusability_rationale": "纤维方向与同向折痕的质感在短图版仍可辨，比通用礼盒图更适合作功能组件",
+        "quality_check": "反面与正面纸厚一致，两条折线构成可辨接缝",
+        "score_breakdown": {
+          "utility": 27,
+          "differentiation": 23,
+          "composition": 15,
+          "material": 10,
+          "feasibility": 10,
+          "timeliness": 5,
+          "diversity": 3
+        },
+        "evidence_ids": [
+          "491058453",
+          "256072783",
+          "94022527"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Sedimentary Strata Specimen with Blank Correlation Field",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "clay rose, buff sandstone, shale gray, warm ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Compose a horizontal 16:9 teaching plate at 4K for a geology workbook or a small museum label. Place a generic rectangular rock specimen in the left half, front face nearly square to the camera and a narrow right edge visible to give the block thickness. Show five undisturbed horizontal strata with naturally variable thickness. Render a coarse buff sandstone bed with visible rounded grains, quieter gray silt rich beds and one narrow compact clay colored seam. Let every boundary continue consistently around the small side face. Use natural history lithographic illustration with fine stipple, a warm ivory paper field and broad neutral daylight. Keep the full right 45 percent quiet so designers can align their own callouts with each bed, and leave breathing room around the specimen for cropping into print. Keep small grains legible without adding gloss. Omit fossils, landscape, interpretive arrows, dates, lettering and identifiers.",
+      "negative_prompt": "mountains, fossils, lava glow, tilted faults, map scale, rainbow bands, text, logo",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "component_category": "地质标本注释底图",
+        "material": "砂岩、粉砂层与细黏土夹层",
+        "designer_persona": "地学教材美编、自然博物馆展签设计师",
+        "buyer_use_case": "标注未扰动岩层与粒径对照",
+        "design_placement": "相对年代课程讲义",
+        "design_function": "可读的连续层界让外部引线对准正确层位",
+        "art_style": "Natural History Lithographic Rock Study with Fine Stipple",
+        "style_rationale": "层厚和矿物粒度有物理依据，省去剥除地景的工作",
+        "distinctiveness": "可读的连续层界让外部引线对准正确层位",
+        "copy_space": "左侧完整岩柱，右侧空白可接分层标线并可单独裁切",
+        "metadata_seed_keywords": [
+          "sedimentary strata",
+          "rock specimen",
+          "geology education",
+          "sandstone",
+          "siltstone"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://www.usgs.gov/educational-resources/find-feature-layers",
+          "https://stock.adobe.com/my/search?k=sedimentary+rock+layers&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/images/geologic-profile-of-hirschberg-kaufungen-forest-from-meyers-lexikon-1895-7-vol/116998536",
+          "https://stock.adobe.com/my/images/3d-rendering-sedimentary-rock-mountain-layered-topographic-terrain/428111925",
+          "https://stock.adobe.com/my/images/mars-the-red-planet-landscape-with-mountains-with-sedimentary-rock-layers-during-sunrise-or-sunset/200826823"
+        ],
+        "originality_notes": "已看历史地质剖面与两种地景；选题把连续层界放在可独立裁切的示教标本。",
+        "design_reuse_cases": [
+          "相对年代课程讲义",
+          "博物馆岩石标本墙卡"
+        ],
+        "integration_guidance": "左侧完整岩柱，右侧空白可接分层标线并可单独裁切",
+        "reusability_rationale": "层厚和矿物粒度有物理依据，省去剥除地景的工作",
+        "quality_check": "水平层分界连续，勿把示意当成真实地点岩芯",
+        "score_breakdown": {
+          "utility": 28,
+          "differentiation": 23,
+          "composition": 15,
+          "material": 10,
+          "feasibility": 9,
+          "timeliness": 5,
+          "diversity": 3
+        },
+        "evidence_ids": [
+          "116998536",
+          "428111925",
+          "200826823"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Demountable Timber Joint with Withdrawn Machine Bolt",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "birch, charcoal gray, pewter, warm stone",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Draw a 4K horizontal 16:9 workshop manual plate for a furniture repair booklet or a design for disassembly lecture. Show two unbranded birch blocks meeting at a simple butt joint. A small section of one block is cut away to expose a steel threaded insert seated flush in its bore. Align a single partially withdrawn machine bolt on the exact same axis, and show the coarse wood gripping exterior of the insert separately from its finer interior machine thread. Keep the bolt, insert and blocks in the left two thirds and reserve the right third for a short caption or replacement part list. Use restrained mechanical linework, soft graphite shading, muted pewter highlights and fine wood grain that follows the boards. Light from high left to keep the inner bore readable. Leave good outer margins for manual layout and crop. Omit dimension arrows, tool branding, text, glue and distracting workshop props.",
+      "negative_prompt": "trademarked fittings, screws through air, mismatched threads, ghost bolts, dimensions, writing",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "component_category": "机械连接剖面",
+        "material": "桦木、钢嵌件与机螺栓",
+        "designer_persona": "家具说明书美编、循环设计培训编辑",
+        "buyer_use_case": "说明可拆卸连接及可更换零件",
+        "design_placement": "维修小册子",
+        "design_function": "一个同轴螺栓和螺纹嵌件支持逐项讲解",
+        "art_style": "Workshop Manual Cutaway with Precision Line and Soft Shading",
+        "style_rationale": "正确对齐的导向关系比环保箭头提供更多信息，免去通用爆炸图拆解",
+        "distinctiveness": "一个同轴螺栓和螺纹嵌件支持逐项讲解",
+        "copy_space": "端部剖开后允许在空白边补加说明，剪裁保留全轴线",
+        "metadata_seed_keywords": [
+          "demountable joint",
+          "repairable furniture",
+          "threaded insert",
+          "mechanical fastener",
+          "cutaway"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://www.epa.gov/smm/best-practices-reducing-reusing-and-recycling-construction-and-demolition-materials",
+          "https://www.ezlok.com/for-wood",
+          "https://stock.adobe.com/my/search?k=repairable+furniture+fastener&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=knock+down+furniture+joint&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=building+material+reuse&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/images/green-building-sustainable-wheel-infographic/143065556",
+          "https://stock.adobe.com/my/images/hand-drawn-sketch-frame-of-screws-and-nuts/208280381"
+        ],
+        "originality_notes": "精确插画缺卡；建筑再利用的代表是循环图，嵌件短词只抓到螺帽边框（标题）。实物任务由 EPA 和五金厂家共同确认，供给证据偏弱。",
+        "design_reuse_cases": [
+          "维修小册子",
+          "设计拆解课件"
+        ],
+        "integration_guidance": "端部剖开后允许在空白边补加说明，剪裁保留全轴线",
+        "reusability_rationale": "正确对齐的导向关系比环保箭头提供更多信息，免去通用爆炸图拆解",
+        "quality_check": "嵌件与机螺栓内外螺纹需相配，无臆造接口",
+        "score_breakdown": {
+          "utility": 29,
+          "differentiation": 23,
+          "composition": 14,
+          "material": 9,
+          "feasibility": 9,
+          "timeliness": 5,
+          "diversity": 4
+        },
+        "evidence_ids": [
+          "143065556",
+          "208280381"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Tuning Fork with Restrained Prong Motion Traces",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "steel, graphite, pale blue, ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Make a 4K 16:9 scientific illustration for a lesson on sound or a museum activity card. Show one neutral steel tuning fork in near frontal view, with upright parallel tines, a rounded U junction and a short centered stem. Set it in the left half on an ivory field, with a quiet right half reserved for teaching annotations. Show the motion at the tips with only two narrow pairs of faint graphite traces. The two tips shift toward one another or away from one another in opposite directions, and the faint marks taper out toward the base. Keep the main fork completely sharp, with believable brushed steel, subtle edge highlights, and diffuse light that never hides its contours. Preserve margins for cropping the figure by itself or embedding the whole plate. Avoid arrows, wave graphics, musical notes, numbers, brand markings and decorative objects.",
+      "negative_prompt": "ear diagram, water splash, glow, musical notes, waveform chart, hands, arrows, text",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "component_category": "科学仪器动作示意",
+        "material": "拉丝钢与石墨动作线",
+        "designer_persona": "科学课件编辑、听觉科普展板美编",
+        "buyer_use_case": "直观看到叉齿振动位置",
+        "design_placement": "声波课程页",
+        "design_function": "局部线迹标明叉尖反向位移，手柄无大幅模糊",
+        "art_style": "Scientific Instrument Illustration with Graphite Motion Registration",
+        "style_rationale": "静态轮廓和动效痕迹并存，可理解后再自行标注，无需找视频截帧",
+        "distinctiveness": "局部线迹标明叉尖反向位移，手柄无大幅模糊",
+        "copy_space": "右方空区可以加引线或练习题，叉体能独立裁切",
+        "metadata_seed_keywords": [
+          "tuning fork",
+          "prong vibration",
+          "acoustics",
+          "science illustration",
+          "sound lesson"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://www.nidcd.nih.gov/news/multimedia/tuning-fork-classroom-demonstration-sound-vibrations",
+          "https://stock.adobe.com/my/search?k=tuning+fork+vibration&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/images/3d-isometric-flat-conceptual-illustration-of-resonance-tuning-fork/705337034",
+          "https://stock.adobe.com/my/images/stimmgabel-mit-schallwellen/53899428",
+          "https://stock.adobe.com/my/images/set-of-tuning-forks-with-silicone-hammer-3d-rendering/203843208"
+        ],
+        "originality_notes": "已看装置共振、目录组合与黑底声波。改以叉尖反相位移痕迹作为编辑锚点。",
+        "design_reuse_cases": [
+          "声波课程页",
+          "听觉科学展签"
+        ],
+        "integration_guidance": "右方空区可以加引线或练习题，叉体能独立裁切",
+        "reusability_rationale": "静态轮廓和动效痕迹并存，可理解后再自行标注，无需找视频截帧",
+        "quality_check": "两叉尖位移相反，线迹要从叉齿本体邻近进入",
+        "score_breakdown": {
+          "utility": 27,
+          "differentiation": 23,
+          "composition": 14,
+          "material": 10,
+          "feasibility": 9,
+          "timeliness": 5,
+          "diversity": 3
+        },
+        "evidence_ids": [
+          "705337034",
+          "53899428",
+          "203843208"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Sixfold Paper Cutout Stencil beside Its Folded Wedge",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "winter blue, slate blue, cotton white, soft gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a horizontal 16:9 craft plate at 4K for a winter workshop guide or an educational layout on paper symmetry. Place a modest geometric snowflake cut from matte white cotton paper near the left third and a slim folded paper wedge near the right third. Keep the flat snowflake structurally connected, with exactly six repeated radial sectors and a few rounded triangles cut through the paper. Let two cut details on the folded wedge suggest the same shapes visible in the open form. Use a muted winter blue opaque field and soft angled light so that the thin paper edges cast a short believable shadow. Include sparse fibers and slightly compressed creases as construction evidence. Keep both forms within the crop margins, with a clear gutter and generous space above for buyer added captions. Omit glitter, holiday characters, printed words, logos and unrelated decorations.",
+      "negative_prompt": "random branch counts, disconnected leaves, plastic glitter, borders, text, labels, logos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "component_category": "剪纸工艺双阶段模块",
+        "material": "白色棉纸和剪切纤维边缘",
+        "designer_persona": "工艺教材编辑、冬季活动美术",
+        "buyer_use_case": "以一张图展示展开外轮廓与折叠母片",
+        "design_placement": "手作网站教程插图",
+        "design_function": "六重对称成品和窄折片分别占两个编辑区域",
+        "art_style": "Hand Cut Paper Study with Genuine Fiber Edges",
+        "style_rationale": "同时保留对应的镂空与切口决策，单独图标无法给出两阶段的提示",
+        "distinctiveness": "六重对称成品和窄折片分别占两个编辑区域",
+        "copy_space": "保持两类对象可独立裁切，借中央空档加流程文字",
+        "metadata_seed_keywords": [
+          "paper snowflake",
+          "paper cut",
+          "winter craft",
+          "radial symmetry",
+          "stencil"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://www.nesdis.noaa.gov/about/k-12-education/ice-snow/how-do-snowflakes-form",
+          "https://scied.ucar.edu/learning-zone/storms/snowflakes",
+          "https://stock.adobe.com/my/search?k=paper+snowflake+cutout&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/Category/Christmas/457?filters%5Bcontent_type%3Aillustration%5D=1&hide_panel=1&load_type=illustrations+lp",
+          "https://stock.adobe.com/my/images/decorative-snowflake-in-papercut-style-white-paper-star/721179858",
+          "https://stock.adobe.com/my/images/top-view-of-decorative-plant-png-alpha-channel-cutout-3d-rendering/341767683"
+        ],
+        "originality_notes": "已看到单枚剪纸样本和错误植被匹配。选题保留折片与展开件两个独立位置，折片切口对应可辨。",
+        "design_reuse_cases": [
+          "手作网站教程插图",
+          "冬季科学活动海报"
+        ],
+        "integration_guidance": "保持两类对象可独立裁切，借中央空档加流程文字",
+        "reusability_rationale": "同时保留对应的镂空与切口决策，单独图标无法给出两阶段的提示",
+        "quality_check": "六个重复扇区须数得清，折片孔位与展开孔位对应",
+        "score_breakdown": {
+          "utility": 26,
+          "differentiation": 23,
+          "composition": 15,
+          "material": 10,
+          "feasibility": 9,
+          "timeliness": 5,
+          "diversity": 3
+        },
+        "evidence_ids": [
+          "721179858",
+          "341767683"
+        ]
+      }
+    }
+  ]
+}
