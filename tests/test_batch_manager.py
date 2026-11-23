@@ -829,6 +829,28 @@ class ManagerTests(unittest.TestCase):
         self.assertEqual(result["status"], "COMPLETE", result)
         self.assertEqual(len(self.calls), 1)
 
+    def test_metadata_qc_repairs_once_then_resumes_with_rejection_reason(self):
+        self.write("one.json", self.production("One"))
+        valid = sample_model_metadata()
+        rejected = {**valid, "qc": {**valid["qc"], "commercial_ready": False}}
+        self.metadata = Mock(side_effect=[json.dumps(rejected), json.dumps(rejected), json.dumps(valid)])
+
+        result = self.run_batch()
+        self.assertEqual(result["status"], "BLOCKED", result)
+        self.assertEqual(self.metadata.call_count, 2)
+        self.assertEqual(self.uploads, [])
+        first_call, repair_call = self.metadata.call_args_list
+        self.assertNotIn("previous attempt failed validation", first_call.kwargs["system_prompt"])
+        self.assertIn("commercial_ready=false", repair_call.kwargs["system_prompt"])
+
+        result = self.run_batch()
+        self.assertEqual(result["status"], "COMPLETE", result)
+        self.assertEqual(self.metadata.call_count, 3)
+        self.assertIn("commercial_ready=false", self.metadata.call_args.kwargs["system_prompt"])
+        self.assertEqual(self.metadata.call_args.kwargs["image_path"], first_call.kwargs["image_path"])
+        self.assertEqual(len(self.calls), 1)
+        self.assertEqual(len(self.uploads), 1)
+
     def test_interruption_after_atomic_image_write_reuses_image(self):
         from unittest.mock import patch
 

@@ -59,12 +59,17 @@ def validate_metadata(
     qc = metadata["qc"]
     if not isinstance(qc, dict) or set(qc) != qc_fields or not all(type(qc[field]) is bool for field in qc_fields):
         raise MetadataValidationError("qc must match the metadata schema and contain booleans")
-    if (
-        not qc["image_grounded"] or not qc["top10_defensible"]
-        or qc["contains_speculation"] or qc["contains_redundancy"]
-        or not qc["commercial_ready"]
-    ):
-        raise MetadataValidationError("metadata qc is not commercial-ready")
+    failing_flags = [
+        f"{field}={str(qc[field]).lower()}"
+        for field, expected in (
+            ("image_grounded", True), ("top10_defensible", True),
+            ("contains_speculation", False), ("contains_redundancy", False),
+            ("commercial_ready", True),
+        )
+        if qc[field] != expected
+    ]
+    if failing_flags:
+        raise MetadataValidationError("metadata qc is not commercial-ready: " + ", ".join(failing_flags))
     title = metadata["title"]
     if not isinstance(title, str) or not title.strip():
         raise MetadataValidationError("title must be present")

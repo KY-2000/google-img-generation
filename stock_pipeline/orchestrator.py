@@ -205,6 +205,7 @@ class StockPipeline:
         asset_dir.mkdir(parents=True, exist_ok=True)
         logger = AssetLogger(asset_dir)
         current = self.registry.get_asset(asset_id)
+        repair_reason = None
         background = current.get("asset_type") == "commercial_background"
         aspect_ratio = current["aspect_ratio"] if background else self.aspect_ratio
         resolution = current["resolution"] if background else self.resolution
@@ -229,6 +230,7 @@ class StockPipeline:
             self.registry.transition(asset_id, "IMAGE_READY")
             current = self.registry.get_asset(asset_id)
         elif current["status"] == "METADATA_QC_FAILED":
+            repair_reason = current["error"] or "The previous metadata failed quality checks."
             self.registry.transition(asset_id, "METADATA_PENDING")
             current = self.registry.get_asset(asset_id)
         elif current["status"] == "IMAGE_GENERATING":
@@ -337,10 +339,9 @@ class StockPipeline:
         if current["status"] == "METADATA_PENDING":
             category_text = self._resource("category-code.txt").read_text(encoding="utf-8").strip()
             system_prompt = self._resource("config/prompts/metadata_v2.txt").read_text(encoding="utf-8").strip()
-            started = time.perf_counter()
             generator = self.metadata_generate_text or generate_metadata_for_asset
 
-            def request_metadata(provider: str, model: str) -> str:
+            def request_metadata(provider: str, model: str, prompt: str) -> str:
                 self.registry.update_asset(asset_id, metadata_model=model)
                 self._emit_progress(asset_id, f"metadata prompt 1/1 started model={model} provider={provider}",
                                     stage="metadata")
@@ -348,7 +349,7 @@ class StockPipeline:
                     client=self._get_metadata_client(provider), provider=provider,
                     image_path=Path(current["image_path"]), theme=current["theme"],
                     generation_prompt=current["generation_prompt"], category_list=category_text,
-                    system_prompt=system_prompt, model=model,
+                    system_prompt=prompt, model=model,
                     temperature=0.2, top_p=0.9, asset_id=asset_id,
                     project_root=self.project_root,
                 )
@@ -359,40 +360,57 @@ class StockPipeline:
                     )
                 return self._with_retries(lambda: generator(**metadata_kwargs), logger, "metadata_generation")
 
-            provider, model = (
-                FLASH_METADATA_FALLBACK if self._metadata_fallback.is_set()
-                else (self.metadata_provider, self.metadata_model)
-            )
-            try:
-                raw = request_metadata(provider, model)
-            except Exception as exc:
-                if (provider != "gemini-developer" or model.removeprefix("models/") != "gemini-4-hydrogen"
-                        or getattr(exc, "code", None) != 503):
-                    raise
-                self._metadata_fallback.set()
-                self._emit_progress(
-                    asset_id, "Hydrogen returned HTTP 503; switching remaining metadata to gemini-3.8-flash (Vertex AI)",
+            validation_error = None
+            for _ in range(1 if repair_reason else 2):
+                prompt = system_prompt
+                if repair_reason:
+                    self._emit_progress(asset_id, f"Repairing metadata on the saved image: {repair_reason}")
+                    prompt += (
+                        f"\n\nA previous attempt failed validation: {repair_reason}\n"
+                        "Re-assess the actual image and write a fresh title and keyword list. "
+                        "Use visually supported details, remove overlapping terms and inferred context, "
+                        "and reassess all QC flags honestly after revising the metadata."
+                    )
+                provider, model = (
+                    FLASH_METADATA_FALLBACK if self._metadata_fallback.is_set()
+                    else (self.metadata_provider, self.metadata_model)
                 )
-                raw = request_metadata(*FLASH_METADATA_FALLBACK)
-            (asset_dir / "metadata_raw.txt").write_bytes(raw.encode("utf-8"))
-            logger.event("metadata_generation", duration_seconds=round(time.perf_counter() - started, 3))
-            self._emit_progress(asset_id, "metadata prompt 1/1 completed")
-            started = time.perf_counter()
-            self._emit_progress(asset_id, "metadata validation started", stage="metadata_check")
-            try:
-                metadata = validate_metadata(
-                    enrich_metadata(parse_metadata_json(raw), asset_id),
-                    asset_id,
-                    parse_categories(category_text),
-                    max_title_chars=self.max_title_chars,
-                    min_expected_keywords=self.min_expected_keywords,
-                    hard_max_keywords=self.hard_max_keywords,
-                )
-            except Exception as exc:
-                self.registry.transition(asset_id, "METADATA_QC_FAILED", error=str(exc))
-                logger.event("metadata_validation_failed", error=str(exc))
-                self._emit_progress(asset_id, f"metadata validation failed: {exc}")
-                raise
+                started = time.perf_counter()
+                try:
+                    raw = request_metadata(provider, model, prompt)
+                except Exception as exc:
+                    if (provider != "gemini-developer" or model.removeprefix("models/") != "gemini-4-hydrogen"
+                            or getattr(exc, "code", None) != 503):
+                        raise
+                    self._metadata_fallback.set()
+                    self._emit_progress(
+                        asset_id, "Hydrogen returned HTTP 503; switching remaining metadata to gemini-3.8-flash (Vertex AI)",
+                    )
+                    raw = request_metadata(*FLASH_METADATA_FALLBACK, prompt)
+                (asset_dir / "metadata_raw.txt").write_bytes(raw.encode("utf-8"))
+                logger.event("metadata_generation", duration_seconds=round(time.perf_counter() - started, 3))
+                self._emit_progress(asset_id, "metadata prompt 1/1 completed")
+                started = time.perf_counter()
+                self._emit_progress(asset_id, "metadata validation started", stage="metadata_check")
+                try:
+                    metadata = validate_metadata(
+                        enrich_metadata(parse_metadata_json(raw), asset_id),
+                        asset_id,
+                        parse_categories(category_text),
+                        max_title_chars=self.max_title_chars,
+                        min_expected_keywords=self.min_expected_keywords,
+                        hard_max_keywords=self.hard_max_keywords,
+                    )
+                except (TypeError, ValueError) as exc:
+                    validation_error = exc
+                    repair_reason = str(exc)
+                    logger.event("metadata_validation_failed", error=repair_reason)
+                    self._emit_progress(asset_id, f"metadata validation failed: {repair_reason}")
+                else:
+                    break
+            else:
+                self.registry.transition(asset_id, "METADATA_QC_FAILED", error=repair_reason)
+                raise validation_error
             (asset_dir / "metadata.json").write_text(json.dumps(metadata, indent=2, sort_keys=True) + "\n", encoding="utf-8")
             self.registry.update_asset(
                 asset_id, title=metadata["title"], keywords_json=json.dumps(metadata["keywords"]),
