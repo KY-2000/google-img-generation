@@ -1,0 +1,1020 @@
+{
+  "run_id": "TF_category_crawler_20261123_insight_r01",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-23T11:13:00+08:00",
+  "research": {
+    "finder": "category_crawler",
+    "origin": "10 uploaded Adobe Insight image previews",
+    "candidate_count": 32,
+    "approved_count": 24,
+    "rejected_count": 8,
+    "selection_override": "User removed count cap; 24 concepts passed subjective editorial >=85 screening",
+    "evidence_status": "PARTIAL: category discovery verified through web; category card pages returned cache miss, local Python DNS failed. No claimed full live crawl, result count, ranking or sales evidence.",
+    "source_urls": [
+      "https://stock.adobe.com/my/illustrations",
+      "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+      "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+      "https://helpx.adobe.com/stock/contributor/content-moderation/common-reasons-content-refusal.html"
+    ],
+    "exclusion_registry": "11 USER_REPORTED_SIMILAR confirmed from live Google Doc 2026-11-23",
+    "ast_allocation": "All asset_id omitted; local runner must auto allocate and persist before strict validation; do not call validate_topic_queue until allocation",
+    "reference_assets": [
+      2092316437,
+      2063115901,
+      2154354443,
+      2175715581,
+      2175715946,
+      2175834980,
+      2187492124,
+      2224229920,
+      2226958105,
+      2226958364
+    ]
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Natural Beeswax Candle Height Rhythm",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "ivory, honey cream, warm gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 16:9 format for a commercial graphic designer. The subject is three unbranded handmade pillar candles with subtly varied heights and irregular melted wax rims. Depict its physical construction faithfully: ivory beeswax, shallow wax pools and thin cotton wicks. Art style: Contemporary Product Still Life Photography, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: arrange the candles toward the right third, leave the left third uncluttered and free of flame. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: large diffused studio key with restrained warm flame glow; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to ivory, honey cream, warm gray, allowing nuanced real-material variations. Buyer applications include wellness newsletter banner and winter home fragrance promotion; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is credible short flame reflections and controlled wax edge anatomy. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Seasonal Object Display",
+        "subject": "three unbranded handmade pillar candles with subtly varied heights and irregular melted wax rims",
+        "art_style": "Contemporary Product Still Life Photography",
+        "material": "ivory beeswax, shallow wax pools and thin cotton wicks",
+        "buyer_use_case": "wellness newsletter banner; winter home fragrance promotion",
+        "design_reuse_cases": [
+          "wellness newsletter banner",
+          "winter home fragrance promotion"
+        ],
+        "design_placement": "arrange the candles toward the right third, leave the left third uncluttered and free of flame",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "credible short flame reflections and controlled wax edge anatomy",
+        "reference_image_positions": "1",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Candle Flame Macro Border Study",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 87,
+      "topic_bucket": "APPROVED",
+      "palette": "warm ivory, amber, charcoal",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 16:9 format for a commercial graphic designer. The subject is a narrow row of small lit cotton wicks emerging from hand-poured soy candles, viewed in tight macro. Depict its physical construction faithfully: satin soy wax, amber translucent melt pools, charred cotton. Art style: Minimalist Wax Macro Photography, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: constrain the wick rhythm to a low horizontal strip with broad quiet upper field. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: soft window illumination plus real flame gradients; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to warm ivory, amber, charcoal, allowing nuanced real-material variations. Buyer applications include memorial event invitation and mindfulness website masthead; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is high-fidelity wick and melt-pool behavior, usable horizontal trim. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Festive Light Detail",
+        "subject": "a narrow row of small lit cotton wicks emerging from hand-poured soy candles, viewed in tight macro",
+        "art_style": "Minimalist Wax Macro Photography",
+        "material": "satin soy wax, amber translucent melt pools, charred cotton",
+        "buyer_use_case": "memorial event invitation; mindfulness website masthead",
+        "design_reuse_cases": [
+          "memorial event invitation",
+          "mindfulness website masthead"
+        ],
+        "design_placement": "constrain the wick rhythm to a low horizontal strip with broad quiet upper field",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "high-fidelity wick and melt-pool behavior, usable horizontal trim",
+        "reference_image_positions": "1",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Frosted Glass Candleholder Shadow Geometry",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 89,
+      "topic_bucket": "APPROVED",
+      "palette": "milk white, ash gray, pale amber",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 9:16 format for a commercial graphic designer. The subject is an unbranded frosted cylindrical glass candle vessel casting an oval shadow beside an unlit companion. Depict its physical construction faithfully: matte frosted glass, visible wall thickness and fine mold lines. Art style: Architectural Glass Still Life, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: occupy the bottom quarter with tall empty upper copy-safe field. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: side daylight through translucent diffusion; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to milk white, ash gray, pale amber, allowing nuanced real-material variations. Buyer applications include boutique spa booking story and interior designer mood-board cover; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is optical density of frosted glass replaces conventional holiday props. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Home Decor Surface",
+        "subject": "an unbranded frosted cylindrical glass candle vessel casting an oval shadow beside an unlit companion",
+        "art_style": "Architectural Glass Still Life",
+        "material": "matte frosted glass, visible wall thickness and fine mold lines",
+        "buyer_use_case": "boutique spa booking story; interior designer mood-board cover",
+        "design_reuse_cases": [
+          "boutique spa booking story",
+          "interior designer mood-board cover"
+        ],
+        "design_placement": "occupy the bottom quarter with tall empty upper copy-safe field",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "optical density of frosted glass replaces conventional holiday props",
+        "reference_image_positions": "1",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Copper Maple Leaf Backlit Vein Specimen",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "copper, vermilion, amber, chalk white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 9:16 format for a commercial graphic designer. The subject is one intricate copper-red maple leaf held at a slight angle with the stem visible and credible serrated lobes. Depict its physical construction faithfully: dry translucent leaf lamina, raised branching veins, curled tips. Art style: Botanical Specimen Macro Photography, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: keep leaf in lower half, isolate against smooth off-white with a generous top field. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: raking late afternoon backlight revealing natural venation; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to copper, vermilion, amber, chalk white, allowing nuanced real-material variations. Buyer applications include autumn retail story cover and nature education poster background; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is distinct anatomical vein network and controlled backlight translucency. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Autumn Botanical",
+        "subject": "one intricate copper-red maple leaf held at a slight angle with the stem visible and credible serrated lobes",
+        "art_style": "Botanical Specimen Macro Photography",
+        "material": "dry translucent leaf lamina, raised branching veins, curled tips",
+        "buyer_use_case": "autumn retail story cover; nature education poster background",
+        "design_reuse_cases": [
+          "autumn retail story cover",
+          "nature education poster background"
+        ],
+        "design_placement": "keep leaf in lower half, isolate against smooth off-white with a generous top field",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "distinct anatomical vein network and controlled backlight translucency",
+        "reference_image_positions": "2",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Autumn Leaf Canopy Corner Sweep",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "burnt orange, wine red, cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 16:9 format for a commercial graphic designer. The subject is a sparse spray of amber and russet maple leaves entering only from upper left corner with botanical structure intact. Depict its physical construction faithfully: real dry leaves, slender woody twigs, natural spots and fine veins. Art style: Fine Art Botanical Editorial Photography, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: upper-left corner frame with clean central and right headline area. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: overcast outdoor diffuse light with gentle leaf transmission; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to burnt orange, wine red, cream, allowing nuanced real-material variations. Buyer applications include seasonal bookstore banner and fall community event website header; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is corner framing supports responsive layouts without leaf scatter. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Botanical Frame",
+        "subject": "a sparse spray of amber and russet maple leaves entering only from upper left corner with botanical structure intact",
+        "art_style": "Fine Art Botanical Editorial Photography",
+        "material": "real dry leaves, slender woody twigs, natural spots and fine veins",
+        "buyer_use_case": "seasonal bookstore banner; fall community event website header",
+        "design_reuse_cases": [
+          "seasonal bookstore banner",
+          "fall community event website header"
+        ],
+        "design_placement": "upper-left corner frame with clean central and right headline area",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "corner framing supports responsive layouts without leaf scatter",
+        "reference_image_positions": "2",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Pressed Autumn Herbarium Strip",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 87,
+      "topic_bucket": "APPROVED",
+      "palette": "ochre, copper, pale cream, muted brown",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 16:9 format for a commercial graphic designer. The subject is an orderly low horizontal sequence of differently shaped pressed autumn leaves and seed pods on matte warm white. Depict its physical construction faithfully: flattened brittle leaf tissues, paper-dry pods, slender stems. Art style: Archival Herbarium Flat Lay Photography, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: align botanical strip along bottom margin while protecting center for typography. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: even museum-documentation softbox lighting; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to ochre, copper, pale cream, muted brown, allowing nuanced real-material variations. Buyer applications include museum exhibition landing page and seasonal stationery packaging sleeve; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is museum specimen restraint and real plant variation. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Natural Specimen Arrangement",
+        "subject": "an orderly low horizontal sequence of differently shaped pressed autumn leaves and seed pods on matte warm white",
+        "art_style": "Archival Herbarium Flat Lay Photography",
+        "material": "flattened brittle leaf tissues, paper-dry pods, slender stems",
+        "buyer_use_case": "museum exhibition landing page; seasonal stationery packaging sleeve",
+        "design_reuse_cases": [
+          "museum exhibition landing page",
+          "seasonal stationery packaging sleeve"
+        ],
+        "design_placement": "align botanical strip along bottom margin while protecting center for typography",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "museum specimen restraint and real plant variation",
+        "reference_image_positions": "2",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Fir Garland with Sparse Berry Pockets",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "forest green, cranberry red, warm white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 16:9 format for a commercial graphic designer. The subject is a single asymmetric evergreen garland with small spaced red berry clusters and occasional dark spruce cones. Depict its physical construction faithfully: real fir and spruce needles, matte berry skins, dry cone scales. Art style: Luxury Holiday Decoration Product Photography, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: run along top edge with natural dips but do not obscure the central broad open area. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: neutral crisp catalog softboxes with delicate needle shadows; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to forest green, cranberry red, warm white, allowing nuanced real-material variations. Buyer applications include Christmas email campaign header and holiday gift catalog title band; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is controlled berry pockets provide a less crowded practical border. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Christmas Border",
+        "subject": "a single asymmetric evergreen garland with small spaced red berry clusters and occasional dark spruce cones",
+        "art_style": "Luxury Holiday Decoration Product Photography",
+        "material": "real fir and spruce needles, matte berry skins, dry cone scales",
+        "buyer_use_case": "Christmas email campaign header; holiday gift catalog title band",
+        "design_reuse_cases": [
+          "Christmas email campaign header",
+          "holiday gift catalog title band"
+        ],
+        "design_placement": "run along top edge with natural dips but do not obscure the central broad open area",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "controlled berry pockets provide a less crowded practical border",
+        "reference_image_positions": "3",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Minimal Pine Needle Bottom Border",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "deep pine green, spruce green, pale gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 16:9 format for a commercial graphic designer. The subject is a long airy fir and pine foliage border made of alternating long and short needle species. Depict its physical construction faithfully: pine needles, fir tips, wiry stems and visible branching. Art style: Botanical Product Cutout Style Photography, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: position entirely along the lower edge with ample undisturbed space above. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: clean directional soft studio light exposing needle layering; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to deep pine green, spruce green, pale gray, allowing nuanced real-material variations. Buyer applications include end-of-year annual report cover and seasonal website announcement strip; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is subtle species differences and low visual noise for overlay text. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Christmas Border",
+        "subject": "a long airy fir and pine foliage border made of alternating long and short needle species",
+        "art_style": "Botanical Product Cutout Style Photography",
+        "material": "pine needles, fir tips, wiry stems and visible branching",
+        "buyer_use_case": "end-of-year annual report cover; seasonal website announcement strip",
+        "design_reuse_cases": [
+          "end-of-year annual report cover",
+          "seasonal website announcement strip"
+        ],
+        "design_placement": "position entirely along the lower edge with ample undisturbed space above",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "subtle species differences and low visual noise for overlay text",
+        "reference_image_positions": "3",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Velvet Ribbon Evergreen Corner Knot",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "burgundy, spruce, ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 9:16 format for a commercial graphic designer. The subject is natural evergreen boughs tied together at upper left by a loosely folded burgundy velvet bow. Depict its physical construction faithfully: dense velvet pile, fir needles, satin-free ribbon reverse, cut stem ends. Art style: Premium Festive Textile Still Life, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: decor occupies top-left perimeter only, central and lower area remains generous. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: soft angled lighting catching velvet nap without glossy plastic glare; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to burgundy, spruce, ivory, allowing nuanced real-material variations. Buyer applications include luxury gift guide cover and December fundraising poster; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is physically believable velvet knot paired with irregular fir branches. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Holiday Ornament Detail",
+        "subject": "natural evergreen boughs tied together at upper left by a loosely folded burgundy velvet bow",
+        "art_style": "Premium Festive Textile Still Life",
+        "material": "dense velvet pile, fir needles, satin-free ribbon reverse, cut stem ends",
+        "buyer_use_case": "luxury gift guide cover; December fundraising poster",
+        "design_reuse_cases": [
+          "luxury gift guide cover",
+          "December fundraising poster"
+        ],
+        "design_placement": "decor occupies top-left perimeter only, central and lower area remains generous",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "physically believable velvet knot paired with irregular fir branches",
+        "reference_image_positions": "3,10",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Copper Bell and Fir Swag Border",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 89,
+      "topic_bucket": "APPROVED",
+      "palette": "copper, muted forest green, ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 16:9 format for a commercial graphic designer. The subject is a compact asymmetrical swag of fir needles and two small brushed copper bells hanging from thin jute cord. Depict its physical construction faithfully: brushed copper with restrained patina, jute fibers, textured evergreen needles. Art style: Artisan Holiday Object Photography, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: hang small ornament cluster from upper right edge, empty left and center. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: gentle warm bounce plus neutral key to separate copper metal; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to copper, muted forest green, ivory, allowing nuanced real-material variations. Buyer applications include handmade shop gift banner and music school winter concert graphic; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is material-specific copper reflection and audible-design motif. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Holiday Ornament Detail",
+        "subject": "a compact asymmetrical swag of fir needles and two small brushed copper bells hanging from thin jute cord",
+        "art_style": "Artisan Holiday Object Photography",
+        "material": "brushed copper with restrained patina, jute fibers, textured evergreen needles",
+        "buyer_use_case": "handmade shop gift banner; music school winter concert graphic",
+        "design_reuse_cases": [
+          "handmade shop gift banner",
+          "music school winter concert graphic"
+        ],
+        "design_placement": "hang small ornament cluster from upper right edge, empty left and center",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "material-specific copper reflection and audible-design motif",
+        "reference_image_positions": "3",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Christmas Hearth Warm Copy Field",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "ember gold, walnut brown, slate blue",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 16:9 format for a commercial graphic designer. The subject is a real stone fireplace with gentle contained flames, restrained pine dressing and soft warm light on a plaster wall. Depict its physical construction faithfully: stone hearth, lightly grained plaster, real fire, understated fir. Art style: Cinematic Interior Lifestyle Photography, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: place hearth far right in focus and retain an open darker wall across left side. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: mixed practical firelight and soft dusk blue ambient; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to ember gold, walnut brown, slate blue, allowing nuanced real-material variations. Buyer applications include winter hospitality booking banner and holiday charity campaign header; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is readable moody copy field with coherent warm and cool light zones. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Festive Interior Background",
+        "subject": "a real stone fireplace with gentle contained flames, restrained pine dressing and soft warm light on a plaster wall",
+        "art_style": "Cinematic Interior Lifestyle Photography",
+        "material": "stone hearth, lightly grained plaster, real fire, understated fir",
+        "buyer_use_case": "winter hospitality booking banner; holiday charity campaign header",
+        "design_reuse_cases": [
+          "winter hospitality booking banner",
+          "holiday charity campaign header"
+        ],
+        "design_placement": "place hearth far right in focus and retain an open darker wall across left side",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "readable moody copy field with coherent warm and cool light zones",
+        "reference_image_positions": "4,5",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Defocused Holiday Light Depth Gradient",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "champagne gold, fir black, coffee brown",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 16:9 format for a commercial graphic designer. The subject is a tasteful cluster of authentic warm miniature tree lights receding into a softly blurred living-room depth field. Depict its physical construction faithfully: round aperture-driven lights, soft evergreen shapes, subdued plaster. Art style: Optical Bokeh Photography, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: weighted light clusters on right, broad low-detail dark neutral field on left. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: warm practical fairy lights with realistic defocus discs; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to champagne gold, fir black, coffee brown, allowing nuanced real-material variations. Buyer applications include seasonal promotion slide deck and event invitation digital banner; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is optically plausible bokeh size progression with crisp copy contrast. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Festive Bokeh Background",
+        "subject": "a tasteful cluster of authentic warm miniature tree lights receding into a softly blurred living-room depth field",
+        "art_style": "Optical Bokeh Photography",
+        "material": "round aperture-driven lights, soft evergreen shapes, subdued plaster",
+        "buyer_use_case": "seasonal promotion slide deck; event invitation digital banner",
+        "design_reuse_cases": [
+          "seasonal promotion slide deck",
+          "event invitation digital banner"
+        ],
+        "design_placement": "weighted light clusters on right, broad low-detail dark neutral field on left",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "optically plausible bokeh size progression with crisp copy contrast",
+        "reference_image_positions": "4,5",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Fireplace Wool Texture and Ember Glow",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 88,
+      "topic_bucket": "APPROVED",
+      "palette": "oatmeal, ember orange, graphite",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 9:16 format for a commercial graphic designer. The subject is the side of a chunky wool throw beside a low glowing masonry hearth with a hint of out-of-focus fir. Depict its physical construction faithfully: natural wool loops, soft stone pores, believable flame reflections. Art style: Tactile Winter Lifestyle Close-up, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: wool occupies lower edge, subtle hearth sits right, open calm top half. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: low key warm fire illumination plus cool window fill; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to oatmeal, ember orange, graphite, allowing nuanced real-material variations. Buyer applications include cozy home retail story and winter reading club event flyer; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is tactile near-field wool details with controlled ambient mood. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Winter Lifestyle Material",
+        "subject": "the side of a chunky wool throw beside a low glowing masonry hearth with a hint of out-of-focus fir",
+        "art_style": "Tactile Winter Lifestyle Close-up",
+        "material": "natural wool loops, soft stone pores, believable flame reflections",
+        "buyer_use_case": "cozy home retail story; winter reading club event flyer",
+        "design_reuse_cases": [
+          "cozy home retail story",
+          "winter reading club event flyer"
+        ],
+        "design_placement": "wool occupies lower edge, subtle hearth sits right, open calm top half",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "tactile near-field wool details with controlled ambient mood",
+        "reference_image_positions": "7",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Cherry Tomato Vine Scatter Flat Lay",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "tomato red, leaf green, white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 16:9 format for a commercial graphic designer. The subject is a small family of ripe cherry tomatoes still attached to thin green stems, with selective loose fruits. Depict its physical construction faithfully: taut tomato skin, small natural stem scars, tiny specular highlights. Art style: Editorial Food Ingredient Photography, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: place tomatoes in measured right-side diagonal; reserve uncluttered left area. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: neutral overhead softbox and believable short shadows; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to tomato red, leaf green, white, allowing nuanced real-material variations. Buyer applications include farmers market newsletter and recipe website hero; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is realistic stem anatomy and intentionally editorial spacing. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Food Ingredient Layout",
+        "subject": "a small family of ripe cherry tomatoes still attached to thin green stems, with selective loose fruits",
+        "art_style": "Editorial Food Ingredient Photography",
+        "material": "taut tomato skin, small natural stem scars, tiny specular highlights",
+        "buyer_use_case": "farmers market newsletter; recipe website hero",
+        "design_reuse_cases": [
+          "farmers market newsletter",
+          "recipe website hero"
+        ],
+        "design_placement": "place tomatoes in measured right-side diagonal; reserve uncluttered left area",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "realistic stem anatomy and intentionally editorial spacing",
+        "reference_image_positions": "6",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Heirloom Tomato Color Stage Row",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 88,
+      "topic_bucket": "APPROVED",
+      "palette": "leaf green, chartreuse, tangerine, scarlet",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 16:9 format for a commercial graphic designer. The subject is five small heirloom tomato varieties at green-to-orange-to-red stages arranged in a deliberate low row. Depict its physical construction faithfully: glossy and matte skins, varied calyx geometry and subtle ribbing. Art style: Agricultural Produce Specimen Photography, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: row aligned across lower quarter, ample white space overhead. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: controlled daylight-soft studio light; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to leaf green, chartreuse, tangerine, scarlet, allowing nuanced real-material variations. Buyer applications include food science education banner and organic grocer seasonal catalog; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is authentic ripeness progression adds informational design value. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Food Ingredient Comparison",
+        "subject": "five small heirloom tomato varieties at green-to-orange-to-red stages arranged in a deliberate low row",
+        "art_style": "Agricultural Produce Specimen Photography",
+        "material": "glossy and matte skins, varied calyx geometry and subtle ribbing",
+        "buyer_use_case": "food science education banner; organic grocer seasonal catalog",
+        "design_reuse_cases": [
+          "food science education banner",
+          "organic grocer seasonal catalog"
+        ],
+        "design_placement": "row aligned across lower quarter, ample white space overhead",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "authentic ripeness progression adds informational design value",
+        "reference_image_positions": "6",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Tomato Calyx Macro Detail Surface",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 86,
+      "topic_bucket": "APPROVED",
+      "palette": "crimson, olive green, warm white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 9:16 format for a commercial graphic designer. The subject is one vine-ripe tomato photographed very close, concentrating on the green calyx and water-free glossy red shoulder. Depict its physical construction faithfully: smooth taut skin, tiny natural pores, realistic thin green sepals. Art style: Fine Art Food Macro Photography, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: tomato crop intrudes from bottom third while upper portion stays clean. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: cross-polarized soft light with subtle controlled specular edge; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to crimson, olive green, warm white, allowing nuanced real-material variations. Buyer applications include fresh produce packaging design and nutrition editorial magazine cover; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is distinct botanical junction and copy-friendly sculptural crop. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Food Texture Study",
+        "subject": "one vine-ripe tomato photographed very close, concentrating on the green calyx and water-free glossy red shoulder",
+        "art_style": "Fine Art Food Macro Photography",
+        "material": "smooth taut skin, tiny natural pores, realistic thin green sepals",
+        "buyer_use_case": "fresh produce packaging design; nutrition editorial magazine cover",
+        "design_reuse_cases": [
+          "fresh produce packaging design",
+          "nutrition editorial magazine cover"
+        ],
+        "design_placement": "tomato crop intrudes from bottom third while upper portion stays clean",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "distinct botanical junction and copy-friendly sculptural crop",
+        "reference_image_positions": "6",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Heirloom Stocking Velvet Stitch Study",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "garnet red, ivory, pale gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 9:16 format for a commercial graphic designer. The subject is one traditional deep-red stocking with ivory shearling cuff and hand-sewn hanging loop. Depict its physical construction faithfully: short velvet nap, tactile dense faux shearling, subtle stitching seams. Art style: High Fidelity Apparel Object Photography, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: stocking angled slightly and positioned low in frame, isolated on warm white. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: even overhead studio softboxes preserving textile shadow volume; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to garnet red, ivory, pale gray, allowing nuanced real-material variations. Buyer applications include holiday toy drive appeal and seasonal handmade merchandise landing page; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is seam geometry and accurate shearling fiber texture for editorial utility. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Christmas Textile Object",
+        "subject": "one traditional deep-red stocking with ivory shearling cuff and hand-sewn hanging loop",
+        "art_style": "High Fidelity Apparel Object Photography",
+        "material": "short velvet nap, tactile dense faux shearling, subtle stitching seams",
+        "buyer_use_case": "holiday toy drive appeal; seasonal handmade merchandise landing page",
+        "design_reuse_cases": [
+          "holiday toy drive appeal",
+          "seasonal handmade merchandise landing page"
+        ],
+        "design_placement": "stocking angled slightly and positioned low in frame, isolated on warm white",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "seam geometry and accurate shearling fiber texture for editorial utility",
+        "reference_image_positions": "8",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Winter Knit Stocking Cuff Detail",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 87,
+      "topic_bucket": "APPROVED",
+      "palette": "cream, cranberry, oatmeal",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 16:9 format for a commercial graphic designer. The subject is a close crop of a cream cable-knit Christmas stocking cuff folded over muted red felt. Depict its physical construction faithfully: real knitted loops, visible yarn twist, matte wool felt, clean rolled seam. Art style: Textile Catalog Macro Photography, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: fabric enters along left lower margin; wide clear right area for typography. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: large diffused side key emphasizing cable knit relief; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to cream, cranberry, oatmeal, allowing nuanced real-material variations. Buyer applications include craft pattern ebook cover and handmade gift marketplace banner; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is craft-specific stitch anatomy independent of generic stockings. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Festive Fabric Detail",
+        "subject": "a close crop of a cream cable-knit Christmas stocking cuff folded over muted red felt",
+        "art_style": "Textile Catalog Macro Photography",
+        "material": "real knitted loops, visible yarn twist, matte wool felt, clean rolled seam",
+        "buyer_use_case": "craft pattern ebook cover; handmade gift marketplace banner",
+        "design_reuse_cases": [
+          "craft pattern ebook cover",
+          "handmade gift marketplace banner"
+        ],
+        "design_placement": "fabric enters along left lower margin; wide clear right area for typography",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "craft-specific stitch anatomy independent of generic stockings",
+        "reference_image_positions": "8",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Iced Holiday Biscuit Shape Taxonomy",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "pistachio green, biscuit tan, icy blue, cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 16:9 format for a commercial graphic designer. The subject is five distinct hand-iced cookies shaped as pine tree, star, gingerbread figure, snow crystal and mitten. Depict its physical construction faithfully: baked biscuit edge pores, hand-piped royal icing, tiny uneven piping ridges. Art style: Confectionery Catalog Flat Lay Photography, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: single neat horizontal low row with visible spacing; broad blank field above. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: even bright studio light with short natural grounding shadows; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to pistachio green, biscuit tan, icy blue, cream, allowing nuanced real-material variations. Buyer applications include baking workshop class poster and holiday dessert catering banner; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is legible five-shape vocabulary and authentic edible piped decoration. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Christmas Food Elements",
+        "subject": "five distinct hand-iced cookies shaped as pine tree, star, gingerbread figure, snow crystal and mitten",
+        "art_style": "Confectionery Catalog Flat Lay Photography",
+        "material": "baked biscuit edge pores, hand-piped royal icing, tiny uneven piping ridges",
+        "buyer_use_case": "baking workshop class poster; holiday dessert catering banner",
+        "design_reuse_cases": [
+          "baking workshop class poster",
+          "holiday dessert catering banner"
+        ],
+        "design_placement": "single neat horizontal low row with visible spacing; broad blank field above",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "legible five-shape vocabulary and authentic edible piped decoration",
+        "reference_image_positions": "9",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Gingerbread Royal Icing Corner Composition",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "ginger brown, white icing, cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 9:16 format for a commercial graphic designer. The subject is two hand-decorated gingerbread figures and a small snowflake biscuit on uncoated baker paper. Depict its physical construction faithfully: porous dark gingerbread, slightly raised sugar icing, paper fibers. Art style: Artisan Bakery Editorial Still Life, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: cluster at bottom-left, leave large clean upper right composition field. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: soft kitchen-window daylight with subtle warm bounce; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to ginger brown, white icing, cream, allowing nuanced real-material variations. Buyer applications include family baking recipe cover and December baking class social poster; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is homemade asymmetrical icing detail rather than pristine synthetic decoration. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Holiday Food Arrangement",
+        "subject": "two hand-decorated gingerbread figures and a small snowflake biscuit on uncoated baker paper",
+        "art_style": "Artisan Bakery Editorial Still Life",
+        "material": "porous dark gingerbread, slightly raised sugar icing, paper fibers",
+        "buyer_use_case": "family baking recipe cover; December baking class social poster",
+        "design_reuse_cases": [
+          "family baking recipe cover",
+          "December baking class social poster"
+        ],
+        "design_placement": "cluster at bottom-left, leave large clean upper right composition field",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "homemade asymmetrical icing detail rather than pristine synthetic decoration",
+        "reference_image_positions": "9",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Plaid Fabric Gift Bow Center Spine",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "cranberry, bottle green, muted gold",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 16:9 format for a commercial graphic designer. The subject is a single structured red and evergreen tartan textile ribbon running horizontally through a well-formed central bow. Depict its physical construction faithfully: woven yarn crossover, plausible tartan alignment around folds, stitched ribbon edges. Art style: Luxury Gift Wrap Product Photography, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: bow centered on horizontal midline, clear band above and below for message layers. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: neutral softbox with delicate fabric-cast shadows; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to cranberry, bottle green, muted gold, allowing nuanced real-material variations. Buyer applications include holiday loyalty program header and gift certificate design sleeve; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is accurate tartan continuity through folded bow and crop-safe band. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Christmas Ribbon Border",
+        "subject": "a single structured red and evergreen tartan textile ribbon running horizontally through a well-formed central bow",
+        "art_style": "Luxury Gift Wrap Product Photography",
+        "material": "woven yarn crossover, plausible tartan alignment around folds, stitched ribbon edges",
+        "buyer_use_case": "holiday loyalty program header; gift certificate design sleeve",
+        "design_reuse_cases": [
+          "holiday loyalty program header",
+          "gift certificate design sleeve"
+        ],
+        "design_placement": "bow centered on horizontal midline, clear band above and below for message layers",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "accurate tartan continuity through folded bow and crop-safe band",
+        "reference_image_positions": "10",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Velvet Ribbon Curl Diagonal Accent",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 89,
+      "topic_bucket": "APPROVED",
+      "palette": "ruby, burgundy, warm white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 9:16 format for a commercial graphic designer. The subject is a deep red velvet gift ribbon creating two broad loose curls with visible soft reverse side. Depict its physical construction faithfully: short velvet pile, raw cut fiber edge, believable gravity-driven folds. Art style: Premium Textile Still Life Photography, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: curl occupies one lower corner with large clean top copy field. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: diffuse side key emphasizing tonal changes across velvet; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to ruby, burgundy, warm white, allowing nuanced real-material variations. Buyer applications include boutique jewelry gift campaign and romantic dinner gift-card layout; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is single elegant textile flourish with strong compositional flexibility. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Gift Wrap Graphic Accent",
+        "subject": "a deep red velvet gift ribbon creating two broad loose curls with visible soft reverse side",
+        "art_style": "Premium Textile Still Life Photography",
+        "material": "short velvet pile, raw cut fiber edge, believable gravity-driven folds",
+        "buyer_use_case": "boutique jewelry gift campaign; romantic dinner gift-card layout",
+        "design_reuse_cases": [
+          "boutique jewelry gift campaign",
+          "romantic dinner gift-card layout"
+        ],
+        "design_placement": "curl occupies one lower corner with large clean top copy field",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "single elegant textile flourish with strong compositional flexibility",
+        "reference_image_positions": "10",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Gold Thread Pinecone Garland Detail",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "walnut, spruce, antique gold",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 16:9 format for a commercial graphic designer. The subject is several naturally dried pine cones joined by thin gold thread and sparse fir tips, hanging along a top margin. Depict its physical construction faithfully: layered pinecone bracts, lightly tarnished metallic thread, real fir needles. Art style: Botanical Craft Macro Photography, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: thin top-edge border with alternating natural cones, open central field. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: soft winter daylight revealing dry woody ridges; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to walnut, spruce, antique gold, allowing nuanced real-material variations. Buyer applications include eco-friendly seasonal retail poster and winter nature museum invitation; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is nonplastic handmade threading and accurate cone-scale geometry. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Seasonal Natural Material",
+        "subject": "several naturally dried pine cones joined by thin gold thread and sparse fir tips, hanging along a top margin",
+        "art_style": "Botanical Craft Macro Photography",
+        "material": "layered pinecone bracts, lightly tarnished metallic thread, real fir needles",
+        "buyer_use_case": "eco-friendly seasonal retail poster; winter nature museum invitation",
+        "design_reuse_cases": [
+          "eco-friendly seasonal retail poster",
+          "winter nature museum invitation"
+        ],
+        "design_placement": "thin top-edge border with alternating natural cones, open central field",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "nonplastic handmade threading and accurate cone-scale geometry",
+        "reference_image_positions": "3",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Winter Window Bokeh Without Interior Props",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 86,
+      "topic_bucket": "APPROVED",
+      "palette": "slate blue, warm amber, midnight green",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a professional 4K stock design asset in 16:9 format for a commercial graphic designer. The subject is warm festive light reflections faintly scattered across a cool blue pane with distant green foliage entirely out of focus. Depict its physical construction faithfully: real glass reflections, restrained circular bokeh, condensation-free surface. Art style: Abstract Optical Reflection Photography, with grounded scale, controlled silhouette edges, natural imperfections, and a clean editorial finish. Composition: concentrate reflections at far edges and keep middle reading area quiet. This layout must remain practical for cropping into responsive web artwork, print trims, and presentation layouts without hiding essential subject details. Lighting: cool ambient window light plus warm practical points; maintain physically credible highlights, contact shadows and surface behavior without synthetic glow or excessive sharpening. Keep the palette restricted to slate blue, warm amber, midnight green, allowing nuanced real-material variations. Buyer applications include New Year technology webinar cover and holiday hotel email subject banner; preserve enough quiet area for independently added typography or branded graphics wherever the composition calls for it. The differentiating art direction is visual rhythm of cool window reflections with no staged fireplace. No visible text, labels, numbers, brand marks, logos, watermarks, copyrighted designs, or copied existing stock compositions. This is an opaque flattened raster image, with no claim of alpha transparency, editable vectors or verified seamless tiling.",
+      "negative_prompt": "logos, captions, lettering, watermark, fake transparent checkerboard, malformed material, duplicate repeated objects, unnatural floating elements, plastic texture, oversaturation, harsh halos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Atmospheric Seasonal Background",
+        "subject": "warm festive light reflections faintly scattered across a cool blue pane with distant green foliage entirely out of focus",
+        "art_style": "Abstract Optical Reflection Photography",
+        "material": "real glass reflections, restrained circular bokeh, condensation-free surface",
+        "buyer_use_case": "New Year technology webinar cover; holiday hotel email subject banner",
+        "design_reuse_cases": [
+          "New Year technology webinar cover",
+          "holiday hotel email subject banner"
+        ],
+        "design_placement": "concentrate reflections at far edges and keep middle reading area quiet",
+        "design_function": "Reusable opaque raster design component or copy-friendly seasonal background",
+        "integration_guidance": "Crop and composite in a layout editor; opaque image requires masking for true cutouts",
+        "reusability_rationale": "visual rhythm of cool window reflections with no staged fireplace",
+        "reference_image_positions": "5",
+        "source_urls": [
+          "https://stock.adobe.com/my/illustrations",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "evidence_level": "User-uploaded image interpretation plus official category guidance; no verified live card crawl",
+        "originality_notes": "Differentiated from reference by material, placement or buyer job; review final render for similarity"
+      }
+    }
+  ]
+}
