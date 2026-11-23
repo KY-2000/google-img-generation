@@ -1,0 +1,1679 @@
+{
+  "run_id": "TF_category_crawler_2026W48_global_holidays_r04",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-24T00:42:00+08:00",
+  "research": {
+    "finder": "category_crawler",
+    "product_line": "commercial_background",
+    "strategy": "non_christmas_well_known_holidays_lifestyle_close",
+    "candidate_count": 42,
+    "approved_count": 33,
+    "rejected_count": 9,
+    "scope": "Known non-winter-holiday holidays; familiar objects and believable home-scale festive scenes; no quotas and no sales metrics.",
+    "input_visual_basis": "Ten user supplied Adobe Insight previews with clean isolated everyday objects, photo-realistic decorations, warm bokeh interior and generous layout space.",
+    "editorial_selection": "Practical reuse 30, originality and similarity risk 25, layout utility 15, physical credibility 10, technical feasibility 10, timing 5, portfolio differentiation 5.",
+    "data_quality": "Reference-based editorial screening and official cultural sources; no claim of live bestseller rankings, revenue, downloads or complete Adobe card crawl.",
+    "similar_content_registry": "Live Google Doc at https://docs.google.com/document/d/1_D-QBzmhaKmpC42T4hDLefIgOPQ96qHFauaBAm5BgaQ/edit: confirmed SC-001 through SC-011; SC-012 placeholder.",
+    "previous_queues_checked": [
+      "adobe_stock_crawler_queue_20261123_lifestyle_r03.json (local, unpublished)",
+      "adobe_stock_crawler_queue_20261123_stylegrammar_r02.json (GitHub main)",
+      "adobe_stock_crawler_queue_20261123_insight_r01.json (GitHub main)",
+      "creative_components_holiday_queue_2026W47_r03.json (GitHub main)",
+      "creative_components_queue_2026W47_r02.json (GitHub main)"
+    ],
+    "ast_allocation": "All asset_id fields omitted intentionally. Verified local queue auto-allocation by run_stock_pipeline.py before strict validation; no IDs guessed.",
+    "reference_urls": [
+      "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+      "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+      "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+      "https://helpx.adobe.com/my_ms/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+      "https://www.smithsonianmag.com/smithsonian-institution/lunar-new-year-explained-and-how-participate-180976971/",
+      "https://www.malaysia.travel/index.php/events/hari-raya-aidilfitri-4",
+      "https://www.malaysia.travel/events/deepavali-3",
+      "https://www.nationalmuseum.nhb.gov.sg/nms-online/resources/mooncake-memories",
+      "https://www.nhb.gov.sg/~/media/nhb/files/sharedhtml/whos_your_neighbour.pdf?la=en"
+    ],
+    "rejected_near_duplicates": [
+      {
+        "theme": "Generic Red Envelope and Gold Sycee Pair",
+        "reason": "Overlaps older golden sycee and red-packet visuals; weak distinction from included envelope concept."
+      },
+      {
+        "theme": "Deepavali Gold Glitter Diya Grid",
+        "reason": "Same small-oil-lamp product role as accepted terracotta diya composition; overproduced glitter."
+      },
+      {
+        "theme": "Eid Mosque Silhouette with Golden Moon",
+        "reason": "Decorative cliché and limited reusable real-world object fidelity."
+      },
+      {
+        "theme": "Valentine Rose Bouquet on Textured Paper",
+        "reason": "Too close to rejected pink magnolia-on-paper stock composition."
+      },
+      {
+        "theme": "Halloween Three Pumpkin Recolors",
+        "reason": "Same subject/function as selected pumpkin row; color-only iteration."
+      },
+      {
+        "theme": "Mid-Autumn Mooncake and Rabbit Lantern Together",
+        "reason": "Combines two separate accepted assets into a cluttered duplicate."
+      },
+      {
+        "theme": "Thanksgiving Leaf Scatter with Copy Space",
+        "reason": "Composition too similar to earlier autumn isolated leaf themes."
+      },
+      {
+        "theme": "New Year 2027 Gold Typography Banner",
+        "reason": "Text artifacts, date-specific depreciation, poor composability."
+      },
+      {
+        "theme": "Generic Evergreen Glitter Garland Border",
+        "reason": "Visually recalls the earlier winter greenery garlands and adds little new design utility."
+      }
+    ]
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Two Classic Red Paper Lanterns with Short Tassels",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "auspicious red, restrained gold, warm white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Lunar New Year, aimed at a regional retail art director. The subject is two modest hand-folded red paper lanterns in slightly different sizes, suspended at staggered heights against clean warm white. Material and visual detail: visible paper ribbing, thin circular wire supports, natural folds, short silky tassels and subtle red pigment variation; believable gravity and hanging points. Compose one 16:9 frame: place the lanterns on the right third, preserving a broad clear left field and safe top margins for bilingual retail headlines. Art style: Crisp Festive Product Photography. Lighting: diffused studio daylight and delicate soft shadows; restrained red-and-gold accents, free of theatrical glitter. Make the image practical for a Lunar New Year retail banner and a family reunion invitation cover, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "identical cloned lanterns, fake Chinese characters, logos, firecrackers, dense ornaments, floating shadows",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Lunar New Year",
+        "component_category": "Isolated Festive Decoration",
+        "designer_persona": "regional retail art director",
+        "buyer_use_case": "Lunar New Year retail banner; family reunion invitation cover",
+        "design_reuse_cases": [
+          "Lunar New Year retail banner",
+          "family reunion invitation cover"
+        ],
+        "design_placement": "place the lanterns on the right third, preserving a broad clear left field and safe top margins for bilingual retail headlines",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Crisp Festive Product Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "visible paper ribbing, thin circular wire supports, natural folds, short silky tassels and subtle red pigment variation; believable gravity and hanging points",
+        "integration_guidance": "place the lanterns on the right third, preserving a broad clear left field and safe top margins for bilingual retail headlines",
+        "reusability_rationale": "Authentic recognizable household decoration with an asymmetric two-object rhythm; different from a staged festive living room.",
+        "distinctiveness": "Authentic recognizable household decoration with an asymmetric two-object rhythm; different from a staged festive living room.",
+        "metadata_seed_keywords": [
+          "Lunar New Year",
+          "Isolated Festive Decoration",
+          "Two Classic Red Paper Lanterns with Short Tassels",
+          "Lunar New Year retail banner"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.smithsonianmag.com/smithsonian-institution/lunar-new-year-explained-and-how-participate-180976971/"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Unprinted Red Packet Fan with Fine Gold Edges",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "vermillion red, muted gold, ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Lunar New Year, aimed at a fintech campaign designer. The subject is four plain red money envelopes subtly fanned across a light cream surface with one slightly open edge. Material and visual detail: uncoated red paper, clean folded flaps, lightly embossed nonfigurative gold borders and realistic thickness, absolutely no symbols or readable writing. Compose one 9:16 frame: keep the fan in the lower half of a vertical frame and reserve open upper area for a greeting or promotional offer. Art style: Overhead Stationery Product Photography. Lighting: soft overhead daylight with understated paper contact shadows and accurate red pigment rendering. Make the image practical for a cashless wallet holiday campaign and a festive greeting story template, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "Chinese characters, QR codes, money notes, logos, generic ribbon bow, fake embossing text",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Lunar New Year",
+        "component_category": "Seasonal Stationery",
+        "designer_persona": "fintech campaign designer",
+        "buyer_use_case": "cashless wallet holiday campaign; festive greeting story template",
+        "design_reuse_cases": [
+          "cashless wallet holiday campaign",
+          "festive greeting story template"
+        ],
+        "design_placement": "keep the fan in the lower half of a vertical frame and reserve open upper area for a greeting or promotional offer",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Overhead Stationery Product Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "uncoated red paper, clean folded flaps, lightly embossed nonfigurative gold borders and realistic thickness, absolutely no symbols or readable writing",
+        "integration_guidance": "keep the fan in the lower half of a vertical frame and reserve open upper area for a greeting or promotional offer",
+        "reusability_rationale": "A simple everyday gifting gesture; unprinted surfaces make this useful for many local-language layouts.",
+        "distinctiveness": "A simple everyday gifting gesture; unprinted surfaces make this useful for many local-language layouts.",
+        "metadata_seed_keywords": [
+          "Lunar New Year",
+          "Seasonal Stationery",
+          "Unprinted Red Packet Fan with Fine Gold Edges",
+          "cashless wallet holiday campaign"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.smithsonianmag.com/smithsonian-institution/lunar-new-year-explained-and-how-participate-180976971/"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Family Tangyuan Bowl on Pale Linen",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "ivory, pale pink, porcelain white, ginger beige",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Lunar New Year, aimed at a food magazine art editor. The subject is one small porcelain bowl of round glutinous rice balls in clear light ginger syrup, with a ceramic spoon resting alongside. Material and visual detail: subtle translucent syrup, smooth rice-ball surface, correct edible scale and a soft cream linen napkin; several pale white balls and one blush-pink ball. Compose one 16:9 frame: position the bowl on the left side of an ivory tabletop, leaving uncluttered neutral space on the right for an editorial headline. Art style: Gentle Culinary Lifestyle Photography. Lighting: quiet morning side light with natural shadow falloff; crisp food detail and a pleasantly soft tabletop backdrop. Make the image practical for a Lantern Festival food editorial header and a family celebration recipe banner, with easy cropping and compositional breathing room. Keep realistic scale, detailed materials and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "mooncakes, dumpling soup, glossy plastic food, chopsticks with incorrect scale, text, clutter",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Lunar New Year",
+        "component_category": "Festive Food Still Life",
+        "designer_persona": "food magazine art editor",
+        "buyer_use_case": "Lantern Festival food editorial header; family celebration recipe banner",
+        "design_reuse_cases": [
+          "Lantern Festival food editorial header",
+          "family celebration recipe banner"
+        ],
+        "design_placement": "position the bowl on the left side of an ivory tabletop, leaving uncluttered neutral space on the right for an editorial headline",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Gentle Culinary Lifestyle Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "subtle translucent syrup, smooth rice-ball surface, correct edible scale and a soft cream linen napkin; several pale white balls and one blush-pink ball",
+        "integration_guidance": "position the bowl on the left side of an ivory tabletop, leaving uncluttered neutral space on the right for an editorial headline",
+        "reusability_rationale": "Authentic recognisable family dessert with a relaxed home mood; avoids reusing festive pineapple tarts.",
+        "distinctiveness": "Authentic recognisable family dessert with a relaxed home mood; avoids reusing festive pineapple tarts.",
+        "metadata_seed_keywords": [
+          "Lunar New Year",
+          "Festive Food Still Life",
+          "Family Tangyuan Bowl on Pale Linen",
+          "Lantern Festival food editorial header"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.smithsonianmag.com/smithsonian-institution/lunar-new-year-explained-and-how-participate-180976971/"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Red Chinese Knot Tassel Pair as Side Decoration",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "scarlet red, dark crimson, ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Lunar New Year, aimed at a retail graphic designer. The subject is two traditional decorative red cord knots with elongated tassels hanging naturally down the far left edge of a warm white backdrop. Material and visual detail: tight braided polyester or silk cord, visibly interlaced knot paths, fine dangling tassel threads and true textile weight; no auspicious glyphs. Compose one 16:9 frame: treat the ornaments as a clean left-side vertical embellishment with generous unused cream field to the right. Art style: Textile Detail Catalog Photography. Lighting: soft controlled studio light producing fine cord highlights and faint shadows without metallic bloom. Make the image practical for a festival shopping guide banner and a seasonal newsletter masthead, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "gold ingots, zodiac animals, characters, weird knot paths, extra tassels, clip-art look",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Lunar New Year",
+        "component_category": "Decorative Textile Border",
+        "designer_persona": "retail graphic designer",
+        "buyer_use_case": "festival shopping guide banner; seasonal newsletter masthead",
+        "design_reuse_cases": [
+          "festival shopping guide banner",
+          "seasonal newsletter masthead"
+        ],
+        "design_placement": "treat the ornaments as a clean left-side vertical embellishment with generous unused cream field to the right",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Textile Detail Catalog Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "tight braided polyester or silk cord, visibly interlaced knot paths, fine dangling tassel threads and true textile weight; no auspicious glyphs",
+        "integration_guidance": "treat the ornaments as a clean left-side vertical embellishment with generous unused cream field to the right",
+        "reusability_rationale": "Material-credible festive hanging element with easy right-side headline placement.",
+        "distinctiveness": "Material-credible festive hanging element with easy right-side headline placement.",
+        "metadata_seed_keywords": [
+          "Lunar New Year",
+          "Decorative Textile Border",
+          "Red Chinese Knot Tassel Pair as Side Decoration",
+          "festival shopping guide banner"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.smithsonianmag.com/smithsonian-institution/lunar-new-year-explained-and-how-participate-180976971/"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Woven Ketupat Pair with Long Palm Fronds",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "fresh palm green, straw yellow, warm white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Hari Raya Aidilfitri, aimed at a Malaysian retail designer. The subject is two classic diamond-shaped woven palm-leaf ketupat rice packets resting on a clean off-white background, each with loose palm frond ends. Material and visual detail: precise alternating over-under leaf weaving, slight leaf translucency, pale green to yellow-green variation and physical grain at the folds. Compose one 16:9 frame: cluster the pair in the lower-right area with a broad clean top-left copy field for seasonal retail design. Art style: Authentic Festive Food Object Photography. Lighting: soft diffused daylight and low natural contact shadows that retain clarity around the woven corners. Make the image practical for a Hari Raya family greeting banner and a halal grocery festive catalogue, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "plastic weaving, impossible leaf interlacing, miniature mosque, Arabic letters, oversaturated emerald, text",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Hari Raya Aidilfitri",
+        "component_category": "Isolated Food Tradition",
+        "designer_persona": "Malaysian retail designer",
+        "buyer_use_case": "Hari Raya family greeting banner; halal grocery festive catalogue",
+        "design_reuse_cases": [
+          "Hari Raya family greeting banner",
+          "halal grocery festive catalogue"
+        ],
+        "design_placement": "cluster the pair in the lower-right area with a broad clean top-left copy field for seasonal retail design",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Authentic Festive Food Object Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "precise alternating over-under leaf weaving, slight leaf translucency, pale green to yellow-green variation and physical grain at the folds",
+        "integration_guidance": "cluster the pair in the lower-right area with a broad clean top-left copy field for seasonal retail design",
+        "reusability_rationale": "Everyday recognisable Malaysian festive object with genuine weave detail; useful across greeting and retail designs.",
+        "distinctiveness": "Everyday recognisable Malaysian festive object with genuine weave detail; useful across greeting and retail designs.",
+        "metadata_seed_keywords": [
+          "Hari Raya Aidilfitri",
+          "Isolated Food Tradition",
+          "Woven Ketupat Pair with Long Palm Fronds",
+          "Hari Raya family greeting banner"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.malaysia.travel/index.php/events/hari-raya-aidilfitri-4"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Home Kuih Semperit in Clear Cookie Jar",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "butter yellow, glass clear, pale cream, light beige",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Hari Raya Aidilfitri, aimed at a local food ecommerce designer. The subject is a simple clear glass jar half-filled with yellow buttery kuih semperit butter cookies, with its plain lid leaning beside the jar. Material and visual detail: real star-piped ridges, delicate dry crumb texture, correct glass thickness and subtle reflections; a few cookies visible through the jar. Compose one 9:16 frame: keep jar low and to the right in a tall frame with open pastel neutral space above for mobile headlines. Art style: Clean Home-Baking Catalog Photography. Lighting: airy diffused kitchen window light that makes the biscuits inviting without over-glossing the glass. Make the image practical for a Raya home-baking social promotion and a festival grocery product category cover, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "branded jar label, distorted biscuits, unknown pastries, text, heavy gold props, cartoon decorations",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Hari Raya Aidilfitri",
+        "component_category": "Festive Pantry Food",
+        "designer_persona": "local food ecommerce designer",
+        "buyer_use_case": "Raya home-baking social promotion; festival grocery product category cover",
+        "design_reuse_cases": [
+          "Raya home-baking social promotion",
+          "festival grocery product category cover"
+        ],
+        "design_placement": "keep jar low and to the right in a tall frame with open pastel neutral space above for mobile headlines",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Clean Home-Baking Catalog Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "real star-piped ridges, delicate dry crumb texture, correct glass thickness and subtle reflections; a few cookies visible through the jar",
+        "integration_guidance": "keep jar low and to the right in a tall frame with open pastel neutral space above for mobile headlines",
+        "reusability_rationale": "A familiar real home snack in a practical product composition, distinct from previous decorative iced cookies.",
+        "distinctiveness": "A familiar real home snack in a practical product composition, distinct from previous decorative iced cookies.",
+        "metadata_seed_keywords": [
+          "Hari Raya Aidilfitri",
+          "Festive Pantry Food",
+          "Home Kuih Semperit in Clear Cookie Jar",
+          "Raya home-baking social promotion"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.malaysia.travel/index.php/events/hari-raya-aidilfitri-4"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Traditional Pelita Lamps Along a Quiet Veranda",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "amber flame, dusk blue, tropical green, warm stone",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Hari Raya Aidilfitri, aimed at a hospitality brand designer. The subject is a modest row of traditional small oil lamps placed along a low tiled veranda edge at dusk, with a softly blurred family house behind. Material and visual detail: small realistic metal or earthenware lamp bodies, grounded wick flames and measured flame size; humid tropical air and familiar tiled steps. Compose one 16:9 frame: focus on the closest two pelita near the lower-right and keep the upper-left wall and evening bokeh clean for a festival message. Art style: Warm Evening Lifestyle Photography. Lighting: gentle amber flame against cool blue dusk with controlled photographic depth of field. Make the image practical for a Raya open house invitation hero and a hospitality seasonal email banner, with easy cropping and compositional breathing room. Keep realistic scale, detailed materials and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "winter-holiday lights, mosque silhouette pasted behind, impossible fire, busy people, readable signage",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Hari Raya Aidilfitri",
+        "component_category": "Cozy Seasonal Interior",
+        "designer_persona": "hospitality brand designer",
+        "buyer_use_case": "Raya open house invitation hero; hospitality seasonal email banner",
+        "design_reuse_cases": [
+          "Raya open house invitation hero",
+          "hospitality seasonal email banner"
+        ],
+        "design_placement": "focus on the closest two pelita near the lower-right and keep the upper-left wall and evening bokeh clean for a festival message",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Warm Evening Lifestyle Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "small realistic metal or earthenware lamp bodies, grounded wick flames and measured flame size; humid tropical air and familiar tiled steps",
+        "integration_guidance": "focus on the closest two pelita near the lower-right and keep the upper-left wall and evening bokeh clean for a festival message",
+        "reusability_rationale": "A recognisable celebration-at-home mood without relying on generic crescent clip art or copied winter-holiday interiors.",
+        "distinctiveness": "A recognisable celebration-at-home mood without relying on generic crescent clip art or copied winter-holiday interiors.",
+        "metadata_seed_keywords": [
+          "Hari Raya Aidilfitri",
+          "Cozy Seasonal Interior",
+          "Traditional Pelita Lamps Along a Quiet Veranda",
+          "Raya open house invitation hero"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.malaysia.travel/index.php/events/hari-raya-aidilfitri-4"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Kuih Bahulu Sponge Cakes on White Ceramic Plate",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "honey gold, ivory, muted biscuit brown",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Hari Raya Aidilfitri, aimed at a culinary content designer. The subject is a shallow white ceramic plate holding small golden Malaysian kuih bahulu sponge cakes in classic flower-like molded shapes. Material and visual detail: natural golden crusts, airy sponge pores, gentle hand-baked color unevenness and credible thickness without icing. Compose one 16:9 frame: place the plate toward the left-middle on a plain cream table and keep the right half open for editorial copy. Art style: Homestyle Food Editorial Photography. Lighting: soft overhead natural daylight and delicate tabletop shadows, like a simple family kitchen photo. Make the image practical for a Raya home-baking recipe page and a regional festival food retail banner, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "icing cookies, iced sugar stars, tiny toy cakes, labels, lavish tableware, wrong sponge texture",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Hari Raya Aidilfitri",
+        "component_category": "Festive Food Still Life",
+        "designer_persona": "culinary content designer",
+        "buyer_use_case": "Raya home-baking recipe page; regional festival food retail banner",
+        "design_reuse_cases": [
+          "Raya home-baking recipe page",
+          "regional festival food retail banner"
+        ],
+        "design_placement": "place the plate toward the left-middle on a plain cream table and keep the right half open for editorial copy",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Homestyle Food Editorial Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "natural golden crusts, airy sponge pores, gentle hand-baked color unevenness and credible thickness without icing",
+        "integration_guidance": "place the plate toward the left-middle on a plain cream table and keep the right half open for editorial copy",
+        "reusability_rationale": "Uncomplicated local snack photographed as everyday food, offering more subject diversity than generic seasonal ornaments.",
+        "distinctiveness": "Uncomplicated local snack photographed as everyday food, offering more subject diversity than generic seasonal ornaments.",
+        "metadata_seed_keywords": [
+          "Hari Raya Aidilfitri",
+          "Festive Food Still Life",
+          "Kuih Bahulu Sponge Cakes on White Ceramic Plate",
+          "Raya home-baking recipe page"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.malaysia.travel/index.php/events/hari-raya-aidilfitri-4"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Small Clay Diyas in an Open Gentle Arc",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "terracotta, warm amber, antique cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Deepavali, aimed at a Malaysian festival campaign designer. The subject is five small traditional unglazed terracotta diyas with cotton wicks arranged in a loose, imperfect arc on a pale neutral surface. Material and visual detail: authentic hand-pressed clay lips, natural terracotta pores, shallow oil wells and realistic small flames in four lamps, with one unlit. Compose one 16:9 frame: occupy the bottom-right region and preserve a wide open upper-left field for a festive retail headline. Art style: Natural Clay Product Photography. Lighting: warm controlled lamplight balanced with soft ambient studio light, natural contact shadows and flame glow. Make the image practical for a Deepavali greeting email banner and a home decor seasonal poster, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "ordinary wax pillars, seven-armed lamps, plastic clay, impossible tall flames, deity illustrations, text",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Deepavali",
+        "component_category": "Festive Light Object",
+        "designer_persona": "Malaysian festival campaign designer",
+        "buyer_use_case": "Deepavali greeting email banner; home decor seasonal poster",
+        "design_reuse_cases": [
+          "Deepavali greeting email banner",
+          "home decor seasonal poster"
+        ],
+        "design_placement": "occupy the bottom-right region and preserve a wide open upper-left field for a festive retail headline",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Natural Clay Product Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "authentic hand-pressed clay lips, natural terracotta pores, shallow oil wells and realistic small flames in four lamps, with one unlit",
+        "integration_guidance": "occupy the bottom-right region and preserve a wide open upper-left field for a festive retail headline",
+        "reusability_rationale": "Traditional small household lamps rendered with physical detail; a culturally grounded alternate to generic candle imagery.",
+        "distinctiveness": "Traditional small household lamps rendered with physical detail; a culturally grounded alternate to generic candle imagery.",
+        "metadata_seed_keywords": [
+          "Deepavali",
+          "Festive Light Object",
+          "Small Clay Diyas in an Open Gentle Arc",
+          "Deepavali greeting email banner"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.malaysia.travel/events/deepavali-3"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Marigold and Jasmine Flower Doorway Swag Border",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "saffron orange, sunflower yellow, jasmine white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Deepavali, aimed at a regional print designer. The subject is a loose horizontal garland of orange and yellow marigolds threaded with short white jasmine clusters along the top edge. Material and visual detail: soft layered petals, individual flower-head variation, real cotton string connections and natural uneven floral spacing. Compose one 16:9 frame: use a generous airy white field below the garland and keep every flower safely within the upper band for banner cropping. Art style: Fresh Floral Decoration Photography. Lighting: diffuse afternoon daylight and soft flower shadows; warm festive saturation with accurate botanical detail. Make the image practical for a Deepavali store promotion header and a family gathering invitation card, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "fir pine sprigs, string-light garland, artificial plastic petals, lettering, rangoli symbols",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Deepavali",
+        "component_category": "Floral Festive Border",
+        "designer_persona": "regional print designer",
+        "buyer_use_case": "Deepavali store promotion header; family gathering invitation card",
+        "design_reuse_cases": [
+          "Deepavali store promotion header",
+          "family gathering invitation card"
+        ],
+        "design_placement": "use a generous airy white field below the garland and keep every flower safely within the upper band for banner cropping",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Fresh Floral Decoration Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "soft layered petals, individual flower-head variation, real cotton string connections and natural uneven floral spacing",
+        "integration_guidance": "use a generous airy white field below the garland and keep every flower safely within the upper band for banner cropping",
+        "reusability_rationale": "Real flower texture and celebratory border utility, with a clear distinction from evergreen and cotton garlands.",
+        "distinctiveness": "Real flower texture and celebratory border utility, with a clear distinction from evergreen and cotton garlands.",
+        "metadata_seed_keywords": [
+          "Deepavali",
+          "Floral Festive Border",
+          "Marigold and Jasmine Flower Doorway Swag Border",
+          "Deepavali store promotion header"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.malaysia.travel/events/deepavali-3"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Colorful Rice Kolam Corner on Pale Floor",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "magenta, saffron, turquoise, cream stone",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Deepavali, aimed at a community campaign art director. The subject is a carefully made small kolam or rangoli floor decoration forming a partial geometric floral corner arrangement using colored rice and fine rice flour. Material and visual detail: individual rice grains, slightly uneven handmade powder boundaries, sensible repetitive geometry and a few scattered grains at real floor scale. Compose one 16:9 frame: concentrate the kolam in the lower-left corner, keeping the wide upper-right floor uninterrupted for message layout. Art style: Overhead Cultural Craft Photography. Lighting: soft indoor daylight from a nearby doorway with tiny grain shadows and realistic matte stone floor response. Make the image practical for a Deepavali cultural event banner and a festival community newsletter cover, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "sacred deity portraits, perfect vector edges, abstract neon paint, arbitrary symbols, text, logos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Deepavali",
+        "component_category": "Festive Floor Craft",
+        "designer_persona": "community campaign art director",
+        "buyer_use_case": "Deepavali cultural event banner; festival community newsletter cover",
+        "design_reuse_cases": [
+          "Deepavali cultural event banner",
+          "festival community newsletter cover"
+        ],
+        "design_placement": "concentrate the kolam in the lower-left corner, keeping the wide upper-right floor uninterrupted for message layout",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Overhead Cultural Craft Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "individual rice grains, slightly uneven handmade powder boundaries, sensible repetitive geometry and a few scattered grains at real floor scale",
+        "integration_guidance": "concentrate the kolam in the lower-left corner, keeping the wide upper-right floor uninterrupted for message layout",
+        "reusability_rationale": "Grounded household floor art that expresses festival through tactile craft rather than generic luminous graphics.",
+        "distinctiveness": "Grounded household floor art that expresses festival through tactile craft rather than generic luminous graphics.",
+        "metadata_seed_keywords": [
+          "Deepavali",
+          "Festive Floor Craft",
+          "Colorful Rice Kolam Corner on Pale Floor",
+          "Deepavali cultural event banner"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.malaysia.travel/events/deepavali-3"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Laddu and Barfi Mithai on Small Steel Tray",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "saffron yellow, pistachio green, cream, stainless silver",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Deepavali, aimed at a local confectionery brand designer. The subject is a modest stainless-steel serving tray with three golden round laddus and several neatly cut pale barfi squares. Material and visual detail: credible grainy besan or boondi texture, soft milky barfi edges, a few natural pistachio fragments and controlled steel reflections. Compose one 9:16 frame: place the sweets in the lower third of the vertical image with open warm ivory background above for a shop message. Art style: Authentic Indian Sweet Food Photography. Lighting: soft bright window light with true food texture and delicate silver highlights, avoiding excessive sparkle. Make the image practical for a Deepavali sweets shop mobile ad and a family gifting recipe story, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "iced sugar biscuits, plastic sweets, gold foil luxury gift, brand text, incorrect dessert shapes",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Deepavali",
+        "component_category": "Festival Food Collection",
+        "designer_persona": "local confectionery brand designer",
+        "buyer_use_case": "Deepavali sweets shop mobile ad; family gifting recipe story",
+        "design_reuse_cases": [
+          "Deepavali sweets shop mobile ad",
+          "family gifting recipe story"
+        ],
+        "design_placement": "place the sweets in the lower third of the vertical image with open warm ivory background above for a shop message",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Authentic Indian Sweet Food Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "credible grainy besan or boondi texture, soft milky barfi edges, a few natural pistachio fragments and controlled steel reflections",
+        "integration_guidance": "place the sweets in the lower third of the vertical image with open warm ivory background above for a shop message",
+        "reusability_rationale": "Familiar celebration food with close-to-life edible detail, distinct from prior sweet baked-cookie lineups.",
+        "distinctiveness": "Familiar celebration food with close-to-life edible detail, distinct from prior sweet baked-cookie lineups.",
+        "metadata_seed_keywords": [
+          "Deepavali",
+          "Festival Food Collection",
+          "Laddu and Barfi Mithai on Small Steel Tray",
+          "Deepavali sweets shop mobile ad"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.malaysia.travel/events/deepavali-3"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Soft Pink Tulips in a Plain Glass Tumbler Vase",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "blush pink, leaf green, clear glass, cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Valentine’s Day, aimed at a floral retail designer. The subject is a short bunch of fresh pale-pink tulips gathered casually in an unbranded transparent drinking-glass vase on a warm white surface. Material and visual detail: real closed and half-open tulip heads, supple green stems, visible water line, a few imperfect curved leaves and correct scale. Compose one 9:16 frame: position the glass low-right with a spacious quiet upper-left field suitable for vertical greeting typography. Art style: Natural Flower Shop Product Photography. Lighting: soft window daylight with delicate refraction and realistic water highlights, calm romantic editorial mood. Make the image practical for a Valentine florist story advertisement and a anniversary card template, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "magnolia branch, textured paper floral poster, plastic petals, roses with glitter, legible text",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Valentine’s Day",
+        "component_category": "Isolated Floral Gift",
+        "designer_persona": "floral retail designer",
+        "buyer_use_case": "Valentine florist story advertisement; anniversary card template",
+        "design_reuse_cases": [
+          "Valentine florist story advertisement",
+          "anniversary card template"
+        ],
+        "design_placement": "position the glass low-right with a spacious quiet upper-left field suitable for vertical greeting typography",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Natural Flower Shop Product Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "real closed and half-open tulip heads, supple green stems, visible water line, a few imperfect curved leaves and correct scale",
+        "integration_guidance": "position the glass low-right with a spacious quiet upper-left field suitable for vertical greeting typography",
+        "reusability_rationale": "An ordinary flowers-in-a-glass home gesture; avoids the banned single magnolia branch-on-paper composition.",
+        "distinctiveness": "An ordinary flowers-in-a-glass home gesture; avoids the banned single magnolia branch-on-paper composition.",
+        "metadata_seed_keywords": [
+          "Valentine’s Day",
+          "Isolated Floral Gift",
+          "Soft Pink Tulips in a Plain Glass Tumbler Vase",
+          "Valentine florist story advertisement"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Small Felt Hearts Hanging from Cotton Twine",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "soft red, dusty rose, blush, warm white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Valentine’s Day, aimed at a stationery designer. The subject is five hand-cut red and dusty-pink felt heart ornaments hanging from one thin cotton string near the top of a clean pale background. Material and visual detail: visible felt fibers, simple blanket stitches on two hearts, slight nonuniform shapes and believable cotton loops. Compose one 16:9 frame: arrange them loosely across the top quarter and keep the entire lower field clean for a banner headline or card layout. Art style: Tactile Handmade Decoration Photography. Lighting: gentle softbox light with low contact shadows; modest handmade warmth instead of stylized romance effects. Make the image practical for a Valentine classroom craft banner and a gifting sale email header, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "heart balloons, scripted love words, neon graphics, glossy plastic felt, logo, too many ornaments",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Valentine’s Day",
+        "component_category": "Handmade Festive Border",
+        "designer_persona": "stationery designer",
+        "buyer_use_case": "Valentine classroom craft banner; gifting sale email header",
+        "design_reuse_cases": [
+          "Valentine classroom craft banner",
+          "gifting sale email header"
+        ],
+        "design_placement": "arrange them loosely across the top quarter and keep the entire lower field clean for a banner headline or card layout",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Tactile Handmade Decoration Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "visible felt fibers, simple blanket stitches on two hearts, slight nonuniform shapes and believable cotton loops",
+        "integration_guidance": "arrange them loosely across the top quarter and keep the entire lower field clean for a banner headline or card layout",
+        "reusability_rationale": "A small household craft object creates a friendly festive border that remains easy to crop.",
+        "distinctiveness": "A small household craft object creates a friendly festive border that remains easy to crop.",
+        "metadata_seed_keywords": [
+          "Valentine’s Day",
+          "Handmade Festive Border",
+          "Small Felt Hearts Hanging from Cotton Twine",
+          "Valentine classroom craft banner"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Two Strawberry Mousse Desserts on White Saucers",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "strawberry pink, whipped cream, red berry, porcelain white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Valentine’s Day, aimed at a food retail creative designer. The subject is two petite homemade strawberry mousse cups on small plain white saucers with one fresh sliced strawberry as a restrained garnish. Material and visual detail: airy pastel-pink mousse texture, sensible cream layers, natural fresh-fruit seeds and ceramic saucer thickness. Compose one 16:9 frame: place the two desserts toward the lower-right with clear left-side space for cafe promotions or celebration messaging. Art style: Minimal Patisserie Product Photography. Lighting: diffused bright side light, faint shadows and realistic glossy fruit highlights without cinematic drama. Make the image practical for a Valentine dessert shop campaign and a date-night recipe article cover, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "winter-holiday sugar cookies, croissant coffee pairing, excessive hearts, branded cups, text, dessert tower",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Valentine’s Day",
+        "component_category": "Festive Food Still Life",
+        "designer_persona": "food retail creative designer",
+        "buyer_use_case": "Valentine dessert shop campaign; date-night recipe article cover",
+        "design_reuse_cases": [
+          "Valentine dessert shop campaign",
+          "date-night recipe article cover"
+        ],
+        "design_placement": "place the two desserts toward the lower-right with clear left-side space for cafe promotions or celebration messaging",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Minimal Patisserie Product Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "airy pastel-pink mousse texture, sensible cream layers, natural fresh-fruit seeds and ceramic saucer thickness",
+        "integration_guidance": "place the two desserts toward the lower-right with clear left-side space for cafe promotions or celebration messaging",
+        "reusability_rationale": "Everyday dessert with gentle romantic color, commercially useful beyond the holiday as a real food image.",
+        "distinctiveness": "Everyday dessert with gentle romantic color, commercially useful beyond the holiday as a real food image.",
+        "metadata_seed_keywords": [
+          "Valentine’s Day",
+          "Festive Food Still Life",
+          "Two Strawberry Mousse Desserts on White Saucers",
+          "Valentine dessert shop campaign"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Pastel Dyed Eggs in an Open Paper Pulp Carton",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "sage, duck-egg blue, dusty yellow, pulp gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Easter, aimed at a grocery marketing designer. The subject is an open six-compartment molded paper egg carton containing four softly hand-dyed real eggs, with two empty wells. Material and visual detail: true matte eggshell pores, subtle imperfect pale yellow, sage and dusty pink dye marks, and rough gray pulp-carton fiber. Compose one 16:9 frame: place the carton slightly left of center, leaving a generous blank upper-right field for spring retail copy. Art style: Clean Grocery Easter Still Life. Lighting: soft bright morning daylight, gentle carton cavity shadows and realistic contact points. Make the image practical for a Easter grocery sale banner and a family egg decorating tutorial cover, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "glitter eggs, cartoon chicks, impossible egg sizes, plastic shells, written symbols, crowded basket",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Easter",
+        "component_category": "Seasonal Food Object",
+        "designer_persona": "grocery marketing designer",
+        "buyer_use_case": "Easter grocery sale banner; family egg decorating tutorial cover",
+        "design_reuse_cases": [
+          "Easter grocery sale banner",
+          "family egg decorating tutorial cover"
+        ],
+        "design_placement": "place the carton slightly left of center, leaving a generous blank upper-right field for spring retail copy",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Clean Grocery Easter Still Life",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "true matte eggshell pores, subtle imperfect pale yellow, sage and dusty pink dye marks, and rough gray pulp-carton fiber",
+        "integration_guidance": "place the carton slightly left of center, leaving a generous blank upper-right field for spring retail copy",
+        "reusability_rationale": "A normal kitchen carton makes seasonal craft imagery feel approachable and directly usable for grocery promotions.",
+        "distinctiveness": "A normal kitchen carton makes seasonal craft imagery feel approachable and directly usable for grocery promotions.",
+        "metadata_seed_keywords": [
+          "Easter",
+          "Seasonal Food Object",
+          "Pastel Dyed Eggs in an Open Paper Pulp Carton",
+          "Easter grocery sale banner"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Soft Linen Bunny Toy on Cream Background",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "oatmeal linen, pale blush, ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Easter, aimed at a children’s retail designer. The subject is one little handmade cloth rabbit toy with long drooping ears sitting calmly on an off-white floor. Material and visual detail: fine natural linen weave, subtle seam stitching, modest cotton stuffing, simple stitched facial details and a softly tied tiny neck ribbon. Compose one 9:16 frame: set the bunny slightly low-left, preserving upper and right space for a mobile Easter gift guide. Art style: Minimal Plush Toy Catalog Photography. Lighting: diffused window daylight, gentle fabric texture and realistic grounding shadows without artificial soft-focus haze. Make the image practical for a Easter gift shop mobile poster and a nursery holiday editorial cover, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "living rabbit, cartoon character imitation, plastic eyes, branded plush, text, eggs everywhere",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Easter",
+        "component_category": "Seasonal Toy Object",
+        "designer_persona": "children’s retail designer",
+        "buyer_use_case": "Easter gift shop mobile poster; nursery holiday editorial cover",
+        "design_reuse_cases": [
+          "Easter gift shop mobile poster",
+          "nursery holiday editorial cover"
+        ],
+        "design_placement": "set the bunny slightly low-left, preserving upper and right space for a mobile Easter gift guide",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Minimal Plush Toy Catalog Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "fine natural linen weave, subtle seam stitching, modest cotton stuffing, simple stitched facial details and a softly tied tiny neck ribbon",
+        "integration_guidance": "set the bunny slightly low-left, preserving upper and right space for a mobile Easter gift guide",
+        "reusability_rationale": "A familiar home toy with warm tactile feel, visually separate from the typical egg-only compositions.",
+        "distinctiveness": "A familiar home toy with warm tactile feel, visually separate from the typical egg-only compositions.",
+        "metadata_seed_keywords": [
+          "Easter",
+          "Seasonal Toy Object",
+          "Soft Linen Bunny Toy on Cream Background",
+          "Easter gift shop mobile poster"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Daffodil Stems and Speckled Eggs Spring Corner",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "daffodil yellow, meadow green, eggshell beige, warm white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Easter, aimed at a seasonal editorial designer. The subject is three fresh yellow daffodil stems placed diagonally from the lower-right corner beside two lightly speckled natural eggs. Material and visual detail: delicate trumpet-shaped petals, real green stems, pale eggshell pores and modest asymmetry like a simple kitchen-table arrangement. Compose one 16:9 frame: confine the small arrangement to the lower-right corner, leaving the remaining warm white surface completely open. Art style: Natural Spring Flat Lay Photography. Lighting: soft spring morning top light with quiet small shadows and accurate botanical color. Make the image practical for a Easter family invitation banner and a spring seasonal recipe cover, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "magnolia flower, rose bouquet, glitter, pastel paint splashes, handwriting, artificial flower anatomy",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Easter",
+        "component_category": "Spring Corner Element",
+        "designer_persona": "seasonal editorial designer",
+        "buyer_use_case": "Easter family invitation banner; spring seasonal recipe cover",
+        "design_reuse_cases": [
+          "Easter family invitation banner",
+          "spring seasonal recipe cover"
+        ],
+        "design_placement": "confine the small arrangement to the lower-right corner, leaving the remaining warm white surface completely open",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Natural Spring Flat Lay Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "delicate trumpet-shaped petals, real green stems, pale eggshell pores and modest asymmetry like a simple kitchen-table arrangement",
+        "integration_guidance": "confine the small arrangement to the lower-right corner, leaving the remaining warm white surface completely open",
+        "reusability_rationale": "An inexpensive familiar spring arrangement with useful whitespace, avoiding theatrical rabbit-and-basket scenes.",
+        "distinctiveness": "An inexpensive familiar spring arrangement with useful whitespace, avoiding theatrical rabbit-and-basket scenes.",
+        "metadata_seed_keywords": [
+          "Easter",
+          "Spring Corner Element",
+          "Daffodil Stems and Speckled Eggs Spring Corner",
+          "Easter family invitation banner"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Mini Orange and White Pumpkins in Gentle Size Rhythm",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "pumpkin orange, ivory, muted sage, warm white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Halloween, aimed at a home retail campaign designer. The subject is four small real ornamental pumpkins in orange, pale cream and muted sage arranged in a loosely graduated row on white. Material and visual detail: matte ribbed pumpkin skins, short woody stems, natural dimples and imperfect shapes with believable relative sizes. Compose one 16:9 frame: cluster pumpkins across the bottom-right half and keep a calm left and upper field for an autumn retail offer. Art style: Minimal Autumn Produce Photography. Lighting: bright soft studio daylight, subtle object shadows and enough contrast for clean product outlines. Make the image practical for a Halloween grocery banner and a autumn porch decor shop header, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "carved jack o lantern, fake smiles, glossy plastic, bats, text, pumpkins growing from floor",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Halloween",
+        "component_category": "Isolated Seasonal Produce",
+        "designer_persona": "home retail campaign designer",
+        "buyer_use_case": "Halloween grocery banner; autumn porch decor shop header",
+        "design_reuse_cases": [
+          "Halloween grocery banner",
+          "autumn porch decor shop header"
+        ],
+        "design_placement": "cluster pumpkins across the bottom-right half and keep a calm left and upper field for an autumn retail offer",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Minimal Autumn Produce Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "matte ribbed pumpkin skins, short woody stems, natural dimples and imperfect shapes with believable relative sizes",
+        "integration_guidance": "cluster pumpkins across the bottom-right half and keep a calm left and upper field for an autumn retail offer",
+        "reusability_rationale": "A simple everyday grocery and home decoration object, with clean commercial usability outside Halloween too.",
+        "distinctiveness": "A simple everyday grocery and home decoration object, with clean commercial usability outside Halloween too.",
+        "metadata_seed_keywords": [
+          "Halloween",
+          "Isolated Seasonal Produce",
+          "Mini Orange and White Pumpkins in Gentle Size Rhythm",
+          "Halloween grocery banner"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Black Paper Bat Cutout Garland Across Top",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "matte black, charcoal, warm white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Halloween, aimed at a party retail designer. The subject is a loosely strung line of simple small black paper bat silhouettes hanging across the top of a warm white background. Material and visual detail: real paper thickness, folded wing creases, tiny twine attachments and harmless imperfect hand-cut edges. Compose one 16:9 frame: keep the entire lower three-quarters of the frame clean, allowing promotional text or an added product beneath. Art style: Handmade Paper Decoration Photography. Lighting: even diffused studio light casting delicate believable paper shadows, with no gothic digital glow. Make the image practical for a Halloween party invitation header and a costume shop email campaign, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "realistic animals, plastic wings, blood, skulls, trademark characters, text, night forest",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Halloween",
+        "component_category": "Paper Decoration Border",
+        "designer_persona": "party retail designer",
+        "buyer_use_case": "Halloween party invitation header; costume shop email campaign",
+        "design_reuse_cases": [
+          "Halloween party invitation header",
+          "costume shop email campaign"
+        ],
+        "design_placement": "keep the entire lower three-quarters of the frame clean, allowing promotional text or an added product beneath",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Handmade Paper Decoration Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "real paper thickness, folded wing creases, tiny twine attachments and harmless imperfect hand-cut edges",
+        "integration_guidance": "keep the entire lower three-quarters of the frame clean, allowing promotional text or an added product beneath",
+        "reusability_rationale": "Affordable home craft decoration that functions as a ready-to-use crop-friendly banner border.",
+        "distinctiveness": "Affordable home craft decoration that functions as a ready-to-use crop-friendly banner border.",
+        "metadata_seed_keywords": [
+          "Halloween",
+          "Paper Decoration Border",
+          "Black Paper Bat Cutout Garland Across Top",
+          "Halloween party invitation header"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Glowing Pumpkin Lantern on Quiet Home Steps",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "pumpkin amber, dusk blue, muted brown",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Halloween, aimed at a lifestyle event marketer. The subject is a single carved pumpkin lantern resting on two ordinary wooden home porch steps, with a small folded blanket on a bench far behind. Material and visual detail: true pumpkin rind, uneven cut teeth, warm restrained inner light and damp wooden grain with believable carved openings. Compose one 16:9 frame: place lantern on the lower-left while a softly blurred amber-lit porch wall occupies the right for copy. Art style: Cozy Autumn Evening Lifestyle Photography. Lighting: blue-hour ambient light with natural warm bokeh and shallow photographic depth of field. Make the image practical for a Halloween neighborhood event banner and a autumn home blog cover, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "decorated fir tree, fireplace, zombies, horror blood, crowded pumpkins, text, artificial extreme flame",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Halloween",
+        "component_category": "Cozy Seasonal Scene",
+        "designer_persona": "lifestyle event marketer",
+        "buyer_use_case": "Halloween neighborhood event banner; autumn home blog cover",
+        "design_reuse_cases": [
+          "Halloween neighborhood event banner",
+          "autumn home blog cover"
+        ],
+        "design_placement": "place lantern on the lower-left while a softly blurred amber-lit porch wall occupies the right for copy",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Cozy Autumn Evening Lifestyle Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "true pumpkin rind, uneven cut teeth, warm restrained inner light and damp wooden grain with believable carved openings",
+        "integration_guidance": "place lantern on the lower-left while a softly blurred amber-lit porch wall occupies the right for copy",
+        "reusability_rationale": "Uses the gentle warm-room mood of reference interiors in an everyday Halloween doorstep setting.",
+        "distinctiveness": "Uses the gentle warm-room mood of reference interiors in an everyday Halloween doorstep setting.",
+        "metadata_seed_keywords": [
+          "Halloween",
+          "Cozy Seasonal Scene",
+          "Glowing Pumpkin Lantern on Quiet Home Steps",
+          "Halloween neighborhood event banner"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Traditional Mooncakes on Simple Porcelain Plate",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "golden brown, yolk gold, porcelain ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Mid-Autumn Festival, aimed at a regional bakery designer. The subject is two small traditional baked mooncakes on an undecorated ivory porcelain plate, one cut neatly to reveal a plausible lotus-seed paste and salted egg yolk center. Material and visual detail: crisp delicate stamped pastry ridges without writing, naturally browned crust, smooth filling cross-section and grounded plate shadows. Compose one 16:9 frame: position the food slightly right of center, leaving a broad clean cream field for a bakery promotion headline. Art style: Fine Food Packaging Photography. Lighting: soft directional window light with restrained food highlights and a warm home-kitchen atmosphere. Make the image practical for a Mid-Autumn bakery advertisement and a festival recipe article header, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "unreadable fake Chinese words, oversized egg yolks, frosting, pineapple tarts, logo, paper rabbit graphics",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Mid-Autumn Festival",
+        "component_category": "Traditional Festival Food",
+        "designer_persona": "regional bakery designer",
+        "buyer_use_case": "Mid-Autumn bakery advertisement; festival recipe article header",
+        "design_reuse_cases": [
+          "Mid-Autumn bakery advertisement",
+          "festival recipe article header"
+        ],
+        "design_placement": "position the food slightly right of center, leaving a broad clean cream field for a bakery promotion headline",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Fine Food Packaging Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "crisp delicate stamped pastry ridges without writing, naturally browned crust, smooth filling cross-section and grounded plate shadows",
+        "integration_guidance": "position the food slightly right of center, leaving a broad clean cream field for a bakery promotion headline",
+        "reusability_rationale": "Culturally recognizable edible item and credible cross-section that can be used as a practical bakery image.",
+        "distinctiveness": "Culturally recognizable edible item and credible cross-section that can be used as a practical bakery image.",
+        "metadata_seed_keywords": [
+          "Mid-Autumn Festival",
+          "Traditional Festival Food",
+          "Traditional Mooncakes on Simple Porcelain Plate",
+          "Mid-Autumn bakery advertisement"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.nationalmuseum.nhb.gov.sg/nms-online/resources/mooncake-memories",
+          "https://www.nhb.gov.sg/~/media/nhb/files/sharedhtml/whos_your_neighbour.pdf?la=en"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Handmade Rabbit Paper Lantern on Pale Background",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "soft white paper, pale pink, muted red, cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Mid-Autumn Festival, aimed at a community festival designer. The subject is one modest traditional paper lantern shaped like a rabbit with a thin carrying handle, isolated against a warm cream background. Material and visual detail: translucent paper stretched over plausible wire ribs, small red ear accents and a tidy non-branded base; believable light source inside. Compose one 9:16 frame: place the lantern in the lower half of the vertical frame with open copy space above and beside the handle. Art style: Clean Craft Object Photography. Lighting: subtle warm internal glow blended with diffused daylight, keeping paper translucency physically credible. Make the image practical for a Mid-Autumn family event story and a children’s lantern workshop poster, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "real rabbit, digital cartoon character, oversized moon, written text, plastic toy anatomy",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Mid-Autumn Festival",
+        "component_category": "Paper Lantern Object",
+        "designer_persona": "community festival designer",
+        "buyer_use_case": "Mid-Autumn family event story; children’s lantern workshop poster",
+        "design_reuse_cases": [
+          "Mid-Autumn family event story",
+          "children’s lantern workshop poster"
+        ],
+        "design_placement": "place the lantern in the lower half of the vertical frame with open copy space above and beside the handle",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Clean Craft Object Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "translucent paper stretched over plausible wire ribs, small red ear accents and a tidy non-branded base; believable light source inside",
+        "integration_guidance": "place the lantern in the lower half of the vertical frame with open copy space above and beside the handle",
+        "reusability_rationale": "Childhood festival object with simple composition, allowing flexible event messaging without a full staged festival scene.",
+        "distinctiveness": "Childhood festival object with simple composition, allowing flexible event messaging without a full staged festival scene.",
+        "metadata_seed_keywords": [
+          "Mid-Autumn Festival",
+          "Paper Lantern Object",
+          "Handmade Rabbit Paper Lantern on Pale Background",
+          "Mid-Autumn family event story"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.nationalmuseum.nhb.gov.sg/nms-online/resources/mooncake-memories",
+          "https://www.nhb.gov.sg/~/media/nhb/files/sharedhtml/whos_your_neighbour.pdf?la=en"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Osmanthus Tea Cup with Scattered Blossoms",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "honey gold, ivory, pale linen, soft leaf green",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Mid-Autumn Festival, aimed at a tea house graphic designer. The subject is a small handleless porcelain tea cup filled with pale golden osmanthus tea and several tiny fragrant dried blossoms scattered nearby. Material and visual detail: authentic miniature yellow flower clusters, thin porcelain rim, gentle steam and faintly translucent tea liquid. Compose one 16:9 frame: keep the small cup on the left third of a pale linen surface and preserve a wide serene right-side field for bakery or tea copy. Art style: Quiet Chinese Tea Lifestyle Photography. Lighting: soft late-afternoon side light with delicate shadows and an intimate calm domestic mood. Make the image practical for a Mid-Autumn tea gift guide and a seasonal wellness editorial banner, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "oversized flowers, mooncakes, brands, tea bags with text, excessive steam, bamboo forest backdrop",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Mid-Autumn Festival",
+        "component_category": "Everyday Festival Tabletop",
+        "designer_persona": "tea house graphic designer",
+        "buyer_use_case": "Mid-Autumn tea gift guide; seasonal wellness editorial banner",
+        "design_reuse_cases": [
+          "Mid-Autumn tea gift guide",
+          "seasonal wellness editorial banner"
+        ],
+        "design_placement": "keep the small cup on the left third of a pale linen surface and preserve a wide serene right-side field for bakery or tea copy",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Quiet Chinese Tea Lifestyle Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "authentic miniature yellow flower clusters, thin porcelain rim, gentle steam and faintly translucent tea liquid",
+        "integration_guidance": "keep the small cup on the left third of a pale linen surface and preserve a wide serene right-side field for bakery or tea copy",
+        "reusability_rationale": "A familiar home tea moment with subtle festival association and broader year-round tea-market use.",
+        "distinctiveness": "A familiar home tea moment with subtle festival association and broader year-round tea-market use.",
+        "metadata_seed_keywords": [
+          "Mid-Autumn Festival",
+          "Everyday Festival Tabletop",
+          "Osmanthus Tea Cup with Scattered Blossoms",
+          "Mid-Autumn tea gift guide"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://www.nationalmuseum.nhb.gov.sg/nms-online/resources/mooncake-memories",
+          "https://www.nhb.gov.sg/~/media/nhb/files/sharedhtml/whos_your_neighbour.pdf?la=en"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Homemade Pumpkin Pie Slice on Ivory Plate",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "pumpkin orange, cream, pastry tan, warm white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Thanksgiving, aimed at a bakery content designer. The subject is one generous but realistically sized triangular slice of baked pumpkin pie on a plain ceramic dessert plate, with a fork placed nearby. Material and visual detail: smooth pumpkin custard, warm pastry crust with slight crumb texture, subtle baked color gradients and a modest dab of whipped cream. Compose one 16:9 frame: place the plate in the right half of the image against a light table, leaving an open left field for menu copy. Art style: Warm Bakery Product Photography. Lighting: soft autumn daylight and delicate plate shadows, warm inviting food color without exaggerated saturation. Make the image practical for a Thanksgiving menu banner and a autumn family recipe article cover, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "iced sugar cookies, artificial crumb dust, huge fork, branded plate, text, crowded dinner table",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Thanksgiving",
+        "component_category": "Seasonal Dessert Object",
+        "designer_persona": "bakery content designer",
+        "buyer_use_case": "Thanksgiving menu banner; autumn family recipe article cover",
+        "design_reuse_cases": [
+          "Thanksgiving menu banner",
+          "autumn family recipe article cover"
+        ],
+        "design_placement": "place the plate in the right half of the image against a light table, leaving an open left field for menu copy",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Warm Bakery Product Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "smooth pumpkin custard, warm pastry crust with slight crumb texture, subtle baked color gradients and a modest dab of whipped cream",
+        "integration_guidance": "place the plate in the right half of the image against a light table, leaving an open left field for menu copy",
+        "reusability_rationale": "An unmistakable holiday dessert photographed in the same clean honest style as ordinary kitchen references.",
+        "distinctiveness": "An unmistakable holiday dessert photographed in the same clean honest style as ordinary kitchen references.",
+        "metadata_seed_keywords": [
+          "Thanksgiving",
+          "Seasonal Dessert Object",
+          "Homemade Pumpkin Pie Slice on Ivory Plate",
+          "Thanksgiving menu banner"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Wheat Ears and Dried Corn Husk Lower Border",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 89,
+      "topic_bucket": "APPROVED",
+      "palette": "straw gold, pale wheat, warm ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Thanksgiving, aimed at a seasonal graphic designer. The subject is a small bunch of natural golden wheat ears and two pale dried corn husks laid loosely across the very bottom edge of a bright ivory background. Material and visual detail: fine wheat awns, curled dry leaf edges, truthful straw fibers and a few loose seed heads, with recognizable household craft scale. Compose one 16:9 frame: use the lower strip only and leave a wide clear field above for a home-gathering promotional message. Art style: Autumn Harvest Flat Lay Photography. Lighting: clean soft overhead light with faint shadows and no excessive sepia treatment. Make the image practical for a Thanksgiving retail email header and a harvest farmers market flyer, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "maple leaf poster, pumpkin row, fake metallic grass, neon orange, text, rustic clutter",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Thanksgiving",
+        "component_category": "Harvest Decorative Border",
+        "designer_persona": "seasonal graphic designer",
+        "buyer_use_case": "Thanksgiving retail email header; harvest farmers market flyer",
+        "design_reuse_cases": [
+          "Thanksgiving retail email header",
+          "harvest farmers market flyer"
+        ],
+        "design_placement": "use the lower strip only and leave a wide clear field above for a home-gathering promotional message",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Autumn Harvest Flat Lay Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "fine wheat awns, curled dry leaf edges, truthful straw fibers and a few loose seed heads, with recognizable household craft scale",
+        "integration_guidance": "use the lower strip only and leave a wide clear field above for a home-gathering promotional message",
+        "reusability_rationale": "A modest real-material harvest border that avoids copying the reference autumn maple-leaf arrangement.",
+        "distinctiveness": "A modest real-material harvest border that avoids copying the reference autumn maple-leaf arrangement.",
+        "metadata_seed_keywords": [
+          "Thanksgiving",
+          "Harvest Decorative Border",
+          "Wheat Ears and Dried Corn Husk Lower Border",
+          "Thanksgiving retail email header"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Gold Party Hat and Handheld Paper Noisemakers",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "warm gold, powder blue, coral, ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for New Year’s Eve, aimed at a event stationery designer. The subject is one plain gold paper party hat and three compact colorful paper blowout noisemakers placed in a loose celebratory grouping on light cream. Material and visual detail: visible folded card seams, delicate elastic hat cord and believable curled paper tubes, with no printed numbers or slogans. Compose one 16:9 frame: group the objects on the lower-left half and keep the upper-right open for an event or promotion headline. Art style: Celebration Object Catalog Photography. Lighting: clean diffused studio lighting with very small metallic reflections, youthful festive warmth and natural shadows. Make the image practical for a New Year party supplies shop banner and a countdown invitation layout, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "champagne branding, year numbers, plastic horns, firework explosions, logo, text",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "New Year’s Eve",
+        "component_category": "Party Object Collection",
+        "designer_persona": "event stationery designer",
+        "buyer_use_case": "New Year party supplies shop banner; countdown invitation layout",
+        "design_reuse_cases": [
+          "New Year party supplies shop banner",
+          "countdown invitation layout"
+        ],
+        "design_placement": "group the objects on the lower-left half and keep the upper-right open for an event or promotion headline",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Celebration Object Catalog Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "visible folded card seams, delicate elastic hat cord and believable curled paper tubes, with no printed numbers or slogans",
+        "integration_guidance": "group the objects on the lower-left half and keep the upper-right open for an event or promotion headline",
+        "reusability_rationale": "Simple familiar party props with genuine paper construction, suitable for many celebrations after the calendar holiday.",
+        "distinctiveness": "Simple familiar party props with genuine paper construction, suitable for many celebrations after the calendar holiday.",
+        "metadata_seed_keywords": [
+          "New Year’s Eve",
+          "Party Object Collection",
+          "Gold Party Hat and Handheld Paper Noisemakers",
+          "New Year party supplies shop banner"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Champagne-Tone Balloon Trio Against Warm White",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "champagne beige, warm ivory, pale peach",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for New Year’s Eve, aimed at a event marketing designer. The subject is three ordinary latex balloons in champagne, ivory and muted peach tied together with thin satin strings against an uncluttered cream wall. Material and visual detail: correct latex stretch, soft knot shapes, realistic highlight falloff and strings hanging under gravity at plausible lengths. Compose one 9:16 frame: shift balloons into the upper-right so the left-center remains a calm copy-safe zone for mobile event messaging. Art style: Soft Party Decoration Photography. Lighting: gentle studio side light with subtle balloon reflections and softly projected wall shadows. Make the image practical for a New Year event story poster and a general celebration mobile advertisement, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "metallic foil number balloons, printed logos, floating impossible strings, fir pine greenery, text",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "New Year’s Eve",
+        "component_category": "Party Decoration Object",
+        "designer_persona": "event marketing designer",
+        "buyer_use_case": "New Year event story poster; general celebration mobile advertisement",
+        "design_reuse_cases": [
+          "New Year event story poster",
+          "general celebration mobile advertisement"
+        ],
+        "design_placement": "shift balloons into the upper-right so the left-center remains a calm copy-safe zone for mobile event messaging",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Soft Party Decoration Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "correct latex stretch, soft knot shapes, realistic highlight falloff and strings hanging under gravity at plausible lengths",
+        "integration_guidance": "shift balloons into the upper-right so the left-center remains a calm copy-safe zone for mobile event messaging",
+        "reusability_rationale": "Minimal year-agnostic party imagery that remains a reusable celebration component beyond New Year.",
+        "distinctiveness": "Minimal year-agnostic party imagery that remains a reusable celebration component beyond New Year.",
+        "metadata_seed_keywords": [
+          "New Year’s Eve",
+          "Party Decoration Object",
+          "Champagne-Tone Balloon Trio Against Warm White",
+          "New Year event story poster"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Fresh Pink Carnations in Clear Kitchen Pitcher",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "soft pink, pale green, clear glass, cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Mother’s Day, aimed at a flower retailer designer. The subject is a small relaxed bunch of fresh pink carnations and leafy stems arranged in a plain transparent kitchen water pitcher. Material and visual detail: fine ruffled carnation petals, realistic green calyxes, differing bloom sizes, true glass thickness and a visible water line. Compose one 9:16 frame: locate the pitcher on the lower-right with soft neutral copy space above for a Mother’s Day note. Art style: Natural Floral Gift Photography. Lighting: warm gentle morning window light with subtle petal translucency and quiet tabletop shadows. Make the image practical for a Mother’s Day florist mobile promotion and a family appreciation greeting layout, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "magnolia branch on textured paper, rose wall, readable card, logo, dense bouquet, fake petals",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Mother’s Day",
+        "component_category": "Floral Gift Object",
+        "designer_persona": "flower retailer designer",
+        "buyer_use_case": "Mother’s Day florist mobile promotion; family appreciation greeting layout",
+        "design_reuse_cases": [
+          "Mother’s Day florist mobile promotion",
+          "family appreciation greeting layout"
+        ],
+        "design_placement": "locate the pitcher on the lower-right with soft neutral copy space above for a Mother’s Day note",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Natural Floral Gift Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "fine ruffled carnation petals, realistic green calyxes, differing bloom sizes, true glass thickness and a visible water line",
+        "integration_guidance": "locate the pitcher on the lower-right with soft neutral copy space above for a Mother’s Day note",
+        "reusability_rationale": "A familiar low-key home bouquet with clear everyday emotion and simple marketing composability.",
+        "distinctiveness": "A familiar low-key home bouquet with clear everyday emotion and simple marketing composability.",
+        "metadata_seed_keywords": [
+          "Mother’s Day",
+          "Floral Gift Object",
+          "Fresh Pink Carnations in Clear Kitchen Pitcher",
+          "Mother’s Day florist mobile promotion"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Small Wrapped Gift Box with Plain Satin Ribbon and Daisy",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "kraft beige, dusty pink, daisy white, ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Mother’s Day, aimed at a gifting shop designer. The subject is one small kraft-wrapped present with a simple dusty-pink satin ribbon, beside a single fresh white daisy on a clean neutral surface. Material and visual detail: genuine folded paper seams, restrained bow loops, readable flower anatomy and soft fabric sheen, no greeting text. Compose one 16:9 frame: place the small gift low on the right side while leaving broad blank ivory area to the left for a greeting or offer. Art style: Clean Gifting Product Photography. Lighting: diffused daylight and delicate grounded shadows, warm restrained at-home gift giving mood. Make the image practical for a Mother’s Day online gift banner and a small business thank-you card background, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "written messages, huge luxury gift, hearts everywhere, branding, unrealistic ribbon loops",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Mother’s Day",
+        "component_category": "Simple Gift Still Life",
+        "designer_persona": "gifting shop designer",
+        "buyer_use_case": "Mother’s Day online gift banner; small business thank-you card background",
+        "design_reuse_cases": [
+          "Mother’s Day online gift banner",
+          "small business thank-you card background"
+        ],
+        "design_placement": "place the small gift low on the right side while leaving broad blank ivory area to the left for a greeting or offer",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Clean Gifting Product Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "genuine folded paper seams, restrained bow loops, readable flower anatomy and soft fabric sheen, no greeting text",
+        "integration_guidance": "place the small gift low on the right side while leaving broad blank ivory area to the left for a greeting or offer",
+        "reusability_rationale": "Familiar everyday gift materials with clear commercial flexibility; avoids floral-branch-on-paper rejection.",
+        "distinctiveness": "Familiar everyday gift materials with clear commercial flexibility; avoids floral-branch-on-paper rejection.",
+        "metadata_seed_keywords": [
+          "Mother’s Day",
+          "Simple Gift Still Life",
+          "Small Wrapped Gift Box with Plain Satin Ribbon and Daisy",
+          "Mother’s Day online gift banner"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Plain Navy Necktie Loosely Folded in Gift Box",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 89,
+      "topic_bucket": "APPROVED",
+      "palette": "navy blue, kraft beige, warm white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Father’s Day, aimed at a menswear retail designer. The subject is one simple unbranded navy cotton-silk necktie loosely folded inside an open shallow kraft gift box on a warm neutral surface. Material and visual detail: natural tie blade proportion, realistic woven fabric, a modest stitched seam and paper box walls of believable thickness. Compose one 16:9 frame: group the box toward the bottom-left, maintaining clean open right-side space for seasonal copy. Art style: Minimal Apparel Gift Catalog Photography. Lighting: soft morning studio light with restrained weave highlights and clear product edges. Make the image practical for a Father’s Day store campaign banner and a gift recommendation blog cover, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "logos, business suit mannequin, smartwatch brand, printed note, exaggerated luxury velvet",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Father’s Day",
+        "component_category": "Apparel Gift Object",
+        "designer_persona": "menswear retail designer",
+        "buyer_use_case": "Father’s Day store campaign banner; gift recommendation blog cover",
+        "design_reuse_cases": [
+          "Father’s Day store campaign banner",
+          "gift recommendation blog cover"
+        ],
+        "design_placement": "group the box toward the bottom-left, maintaining clean open right-side space for seasonal copy",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Minimal Apparel Gift Catalog Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "natural tie blade proportion, realistic woven fabric, a modest stitched seam and paper box walls of believable thickness",
+        "integration_guidance": "group the box toward the bottom-left, maintaining clean open right-side space for seasonal copy",
+        "reusability_rationale": "A simple recognizable gift shot with everyday retail usage, without tying the visual to an expensive niche product.",
+        "distinctiveness": "A simple recognizable gift shot with everyday retail usage, without tying the visual to an expensive niche product.",
+        "metadata_seed_keywords": [
+          "Father’s Day",
+          "Apparel Gift Object",
+          "Plain Navy Necktie Loosely Folded in Gift Box",
+          "Father’s Day store campaign banner"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Canvas Barbecue Apron Fold with Wooden Tongs",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "charcoal gray, natural wood, warm ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Father’s Day, aimed at a home retail marketing designer. The subject is one folded plain charcoal cotton canvas barbecue apron beside a pair of simple wooden grill tongs on a clean off-white background. Material and visual detail: visible canvas weave, honest strap length, soft creases and plausible wooden hinge details, with no slogans or embroidery. Compose one 16:9 frame: align the objects to the right side and keep a large left-side copy zone for a gift guide banner. Art style: Casual Home Leisure Product Photography. Lighting: bright diffuse studio daylight with soft shadows and no smoke or staged outdoor kitchen. Make the image practical for a Father’s Day home gift guide and a summer family barbecue promotion, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "meat, flames, brand names, text, sharp knives, overly technical equipment, clutter",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Father’s Day",
+        "component_category": "Everyday Leisure Gift",
+        "designer_persona": "home retail marketing designer",
+        "buyer_use_case": "Father’s Day home gift guide; summer family barbecue promotion",
+        "design_reuse_cases": [
+          "Father’s Day home gift guide",
+          "summer family barbecue promotion"
+        ],
+        "design_placement": "align the objects to the right side and keep a large left-side copy zone for a gift guide banner",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Casual Home Leisure Product Photography",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "visible canvas weave, honest strap length, soft creases and plausible wooden hinge details, with no slogans or embroidery",
+        "integration_guidance": "align the objects to the right side and keep a large left-side copy zone for a gift guide banner",
+        "reusability_rationale": "Simple familiar backyard-cooking objects; relevant to daily life and useful in seasonal gifting content.",
+        "distinctiveness": "Simple familiar backyard-cooking objects; relevant to daily life and useful in seasonal gifting content.",
+        "metadata_seed_keywords": [
+          "Father’s Day",
+          "Everyday Leisure Gift",
+          "Canvas Barbecue Apron Fold with Wooden Tongs",
+          "Father’s Day home gift guide"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Two Leaf-Wrapped Zongzi with Cotton Twine",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "bamboo green, ivory rice, warm white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an original photorealistic stock image for Dragon Boat Festival, aimed at a regional food marketing designer. The subject is two palm-sized traditional triangular zongzi rice dumplings wrapped in green bamboo leaves, one slightly unwrapped to show compact glutinous rice. Material and visual detail: true folded leaf veins, natural overlapping tips, taut plain cotton binding twine and properly compact sticky rice texture. Compose one 16:9 frame: place the small food pair toward the lower-left of a white tabletop with clear upper-right copy space. Art style: Authentic East Asian Food Still Life. Lighting: soft natural daylight with realistic leaf gloss and delicate food contact shadows. Make the image practical for a Dragon Boat Festival food retail banner and a family recipe blog hero image, with easy cropping and compositional breathing room. Keep the scene close to ordinary home life or recognisable celebration objects, with consistent physical scale, fine material textures, intentional focus, realistic edges and credible natural shadows. Deliver a high-detail 4K raster image on an opaque background, with no words, numbers, logos, watermarks or protected designs.",
+      "negative_prompt": "incorrect banana-leaf boxes, text, dragon costumes, holiday mooncakes, plastic food, extra props",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "strategy": "lifestyle_close_nonchristmas_holidays",
+        "holiday": "Dragon Boat Festival",
+        "component_category": "Traditional Festival Food",
+        "designer_persona": "regional food marketing designer",
+        "buyer_use_case": "Dragon Boat Festival food retail banner; family recipe blog hero image",
+        "design_reuse_cases": [
+          "Dragon Boat Festival food retail banner",
+          "family recipe blog hero image"
+        ],
+        "design_placement": "place the small food pair toward the lower-left of a white tabletop with clear upper-right copy space",
+        "design_function": "Photographic everyday festive component for adaptable advertising and editorial design",
+        "art_style": "Authentic East Asian Food Still Life",
+        "style_rationale": "Retains the user-supplied Adobe Insight references’ white-background product simplicity, gentle physical realism, tidy borders or cosy bokeh rather than copied subjects.",
+        "material": "true folded leaf veins, natural overlapping tips, taut plain cotton binding twine and properly compact sticky rice texture",
+        "integration_guidance": "place the small food pair toward the lower-left of a white tabletop with clear upper-right copy space",
+        "reusability_rationale": "Everyday holiday food sold in markets and kitchens, with a clean product-photo composition and physically credible wrapping.",
+        "distinctiveness": "Everyday holiday food sold in markets and kitchens, with a clean product-photo composition and physically credible wrapping.",
+        "metadata_seed_keywords": [
+          "Dragon Boat Festival",
+          "Traditional Festival Food",
+          "Two Leaf-Wrapped Zongzi with Cotton Twine",
+          "Dragon Boat Festival food retail banner"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs"
+        ],
+        "originality_notes": "New festive concept created from the style grammar of user-supplied image examples. Not a recreation of any individual preview. No verified stock sales claims. Opaque raster; not transparent PNG or editable vector."
+      }
+    }
+  ]
+}
