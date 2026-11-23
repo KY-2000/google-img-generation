@@ -1,0 +1,1156 @@
+{
+  "run_id": "TF_category_crawler_20261123_lifestyle_r03",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-23T14:28:00+08:00",
+  "research": {
+    "finder": "category_crawler",
+    "origin": "User-provided Adobe Insight reference images; rerun focused on close-to-life everyday subjects matching the reference feel",
+    "candidate_count": 26,
+    "approved_count": 23,
+    "rejected_count": 6,
+    "selection_override": "User requested subjects closer to daily life and visually nearer to the reference set; no fixed category cap used.",
+    "evidence_status": "REFERENCE-GROUNDED: style grammar inferred from the uploaded reference images; no sales, royalty or acceptance claims made.",
+    "style_grammar_summary": [
+      "everyday household or food subject matter",
+      "clean isolated objects or simple cozy interior scenes",
+      "commercial lifestyle photography rather than illustration",
+      "usable copy space and layout-friendly composition",
+      "warm relatable mood, realistic textures, low clutter"
+    ],
+    "source_urls": [
+      "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+      "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+      "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+    ],
+    "duplicate_exclusion_note": "Avoided direct repeats of the reference subjects and the confirmed Similar Content exclusion list."
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Three Neutral Stoneware Mugs in Graduated Heights",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "warm white, oatmeal beige, taupe, soft gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable everyday lifestyle asset for a homeware designer, suitable for kitchenware catalog headers and cozy blog banner layouts. Show three handle mugs made of matte neutral stoneware in graduated heights, arranged left to right like a simple rhythm study on a clean light background. Keep the glazes realistic: warm ivory, oatmeal beige and pale taupe, with soft kiln variation, subtle shadow contact and believable ceramic thickness around the rims and handles. Compose a 16:9 image with the mugs grouped in the center-right half and generous clean copy space on the left. Art style: minimal commercial product photography, softly lit, realistic and uncluttered. Use diffused daylight with gentle shadows, crisp edges and no dramatic reflections. Preserve a calm domestic feeling, as if made for a lifestyle store or editorial home guide. No text, logos or props. Keep the objects isolated on an opaque light background so the buyer can crop, layer or place headlines easily.",
+      "negative_prompt": "text, logos, coffee splashes, harsh reflections, extra props, unrealistic colors",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Isolated Homeware Object",
+        "material": "matte stoneware mugs",
+        "designer_persona": "Homeware catalog designer",
+        "buyer_use_case": "Kitchenware catalog header; Cozy blog banner",
+        "design_placement": "Catalog hero image or website header",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Kitchenware catalog header",
+          "Cozy blog banner"
+        ],
+        "integration_guidance": "Three mugs grouped center-right with broad clean left-side copy space and easy crop margins.",
+        "reusability_rationale": "Uses the familiar trio rhythm from the reference candles but shifts to everyday kitchenware with wider year-round use.",
+        "art_style": "Minimal Commercial Product Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "Uses the familiar trio rhythm from the reference candles but shifts to everyday kitchenware with wider year-round use.",
+        "copy_space": "Three mugs grouped center-right with broad clean left-side copy space and easy crop margins.",
+        "metadata_seed_keywords": [
+          "stoneware mugs",
+          "neutral ceramics",
+          "isolated homeware",
+          "kitchen catalog",
+          "clean copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Folded Waffle Kitchen Towels Stack on Light Background",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "cream, flax beige, dusty sage, soft white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable everyday lifestyle asset for a kitchen brand designer, suitable for e-commerce category banners and home organization articles. Show a tidy stack of three folded waffle-weave kitchen towels on a pale light-gray background. The towels should feel tactile and real, with soft cotton thickness, slightly rounded folded corners and subtle weave relief. Use restrained colors such as cream, flax beige and dusty sage, with no printed text or patterns. Compose the stack slightly right of center, leaving clear copy-safe space on the left and upper area. Art style: clean catalog still-life photography with a warm domestic tone. Use soft window daylight and delicate grounding shadows so the towels look premium but approachable. Keep the scene minimal, isolated and practical, without baskets, utensils or other props. The result should feel easy to integrate into retail graphics, blog covers and seasonal kitchen promotions while remaining timeless and close to daily life.",
+      "negative_prompt": "logos, utensils, wooden table, excessive wrinkles, clutter, fabric labels, dramatic styling",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Textile Still Life",
+        "material": "cotton waffle kitchen towels",
+        "designer_persona": "Kitchen brand designer",
+        "buyer_use_case": "E-commerce category banner; Home organization article hero",
+        "design_placement": "Retail banner or editorial header",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "E-commerce category banner",
+          "Home organization article hero"
+        ],
+        "integration_guidance": "Folded stack sits slightly right of center with open space left and top for overlay text.",
+        "reusability_rationale": "Everyday household textile with tactile weave, useful across kitchen, linen and organization design.",
+        "art_style": "Clean Catalog Still-Life Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "Everyday household textile with tactile weave, useful across kitchen, linen and organization design.",
+        "copy_space": "Folded stack sits slightly right of center with open space left and top for overlay text.",
+        "metadata_seed_keywords": [
+          "kitchen towels",
+          "waffle weave",
+          "folded linens",
+          "home organization",
+          "ecommerce banner"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Pair of Knit Wool Mittens with Soft Domestic Texture",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "ivory, heather gray, oatmeal, muted red",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable lifestyle component for a seasonal retail designer, suitable for winter sale mobile stories and cold-weather blog covers. Show a pair of everyday knit wool mittens, softly overlapping on a pale neutral background. Emphasize real yarn texture, ribbed cuffs, gentle hand-shaped volume and believable wool fuzz. Use classic wearable colors such as heather gray and oatmeal, with a tiny muted red hanging loop or stitch accent for visual interest. Compose vertically in 9:16 with the mittens occupying the lower-middle area and a generous calm upper field for text. Art style: approachable product photography for apparel and home lifestyle commerce. Lighting should be soft and diffuse, with delicate shadows and no dramatic high contrast. Keep the asset simple, clean and practical, without snow, holiday props or brand labels. The image should feel cozy and familiar, useful for seasonal promotions without being locked to a single holiday.",
+      "negative_prompt": "snow piles, logos, glitter, Christmas text, hands, cluttered props, extreme fashion styling",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Seasonal Apparel Object",
+        "material": "knit wool mittens",
+        "designer_persona": "Seasonal retail designer",
+        "buyer_use_case": "Winter sale mobile story; Cold-weather blog cover",
+        "design_placement": "Vertical social post or mobile promo background",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Winter sale mobile story",
+          "Cold-weather blog cover"
+        ],
+        "integration_guidance": "Vertical composition with open calm space above the mittens for mobile headlines.",
+        "reusability_rationale": "Everyday winter clothing item keeps the cozy tone of the reference set while staying broadly usable beyond explicit Christmas themes.",
+        "art_style": "Approachable Product Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "Everyday winter clothing item keeps the cozy tone of the reference set while staying broadly usable beyond explicit Christmas themes.",
+        "copy_space": "Vertical composition with open calm space above the mittens for mobile headlines.",
+        "metadata_seed_keywords": [
+          "knit mittens",
+          "winter accessory",
+          "isolated clothing",
+          "mobile story background",
+          "cozy retail"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Cluster of Fresh Pears with Attached Leaves",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "pear green, golden yellow, leaf green, soft white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable produce asset for a grocery campaign designer, suitable for recipe card covers and healthy eating social posts. Show a small cluster of ripe pears arranged in a loose vertical fall, echoing the clean isolated feeling of commercial cutout produce photography. Include realistic skin speckling, subtle yellow-green color variation and a few attached fresh leaves for life and movement. Compose in 9:16 with the pears cascading down the center-right, leaving a generous white or very pale neutral field for typography along the left side. Art style: crisp grocery catalog photography, fresh and minimal. Use even soft light with gentle natural shadows and clear edges. Keep the background opaque and uncluttered. Do not add baskets, cloths, cutting boards or water splashes. The result should be practical for food retail, nutrition editorials and seasonal harvest layouts while staying simple enough for easy cropping and re-use.",
+      "negative_prompt": "bowl, basket, wood table, sliced fruit, water splash, text, labels, excessive props",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Isolated Produce Collection",
+        "material": "ripe pears with leaves",
+        "designer_persona": "Grocery campaign designer",
+        "buyer_use_case": "Recipe card cover; Healthy eating social post",
+        "design_placement": "Food layout hero or mobile poster",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Recipe card cover",
+          "Healthy eating social post"
+        ],
+        "integration_guidance": "Vertical fruit arrangement center-right with open left-side copy field.",
+        "reusability_rationale": "A close-to-life fresh food subject that matches the clean cutout logic of the reference tomatoes but remains distinct.",
+        "art_style": "Crisp Grocery Catalog Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "A close-to-life fresh food subject that matches the clean cutout logic of the reference tomatoes but remains distinct.",
+        "copy_space": "Vertical fruit arrangement center-right with open left-side copy field.",
+        "metadata_seed_keywords": [
+          "pears",
+          "isolated produce",
+          "healthy food",
+          "recipe cover",
+          "white background fruit"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Scattered Clementines with Leaves on Clean Background",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "orange, leaf green, warm white, soft shadow gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable fruit asset for a grocery and lifestyle designer, suitable for vitamin campaign posters and recipe blog covers. Show seven to nine whole clementines scattered in a pleasing vertical layout on a pale neutral background, with a few attached leaves and natural size variation. The citrus should look freshly picked, with matte pebbled skin, believable stem marks and bright but realistic orange color. Compose in 9:16, placing the fruit slightly off-center so there is a copy-safe strip on one side. Art style: clean commercial food photography, minimal and fresh. Use soft diffused daylight, gentle object shadows and crisp separation from the background. Do not add slices, juice splashes, bowls or holiday props. Keep the image simple, editorially useful and easy to crop, suitable for wellness, grocery, seasonal produce and kitchen content without feeling over-styled.",
+      "negative_prompt": "sliced citrus, splashes, text, bowl, festive decorations, stickers, extra utensils",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Isolated Produce Collection",
+        "material": "whole clementines with leaves",
+        "designer_persona": "Grocery and lifestyle designer",
+        "buyer_use_case": "Vitamin campaign poster; Recipe blog cover",
+        "design_placement": "Vertical poster or social story background",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Vitamin campaign poster",
+          "Recipe blog cover"
+        ],
+        "integration_guidance": "Off-center vertical fruit scatter with one clean side kept open for text.",
+        "reusability_rationale": "Bright everyday citrus keeps the simple isolated produce feeling while broadening the subject range into daily grocery life.",
+        "art_style": "Clean Commercial Food Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "Bright everyday citrus keeps the simple isolated produce feeling while broadening the subject range into daily grocery life.",
+        "copy_space": "Off-center vertical fruit scatter with one clean side kept open for text.",
+        "metadata_seed_keywords": [
+          "clementines",
+          "citrus cluster",
+          "food cutout",
+          "vertical produce",
+          "healthy lifestyle"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Single Eucalyptus Sprig Cluster with Natural Negative Space",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "sage green, dusty eucalyptus, soft white, muted gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable botanical asset for a wellness brand designer, suitable for packaging mood boards and gentle skincare banner graphics. Show a small cluster of eucalyptus sprigs with rounded matte leaves and thin stems, isolated on a pale warm background. Render the leaves with believable dusty bloom, natural shape variation and subtle translucency at the edges, while keeping the background clean and opaque. Compose the sprigs across the lower-right or far-right portion of a 16:9 frame, preserving broad empty space for typography across the rest of the image. Art style: natural botanical product photography, calm and minimal. Lighting should be soft window daylight with gentle falloff and faint contact shadows. Avoid vases, ribbons, hands or interior props. The result should feel everyday, fresh and useful for wellness, home fragrance, cleaning and stationery layouts, giving buyers an elegant but practical plant element with generous copy room.",
+      "negative_prompt": "vase, bouquet, text, water droplets, hands, floral arrangement, dramatic shadows",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Botanical Element",
+        "material": "eucalyptus sprigs",
+        "designer_persona": "Wellness brand designer",
+        "buyer_use_case": "Packaging mood board; Skincare banner graphic",
+        "design_placement": "Banner background with botanical accent",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Packaging mood board",
+          "Skincare banner graphic"
+        ],
+        "integration_guidance": "Sprigs kept to one side with most of the frame open for copy and layout elements.",
+        "reusability_rationale": "A common home plant with soft, modern appeal and broad commercial use across wellness and home categories.",
+        "art_style": "Natural Botanical Product Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "A common home plant with soft, modern appeal and broad commercial use across wellness and home categories.",
+        "copy_space": "Sprigs kept to one side with most of the frame open for copy and layout elements.",
+        "metadata_seed_keywords": [
+          "eucalyptus",
+          "botanical sprig",
+          "wellness background",
+          "minimal plant",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Loose Rosemary Sprigs Collection on Pale Surface",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "herb green, olive, pale stone, soft white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable culinary botanical asset for a food editor, suitable for recipe website headers and pantry branding graphics. Show several loose rosemary sprigs arranged lightly along one edge of a pale surface, leaving abundant clean negative space for typography. The rosemary should look real and aromatic, with thin woody stems, needle-like leaves, slight irregularity and natural color variation from fresh green to olive. Compose horizontally in 16:9, clustering the herbs near the bottom or side edge so the frame remains open and practical. Art style: minimal culinary still-life photography, realistic and clean. Use soft top-side daylight, subtle grounding shadows and crisp detail without deep drama. Avoid bowls, cutting boards, meat, garlic or kitchen clutter. The result should stay highly reusable for recipe cards, herb packaging, menu design and wholesome lifestyle content while keeping the everyday kitchen feeling of the reference photos.",
+      "negative_prompt": "garlic, steak, cutting board, bowls, text, labels, rustic clutter, water drops",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Culinary Botanical Element",
+        "material": "fresh rosemary sprigs",
+        "designer_persona": "Food editor",
+        "buyer_use_case": "Recipe website header; Pantry branding graphic",
+        "design_placement": "Website banner or editorial header",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Recipe website header",
+          "Pantry branding graphic"
+        ],
+        "integration_guidance": "Rosemary clustered along one edge with a large clean field left empty for titles or overlays.",
+        "reusability_rationale": "A familiar kitchen herb creates daily-life relevance and versatile copy space without becoming a full cooking scene.",
+        "art_style": "Minimal Culinary Still-Life Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "A familiar kitchen herb creates daily-life relevance and versatile copy space without becoming a full cooking scene.",
+        "copy_space": "Rosemary clustered along one edge with a large clean field left empty for titles or overlays.",
+        "metadata_seed_keywords": [
+          "rosemary",
+          "herb border",
+          "recipe banner",
+          "culinary botanical",
+          "minimal food styling"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Dried Orange and Pinecone Table Garland Border",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "evergreen, dried orange, cinnamon brown, berry red",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable seasonal border asset for a holiday campaign designer, suitable for gift guide headers and festive email banners. Show a horizontal table garland made from everyday holiday décor components: soft evergreen sprigs, pinecones, dried orange slices, cinnamon sticks and a few red berries. The arrangement should form a natural continuous border running across the lower part of the frame, with realistic textures and a handcrafted domestic feel rather than luxury styling. Compose in 16:9 with the garland occupying the bottom band and a large clean upper field for text. Art style: lifestyle holiday product photography, warm and inviting. Use soft warm indoor light with slight depth and delicate shadows, while keeping the surface clean and uncluttered. Avoid visible gifts, stockings, cookies or fireplace scenes. The result should feel close to home and directly useful for banners, cards, social headers and seasonal shop graphics.",
+      "negative_prompt": "stockings, fireplace, cookies, text, glitter overload, people, excessive clutter, logos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Decorative Border",
+        "material": "evergreen sprigs, pinecones, dried orange slices and cinnamon sticks",
+        "designer_persona": "Holiday campaign designer",
+        "buyer_use_case": "Gift guide header; Festive email banner",
+        "design_placement": "Bottom border for seasonal banners",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Gift guide header",
+          "Festive email banner"
+        ],
+        "integration_guidance": "Garland runs along the bottom edge with a broad empty upper field for headline placement.",
+        "reusability_rationale": "Keeps the decorative horizontal utility of the reference garlands but uses everyday tabletop holiday materials with strong domestic familiarity.",
+        "art_style": "Lifestyle Holiday Product Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "Keeps the decorative horizontal utility of the reference garlands but uses everyday tabletop holiday materials with strong domestic familiarity.",
+        "copy_space": "Garland runs along the bottom edge with a broad empty upper field for headline placement.",
+        "metadata_seed_keywords": [
+          "holiday garland",
+          "dried orange",
+          "pinecone border",
+          "seasonal banner",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Warm White Fairy Light String Border on Neutral Background",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "warm white, champagne, beige, soft gold",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable decorative asset for a lifestyle brand designer, suitable for seasonal sale banners and celebratory social headers. Show a warm white fairy light string loosely draped along the top border of a soft neutral background. Include believable wire, tiny bulb shapes, mild glow halos and a few gentle loops so the lights feel real but not messy. Compose in 16:9 with the lights concentrated near the top edge and an expansive calm area below for typography or layered graphics. Art style: clean decorative lifestyle photography with a soft festive touch. Lighting should feel naturally luminous and subtle rather than flashy, with an opaque background and no heavy clutter. Avoid gift boxes, tree branches, letters or party props. The result should function as a versatile celebratory overlay-like background for home, retail, hospitality and year-end communication while remaining simple and easy to crop.",
+      "negative_prompt": "Christmas tree, presents, text, neon colors, crowded party props, transparent alpha claims",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Decorative Border",
+        "material": "warm white string lights",
+        "designer_persona": "Lifestyle brand designer",
+        "buyer_use_case": "Seasonal sale banner; Celebratory social header",
+        "design_placement": "Top border for text-forward layouts",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Seasonal sale banner",
+          "Celebratory social header"
+        ],
+        "integration_guidance": "Fairy lights confined to the top border with the majority of the frame left open beneath.",
+        "reusability_rationale": "A familiar home decoration with year-round event utility and extremely flexible copy space.",
+        "art_style": "Clean Decorative Lifestyle Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "A familiar home decoration with year-round event utility and extremely flexible copy space.",
+        "copy_space": "Fairy lights confined to the top border with the majority of the frame left open beneath.",
+        "metadata_seed_keywords": [
+          "fairy lights",
+          "top border",
+          "celebration background",
+          "string light banner",
+          "neutral copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Eucalyptus and Cotton Stem Garland with Neutral Ribbon",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "sage, ivory, flax beige, soft gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable decorative border for a stationery and gifting designer, suitable for seasonal website headers and greeting card templates. Show a horizontal garland made from eucalyptus stems, cotton bolls and a few neutral ribbon accents arranged as an airy top border. Emphasize realistic soft cotton fiber, dusty green leaves and lightly folded ribbon without any readable tags or logos. Compose a 16:9 image with the botanical garland stretching across the top quarter and broad quiet copy space below. Art style: soft lifestyle tabletop photography, restrained and homey. Use diffused daylight with gentle shadows and clear detail, avoiding glamourized sparkle. Do not include wrapped gifts, furniture or people. The finished image should feel calm, domestic and multi-use, useful for winter promotions, paper goods and lifestyle editorials that need a gentle seasonal cue without a heavy Christmas identity.",
+      "negative_prompt": "gifts, text, metallic glitter, furniture, people, heavy Christmas icons, clutter",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Decorative Border",
+        "material": "eucalyptus, cotton stems and neutral ribbon",
+        "designer_persona": "Stationery and gifting designer",
+        "buyer_use_case": "Seasonal website header; Greeting card template",
+        "design_placement": "Top border with clean lower field",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Seasonal website header",
+          "Greeting card template"
+        ],
+        "integration_guidance": "Airy border across the top quarter with large clean copy space below.",
+        "reusability_rationale": "Blends recognizable home décor botanicals with a muted palette, staying close to daily living and easy commercial reuse.",
+        "art_style": "Soft Lifestyle Tabletop Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "Blends recognizable home décor botanicals with a muted palette, staying close to daily living and easy commercial reuse.",
+        "copy_space": "Airy border across the top quarter with large clean copy space below.",
+        "metadata_seed_keywords": [
+          "cotton stem garland",
+          "eucalyptus border",
+          "stationery background",
+          "neutral seasonal decor",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Morning Breakfast Table with Soft Window Bokeh",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "warm cream, honey wood, soft gray, morning gold",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable cozy interior background for a food and lifestyle editor, suitable for breakfast campaign banners and home blog hero images. Show a softly styled breakfast table near a bright window, with a blurred background and a clear foreground surface left practical for added text or product overlays. Include believable everyday breakfast elements such as a plate, folded napkin, simple cup and a hint of bread or fruit, but keep all props soft-focused and secondary. The emphasis should be the gentle morning light, shallow depth of field and domestic atmosphere. Compose in 16:9 with the foreground table plane covering the lower third and an airy glowing background beyond. Art style: warm lifestyle interior photography with natural bokeh. Use soft morning daylight, realistic highlights and inviting neutrality. Avoid branded packaging, readable labels or a crowded café feeling. The result should feel intimate, familiar and broadly usable in lifestyle, hospitality and food communication.",
+      "negative_prompt": "cafe crowd, readable menu, croissant-and-coffee hero clone, labels, logos, harsh contrast, clutter",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Cozy Interior Background",
+        "material": "breakfast table, cup, plate, napkin and soft window light",
+        "designer_persona": "Food and lifestyle editor",
+        "buyer_use_case": "Breakfast campaign banner; Home blog hero image",
+        "design_placement": "Hero background with usable foreground plane",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Breakfast campaign banner",
+          "Home blog hero image"
+        ],
+        "integration_guidance": "Lower-third table plane kept readable for product overlays, with softly glowing background and open central space.",
+        "reusability_rationale": "Keeps the blurred cozy atmosphere of the festive interior references but moves into an everyday breakfast-at-home scene.",
+        "art_style": "Warm Lifestyle Interior Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "Keeps the blurred cozy atmosphere of the festive interior references but moves into an everyday breakfast-at-home scene.",
+        "copy_space": "Lower-third table plane kept readable for product overlays, with softly glowing background and open central space.",
+        "metadata_seed_keywords": [
+          "breakfast table",
+          "morning bokeh",
+          "home interior",
+          "lifestyle banner",
+          "cozy kitchen"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Reading Nook with Knit Throw and Lamp Glow",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "oatmeal, warm amber, soft brown, cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable cozy interior background for a publisher or home decor marketer, suitable for reading app banners and autumn home article covers. Show a quiet reading nook with an upholstered chair, a casually folded knit throw and a softly glowing lamp, rendered with shallow depth of field and strong domestic comfort. Keep the foreground or one side of the frame open enough for copy, while the furnishings remain slightly soft and inviting rather than sharply cataloged. Compose in 16:9 with the chair and throw to one side and a warm open zone for text on the other. Art style: cinematic but practical lifestyle interior photography. Use warm evening light, subtle bokeh and realistic textile texture. Avoid books with readable titles, people, fireplaces or branded décor. The result should feel like a believable home moment that supports cozy, reflective, lifestyle-oriented messaging all year round.",
+      "negative_prompt": "readable book covers, people, fireplace, logos, overly dark shadows, hotel luxury styling",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Cozy Interior Background",
+        "material": "armchair, knit throw and lamp glow",
+        "designer_persona": "Publisher or home decor marketer",
+        "buyer_use_case": "Reading app banner; Autumn home article cover",
+        "design_placement": "Text-forward interior background",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Reading app banner",
+          "Autumn home article cover"
+        ],
+        "integration_guidance": "Chair and throw placed to one side so the opposite side remains usable for text.",
+        "reusability_rationale": "A highly relatable domestic corner with cozy mood, close to life and easy to reuse for reading, rest and wellbeing themes.",
+        "art_style": "Cinematic Practical Lifestyle Interior Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "A highly relatable domestic corner with cozy mood, close to life and easy to reuse for reading, rest and wellbeing themes.",
+        "copy_space": "Chair and throw placed to one side so the opposite side remains usable for text.",
+        "metadata_seed_keywords": [
+          "reading nook",
+          "cozy chair",
+          "lamp bokeh",
+          "home decor background",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Kitchen Counter with Cookies Cooling and Soft Background",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "baked beige, butter cream, pale wood, warm gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable home baking background for a recipe publisher, suitable for baking blog headers and seasonal kitchen promotions. Show a kitchen counter scene with a tray or rack of simple homemade cookies cooling, while the rest of the kitchen falls into a soft warm blur. Keep the scene everyday and approachable rather than professionally styled. Include believable domestic details such as a wooden utensil or linen, but keep them subtle and unfussy. Compose in 16:9 with one side or lower foreground kept clear enough for typography. Art style: warm home kitchen lifestyle photography with shallow depth of field. Use gentle indoor daylight or soft ambient light, realistic crumbs and natural materials. Avoid elaborate iced holiday cookie icons, branded packaging or cluttered countertops. The image should feel like a real home baking moment and work for editorial, recipe, family and kitchenware communications.",
+      "negative_prompt": "iced Christmas cookie lineup, logos, bakery shop scene, readable packaging, messy clutter, people",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Cozy Kitchen Background",
+        "material": "cookies cooling on a tray in a home kitchen",
+        "designer_persona": "Recipe publisher",
+        "buyer_use_case": "Baking blog header; Seasonal kitchen promotion",
+        "design_placement": "Editorial kitchen background with copy room",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Baking blog header",
+          "Seasonal kitchen promotion"
+        ],
+        "integration_guidance": "One side or lower foreground kept clean for text while the kitchen remains softly blurred behind.",
+        "reusability_rationale": "Keeps food warmth and domestic familiarity without copying the reference cookie forms or full festive scenes.",
+        "art_style": "Warm Home Kitchen Lifestyle Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "Keeps food warmth and domestic familiarity without copying the reference cookie forms or full festive scenes.",
+        "copy_space": "One side or lower foreground kept clean for text while the kitchen remains softly blurred behind.",
+        "metadata_seed_keywords": [
+          "home baking",
+          "cookies cooling",
+          "kitchen background",
+          "recipe banner",
+          "cozy food scene"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Window Sill with Houseplants and Rainy Light Blur",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "leaf green, soft gray, mist white, natural wood",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable interior atmosphere background for a wellness editor, suitable for mindfulness article headers and houseplant care content. Show a window sill with a few modest everyday houseplants such as pothos or small potted herbs, backlit by rainy or overcast daylight. Keep the outside view abstract and softly blurred so the focus stays on the calm mood and the usable copy space. Compose in 16:9 with the plants gathered near one side and the remaining frame open. Art style: quiet lifestyle interior photography with gentle natural softness. Use cool diffused daylight, slight moisture mood and realistic plant detail without becoming a dramatic botanical showcase. Avoid readable labels, crowded decor or strong urban views. The result should feel relatable and home-centered, useful for wellness, seasonal mood, plant care and home living layouts.",
+      "negative_prompt": "city skyline detail, labels, text, crowded decor, dramatic jungle scene, people",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Cozy Interior Background",
+        "material": "small houseplants on a window sill in rainy light",
+        "designer_persona": "Wellness editor",
+        "buyer_use_case": "Mindfulness article header; Houseplant care content",
+        "design_placement": "Atmospheric interior banner",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Mindfulness article header",
+          "Houseplant care content"
+        ],
+        "integration_guidance": "Plants kept to one side, leaving a broad soft open field for copy.",
+        "reusability_rationale": "Everyday indoor plants and rainy light create a common home feeling while preserving clean editorial utility.",
+        "art_style": "Quiet Lifestyle Interior Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "Everyday indoor plants and rainy light create a common home feeling while preserving clean editorial utility.",
+        "copy_space": "Plants kept to one side, leaving a broad soft open field for copy.",
+        "metadata_seed_keywords": [
+          "houseplants",
+          "rainy window",
+          "wellness background",
+          "home living",
+          "soft interior"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Velvet Christmas Stocking with Soft Fur Cuff",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "deep red, ivory, warm white, soft gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable seasonal product asset for a holiday retail designer, suitable for mobile promotions and festive catalog inserts. Show a single classic velvet Christmas stocking hanging or floating in a simple isolated presentation against a pale neutral background. Emphasize soft velvet pile, a plush faux-fur cuff and believable stitched form. Compose in 9:16 with the stocking placed slightly low and to one side so there is useful upper and side copy space. Art style: clean holiday product photography, realistic and approachable. Use soft diffused light with gentle shadowing and keep the background opaque and uncluttered. Avoid fireplaces, garlands, candy canes or gift props. The asset should feel directly usable for seasonal retail and editorial work while staying close to the clean white-background object logic seen in the reference set.",
+      "negative_prompt": "fireplace, garland, candy cane, presents, text, glitter, people, busy holiday scene",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Seasonal Isolated Object",
+        "material": "velvet Christmas stocking with faux-fur cuff",
+        "designer_persona": "Holiday retail designer",
+        "buyer_use_case": "Mobile promotion; Festive catalog insert",
+        "design_placement": "Vertical isolated object for seasonal layouts",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Mobile promotion",
+          "Festive catalog insert"
+        ],
+        "integration_guidance": "Stocking placed low and slightly off-center with calm empty space above and beside it.",
+        "reusability_rationale": "A familiar household holiday item strongly aligned with the reference aesthetic and commercial utility.",
+        "art_style": "Clean Holiday Product Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "A familiar household holiday item strongly aligned with the reference aesthetic and commercial utility.",
+        "copy_space": "Stocking placed low and slightly off-center with calm empty space above and beside it.",
+        "metadata_seed_keywords": [
+          "christmas stocking",
+          "isolated holiday object",
+          "mobile promo",
+          "seasonal retail",
+          "white background"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Assorted Everyday Ceramic Bowls in Soft Neutral Glazes",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "ivory, sand, blush beige, stone gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable product asset for a tabletop brand, suitable for spring home catalog banners and kitchen store hero graphics. Show four small everyday ceramic bowls in soft neutral glazes arranged in a clean row or gentle arc on a light background. Emphasize realistic ceramic thickness, subtle glaze pooling, matte-to-satin finish variation and small handcrafted irregularities. Compose in 16:9 with the bowls grouped centrally and a comfortable margin of negative space to one side for copy. Art style: clean product still-life photography with a soft lifestyle warmth. Use diffuse daylight and faint grounding shadows. Avoid food fillings, utensils, wooden boards or labels. The result should feel close to modern daily living and useful for catalog design, kitchen editorials, home blogs and online retail layouts, while keeping the object-isolation simplicity evident in the reference images.",
+      "negative_prompt": "food in bowls, utensils, labels, logos, busy props, harsh shadows, reflections",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Isolated Homeware Object",
+        "material": "small ceramic bowls with neutral glazes",
+        "designer_persona": "Tabletop brand designer",
+        "buyer_use_case": "Home catalog banner; Kitchen store hero graphic",
+        "design_placement": "Object lineup for catalog or hero banner",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Home catalog banner",
+          "Kitchen store hero graphic"
+        ],
+        "integration_guidance": "Bowls grouped together with clean negative space reserved to one side.",
+        "reusability_rationale": "Daily-use tableware stays lifestyle-close and offers broad home retail reuse with a clean isolated presentation.",
+        "art_style": "Clean Product Still-Life Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "Daily-use tableware stays lifestyle-close and offers broad home retail reuse with a clean isolated presentation.",
+        "copy_space": "Bowls grouped together with clean negative space reserved to one side.",
+        "metadata_seed_keywords": [
+          "ceramic bowls",
+          "neutral homeware",
+          "isolated product",
+          "tabletop catalog",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Folded Plaid Picnic Blanket with Carry Strap",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 89,
+      "topic_bucket": "APPROVED",
+      "palette": "red plaid, forest green, cream, leather brown",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable lifestyle object asset for an outdoor family brand, suitable for picnic promotion banners and weekend activity editorials. Show a neatly folded plaid picnic blanket with a simple leather or canvas carry strap, isolated on a pale background. Render the fabric texture clearly, including visible weave, soft thickness and slightly rounded folded edges. Use a classic plaid palette that feels familiar and everyday. Compose in 16:9 with the blanket placed slightly off-center and an open copy area beside it. Art style: catalog-friendly product photography with a home-and-leisure mood. Use soft daylight, subtle object shadow and no extra props. Avoid baskets, food, park scenery or readable branding. The result should feel practical and relatable, bridging home life and casual leisure in a way that stays close to the simple utility of the provided reference objects.",
+      "negative_prompt": "park scene, baskets, food props, brand patches, logos, text, clutter",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Isolated Leisure Object",
+        "material": "folded plaid picnic blanket with carry strap",
+        "designer_persona": "Outdoor family brand designer",
+        "buyer_use_case": "Picnic promotion banner; Weekend activity editorial",
+        "design_placement": "Catalog object shot with copy space",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Picnic promotion banner",
+          "Weekend activity editorial"
+        ],
+        "integration_guidance": "Blanket isolated slightly off-center with clean adjacent space for text.",
+        "reusability_rationale": "A real household leisure item that remains grounded in daily life while offering a fresh subject.",
+        "art_style": "Catalog-Friendly Product Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "A real household leisure item that remains grounded in daily life while offering a fresh subject.",
+        "copy_space": "Blanket isolated slightly off-center with clean adjacent space for text.",
+        "metadata_seed_keywords": [
+          "picnic blanket",
+          "folded textile",
+          "isolated lifestyle object",
+          "weekend banner",
+          "catalog photography"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Shortbread Biscuit Assortment in Simple Home Shapes",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "biscuit beige, sugar white, pale blue, soft red",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable baked-goods asset for a food designer, suitable for recipe headers and festive home baking promotions. Show a neat horizontal assortment of simple homemade shortbread biscuits in everyday comforting shapes such as heart, round scallop, flower or house, decorated with restrained icing details. Keep the styling modest and homemade rather than ornate. Compose in 16:9 with the biscuits arranged in a single row or airy sequence across the lower middle, leaving generous open space above for text. Art style: clean overhead food photography with a warm domestic feel. Use soft even lighting, natural crumb texture and tidy edges. Avoid the exact Christmas tree, snowflake and stocking lineup from the reference. No wrapping paper, plates or clutter. The result should feel familiar and charming for kitchen, baking and family communication while remaining visually distinct from the provided holiday cookie sample.",
+      "negative_prompt": "gingerbread man lineup, Christmas tree cookie, snowflake cookie, stocking cookie, plates, text, busy decor",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Food Arrangement",
+        "material": "simple homemade shortbread biscuits",
+        "designer_persona": "Food designer",
+        "buyer_use_case": "Recipe header; Home baking promotion",
+        "design_placement": "Horizontal row with copy field above",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Recipe header",
+          "Home baking promotion"
+        ],
+        "integration_guidance": "Biscuits run across the lower middle with a large empty upper field for text.",
+        "reusability_rationale": "Retains the approachable biscuit utility of the reference while deliberately changing the shapes and reducing explicit holiday duplication.",
+        "art_style": "Clean Overhead Food Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "Retains the approachable biscuit utility of the reference while deliberately changing the shapes and reducing explicit holiday duplication.",
+        "copy_space": "Biscuits run across the lower middle with a large empty upper field for text.",
+        "metadata_seed_keywords": [
+          "shortbread biscuits",
+          "home baking",
+          "food arrangement",
+          "recipe banner",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Red Apples in Airy Vertical Scatter",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 89,
+      "topic_bucket": "APPROVED",
+      "palette": "apple red, stem brown, leaf green, soft white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable produce asset for a grocery and education designer, suitable for nutrition posters and autumn recipe stories. Show seven to nine fresh red apples scattered in an airy vertical layout on a pale background, with slight variation in size, stem angle and occasional leaf presence. The apples should have realistic color bloom, gentle highlights and believable skin texture without waxy exaggeration. Compose in 9:16, keeping the cluster slightly off-center and preserving a clear text corridor to one side. Art style: bright commercial produce photography, simple and clean. Use soft even light and delicate shadows. Avoid baskets, slices, hands, orchard scenery or typography. The result should feel approachable, school-friendly and highly reusable for food, autumn, family and wellness content, closely matching the practical white-background produce mood of the user’s references.",
+      "negative_prompt": "basket, orchard, sliced apples, hands, text, stickers, excessive gloss, clutter",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Isolated Produce Collection",
+        "material": "fresh red apples",
+        "designer_persona": "Grocery and education designer",
+        "buyer_use_case": "Nutrition poster; Autumn recipe story",
+        "design_placement": "Vertical food poster or story background",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Nutrition poster",
+          "Autumn recipe story"
+        ],
+        "integration_guidance": "Vertical apple scatter with a clean text corridor along one side.",
+        "reusability_rationale": "Everyday fruit subject with wide educational and retail applicability, keeping the easy isolated rhythm of the reference produce imagery.",
+        "art_style": "Bright Commercial Produce Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "Everyday fruit subject with wide educational and retail applicability, keeping the easy isolated rhythm of the reference produce imagery.",
+        "copy_space": "Vertical apple scatter with a clean text corridor along one side.",
+        "metadata_seed_keywords": [
+          "apples",
+          "isolated fruit",
+          "nutrition poster",
+          "vertical produce",
+          "white background"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Stack of Hardcover Notebooks with Cloth Spines",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "navy, kraft beige, dusty green, cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable desk-life asset for a stationery brand designer, suitable for back-to-school banners and journal shop headers. Show a tidy stack of hardcover notebooks with cloth spines and unbranded covers, isolated on a light neutral background. Emphasize everyday usefulness: visible page edges, cloth spine texture, modest color differences and clean rectangular form. Compose in 16:9 with the notebook stack placed slightly to one side, leaving calm open space for typography. Art style: crisp commercial product photography with a warm editorial touch. Use soft daylight, clear edge definition and restrained shadows. Avoid pens, mugs, glasses, readable labels or opened pages. The result should feel close to ordinary daily life and useful for stationery, productivity, education and lifestyle design while staying consistent with the uncluttered, object-forward approach of the reference set.",
+      "negative_prompt": "readable text, pens, mugs, glasses, opened pages, logos, clutter, dramatic props",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Isolated Desk Object",
+        "material": "hardcover notebooks with cloth spines",
+        "designer_persona": "Stationery brand designer",
+        "buyer_use_case": "Back-to-school banner; Journal shop header",
+        "design_placement": "Catalog or website header with negative space",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Back-to-school banner",
+          "Journal shop header"
+        ],
+        "integration_guidance": "Notebook stack sits off-center with broad quiet space left available for text.",
+        "reusability_rationale": "A universal daily-life object with clear commercial utility, maintaining the clean isolation and easy layout value of the references.",
+        "art_style": "Crisp Commercial Product Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "A universal daily-life object with clear commercial utility, maintaining the clean isolation and easy layout value of the references.",
+        "copy_space": "Notebook stack sits off-center with broad quiet space left available for text.",
+        "metadata_seed_keywords": [
+          "notebooks",
+          "stationery stack",
+          "isolated desk object",
+          "back to school banner",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Wooden Cutting Boards Layered in Simple Kitchen Display",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 88,
+      "topic_bucket": "APPROVED",
+      "palette": "light oak, honey brown, pale beige, soft shadow gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable kitchen asset for a cookware retailer, suitable for home cooking banners and kitchen category pages. Show two or three plain wooden cutting boards in slightly layered arrangement on a clean pale background. Use simple everyday shapes with visible grain, softened corners and believable board thickness. Compose in 16:9 with the boards grouped to one side and ample empty area for typography. Art style: natural kitchenware product photography, minimal and clean. Use soft directional daylight with gentle grounding shadows and warm wood realism. Avoid knives, vegetables, logos, engraved words or rustic table scenes. The result should feel practical and home-centered, useful for kitchen, food prep, home goods and culinary communication, while staying close to the everyday domestic character the user requested.",
+      "negative_prompt": "knives, vegetables, engraved text, table scene, clutter, rustic farmhouse overload, labels",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Isolated Kitchenware Object",
+        "material": "plain wooden cutting boards",
+        "designer_persona": "Cookware retailer designer",
+        "buyer_use_case": "Home cooking banner; Kitchen category page",
+        "design_placement": "Object group with side copy space",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Home cooking banner",
+          "Kitchen category page"
+        ],
+        "integration_guidance": "Boards layered to one side, leaving generous blank space for titles and UI overlays.",
+        "reusability_rationale": "A very familiar home item with broad commercial use and simple, design-friendly shape language.",
+        "art_style": "Natural Kitchenware Product Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "A very familiar home item with broad commercial use and simple, design-friendly shape language.",
+        "copy_space": "Boards layered to one side, leaving generous blank space for titles and UI overlays.",
+        "metadata_seed_keywords": [
+          "cutting boards",
+          "kitchenware",
+          "wood product",
+          "home cooking banner",
+          "isolated object"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Simple Glass Spice Jars in Clean Row",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 88,
+      "topic_bucket": "APPROVED",
+      "palette": "clear glass, paprika red, herb green, warm brown",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable pantry asset for a kitchen content designer, suitable for meal prep blog headers and pantry organization graphics. Show a neat row of small unlabeled glass spice jars with visible everyday spices inside, such as paprika, black pepper, dried herbs and turmeric. Keep the jars simple, uniform and realistic, with metal or wood lids and no readable text. Compose in 16:9 with the jars along the lower third and abundant empty space above. Art style: clean pantry still-life photography, practical and bright. Use even daylight, soft reflections and tidy alignment. Avoid shelves, hands, recipe ingredients or cluttered kitchen scenes. The image should feel accessible and homey, useful for cooking, pantry, organization and meal planning communication while keeping the calm composition and product clarity seen in the reference images.",
+      "negative_prompt": "labels, hands, shelf scene, clutter, recipe ingredients, text, brand packaging",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Pantry Object Arrangement",
+        "material": "unlabeled glass spice jars",
+        "designer_persona": "Kitchen content designer",
+        "buyer_use_case": "Meal prep blog header; Pantry organization graphic",
+        "design_placement": "Lower-third object row with upper copy field",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Meal prep blog header",
+          "Pantry organization graphic"
+        ],
+        "integration_guidance": "Jars aligned along the lower third so the upper area remains open for text.",
+        "reusability_rationale": "Daily kitchen storage subject with useful colors and strong layout function while staying close to home life.",
+        "art_style": "Clean Pantry Still-Life Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "Daily kitchen storage subject with useful colors and strong layout function while staying close to home life.",
+        "copy_space": "Jars aligned along the lower third so the upper area remains open for text.",
+        "metadata_seed_keywords": [
+          "spice jars",
+          "pantry organization",
+          "kitchen still life",
+          "meal prep banner",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Cozy Entryway Bench with Scarf and Tote Bag",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 89,
+      "topic_bucket": "APPROVED",
+      "palette": "warm beige, camel, olive, soft gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a commercially reusable home interior background for a lifestyle retailer, suitable for entryway organization content and fall home campaign graphics. Show a simple entryway bench with an everyday scarf draped over one side and a plain tote bag resting nearby. Keep the scene minimal, warm and believable, with a soft wall background and modest depth of field. Compose in 16:9 with the bench positioned off-center and open wall space available for messaging. Art style: realistic home lifestyle photography, tidy but lived-in. Use gentle natural light and restrained shadowing. Avoid shoes with visible logos, coats, mirrors or a real estate sales look. The result should feel close to ordinary daily routines and practical for home, organization, fashion-accessory and lifestyle communication while maintaining the clean, inviting mood that links back to the reference interiors.",
+      "negative_prompt": "open door real estate clone, logos, mirror selfie, crowded hallway, shoes with brands, text",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "category_crawler",
+        "product_line": "commercial_background",
+        "component_category": "Cozy Interior Background",
+        "material": "entryway bench, scarf and tote bag",
+        "designer_persona": "Lifestyle retailer designer",
+        "buyer_use_case": "Entryway organization content; Fall home campaign graphic",
+        "design_placement": "Text-ready home interior background",
+        "design_function": "Reusable composable background, object cutout, border or atmosphere layer for commercial layouts",
+        "design_reuse_cases": [
+          "Entryway organization content",
+          "Fall home campaign graphic"
+        ],
+        "integration_guidance": "Bench positioned off-center so a broad wall area stays free for text overlays.",
+        "reusability_rationale": "A highly relatable daily-life corner scene, but different from the banned real-estate doorway concept.",
+        "art_style": "Realistic Home Lifestyle Photography",
+        "style_rationale": "Built from the user-provided reference style grammar: everyday subject, clean composition, realistic commercial photography, and layout-friendly utility.",
+        "distinctiveness": "A highly relatable daily-life corner scene, but different from the banned real-estate doorway concept.",
+        "copy_space": "Bench positioned off-center so a broad wall area stays free for text overlays.",
+        "metadata_seed_keywords": [
+          "entryway bench",
+          "scarf",
+          "tote bag",
+          "home organization",
+          "lifestyle background"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Close-to-life extension of the user reference mood; avoids direct cloning of the provided sample subjects and avoids known Similar Content exclusions."
+      }
+    }
+  ]
+}
