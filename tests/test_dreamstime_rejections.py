@@ -11,9 +11,22 @@ from stock_pipeline.dreamstime_rejections import (
     resolve_local_asset,
     stage_manifest_images,
 )
+from tools.prepare_dreamstime_csv import make_row
 
 
 class DreamstimeRejectionTests(unittest.TestCase):
+    def test_ftp_csv_maps_subject_codes_disclosure_and_requested_price(self):
+        row = make_row("AST990319.jpg", {
+            "title": "Leaf-Wrapped Rice Dumplings",
+            "description": "Two parcels tied with cotton twine.",
+            "keywords": ["zongzi", "rice dumplings", "Zongzi"],
+            "subject_category_codes": [127],
+        }, {127: "Industries -> Food & Beverages"}, 10)
+        self.assertEqual((row["Category 1"], row["Category 2"], row["Category 3"]), (212, 127, 0))
+        self.assertEqual(row["keywords"], "zongzi,rice dumplings")
+        self.assertTrue(row["Description"].endswith("This image was generated using AI."))
+        self.assertEqual((row["SR-EL"], row["SR-Price"], row["Free"], row["Editorial"]), (1, 10, 0, 0))
+
     def test_rejections_are_validated_and_filtered_by_cutoff(self):
         records = parse_adobe_rejections([
             {"title": "Recent icon set", "original_name": "AST000001.png",

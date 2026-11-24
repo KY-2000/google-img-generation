@@ -240,6 +240,22 @@ python run_stock_pipeline.py `
 
 `--candidates` and `--queue` are mutually exclusive. Candidate input is still validated and persisted as a generated production queue; `--queue` remains strict and never accepts Finder arrays.
 
+### Dreamstime metadata for files already uploaded by FTP
+
+After the JPEGs appear in Dreamstime's Unfinished Files, generate their Dreamstime
+CSV from existing AST assets. The tool uses Nemotron NIM for visual metadata and
+switches to Gemini 3.8 Flash if NIM returns HTTP 429. Set the Sell the Rights
+price in USD with `--sr-price` (default 10).
+
+```powershell
+python tools/prepare_dreamstime_csv.py prepare AST990319 --sr-price 10 --output output/dreamstime/metadata.csv
+python tools/prepare_dreamstime_csv.py upload output/dreamstime/metadata.csv
+```
+
+The upload uses plain passive FTP with `DREAMSTIME_FTP_USER_ID` and
+`DREAMSTIME_FTP_PASSWORD` from the local `.env`. Check the imported metadata,
+price, and non-exclusive option in Unfinished Files before submitting for review.
+
 ### Adobe rejected assets to Dreamstime
 
 Use the rejected-assets workflow to scan Adobe submissions from the last 14 days, match `ASTxxxxxx.png` to `output/assets/<asset_id>/original.png` and `metadata.json`, and generate a populated legacy Dreamstime XLS:
