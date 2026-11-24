@@ -462,6 +462,34 @@ class MetadataPromptTests(unittest.TestCase):
         self.assertEqual(payload["messages"][1]["content"][0]["type"], "text")
         self.assertEqual(payload["messages"][1]["content"][1]["type"], "image_url")
 
+    def test_nemotron_sends_aspect_preserving_preview_and_disables_thinking(self):
+        import base64
+        import io
+        from PIL import Image
+
+        with tempfile.TemporaryDirectory() as directory:
+            image_path = Path(directory) / "original.png"
+            Image.new("RGB", (4096, 2304), "red").save(image_path)
+            response = mock.MagicMock()
+            response.__enter__.return_value.read.return_value = b'{"choices":[{"message":{"content":"{}"}}]}'
+            with mock.patch("main.urllib.request.urlopen", return_value=response) as call:
+                result = main.generate_nim_metadata_text(
+                    main.build_nim_metadata_client("test"), image_path, "user", "system",
+                    main.NEMOTRON_VL_MODEL, 0.2, 0.9,
+                )
+            self.assertEqual(result, "{}")
+            self.assertEqual(call.call_args.kwargs["timeout"], 180)
+            payload = json.loads(call.call_args.args[0].data)
+            self.assertEqual(payload["chat_template_kwargs"], {"enable_thinking": False})
+            uri = payload["messages"][1]["content"][1]["image_url"]["url"]
+            self.assertTrue(uri.startswith("data:image/jpeg;base64,"))
+            data = base64.b64decode(uri.split(",", 1)[1])
+            self.assertLessEqual(len(data), 130_000)
+            with Image.open(io.BytesIO(data)) as preview:
+                self.assertEqual(preview.size, (1024, 576))
+            with Image.open(image_path) as original:
+                self.assertEqual(original.size, (4096, 2304))
+
 
 class MetadataParsingTests(unittest.TestCase):
     def test_parse_metadata_response_extracts_upload_fields(self):

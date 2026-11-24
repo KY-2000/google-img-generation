@@ -20,6 +20,7 @@ from stock_pipeline.manager_runtime import (
     verify_reviewed_checkout,
 )
 from stock_pipeline.manager_baseline import TEST_QUEUE, snapshot_baseline
+from stock_pipeline.metadata_generator import NEMOTRON_VL_MODEL
 
 ROOT = Path(__file__).resolve().parent
 TITLE = "Adobe Stock Batch Manager"
@@ -27,8 +28,9 @@ IMAGE_MODELS = {
     "Nano Banana Pro": "gemini-3-pro-image",
     "Nano Banana 2.1": "gemini-nano-banana-2.1",
 }
-DEFAULT_METADATA_MODEL = "gemini-4-hydrogen"
-METADATA_MODELS = (DEFAULT_METADATA_MODEL, "gemini-3.8-flash")
+DEFAULT_METADATA_MODEL = "gemini-3.8-flash"
+NEMOTRON_METADATA_LABEL = "Nemotron 3.5 Super VL (NIM)"
+METADATA_MODELS = (DEFAULT_METADATA_MODEL, NEMOTRON_METADATA_LABEL)
 SUPPORT_CHAT_FILE = Path("output/stock_manager/support_chat.txt")
 CHAT_LINK_PREFIX = "codex://threads/"
 GITHUB_COMMIT_PREFIX = "https://github.com/KY-2000/google-img-generation/commit/"
@@ -661,6 +663,8 @@ class Desktop:
             testing = self.offline_test.get() and not local
             live = not (testing or local)
             metadata_model = self.metadata_model.get().strip()
+            if metadata_model == NEMOTRON_METADATA_LABEL:
+                metadata_model = NEMOTRON_VL_MODEL
             if live and not metadata_model:
                 raise ValueError("Enter a metadata model ID.")
             generation_args = []
@@ -1093,7 +1097,7 @@ def main():
     parser.add_argument("--image-model", choices=tuple(IMAGE_MODELS.values()), help=argparse.SUPPRESS)
     parser.add_argument("--image-thinking-level", choices=("MINIMAL", "MEDIUM", "HIGH"), help=argparse.SUPPRESS)
     parser.add_argument("--metadata-model", help=argparse.SUPPRESS)
-    parser.add_argument("--metadata-provider", choices=("vertex", "gemini-developer"),
+    parser.add_argument("--metadata-provider", choices=("vertex", "gemini-developer", "nim"),
                         help=argparse.SUPPRESS)
     parser.add_argument("--temperature", type=float, default=1.0, help=argparse.SUPPRESS)
     parser.add_argument("--top-p", type=float, default=0.95, help=argparse.SUPPRESS)

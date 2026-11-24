@@ -21,6 +21,7 @@ from .managed_adobe import build_combined_batch, managed_upload_command, reconci
 from .manager_baseline import TEST_QUEUE
 from .manager_queues import QueueSource, adopt_existing_finder_run, discover, runtime_queue
 from .manager_runtime import ensure_edge_cdp, redactor
+from .metadata_generator import NEMOTRON_VL_MODEL
 from .orchestrator import StockPipeline
 from .pipeline import COMPLETED_OR_WAITING, process_one_asset
 from .registry import Registry, now_iso, verify_asset_identity
@@ -227,7 +228,8 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 cdp="http://127.0.0.1:9222", profile=None, stop_file=None, image_model=None,
                 metadata_model=None, metadata_provider=None, temperature=1.0, top_p=0.95, max_images=None,
                 sources: list[QueueSource] | None = None, max_workers: int = 1,
-                receipt_subdir: str | None = None, upload_slot=None, image_thinking_level: str | None = None) -> dict:
+                receipt_subdir: str | None = None, upload_slot=None, image_thinking_level: str | None = None,
+                metadata_fallback: Event | None = None) -> dict:
     start = time.monotonic()
     log_path = run_dir / "activity.log"
     redact = redactor(root)
@@ -417,16 +419,19 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
             selected_metadata = metadata_model or legacy.get_default_metadata_model(root)
             if not metadata_provider:
                 if metadata_model:
-                    metadata_provider = (
-                        "gemini-developer" if selected_metadata.removeprefix("models/") == "gemini-4-hydrogen"
-                        else "vertex"
-                    )
+                    metadata_provider = {
+                        NEMOTRON_VL_MODEL: "nim",
+                        "gemini-4-hydrogen": "gemini-developer",
+                    }.get(selected_metadata.removeprefix("models/"), "vertex")
                 else:
                     metadata_provider = legacy.get_default_metadata_provider(root)
-            if metadata_provider == "gemini-developer" and not should_stop() and any(
+            if not should_stop() and any(
                 record["completed_assets"] < len(ids) for _, _, ids, record in prepared
             ):
-                legacy.get_gemini_developer_api_key(root)
+                if metadata_provider == "gemini-developer":
+                    legacy.get_gemini_developer_api_key(root)
+                elif metadata_provider == "nim" and selected_metadata == NEMOTRON_VL_MODEL:
+                    legacy.get_nim_api_key(root)
             report.update(metadata_model=selected_metadata, metadata_provider=metadata_provider)
             log(f"Image model: {selected_model}", "Generation", overview=overview())
             if image_thinking_level is not None:
@@ -442,7 +447,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 image_model=selected_model,
                 temperature=temperature, top_p=top_p,
                 metadata_provider=metadata_provider,
-                metadata_model=selected_metadata, redact_error=redact, metadata_fallback=Event(),
+                metadata_model=selected_metadata, redact_error=redact, metadata_fallback=metadata_fallback or Event(),
                 on_image_rate_limit=on_image_rate_limit,
             )
             if image_thinking_level is not None:

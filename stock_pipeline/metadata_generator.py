@@ -6,6 +6,9 @@ from pathlib import Path
 from typing import Any, Callable
 
 
+NEMOTRON_VL_MODEL = "nvidia/nemotron-3.5-super-vl-120b-a12b"
+
+
 def build_metadata_user_prompt(theme: str, generation_prompt: str, category_list: str) -> str:
     return (
         "Analyze this final image for Adobe Stock metadata.\n\n"

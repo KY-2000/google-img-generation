@@ -5,13 +5,14 @@ from copy import deepcopy
 from dataclasses import replace
 from pathlib import Path
 from tempfile import TemporaryDirectory
-from threading import Lock
+from threading import Event, Lock
 import time
 
 from .batch_manager import preview_queues, run_manager
 from .local_image_test import ANSI_ESCAPE, LOCAL_IMAGE_MODELS, STEP_LINE, STEPS, local_command, run_sd_cli
 from .manager_queues import adopt_existing_finder_run, fingerprint, runtime_queue
 from .manager_runtime import redactor
+from .metadata_generator import NEMOTRON_VL_MODEL
 from .orchestrator import StockPipeline
 from .registry import Registry, now_iso
 
@@ -143,6 +144,7 @@ def run_lanes(root, commit, commit_time, run_dir, sources, *, route, emit, shoul
                         source.error = redact(exc)
     event_lock = Lock()
     upload_lock = Lock()
+    metadata_fallback = Event() if metadata_model == NEMOTRON_VL_MODEL else None
 
     @contextmanager
     def upload_slot(on_wait):
@@ -174,6 +176,8 @@ def run_lanes(root, commit, commit_time, run_dir, sources, *, route, emit, shoul
                        metadata_model=metadata_model, metadata_provider=metadata_provider)
         if route == "both":
             options["upload_slot"] = upload_slot
+        if metadata_fallback is not None:
+            options["metadata_fallback"] = metadata_fallback
         if lane == "local":
             options.update(pipeline_factory=lambda **kwargs: LocalStockPipeline(
                                should_stop=should_stop, text_encoder=text_encoder, image_quant=image_quant, **kwargs),

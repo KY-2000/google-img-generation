@@ -19,14 +19,13 @@ Configure `.env` and Google credentials as for the single-queue pipeline.
 Choose **Nano Banana Pro** (default) or **Nano Banana 2.1** in the
 **Image model** dropdown. The choice overrides `IMAGE_MODEL` for that run
 and applies only to new generation; completed images are reused. For new
-metadata, select `gemini-4-hydrogen` (default) to use the Gemini Developer API, or
-`gemini-3.8-flash` to use Vertex AI. Other model IDs entered
-in the editable field use Vertex AI. For Hydrogen, add `GEMINI_API_KEY` from
-your AI Studio project to the repository's
-`.env`. Your AI Studio project's billing tier and quota apply to these metadata
-requests. Image generation still uses Vertex AI.
-If Hydrogen returns HTTP 503, the rest of that run's metadata uses
+metadata, select `gemini-3.8-flash` (default) for Vertex AI, or
+**Nemotron 3.5 Super VL (NIM)** for NVIDIA's hosted vision model. Set
+`NIM_API_KEY` (or `NVIDIA_API_KEY`) in the repository's `.env` for NIM.
+NIM receives a JPEG preview of the saved image. If NIM returns HTTP 429,
+the affected asset and subsequent metadata requests in the run use
 `gemini-3.8-flash` through Vertex AI. Vertex AI billing applies to those requests.
+Both local and cloud generation can use either metadata model.
 Offline test mode does not invoke either model.
 
 **Parallel assets** runs up to 1, 2, or 3 assets from the active queue at

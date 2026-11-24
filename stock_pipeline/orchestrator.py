@@ -12,7 +12,7 @@ from .filenames import map_upload_filename
 from .image_generator import generate_original_image
 from .image_qc import inspect_image
 from .logging import AssetLogger
-from .metadata_generator import generate_metadata_for_asset, parse_metadata_json
+from .metadata_generator import NEMOTRON_VL_MODEL, generate_metadata_for_asset, parse_metadata_json
 from .metadata_validator import enrich_metadata, parse_categories, validate_metadata
 from .pipeline import process_batch
 from .prompt_builder import render_image_prompt_file
@@ -102,7 +102,8 @@ class StockPipeline:
                 resolution=resolution,
             )
 
-    def _with_retries(self, operation: Callable[[], Any], logger: AssetLogger, step: str) -> Any:
+    def _with_retries(self, operation: Callable[[], Any], logger: AssetLogger, step: str, *,
+                      fallback_on_429: bool = False) -> Any:
         import main as legacy
 
         wait_seconds = self.retry_initial_wait
@@ -116,7 +117,8 @@ class StockPipeline:
                 )
                 asset_id = logger.asset_dir.name
                 first_rate_limit = rate_limited and self.on_image_rate_limit(asset_id)
-                retry = not rate_limited and legacy.is_retryable_error(exc) and attempt < self.max_attempts
+                fall_back = fallback_on_429 and getattr(exc, "code", None) == 429
+                retry = not (rate_limited or fall_back) and legacy.is_retryable_error(exc) and attempt < self.max_attempts
                 error = self.redact_error(str(exc))
                 logger.event(
                     f"{step}_attempt_failed", attempt=attempt, error=error,
@@ -358,7 +360,10 @@ class StockPipeline:
                         asset_id=asset_id, operation="metadata_generation", provider=provider, model=model,
                         usage=usage,
                     )
-                return self._with_retries(lambda: generator(**metadata_kwargs), logger, "metadata_generation")
+                return self._with_retries(
+                    lambda: generator(**metadata_kwargs), logger, "metadata_generation",
+                    fallback_on_429=(provider == "nim" and model == NEMOTRON_VL_MODEL),
+                )
 
             validation_error = None
             for _ in range(1 if repair_reason else 2):
@@ -379,12 +384,17 @@ class StockPipeline:
                 try:
                     raw = request_metadata(provider, model, prompt)
                 except Exception as exc:
-                    if (provider != "gemini-developer" or model.removeprefix("models/") != "gemini-4-hydrogen"
-                            or getattr(exc, "code", None) != 503):
+                    code = getattr(exc, "code", None)
+                    if provider == "nim" and model == NEMOTRON_VL_MODEL and code == 429:
+                        reason = "NVIDIA NIM returned HTTP 429"
+                    elif (provider == "gemini-developer" and model.removeprefix("models/") == "gemini-4-hydrogen"
+                          and code == 503):
+                        reason = "Hydrogen returned HTTP 503"
+                    else:
                         raise
                     self._metadata_fallback.set()
                     self._emit_progress(
-                        asset_id, "Hydrogen returned HTTP 503; switching remaining metadata to gemini-3.8-flash (Vertex AI)",
+                        asset_id, f"{reason}; switching remaining metadata to gemini-3.8-flash (Vertex AI)",
                     )
                     raw = request_metadata(*FLASH_METADATA_FALLBACK, prompt)
                 (asset_dir / "metadata_raw.txt").write_bytes(raw.encode("utf-8"))

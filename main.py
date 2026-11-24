@@ -16,6 +16,7 @@ from typing import Any, Callable, Iterable
 
 import numpy as np
 from PIL import Image
+from stock_pipeline.metadata_generator import NEMOTRON_VL_MODEL
 
 
 ALPHA_LOW_CUTOFF = 128
@@ -139,7 +140,8 @@ def get_openrouter_api_key(project_root: Path) -> str:
 
 def get_nim_api_key(project_root: Path) -> str:
     env_vars = load_env_file(project_root / ".env")
-    api_key = env_vars.get("NIM_API_KEY") or os.getenv("NIM_API_KEY")
+    api_key = (env_vars.get("NIM_API_KEY") or os.getenv("NIM_API_KEY")
+               or env_vars.get("NVIDIA_API_KEY") or os.getenv("NVIDIA_API_KEY"))
     if not api_key:
         raise RuntimeError(
             "NIM_API_KEY is missing. Add it to the project root .env file."
@@ -813,7 +815,7 @@ def build_nim_metadata_payload(
     temperature: float,
     top_p: float,
 ) -> dict[str, object]:
-    return {
+    payload = {
         "model": model,
         "temperature": temperature,
         "top_p": top_p,
@@ -834,6 +836,9 @@ def build_nim_metadata_payload(
             },
         ],
     }
+    if model == NEMOTRON_VL_MODEL:
+        payload.update(max_tokens=2048, chat_template_kwargs={"enable_thinking": False})
+    return payload
 
 
 def generate_google_metadata_text(
@@ -936,6 +941,24 @@ def generate_openrouter_metadata_text(
     return response_text.strip()
 
 
+def build_nim_metadata_preview(image_path: Path) -> str:
+    with Image.open(image_path) as original:
+        if "A" in original.getbands() or "transparency" in original.info:
+            rgba = original.convert("RGBA")
+            image = Image.new("RGB", rgba.size, "white")
+            image.paste(rgba, mask=rgba.getchannel("A"))
+        else:
+            image = original.convert("RGB")
+    image.thumbnail((1024, 1024), Image.Resampling.LANCZOS)
+    # Leave room in the request for base64 expansion, messages and instructions.
+    while True:
+        output = io.BytesIO()
+        image.save(output, format="JPEG", quality=82, optimize=True)
+        if output.tell() <= 130_000:
+            return "data:image/jpeg;base64," + base64.b64encode(output.getvalue()).decode("ascii")
+        image.thumbnail(tuple(max(1, size * 3 // 4) for size in image.size), Image.Resampling.LANCZOS)
+
+
 def generate_nim_metadata_text(
     client: dict[str, str],
     image_path: Path,
@@ -946,10 +969,10 @@ def generate_nim_metadata_text(
     top_p: float,
     usage_callback: Callable[[dict[str, int | float]], None] | None = None,
 ) -> str:
-    image_data_url = (
-        "data:image/png;base64,"
-        + base64.b64encode(image_path.read_bytes()).decode("ascii")
-    )
+    if model == NEMOTRON_VL_MODEL:
+        image_data_url = build_nim_metadata_preview(image_path)
+    else:
+        image_data_url = "data:image/png;base64," + base64.b64encode(image_path.read_bytes()).decode("ascii")
     payload = build_nim_metadata_payload(
         model=model,
         system_prompt=system_prompt,
@@ -968,7 +991,8 @@ def generate_nim_metadata_text(
         },
         method="POST",
     )
-    with urllib.request.urlopen(request) as response:
+    request_options = {"timeout": 180} if model == NEMOTRON_VL_MODEL else {}
+    with urllib.request.urlopen(request, **request_options) as response:
         response_json = json.loads(response.read().decode("utf-8"))
 
     if usage_callback is not None:

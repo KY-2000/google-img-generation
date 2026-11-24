@@ -252,6 +252,32 @@ class ManagerTests(unittest.TestCase):
         with Registry(self.root / "data/stock_pipeline.sqlite") as registry:
             self.assertEqual({row["metadata_model"] for row in registry.list_assets()}, {"gemini-3.8-flash"})
 
+    def test_nemotron_429_switches_to_vertex_without_retrying_nim(self):
+        from urllib.error import HTTPError
+        from stock_pipeline.metadata_generator import NEMOTRON_VL_MODEL
+
+        self.write("metadata.json", self.production("Metadata", two=True))
+        (self.root / ".env").write_text("NIM_API_KEY=offline-test-key\n", encoding="utf-8")
+
+        def metadata(**kwargs):
+            if kwargs["provider"] == "nim":
+                raise HTTPError("https://example.test", 429, "Too Many Requests", None, None)
+            return json.dumps(sample_model_metadata())
+
+        self.metadata = Mock(side_effect=metadata)
+        self.pipeline = lambda **options: StockPipeline(
+            **options, image_generate_bytes=self.generate, metadata_generate_text=self.metadata,
+            max_attempts=3, retry_initial_wait=0,
+        )
+        report = self.run_batch(metadata_model=NEMOTRON_VL_MODEL)
+        self.assertEqual(report["status"], "COMPLETE", report)
+        self.assertEqual(report["metadata_provider"], "nim")
+        self.assertEqual([(call.kwargs["provider"], call.kwargs["model"]) for call in self.metadata.call_args_list], [
+            ("nim", NEMOTRON_VL_MODEL), ("vertex", "gemini-3.8-flash"), ("vertex", "gemini-3.8-flash"),
+        ])
+        with Registry(self.root / "data/stock_pipeline.sqlite") as registry:
+            self.assertEqual({row["metadata_model"] for row in registry.list_assets()}, {"gemini-3.8-flash"})
+
     def test_hydrogen_without_developer_key_stops_before_generation(self):
         self.write("metadata.json", self.production("Metadata"))
         with patch.dict(os.environ, {"GEMINI_API_KEY": ""}):
