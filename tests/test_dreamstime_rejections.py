@@ -11,7 +11,7 @@ from stock_pipeline.dreamstime_rejections import (
     resolve_local_asset,
     stage_manifest_images,
 )
-from tools.prepare_dreamstime_csv import make_row
+from tools.prepare_dreamstime_csv import make_row, prepare_rows
 
 
 class DreamstimeRejectionTests(unittest.TestCase):
@@ -21,11 +21,16 @@ class DreamstimeRejectionTests(unittest.TestCase):
             "description": "Two parcels tied with cotton twine.",
             "keywords": ["zongzi", "rice dumplings", "Zongzi"],
             "subject_category_codes": [127],
-        }, {127: "Industries -> Food & Beverages"}, 10)
+        }, {127: "Industries -> Food & Beverages"}, 300)
         self.assertEqual((row["Category 1"], row["Category 2"], row["Category 3"]), (212, 127, 0))
         self.assertEqual(row["keywords"], "zongzi,rice dumplings")
         self.assertTrue(row["Description"].endswith("This image was generated using AI."))
-        self.assertEqual((row["SR-EL"], row["SR-Price"], row["Free"], row["Editorial"]), (1, 10, 0, 0))
+        self.assertEqual((row["SR-EL"], row["SR-Price"], row["Free"], row["Editorial"]), (1, 300, 0, 0))
+
+    def test_ftp_csv_rejects_prices_outside_platform_range(self):
+        for price in (299, 25_001):
+            with self.subTest(price=price), self.assertRaisesRegex(ValueError, "between 300 and 25000 USD"):
+                prepare_rows(["AST990319"], price)
 
     def test_rejections_are_validated_and_filtered_by_cutoff(self):
         records = parse_adobe_rejections([

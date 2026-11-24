@@ -35,9 +35,13 @@ Choose up to two subject category codes from the Dreamstime list supplied in the
 Return them as integers ordered by relevance. Use fewer if there are no strong matches.
 The exporter adds category 212 for AI-generated work."""
 AI_DISCLOSURE = "This image was generated using AI."
+MIN_SR_PRICE_USD = 300
+MAX_SR_PRICE_USD = 25_000
 
 
 def prepare_rows(asset_ids: list[str], price: int) -> list[dict]:
+    if not MIN_SR_PRICE_USD <= price <= MAX_SR_PRICE_USD:
+        raise ValueError(f"--sr-price must be between {MIN_SR_PRICE_USD} and {MAX_SR_PRICE_USD} USD")
     category_lines = (ROOT / "config/dreamstime-categories.txt").read_text(encoding="utf-8-sig").splitlines()
     categories = {
         int(code): name
@@ -152,7 +156,7 @@ def main() -> int:
     subcommands = parser.add_subparsers(dest="command", required=True)
     prepare = subcommands.add_parser("prepare", help="Generate and validate metadata for saved assets")
     prepare.add_argument("asset_ids", nargs="+")
-    prepare.add_argument("--sr-price", type=int, default=10)
+    prepare.add_argument("--sr-price", type=int, default=MIN_SR_PRICE_USD)
     prepare.add_argument("--output", required=True, type=Path)
     upload = subcommands.add_parser("upload", help="Send CSV after all named JPEGs are in Unfinished Files")
     upload.add_argument("file", type=Path)
@@ -161,8 +165,6 @@ def main() -> int:
         if args.command == "upload":
             upload_csv(args.file)
         else:
-            if args.sr_price <= 0:
-                raise ValueError("--sr-price must be positive")
             if args.output.exists():
                 raise FileExistsError(f"Output already exists: {args.output}")
             rows = prepare_rows(args.asset_ids, args.sr_price)

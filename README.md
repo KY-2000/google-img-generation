@@ -245,10 +245,10 @@ python run_stock_pipeline.py `
 After the JPEGs appear in Dreamstime's Unfinished Files, generate their Dreamstime
 CSV from existing AST assets. The tool uses Nemotron NIM for visual metadata and
 switches to Gemini 3.8 Flash if NIM returns HTTP 429. Set the Sell the Rights
-price in USD with `--sr-price` (default 10).
+price in USD with `--sr-price` (300 to 25,000, default 300).
 
 ```powershell
-python tools/prepare_dreamstime_csv.py prepare AST990319 --sr-price 10 --output output/dreamstime/metadata.csv
+python tools/prepare_dreamstime_csv.py prepare AST990319 --sr-price 300 --output output/dreamstime/metadata.csv
 python tools/prepare_dreamstime_csv.py upload output/dreamstime/metadata.csv
 ```
 
