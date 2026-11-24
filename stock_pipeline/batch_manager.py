@@ -146,7 +146,8 @@ def upload_process(root, batch, receipt_dir, *, cdp, profile, log, stop_file=Non
             raise RuntimeError("Adobe uploader stopped; confirmed drafts were retained. See activity log")
 
 
-def preview_queues(root: Path, commit_time: str, changes=None, *, source_transform=None) -> tuple[list[dict], list[QueueSource]]:
+def preview_queues(root: Path, commit_time: str, changes=None, *, source_transform=None,
+                   upload_platform="adobe") -> tuple[list[dict], list[QueueSource]]:
     sources = discover(root, commit_time)
     if source_transform is not None:
         sources = source_transform(sources)
@@ -154,6 +155,11 @@ def preview_queues(root: Path, commit_time: str, changes=None, *, source_transfo
     db = root / "data" / "stock_pipeline.sqlite"
     rows = []
     changes = changes or {}
+    dreamstime_saved = None
+    if upload_platform == "dreamstime":
+        from .managed_dreamstime import uploaded_assets
+
+        dreamstime_saved = uploaded_assets(root)
     with Registry(db, read_only=True) if db.is_file() else nullcontext() as registry:
         assets = defaultdict(list)
         identities = {}
@@ -200,11 +206,12 @@ def preview_queues(root: Path, commit_time: str, changes=None, *, source_transfo
                         expected = {item["asset_id"]: item for item in items} if numbered else {}
                         for row, item in zip(existing, items):
                             verify_asset_identity(row, expected.get(row["asset_id"], item), source.run_id)
-                    uploaded = sum(row["status"] == "UPLOADED_DRAFT" for row in existing)
+                    uploaded = sum(row["status"] == "UPLOADED_DRAFT" if dreamstime_saved is None
+                                   else row["asset_id"] in dreamstime_saved for row in existing)
                     remaining = source.count - sum(has_generated_image(row) for row in existing)
                     selectable = uploaded < source.count
                     if not selectable:
-                        status = "Uploaded draft"
+                        status = "Metadata imported" if upload_platform == "dreamstime" else "Uploaded draft"
                     elif existing and all(row["status"] in DONE for row in existing):
                         status = "Ready to upload"
                     elif any(row["status"] != "QUEUED" for row in existing):
@@ -229,13 +236,13 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 metadata_model=None, metadata_provider=None, temperature=1.0, top_p=0.95, max_images=None,
                 sources: list[QueueSource] | None = None, max_workers: int = 1,
                 receipt_subdir: str | None = None, upload_slot=None, image_thinking_level: str | None = None,
-                metadata_fallback: Event | None = None) -> dict:
+                metadata_fallback: Event | None = None, upload_platform: str = "adobe") -> dict:
     start = time.monotonic()
     log_path = run_dir / "activity.log"
     redact = redactor(root)
     report = dict.fromkeys(COUNTERS, 0)
     report.update(status="RUNNING", git_commit=commit, started_at=now_iso(), queues=[],
-                  log_path=str(log_path), last_error="")
+                  log_path=str(log_path), last_error="", upload_platform=upload_platform)
     db = root / "data" / "stock_pipeline.sqlite"
     receipts = root / "output" / "stock_manager" / "adobe_receipts"
     if receipt_subdir:
@@ -244,6 +251,10 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
     image_states = {}
     generation_lock = Lock()
     rate_limit = Event()
+    dreamstime_saved = None
+
+    def uploaded(row):
+        return row["status"] == "UPLOADED_DRAFT" if dreamstime_saved is None else row["asset_id"] in dreamstime_saved
 
     def on_image_rate_limit(asset_id):
         with generation_lock:
@@ -282,7 +293,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 "generated": counts["generated"], "uploaded": counts["uploaded"], "failed": failed}
 
     def track_image(row):
-        if row["status"] == "UPLOADED_DRAFT":
+        if uploaded(row):
             state = "uploaded"
         elif row["status"] in FAILED:
             state = "failed"
@@ -300,9 +311,9 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                   for row in rows if row["status"] in FAILED]
         if errors:
             record["last_error"] = "; ".join(errors)
-        if rows and all(row["status"] == "UPLOADED_DRAFT" for row in rows):
+        if rows and all(uploaded(row) for row in rows):
             record["queue_status"] = "UPLOADED_DRAFT"
-            stamps = [row["uploaded_at"] for row in rows if row["uploaded_at"]]
+            stamps = [row["uploaded_at"] for row in rows if dreamstime_saved is None and row["uploaded_at"]]
             record["uploaded_at"] = max(stamps, default=None)
         elif rows and record["completed_assets"] == len(rows):
             record["queue_status"] = "READY_TO_UPLOAD"
@@ -315,6 +326,10 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
         return rows
 
     try:
+        if upload_platform == "dreamstime":
+            from .managed_dreamstime import upload_dreamstime, uploaded_assets
+
+            dreamstime_saved = uploaded_assets(root)
         if not (0 <= temperature <= 2 and 0 <= top_p <= 1):
             raise ValueError("Temperature must be 0–2 and Top-p must be 0–1.")
         if max_images is not None and (type(max_images) is not int or max_images < 1):
@@ -370,7 +385,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                         raise ValueError("This asset set is already planned by a different source queue")
                     rows = refresh(record, registry, ids)
                     original_states.update({row["asset_id"]: row for row in rows})
-                    report["already_uploaded"] += sum(row["status"] == "UPLOADED_DRAFT" for row in rows)
+                    report["already_uploaded"] += sum(uploaded(row) for row in rows)
                     report["total_assets"] += len(ids)
                     if record["queue_status"] == "UPLOADED_DRAFT":
                         report["skipped_queues"] += 1
@@ -553,7 +568,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                     row = registry.get_asset(aid)
                     if row["generated_at"] and row["generated_at"] != original_states[aid]["generated_at"]:
                         report["generated"] += 1
-                    if row["status"] in DONE and row["status"] != "UPLOADED_DRAFT":
+                    if row["status"] in DONE and not uploaded(row):
                         ready[aid] = {key: record[key] for key in (
                             "source_file", "source_commit_sha", "source_content_sha256",
                         )}
@@ -573,7 +588,7 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
             # Build even a partial local batch, but never contact Adobe until
             # every eligible queue and artifact passes the combined gate.
             batch = None
-            if ready:
+            if ready and upload_platform == "adobe":
                 log(f"Staging {len(ready)} files", "Staging", overview=overview())
                 batch = build_combined_batch(root, registry, ready, config)
                 pipeline.refresh_manifests(list(ready))
@@ -596,6 +611,40 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                         status = "LIMIT_REACHED"
                 report.update(status=status, last_error=message)
                 log(report["last_error"], "Quality gate")
+                return report
+            if upload_platform == "dreamstime" and ready:
+                def dreamstime_progress(stage, detail=""):
+                    emit({"overview": overview(), "upload_progress": {
+                        "platform": "dreamstime", "stage": stage, "detail": redact(detail),
+                        "done": len(ready.keys() & dreamstime_saved), "total": len(ready),
+                    }})
+
+                def dreamstime_log(message, **fields):
+                    log(message, "Dreamstime", **fields)
+
+                try:
+                    with upload_slot(lambda: dreamstime_progress("waiting", "The other lane is uploading.")) \
+                            if upload_slot else nullcontext(True) as acquired:
+                        if not acquired or should_stop():
+                            report["status"] = "STOPPED"
+                            return report
+                        upload_dreamstime(root, run_dir / "dreamstime", {
+                            aid: registry.get_asset(aid) for aid in ready
+                        }, cdp=cdp, profile=profile, should_stop=should_stop,
+                            progress=dreamstime_progress, log=dreamstime_log)
+                except Exception as exc:
+                    report["last_error"] = redact(exc)
+                dreamstime_saved = uploaded_assets(root)
+                report["uploaded"] = len(ready.keys() & dreamstime_saved)
+                for source, _, ids, record in prepared:
+                    refresh(record, registry, ids)
+                    state.save(source.run_id, source.identity, record)
+                if report["uploaded"] == len(ready):
+                    report["status"] = "COMPLETE"
+                else:
+                    report["status"] = "STOPPED" if should_stop() else "UPLOAD_INCOMPLETE"
+                stage = {"COMPLETE": "dreamstime_complete", "STOPPED": "stopped", "UPLOAD_INCOMPLETE": "incomplete"}
+                dreamstime_progress(stage[report["status"]], report["last_error"])
                 return report
             if not batch:
                 report["status"] = "NO_WORK"

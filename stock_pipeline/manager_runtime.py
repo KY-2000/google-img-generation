@@ -211,7 +211,7 @@ def cdp_connected(url: str) -> bool:
         return False
 
 
-def ensure_edge_cdp(root: Path, url: str, profile: str | None, *, log, should_stop) -> bool:
+def ensure_edge_cdp(root: Path, url: str, profile: str | None, *, log, should_stop, platform="Adobe") -> bool:
     url = validate_cdp(url)
     if should_stop():
         return False
@@ -237,7 +237,7 @@ def ensure_edge_cdp(root: Path, url: str, profile: str | None, *, log, should_st
     directory = Path(profile).expanduser() if profile else Path.home() / ".edge-xhs-adobe-automation"
     directory = (root / directory).resolve()
     port = urlsplit(url).port
-    log(f"Starting Edge for Adobe upload on port {port} with profile {directory}", browser="Starting Edge")
+    log(f"Starting Edge for {platform} upload on port {port} with profile {directory}", browser="Starting Edge")
     subprocess.Popen(
         [executable, f"--remote-debugging-port={port}", f"--user-data-dir={directory}",
          "--no-first-run", "--new-window", "about:blank"],
@@ -249,7 +249,7 @@ def ensure_edge_cdp(root: Path, url: str, profile: str | None, *, log, should_st
         if should_stop():
             return False
         if cdp_connected(url):
-            log("Edge started and is ready for Adobe upload.", browser="Connected")
+            log(f"Edge started and is ready for {platform} upload.", browser="Connected")
             return True
         time.sleep(0.4)
     log(f"Edge did not open its CDP endpoint at {url}.", browser="Disconnected")

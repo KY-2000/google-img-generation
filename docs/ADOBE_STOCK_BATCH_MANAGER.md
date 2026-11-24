@@ -16,6 +16,15 @@ npm ci
 
 If the virtual environment is missing, first run `python -m venv .venv`.
 Configure `.env` and Google credentials as for the single-queue pipeline.
+Choose **Upload to** before checking queues. **Adobe Stock** saves Adobe drafts
+as usual. **Dreamstime** sends JPEGs over FTP, checks the signed-in Dreamstime
+Upload History for processing, then uploads and verifies a Dreamstime metadata
+CSV with the US$300 SR-EL price. Set `DREAMSTIME_FTP_USER_ID` and
+`DREAMSTIME_FTP_PASSWORD` in `.env`, and sign in to Dreamstime in the automation
+Edge profile. If Dreamstime is still processing the files, **Retry Failed**
+checks the existing upload history. Both platforms reuse saved images and track
+confirmed uploads separately. Review the destination drafts before submitting.
+
 Choose **Nano Banana Pro** (default) or **Nano Banana 2.1** in the
 **Image model** dropdown. The choice overrides `IMAGE_MODEL` for that run
 and applies only to new generation; completed images are reused. For new

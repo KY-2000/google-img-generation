@@ -7,6 +7,7 @@ import csv
 import json
 import os
 import sys
+from contextlib import contextmanager
 from ftplib import FTP
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -39,29 +40,33 @@ MIN_SR_PRICE_USD = 300
 MAX_SR_PRICE_USD = 25_000
 
 
-def prepare_rows(asset_ids: list[str], price: int) -> list[dict]:
+def export_jpeg(source: Path, jpeg: Path) -> None:
+    with Image.open(source) as image:
+        if image.width * image.height < 3_000_000:
+            raise ValueError(f"{jpeg.name} is below Dreamstime's 3 MP minimum")
+        profile = ImageCms.ImageCmsProfile(ImageCms.createProfile("sRGB"))
+        image.convert("RGB").save(jpeg, quality=97, subsampling=0, icc_profile=profile.tobytes())
+
+
+def prepare_rows(asset_ids: list[str], price: int, *, root: Path = ROOT) -> list[dict]:
     if not MIN_SR_PRICE_USD <= price <= MAX_SR_PRICE_USD:
         raise ValueError(f"--sr-price must be between {MIN_SR_PRICE_USD} and {MAX_SR_PRICE_USD} USD")
-    category_lines = (ROOT / "config/dreamstime-categories.txt").read_text(encoding="utf-8-sig").splitlines()
+    category_lines = (root / "config/dreamstime-categories.txt").read_text(encoding="utf-8-sig").splitlines()
     categories = {
         int(code): name
         for code, name in (line.split(" ", 1) for line in category_lines)
         if code != "212" and not name.startswith("Editorial ->")
     }
     legend = "\n".join(f"{code} {name}" for code, name in categories.items())
-    nim = legacy.build_nim_metadata_client(legacy.get_nim_api_key(ROOT))
+    nim = legacy.build_nim_metadata_client(legacy.get_nim_api_key(root))
     vertex = None
     rows = []
     with TemporaryDirectory() as temporary:
         for asset_id in dict.fromkeys(asset_ids):
-            local = resolve_local_asset(ROOT, asset_id)
+            local = resolve_local_asset(root, asset_id)
             filename = f"{local.asset_id}.jpg"
             jpeg = Path(temporary) / filename
-            with Image.open(local.image_path) as image:
-                if image.width * image.height < 3_000_000:
-                    raise ValueError(f"{filename} is below Dreamstime's 3 MP minimum")
-                profile = ImageCms.ImageCmsProfile(ImageCms.createProfile("sRGB"))
-                image.convert("RGB").save(jpeg, quality=97, subsampling=0, icc_profile=profile.tobytes())
+            export_jpeg(local.image_path, jpeg)
             adobe = json.loads(local.metadata_path.read_text(encoding="utf-8"))
             user_prompt = (
                 f"Adobe title: {local.title}\n"
@@ -80,10 +85,10 @@ def prepare_rows(asset_ids: list[str], price: int) -> list[dict]:
                         if exc.code != 429:
                             raise
                         print("NVIDIA NIM returned HTTP 429. Using Gemini 3.8 Flash for remaining metadata.")
-                        if legacy.get_google_auth_mode(ROOT) == "api_key":
-                            vertex = legacy.build_google_client(api_key=legacy.get_google_api_key(ROOT))
+                        if legacy.get_google_auth_mode(root) == "api_key":
+                            vertex = legacy.build_google_client(api_key=legacy.get_google_api_key(root))
                         else:
-                            config = legacy.get_vertex_ai_config(ROOT)
+                            config = legacy.get_vertex_ai_config(root)
                             vertex = legacy.build_google_client(project=config["project"], location=config["location"])
                 if vertex is not None:
                     raw = legacy.generate_google_metadata_text(
@@ -132,19 +137,25 @@ def make_row(filename: str, metadata: dict, categories: dict[int, str], price: i
     return row
 
 
-def upload_csv(file: Path) -> None:
-    if file.suffix.lower() != ".csv" or any(char in file.name for char in "\r\n"):
-        raise ValueError("Expected a CSV file")
-    settings = legacy.load_env_file(ROOT / ".env")
+@contextmanager
+def dreamstime_ftp(root: Path):
+    settings = legacy.load_env_file(root / ".env")
     username = settings.get("DREAMSTIME_FTP_USER_ID") or os.getenv("DREAMSTIME_FTP_USER_ID")
     password = settings.get("DREAMSTIME_FTP_PASSWORD") or os.getenv("DREAMSTIME_FTP_PASSWORD")
     if not username or not username.isdecimal() or not password:
         raise ValueError("Set DREAMSTIME_FTP_USER_ID and DREAMSTIME_FTP_PASSWORD in .env")
-    with file.open("rb") as data, FTP(timeout=45) as ftp:
+    with FTP(timeout=45) as ftp:
         ftp.connect("upload.dreamstime.com", 21)
         ftp.login(username, password)
         ftp.set_pasv(True)
         ftp.cwd("/")
+        yield ftp
+
+
+def upload_csv(file: Path) -> None:
+    if file.suffix.lower() != ".csv" or any(char in file.name for char in "\r\n"):
+        raise ValueError("Expected a CSV file")
+    with file.open("rb") as data, dreamstime_ftp(ROOT) as ftp:
         if any(name.rsplit("/", 1)[-1].casefold() == file.name.casefold() for name in ftp.nlst()):
             raise ValueError("A CSV with this filename is already queued on Dreamstime")
         response = ftp.storbinary(f"STOR {file.name}", data)

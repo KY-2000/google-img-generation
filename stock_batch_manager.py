@@ -29,6 +29,7 @@ IMAGE_MODELS = {
     "Nano Banana 2.1": "gemini-nano-banana-2.1",
 }
 DEFAULT_METADATA_MODEL = "gemini-3.8-flash"
+UPLOAD_PLATFORMS = {"Adobe Stock": "adobe", "Dreamstime": "dreamstime"}
 NEMOTRON_METADATA_LABEL = "Nemotron 3.5 Super VL (NIM)"
 METADATA_MODELS = (DEFAULT_METADATA_MODEL, NEMOTRON_METADATA_LABEL)
 SUPPORT_CHAT_FILE = Path("output/stock_manager/support_chat.txt")
@@ -55,6 +56,11 @@ ASSET_STAGES = {
 FINISHED_ASSET_STAGES = {"ready", "simulated_ready", "failed", "deferred", "interrupted", "local_complete", "local_stopped"}
 
 UPLOAD_STAGES = {
+    "dreamstime_history": "Checking Dreamstime Upload History",
+    "dreamstime_jpeg": "Uploading JPEGs to Dreamstime",
+    "dreamstime_metadata": "Generating Dreamstime metadata",
+    "dreamstime_csv": "Importing the Dreamstime CSV",
+    "dreamstime_complete": "Dreamstime metadata imported",
     "waiting": "Waiting to upload",
     "browser": "Connecting to Adobe browser",
     "opening": "Opening Contributor uploads",
@@ -97,20 +103,28 @@ def simulate_asset_progress(max_workers, stop, log):
     return True
 
 
-def simulate_upload_progress(total, stop, log):
-    for stage, detail, done in (
+def simulate_upload_progress(total, stop, log, upload_platform="adobe"):
+    stages = (
         ("browser", "", 0), ("opening", "", 0), ("checking", "Page 1", 0),
         ("uploading", f"{total} file(s) in this batch", 0), ("importing", f"{total} file(s)", 0),
         *(("saving", f"DEMO-{index + 1:02d}.png", index) for index in range(total)),
         ("finalizing", "", total), ("complete", "", total),
-    ):
+    )
+    if upload_platform == "dreamstime":
+        stages = (
+            ("dreamstime_history", "", 0), ("dreamstime_jpeg", f"{total} JPEG(s)", 0),
+            ("dreamstime_metadata", "", 0), ("dreamstime_csv", "Demo metadata CSV", 0),
+            ("dreamstime_complete", "", total),
+        )
+    for stage, detail, done in stages:
         if stop.exists():
             return False
+        progress = {"stage": stage, "detail": detail, "done": done, "total": total, "simulated": True}
+        if upload_platform == "dreamstime":
+            progress["platform"] = upload_platform
         log(f"[Simulation] {UPLOAD_STAGES[stage]}", overview=dict(total=total, pending=0, generated=total - done,
-                                                                  uploaded=done, failed=0), upload_progress={
-            "stage": stage, "detail": detail, "done": done, "total": total, "simulated": True,
-        })
-        if stage != "complete":
+                                                                  uploaded=done, failed=0), upload_progress=progress)
+        if stage not in {"complete", "dreamstime_complete"}:
             time.sleep(0.6)
     return True
 
@@ -142,7 +156,8 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
            metadata_provider: str | None = None, temperature: float = 1.0,
            top_p: float = 0.95, max_images: int | None = None, max_workers: int = 1,
            local_queue: Path | None = None, generation_route: str = "cloud", text_encoder: str | None = None,
-           image_quant: str = "Q4", image_thinking_level: str | None = None) -> int:
+           image_quant: str = "Q4", image_thinking_level: str | None = None,
+           upload_platform: str = "adobe") -> int:
     # The UI generates a fresh local directory for each Start.
     home = (ROOT / "output" / "stock_manager" / "runs").resolve()
     run_dir = run_dir.resolve()
@@ -189,7 +204,7 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
                     log(message, lane=lane, **fields)
                 cards = 1 if lane == "local" else max_workers
                 if not (simulate_asset_progress(cards, stop, simulation_log)
-                        and simulate_upload_progress(cards, stop, simulation_log)):
+                        and simulate_upload_progress(cards, stop, simulation_log, upload_platform)):
                     report["status"] = "STOPPED"
                     break
             report["layout_test"] = {"cards": max_workers, "status": report["status"]}
@@ -207,11 +222,12 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
             sha, commit_time = git_sync(ROOT, incoming_changes=changes, commit_state=commit_state)
             log(f"Git synced: {sha}", phase="Git sync", github="Connected", commit=sha, **commit_state)
             from stock_pipeline.manager_lanes import preview_for_route, run_lanes
-            rows, _ = preview_for_route(ROOT, commit_time, changes, generation_route)
+            platform_options = {"upload_platform": upload_platform} if upload_platform != "adobe" else {}
+            rows, _ = preview_for_route(ROOT, commit_time, changes, generation_route, **platform_options)
             lanes = ("cloud", "local") if generation_route == "both" else (generation_route,)
             pending = [row["source_file"] for row in rows if row["selectable"]]
             log(f"{len(pending)} runnable queue(s) awaiting review", phase="Queue preview",
-                preview={"queues": rows, "max_images": max_images, "lanes": lanes})
+                preview={"queues": rows, "max_images": max_images, "lanes": lanes, "upload_platform": upload_platform})
             selection = "" if stop.exists() else sys.stdin.readline().strip()
             if stop.exists() or not selection:
                 log("Queue preview closed.", phase="Preview closed")
@@ -220,10 +236,10 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
             counts = ", ".join(f"{lane.title()} {len(paths)} JSON" for lane, paths in selected.items())
             log(f"Confirmed {counts}. Verifying the preview before starting…", phase="Verifying queues")
             verify_reviewed_checkout(ROOT, sha)
-            current_rows, sources = preview_for_route(ROOT, commit_time, changes, generation_route)
+            current_rows, sources = preview_for_route(ROOT, commit_time, changes, generation_route, **platform_options)
             if current_rows != rows:
                 raise RuntimeError("Queues or local progress changed since preview. Check queues again.")
-            if not cdp and selected.get("local"):
+            if not cdp and (selected.get("local") or upload_platform == "dreamstime"):
                 cdp = "http://127.0.0.1:9222"
             if cdp:
                 connected = cdp_connected(cdp)
@@ -237,7 +253,7 @@ def worker(run_dir: Path, cdp: str | None, profile: str | None, offline_test: bo
                                  top_p=top_p, max_images=max_images, max_workers=max_workers,
                                  sources=sources, route=generation_route, selected_by_lane=selected,
                                  text_encoder=text_encoder, image_quant=image_quant,
-                                 image_thinking_level=image_thinking_level)
+                                 image_thinking_level=image_thinking_level, **platform_options)
             from stock_pipeline.batch_manager import write_report
             write_report({**report, "log_path": str(run_dir / "activity.log")}, run_dir)
             log(report["status"].replace("_", " ").title(), report=report)
@@ -280,6 +296,7 @@ class Desktop:
         self.offline_test = tk.BooleanVar(value=True)
         self.local_test = tk.BooleanVar(value=False)
         self.generation_route = tk.StringVar(value="Cloud")
+        self.upload_platform = tk.StringVar(value="Adobe Stock")
         self.text_encoder = tk.StringVar(value="Q4")
         self.local_image_quant = tk.StringVar(value="Q4")
         self.image_model = tk.StringVar(value="Nano Banana Pro")
@@ -372,10 +389,13 @@ class Desktop:
             side="right", padx=(0, 8))
         settings = ttk.Frame(container)
         settings.pack(fill="x", pady=(0, 8))
-        ttk.Label(settings, text="Adobe CDP").pack(side="left", padx=(0, 8))
+        ttk.Label(settings, text="Browser CDP").pack(side="left", padx=(0, 8))
         self.endpoint_entry = ttk.Entry(settings, textvariable=self.endpoint, width=28)
         self.endpoint_entry.pack(side="left")
-        ttk.Label(settings, text="Shared by Cloud and Local. Blank uses port 9222 when Local runs.").pack(side="left", padx=10)
+        ttk.Label(settings, text="Upload to").pack(side="left", padx=(16, 6))
+        self.upload_picker = ttk.Combobox(settings, textvariable=self.upload_platform, values=tuple(UPLOAD_PLATFORMS),
+                                          width=15, state="readonly")
+        self.upload_picker.pack(side="left")
         options = ttk.Frame(container)
         options.pack(fill="x", pady=(0, 8))
         self.image_model_label = ttk.Label(options, text="Image model")
@@ -633,6 +653,7 @@ class Desktop:
         self.thinking_picker.state(["disabled" if self.active or local else "!disabled"])
         pro = self.image_model.get() == "Nano Banana Pro"
         self.endpoint_entry.state(["disabled" if self.active or self.local_test.get() else "!disabled"])
+        self.upload_picker.state(["disabled" if self.active or self.local_test.get() else "!disabled"])
         self.metadata_picker.state(["disabled" if self.active or self.local_test.get() else "!disabled"])
         self.worker_picker.state(["disabled" if self.active or local else "!disabled"])
         for index, entry in enumerate(self.generation_entries):
@@ -734,7 +755,8 @@ class Desktop:
         if os.name == "nt" and python.name.casefold() == "pythonw.exe":
             python = python.with_name("python.exe")
         args = [str(python), str(Path(__file__).resolve()), "--worker", str(self.run_dir),
-                "--max-workers", self.max_workers.get(), "--generation-route", self.generation_route.get().lower()]
+                "--max-workers", self.max_workers.get(), "--generation-route", self.generation_route.get().lower(),
+                "--upload-platform", UPLOAD_PLATFORMS[self.upload_platform.get()]]
         if local or self.generation_route.get() in {"Local", "Both"}:
             args.extend(("--local-text-encoder", self.text_encoder.get(), "--local-image-model", self.local_image_quant.get()))
         if local:
@@ -801,7 +823,9 @@ class Desktop:
         panel.pack(fill="both", expand=True)
         ttk.Label(panel, text=f"Pulled {new} new and {updated} updated JSON files  •  "
                              f"{len(pending)} runnable queues / {runnable_images} images"
-                             f"  •  {invalid} invalid").pack(anchor="w", pady=(0, 10))
+                             f"  •  {invalid} invalid").pack(anchor="w")
+        platform = "Dreamstime" if preview.get("upload_platform") == "dreamstime" else "Adobe Stock"
+        ttk.Label(panel, text=f"Upload to {platform}").pack(anchor="w", pady=(0, 10))
         table_box = ttk.Frame(panel)
         table_box.pack(fill="both", expand=True)
         columns = ("file", "themes", "git", *lanes, "total", "remaining")
@@ -998,8 +1022,9 @@ class Desktop:
                     self.count.set(f"{report['total_assets']} assets validated; 0 generated")
                     self.current.set(TEST_QUEUE)
                 else:
+                    imported = "Metadata imported" if report.get("upload_platform") == "dreamstime" else "Drafts saved"
                     self.current.set(f"Generated {report.get('generated', 0)}  •  Failed {report.get('failed_assets', 0)}"
-                                 f"  •  Drafts saved {report.get('uploaded', 0)}"
+                                 f"  •  {imported} {report.get('uploaded', 0)}"
                                  f"  •  Already uploaded {report.get('already_uploaded', 0)}")
             if event.get("preview") and not (self.closing or (self.run_dir / "stop.request").exists()):
                 self.show_preview(event["preview"])
@@ -1094,6 +1119,8 @@ def main():
 
     parser.add_argument("--local-image-model", choices=tuple(LOCAL_IMAGE_MODELS), default="Q4", help=argparse.SUPPRESS)
     parser.add_argument("--generation-route", choices=("cloud", "local", "both"), default="cloud", help=argparse.SUPPRESS)
+    parser.add_argument("--upload-platform", choices=tuple(UPLOAD_PLATFORMS.values()), default="adobe",
+                        help=argparse.SUPPRESS)
     parser.add_argument("--image-model", choices=tuple(IMAGE_MODELS.values()), help=argparse.SUPPRESS)
     parser.add_argument("--image-thinking-level", choices=("MINIMAL", "MEDIUM", "HIGH"), help=argparse.SUPPRESS)
     parser.add_argument("--metadata-model", help=argparse.SUPPRESS)
@@ -1115,7 +1142,7 @@ def main():
                       top_p=args.top_p, max_images=args.max_images, max_workers=args.max_workers,
                       local_queue=args.local_queue, generation_route=args.generation_route,
                       text_encoder=args.local_text_encoder, image_quant=args.local_image_model,
-                      image_thinking_level=args.image_thinking_level)
+                      image_thinking_level=args.image_thinking_level, upload_platform=args.upload_platform)
     import tkinter as tk
     window = tk.Tk()
     icon = ROOT / "config" / "stock_manager.ico"

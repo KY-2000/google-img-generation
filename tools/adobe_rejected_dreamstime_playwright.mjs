@@ -52,7 +52,7 @@ export function chunkFilesBySize(files, limit = 45_000_000, sizeOf = (file) => f
   return chunks;
 }
 
-async function loadPlaywright() {
+export async function loadPlaywright() {
   try { return await import("playwright"); } catch (first) {
     const require = createRequire(import.meta.url);
     const roots = [process.env.PLAYWRIGHT_NODE_MODULES, path.resolve("node_modules"), process.env.APPDATA && path.join(process.env.APPDATA, "npm", "node_modules")].filter(Boolean);

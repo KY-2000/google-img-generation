@@ -17,11 +17,12 @@ from .orchestrator import StockPipeline
 from .registry import Registry, now_iso
 
 
-def preview_for_route(root, commit_time, changes, route):
-    cloud, sources = preview_queues(root, commit_time, changes)
+def preview_for_route(root, commit_time, changes, route, *, upload_platform="adobe"):
+    cloud, sources = preview_queues(root, commit_time, changes, upload_platform=upload_platform)
     if route == "cloud":
         return [{**row, "lanes": {"cloud": preview_lane(row)}} for row in cloud], sources
-    local, _ = preview_queues(root, commit_time, changes, source_transform=local_sources)
+    local, _ = preview_queues(root, commit_time, changes, source_transform=local_sources,
+                              upload_platform=upload_platform)
     if route == "local":
         return [{**row, "lanes": {"local": preview_lane(row)}} for row in local], sources
     local_rows = {row["source_file"]: row for row in local}
@@ -123,7 +124,7 @@ class LocalStockPipeline(StockPipeline):
 def run_lanes(root, commit, commit_time, run_dir, sources, *, route, emit, should_stop, stop_file,
               cdp, profile, image_model, metadata_model, metadata_provider, temperature, top_p,
               max_images, max_workers, selected_by_lane=None, text_encoder=None, image_quant="Q4",
-              image_thinking_level=None, manager=run_manager):
+              image_thinking_level=None, manager=run_manager, upload_platform="adobe"):
     lanes = ("cloud", "local") if route == "both" else (route,)
     plans = {lane: [source for source in sources
                     if selected_by_lane is None or source.source_file in selected_by_lane[lane]] for lane in lanes}
@@ -176,6 +177,8 @@ def run_lanes(root, commit, commit_time, run_dir, sources, *, route, emit, shoul
                        metadata_model=metadata_model, metadata_provider=metadata_provider)
         if route == "both":
             options["upload_slot"] = upload_slot
+        if upload_platform != "adobe":
+            options["upload_platform"] = upload_platform
         if metadata_fallback is not None:
             options["metadata_fallback"] = metadata_fallback
         if lane == "local":
@@ -206,7 +209,11 @@ def run_lanes(root, commit, commit_time, run_dir, sources, *, route, emit, shoul
     status = "COMPLETE" if all(r["status"] in {"COMPLETE", "NO_WORK"} for r in reports.values()) else "STOPPED"
     if any(r["status"] not in success for r in reports.values()):
         status = "FAILED"
+        if upload_platform == "dreamstime" and all(r["status"] in success | {"UPLOAD_INCOMPLETE"}
+                                                  for r in reports.values()):
+            status = "UPLOAD_INCOMPLETE"
     from .batch_manager import COUNTERS
     return {**{key: sum(report.get(key, 0) for report in reports.values()) for key in COUNTERS},
-            "status": status, "git_commit": commit, "lanes": reports, "last_error": " | ".join(
+            "status": status, "git_commit": commit, "lanes": reports, "upload_platform": upload_platform,
+            "last_error": " | ".join(
                 f"{lane}: {report['last_error']}" for lane, report in reports.items() if report.get("last_error"))}

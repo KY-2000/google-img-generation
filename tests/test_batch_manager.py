@@ -855,6 +855,59 @@ class ManagerTests(unittest.TestCase):
         self.assertEqual(result["status"], "COMPLETE", result)
         self.assertEqual(len(self.calls), 1)
 
+    def test_dreamstime_resumes_csv_without_reupload_and_leaves_adobe_available(self):
+        from contextlib import nullcontext
+        from stock_pipeline.managed_dreamstime import uploaded_assets
+
+        self.write("one.json", self.production("One"))
+        history, transfers = {}, []
+        ftp = Mock()
+        ftp.nlst.return_value = []
+
+        def send(command, data, **_kwargs):
+            name = command.removeprefix("STOR ")
+            transfers.append(name)
+            if name.endswith(".jpg"):
+                history[name] = "Processed with image ID 123"
+            return "226 Transfer complete"
+
+        ftp.storbinary.side_effect = send
+
+        def check_history(_root, _cdp, names, expected, *_args):
+            if any(expected not in history.get(name, "").casefold() for name in names):
+                raise TimeoutError("Dreamstime is still processing")
+
+        module = "stock_pipeline.managed_dreamstime"
+        with (
+            patch(f"{module}.ensure_edge_cdp", return_value=True),
+            patch(f"{module}.read_history", side_effect=lambda *_: dict(history)),
+            patch(f"{module}.dreamstime_ftp", side_effect=lambda *_: nullcontext(ftp)),
+            patch(f"{module}.export_jpeg", side_effect=lambda _source, target: target.write_bytes(b"jpeg")),
+            patch(f"{module}._check_history", side_effect=check_history),
+            patch(f"{module}.prepare_rows", side_effect=lambda ids, *_args, **_kwargs: [
+                {"Filename": f"{aid}.jpg", "SR-Price": 300} for aid in ids
+            ]) as metadata,
+        ):
+            first = self.run_batch(upload_platform="dreamstime")
+            self.assertEqual(first["status"], "UPLOAD_INCOMPLETE", first)
+            self.assertEqual(len(transfers), 2)
+            jpeg, saved_csv = transfers
+            history[saved_csv] = "Processed as csv"
+            second = self.run_batch(upload_platform="dreamstime")
+            self.assertEqual(second["status"], "COMPLETE", second)
+            self.assertEqual(second["uploaded"], 1)
+            self.assertEqual(transfers, [jpeg, saved_csv])
+            self.assertEqual(len(self.calls), 1)
+            metadata.assert_called_once()
+
+        self.assertEqual(uploaded_assets(self.root), {Path(jpeg).stem})
+        self.assertFalse(preview_queues(self.root, TIME, upload_platform="dreamstime")[0][0]["selectable"])
+        self.assertTrue(preview_queues(self.root, TIME)[0][0]["selectable"])
+        self.assertEqual(self.uploads, [])
+        self.assertEqual(self.run_batch()["status"], "COMPLETE")
+        self.assertEqual(len(self.uploads), 1)
+        self.assertEqual(len(self.calls), 1)
+
     def test_metadata_qc_repairs_once_then_resumes_with_rejection_reason(self):
         self.write("one.json", self.production("One"))
         valid = sample_model_metadata()

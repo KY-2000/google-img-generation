@@ -129,16 +129,18 @@ class ProgressPanel:
         return f"{label}  ·  {minutes:02d}:{seconds:02d} elapsed"
 
     def update_upload_panel(self, event):
+        dreamstime = event.get("platform") == "dreamstime"
         if not self.upload_panel.winfo_manager():
             self.asset_panel.pack_forget()
-            heading = "Adobe draft upload"
+            heading = "Dreamstime upload" if dreamstime else "Adobe draft upload"
             if event.get("simulated"):
                 heading += " · Offline simulation"
             self.progress_heading.configure(text=heading)
             self.upload_panel.pack(fill="x")
-        self.upload_step.configure(text=self.upload_stages.get(event["stage"], "Processing Adobe drafts"))
+        self.upload_step.configure(text=self.upload_stages.get(event["stage"], "Processing upload"))
         self.upload_detail.configure(text=event["detail"])
         done, total = event["done"], event["total"]
-        self.upload_count.configure(text=f"{done} / {total} drafts verified")
+        label = "metadata imports verified" if dreamstime else "drafts verified"
+        self.upload_count.configure(text=f"{done} / {total} {label}")
         self.upload_bar.configure(maximum=max(total, 1), value=done)
 
