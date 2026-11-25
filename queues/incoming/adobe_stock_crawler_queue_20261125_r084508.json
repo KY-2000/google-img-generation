@@ -1,0 +1,442 @@
+{
+  "run_id": "TF_category_crawler_20261125_r084508",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-25T08:45:08+08:00",
+  "research": {
+    "finder": "creative_components",
+    "strategy": "category_crawler",
+    "product_line": "commercial_background",
+    "market": "Adobe Stock Malaysia public web",
+    "research_language": "zh-CN",
+    "candidate_count": 34,
+    "first_tests": [
+      "Matched Circular Fabric Swatches with Soft and Stiff Drape",
+      "Perforated Felt Panel with a Readable Cut Edge"
+    ],
+    "sample_counts": {
+      "pages": 29,
+      "entry_links": 12,
+      "pages_with_cards": 19,
+      "cards_before_global_dedupe": 1141,
+      "distinct_ids": 1114,
+      "duplicate_appearances": 27,
+      "visual_previews_reviewed": 49
+    },
+    "evidence_file": "adobe_stock_crawler_cards_20261125_r084508.csv",
+    "source_urls": [
+      "https://stock.adobe.com/my/illustrations",
+      "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+      "https://helpx.adobe.com/in/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html",
+      "https://helpx.adobe.com/stock/contributor/content-moderation/content-moderation.html",
+      "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+      "https://docs.google.com/document/d/1_D-QBzmhaKmpC42T4hDLefIgOPQ96qHFauaBAm5BgaQ/edit"
+    ],
+    "limitations": "排名为页面公开供给信息；主题检索含相关回退、误匹配和缺卡。SQLite 由使用者实际运行环境分配资产编号。"
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Matched Circular Fabric Swatches with Soft and Stiff Drape",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 95,
+      "topic_bucket": "APPROVED",
+      "palette": "warm ivory, chalk, flax, graphite",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a 4K horizontal 16:9 reference plate for a textile sourcing deck or a garment design workbook. Set two circular swatches side by side on identical small circular supports, viewed from directly above. Center both supports at the same height in the composition. Use closely matched warm ivory textiles so the silhouette carries the comparison. Give the softer swatch deeper hanging folds and a compact scalloped outline, and the firmer swatch broader folds with a more extended perimeter. Show subdued warp grain and believable thickness along the exposed cut edges. Use neutral diffuse lighting and slight directional shading to distinguish raised folds from fabric hanging below the support. A plain light background, generous top margin, and wide central gutter should allow buyer supplied captions and individual crops. Render as an explanatory textile studio illustration with precise contours and no measured values, apparatus branding, letterforms, or decorative props.",
+      "negative_prompt": "flying silk, mannequins, labels, numerical coefficient, calibration markings, brand, billowing wind",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "component_category": "服装面料双样比较图",
+        "material": "同色纺织试样",
+        "designer_persona": "纺织教材和打版课程美编",
+        "buyer_use_case": "对照垂坠轮廓",
+        "design_placement": "面料采购培训幻灯片",
+        "design_function": "两个圆形样的支座位置与取景统一，以褶底弧度区分软硬",
+        "art_style": "Orthographic Textile Studio Illustration",
+        "style_rationale": "避免把面料色差误读成垂坠差异，专业人员可直接添加真实试验条件",
+        "distinctiveness": "两个圆形样的支座位置与取景统一，以褶底弧度区分软硬",
+        "copy_space": "两份样本独立裁出或共享图例，上边留标注",
+        "metadata_seed_keywords": [
+          "fabric drape",
+          "circular swatches",
+          "textile education",
+          "drape comparison",
+          "cloth folds"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://www.tandfonline.com/doi/abs/10.1080/00405006808659985",
+          "https://doi.org/10.3390/textiles5040063",
+          "https://stock.adobe.com/my/search?k=fabric+drape&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/images/flying-white-silk-fabric-cutout-on-transparent-background/644971480",
+          "https://stock.adobe.com/my/images/green-drapery-silk-fabric-luxury-background-wavy-abstract-satin-cloth-vector-texture-pattern-smooth-shiny-drape-material-curtain-elegant-velvet-curve-motion-image-realistic-horizontal-design/815953066",
+          "https://stock.adobe.com/my/images/orange-fabric-covering-a-cube-or-rectangular-shape-can-be-used-as-a-stand-for-product-display-draped-table-png-clipart-isolated-cut-out-on-transparent-background/638374514",
+          "https://stock.adobe.com/my/images/blank-black-and-white-folded-fabric-samples-mockup-side-view/477141016"
+        ],
+        "originality_notes": "插画多为飘动绸缎、单幅褶纹或盖台布；统一俯视和支座的双样比较从实际测试方法独立推导。",
+        "design_reuse_cases": [
+          "面料采购培训幻灯片",
+          "服装打版工作页"
+        ],
+        "integration_guidance": "两份样本独立裁出或共享图例，上边留标注",
+        "reusability_rationale": "避免把面料色差误读成垂坠差异，专业人员可直接添加真实试验条件",
+        "quality_check": "支座同尺度，差异来自褶深和轮廓，避免实测数据暗示",
+        "score_breakdown": {
+          "utility": 29,
+          "differentiation": 24,
+          "composition": 15,
+          "material": 9,
+          "feasibility": 9,
+          "timeliness": 5,
+          "diversity": 4
+        },
+        "evidence_ids": [
+          "644971480",
+          "815953066",
+          "638374514",
+          "477141016"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Opened Woven Seam with Raw and Zigzag Finished Allowances",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "cream, muted clay, pale brown, slate",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Illustrate the reverse side of a pressed open seam for a sewing workbook or a machine stitch tutorial. Use one 16:9 horizontal 4K canvas and a close overhead view of plain matte woven cotton resting flat. The two matching seam allowances should run lengthwise side by side, connected by a fine straight seam. Show one raw edge with a few short loose warp and weft ends, and finish the other edge with an orderly zigzag in slightly darker thread so the thread path can be followed. Keep the fabric panel within the left two thirds against a soft cream background and leave the last third clear for callout text. Add quiet clearance above both edges and keep the seam legible in an inset crop. Work with precise pencil fiber detail and broad warm workshop light, revealing the thickness of each layer without deep shadows. Omit labels, hands, sewing tools, logos and numerical measurements.",
+      "negative_prompt": "denim flat fell, stitch numbers, red arrows, needle, sewing machine, labels, logo",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "component_category": "缝纫结构说明片",
+        "material": "平纹棉布、经纬散纱与细车缝线",
+        "designer_persona": "裁缝课程美编及家用缝纫教育设计师",
+        "buyer_use_case": "对照毛边与锁边处理位置",
+        "design_placement": "缝纫机培训排版",
+        "design_function": "同一个翻面缝口展平，直线车缝和两侧余量连续可比",
+        "art_style": "Sewing Instruction Illustration with Pencil Fiber Detail",
+        "style_rationale": "可同时解释缝合线、余量与毛边，优于只表现正面成衣纹路的示意",
+        "distinctiveness": "同一个翻面缝口展平，直线车缝和两侧余量连续可比",
+        "copy_space": "对象居左靠中，两边可分别挂引线，顶部保持完整",
+        "metadata_seed_keywords": [
+          "seam allowance",
+          "woven cotton",
+          "zigzag stitch",
+          "raw edge",
+          "sewing tutorial"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://extension.usu.edu/sewing/research/youth-elastic-waist-skirt",
+          "https://stock.adobe.com/my/search?k=seam+allowance&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=garment+seam+allowance&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=woven+fabric+fray&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=zigzag+stitch&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/images/frayed-cardigan-1/527132",
+          "https://stock.adobe.com/my/images/piece-of-torn-denim-on-a-white-background-denim-texture/666793193",
+          "https://stock.adobe.com/my/images/embroidered-square-frames/78769656"
+        ],
+        "originality_notes": "两个准确的余量词都缺卡，短词锯齿样本偏刺绣。抓到的毛边和破洞显示常见素材用途。课程出处确认毛边与锁边的教学功能，插画供给范围仍未知。",
+        "design_reuse_cases": [
+          "缝纫机培训排版",
+          "服装修补课讲义"
+        ],
+        "integration_guidance": "对象居左靠中，两边可分别挂引线，顶部保持完整",
+        "reusability_rationale": "可同时解释缝合线、余量与毛边，优于只表现正面成衣纹路的示意",
+        "quality_check": "同线材角度，折线和纱线连续，锯齿不能跨过主缝线",
+        "score_breakdown": {
+          "utility": 29,
+          "differentiation": 23,
+          "composition": 15,
+          "material": 10,
+          "feasibility": 9,
+          "timeliness": 5,
+          "diversity": 3
+        },
+        "evidence_ids": [
+          "527132",
+          "666793193",
+          "78769656"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Perforated Felt Panel with a Readable Cut Edge",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "graphite, fog gray, warm putty",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Render a 4K horizontal 16:9 material study for an interior specification sheet or an architectural sample board. Place one square graphite polyester felt panel at a shallow three quarter angle in the left half, with its near cut edge clearly visible. Use a simple evenly spaced array of circular through holes and reveal a few soft compressed fibers at each rim. The apertures should share one axis and their visible walls should agree with the slab thickness. Use diffuse overhead light with a restrained grazing accent on cut fibers and a calm putty background. Preserve material texture at full size without turning the face into visual noise. Leave the right side clear for a finish legend or product information, and keep the complete silhouette inside the crop margins so it can be masked as an insert. Exclude logos, measurements, sound performance indicators, room context, screws, and decorative shadows.",
+      "negative_prompt": "foam pyramids, hanging lamps, branded patterns, warped apertures, misleading ratings, labels, logos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "component_category": "室内材料规格示意",
+        "material": "穿孔聚酯毛毡",
+        "designer_persona": "声学建材规格编辑、室内材料库设计师",
+        "buyer_use_case": "展现穿孔与板材截面",
+        "design_placement": "室内方案材料板",
+        "design_function": "一块毛毡斜放，局部图清楚说明孔壁、厚度与密度",
+        "art_style": "Architectural Materials Visualization with Fiber Macro Detail",
+        "style_rationale": "视角同时交代孔缘纤维和真实断面，优于只看成墙情境或纹理平铺",
+        "distinctiveness": "一块毛毡斜放，局部图清楚说明孔壁、厚度与密度",
+        "copy_space": "左侧组件可独立遮罩成物料卡，右侧可排多国语言规格",
+        "metadata_seed_keywords": [
+          "acoustic felt",
+          "perforated panel",
+          "cut edge",
+          "interiors",
+          "material sample"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://jhsacoustic.com/acoustic-panels/polyester/",
+          "https://ekkoacoustics.com/wp-content/uploads/2025/02/ekko-louvre-acoustic-grid-spec-sheet-2025.pdf",
+          "https://stock.adobe.com/my/search?k=acoustic+felt+panel&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=acoustic+panel&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=acoustic+felt+panel&filters%5Bcontent_type%3Aphoto%5D=1",
+          "https://stock.adobe.com/my/images/wall-of-acoustic-foam-panels-illuminated-by-red-and-blue-lights-3d-illustration/416151999",
+          "https://stock.adobe.com/my/images/acoustic-noise-reduction-panels-made-of-wood-wool-fibres-mounted-at-the-ceiling-of-an-office-for-acoustic-insulation-2-close-view-of-the-mounted-ceiling/387981153",
+          "https://stock.adobe.com/my/images/advanced-polyester-materials-for-improved-indoor-acoustics/374510587",
+          "https://stock.adobe.com/my/images/acoustic-board-materials-on-white-background/277456120"
+        ],
+        "originality_notes": "精确插画没有卡片，宽搜是泡棉、天花构造或房间，照片提示相关回退。结合厂家规格，提出界面独立裁切的穿孔毡样与洁净断面，未验证市场稀缺程度。",
+        "design_reuse_cases": [
+          "室内方案材料板",
+          "产品规格页局部"
+        ],
+        "integration_guidance": "左侧组件可独立遮罩成物料卡，右侧可排多国语言规格",
+        "reusability_rationale": "视角同时交代孔缘纤维和真实断面，优于只看成墙情境或纹理平铺",
+        "quality_check": "孔型、轴线和孔壁厚度一致，不模拟声学测试数据",
+        "score_breakdown": {
+          "utility": 28,
+          "differentiation": 23,
+          "composition": 15,
+          "material": 10,
+          "feasibility": 10,
+          "timeliness": 4,
+          "diversity": 4
+        },
+        "evidence_ids": [
+          "416151999",
+          "387981153",
+          "374510587",
+          "277456120"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Branching Hoarfrost along One Edge of Dark Optical Glass",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "near black, ice gray, cool white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Make a 4K vertical 9:16 macro illustration for a winter editorial cover or a cold weather campaign story card. Show a flat slab of near black optical glass with slender hoarfrost dendrites clustering along part of its left boundary. Concentrate white ice in the middle third of that edge and let the growth thin gradually toward center. Use tiny secondary branches with plausible tapered ends, small interruptions in growth, and a few dim crystals underneath the brightest ones. Light the glass obliquely with a narrow neutral source that catches crystal facets while keeping the dark field near uniform. Preserve clear zones at the top and bottom for interface elements and keep the right half clear for type. Maintain clean luminance separation so the artwork can also be blended in Screen mode at the designer's discretion. Deliver an opaque dark field with no window frame, room reflections, lettering, logos, or added snow icons.",
+      "negative_prompt": "window frames, bokeh, room, caulk, white frame, snowflakes, lens flare, checkerboard, brand",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "component_category": "自然光学叠层底图",
+        "material": "深色光学玻璃和霜枝晶",
+        "designer_persona": "冬季品牌视觉设计师、天气栏目美编",
+        "buyer_use_case": "提供能保留明亮枝晶的侧缘素材",
+        "design_placement": "天气专栏封面",
+        "design_function": "一条枝晶聚集边由密到疏，保留可用文案场",
+        "art_style": "Macro Optical Illustration with Oblique Neutral Backlight",
+        "style_rationale": "分枝、结晶密度和光亮纹理能区分一般白色玻璃模糊滤镜",
+        "distinctiveness": "一条枝晶聚集边由密到疏，保留可用文案场",
+        "copy_space": "纯暗底可作 Screen 或亮度蒙版，UI 顶底边界安静",
+        "metadata_seed_keywords": [
+          "hoarfrost",
+          "ice crystal",
+          "optical glass",
+          "winter background",
+          "dendrites"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://marine.weather.gov/glossary.php?word=frost",
+          "https://helpx.adobe.com/photoshop/desktop/repair-retouch/adjust-light-tone/blending-mode-descriptions.html",
+          "https://stock.adobe.com/my/search?k=frost+crystals&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=frosted+glass+texture&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/images/seamless-frosted-glass-background-texture-realistic-translucent-rippled-plastic-privacy-plexiglass-transparent-overlay-shiny-abstract-light-gray-faceted-stained-glass-window-backdrop-3d-rendering/731358913",
+          "https://stock.adobe.com/my/images/frostwork-decorative-ice-crystals-frame-on-transparent-background/534689232",
+          "https://stock.adobe.com/my/images/snow-frost-on-the-window-glass-natural-patterns-isolated-from-the-background/689223869"
+        ],
+        "originality_notes": "霜晶样本多做全框和窗面，磨砂玻璃结果偏全幅素材。竖版单侧局部生长与暗底亮度蒙版需以枝晶结构及空区做差异检验。",
+        "design_reuse_cases": [
+          "天气专栏封面",
+          "冬季商品竖版故事卡"
+        ],
+        "integration_guidance": "纯暗底可作 Screen 或亮度蒙版，UI 顶底边界安静",
+        "reusability_rationale": "分枝、结晶密度和光亮纹理能区分一般白色玻璃模糊滤镜",
+        "quality_check": "分枝有细径过渡，避免透明流程误标，暗底仅作混合",
+        "score_breakdown": {
+          "utility": 27,
+          "differentiation": 24,
+          "composition": 15,
+          "material": 9,
+          "feasibility": 9,
+          "timeliness": 5,
+          "diversity": 4
+        },
+        "evidence_ids": [
+          "731358913",
+          "534689232",
+          "689223869"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Intersecting Rain Rings with a Clear Lower Copy Field",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "deep slate, cold gray, pearl, charcoal",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Paint an opaque 4K 16:9 macro water surface for a waterproof gear banner or a physics lesson opener. Look down at a shallow angle so two small groups of expanding rings read as coherent ellipses. Place their distinct centers in the upper left and the upper middle with just enough overlap for the intersection to be understood. Do not show a falling drop or a tall splash. Keep a deep slate lower field nearly smooth, with a broad tonal plateau that can carry a course title or product callout. Use a diffused pearl reflection skimming raised crests, restrained dark troughs, and gradual decay in contrast moving away from each center. Build the image as measured naturalistic illustration with delicate edge detail and no visible horizon. Preserve a margin around the active upper area for wide banner crops. Keep all lettering, logos, landmarks, and ornamental light flares out of the artwork.",
+      "negative_prompt": "ocean horizon, splash crown, reflection of buildings, fantasy rings, rain streaks, text, logo",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "component_category": "波叠加与雨纹留白底图",
+        "material": "浅角度水面与波峰漫反射",
+        "designer_persona": "应用天气板块和科普版式美编",
+        "buyer_use_case": "局部雨滴波纹与文本层组合",
+        "design_placement": "防雨用品横幅",
+        "design_function": "两处局部相交波圈靠上，低对比水域留出标题",
+        "art_style": "Oblique Macro Water Illustration with Diffuse Reflected Light",
+        "style_rationale": "同时可读波圈几何与真实水光，减少图上叠字的遮罩工作",
+        "distinctiveness": "两处局部相交波圈靠上，低对比水域留出标题",
+        "copy_space": "底部可独立裁成弱纹理，顶部可取雨滴示意",
+        "metadata_seed_keywords": [
+          "rain rings",
+          "overlapping ripples",
+          "water surface",
+          "weather graphic",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://openstax.org/books/college-physics/pages/16-10-superposition-and-interference",
+          "https://stock.adobe.com/my/search?k=rain+ripples&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/images/ripple-of-water/275226183",
+          "https://stock.adobe.com/my/images/night-rain/43043105",
+          "https://stock.adobe.com/my/images/watercolor-painting-of-rain-drops-on-the-water-surface/164465103"
+        ],
+        "originality_notes": "看过的代表样本集中于单个滴点、雨帘或泛水面。利用两组相交局部波纹为课件留叠加说明区；不推断量化波形。",
+        "design_reuse_cases": [
+          "防雨用品横幅",
+          "波叠加课程引图"
+        ],
+        "integration_guidance": "底部可独立裁成弱纹理，顶部可取雨滴示意",
+        "reusability_rationale": "同时可读波圈几何与真实水光，减少图上叠字的遮罩工作",
+        "quality_check": "环纹对位、无奇怪亮带，不作数值实测",
+        "score_breakdown": {
+          "utility": 27,
+          "differentiation": 22,
+          "composition": 15,
+          "material": 9,
+          "feasibility": 9,
+          "timeliness": 5,
+          "diversity": 4
+        },
+        "evidence_ids": [
+          "275226183",
+          "43043105",
+          "164465103"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Pollen Exine Relief with an Open Annotation Margin",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "charcoal, gray, winter white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Compose a 4K horizontal 16:9 editorial science illustration for a museum microscopy activity or a plant biology lesson. Feature one generalized pollen grain in the left half against a matte charcoal field. Show a gently elongated body with one clear longitudinal furrow facing the viewer and fine raised reticulation across the surrounding exine. Let the mesh tighten and become foreshortened toward the far contour, and keep the aperture wall smoother than the outer surface. Use monochrome scientific stipple and shallow oblique illumination inspired by microscopy contrast, with distinct midtones and crisp focal edges. Keep the right half quiet for educator supplied labels, preserve perimeter margins, and balance fine detail so the whole silhouette also survives a small crop. Make it a schematic illustration rather than an instrument record and leave out measurements, scale bars, micrograph frames, identity claims, names, branding, and decorative particles.",
+      "negative_prompt": "species labels, virus appearance, fake scale bars, false colors, fluorescent aura, random spikes, logo",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "component_category": "花粉显微结构插图",
+        "material": "示意性的花粉外壁颗粒",
+        "designer_persona": "生物教材插图编辑、博物馆科普设计师",
+        "buyer_use_case": "解释花粉外壁纹理",
+        "design_placement": "植物学课件",
+        "design_function": "一颗抽象化教学样本具连续网状外壁和单条长沟",
+        "art_style": "Scientific Stipple with Restrained Electron Micrograph Contrast",
+        "style_rationale": "外壁表皮和沟壁层级集中可读，比散粒装饰更便于结构讲解",
+        "distinctiveness": "一颗抽象化教学样本具连续网状外壁和单条长沟",
+        "copy_space": "左侧留完整轮廓，右边可挂结构注释，取局部可做纹理页",
+        "metadata_seed_keywords": [
+          "pollen exine",
+          "palynology",
+          "botanical microscopy illustration",
+          "pollen furrow",
+          "scientific stipple"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://www.ars.usda.gov/ARSUserFiles/60500500/PDFFiles/501-600/525-Delaplane--Standard%20methods%20for%20pollination.pdf",
+          "https://striresearch.si.edu/tropical-paleoecology-lab/research/",
+          "https://stock.adobe.com/my/search?k=pollen+grain&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/images/set-of-microscopic-pollen-grains-isolated-on-white-pollen-allergy-is-also-known-as-hay-fever-or-allergic-rhinitis/427295385",
+          "https://stock.adobe.com/my/images/group-of-flying-pollen-grains-3d-illustration/293440316",
+          "https://stock.adobe.com/my/images/hibiscus-rosa-sinensis-flower-with-close-up-view-of-its-pollen-grains-3d-illustration-inspite-of-unusual-spiky-appearance-of-pollen-grain-hibiscus-belongs-to-hypoallergenic-plants/212463241"
+        ],
+        "originality_notes": "样本存在彩色花粉套组、空中散粒及木槿特写。差异为单一概念样粒、可读的外壁单沟和独立标注场。仅作教学示意，不作为鉴定图。",
+        "design_reuse_cases": [
+          "植物学课件",
+          "博物馆显微探索专题小图"
+        ],
+        "integration_guidance": "左侧留完整轮廓，右边可挂结构注释，取局部可做纹理页",
+        "reusability_rationale": "外壁表皮和沟壁层级集中可读，比散粒装饰更便于结构讲解",
+        "quality_check": "不可用于物种识别，沟缘与外壁交接清楚，不能冒充显微原图",
+        "score_breakdown": {
+          "utility": 27,
+          "differentiation": 21,
+          "composition": 15,
+          "material": 10,
+          "feasibility": 9,
+          "timeliness": 5,
+          "diversity": 4
+        },
+        "evidence_ids": [
+          "427295385",
+          "293440316",
+          "212463241"
+        ]
+      }
+    }
+  ]
+}
