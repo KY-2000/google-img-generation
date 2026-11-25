@@ -1,7 +1,6 @@
 """Independent generation lanes sharing the repository's production pipeline."""
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from contextlib import contextmanager
-from copy import deepcopy
 from dataclasses import replace
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -10,7 +9,7 @@ import time
 
 from .batch_manager import preview_queues, run_manager
 from .local_image_test import ANSI_ESCAPE, LOCAL_IMAGE_MODELS, STEP_LINE, STEPS, local_command, run_sd_cli
-from .manager_queues import adopt_existing_finder_run, fingerprint, runtime_queue
+from .manager_queues import adopt_existing_finder_run, dreamstime_sources, runtime_queue, unnumbered_variant
 from .manager_runtime import redactor
 from .metadata_generator import NEMOTRON_VL_MODEL
 from .orchestrator import StockPipeline
@@ -47,20 +46,7 @@ def local_sources(sources):
         if source.error or source.example or source.data is None or source.duplicate:
             result.append(replace(source))
             continue
-        if source.queue_type == "FINDER":
-            assets = [{**{key: item[key] for key in (
-                "domain", "theme", "source_type", "topic_score", "icon_1", "icon_2", "icon_3", "icon_4", "palette",
-            )}, "topic_bucket": "APPROVED", "status": "APPROVED", "topic_finder_version": "TF_V1_1"}
-                for item in source.data]
-            data = dict(run_id=source.run_id, topic_finder_version="TF_V1_1", generated_at=source.order, assets=assets)
-        else:
-            data = deepcopy(source.data)
-        source_id = "TF_FINDER_" + source.identity if source.queue_type == "FINDER" else source.run_id
-        data["run_id"] = "TF_LOCAL_" + fingerprint(source_id)[:24]
-        for asset in data["assets"]:
-            asset.pop("asset_id", None)
-        result.append(replace(source, queue_type="PRODUCTION", run_id=data["run_id"],
-                              identity=fingerprint(data), data=data))
+        result.append(unnumbered_variant(source, "TF_LOCAL_"))
     return result
 
 
@@ -136,6 +122,8 @@ def run_lanes(root, commit, commit_time, run_dir, sources, *, route, emit, shoul
     # Allocate every lane's identifiers before concurrent registry writes begin.
     redact = redactor(root)
     with Registry(root / "data/stock_pipeline.sqlite") as registry:
+        if upload_platform == "dreamstime":
+            plans = {lane: dreamstime_sources(registry, planned) for lane, planned in plans.items()}
         for planned in plans.values():
             for source in planned:
                 if not (source.error or source.example or source.baseline or source.duplicate):

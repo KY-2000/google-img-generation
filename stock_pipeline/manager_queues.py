@@ -5,7 +5,7 @@ import json
 import re
 from collections import defaultdict
 from copy import deepcopy
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import datetime
 from hashlib import sha256
 from pathlib import Path
@@ -17,7 +17,7 @@ from .candidate_import import validate_finder_candidates
 from .contracts import load_topic_queue, validate_topic_queue
 from .manager_baseline import load_baseline
 from .queue_ids import _queue_file_ids, next_available_asset_number, prepare_queue_asset_ids
-from .registry import Registry
+from .registry import Registry, verify_asset_identity
 
 
 def fingerprint(value) -> str:
@@ -38,10 +38,81 @@ class QueueSource:
     duplicate: bool = False
     example: bool = False
     baseline: bool = False
+    backfill: bool = False
+    dreamstime: bool = False
 
     @property
     def count(self) -> int:
         return len(self.data) if isinstance(self.data, list) else len((self.data or {}).get("assets", []))
+
+
+def unnumbered_variant(source: QueueSource, prefix: str, indexes: list[int] | None = None) -> QueueSource:
+    source_id = "TF_FINDER_" + source.identity if source.queue_type == "FINDER" else source.run_id
+    if source.queue_type == "FINDER":
+        assets = [{**{key: item[key] for key in (
+            "domain", "theme", "source_type", "topic_score", "icon_1", "icon_2", "icon_3", "icon_4", "palette",
+        )}, "topic_bucket": "APPROVED", "status": "APPROVED", "topic_finder_version": "TF_V1_1"} for item in source.data]
+        data = dict(topic_finder_version="TF_V1_1", generated_at=source.order, assets=assets)
+    else:
+        data = deepcopy(source.data)
+    data["run_id"] = prefix + fingerprint(source_id)[:24]
+    if indexes is not None:
+        data["assets"] = [data["assets"][index] for index in indexes]
+    for asset in data["assets"]:
+        asset.pop("asset_id", None)
+    return replace(source, queue_type="PRODUCTION", run_id=data["run_id"], identity=fingerprint(data), data=data)
+
+
+def dreamstime_sources(registry: Registry | None, sources: list[QueueSource]) -> list[QueueSource]:
+    registered = defaultdict(list)
+    if registry and any(source.baseline and source.data is not None for source in sources):
+        for row in registry.list_assets():
+            registered[row["run_id"]].append(row)
+    result = []
+    for source in sources:
+        if source.dreamstime or source.error or source.duplicate or source.example or source.data is None:
+            result.append(source)
+            continue
+        indexes = None
+        if source.baseline:
+            indexes = _adobe_uploaded_indexes(registry, registered, source)
+            if not indexes:
+                result.append(source)
+                continue
+        variant = unnumbered_variant(source, "TF_DREAMSTIME_", indexes)
+        result.append(replace(variant, baseline=False, backfill=source.baseline, dreamstime=True))
+    return result
+
+
+def _adobe_uploaded_indexes(registry, registered, source):
+    if not registry:
+        return []
+    if source.queue_type == "FINDER":
+        source = replace(source)
+        try:
+            adopt_existing_finder_run(registry, source)
+        except ValueError:
+            return []
+        ids = {row["asset_id"] for row in registered[source.run_id] if row["status"] == "UPLOADED_DRAFT"}
+        return [index for index, item in enumerate(source.data)
+                if (registry.get_candidate(item["strategy"], item["candidate_id"]) or {}).get("production_asset_id") in ids]
+    rows = registered[source.run_id]
+    items = source.data["assets"]
+    if len(rows) != len(items):
+        return []
+    by_id = {row["asset_id"]: row for row in rows}
+    matches = []
+    for index, (item, row) in enumerate(zip(items, rows)):
+        row = by_id.get(item["asset_id"]) if "asset_id" in item else row
+        if row is None:
+            return []
+        try:
+            verify_asset_identity(row, item, source.run_id)
+        except ValueError:
+            return []
+        if row["status"] == "UPLOADED_DRAFT":
+            matches.append(index)
+    return matches
 
 
 def discover(root: Path, commit_time: str, *, only: str | None = None,

@@ -829,7 +829,7 @@ class Desktop:
                              f"  •  {invalid} invalid").pack(anchor="w")
         platform = "Dreamstime" if preview.get("upload_platform") == "dreamstime" else "Adobe Stock"
         backfill = any(row["lanes"][lane].get("backfill") for row in pending for lane in lanes)
-        hint = "  •  Select older Adobe uploads to backfill Dreamstime" if backfill else ""
+        hint = "  •  Select older queues to generate new Dreamstime images" if backfill else ""
         ttk.Label(panel, text=f"Upload to {platform}{hint}").pack(anchor="w", pady=(0, 10))
         table_box = ttk.Frame(panel)
         table_box.pack(fill="both", expand=True)

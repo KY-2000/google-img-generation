@@ -691,10 +691,10 @@ class ManagerTests(unittest.TestCase):
         rows, sources = preview_for_route(self.root, TIME, {}, "both", upload_platform="dreamstime")
         by_name = {Path(row["source_file"]).name: row for row in rows}
         saved = by_name[uploaded.name]
-        self.assertEqual(saved["lanes"]["cloud"]["status"], "Reuse Adobe images")
+        self.assertEqual(saved["lanes"]["cloud"]["status"], "Generate new")
         self.assertTrue(saved["lanes"]["cloud"]["selectable"])
         self.assertTrue(saved["lanes"]["cloud"]["backfill"])
-        self.assertEqual(saved["lanes"]["cloud"]["new_images"], 0)
+        self.assertEqual(saved["lanes"]["cloud"]["new_images"], 1)
         self.assertEqual(saved["lanes"]["cloud"]["total"], 1)
         self.assertFalse(saved["lanes"]["local"]["selectable"])
         self.assertFalse(by_name["old-unstarted.json"]["selectable"])
@@ -702,18 +702,52 @@ class ManagerTests(unittest.TestCase):
                               if Path(row["source_file"]).name == uploaded.name))
 
         source = next(source for source in sources if source.path == uploaded)
+        confirmed = set()
+
+        def upload_new(_root, _run_dir, assets, **_options):
+            self.assertTrue(set(assets).isdisjoint({uploaded_id, pending_id}))
+            confirmed.update(assets)
+
         with (
-            patch("stock_pipeline.managed_dreamstime.upload_dreamstime") as upload,
-            patch("stock_pipeline.managed_dreamstime.uploaded_assets", side_effect=[set(), {uploaded_id}]),
+            patch("stock_pipeline.managed_dreamstime.upload_dreamstime", side_effect=upload_new) as upload,
+            patch("stock_pipeline.managed_dreamstime.uploaded_assets", side_effect=lambda _: confirmed.copy()),
         ):
             result = self.run_batch(sources=[source], upload_platform="dreamstime")
+            resumed = self.run_batch(sources=[source], upload_platform="dreamstime")
         self.assertEqual(result["status"], "COMPLETE", result)
-        self.assertEqual(result["generated"], 0)
+        self.assertEqual(result["generated"], 1)
         self.assertEqual(result["uploaded"], 1)
-        self.assertEqual(len(self.calls), 2)
+        self.assertEqual(resumed["status"], "NO_WORK", resumed)
+        self.assertEqual(len(self.calls), 3)
         self.assertEqual(len(self.uploads), 1)
         upload.assert_called_once()
-        self.assertEqual(set(upload.call_args.args[2]), {uploaded_id})
+
+    def test_dreamstime_both_lanes_allocate_ids_separate_from_adobe(self):
+        from stock_pipeline.manager_lanes import preview_for_route, run_lanes
+
+        self.write("one.json", self.production("One"))
+        self.assertEqual(self.run_batch()["status"], "COMPLETE")
+        adobe_id = self.uploads[0]["items"][0]["asset_id"]
+        rows, sources = preview_for_route(self.root, TIME, {}, "both", upload_platform="dreamstime")
+        self.assertEqual([rows[0]["lanes"][lane]["new_images"] for lane in ("cloud", "local")], [1, 1])
+        planned_runs = {}
+
+        def manager(_root, _commit, _time, lane_dir, **options):
+            self.assertEqual(options["upload_platform"], "dreamstime")
+            source, = options["sources"]
+            planned_runs[lane_dir.name] = source.run_id
+            return {"status": "COMPLETE"}
+
+        result = run_lanes(self.root, COMMIT, TIME, new_run_dir(self.root), sources, route="both",
+                           emit=lambda _: None, should_stop=lambda: False, stop_file=None,
+                           cdp=None, profile=None, image_model=None, metadata_model=None, metadata_provider=None,
+                           temperature=1.0, top_p=0.95, max_images=None, max_workers=1,
+                           upload_platform="dreamstime", manager=manager)
+        self.assertEqual(result["status"], "COMPLETE")
+        self.assertEqual(len(set(planned_runs.values())), 2)
+        with Registry(self.root / "data/stock_pipeline.sqlite") as registry:
+            by_run = {row["run_id"]: row["asset_id"] for row in registry.list_assets()}
+        self.assertEqual(len({adobe_id, *(by_run[run_id] for run_id in planned_runs.values())}), 3)
 
     def test_offline_test_checks_only_r02_without_production_state(self):
         source = self.write(Path(TEST_QUEUE).name, self.production("Test", two=True))
@@ -945,7 +979,8 @@ class ManagerTests(unittest.TestCase):
         self.assertEqual(self.uploads, [])
         self.assertEqual(self.run_batch()["status"], "COMPLETE")
         self.assertEqual(len(self.uploads), 1)
-        self.assertEqual(len(self.calls), 1)
+        self.assertNotEqual(self.uploads[0]["items"][0]["asset_id"], Path(jpeg).stem)
+        self.assertEqual(len(self.calls), 2)
 
     def test_metadata_qc_repairs_once_then_resumes_with_rejection_reason(self):
         self.write("one.json", self.production("One"))

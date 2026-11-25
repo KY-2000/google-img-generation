@@ -22,11 +22,11 @@ Upload History for processing, then uploads and verifies a Dreamstime metadata
 CSV with the US$300 SR-EL price. Set `DREAMSTIME_FTP_USER_ID` and
 `DREAMSTIME_FTP_PASSWORD` in `.env`, and sign in to Dreamstime in the automation
 Edge profile. If Dreamstime is still processing the files, **Retry Failed**
-checks the existing upload history. Both platforms reuse saved images and track
-confirmed uploads separately. Review the destination drafts before submitting.
-Dreamstime's preview also offers older queues with confirmed Adobe uploads
-and reusable local files. These older queues start unchecked. Select their lane
-status to generate Dreamstime metadata and upload the existing images.
+checks the existing upload history. Dreamstime generates its own images with
+separate asset IDs and resumes from those assets. Review the destination drafts
+before submitting. Older queues with confirmed Adobe uploads start unchecked in
+the Dreamstime preview. Select an older queue to generate new images for its
+Adobe-uploaded topics.
 
 Choose **Nano Banana Pro** (default) or **Nano Banana 2.1** in the
 **Image model** dropdown. The choice overrides `IMAGE_MODEL` for that run
