@@ -808,7 +808,10 @@ class Desktop:
         lanes = preview["lanes"]
         pending = [row for row in rows if row["selectable"]]
         eligible = {lane: {row["source_file"] for row in pending if row["lanes"][lane]["selectable"]} for lane in lanes}
-        selected = {lane: set(paths) for lane, paths in eligible.items()}
+        selected = {lane: {
+            row["source_file"] for row in pending
+            if row["source_file"] in eligible[lane] and not row["lanes"][lane].get("backfill")
+        } for lane in lanes}
         new = sum(row["git_change"] == "New" for row in rows)
         updated = sum(row["git_change"] == "Updated" for row in rows)
         invalid = sum(any(data["status"] == "Invalid" for data in row["lanes"].values()) for row in rows)
@@ -825,7 +828,9 @@ class Desktop:
                              f"{len(pending)} runnable queues / {runnable_images} images"
                              f"  •  {invalid} invalid").pack(anchor="w")
         platform = "Dreamstime" if preview.get("upload_platform") == "dreamstime" else "Adobe Stock"
-        ttk.Label(panel, text=f"Upload to {platform}").pack(anchor="w", pady=(0, 10))
+        backfill = any(row["lanes"][lane].get("backfill") for row in pending for lane in lanes)
+        hint = "  •  Select older Adobe uploads to backfill Dreamstime" if backfill else ""
+        ttk.Label(panel, text=f"Upload to {platform}{hint}").pack(anchor="w", pady=(0, 10))
         table_box = ttk.Frame(panel)
         table_box.pack(fill="both", expand=True)
         columns = ("file", "themes", "git", *lanes, "total", "remaining")

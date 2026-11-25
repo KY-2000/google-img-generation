@@ -676,6 +676,45 @@ class ManagerTests(unittest.TestCase):
         with self.assertRaises(FileExistsError):
             snapshot_baseline(self.root)
 
+    def test_dreamstime_backfills_only_baseline_queues_with_verified_adobe_assets(self):
+        from stock_pipeline.manager_lanes import preview_for_route
+
+        uploaded = self.write("old-uploaded.json", self.production("OldUploaded", two=True))
+        self.assertEqual(self.run_batch()["status"], "COMPLETE")
+        uploaded_id, pending_id = (item["asset_id"] for item in self.uploads[0]["items"])
+        with Registry(self.root / "data/stock_pipeline.sqlite") as registry:
+            registry.set_status_for_test(pending_id, "READY_TO_UPLOAD")
+        self.write("old-unstarted.json", self.production("OldUnstarted"))
+        self.write(Path(TEST_QUEUE).name, self.production("Test"))
+        self.assertEqual(snapshot_baseline(self.root), 2)
+
+        rows, sources = preview_for_route(self.root, TIME, {}, "both", upload_platform="dreamstime")
+        by_name = {Path(row["source_file"]).name: row for row in rows}
+        saved = by_name[uploaded.name]
+        self.assertEqual(saved["lanes"]["cloud"]["status"], "Reuse Adobe images")
+        self.assertTrue(saved["lanes"]["cloud"]["selectable"])
+        self.assertTrue(saved["lanes"]["cloud"]["backfill"])
+        self.assertEqual(saved["lanes"]["cloud"]["new_images"], 0)
+        self.assertEqual(saved["lanes"]["cloud"]["total"], 1)
+        self.assertFalse(saved["lanes"]["local"]["selectable"])
+        self.assertFalse(by_name["old-unstarted.json"]["selectable"])
+        self.assertFalse(next(row["selectable"] for row in preview_queues(self.root, TIME)[0]
+                              if Path(row["source_file"]).name == uploaded.name))
+
+        source = next(source for source in sources if source.path == uploaded)
+        with (
+            patch("stock_pipeline.managed_dreamstime.upload_dreamstime") as upload,
+            patch("stock_pipeline.managed_dreamstime.uploaded_assets", side_effect=[set(), {uploaded_id}]),
+        ):
+            result = self.run_batch(sources=[source], upload_platform="dreamstime")
+        self.assertEqual(result["status"], "COMPLETE", result)
+        self.assertEqual(result["generated"], 0)
+        self.assertEqual(result["uploaded"], 1)
+        self.assertEqual(len(self.calls), 2)
+        self.assertEqual(len(self.uploads), 1)
+        upload.assert_called_once()
+        self.assertEqual(set(upload.call_args.args[2]), {uploaded_id})
+
     def test_offline_test_checks_only_r02_without_production_state(self):
         source = self.write(Path(TEST_QUEUE).name, self.production("Test", two=True))
         (self.incoming / "broken.json").write_text("{")

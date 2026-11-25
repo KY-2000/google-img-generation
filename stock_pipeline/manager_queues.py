@@ -44,7 +44,8 @@ class QueueSource:
         return len(self.data) if isinstance(self.data, list) else len((self.data or {}).get("assets", []))
 
 
-def discover(root: Path, commit_time: str, *, only: str | None = None) -> list[QueueSource]:
+def discover(root: Path, commit_time: str, *, only: str | None = None,
+             read_baseline: bool = False) -> list[QueueSource]:
     validators = {
         name: Draft202012Validator(
             json.loads((root / "schemas" / schema).read_text(encoding="utf-8")),
@@ -73,8 +74,9 @@ def discover(root: Path, commit_time: str, *, only: str | None = None) -> list[Q
             source.source_content_sha256 = sha256(raw).hexdigest()
             if not only and source.source_content_sha256 in ignored_hashes:
                 source.baseline = True
-                source.queue_type = "BASELINE"
-                continue
+                if not read_baseline:
+                    source.queue_type = "BASELINE"
+                    continue
             value = json.loads(raw.decode("utf-8-sig"))
             if isinstance(value, list):
                 source.queue_type = "FINDER"

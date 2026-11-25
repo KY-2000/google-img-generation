@@ -24,6 +24,9 @@ CSV with the US$300 SR-EL price. Set `DREAMSTIME_FTP_USER_ID` and
 Edge profile. If Dreamstime is still processing the files, **Retry Failed**
 checks the existing upload history. Both platforms reuse saved images and track
 confirmed uploads separately. Review the destination drafts before submitting.
+Dreamstime's preview also offers older queues with confirmed Adobe uploads
+and reusable local files. These older queues start unchecked. Select their lane
+status to generate Dreamstime metadata and upload the existing images.
 
 Choose **Nano Banana Pro** (default) or **Nano Banana 2.1** in the
 **Image model** dropdown. The choice overrides `IMAGE_MODEL` for that run

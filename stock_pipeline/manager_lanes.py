@@ -38,13 +38,13 @@ def preview_for_route(root, commit_time, changes, route, *, upload_platform="ado
 
 
 def preview_lane(row):
-    return {key: row[key] for key in ("status", "selectable", "total", "new_images")}
+    return {key: row[key] for key in ("status", "selectable", "total", "new_images", "backfill")}
 
 
 def local_sources(sources):
     result = []
     for source in sources:
-        if source.error or source.example or source.baseline or source.duplicate:
+        if source.error or source.example or source.data is None or source.duplicate:
             result.append(replace(source))
             continue
         if source.queue_type == "FINDER":
@@ -55,7 +55,8 @@ def local_sources(sources):
             data = dict(run_id=source.run_id, topic_finder_version="TF_V1_1", generated_at=source.order, assets=assets)
         else:
             data = deepcopy(source.data)
-        data["run_id"] = "TF_LOCAL_" + fingerprint(source.run_id)[:24]
+        source_id = "TF_FINDER_" + source.identity if source.queue_type == "FINDER" else source.run_id
+        data["run_id"] = "TF_LOCAL_" + fingerprint(source_id)[:24]
         for asset in data["assets"]:
             asset.pop("asset_id", None)
         result.append(replace(source, queue_type="PRODUCTION", run_id=data["run_id"],

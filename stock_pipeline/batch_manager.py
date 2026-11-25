@@ -44,6 +44,16 @@ def has_generated_image(row: dict) -> bool:
     )
 
 
+def dreamstime_backfill_ids(root: Path, source: QueueSource, rows: list[dict]) -> set[str]:
+    if source.error or len(rows) != source.count:
+        return set()
+    return {
+        row["asset_id"] for row in rows if row["status"] == "UPLOADED_DRAFT"
+        and row["image_path"] and Path(row["image_path"]).is_file()
+        and (root / "output" / "assets" / row["asset_id"] / "metadata.json").is_file()
+    }
+
+
 def validate_test_queue(root: Path, run_dir: Path) -> dict:
     """Run discovery/contract validation only. No registry, provider, or browser."""
     sources = discover(root, now_iso(), only=TEST_QUEUE)
@@ -148,7 +158,7 @@ def upload_process(root, batch, receipt_dir, *, cdp, profile, log, stop_file=Non
 
 def preview_queues(root: Path, commit_time: str, changes=None, *, source_transform=None,
                    upload_platform="adobe") -> tuple[list[dict], list[QueueSource]]:
-    sources = discover(root, commit_time)
+    sources = discover(root, commit_time, read_baseline=upload_platform == "dreamstime")
     if source_transform is not None:
         sources = source_transform(sources)
     redact = redactor(root)
@@ -174,12 +184,21 @@ def preview_queues(root: Path, commit_time: str, changes=None, *, source_transfo
         all_asset_ids = {row["asset_id"] for group in assets.values() for row in group}
         for source in sources:
             items = source.data if isinstance(source.data, list) else (source.data or {}).get("assets", [])
+            backfill_ids = set()
+            if source.baseline and dreamstime_saved is not None and not source.error:
+                if "candidate_topics" in tables:
+                    try:
+                        adopt_existing_finder_run(registry, source)
+                    except ValueError:
+                        pass
+                backfill_ids = dreamstime_backfill_ids(root, source, assets[source.run_id])
+            total = len(backfill_ids) if backfill_ids else source.count
             status = "Not started"
             selectable = False
             remaining = 0
             if source.example:
                 status = "Example"
-            elif source.baseline:
+            elif source.baseline and not backfill_ids:
                 status = "Previously handled"
             elif source.duplicate:
                 status = "Duplicate"
@@ -206,12 +225,18 @@ def preview_queues(root: Path, commit_time: str, changes=None, *, source_transfo
                         expected = {item["asset_id"]: item for item in items} if numbered else {}
                         for row, item in zip(existing, items):
                             verify_asset_identity(row, expected.get(row["asset_id"], item), source.run_id)
+                    if backfill_ids:
+                        existing = [row for row in existing if row["asset_id"] in backfill_ids]
                     uploaded = sum(row["status"] == "UPLOADED_DRAFT" if dreamstime_saved is None
                                    else row["asset_id"] in dreamstime_saved for row in existing)
-                    remaining = source.count - sum(has_generated_image(row) for row in existing)
-                    selectable = uploaded < source.count
+                    remaining = total - sum(has_generated_image(row) for row in existing)
+                    selectable = uploaded < total
                     if not selectable:
                         status = "Metadata imported" if upload_platform == "dreamstime" else "Uploaded draft"
+                    elif dreamstime_saved is not None and existing and all(
+                        row["status"] == "UPLOADED_DRAFT" for row in existing
+                    ):
+                        status = "Reuse Adobe images"
                     elif existing and all(row["status"] in DONE for row in existing):
                         status = "Ready to upload"
                     elif any(row["status"] != "QUEUED" for row in existing):
@@ -223,8 +248,8 @@ def preview_queues(root: Path, commit_time: str, changes=None, *, source_transfo
                 "source_file": source.source_file, "sha256": source.source_content_sha256,
                 "git_change": changes.get(source.source_file, ""), "status": status,
                 "themes": list(dict.fromkeys(redact(item["theme"]) for item in items)),
-                "total": source.count, "new_images": remaining, "selectable": selectable,
-                "error": redact(source.error),
+                "total": total, "new_images": remaining, "selectable": selectable,
+                "error": redact(source.error), "backfill": bool(backfill_ids),
             })
     return rows, sources
 
@@ -338,16 +363,21 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
             raise ValueError("Parallel assets must be 1, 2, or 3.")
         log(f"Scanning queues at {commit}", "Discovery")
         if sources is None:
-            sources = discover(root, commit_time)
+            sources = discover(root, commit_time, read_baseline=upload_platform == "dreamstime")
         report["scanned"] = len(sources)
         config = json.loads((root / "config" / "stock_icon_pipeline.json").read_text(encoding="utf-8"))
         ledger = UsageLedger(usage_dir=root / "output" / "usage", command_id="manager_" + run_dir.parent.name + "_" + run_dir.name,
                              progress=log)
         with Registry(db) as registry:
             state = QueueState(registry)
+            baseline_assets = defaultdict(list)
+            if dreamstime_saved is not None and any(source.baseline for source in sources):
+                for row in registry.list_assets():
+                    baseline_assets[row["run_id"]].append(row)
             prepared, ready, original_states = [], {}, {}
             for source in sources:
-                if not (source.error or source.duplicate or source.example or source.baseline):
+                if not (source.error or source.duplicate or source.example
+                        or (source.baseline and dreamstime_saved is None)):
                     try:
                         adopt_existing_finder_run(registry, source)
                     except Exception as exc:
@@ -364,7 +394,10 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                 }
                 report["queues"].append(record)
                 try:
-                    if source.example or source.baseline:
+                    backfill_ids = set()
+                    if source.baseline and dreamstime_saved is not None:
+                        backfill_ids = dreamstime_backfill_ids(root, source, baseline_assets[source.run_id])
+                    if source.example or (source.baseline and not backfill_ids):
                         record["queue_status"] = "SKIPPED_EXAMPLE" if source.example else "SKIPPED_BASELINE"
                         report["skipped_queues"] += 1
                         continue
@@ -380,7 +413,8 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                         record["queue_status"] = "NEW"
                         continue
                     queue = runtime_queue(root, registry, source)
-                    ids = [a["asset_id"] for a in queue["assets"]]
+                    ids = [a["asset_id"] for a in queue["assets"] if not backfill_ids or a["asset_id"] in backfill_ids]
+                    record["total_assets"] = len(ids)
                     if set(ids) & original_states.keys():
                         raise ValueError("This asset set is already planned by a different source queue")
                     rows = refresh(record, registry, ids)
