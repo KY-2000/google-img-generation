@@ -6,11 +6,12 @@ import argparse
 import csv
 import json
 import os
+import re
 import sys
 from contextlib import contextmanager
 from ftplib import FTP
 from pathlib import Path
-from tempfile import TemporaryDirectory
+from tempfile import NamedTemporaryFile, TemporaryDirectory
 from urllib.error import HTTPError
 
 from PIL import Image, ImageCms
@@ -19,13 +20,13 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 
 import main as legacy
-from stock_pipeline.dreamstime_rejections import build_dreamstime_row, resolve_local_asset
+from stock_pipeline.dreamstime_rejections import build_dreamstime_row
 from stock_pipeline.manager_runtime import redactor
 from stock_pipeline.metadata_generator import NEMOTRON_VL_MODEL, parse_metadata_json
 
 
 SYSTEM_PROMPT = """Write English metadata for a Dreamstime commercial stock listing.
-Use the final image as the primary evidence. Existing Adobe metadata is reference only.
+Use the final image as the primary evidence. The theme and generation prompt are context only.
 Return one JSON object with exactly these keys: title, description, keywords, subject_category_codes.
 Write a concise title that identifies the main subject and a useful visible detail.
 Write one or two natural sentences describing the subject, composition, and distinctive
@@ -36,6 +37,8 @@ Choose up to two subject category codes from the Dreamstime list supplied in the
 Return them as integers ordered by relevance. Use fewer if there are no strong matches.
 The exporter adds category 212 for AI-generated work."""
 AI_DISCLOSURE = "This image was generated using AI."
+METADATA_VERSION = "DREAMSTIME_V1"
+METADATA_FILENAME = "dreamstime_metadata.json"
 MIN_SR_PRICE_USD = 300
 MAX_SR_PRICE_USD = 25_000
 
@@ -48,35 +51,57 @@ def export_jpeg(source: Path, jpeg: Path) -> None:
         image.convert("RGB").save(jpeg, quality=97, subsampling=0, icc_profile=profile.tobytes())
 
 
+def store_metadata(path: Path, metadata: dict) -> None:
+    with NamedTemporaryFile(mode="w", encoding="utf-8", dir=path.parent, delete=False) as file:
+        temporary = Path(file.name)
+        json.dump(metadata, file, indent=2, ensure_ascii=False)
+        file.write("\n")
+    try:
+        temporary.replace(path)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
+def load_categories(root: Path) -> dict[int, str]:
+    path = root / "config/dreamstime-categories.txt"
+    if not path.is_file():
+        path = ROOT / "config/dreamstime-categories.txt"
+    return {
+        int(code): name
+        for code, name in (line.split(" ", 1) for line in path.read_text(encoding="utf-8-sig").splitlines())
+        if code != "212" and not name.startswith("Editorial ->")
+    }
+
+
 def prepare_rows(asset_ids: list[str], price: int, *, root: Path = ROOT) -> list[dict]:
     if not MIN_SR_PRICE_USD <= price <= MAX_SR_PRICE_USD:
         raise ValueError(f"--sr-price must be between {MIN_SR_PRICE_USD} and {MAX_SR_PRICE_USD} USD")
-    category_lines = (root / "config/dreamstime-categories.txt").read_text(encoding="utf-8-sig").splitlines()
-    categories = {
-        int(code): name
-        for code, name in (line.split(" ", 1) for line in category_lines)
-        if code != "212" and not name.startswith("Editorial ->")
-    }
+    categories = load_categories(root)
     legend = "\n".join(f"{code} {name}" for code, name in categories.items())
-    nim = legacy.build_nim_metadata_client(legacy.get_nim_api_key(root))
+    nim = None
     vertex = None
     rows = []
     with TemporaryDirectory() as temporary:
         for asset_id in dict.fromkeys(asset_ids):
-            local = resolve_local_asset(root, asset_id)
-            filename = f"{local.asset_id}.jpg"
+            asset_id = asset_id.upper()
+            if not re.fullmatch(r"AST\d{6}", asset_id):
+                raise ValueError(f"Invalid asset ID: {asset_id}")
+            asset_dir = root / "output" / "assets" / asset_id
+            filename = f"{asset_id}.jpg"
+            metadata_path = asset_dir / METADATA_FILENAME
+            if metadata_path.is_file():
+                rows.append(make_row(filename, parse_metadata_json(metadata_path.read_text(encoding="utf-8")),
+                                     categories, price))
+                continue
             jpeg = Path(temporary) / filename
-            export_jpeg(local.image_path, jpeg)
-            adobe = json.loads(local.metadata_path.read_text(encoding="utf-8"))
-            user_prompt = (
-                f"Adobe title: {local.title}\n"
-                f"Adobe category: {adobe.get('category_name', '')}\n"
-                f"Adobe keywords: {', '.join(local.keywords)}\n"
-                f"Dreamstime subject category legend:\n{legend}"
-            )
+            original = asset_dir / "original.png"
+            export_jpeg(original, jpeg)
+            user_prompt = f"Analyze the attached image.\nDreamstime subject category legend:\n{legend}"
             prompt = user_prompt
             for attempt in range(2):
                 if vertex is None:
+                    if nim is None:
+                        nim = legacy.build_nim_metadata_client(legacy.get_nim_api_key(root))
                     try:
                         raw = legacy.generate_nim_metadata_text(
                             nim, jpeg, prompt, SYSTEM_PROMPT, NEMOTRON_VL_MODEL, 0.2, 0.9,
@@ -92,18 +117,30 @@ def prepare_rows(asset_ids: list[str], price: int, *, root: Path = ROOT) -> list
                             vertex = legacy.build_google_client(project=config["project"], location=config["location"])
                 if vertex is not None:
                     raw = legacy.generate_google_metadata_text(
-                        vertex, local.image_path, prompt, SYSTEM_PROMPT, "gemini-3.8-flash", 0.2, 0.9,
+                        vertex, original, prompt, SYSTEM_PROMPT, "gemini-3.8-flash", 0.2, 0.9,
                     )
                 try:
-                    row = make_row(filename, parse_metadata_json(raw), categories, price)
+                    metadata = parse_metadata_json(raw)
+                    row = make_row(filename, metadata, categories, price)
                 except ValueError as exc:
                     if attempt:
                         raise ValueError(f"{filename}: {exc}") from exc
                     prompt = f"{user_prompt}\nRevise the response to address this validation error: {exc}"
                 else:
+                    store_metadata(metadata_path, metadata)
                     rows.append(row)
                     print(f"{filename}: {row['Category 2']}, {row['Category 3']} · {row['Image Name']}")
                     break
+    return rows
+
+
+def read_saved_rows(asset_ids: list[str], price: int, *, root: Path = ROOT) -> list[dict]:
+    categories = load_categories(root)
+    rows = []
+    for asset_id in asset_ids:
+        path = root / "output" / "assets" / asset_id / METADATA_FILENAME
+        metadata = parse_metadata_json(path.read_text(encoding="utf-8"))
+        rows.append(make_row(f"{asset_id}.jpg", metadata, categories, price))
     return rows
 
 

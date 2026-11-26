@@ -158,9 +158,11 @@ def preview_queues(root: Path, commit_time: str, changes=None, *, source_transfo
     changes = changes or {}
     dreamstime_saved = None
     if upload_platform == "dreamstime":
-        from .managed_dreamstime import uploaded_assets
+        from .managed_dreamstime import assets_with_sent_csv, uploaded_assets
+        from tools.prepare_dreamstime_csv import METADATA_FILENAME
 
         dreamstime_saved = uploaded_assets(root)
+        sent_csv_assets = assets_with_sent_csv(root)
     with Registry(db, read_only=True) if db.is_file() else nullcontext() as registry:
         assets = defaultdict(list)
         identities = {}
@@ -217,6 +219,12 @@ def preview_queues(root: Path, commit_time: str, changes=None, *, source_transfo
                         status = "Metadata imported" if upload_platform == "dreamstime" else "Uploaded draft"
                     elif existing and all(row["status"] in DONE for row in existing):
                         status = "Ready to upload"
+                        if source.dreamstime and any(
+                            row["asset_id"] not in sent_csv_assets and not (
+                                root / "output" / "assets" / row["asset_id"] / METADATA_FILENAME
+                            ).is_file() for row in existing
+                        ):
+                            status = "Metadata pending"
                     elif any(row["status"] != "QUEUED" for row in existing):
                         status = "In progress"
                     elif source.dreamstime:
@@ -332,9 +340,11 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
 
     try:
         if upload_platform == "dreamstime":
-            from .managed_dreamstime import upload_dreamstime, uploaded_assets
+            from .managed_dreamstime import assets_with_sent_csv, upload_dreamstime, uploaded_assets
+            from tools.prepare_dreamstime_csv import METADATA_FILENAME
 
             dreamstime_saved = uploaded_assets(root)
+            sent_csv_assets = assets_with_sent_csv(root)
         if not (0 <= temperature <= 2 and 0 <= top_p <= 1):
             raise ValueError("Temperature must be 0–2 and Top-p must be 0–1.")
         if max_images is not None and (type(max_images) is not int or max_images < 1):
@@ -390,6 +400,12 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
                     ids = [a["asset_id"] for a in queue["assets"]]
                     if set(ids) & original_states.keys():
                         raise ValueError("This asset set is already planned by a different source queue")
+                    if source.dreamstime:
+                        for aid in set(ids) - sent_csv_assets:
+                            row = registry.get_asset(aid)
+                            metadata_path = root / "output" / "assets" / aid / METADATA_FILENAME
+                            if row["status"] in DONE and not metadata_path.is_file():
+                                registry.reset_for_metadata(aid)
                     rows = refresh(record, registry, ids)
                     original_states.update({row["asset_id"]: row for row in rows})
                     report["already_uploaded"] += sum(uploaded(row) for row in rows)
@@ -474,6 +490,8 @@ def run_manager(root: Path, commit: str, commit_time: str, run_dir: Path, *,
             )
             if image_thinking_level is not None:
                 pipeline_options["image_thinking_level"] = image_thinking_level
+            if upload_platform == "dreamstime":
+                pipeline_options["metadata_platform"] = "dreamstime"
             pipeline = pipeline_factory(**pipeline_options, registry=registry,
                                         progress=progress, usage_recorder=ledger.record, asset_stage=show_asset_stage)
 

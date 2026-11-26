@@ -82,9 +82,14 @@ class ManagerTests(unittest.TestCase):
         Image.new("RGB", size).save(data, format="PNG")
         return data.getvalue()
 
-    def metadata(self, **_kwargs):
+    def metadata(self, **kwargs):
         if self.metadata_error:
             raise RuntimeError("metadata failed")
+        if kwargs.get("platform") == "Dreamstime":
+            return json.dumps({
+                "title": "Stock illustration", "description": "A simple background.",
+                "keywords": ["background", "illustration"], "subject_category_codes": [112],
+            })
         return json.dumps(sample_model_metadata())
 
     def pipeline(self, **kwargs):
@@ -933,6 +938,7 @@ class ManagerTests(unittest.TestCase):
         from stock_pipeline.managed_dreamstime import uploaded_assets
 
         self.write("one.json", self.production("One"))
+        self.metadata = Mock(side_effect=self.metadata)
         history, transfers = {}, []
         ftp = Mock()
         ftp.nlst.return_value = []
@@ -957,9 +963,6 @@ class ManagerTests(unittest.TestCase):
             patch(f"{module}.dreamstime_ftp", side_effect=lambda *_: nullcontext(ftp)),
             patch(f"{module}.export_jpeg", side_effect=lambda _source, target: target.write_bytes(b"jpeg")),
             patch(f"{module}._check_history", side_effect=check_history),
-            patch(f"{module}.prepare_rows", side_effect=lambda ids, *_args, **_kwargs: [
-                {"Filename": f"{aid}.jpg", "SR-Price": 300} for aid in ids
-            ]) as metadata,
         ):
             first = self.run_batch(upload_platform="dreamstime")
             self.assertEqual(first["status"], "UPLOAD_INCOMPLETE", first)
@@ -971,7 +974,13 @@ class ManagerTests(unittest.TestCase):
             self.assertEqual(second["uploaded"], 1)
             self.assertEqual(transfers, [jpeg, saved_csv])
             self.assertEqual(len(self.calls), 1)
-            metadata.assert_called_once()
+            self.metadata.assert_called_once()
+            kwargs = self.metadata.call_args.kwargs
+            self.assertEqual(kwargs["platform"], "Dreamstime")
+            self.assertIn("subject_category_codes", kwargs["system_prompt"])
+            self.assertIn("112 Abstract -> Backgrounds", kwargs["category_list"])
+            self.assertTrue((self.root / "output/assets" / Path(jpeg).stem / "dreamstime_metadata.json").is_file())
+            self.assertFalse((self.root / "output/assets" / Path(jpeg).stem / "metadata.json").exists())
 
         self.assertEqual(uploaded_assets(self.root), {Path(jpeg).stem})
         self.assertFalse(preview_queues(self.root, TIME, upload_platform="dreamstime")[0][0]["selectable"])
@@ -981,6 +990,33 @@ class ManagerTests(unittest.TestCase):
         self.assertEqual(len(self.uploads), 1)
         self.assertNotEqual(self.uploads[0]["items"][0]["asset_id"], Path(jpeg).stem)
         self.assertEqual(len(self.calls), 2)
+
+    def test_dreamstime_resume_replaces_legacy_adobe_metadata_without_regenerating_image(self):
+        self.write("one.json", self.production("One"))
+        default_factory = self.pipeline
+
+        def legacy_pipeline(**options):
+            options.pop("metadata_platform", None)
+            return default_factory(**options)
+
+        self.pipeline = legacy_pipeline
+        self.metadata = Mock(side_effect=self.metadata)
+        with patch("stock_pipeline.managed_dreamstime.upload_dreamstime", side_effect=TimeoutError("wait")):
+            first = self.run_batch(upload_platform="dreamstime")
+        self.assertEqual(first["status"], "UPLOAD_INCOMPLETE")
+        self.assertEqual(first["generated"], 1)
+        self.assertNotIn("platform", self.metadata.call_args.kwargs)
+        self.assertEqual(preview_queues(self.root, TIME, upload_platform="dreamstime")[0][0]["status"], "Metadata pending")
+
+        self.pipeline = default_factory
+        with patch("stock_pipeline.managed_dreamstime.upload_dreamstime", side_effect=TimeoutError("wait")):
+            second = self.run_batch(upload_platform="dreamstime")
+            third = self.run_batch(upload_platform="dreamstime")
+        self.assertEqual(second["generated"], 0)
+        self.assertEqual(third["generated"], 0)
+        self.assertEqual(self.metadata.call_count, 2)
+        self.assertEqual(self.metadata.call_args.kwargs["platform"], "Dreamstime")
+        self.assertEqual(len(self.calls), 1)
 
     def test_metadata_qc_repairs_once_then_resumes_with_rejection_reason(self):
         self.write("one.json", self.production("One"))

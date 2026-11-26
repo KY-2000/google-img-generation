@@ -19,7 +19,10 @@ Configure `.env` and Google credentials as for the single-queue pipeline.
 Choose **Upload to** before checking queues. **Adobe Stock** saves Adobe drafts
 as usual. **Dreamstime** sends JPEGs over FTP, checks the signed-in Dreamstime
 Upload History for processing, then uploads and verifies a Dreamstime metadata
-CSV with the US$300 SR-EL price. Set `DREAMSTIME_FTP_USER_ID` and
+CSV with the US$300 SR-EL price. The selected metadata model runs the
+Dreamstime prompt directly after image QC. It saves the English title,
+description, keywords, and subject categories in `dreamstime_metadata.json`.
+CSV export and retries reuse the saved result. Set `DREAMSTIME_FTP_USER_ID` and
 `DREAMSTIME_FTP_PASSWORD` in `.env`, and sign in to Dreamstime in the automation
 Edge profile. If Dreamstime is still processing the files, **Retry Failed**
 checks the existing upload history. Dreamstime generates its own images with

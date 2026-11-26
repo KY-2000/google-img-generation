@@ -58,7 +58,7 @@ FINISHED_ASSET_STAGES = {"ready", "simulated_ready", "failed", "deferred", "inte
 UPLOAD_STAGES = {
     "dreamstime_history": "Checking Dreamstime Upload History",
     "dreamstime_jpeg": "Uploading JPEGs to Dreamstime",
-    "dreamstime_metadata": "Generating Dreamstime metadata",
+    "dreamstime_metadata": "Building Dreamstime CSV",
     "dreamstime_csv": "Importing the Dreamstime CSV",
     "dreamstime_complete": "Dreamstime metadata imported",
     "waiting": "Waiting to upload",

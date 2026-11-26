@@ -42,6 +42,7 @@ class StockPipeline:
         metadata_fallback: Event | None = None,
         on_image_rate_limit: Callable[[str], bool] | None = None,
         asset_stage: Callable[[str, str], None] | None = None,
+        metadata_platform: str = "adobe",
     ):
         self.project_root = project_root
         self.registry = registry
@@ -50,6 +51,7 @@ class StockPipeline:
         self.image_model = image_model
         self.metadata_provider = metadata_provider
         self.metadata_model = metadata_model
+        self.metadata_platform = metadata_platform
         self._metadata_fallback = metadata_fallback if metadata_fallback is not None else Event()
         self.on_image_rate_limit = on_image_rate_limit
         self.asset_stage = asset_stage
@@ -205,6 +207,16 @@ class StockPipeline:
         asset_id = asset["asset_id"]
         asset_dir = self._asset_dir(asset_id)
         asset_dir.mkdir(parents=True, exist_ok=True)
+        dreamstime = self.metadata_platform == "dreamstime"
+        if dreamstime:
+            from tools.prepare_dreamstime_csv import (
+                METADATA_FILENAME, METADATA_VERSION, MIN_SR_PRICE_USD, SYSTEM_PROMPT,
+                load_categories, make_row, store_metadata,
+            )
+
+            dreamstime_path = asset_dir / METADATA_FILENAME
+            if force_image or force_metadata:
+                dreamstime_path.unlink(missing_ok=True)
         logger = AssetLogger(asset_dir)
         current = self.registry.get_asset(asset_id)
         repair_reason = None
@@ -259,7 +271,7 @@ class StockPipeline:
             (asset_dir / "generation_prompt.txt").write_text(prompt + "\n", encoding="utf-8")
             self.registry.update_asset(
                 asset_id, generation_prompt=prompt, image_prompt_version="DIRECT_V1" if background else "IMG_V1",
-                image_model=self.image_model, metadata_prompt_version="META_V2",
+                image_model=self.image_model, metadata_prompt_version=METADATA_VERSION if dreamstime else "META_V2",
                 metadata_model=self.metadata_model,
                 upload_filename=map_upload_filename(asset_id, max_chars=self.max_filename_chars),
             )
@@ -339,13 +351,22 @@ class StockPipeline:
             return
 
         if current["status"] == "METADATA_PENDING":
-            category_text = self._resource("category-code.txt").read_text(encoding="utf-8").strip()
-            system_prompt = self._resource("config/prompts/metadata_v2.txt").read_text(encoding="utf-8").strip()
+            cached_raw = None
+            if dreamstime:
+                categories = load_categories(self.project_root)
+                category_text = "\n".join(f"{code} {name}" for code, name in categories.items())
+                system_prompt = SYSTEM_PROMPT
+                if dreamstime_path.is_file():
+                    cached_raw = dreamstime_path.read_text(encoding="utf-8")
+            else:
+                category_text = self._resource("category-code.txt").read_text(encoding="utf-8").strip()
+                system_prompt = self._resource("config/prompts/metadata_v2.txt").read_text(encoding="utf-8").strip()
             generator = self.metadata_generate_text or generate_metadata_for_asset
 
             def request_metadata(provider: str, model: str, prompt: str) -> str:
                 self.registry.update_asset(asset_id, metadata_model=model)
-                self._emit_progress(asset_id, f"metadata prompt 1/1 started model={model} provider={provider}",
+                label = "Dreamstime metadata" if dreamstime else "metadata"
+                self._emit_progress(asset_id, f"{label} prompt 1/1 started model={model} provider={provider}",
                                     stage="metadata")
                 metadata_kwargs = dict(
                     client=self._get_metadata_client(provider), provider=provider,
@@ -355,6 +376,8 @@ class StockPipeline:
                     temperature=0.2, top_p=0.9, asset_id=asset_id,
                     project_root=self.project_root,
                 )
+                if dreamstime:
+                    metadata_kwargs["platform"] = "Dreamstime"
                 if self.usage_recorder is not None:
                     metadata_kwargs["usage_callback"] = lambda usage: self._record_usage(
                         asset_id=asset_id, operation="metadata_generation", provider=provider, model=model,
@@ -373,44 +396,57 @@ class StockPipeline:
                     prompt += (
                         f"\n\nA previous attempt failed validation: {repair_reason}\n"
                         "Re-assess the actual image and write a fresh title and keyword list. "
-                        "Use visually supported details, remove overlapping terms and inferred context, "
-                        "and reassess all QC flags honestly after revising the metadata."
+                        "Use visually supported details and remove overlapping terms and inferred context."
                     )
+                    if not dreamstime:
+                        prompt += " Reassess all QC flags honestly after revising the metadata."
                 provider, model = (
                     FLASH_METADATA_FALLBACK if self._metadata_fallback.is_set()
                     else (self.metadata_provider, self.metadata_model)
                 )
                 started = time.perf_counter()
-                try:
-                    raw = request_metadata(provider, model, prompt)
-                except Exception as exc:
-                    code = getattr(exc, "code", None)
-                    if provider == "nim" and model == NEMOTRON_VL_MODEL and code == 429:
-                        reason = "NVIDIA NIM returned HTTP 429"
-                    elif (provider == "gemini-developer" and model.removeprefix("models/") == "gemini-4-hydrogen"
-                          and code == 503):
-                        reason = "Hydrogen returned HTTP 503"
-                    else:
-                        raise
-                    self._metadata_fallback.set()
-                    self._emit_progress(
-                        asset_id, f"{reason}; switching remaining metadata to gemini-3.8-flash (Vertex AI)",
-                    )
-                    raw = request_metadata(*FLASH_METADATA_FALLBACK, prompt)
-                (asset_dir / "metadata_raw.txt").write_bytes(raw.encode("utf-8"))
-                logger.event("metadata_generation", duration_seconds=round(time.perf_counter() - started, 3))
-                self._emit_progress(asset_id, "metadata prompt 1/1 completed")
+                if cached_raw is not None:
+                    raw, cached_raw = cached_raw, None
+                    self._emit_progress(asset_id, "Using saved Dreamstime metadata")
+                else:
+                    try:
+                        raw = request_metadata(provider, model, prompt)
+                    except Exception as exc:
+                        code = getattr(exc, "code", None)
+                        if provider == "nim" and model == NEMOTRON_VL_MODEL and code == 429:
+                            reason = "NVIDIA NIM returned HTTP 429"
+                        elif (provider == "gemini-developer" and model.removeprefix("models/") == "gemini-4-hydrogen"
+                              and code == 503):
+                            reason = "Hydrogen returned HTTP 503"
+                        else:
+                            raise
+                        self._metadata_fallback.set()
+                        self._emit_progress(
+                            asset_id, f"{reason}; switching remaining metadata to gemini-3.8-flash (Vertex AI)",
+                        )
+                        raw = request_metadata(*FLASH_METADATA_FALLBACK, prompt)
+                    filename = "dreamstime_metadata_raw.txt" if dreamstime else "metadata_raw.txt"
+                    (asset_dir / filename).write_bytes(raw.encode("utf-8"))
+                    logger.event("metadata_generation", duration_seconds=round(time.perf_counter() - started, 3))
+                    self._emit_progress(asset_id, "metadata prompt 1/1 completed")
                 started = time.perf_counter()
                 self._emit_progress(asset_id, "metadata validation started", stage="metadata_check")
                 try:
-                    metadata = validate_metadata(
-                        enrich_metadata(parse_metadata_json(raw), asset_id),
-                        asset_id,
-                        parse_categories(category_text),
-                        max_title_chars=self.max_title_chars,
-                        min_expected_keywords=self.min_expected_keywords,
-                        hard_max_keywords=self.hard_max_keywords,
-                    )
+                    model_output = parse_metadata_json(raw)
+                    if dreamstime:
+                        row = make_row(f"{asset_id}.jpg", model_output, categories, MIN_SR_PRICE_USD)
+                        metadata = {
+                            "title": row["Image Name"], "keywords": row["keywords"].split(","),
+                            "category_code": row["Category 1"], "category_name": "AI generated",
+                        }
+                    else:
+                        metadata = validate_metadata(
+                            enrich_metadata(model_output, asset_id),
+                            asset_id, parse_categories(category_text),
+                            max_title_chars=self.max_title_chars,
+                            min_expected_keywords=self.min_expected_keywords,
+                            hard_max_keywords=self.hard_max_keywords,
+                        )
                 except (TypeError, ValueError) as exc:
                     validation_error = exc
                     repair_reason = str(exc)
@@ -421,7 +457,11 @@ class StockPipeline:
             else:
                 self.registry.transition(asset_id, "METADATA_QC_FAILED", error=repair_reason)
                 raise validation_error
-            (asset_dir / "metadata.json").write_text(json.dumps(metadata, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+            if dreamstime:
+                store_metadata(dreamstime_path, model_output)
+                self.registry.update_asset(asset_id, metadata_prompt_version=METADATA_VERSION)
+            else:
+                (asset_dir / "metadata.json").write_text(json.dumps(metadata, indent=2, sort_keys=True) + "\n", encoding="utf-8")
             self.registry.update_asset(
                 asset_id, title=metadata["title"], keywords_json=json.dumps(metadata["keywords"]),
                 category_code=metadata["category_code"], category_name=metadata["category_name"],

@@ -9,9 +9,10 @@ from typing import Any, Callable
 NEMOTRON_VL_MODEL = "nvidia/nemotron-3.5-super-vl-120b-a12b"
 
 
-def build_metadata_user_prompt(theme: str, generation_prompt: str, category_list: str) -> str:
+def build_metadata_user_prompt(theme: str, generation_prompt: str, category_list: str,
+                               platform: str = "Adobe Stock") -> str:
     return (
-        "Analyze this final image for Adobe Stock metadata.\n\n"
+        f"Analyze this final image for {platform} metadata.\n\n"
         "The final image is the primary source of truth.\n\n"
         f"Theme:\n{theme}\n\n"
         f"Generation prompt:\n{generation_prompt}\n\n"
@@ -40,10 +41,11 @@ def generate_metadata_for_asset(
     model: str, temperature: float = 0.2, top_p: float = 0.9,
     asset_id: str | None = None, project_root: Path | None = None,
     usage_callback: Callable[[dict[str, int | float]], None] | None = None,
+    platform: str = "Adobe Stock",
 ) -> str:
     import main as legacy
 
-    user_prompt = build_metadata_user_prompt(theme, generation_prompt, category_list)
+    user_prompt = build_metadata_user_prompt(theme, generation_prompt, category_list, platform)
     providers = {
         "google": legacy.generate_google_metadata_text,
         "vertex": legacy.generate_google_metadata_text,

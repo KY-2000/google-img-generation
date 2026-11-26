@@ -10,7 +10,7 @@ from pathlib import Path
 from tempfile import NamedTemporaryFile
 from uuid import uuid4
 
-from tools.prepare_dreamstime_csv import MIN_SR_PRICE_USD, dreamstime_ftp, export_jpeg, prepare_rows
+from tools.prepare_dreamstime_csv import MIN_SR_PRICE_USD, dreamstime_ftp, export_jpeg, read_saved_rows
 
 from .manager_runtime import ensure_edge_cdp
 
@@ -25,6 +25,10 @@ def _read_state(root: Path) -> dict:
 
 def uploaded_assets(root: Path) -> set[str]:
     return {asset for batch in _read_state(root)["batches"].values() if batch["verified"] for asset in batch["assets"]}
+
+
+def assets_with_sent_csv(root: Path) -> set[str]:
+    return {asset for batch in _read_state(root)["batches"].values() for asset in batch["assets"]}
 
 
 def _save_state(root: Path, state: dict) -> None:
@@ -125,8 +129,8 @@ def upload_dreamstime(root, run_dir, assets, *, cdp, profile, should_stop, progr
 
     _check_history(root, cdp, set(jpeg_names.values()), "processed with image id",
                    should_stop, progress, "dreamstime_history")
-    progress("dreamstime_metadata", f"Preparing Dreamstime metadata for {len(pending)} images")
-    rows = prepare_rows(pending, MIN_SR_PRICE_USD, root=root)
+    progress("dreamstime_metadata", f"Building CSV from saved Dreamstime metadata for {len(pending)} images")
+    rows = read_saved_rows(pending, MIN_SR_PRICE_USD, root=root)
     file = run_dir / f"Dreamstime_{uuid4().hex[:12]}.csv"
     with file.open("x", encoding="utf-8", newline="") as output:
         writer = csv.DictWriter(output, fieldnames=list(rows[0]))
