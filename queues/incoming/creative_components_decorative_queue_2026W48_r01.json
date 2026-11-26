@@ -1,0 +1,577 @@
+{
+  "run_id": "TF_creative_components_decorative_2026W48_r01",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-26T20:26:54+08:00",
+  "research": {
+    "finder": "creative_components",
+    "product_line": "commercial_background",
+    "strategy": "Decorative Backgrounds with Copy Space",
+    "reference_analysis": "Four supplied images: flying motifs, watercolor decorative frame, animal border, blossom canopy. Abstract layout functions only.",
+    "source_urls": [
+      "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+      "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+      "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+    ],
+    "exclusion_registry_checked": true,
+    "screened_count": 32,
+    "approved_count": 8,
+    "asset_id_policy": "All IDs omitted; current runner allocates them on local import before strict validation.",
+    "score_method": "Editorial assessment, not measured sales",
+    "rejected_candidates": [
+      {
+        "theme": "Pink butterfly gradient corner",
+        "reason": "Too close to supplied reference"
+      },
+      {
+        "theme": "Rainbow watercolor snowflake frame",
+        "reason": "Too close to supplied reference"
+      },
+      {
+        "theme": "Snowy deer and rabbit ridge",
+        "reason": "Too close to supplied reference"
+      },
+      {
+        "theme": "Pink cherry blossom corner frame",
+        "reason": "Too close to supplied reference"
+      },
+      {
+        "theme": "Pink magnolia on paper",
+        "reason": "SC-001"
+      },
+      {
+        "theme": "Quiet tide pool with wildflowers",
+        "reason": "SC-002"
+      },
+      {
+        "theme": "Blue ice crystal with warm bokeh",
+        "reason": "Prior holiday queue"
+      },
+      {
+        "theme": "Red papercut open window",
+        "reason": "Prior holiday queue"
+      },
+      {
+        "theme": "Cedar citrus watercolor double corner",
+        "reason": "Prior holiday queue"
+      },
+      {
+        "theme": "Gold sycee decorative band",
+        "reason": "Prior holiday queue"
+      },
+      {
+        "theme": "Holly gift wrap repeat",
+        "reason": "Prior Christmas pattern direction"
+      },
+      {
+        "theme": "Christmas tree variety sheet",
+        "reason": "Prior Christmas object sheet"
+      },
+      {
+        "theme": "Firecracker paper collage",
+        "reason": "Prior holiday queue"
+      },
+      {
+        "theme": "Lantern rib glow",
+        "reason": "Prior holiday queue"
+      },
+      {
+        "theme": "Peach balloon color variant",
+        "reason": "Near duplicate of selected balloon arch"
+      },
+      {
+        "theme": "Pastel confetti full frame",
+        "reason": "Weak typography area"
+      },
+      {
+        "theme": "Dragonfly watercolor drift",
+        "reason": "Similar flying motif to selected seed drift; defer"
+      },
+      {
+        "theme": "Autumn ginkgo drift",
+        "reason": "Similar diagonal drift design; defer"
+      },
+      {
+        "theme": "Hydrangea corner",
+        "reason": "Generic floral corner; weaker differentiation"
+      },
+      {
+        "theme": "Rose wedding wreath",
+        "reason": "Crowded central frame, competitive generic concept"
+      },
+      {
+        "theme": "Penguin lineup on ice",
+        "reason": "Too close to reference animal layout"
+      },
+      {
+        "theme": "Woodland fox and deer top band",
+        "reason": "Too close to reference animal layout"
+      },
+      {
+        "theme": "School alphabet blocks",
+        "reason": "Risk of fabricated lettering"
+      },
+      {
+        "theme": "Generic rainbow wash",
+        "reason": "Weak distinct use compared with chosen decorative assets"
+      }
+    ]
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Dandelion Seed Drift on Soft Morning Sky",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "pale mint, sky blue, warm ivory, muted olive",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a single decorative background for wellness newsletters and spring science activity pages, with an uninterrupted area for externally added typography. In a wide 16:9 composition, place two slender dandelion stems at the extreme lower left, one with a delicate partly dispersed seed head, and eight to twelve individual parachute seeds drifting gently toward the lower middle. Render each seed with a small tapered achene and fine radiating pappus filaments, varying their scale naturally without duplicating shapes. Let the drift dissipate before it reaches the upper right two thirds, which remain a calm pale mint and sky blue atmospheric wash. Use soft airbrush botanical illustration with subtle pastel transitions, crisp delicate silhouettes and very light natural paper grain. Keep the tone fresh, serene and suitable for dark text, with no horizon or staged scenery. Maintain low contrast in the copy zone and a clean full bleed finish. No text, logos, watermark, border panels or butterflies.",
+      "negative_prompt": "butterflies, magnolia blossoms, dense seeds over copy area, fake seed anatomy, heavy vignette, text, logos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Decorative background with copy space",
+        "designer_persona": "wellness and educational editorial designer",
+        "buyer_use_case": "wellness newsletter header; spring science activity handout",
+        "design_placement": "Lower left diagonal drift; quiet upper right, about 65% open",
+        "design_function": "Single coherent decorative raster background for separate typography and layout",
+        "art_style": "Soft Airbrush Botanical Illustration",
+        "style_rationale": "Chosen to support the specific placement and readable decorative silhouettes",
+        "distinctiveness": "Airborne seed anatomy and directional movement, without butterflies or a pink floral corner",
+        "copy_space": "Lower left diagonal drift; quiet upper right, about 65% open",
+        "design_reuse_cases": [
+          "wellness newsletter header",
+          "spring science activity handout"
+        ],
+        "integration_guidance": "Lower left diagonal drift; quiet upper right, about 65% open",
+        "reusability_rationale": "A ready arranged decorative composition with a quiet text area reduces layout work across the two stated placements; the original hand rendered detail provides more character than a plain fill.",
+        "metadata_seed_keywords": [
+          "dandelion",
+          "seed dispersal",
+          "spring background",
+          "botanical",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "New subject and composition developed from general layout principles only; no source image in generation, no claim of alpha or seamless tiling.",
+        "score_breakdown": {
+          "buyer_utility": 28,
+          "differentiation": 22,
+          "composition": 15,
+          "material_credibility": 9,
+          "4k_feasibility": 9,
+          "timeliness": 5,
+          "diversity": 5
+        }
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Pastel Balloon Arch with Floating Confetti",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "peach, butter yellow, lilac, pale aqua, ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Design a single vertical 9:16 celebration background for a birthday invitation or baby shower announcement, leaving a generous blank field for the event information. Arrange nine individually shaped helium balloons in an asymmetrical arch entering from the upper right and descending along the right border. Use round and pear shaped balloons in peach, butter yellow, lilac and pale aqua, with a few thin curling strings following natural gravity. Place a restrained scattering of small rectangular confetti pieces near the balloon cluster only. Keep the central and left sixty percent in clean warm ivory, and preserve quiet top and bottom interface margins for mobile placements. Art direction is clean commercial flat illustration, with smooth precise silhouettes, tiny soft highlights and consistent simplified dimensional cues rather than photographic glare. The arrangement should feel friendly and festive across age groups, with no party venue, people or props. Output one complete background, no lettering, numbers, branding, watermark or template placeholders.",
+      "negative_prompt": "balloons across text zone, dense confetti, letters, numbers, logos, photographic venue, panel grid",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Decorative background with copy space",
+        "designer_persona": "event invitation designer",
+        "buyer_use_case": "birthday invitation story; baby shower announcement",
+        "design_placement": "Upper right and right edge balloon arch; central left open 60%",
+        "design_function": "Single coherent decorative raster background for separate typography and layout",
+        "art_style": "Clean Commercial Flat Illustration",
+        "style_rationale": "Chosen to support the specific placement and readable decorative silhouettes",
+        "distinctiveness": "Balloon silhouette arch and sparse confetti support event messages, no gradient butterfly motifs",
+        "copy_space": "Upper right and right edge balloon arch; central left open 60%",
+        "design_reuse_cases": [
+          "birthday invitation story",
+          "baby shower announcement"
+        ],
+        "integration_guidance": "Upper right and right edge balloon arch; central left open 60%",
+        "reusability_rationale": "A ready arranged decorative composition with a quiet text area reduces layout work across the two stated placements; the original hand rendered detail provides more character than a plain fill.",
+        "metadata_seed_keywords": [
+          "balloon arch",
+          "birthday",
+          "baby shower",
+          "party invitation",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "New subject and composition developed from general layout principles only; no source image in generation, no claim of alpha or seamless tiling.",
+        "score_breakdown": {
+          "buyer_utility": 29,
+          "differentiation": 22,
+          "composition": 15,
+          "material_credibility": 9,
+          "4k_feasibility": 10,
+          "timeliness": 5,
+          "diversity": 4
+        }
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Underwater Friends Along a Gentle Seabed",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "powder blue, seafoam, soft coral, sand cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a single wide 16:9 decorative ocean background for preschool classroom materials and children's birthday invitations. Along the bottom third, arrange five friendly original sea creatures at naturally varied heights: a small sea turtle, a coral colored octopus with eight clearly formed arms, a rounded pufferfish, a seahorse and a sea star resting on the sand. Separate their silhouettes with small patches of seagrass and a few shells, keeping the grouping cohesive and balanced without a busy reef. Above them, leave a broad pale aqua water field occupying approximately sixty five percent of the canvas for independently added titles and activity instructions. Render the scene in soft storybook gouache illustration, with matte pigment, gently rounded edges, restrained hand painted texture and simple readable expressions. Use a subtle vertical water color transition and a few bubbles close to the bottom only. Maintain correct recognizable animal anatomy, a single continuous composition and no text, logos, watermark, framing panels or familiar franchise characters.",
+      "negative_prompt": "extra octopus arms, malformed animals, crowded coral reef, bubbles over copy area, letters, logos, watermark",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Decorative background with copy space",
+        "designer_persona": "preschool learning resource designer",
+        "buyer_use_case": "ocean themed classroom poster; children’s birthday invitation",
+        "design_placement": "Low seabed band under 35% height with five animals; upper 65% clear",
+        "design_function": "Single coherent decorative raster background for separate typography and layout",
+        "art_style": "Soft Storybook Gouache Illustration",
+        "style_rationale": "Chosen to support the specific placement and readable decorative silhouettes",
+        "distinctiveness": "Marine animal group arranged as a bottom design band, distinct from snowy woodland lineup",
+        "copy_space": "Low seabed band under 35% height with five animals; upper 65% clear",
+        "design_reuse_cases": [
+          "ocean themed classroom poster",
+          "children’s birthday invitation"
+        ],
+        "integration_guidance": "Low seabed band under 35% height with five animals; upper 65% clear",
+        "reusability_rationale": "A ready arranged decorative composition with a quiet text area reduces layout work across the two stated placements; the original hand rendered detail provides more character than a plain fill.",
+        "metadata_seed_keywords": [
+          "ocean animals",
+          "underwater",
+          "children",
+          "gouache",
+          "classroom background"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "New subject and composition developed from general layout principles only; no source image in generation, no claim of alpha or seamless tiling.",
+        "score_breakdown": {
+          "buyer_utility": 29,
+          "differentiation": 23,
+          "composition": 14,
+          "material_credibility": 9,
+          "4k_feasibility": 9,
+          "timeliness": 5,
+          "diversity": 5
+        }
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Cascading Wisteria Canopy on Ivory",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "lavender, violet, sage green, warm ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Paint a single portrait 9:16 botanical background for spring wedding invitations and garden event announcements. Build a hanging canopy along the upper edge with six distinct wisteria racemes suspended from gently curved stems. Depict the characteristic tapering clusters of small pea shaped flowers, soft lavender and violet pigment, and a few pinnate sage green leaves. Vary the lengths and overlaps so that the longest cluster descends at the far right, while the middle and lower two thirds remain a warm clean ivory field for externally typeset information. Allow only a handful of tiny loose petals near the upper margin. Use elegant commercial botanical watercolor with transparent pigment layering, controlled soft edges, subtle paper tooth and restrained detail, suitable for refined stationery without reproducing a particular floral artwork. Keep the open area nearly uniform and preserve mobile interface margins. One continuous illustration, no pink magnolia branch, cherry blossom frame, text, logos, watermark or sample panels.",
+      "negative_prompt": "magnolia, cherry blossom, dense flowers in copy space, illegible floral anatomy, text, logo",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Decorative background with copy space",
+        "designer_persona": "wedding and spring event stationery designer",
+        "buyer_use_case": "spring wedding invitation; garden event announcement",
+        "design_placement": "Top canopy of six flower clusters; open center and bottom 65%",
+        "design_function": "Single coherent decorative raster background for separate typography and layout",
+        "art_style": "Elegant Commercial Botanical Watercolor",
+        "style_rationale": "Chosen to support the specific placement and readable decorative silhouettes",
+        "distinctiveness": "Hanging racemes and portrait overhead canopy distinguish it from single magnolia branch and blossom corner frames",
+        "copy_space": "Top canopy of six flower clusters; open center and bottom 65%",
+        "design_reuse_cases": [
+          "spring wedding invitation",
+          "garden event announcement"
+        ],
+        "integration_guidance": "Top canopy of six flower clusters; open center and bottom 65%",
+        "reusability_rationale": "A ready arranged decorative composition with a quiet text area reduces layout work across the two stated placements; the original hand rendered detail provides more character than a plain fill.",
+        "metadata_seed_keywords": [
+          "wisteria",
+          "spring wedding",
+          "botanical watercolor",
+          "floral canopy",
+          "invitation"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "New subject and composition developed from general layout principles only; no source image in generation, no claim of alpha or seamless tiling.",
+        "score_breakdown": {
+          "buyer_utility": 29,
+          "differentiation": 22,
+          "composition": 15,
+          "material_credibility": 9,
+          "4k_feasibility": 9,
+          "timeliness": 5,
+          "diversity": 4
+        }
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Winter Robins and Snowberry Hedge Border",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "frost blue, cream, muted red, taupe, sage",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a single horizontal 16:9 winter decorative background for seasonal greeting cards and community newsletters. Confine a lightly snow dusted snowberry hedgerow to the lower quarter of the composition, with four small European robins perched at staggered positions on slender branches. Show believable round bodies, orange red breasts, fine beaks and natural feet gripping twigs. Add white snowberry clusters, a few dried leaves and quiet snow mounds, avoiding fir forest scenery or large foreground animals. Leave the upper two thirds a low contrast frost blue to ivory wash with only a few tiny snow specks near the hedge. Render in vintage colored pencil and watercolor illustration, with fine directional pencil strokes over translucent color, softly textured paper and restrained naturalistic detail. Use a balanced silhouette band with a modest gap near the middle for flexible cropping. The atmosphere should feel peaceful and seasonally familiar. No text, logos, watermark, border panels, exaggerated faces or copied character designs.",
+      "negative_prompt": "reindeer, rabbits, pine forest, dense snowfall, anatomical errors, large foreground bird, text, watermark",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Decorative background with copy space",
+        "designer_persona": "winter stationery and community newsletter designer",
+        "buyer_use_case": "winter greeting card; community winter newsletter banner",
+        "design_placement": "Low irregular hedge with four robins and white berries; upper 65% clean",
+        "design_function": "Single coherent decorative raster background for separate typography and layout",
+        "art_style": "Vintage Colored Pencil and Watercolor Illustration",
+        "style_rationale": "Chosen to support the specific placement and readable decorative silhouettes",
+        "distinctiveness": "Birds interact with a low hedgerow instead of deer and rabbits on a snowy ridge",
+        "copy_space": "Low irregular hedge with four robins and white berries; upper 65% clean",
+        "design_reuse_cases": [
+          "winter greeting card",
+          "community winter newsletter banner"
+        ],
+        "integration_guidance": "Low irregular hedge with four robins and white berries; upper 65% clean",
+        "reusability_rationale": "A ready arranged decorative composition with a quiet text area reduces layout work across the two stated placements; the original hand rendered detail provides more character than a plain fill.",
+        "metadata_seed_keywords": [
+          "robin",
+          "snowberry",
+          "winter birds",
+          "winter border",
+          "greeting background"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "New subject and composition developed from general layout principles only; no source image in generation, no claim of alpha or seamless tiling.",
+        "score_breakdown": {
+          "buyer_utility": 28,
+          "differentiation": 23,
+          "composition": 14,
+          "material_credibility": 9,
+          "4k_feasibility": 9,
+          "timeliness": 5,
+          "diversity": 5
+        }
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Festive Stocking Garland with Blank Lower Field",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "cranberry, evergreen, cream, muted gold",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Make a single vertical 9:16 Christmas decorative background for retail holiday stories and seasonal gift guide covers. Across the top quarter, suspend seven distinct festive stockings from a gently curved evergreen colored cord. Alternate familiar knit, simple striped and felt designs with restrained white cuffs, small stitched stars and classic cranberry and forest green accents. Each stocking must have a clear readable silhouette and hang naturally from an individual loop, with believable proportions and consistent scale. Let the outermost stockings sit slightly higher so the garland frames the upper area without enclosing the center. Leave the lower sixty five percent a warm ivory field with a very subtle tonal wash for promotional text or separately placed products. Use classic commercial storybook illustration, clean contours, modest soft shading, light fabric texture and cheerful traditional colors. Maintain quiet mobile interface margins. No room interior, fireplace, tree, gift pile, text, logos, watermark, branded characters or collection board layout.",
+      "negative_prompt": "fireplace, tree, clutter, garland across copy area, tangled loops, text, logos",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Decorative background with copy space",
+        "designer_persona": "retail seasonal campaign designer",
+        "buyer_use_case": "Christmas sale story; holiday gift guide cover",
+        "design_placement": "Seven stockings hang from upper edge; lower 65% clean",
+        "design_function": "Single coherent decorative raster background for separate typography and layout",
+        "art_style": "Classic Commercial Storybook Illustration",
+        "style_rationale": "Chosen to support the specific placement and readable decorative silhouettes",
+        "distinctiveness": "A suspended connected garland with seven items; no standalone clipart sheet or tree pattern",
+        "copy_space": "Seven stockings hang from upper edge; lower 65% clean",
+        "design_reuse_cases": [
+          "Christmas sale story",
+          "holiday gift guide cover"
+        ],
+        "integration_guidance": "Seven stockings hang from upper edge; lower 65% clean",
+        "reusability_rationale": "A ready arranged decorative composition with a quiet text area reduces layout work across the two stated placements; the original hand rendered detail provides more character than a plain fill.",
+        "metadata_seed_keywords": [
+          "christmas stockings",
+          "garland",
+          "holiday story",
+          "retail banner",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "New subject and composition developed from general layout principles only; no source image in generation, no claim of alpha or seamless tiling.",
+        "score_breakdown": {
+          "buyer_utility": 29,
+          "differentiation": 22,
+          "composition": 15,
+          "material_credibility": 9,
+          "4k_feasibility": 10,
+          "timeliness": 4,
+          "diversity": 4
+        }
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Lunar New Year Gold Firework Canopy",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "deep vermilion, warm gold, pale coral, burgundy",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create one wide 16:9 Lunar New Year decorative background for retail website headers and community festival greetings. Arrange five distinct stylized golden firework bursts along the upper edge and upper corners, varying their radial geometry between fine fan rays, gently curving sparks and compact dotted rings. Add a few small falling gold points close to the bursts, without depicting explosives, launch devices or a city skyline. Keep the lower and central two thirds a calm deep vermilion field with restrained tonal variation and sufficient contrast for pale externally added lettering. Use elegant flat line and gouache illustration with precise thin strokes, controlled opaque gold color and minimal tactile print texture; avoid photographic explosions or heavy glitter. The arrangement should feel celebratory, balanced and traditionally festive while remaining reusable across years and diverse Lunar New Year campaigns. One uninterrupted finished background, no numbers, text, zodiac symbols, logos, watermark, lanterns, red packets or repeated pattern panels.",
+      "negative_prompt": "firecracker collage, lantern, zodiac year, letters, dense glitter, visible launch device, city skyline, logo",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Decorative background with copy space",
+        "designer_persona": "Lunar New Year campaign designer",
+        "buyer_use_case": "Lunar New Year retail web header; community festival greeting card",
+        "design_placement": "Five radial bursts across top and upper corners, deep red lower central area",
+        "design_function": "Single coherent decorative raster background for separate typography and layout",
+        "art_style": "Elegant Flat Line and Gouache Illustration",
+        "style_rationale": "Chosen to support the specific placement and readable decorative silhouettes",
+        "distinctiveness": "Thin radial fireworks and negative space, no firecracker paper collage, lantern ribs or zodiac year",
+        "copy_space": "Five radial bursts across top and upper corners, deep red lower central area",
+        "design_reuse_cases": [
+          "Lunar New Year retail web header",
+          "community festival greeting card"
+        ],
+        "integration_guidance": "Five radial bursts across top and upper corners, deep red lower central area",
+        "reusability_rationale": "A ready arranged decorative composition with a quiet text area reduces layout work across the two stated placements; the original hand rendered detail provides more character than a plain fill.",
+        "metadata_seed_keywords": [
+          "lunar new year",
+          "gold fireworks",
+          "red background",
+          "festival greeting",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "New subject and composition developed from general layout principles only; no source image in generation, no claim of alpha or seamless tiling.",
+        "score_breakdown": {
+          "buyer_utility": 29,
+          "differentiation": 22,
+          "composition": 15,
+          "material_credibility": 9,
+          "4k_feasibility": 10,
+          "timeliness": 5,
+          "diversity": 4
+        }
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Storybook Books and Paper Stars Lower Corner",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 95,
+      "topic_bucket": "APPROVED",
+      "palette": "butter yellow, dusty teal, terracotta, warm cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Design a single wide 16:9 decorative background for reading week posters and library event newsletters. Assemble a small cluster of five recognizable books in the bottom right corner: two upright closed volumes, two gently offset stacked books, and one open book with blank cream pages. Add four small paper star shapes floating immediately above the cluster as a playful suggestion of imagination, without letters or illustrated page content. Make the book blocks physically plausible, with distinct spines, folded page edges and tidy overlapping silhouettes. Leave the left and upper central sixty five percent an uninterrupted warm cream field suitable for a headline and event details. Use handmade cut paper illustration with layered matte colored stock, softly cut edges, shallow contact shadows and a friendly palette of dusty teal, terracotta and butter yellow. Keep the decoration compact, crop safe and legible at thumbnail size. No people, library interior, text, logos, watermark, brand marks or sample panels.",
+      "negative_prompt": "readable book titles, copyrighted cover art, crowded book pile, heavy shadows, letters, logo",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "Decorative background with copy space",
+        "designer_persona": "school library and literacy program designer",
+        "buyer_use_case": "reading week poster; library event newsletter header",
+        "design_placement": "Five book shapes in bottom right with small stars; left 65% open",
+        "design_function": "Single coherent decorative raster background for separate typography and layout",
+        "art_style": "Handmade Cut Paper Illustration",
+        "style_rationale": "Chosen to support the specific placement and readable decorative silhouettes",
+        "distinctiveness": "Reading and literacy composition, layered cut paper with original blank covers",
+        "copy_space": "Five book shapes in bottom right with small stars; left 65% open",
+        "design_reuse_cases": [
+          "reading week poster",
+          "library event newsletter header"
+        ],
+        "integration_guidance": "Five book shapes in bottom right with small stars; left 65% open",
+        "reusability_rationale": "A ready arranged decorative composition with a quiet text area reduces layout work across the two stated placements; the original hand rendered detail provides more character than a plain fill.",
+        "metadata_seed_keywords": [
+          "reading week",
+          "books",
+          "literacy",
+          "paper cut",
+          "school poster"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "New subject and composition developed from general layout principles only; no source image in generation, no claim of alpha or seamless tiling.",
+        "score_breakdown": {
+          "buyer_utility": 29,
+          "differentiation": 23,
+          "composition": 15,
+          "material_credibility": 9,
+          "4k_feasibility": 9,
+          "timeliness": 5,
+          "diversity": 5
+        }
+      }
+    }
+  ]
+}
