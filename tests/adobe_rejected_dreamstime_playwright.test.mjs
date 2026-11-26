@@ -7,7 +7,21 @@ import {
   isEligible,
   chunkFilesBySize,
 } from "../tools/adobe_rejected_dreamstime_playwright.mjs";
-import { openHistory } from "../tools/dreamstime_upload_history.mjs";
+import { openHistory, readPage } from "../tools/dreamstime_upload_history.mjs";
+
+test("Dreamstime pagination waits for the active page and its populated rows", async () => {
+  const pages = ["1", "2", "2"];
+  const nextRows = [["AST990325.jpg", "Processed with image ID 10"]];
+  const snapshots = [[], nextRows];
+  const table = { getByRole: () => ({ evaluateAll: async () => snapshots.shift() }) };
+  const jump = {
+    fill: async value => assert.equal(value, "2"),
+    press: async key => assert.equal(key, "Enter"),
+  };
+  const active = { textContent: async () => pages.shift() };
+  assert.deepEqual(await readPage(table, jump, active, 2, [["old.jpg", "Processed"]]), nextRows);
+  assert.equal(snapshots.length, 0);
+});
 
 test("Dreamstime retry preserves the in-progress verification tab", async () => {
   const actions = [];

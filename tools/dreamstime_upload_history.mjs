@@ -33,13 +33,16 @@ async function readRows(table) {
   }));
 }
 
-async function readPage(table, jump, index, currentRows) {
+export async function readPage(table, jump, activePage, index, currentRows) {
   const previous = JSON.stringify(currentRows);
   await jump.fill(String(index), { timeout: 3000 });
   await jump.press("Enter", { timeout: 3000 });
   for (let retry = 0; retry < 20; retry++) {
-    const rows = await readRows(table);
-    if (JSON.stringify(rows) !== previous) return rows;
+    const current = await activePage.textContent({ timeout: 3000 });
+    if (current?.trim() === String(index)) {
+      const rows = await readRows(table);
+      if (rows.length && JSON.stringify(rows) !== previous) return rows;
+    }
     await new Promise(resolve => setTimeout(resolve, 200));
   }
   throw new Error("Could not verify all pages of Dreamstime Upload History.");
@@ -54,15 +57,15 @@ async function main(cdp, refresh) {
   try {
     const table = await openHistory(page, Boolean(existing), refresh);
     const items = new Map();
-    const indicator = page.getByText(/^of [\d,]+ pages$/i);
-    const count = await indicator.count() ? Number((await indicator.innerText()).replace(/\D/g, "")) : 1;
-    const jump = page.getByRole("list").filter({ has: indicator }).last().getByRole("textbox");
+    const jump = page.locator("input.changepage");
+    const activePage = page.locator(".dt-label .current");
+    const count = await jump.count() ? Number(await jump.getAttribute("max") || "1") : 1;
     let rows = await readRows(table);
-    if (count > 1 && (await jump.inputValue({ timeout: 3000 })) !== "1") {
-      rows = await readPage(table, jump, 1, rows);
+    if (count > 1 && (await activePage.textContent({ timeout: 3000 }))?.trim() !== "1") {
+      rows = await readPage(table, jump, activePage, 1, rows);
     }
     for (let index = 1; index <= count; index++) {
-      if (index > 1) rows = await readPage(table, jump, index, rows);
+      if (index > 1) rows = await readPage(table, jump, activePage, index, rows);
       for (const [name, status] of rows) {
         if (!items.has(name)) items.set(name, status);
       }
