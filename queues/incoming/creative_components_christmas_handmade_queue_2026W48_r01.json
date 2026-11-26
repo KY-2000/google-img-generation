@@ -1,0 +1,421 @@
+{
+  "run_id": "TF_creative_components_christmas_handmade_2026W48_r01",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-26T17:05:00+08:00",
+  "research": {
+    "finder": "creative_components",
+    "product_line": "commercial_background",
+    "strategy": "handmade shop style Christmas",
+    "scope_note": "Corrected per user: each seamless-background asset is a single standalone seamless background, not a multi-panel collection board. Christmas object sheets remain multi-object collections.",
+    "source_urls": [
+      "https://adobestock.adobe.com/rs/269-YNG-601/images/2022-CreativeComponents.pdf",
+      "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+      "https://helpx.adobe.com/sa_en/stock/contributor/submit-your-content/submit-distinct-content/distinct-content-submission-best-practices.html",
+      "https://helpx.adobe.com/stock/contributor/content-moderation/content-moderation.html"
+    ],
+    "minimum_objects_per_asset": 4,
+    "notes": "asset_id omitted; queue keeps compatible production schema."
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Watercolor Pinecone and Fir Seamless Christmas Background",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "forest green, pine brown, muted red, cream, dusty sage",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a single seamless Christmas background in a handmade-shop style for craft brands, Etsy-style stationery, printable papers, and artisanal packaging. The full 16:9 image should be one continuous repeat pattern, not a board. Use hand-painted watercolor pinecones, fir sprigs, red berries, and tiny scattered stars on a soft warm cream paper ground. Ensure the pattern repeats seamlessly and shows multiple visible motifs across the whole frame. Art style: delicate watercolor with slight gouache opacity, visible brush texture, and a gentle handmade paper feel. The mood should be cozy, boutique, and handcrafted, but still commercially clear and easy to reuse. Avoid excessive visual clutter; keep the repeat balanced so buyers can overlay simple branding or crop any area. No text, no logo, no watermark, no mockup presentation, and no copied marketplace listing design.",
+      "negative_prompt": "text, logo, watermark, preview board, visible seam, photoreal pinecones, empty space, overprocessed texture, neon colors, branding",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "seamless background",
+        "material": "watercolor botanical repeat",
+        "designer_persona": "handmade stationery seller",
+        "buyer_use_case": "boutique Christmas background for craft and artisanal holiday products",
+        "design_placement": "printable paper, tags, stationery, gift wrap, social post backdrops",
+        "design_function": "single handcrafted-feel Christmas repeat pattern",
+        "art_style": "Handmade Watercolor Surface Pattern",
+        "style_rationale": "watercolor botanicals match the handcrafted shop aesthetic while remaining broadly useful",
+        "distinctiveness": "more painterly and tactile than the mainstream commercial backgrounds, without becoming too niche or messy",
+        "copy_space": "full pattern coverage with calm spacing",
+        "metadata_seed_keywords": [
+          "watercolor christmas pattern",
+          "pinecone seamless",
+          "handmade holiday background"
+        ],
+        "source_urls": [
+          "https://adobestock.adobe.com/rs/269-YNG-601/images/2022-CreativeComponents.pdf",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+          "https://helpx.adobe.com/sa_en/stock/contributor/submit-your-content/submit-distinct-content/distinct-content-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/content-moderation/content-moderation.html"
+        ],
+        "originality_notes": "Original botanical arrangement and repeat; no product-cover imitation.",
+        "design_reuse_cases": [
+          "Boutique gift wrap or printable paper",
+          "Handmade shop social or packaging background"
+        ],
+        "integration_guidance": "Motif spacing should stay open enough for crop flexibility and overlay text when needed.",
+        "reusability_rationale": "A watercolor pinecone repeat gives handmade sellers an artisanal holiday surface that still reads clearly in e-commerce contexts.",
+        "minimum_object_count": 4
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Hand Drawn Gingerbread and Star Seamless Holiday Pattern",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "gingerbread brown, icing white, soft red, sage green, cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Generate one seamless Christmas background for handmade-shop use, filling the whole 16:9 frame with a single repeat pattern. Feature hand-drawn gingerbread cookies, iced stars, candy canes, stitched hearts, and tiny berry or dot fillers. Keep the overall repeat gentle and charming, as if designed for a craft market paper pack or homemade baking brand. Art style: whimsical colored-pencil and gouache illustration with slightly imperfect hand-drawn outlines, light paper grain, and cozy boutique warmth. The pattern must remain seamless and commercially usable, with multiple repeating motifs clearly visible across the image. It should feel like one standalone digital paper design, not a preview board. No text, no badge, no logo, no watermark, and no copied marketplace cover styling.",
+      "negative_prompt": "text, logo, watermark, collection board, harsh vector look, empty background, visible seams, photoreal cookies, franchise shapes",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "seamless background",
+        "material": "hand-drawn festive food repeat",
+        "designer_persona": "craft market designer",
+        "buyer_use_case": "cute handcrafted holiday paper or baking-themed background",
+        "design_placement": "baking packaging, party printables, stickers, scrapbook paper",
+        "design_function": "single handmade-feel seamless food-themed holiday background",
+        "art_style": "Hand-Drawn Colored Pencil and Gouache Pattern",
+        "style_rationale": "slightly imperfect handmade drawing cues signal small-shop warmth and charm",
+        "distinctiveness": "food-and-cookie motif family differentiates it from purely botanical or folk backgrounds",
+        "copy_space": "pattern-led surface with breathable spacing",
+        "metadata_seed_keywords": [
+          "gingerbread pattern",
+          "hand drawn christmas paper",
+          "cookie holiday seamless"
+        ],
+        "source_urls": [
+          "https://adobestock.adobe.com/rs/269-YNG-601/images/2022-CreativeComponents.pdf",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+          "https://helpx.adobe.com/sa_en/stock/contributor/submit-your-content/submit-distinct-content/distinct-content-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/content-moderation/content-moderation.html"
+        ],
+        "originality_notes": "Original motif mix and repeat rhythm; not based on any specific seller’s product sheet.",
+        "design_reuse_cases": [
+          "Holiday bakery or craft market paper background",
+          "Cute handmade scrapbook or sticker-pack surface"
+        ],
+        "integration_guidance": "Keep motifs medium-small so the pattern can be cropped flexibly without losing charm.",
+        "reusability_rationale": "Hand-drawn cookie-themed repeats serve handmade brands that want a friendlier, more personal seasonal look.",
+        "minimum_object_count": 4
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Nordic Folk Reindeer and Tree Seamless Handmade Pattern",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "brick red, pine green, cream, muted gold, dusty blue",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Design a single seamless Christmas background for handmade-product sellers and artisanal packaging projects. The entire 16:9 image should show one continuous repeat pattern made from folk-inspired reindeer, stylized evergreen trees, stars, hearts, and small snowflakes. Keep the repeat balanced and visibly seamless across the full image. Art style: hand-painted folk gouache with simplified shapes, slightly irregular edges, and a cozy printed-on-paper feel. The pattern should feel warm and handcrafted, suitable for boutique wrapping paper, textile-inspired stationery, or homemade gift packaging. Make sure there are several repeated motifs visible so the single-background concept is clear. No text, no logos, no watermark, no multi-panel presentation, and no imitation of copyrighted folk-art works.",
+      "negative_prompt": "title text, logo, watermark, panel board, luxury realism, visible seams, generic plain plaid only, clutter, copied folk artwork",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "seamless background",
+        "material": "folk gouache repeat pattern",
+        "designer_persona": "boutique wrapping paper designer",
+        "buyer_use_case": "handmade shop holiday surface pattern with cozy folk personality",
+        "design_placement": "wrapping paper, stationery, tags, seasonal craft kits",
+        "design_function": "single folk-style seamless Christmas background",
+        "art_style": "Handmade Nordic Folk Gouache Pattern",
+        "style_rationale": "folk motifs align naturally with handmade and craft-shop positioning",
+        "distinctiveness": "offers a handcrafted folk direction rather than polished mainstream plaid or icon patterns",
+        "copy_space": "full repeat surface",
+        "metadata_seed_keywords": [
+          "folk christmas pattern",
+          "reindeer seamless",
+          "handmade nordic holiday background"
+        ],
+        "source_urls": [
+          "https://adobestock.adobe.com/rs/269-YNG-601/images/2022-CreativeComponents.pdf",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+          "https://helpx.adobe.com/sa_en/stock/contributor/submit-your-content/submit-distinct-content/distinct-content-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/content-moderation/content-moderation.html"
+        ],
+        "originality_notes": "Generic folk direction only; composition and motifs are original and non-derivative.",
+        "design_reuse_cases": [
+          "Boutique gift wrap and stationery surface",
+          "Homemade gift packaging or craft paper"
+        ],
+        "integration_guidance": "Maintain enough spacing between motifs to preserve clarity and allow flexible cropping.",
+        "reusability_rationale": "Folk reindeer and tree motifs create an immediately handcrafted seasonal identity valued by small creative businesses.",
+        "minimum_object_count": 4
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Cut Paper Collage Holly and Ribbon Seamless Background",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 88,
+      "topic_bucket": "APPROVED",
+      "palette": "deep red, evergreen, cream, kraft brown, blush pink",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a single vertical seamless Christmas background in a tactile handmade collage style for mobile graphics, craft templates, and boutique packaging. Fill the full 9:16 image with one repeatable pattern made from layered cut-paper holly leaves, ribbon bows, berries, stars, and tiny torn-paper shapes. The design must still be one seamless repeat, not a board of samples. Art style: handcrafted paper collage illustration with visible cut edges, slight shadow depth, light paper grain, and a cozy DIY aesthetic. Keep the repeat neat and commercially usable so it can function as a real background behind simple messaging. Multiple repeated elements should be visible across the frame, and the edge continuity must be believable. No text, no logo, no watermark, no badges, and no mockup packaging presentation.",
+      "negative_prompt": "text, logo, watermark, multi-panel board, messy scrapbook page, visible seams, photo props, overly deep shadows, clutter",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "seamless background",
+        "material": "cut paper collage repeat",
+        "designer_persona": "DIY printable designer",
+        "buyer_use_case": "boutique social or packaging background with tactile handmade charm",
+        "design_placement": "mobile stories, printables, packaging cards, social content backgrounds",
+        "design_function": "single collage-style seamless holiday background",
+        "art_style": "Handmade Cut Paper Collage Pattern",
+        "style_rationale": "cut-paper texture offers a clearly handmade feel distinct from watercolor or flat illustration",
+        "distinctiveness": "adds tactile collage character while still respecting the requirement that the asset remain one seamless background",
+        "copy_space": "pattern calm enough for light text overlay",
+        "metadata_seed_keywords": [
+          "paper collage christmas pattern",
+          "holly ribbon seamless",
+          "handmade holiday background vertical"
+        ],
+        "source_urls": [
+          "https://adobestock.adobe.com/rs/269-YNG-601/images/2022-CreativeComponents.pdf",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+          "https://helpx.adobe.com/sa_en/stock/contributor/submit-your-content/submit-distinct-content/distinct-content-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/content-moderation/content-moderation.html"
+        ],
+        "originality_notes": "Craft-inspired but original; does not copy any scrapbook kit cover or branded layout.",
+        "design_reuse_cases": [
+          "Boutique mobile story background",
+          "Handmade gift-card backing or printable paper"
+        ],
+        "integration_guidance": "Keep shadows subtle so the surface still reads as a reusable background rather than a heavily staged scrapbook page.",
+        "reusability_rationale": "Collage texture gives handmade sellers a differentiated but usable background style for modern craft-market branding.",
+        "minimum_object_count": 4
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Woodland Christmas Animals Handmade Clipart Sheet",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "warm brown, soft gray, evergreen, muted red, cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Illustrate a handmade-shop Christmas clipart sheet featuring eight separate woodland animals on a warm cream background in a 16:9 layout. Include reindeer, fox, rabbit, bear cub, squirrel, owl, hedgehog, and penguin. Each character should wear simple festive accessories such as knit scarves, tiny hats, wreaths, or sweaters, and each object must be fully visible and clearly separated. Art style: soft watercolor and colored-pencil illustration with gentle shading, subtle paper texture, and boutique craft-market charm. The sheet should feel cozy and giftable, appropriate for handmade card sellers, sticker makers, and nursery holiday products. Keep the presentation clean and catalog-ready without text or product branding. No readable text, no watermark, no logo, and no copyrighted character resemblance.",
+      "negative_prompt": "text, logo, watermark, overlapping animals, famous characters, extra limbs, hyperreal fur, dark scary mood, clutter",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "clipart sheet",
+        "material": "watercolor character illustrations",
+        "designer_persona": "handmade sticker and nursery print designer",
+        "buyer_use_case": "cozy multi-animal holiday clipart for boutique seasonal products",
+        "design_placement": "cards, nursery decor, stickers, classroom printables, social posts",
+        "design_function": "single sheet of handmade-feel festive animal characters",
+        "art_style": "Handmade Watercolor Character Illustration",
+        "style_rationale": "watercolor characters fit handmade shops and child-friendly gift products especially well",
+        "distinctiveness": "broad woodland mix expands beyond dog-only sets while preserving a strong handcrafted feel",
+        "copy_space": "whitespace around objects",
+        "metadata_seed_keywords": [
+          "woodland christmas animals",
+          "watercolor holiday clipart",
+          "handmade festive animal sheet"
+        ],
+        "source_urls": [
+          "https://adobestock.adobe.com/rs/269-YNG-601/images/2022-CreativeComponents.pdf",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+          "https://helpx.adobe.com/sa_en/stock/contributor/submit-your-content/submit-distinct-content/distinct-content-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/content-moderation/content-moderation.html"
+        ],
+        "originality_notes": "Takes inspiration from the popularity of animal clipart sets but expands the subject range and style direction.",
+        "design_reuse_cases": [
+          "Boutique holiday sticker or nursery products",
+          "Craft-market Christmas card and printable graphics"
+        ],
+        "integration_guidance": "Keep each animal isolated and centered so buyers can crop individuals or small groups easily.",
+        "reusability_rationale": "A varied animal sheet increases flexibility for handmade sellers who need warm, giftable seasonal illustrations.",
+        "minimum_object_count": 8
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Hand Painted Christmas Tree Handmade Clipart Sheet",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "evergreen, red, gold, cream, pine brown",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a handmade-shop Christmas tree clipart sheet with ten separate tree illustrations on a light textured background in a 16:9 composition. Vary the trees with folk ribbons, watercolor baubles, stitched garlands, star toppers, snowy tips, and rustic ornaments so each one feels distinct. Art style: hand-painted watercolor and gouache with slight brush variation, tactile paper texture, and a cozy artisanal finish. The overall sheet should feel suitable for craft printables, gift tags, sticker kits, and small-shop holiday graphics. Keep each tree cleanly separated and fully visible with comfortable whitespace. This must be a single object sheet, not a text-heavy product cover. No readable text, no logo, no watermark, and no copied composition from marketplace sellers.",
+      "negative_prompt": "text heading, logo, watermark, overlapping trees, identical tree variants, photoreal tree photos, clutter, dark background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "clipart sheet",
+        "material": "watercolor and gouache tree illustrations",
+        "designer_persona": "Etsy-style craft printable designer",
+        "buyer_use_case": "artisanal Christmas tree graphics for cards and printable products",
+        "design_placement": "stickers, tags, greeting cards, scrapbook kits, classroom crafts",
+        "design_function": "single handmade tree object collection sheet",
+        "art_style": "Handmade Watercolor Gouache Tree Illustration",
+        "style_rationale": "painted trees are timeless and especially compatible with handmade-shop aesthetics",
+        "distinctiveness": "keeps the tree-sheet concept but shifts the rendering and mood toward a handcrafted boutique finish",
+        "copy_space": "whitespace around each tree",
+        "metadata_seed_keywords": [
+          "hand painted christmas trees",
+          "watercolor tree clipart",
+          "handmade holiday graphics"
+        ],
+        "source_urls": [
+          "https://adobestock.adobe.com/rs/269-YNG-601/images/2022-CreativeComponents.pdf",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+          "https://helpx.adobe.com/sa_en/stock/contributor/submit-your-content/submit-distinct-content/distinct-content-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/content-moderation/content-moderation.html"
+        ],
+        "originality_notes": "Original tree lineup and paint treatment with no marketplace-style cover text.",
+        "design_reuse_cases": [
+          "Handmade card and sticker assets",
+          "Printable scrapbook and craft kit elements"
+        ],
+        "integration_guidance": "Maintain clear object isolation so buyers can repurpose individual trees without masking complexity.",
+        "reusability_rationale": "A tree variety sheet is highly reusable for handmade sellers because each tree can anchor a different product or layout.",
+        "minimum_object_count": 10
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Cozy Holiday Market Objects Handmade Clipart Sheet",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "muted red, cream, evergreen, warm brown, soft gold",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Design a handmade-shop Christmas object sheet for craft brands, festive market signage, and boutique social content. Show nine separate cozy holiday objects on a soft cream background in a 16:9 layout: cocoa mug, knitted mitten pair, lantern, small wreath, wrapped gift, gingerbread cookie, candle, bell ornament, and mini pine bundle. Each object should be fully illustrated, clearly separated, and easy to crop. Art style: warm gouache-and-colored-pencil illustration with tactile paper feel, slightly imperfect handcrafted edges, and a cozy winter market mood. Keep the sheet visually gentle and giftable rather than mass retail or hyper-polished. No text, no branding, no watermark, and no staged table scene. This should function as a reusable object sheet for design work.",
+      "negative_prompt": "text, logo, watermark, staged photo scene, overlapping items, overly realistic metallic reflections, empty layout, copied craft poster",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "clipart sheet",
+        "material": "gouache and colored-pencil objects",
+        "designer_persona": "boutique social media and packaging designer",
+        "buyer_use_case": "cozy holiday object illustrations for craft-market and small-shop design",
+        "design_placement": "market flyers, packaging inserts, social graphics, craft printables",
+        "design_function": "single sheet of warm handmade holiday objects",
+        "art_style": "Handmade Cozy Market Illustration",
+        "style_rationale": "cozy crafted objects fit small-shop branding and winter-market visual language",
+        "distinctiveness": "uses a broader cozy-object family rather than only characters or trees, adding merchandising utility",
+        "copy_space": "spacing between items",
+        "metadata_seed_keywords": [
+          "cozy christmas clipart",
+          "holiday market objects",
+          "handmade winter illustrations"
+        ],
+        "source_urls": [
+          "https://adobestock.adobe.com/rs/269-YNG-601/images/2022-CreativeComponents.pdf",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+          "https://helpx.adobe.com/sa_en/stock/contributor/submit-your-content/submit-distinct-content/distinct-content-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/content-moderation/content-moderation.html"
+        ],
+        "originality_notes": "Objects and arrangement are original and built around craft-market use cases.",
+        "design_reuse_cases": [
+          "Boutique market flyer or social graphics",
+          "Packaging inserts and holiday printable assets"
+        ],
+        "integration_guidance": "Keep each item isolated with soft minimal shadows for effortless crop-and-place usage.",
+        "reusability_rationale": "Cozy object sheets give handmade sellers a versatile decorative library beyond standard character sets.",
+        "minimum_object_count": 9
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Handmade Ornament Bow and Gift Clipart Sheet",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 88,
+      "topic_bucket": "APPROVED",
+      "palette": "dusty red, sage green, blush pink, cream, muted gold",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a vertical handmade-shop clipart sheet with eight festive objects arranged in two clean columns on a light textured background. Include glass ornament, ribbon bow, gift box, holly cluster, star ornament, candy cane, mini stocking, and pine sprig bundle. Each object should be fully visible, softly separated, and illustrated with a boutique handcrafted feel. Art style: delicate watercolor and gouache with slight line detail, subtle paper texture, and a charming small-shop aesthetic. The sheet should feel ideal for gift tags, story graphics, planner stickers, and craft printables. Keep it simple and reusable rather than overly decorative. No readable text, no branding, no watermark, and no marketplace-style product badge.",
+      "negative_prompt": "text, logo, watermark, heavy badge, cluttered overlap, hyperreal photo objects, visible crop issues, glitter overload",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "clipart sheet",
+        "material": "watercolor festive object illustrations",
+        "designer_persona": "planner sticker and gift-tag designer",
+        "buyer_use_case": "small-shop holiday decorative object sheet with easy crop-and-use flexibility",
+        "design_placement": "gift tags, story templates, planner stickers, printable craft elements",
+        "design_function": "single vertical sheet of soft handmade festive objects",
+        "art_style": "Handmade Boutique Watercolor Object Illustration",
+        "style_rationale": "soft watercolor objects are easy to integrate into handmade-shop visual systems and pastel-friendly holiday branding",
+        "distinctiveness": "focuses on decorative ornament and gift objects rather than full character sets, rounding out the handmade set",
+        "copy_space": "light whitespace between objects",
+        "metadata_seed_keywords": [
+          "handmade christmas objects",
+          "ornament bow clipart",
+          "boutique holiday sheet"
+        ],
+        "source_urls": [
+          "https://adobestock.adobe.com/rs/269-YNG-601/images/2022-CreativeComponents.pdf",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+          "https://helpx.adobe.com/sa_en/stock/contributor/submit-your-content/submit-distinct-content/distinct-content-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/content-moderation/content-moderation.html"
+        ],
+        "originality_notes": "General seasonal symbols only, with original styling and arrangement.",
+        "design_reuse_cases": [
+          "Story graphics and planner sticker assets",
+          "Gift tag and printable craft decoration"
+        ],
+        "integration_guidance": "Maintain clean separations so the sheet functions well in vertical e-commerce previews and crop-based workflows.",
+        "reusability_rationale": "A decorative object sheet gives handmade sellers versatile supporting assets for many smaller-format seasonal products.",
+        "minimum_object_count": 8
+      }
+    }
+  ]
+}
