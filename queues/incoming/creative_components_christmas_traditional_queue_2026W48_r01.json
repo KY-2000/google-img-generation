@@ -1,0 +1,423 @@
+{
+  "run_id": "TF_creative_components_christmas_traditional_2026W48_r01",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-26T17:05:00+08:00",
+  "research": {
+    "finder": "creative_components",
+    "product_line": "commercial_background",
+    "strategy": "traditional commercial mass-market Christmas",
+    "scope_note": "Corrected per user: each seamless-background asset is a single standalone seamless background, not a multi-panel collection board. Christmas object sheets remain multi-object collections.",
+    "source_urls": [
+      "https://adobestock.adobe.com/rs/269-YNG-601/images/2022-CreativeComponents.pdf",
+      "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+      "https://helpx.adobe.com/sa_en/stock/contributor/submit-your-content/submit-distinct-content/distinct-content-submission-best-practices.html",
+      "https://helpx.adobe.com/stock/contributor/content-moderation/content-moderation.html"
+    ],
+    "minimum_objects_per_asset": 4,
+    "notes": "asset_id omitted; queue keeps compatible production schema."
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Classic Candy Cane Diagonal Stripe Seamless Background",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "candy red, cream white, evergreen accents",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a single commercially useful Christmas seamless background for mainstream retail packaging, greeting cards, e-commerce banners, and gift wrap concepts. The entire 16:9 image should present one repeatable pattern, not a collection board. Build a clean seamless diagonal stripe design inspired by classic candy cane colors, with alternating red and cream bands and small evenly spaced evergreen pinstripe accents to add richness without clutter. The pattern should tile convincingly and maintain consistent rhythm across the whole frame. Art style: crisp commercial flat surface-pattern design with smooth edges, subtle paper print texture, and balanced repeat spacing. Keep the mood classic, familiar, and highly saleable, like a dependable holiday gift-wrap background that works for many brands. Ensure there are multiple repeating visual elements across the pattern so it feels designed, not like a simple two-color stripe. No text, no logo, no watermark, no mockup packaging, and no copied marketplace listing layout.",
+      "negative_prompt": "text, logo, watermark, board preview, mockup package, one single object, poor repeat seam, blurry edges, neon palette, branding",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "seamless background",
+        "material": "flat illustrated repeat pattern",
+        "designer_persona": "mass-market packaging designer",
+        "buyer_use_case": "retail holiday packaging and mainstream greeting card background",
+        "design_placement": "gift wrap, sale banners, seasonal web headers, party printables",
+        "design_function": "single seamless classic holiday background for broad commercial reuse",
+        "art_style": "Traditional Commercial Flat Pattern",
+        "style_rationale": "classic red and cream stripes remain one of the most recognizable and reusable Christmas pattern directions",
+        "distinctiveness": "keeps a clean candy-cane direction but adds small evergreen accent rhythm so it is more useful than a plain stripe",
+        "copy_space": "not copy-space led; full pattern coverage",
+        "metadata_seed_keywords": [
+          "christmas seamless pattern",
+          "candy cane stripe",
+          "gift wrap background",
+          "holiday repeat"
+        ],
+        "source_urls": [
+          "https://adobestock.adobe.com/rs/269-YNG-601/images/2022-CreativeComponents.pdf",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+          "https://helpx.adobe.com/sa_en/stock/contributor/submit-your-content/submit-distinct-content/distinct-content-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/content-moderation/content-moderation.html"
+        ],
+        "originality_notes": "Uses a generic holiday visual language but not any copied listing cover, badge, or text presentation.",
+        "design_reuse_cases": [
+          "Gift-wrap or product packaging background",
+          "Retail promo banner or festive email header"
+        ],
+        "integration_guidance": "Works best when cropped freely because the whole surface is consistent; the repeat should remain convincing at the edges.",
+        "reusability_rationale": "A clean seamless candy-cane background is a staple that can be recolored and reused across many mainstream holiday campaigns.",
+        "minimum_object_count": 4
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Holly Berry Dot Seamless Gift Wrap Background",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "deep red, evergreen, cream, soft blush",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Generate a single seamless Christmas background designed for mainstream gift wrap, retail signage, party supplies, and festive stationery. The full 16:9 image should show one repeating surface pattern rather than multiple sample panels. Use a balanced all-over repeat of holly leaves, red berry clusters, and small dotted filler motifs on a warm cream ground. The repeat should be seamless and visually steady, with enough density to feel premium but not overcrowded. Art style: polished commercial flat illustration with clean vector-like edges, slight printed-paper texture, and tidy motif spacing suitable for mass-market seasonal products. Make the pattern feel traditional and broadly licensable, not whimsical in a niche way. Include multiple visible repeats so the tiled nature is evident across the whole frame. No text, no watermark, no brand identifiers, no circles or product badges, and no presentation-board layout.",
+      "negative_prompt": "title text, logo, badge, multiple swatches, watermark, sparse empty layout, photographic props, visible seams, copyrighted icons, over-detailed leaves",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "seamless background",
+        "material": "flat illustrated botanical holiday repeat",
+        "designer_persona": "retail seasonal designer",
+        "buyer_use_case": "classic Christmas surface usable across packaging, cards, and store promotions",
+        "design_placement": "wrapping paper, paper goods, web sale graphics, merchandising backdrops",
+        "design_function": "single seamless botanical holiday background with familiar festive symbols",
+        "art_style": "Traditional Commercial Botanical Pattern",
+        "style_rationale": "holly and berry motifs are strongly associated with Christmas and are easy for buyers to reuse in conservative commercial settings",
+        "distinctiveness": "botanical all-over repeat complements stripe and plaid directions without becoming a minor recolor variation",
+        "copy_space": "full bleed repeat pattern",
+        "metadata_seed_keywords": [
+          "holly pattern",
+          "berry seamless christmas",
+          "gift wrap repeat",
+          "traditional holiday background"
+        ],
+        "source_urls": [
+          "https://adobestock.adobe.com/rs/269-YNG-601/images/2022-CreativeComponents.pdf",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+          "https://helpx.adobe.com/sa_en/stock/contributor/submit-your-content/submit-distinct-content/distinct-content-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/content-moderation/content-moderation.html"
+        ],
+        "originality_notes": "Original motif arrangement and density; no mimicry of any specific seller cover design.",
+        "design_reuse_cases": [
+          "Christmas stationery and invitation background",
+          "Seasonal retail packaging or tissue paper"
+        ],
+        "integration_guidance": "Buyers can crop any section thanks to even repeat coverage; keep motif scale medium so the pattern stays readable in thumbnails.",
+        "reusability_rationale": "Holly-and-berry repeats are a dependable commercial staple because they communicate Christmas instantly without needing text.",
+        "minimum_object_count": 4
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Red Green Tartan Snowflake Seamless Background",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "rich red, forest green, cream, dark navy accents",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create one seamless Christmas background for mainstream commercial use, filling the entire 16:9 composition with a single repeat pattern. Combine a traditional tartan plaid structure with evenly distributed small snowflake motifs so the result feels like classic holiday gift wrap rather than plain fabric. Use intersecting red and green bands, narrow cream lines, and subtle dark accents for depth. Scatter simple small snowflakes in a disciplined rhythm that still allows the plaid grid to remain dominant. Art style: clean commercial surface pattern design with sharp line work, slightly printed texture, and a polished mass-market finish. The image should read as one cohesive repeatable background, not a board or mockup. Show enough repeated elements to make the seamless nature clear. No text, no seller branding, no watermark, no decorative badge, and no copied textile brand aesthetic.",
+      "negative_prompt": "grid of swatches, logo, text, noisy watercolor, poor symmetry, visible seam, fashion brand tartan copy, empty background, badge",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "seamless background",
+        "material": "plaid repeat pattern with icon overlay",
+        "designer_persona": "holiday product designer",
+        "buyer_use_case": "versatile tartan-based Christmas background for traditional mass-market products",
+        "design_placement": "gift wrap, packaging sleeves, catalogs, flyers, social backgrounds",
+        "design_function": "single seamless plaid holiday background with extra seasonal detail",
+        "art_style": "Traditional Commercial Plaid Pattern",
+        "style_rationale": "plaid is a familiar holiday surface for broad audiences and works especially well when lightly seasonalized with snowflakes",
+        "distinctiveness": "adds snowflake overlay to a tartan structure to make the pattern more specific than a generic plaid alone",
+        "copy_space": "full pattern, no open copy area",
+        "metadata_seed_keywords": [
+          "christmas tartan",
+          "snowflake plaid",
+          "holiday seamless background"
+        ],
+        "source_urls": [
+          "https://adobestock.adobe.com/rs/269-YNG-601/images/2022-CreativeComponents.pdf",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+          "https://helpx.adobe.com/sa_en/stock/contributor/submit-your-content/submit-distinct-content/distinct-content-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/content-moderation/content-moderation.html"
+        ],
+        "originality_notes": "Classic plaid is used generically, with an original repeat and snowflake arrangement.",
+        "design_reuse_cases": [
+          "Seasonal product sleeve or carton background",
+          "Holiday flyer or web banner background"
+        ],
+        "integration_guidance": "Keep snowflakes secondary so buyers can still use the plaid as a broad background; edge continuity must be convincing.",
+        "reusability_rationale": "This direction satisfies buyers wanting a safe, familiar Christmas aesthetic with immediate retail usability.",
+        "minimum_object_count": 4
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Minimal Ornament and Pine Tree Seamless Holiday Background",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 89,
+      "topic_bucket": "APPROVED",
+      "palette": "bright red, evergreen, cream, muted gold",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Produce a single vertical Christmas seamless background for mobile stories, seasonal advertising, and printable wrapping concepts. The whole 9:16 image must be one repeatable pattern, not a multi-panel preview. Use a neat all-over repeat of small Christmas ornaments, simplified pine trees, tiny stars, and subtle dotted fillers. Keep the motif scale small and evenly spaced so the pattern remains practical for overlays and product messaging. Art style: clean mainstream commercial flat illustration with tidy outlines, crisp shapes, and light printed texture. The mood should feel dependable and broad-appeal, suitable for supermarkets, greeting card sellers, and general gift products. Show enough repeated motifs to make it obviously seamless across the full frame. No text, logos, product packaging mockups, marketplace-style badges, or visible seams.",
+      "negative_prompt": "title text, logo, watermark, panel board, large single ornament, visible seam, luxury realism, too much empty space, glitter overload",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "seamless background",
+        "material": "flat icon repeat pattern",
+        "designer_persona": "mobile campaign designer",
+        "buyer_use_case": "vertical holiday background for story graphics and packaging concepts",
+        "design_placement": "mobile stories, retail ads, vertical gift wrap previews, app promotions",
+        "design_function": "single mobile-friendly Christmas repeat background",
+        "art_style": "Traditional Commercial Icon Pattern",
+        "style_rationale": "small repeating icons work well behind promotional text and in mobile-first retail design",
+        "distinctiveness": "uses a compact ornament-tree icon family instead of plaid or purely botanical motifs",
+        "copy_space": "pattern-led but calm enough for overlay text",
+        "metadata_seed_keywords": [
+          "vertical christmas pattern",
+          "ornament seamless background",
+          "pine tree repeat"
+        ],
+        "source_urls": [
+          "https://adobestock.adobe.com/rs/269-YNG-601/images/2022-CreativeComponents.pdf",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+          "https://helpx.adobe.com/sa_en/stock/contributor/submit-your-content/submit-distinct-content/distinct-content-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/content-moderation/content-moderation.html"
+        ],
+        "originality_notes": "A generic icon-based holiday repeat with original composition and no dependence on another seller layout.",
+        "design_reuse_cases": [
+          "Instagram story or mobile ad background",
+          "Vertical festive packaging or poster backdrop"
+        ],
+        "integration_guidance": "Motifs should stay small and regular so buyers can place headlines over the design without losing legibility.",
+        "reusability_rationale": "A vertical seamless pattern broadens usability for social placements while remaining commercially conservative.",
+        "minimum_object_count": 4
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Traditional Christmas Tree Variety Clipart Sheet",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "evergreen, red, gold, cream, warm brown",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a Christmas clipart sheet for mass-market card makers, classroom resources, printable shops, and festive merchandise designers. Present ten separate Christmas tree illustrations arranged cleanly on a light neutral background in a 16:9 composition. Each tree should be distinct yet broadly commercial: classic decorated evergreen, ribbon-wrapped tree, gold-star tree, snowy tree, ornament-heavy tree, simple cone tree, folk-style tree, candy-decorated tree, bow-topped tree, and a minimal elegant tree. Use a traditional mainstream look rather than niche boutique styling. Art style: polished storybook gouache illustration with crisp edges, tidy silhouettes, restrained texture, and catalog-ready clarity. Every tree should be fully visible and clearly separated with comfortable spacing. This is a single clipart sheet asset, not a product cover with text. No readable text, no logo, no watermark, and no copied tree arrangement from competitor listings.",
+      "negative_prompt": "title, badge, watermark, overlapping trees, identical tree designs, realism photo tree, brand logo, distorted proportions",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "clipart sheet",
+        "material": "gouache-style illustrated objects",
+        "designer_persona": "greeting card and printable asset designer",
+        "buyer_use_case": "multi-tree clipart for general Christmas design projects",
+        "design_placement": "cards, stickers, classroom worksheets, party decor printables",
+        "design_function": "single sheet containing multiple tree objects for easy secondary use",
+        "art_style": "Traditional Commercial Gouache Illustration",
+        "style_rationale": "tree variations are among the safest and most broadly reusable holiday object families",
+        "distinctiveness": "keeps the popular multi-tree concept but uses a more mainstream commercial rendering and object variety",
+        "copy_space": "whitespace between objects",
+        "metadata_seed_keywords": [
+          "christmas tree clipart",
+          "holiday tree set",
+          "gouache christmas objects"
+        ],
+        "source_urls": [
+          "https://adobestock.adobe.com/rs/269-YNG-601/images/2022-CreativeComponents.pdf",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+          "https://helpx.adobe.com/sa_en/stock/contributor/submit-your-content/submit-distinct-content/distinct-content-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/content-moderation/content-moderation.html"
+        ],
+        "originality_notes": "Concept inspired by the general popularity of multi-tree sheets, but with an original lineup and no marketplace text treatment.",
+        "design_reuse_cases": [
+          "Card and sticker graphics library",
+          "Educational or craft printable elements"
+        ],
+        "integration_guidance": "Spacing should make each tree independently crop-safe while still reading as one cohesive sheet.",
+        "reusability_rationale": "A tree variety sheet gives buyers multiple ready-to-use seasonal icons inside one licensed image.",
+        "minimum_object_count": 10
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Santa Reindeer Snowman and Elf Character Sheet",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "classic red, white, evergreen, sky blue, warm brown",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Design a vertical Christmas character clipart sheet for posters, school flyers, mobile stories, and family-friendly holiday campaigns. Arrange eight distinct characters in a tidy 2-column layout on a light background within a 9:16 frame. Include Santa Claus, reindeer, snowman, elf, gingerbread person, nutcracker, polar bear in scarf, and Christmas stocking. Every object must be complete, separated, and easy to crop individually. Art style: bright mainstream commercial storybook illustration with clear outlines, soft shading, and friendly expressions. The result should feel like a versatile general-market asset rather than a niche handcrafted product. Keep spacing clean and the overall presentation uncluttered. No readable text, no seller branding, no watermarks, and no resemblance to protected entertainment characters.",
+      "negative_prompt": "text, logo, watermark, overlapping figures, copyrighted franchise style, extra limbs, dark horror mood, clutter, packaging mockup",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "clipart sheet",
+        "material": "storybook digital illustration",
+        "designer_persona": "family event designer",
+        "buyer_use_case": "general-purpose holiday character asset for posters and social media",
+        "design_placement": "school posters, family event graphics, seasonal stories, printable crafts",
+        "design_function": "single sheet of recognizable Christmas characters",
+        "art_style": "Traditional Commercial Storybook Illustration",
+        "style_rationale": "widely familiar Christmas archetypes have broad mass-market usefulness",
+        "distinctiveness": "combines multiple iconic characters in one vertical sheet optimized for contemporary placements",
+        "copy_space": "moderate whitespace between characters",
+        "metadata_seed_keywords": [
+          "santa clipart set",
+          "christmas characters",
+          "reindeer snowman elf sheet"
+        ],
+        "source_urls": [
+          "https://adobestock.adobe.com/rs/269-YNG-601/images/2022-CreativeComponents.pdf",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+          "https://helpx.adobe.com/sa_en/stock/contributor/submit-your-content/submit-distinct-content/distinct-content-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/content-moderation/content-moderation.html"
+        ],
+        "originality_notes": "Uses public generic holiday archetypes only, with fresh styling and arrangement.",
+        "design_reuse_cases": [
+          "Family-friendly holiday poster graphics",
+          "Vertical social stories and festive printable elements"
+        ],
+        "integration_guidance": "All characters should remain centered and fully visible for easy crop-and-use workflows.",
+        "reusability_rationale": "A mixed-character sheet serves more buyer jobs than a single-subject set while staying clearly seasonal.",
+        "minimum_object_count": 8
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Christmas Baking Object Clipart Sheet",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "gingerbread brown, icing white, red, cream, evergreen",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Illustrate a commercially useful Christmas baking object sheet for recipe bloggers, bakeries, holiday menu designers, and craft printable sellers. Show nine separate objects on a warm light background in a clean 16:9 layout: gingerbread cookie, candy cane, cocoa mug, cupcake, whisk, rolling pin, cinnamon sticks, star cookie, and small decorated cake. Each object should be clearly isolated, evenly spaced, and fully visible. Art style: polished gouache food illustration with readable detail, warm festive color, and subtle texture. Keep the style appealing to general commercial buyers rather than overly artisanal or experimental. The sheet should feel instantly usable across editorial and promotional contexts. No text, no logos, no brand packaging, no watermark, and no copied cookbook-page compositions.",
+      "negative_prompt": "recipe text, logo, branded packaging, watermark, messy table scene, melted distorted food, empty composition, hyperreal photo style",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "clipart sheet",
+        "material": "gouache food object illustration",
+        "designer_persona": "bakery marketing designer",
+        "buyer_use_case": "holiday food and baking graphics for promotional and editorial use",
+        "design_placement": "bakery posts, menu art, recipe graphics, seasonal tags",
+        "design_function": "single sheet of festive baking-related objects",
+        "art_style": "Traditional Commercial Food Illustration",
+        "style_rationale": "holiday baking remains a strong and familiar seasonal theme for broad consumer audiences",
+        "distinctiveness": "introduces a culinary object family instead of duplicating trees or generic characters",
+        "copy_space": "spacing between objects only",
+        "metadata_seed_keywords": [
+          "christmas baking clipart",
+          "holiday cookie cocoa set",
+          "festive food objects"
+        ],
+        "source_urls": [
+          "https://adobestock.adobe.com/rs/269-YNG-601/images/2022-CreativeComponents.pdf",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+          "https://helpx.adobe.com/sa_en/stock/contributor/submit-your-content/submit-distinct-content/distinct-content-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/content-moderation/content-moderation.html"
+        ],
+        "originality_notes": "Object selection and arrangement are original and built for general holiday design use.",
+        "design_reuse_cases": [
+          "Bakery promotion graphics",
+          "Holiday recipe and menu design assets"
+        ],
+        "integration_guidance": "Maintain clear separation so buyers can crop one or several food items as needed.",
+        "reusability_rationale": "Food-themed seasonal icons answer editorial and promotional needs not met by purely decorative object sheets.",
+        "minimum_object_count": 9
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Blank Holiday Gift Tag and Label Object Sheet",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 88,
+      "topic_bucket": "APPROVED",
+      "palette": "red, green, cream, kraft brown, muted gold",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a Christmas utility clipart sheet for crafters, gift businesses, packaging designers, and printable template creators. Arrange eight blank festive tag and label objects vertically on a clean neutral background in a 9:16 composition. Include varied shapes such as scalloped tag, circular tag, ticket label, banner tag, folded card label, notched rectangle, ornament-shaped tag, and rounded label. Decorate them lightly with holly, pine sprigs, stars, bows, or candy-cane edging, but keep the center of each item blank so buyers can add their own text later. Art style: polished commercial craft illustration with slight paper texture and a clear catalog presentation. Each object must be fully visible and easy to crop. No readable greetings, no branding, no logos, no watermark, and no seller cover styling.",
+      "negative_prompt": "readable text, logo, watermark, crowded overlap, blank plain labels without festive detail, product packaging mockup, copied listing design",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "clipart sheet",
+        "material": "illustrated paper tags and labels",
+        "designer_persona": "small-shop packaging designer",
+        "buyer_use_case": "customizable holiday gift tag and label asset",
+        "design_placement": "packaging, printable crafts, e-commerce inserts, gift wrapping",
+        "design_function": "single sheet of customizable festive utility elements",
+        "art_style": "Traditional Commercial Craft Illustration",
+        "style_rationale": "blank label shapes are highly reusable because buyers can personalize them for many different commercial needs",
+        "distinctiveness": "focuses on functional packaging elements rather than purely decorative icons",
+        "copy_space": "blank inner area inside each tag",
+        "metadata_seed_keywords": [
+          "christmas tag clipart",
+          "holiday label set",
+          "blank festive tags"
+        ],
+        "source_urls": [
+          "https://adobestock.adobe.com/rs/269-YNG-601/images/2022-CreativeComponents.pdf",
+          "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+          "https://helpx.adobe.com/sa_en/stock/contributor/submit-your-content/submit-distinct-content/distinct-content-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/content-moderation/content-moderation.html"
+        ],
+        "originality_notes": "Utility-oriented object sheet with original shapes and decoration choices.",
+        "design_reuse_cases": [
+          "Custom gift tag and packaging projects",
+          "Printable label template starter graphics"
+        ],
+        "integration_guidance": "Keep label centers empty and balanced so users can easily add their own typography.",
+        "reusability_rationale": "Functional blank tags provide direct commercial utility beyond decorative image-only assets.",
+        "minimum_object_count": 8
+      }
+    }
+  ]
+}
