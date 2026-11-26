@@ -1,0 +1,513 @@
+{
+  "run_id": "TF_creative_components_decorative_2026W48_r02",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-26T20:37:12+08:00",
+  "research": {
+    "finder": "creative_components",
+    "product_line": "commercial_background",
+    "strategy": "decorative copy space backgrounds R02",
+    "source_urls": [
+      "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+      "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+      "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+    ],
+    "screened_count": 32,
+    "approved_count": 8,
+    "score_model": "30 buyer utility,25 differentiation,15 composition,10 credibility,10 4K feasibility,5 timeliness,5 diversity",
+    "score_status": "Editorial estimates, not sales data",
+    "id_policy": "All IDs omitted for local allocator; local registry not available in this run",
+    "exclusion_registry": "Live Google Doc read: 11 reported cases; SC-012 is a template",
+    "prior_local_theme_count": 72,
+    "prior_scope": "Visible local queue files and remote decorative r01; not exhaustive across all GitHub history"
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Spring Rain Umbrellas and Boots Along a Puddle Border",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "butter yellow, denim blue, coral, pale sky blue",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a single horizontal 16:9 decorative illustration for a preschool weather activity sheet and a seasonal children's rainwear web banner. Arrange four cheerful open umbrellas at different heights behind three pairs of little rain boots along the bottom quarter. Give each umbrella a plausible curved canopy with neatly spaced ribs, and keep boot openings, soles and left and right pairs recognizable. A few shallow blue puddles connect the decorative band, with tiny ripples and restrained raindrops confined to the edges. Use classic commercial gouache illustration, opaque matte pigment, precise friendly silhouettes, soft layered shading and delicate brush grain. Balance butter yellow, denim blue and coral against a fresh pale sky blue wash. Preserve the upper central sixty five percent as a nearly uniform light field for dark headlines and teaching instructions; keep all critical motifs within safe cropping margins. No people, shop scene, text, numbers, logos, watermark, divided panels or repeated tiles.",
+      "negative_prompt": "extra boots, malformed umbrella ribs, excessive rain in copy area, text, logos, watermarks",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "decorative copy space background",
+        "art_style": "Classic Commercial Gouache Illustration",
+        "art_style_zh": "经典商业水粉插画",
+        "theme_zh": "雨伞与雨靴春雨背景",
+        "designer_persona": "儿童活动设计师",
+        "buyer_use_case": "幼儿园天气教学资料",
+        "design_placement": "幼儿园天气教学资料；雨季儿童服饰促销横幅",
+        "design_function": "One continuous raster decorative background with an open typography field",
+        "design_reuse_cases": [
+          "幼儿园天气教学资料",
+          "雨季儿童服饰促销横幅"
+        ],
+        "integration_guidance": "Bottom edge band; upper 65% pale blue",
+        "reusability_rationale": "用雨具形成天气识别，低位装饰不占用教学信息区域。",
+        "distinctiveness": "用雨具形成天气识别，低位装饰不占用教学信息区域。",
+        "style_rationale": "经典商业水粉插画；用雨具形成天气识别，低位装饰不占用教学信息区域。",
+        "copy_space": "Bottom edge band; upper 65% pale blue",
+        "metadata_seed_keywords": [
+          "umbrella",
+          "rain boots",
+          "puddle",
+          "spring rain",
+          "weather",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Original composition inspired by general decorative copy-space principles; no reference image or contributor artwork is used as generation input.",
+        "qc_check": "Check umbrella rib structure, paired boots, puddle perspective and unobstructed upper field.",
+        "score_breakdown": {
+          "buyer_utility": 27,
+          "differentiation": 23,
+          "composition": 14,
+          "credibility": 9,
+          "4k_feasibility": 9,
+          "timeliness": 5,
+          "diversity": 5
+        }
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Colorful Paper Kites and Long Ribbon Tails Diagonal Border",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "sky blue, tomato red, sunflower yellow, turquoise, ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Design one horizontal 16:9 decorative background for a family outdoor festival banner and a children's recreation program announcement. Place four distinct paper kites near the upper right edge and two smaller kites near the far upper left, forming a sweeping diagonal rhythm without crossing the central text field. Include recognizable diamond and delta shapes, delicate wooden spars, taut paper panels, and short ribbon tails tied to the lower tips. Let the ribbons bend gently with a consistent breeze, keeping every string short and away from the copy area. Render with clean geometric commercial illustration, balanced flat shapes, restrained paper grain and subtle tonal folds at the kite seams. Use sky blue, tomato red, sunflower yellow and turquoise, with a luminous ivory blue center. Keep the left and central sixty percent clear and low contrast, with no landscape horizon or people. Output one continuous background with crisp edges and no captions, logos, watermarks, sample panels or recognizable branded designs.",
+      "negative_prompt": "crossed strings in copy area, impossible kite frames, flying people, busy clouds, text, logo, watermark",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "decorative copy space background",
+        "art_style": "Clean Geometric Commercial Illustration",
+        "art_style_zh": "清爽几何商业插画",
+        "theme_zh": "彩色风筝对角线背景",
+        "designer_persona": "家庭活动宣传设计师",
+        "buyer_use_case": "社区风筝节活动海报",
+        "design_placement": "社区风筝节活动海报；亲子户外活动网页横幅",
+        "design_function": "One continuous raster decorative background with an open typography field",
+        "design_reuse_cases": [
+          "社区风筝节活动海报",
+          "亲子户外活动网页横幅"
+        ],
+        "integration_guidance": "Upper left to lower right diagonal at edges; center and lower left 60% open",
+        "reusability_rationale": "风筝骨架、丝带形成鲜明方向感，适合亲子活动与户外课程。",
+        "distinctiveness": "风筝骨架、丝带形成鲜明方向感，适合亲子活动与户外课程。",
+        "style_rationale": "清爽几何商业插画；风筝骨架、丝带形成鲜明方向感，适合亲子活动与户外课程。",
+        "copy_space": "Upper left to lower right diagonal at edges; center and lower left 60% open",
+        "metadata_seed_keywords": [
+          "kite",
+          "ribbon tail",
+          "outdoor activity",
+          "spring",
+          "family festival",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Original composition inspired by general decorative copy-space principles; no reference image or contributor artwork is used as generation input.",
+        "qc_check": "Check coherent kite frames, attachment points and tail flow; no strings cutting across the headline zone.",
+        "score_breakdown": {
+          "buyer_utility": 28,
+          "differentiation": 23,
+          "composition": 14,
+          "credibility": 9,
+          "4k_feasibility": 10,
+          "timeliness": 5,
+          "diversity": 4
+        }
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Graduation Mortarboards and Diploma Scroll Corner Frame",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 95,
+      "topic_bucket": "APPROVED",
+      "palette": "midnight navy, antique gold, ivory, muted burgundy",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create one polished horizontal 16:9 graduation background for a school commencement invitation and an academic congratulations web header. Arrange three traditional mortarboards with clearly formed square tops and naturally falling tassels near the lower left corner, accompanied by two rolled blank ivory diploma scrolls secured with restrained burgundy ribbons. Add two smaller caps and a few simple gold four point sparks in the opposite upper right corner, with generous breathing room between the clusters. Use classic commercial flat illustration with crisp vector like silhouettes, precise edges, restrained matte shading and a sophisticated midnight navy, antique gold and ivory palette. The middle sixty five percent must remain a clean, nearly uniform deep navy field suitable for independently placed white or cream typography. Keep decorative details crop safe, with no school crest, institution insignia or recognizable uniforms. Provide a single uninterrupted raster illustration, no lettering, dates, visible diploma writing, logos, watermarks, photo collage or mockup presentation.",
+      "negative_prompt": "readable diploma, university emblem, tangled tassels, malformed cap, excessive sparks, logo, watermark",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "decorative copy space background",
+        "art_style": "Classic Commercial Flat Illustration",
+        "art_style_zh": "经典商业扁平插画",
+        "theme_zh": "毕业学士帽与证书双角背景",
+        "designer_persona": "学校及活动策划设计师",
+        "buyer_use_case": "毕业典礼邀请与电子贺卡",
+        "design_placement": "毕业典礼邀请与电子贺卡；学校毕业活动网页头图",
+        "design_function": "One continuous raster decorative background with an open typography field",
+        "design_reuse_cases": [
+          "毕业典礼邀请与电子贺卡",
+          "学校毕业活动网页头图"
+        ],
+        "integration_guidance": "Opposite upper right and lower left corners; 65% dark center",
+        "reusability_rationale": "成熟藏蓝金色体系，适合学校正式邀请及通用祝贺。",
+        "distinctiveness": "成熟藏蓝金色体系，适合学校正式邀请及通用祝贺。",
+        "style_rationale": "经典商业扁平插画；成熟藏蓝金色体系，适合学校正式邀请及通用祝贺。",
+        "copy_space": "Opposite upper right and lower left corners; 65% dark center",
+        "metadata_seed_keywords": [
+          "graduation",
+          "mortarboard",
+          "diploma",
+          "commencement",
+          "academic",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Original composition inspired by general decorative copy-space principles; no reference image or contributor artwork is used as generation input.",
+        "qc_check": "Check tassels hang from cap buttons, scrolls remain unprinted, and all copy space is quiet.",
+        "score_breakdown": {
+          "buyer_utility": 29,
+          "differentiation": 22,
+          "composition": 15,
+          "credibility": 9,
+          "4k_feasibility": 10,
+          "timeliness": 5,
+          "diversity": 5
+        }
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Moon Phases and Fine Celestial Orbit Top Border",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 90,
+      "topic_bucket": "APPROVED",
+      "palette": "deep indigo, warm ivory, muted silver, pale gold",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Make one vertical 9:16 decorative celestial background for a lunar observation journal cover and an astronomy workshop poster. Across the upper quarter, arrange seven distinct moon phase discs along a shallow arc, progressing logically from a waxing crescent through first quarter and waxing gibbous to full moon, then waning gibbous, last quarter and waning crescent. Keep the illuminated portions consistent with a single conventional viewing orientation and give the disks a subtle etched lunar surface rather than arbitrary facial features. Add a handful of tiny stars and two fine decorative orbital arcs confined to the top and upper side margins. Render in vintage celestial line art, with delicate ivory engraved strokes, faint stippled shading and restrained pale gold accents over deep indigo. Maintain the lower central sixty five percent as a calm dark field with minimal grain for light text, including quiet mobile margins. This is one decorative illustration, not a labeled scientific chart. No captions, numbers, logos, watermarks or mystical sigils.",
+      "negative_prompt": "incorrect moon phase sequence, faces on moons, astrology glyphs, constellation labels, dense starfield in center, watermark",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "decorative copy space background",
+        "art_style": "Vintage Celestial Line Art",
+        "art_style_zh": "复古天文线稿",
+        "theme_zh": "月相与星空轨道背景",
+        "designer_persona": "科学教育及文具设计师",
+        "buyer_use_case": "月相观察日记封面",
+        "design_placement": "月相观察日记封面；天文主题讲座海报背景",
+        "design_function": "One continuous raster decorative background with an open typography field",
+        "design_reuse_cases": [
+          "月相观察日记封面",
+          "天文主题讲座海报背景"
+        ],
+        "integration_guidance": "Upper 28% celestial arc; lower central 65% indigo",
+        "reusability_rationale": "天文主题线稿适用于教育及文具设计，月相次序有明确结构。",
+        "distinctiveness": "天文主题线稿适用于教育及文具设计，月相次序有明确结构。",
+        "style_rationale": "复古天文线稿；天文主题线稿适用于教育及文具设计，月相次序有明确结构。",
+        "copy_space": "Upper 28% celestial arc; lower central 65% indigo",
+        "metadata_seed_keywords": [
+          "moon phases",
+          "celestial",
+          "astronomy",
+          "night sky",
+          "line art",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Original composition inspired by general decorative copy-space principles; no reference image or contributor artwork is used as generation input.",
+        "qc_check": "Check ordered lunar illumination, no fake star labels or scientific diagram claims.",
+        "score_breakdown": {
+          "buyer_utility": 26,
+          "differentiation": 23,
+          "composition": 14,
+          "credibility": 8,
+          "4k_feasibility": 9,
+          "timeliness": 5,
+          "diversity": 5
+        }
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Painted Easter Eggs and Spring Meadow Nest Border",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "pastel lilac, pale yellow, robin egg blue, sage, ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Paint a single wide 16:9 Easter decorative background for an egg hunt invitation and a spring gift shop promotion. Along the bottom edge place six individually painted eggs, some nestled in a small loosely woven twig nest at the lower left and the rest standing among short spring grass toward the lower right. Vary the egg decorations with tiny dots, restrained stripes, simple petal marks and small checks, using an original coordinated palette of lilac, pale yellow, robin egg blue and sage. Add a few delicate white daisies close to the grass, keeping the decoration low and cohesive instead of building a landscape. Use traditional stationery watercolor with controlled pigment washes, translucent layered color, gently textured edges and subtle warm paper tooth. Preserve the upper central sixty five percent as a bright ivory field suitable for separately typeset event information. Keep objects readable at thumbnail size and comfortably inside the cropping boundary. No people, rabbits, baskets, text, logos, watermark, swatch panels or tiled repeat.",
+      "negative_prompt": "cracked eggs, distorted nest, duplicate motifs, overly crowded grass, text, logos, watermark",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "decorative copy space background",
+        "art_style": "Traditional Stationery Watercolor",
+        "art_style_zh": "传统贺卡水彩",
+        "theme_zh": "复活节彩蛋与草地鸟巢背景",
+        "designer_persona": "节庆贺卡与零售设计师",
+        "buyer_use_case": "复活节寻蛋活动邀请函",
+        "design_placement": "复活节寻蛋活动邀请函；春季礼品店促销背景",
+        "design_function": "One continuous raster decorative background with an open typography field",
+        "design_reuse_cases": [
+          "复活节寻蛋活动邀请函",
+          "春季礼品店促销背景"
+        ],
+        "integration_guidance": "Low meadow band; upper central 65% ivory",
+        "reusability_rationale": "彩蛋以春季贺卡常见形式出现，鸟巢和草地建立统一低位装饰。",
+        "distinctiveness": "彩蛋以春季贺卡常见形式出现，鸟巢和草地建立统一低位装饰。",
+        "style_rationale": "传统贺卡水彩；彩蛋以春季贺卡常见形式出现，鸟巢和草地建立统一低位装饰。",
+        "copy_space": "Low meadow band; upper central 65% ivory",
+        "metadata_seed_keywords": [
+          "easter eggs",
+          "nest",
+          "spring grass",
+          "watercolor",
+          "easter invitation",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Original composition inspired by general decorative copy-space principles; no reference image or contributor artwork is used as generation input.",
+        "qc_check": "Check realistic egg shapes, woven nest texture, and clear readable copy field.",
+        "score_breakdown": {
+          "buyer_utility": 28,
+          "differentiation": 22,
+          "composition": 14,
+          "credibility": 9,
+          "4k_feasibility": 9,
+          "timeliness": 5,
+          "diversity": 5
+        }
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Open Oval Fern and Eucalyptus Botanical Wreath",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "sage green, olive, muted teal, warm ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create one portrait 9:16 botanical decorative background for wedding ceremony stationery and a nature inspired wellness workshop poster. Form an open elongated oval wreath using four delicate fern fronds and four slender eucalyptus stems, arranged in alternating clusters along both side margins. Let the tips turn gently inward near the upper and lower quarters, leaving intentional breaks at the top and bottom so the frame feels light and flexible. Draw the fern pinnae with believable attachment and the eucalyptus leaves with distinct rounded forms and fine stem nodes. Render in elegant botanical ink and watercolor, combining restrained fine line detail, transparent sage and olive washes, soft paper tooth and a few muted teal accents. The central fifty eight percent should remain uninterrupted warm ivory for a vertically stacked title and details, with additional quiet mobile interface margins. Keep the plants clearly readable without crossing the central text area. No blossoms, magnolia, pink floral branch, text, logos, watermark, labels or framed sample panels.",
+      "negative_prompt": "flowers, single branch on paper, tangled fern leaves, foliage blocking center, text, logo, watermark",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "decorative copy space background",
+        "art_style": "Elegant Botanical Ink and Watercolor",
+        "art_style_zh": "雅致植物墨线水彩",
+        "theme_zh": "蕨叶与尤加利开放式椭圆花环",
+        "designer_persona": "婚礼文具及健康品牌设计师",
+        "buyer_use_case": "婚礼菜单或仪式说明",
+        "design_placement": "婚礼菜单或仪式说明；植物主题健康活动海报",
+        "design_function": "One continuous raster decorative background with an open typography field",
+        "design_reuse_cases": [
+          "婚礼菜单或仪式说明",
+          "植物主题健康活动海报"
+        ],
+        "integration_guidance": "Open oval side frame with breaks at top and bottom; center 58% clear",
+        "reusability_rationale": "绿叶椭圆框适合正式纵向文字排版，与历史粉色单枝花构图分离。",
+        "distinctiveness": "绿叶椭圆框适合正式纵向文字排版，与历史粉色单枝花构图分离。",
+        "style_rationale": "雅致植物墨线水彩；绿叶椭圆框适合正式纵向文字排版，与历史粉色单枝花构图分离。",
+        "copy_space": "Open oval side frame with breaks at top and bottom; center 58% clear",
+        "metadata_seed_keywords": [
+          "fern",
+          "eucalyptus",
+          "botanical wreath",
+          "greenery",
+          "wedding stationery",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Original composition inspired by general decorative copy-space principles; no reference image or contributor artwork is used as generation input.",
+        "qc_check": "Check fern leaflet structure, eucalyptus stem nodes and quiet center; no single flowering branch.",
+        "score_breakdown": {
+          "buyer_utility": 27,
+          "differentiation": 22,
+          "composition": 15,
+          "credibility": 9,
+          "4k_feasibility": 9,
+          "timeliness": 5,
+          "diversity": 5
+        }
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Lunar New Year Festival Drum and Cymbal Side Border",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "deep vermilion, warm gold, charcoal, cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Design a single horizontal 16:9 Lunar New Year decorative background for a community cultural performance announcement and a shopping center festival banner. Group one traditional barrel shaped festival drum with an ivory drumhead, a small companion drum, two separate brass cymbals and two wooden drumsticks within the rightmost third of the canvas. Use recognizable laced or studded drum construction, rounded cymbal rims and restrained hand painted gold decorative accents without any writing. Arrange the objects as a compact illustrated ornament cluster with a few curved rhythmic brush strokes near the right edge, avoiding a stage or performers. Render with traditional festive ink and gouache, decisive dark contours, matte vermilion pigment, gently brushed gold tones and modest directional shading. Preserve the left and middle sixty percent as a smooth deep red field with sufficient contrast for cream promotional lettering added later. One unified design, no fireworks, lanterns, red packets, zodiac figures, text, logos, watermark or collection board.",
+      "negative_prompt": "pseudo Chinese characters, incorrect drum construction, duplicate drumsticks, performers, stage, logo, watermark",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "decorative copy space background",
+        "art_style": "Traditional Festive Ink and Gouache",
+        "art_style_zh": "传统节庆墨线水粉",
+        "theme_zh": "农历新年鼓乐装饰背景",
+        "designer_persona": "文化活动及零售品牌设计师",
+        "buyer_use_case": "农历新年社区表演海报",
+        "design_placement": "农历新年社区表演海报；商场节庆活动网页横幅",
+        "design_function": "One continuous raster decorative background with an open typography field",
+        "design_reuse_cases": [
+          "农历新年社区表演海报",
+          "商场节庆活动网页横幅"
+        ],
+        "integration_guidance": "Right side compact group; left and middle 60% vermilion",
+        "reusability_rationale": "鼓乐器物提供独立节庆识别，区别于烟花、红包、灯笼和舞狮角色。",
+        "distinctiveness": "鼓乐器物提供独立节庆识别，区别于烟花、红包、灯笼和舞狮角色。",
+        "style_rationale": "传统节庆墨线水粉；鼓乐器物提供独立节庆识别，区别于烟花、红包、灯笼和舞狮角色。",
+        "copy_space": "Right side compact group; left and middle 60% vermilion",
+        "metadata_seed_keywords": [
+          "lunar new year",
+          "festival drum",
+          "cymbals",
+          "percussion",
+          "cultural celebration",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Original composition inspired by general decorative copy-space principles; no reference image or contributor artwork is used as generation input.",
+        "qc_check": "Check barrel drum construction, cymbal shape, natural overlap, no decorative pseudo characters.",
+        "score_breakdown": {
+          "buyer_utility": 28,
+          "differentiation": 24,
+          "composition": 14,
+          "credibility": 9,
+          "4k_feasibility": 9,
+          "timeliness": 5,
+          "diversity": 5
+        }
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Christmas Wooden Toy Train with Wrapped Parcel Border",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "cranberry red, forest green, ivory, warm maple, powder blue",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Illustrate one horizontal 16:9 Christmas decorative background for a toy shop holiday web banner and a children's festive party invitation. Along the bottom quarter place a charming wooden toy locomotive pulling three small connected carriages, each carrying a different arrangement of neatly wrapped parcels with simple ribbon bows. Show clearly formed round wheels, sturdy axles, short couplings and plausible painted wooden shapes on a very shallow snowy track. Keep the train low and compact, leaving visual breathing room at both outer edges. Use classic storybook tempera illustration with matte painted wood, crisp friendly silhouettes, fine brush texture and restrained soft shadows. Combine cranberry red, forest green, warm maple and ivory, with a faint powder blue winter wash behind the bottom edge. The upper central sixty five percent should remain a calm bright ivory field for independently placed titles or product messaging. Avoid a detailed village, tree forest, people or familiar fictional characters. One coherent background, no text, logos, watermark, numbered train or collection panels.",
+      "negative_prompt": "disconnected couplings, malformed wheels, floating parcels, text, trademarked toy designs, logo, watermark",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "component_category": "decorative copy space background",
+        "art_style": "Classic Storybook Tempera Illustration",
+        "art_style_zh": "经典童话蛋彩插画",
+        "theme_zh": "圣诞木制玩具火车与礼物背景",
+        "designer_persona": "节日零售及儿童贺卡设计师",
+        "buyer_use_case": "圣诞玩具店活动横幅",
+        "design_placement": "圣诞玩具店活动横幅；儿童圣诞派对邀请函",
+        "design_function": "One continuous raster decorative background with an open typography field",
+        "design_reuse_cases": [
+          "圣诞玩具店活动横幅",
+          "儿童圣诞派对邀请函"
+        ],
+        "integration_guidance": "Bottom band; upper 65% ivory with cool blue transition",
+        "reusability_rationale": "玩具列车构成连续底部装饰，区别于角色合集和圣诞袜顶部悬挂。",
+        "distinctiveness": "玩具列车构成连续底部装饰，区别于角色合集和圣诞袜顶部悬挂。",
+        "style_rationale": "经典童话蛋彩插画；玩具列车构成连续底部装饰，区别于角色合集和圣诞袜顶部悬挂。",
+        "copy_space": "Bottom band; upper 65% ivory with cool blue transition",
+        "metadata_seed_keywords": [
+          "christmas",
+          "wooden toy train",
+          "wrapped gifts",
+          "holiday",
+          "children",
+          "copy space"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html"
+        ],
+        "originality_notes": "Original composition inspired by general decorative copy-space principles; no reference image or contributor artwork is used as generation input.",
+        "qc_check": "Check rail alignment, train wheels and couplings, blank parcels and copy field.",
+        "score_breakdown": {
+          "buyer_utility": 28,
+          "differentiation": 23,
+          "composition": 14,
+          "credibility": 9,
+          "4k_feasibility": 9,
+          "timeliness": 4,
+          "diversity": 5
+        }
+      }
+    }
+  ]
+}
