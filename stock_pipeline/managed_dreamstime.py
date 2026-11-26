@@ -41,9 +41,12 @@ def _save_state(root: Path, state: dict) -> None:
         temporary.unlink(missing_ok=True)
 
 
-def read_history(root: Path, cdp: str) -> dict[str, str]:
+def read_history(root: Path, cdp: str, refresh: bool = False) -> dict[str, str]:
+    command = ["node", str(root / "tools" / "dreamstime_upload_history.mjs"), cdp]
+    if refresh:
+        command.append("--refresh")
     result = subprocess.run(
-        ["node", str(root / "tools" / "dreamstime_upload_history.mjs"), cdp],
+        command,
         cwd=root, capture_output=True, text=True, encoding="utf-8", timeout=60,
         creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
     )
@@ -54,8 +57,9 @@ def read_history(root: Path, cdp: str) -> dict[str, str]:
 
 def _check_history(root, cdp, filenames, expected, should_stop, progress, stage):
     deadline = time.monotonic() + 90
+    refresh = False
     while not should_stop():
-        history = read_history(root, cdp)
+        history = read_history(root, cdp, refresh)
         unresolved = [name for name in sorted(filenames) if expected not in history.get(name, "").casefold()]
         progress(stage, f"{len(filenames) - len(unresolved)} / {len(filenames)} confirmed in Dreamstime Upload History")
         if not unresolved:
@@ -66,6 +70,7 @@ def _check_history(root, cdp, filenames, expected, should_stop, progress, stage)
                 raise RuntimeError(f"Dreamstime reports {name}: {status}")
         if time.monotonic() >= deadline:
             raise TimeoutError("Dreamstime is still processing: " + ", ".join(unresolved) + ". Retry to check again.")
+        refresh = True
         for _ in range(10):
             if should_stop():
                 break

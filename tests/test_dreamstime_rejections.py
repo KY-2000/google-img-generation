@@ -1,6 +1,7 @@
 import json
 import tempfile
 import unittest
+from unittest.mock import call, patch
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -15,6 +16,19 @@ from tools.prepare_dreamstime_csv import make_row, prepare_rows
 
 
 class DreamstimeRejectionTests(unittest.TestCase):
+    def test_history_poll_reads_ready_tab_before_refreshing_for_missing_files(self):
+        from stock_pipeline.managed_dreamstime import _check_history
+
+        root, cdp = Path("."), "http://127.0.0.1:9222"
+        with (
+            patch("stock_pipeline.managed_dreamstime.time.sleep"),
+            patch("stock_pipeline.managed_dreamstime.read_history",
+                  side_effect=[{}, {"test.csv": "Processed as csv"}]) as read,
+        ):
+            _check_history(root, cdp, {"test.csv"}, "processed as csv",
+                           lambda: False, lambda *_: None, "dreamstime_csv")
+        self.assertEqual(read.call_args_list, [call(root, cdp, False), call(root, cdp, True)])
+
     def test_ftp_csv_maps_subject_codes_disclosure_and_requested_price(self):
         row = make_row("AST990319.jpg", {
             "title": "Leaf-Wrapped Rice Dumplings",

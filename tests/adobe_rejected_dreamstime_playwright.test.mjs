@@ -7,6 +7,45 @@ import {
   isEligible,
   chunkFilesBySize,
 } from "../tools/adobe_rejected_dreamstime_playwright.mjs";
+import { openHistory } from "../tools/dreamstime_upload_history.mjs";
+
+test("Dreamstime retry preserves the in-progress verification tab", async () => {
+  const actions = [];
+  const page = {
+    getByRole: () => ({ filter: () => ({
+      isVisible: async () => false,
+      waitFor: async () => { throw new Error("timeout"); },
+    }) }),
+    goto: async () => actions.push("navigate"),
+    reload: async () => actions.push("reload"),
+    bringToFront: async () => actions.push("show"),
+    locator: () => ({ innerText: async () => "Press & Hold to confirm you are a human" }),
+  };
+  await assert.rejects(openHistory(page, true), /human verification/);
+  assert.deepEqual(actions, ["show"]);
+});
+
+test("Dreamstime retries read a ready tab before requesting a refresh", async () => {
+  const actions = [];
+  const page = {
+    getByRole: (role) => {
+      assert.equal(role, "table");
+      return { filter: ({ hasText }) => {
+        assert.equal(hasText, "ORIGINAL FILENAME");
+        return {
+          isVisible: async () => true,
+          waitFor: async () => actions.push("ready"),
+        };
+      } };
+    },
+    goto: async () => actions.push("navigate"),
+    reload: async () => actions.push("reload"),
+  };
+  await openHistory(page, true);
+  await openHistory(page, true, true);
+  await openHistory(page, false);
+  assert.deepEqual(actions, ["ready", "reload", "ready", "navigate", "ready"]);
+});
 
 test("parses recent Adobe relative submission dates", () => {
   const now = new Date("2026-09-04T00:00:00Z");
