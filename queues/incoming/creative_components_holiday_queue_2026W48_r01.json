@@ -1,0 +1,903 @@
+{
+  "run_id": "TF_creative_components_holiday_2026W48_r01",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-27T16:08:00+08:00",
+  "research": {
+    "finder": "creative_components",
+    "product_line": "commercial_background",
+    "special_edition": "Christmas 2026 and Lunar New Year 2027",
+    "screened_candidates": 40,
+    "approved_count": 14,
+    "score_threshold": 85,
+    "quota_policy": "No fixed topic-count cap and no 3:3:3 or holiday category quota; all unique passing topics retained.",
+    "editorial_scoring_weights": {
+      "buyer_utility": 30,
+      "conceptual_distinctiveness": 25,
+      "composition_flexibility": 15,
+      "material_or_medium_credibility": 10,
+      "technical_4k_feasibility": 10,
+      "seasonal_or_reuse_timeliness": 5,
+      "portfolio_diversity": 5
+    },
+    "live_rejection_registry_checked": true,
+    "confirmed_rejections": 11,
+    "existing_portfolio_checked": [
+      "creative_components_holiday_queue_2026W47_r01.json",
+      "creative_components_holiday_queue_2026W47_r02.json",
+      "creative_components_holiday_queue_2026W47_r03.json",
+      "creative_components_queue_2026W47_r01.json"
+    ],
+    "source_urls": [
+      "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+      "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+      "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+      "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html",
+      "https://stock.adobe.com/pages/artisthub/get-started/create-stock-content-that-sells-stock-contributor-guide-pt-1",
+      "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+      "https://asia.si.edu/whats-on/events/celebrations/lunar-new-year-celebration/",
+      "https://www.visitsingapore.com/whats-happening/all-happenings/festivals/chinese-new-year/",
+      "https://www.hko.gov.hk/en/Observatorys-Blog/109092/No-Lunar-New-Year%E2%80%99s-Eve-on-the-30th-Day-for-Five-Consecutive-Years",
+      "https://international.au.dk/currently/news/preview/artikel/christmas-decorating-the-danish-way",
+      "https://asia.si.edu/whats-on/blog/posts/memories-of-a-lunar-new-year-past/",
+      "https://docs.google.com/document/d/1_D-QBzmhaKmpC42T4hDLefIgOPQ96qHFauaBAm5BgaQ/edit",
+      "https://github.com/KY-2000/google-img-generation/blob/main/stock_pipeline/contracts.py",
+      "https://github.com/KY-2000/google-img-generation/blob/main/schemas/topic_queue.schema.json",
+      "https://github.com/KY-2000/google-img-generation/blob/main/stock_pipeline/queue_ids.py"
+    ],
+    "source_note": "Official sources ground asset categories, cultural context and Adobe policy. Scores and buyer-use hypotheses are editorial, not verified demand or sales statistics.",
+    "id_policy": "Completely unnumbered queue: local run_stock_pipeline.py prepare_queue_asset_ids must assign and persist AST IDs before strict validation. Never assign IDs from stale GitHub main.",
+    "generation_scope": "Research and GitHub queue publication only; no image generation, metadata API, paid calls or Adobe submission."
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Nordic Woven Paper Heart Garland with Central Ivory Copy Field",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "brick red, cream white, muted forest green, natural shadow",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create an original reusable Christmas design component for holiday stationery designer, intended for vertical greeting card and independent craft market story. \nSubject: Show three woven paper hearts made by interlacing narrow matte red and cream folded-paper bands; each has a physically plausible basket-weave pattern and small folded loops for hanging. A fine green cotton string loosely joins the hearts. The festive craft must be accurate without imaginary extra strands. \nComposition: Single 9:16 frame. Keep the overlapping hearts entering from the upper left and left boundary, leaving at least the middle-right two thirds of the card as uninterrupted warm ivory paper. Provide clear mobile-safe top and lower margins, with subtle asymmetric placement rather than a repeated sticker sheet. \nArt style: Commercial Heritage Paper Craft Flat Lay. Use credible scissor-cut edges, tiny paper thickness, faint creases at each interlace, a restrained heirloom holiday palette and near-orthographic handcrafted precision. \nLight and finish: Soft overhead daylight, shallow contact shadows from the paper lifts, warm matte print-ready brightness with no strong glare. \nConstraints: One flat raster component with practical copy space where appropriate. The buyer adds all typography and brands. No letters, logos, watermarks, protected artworks, fake labels, simulated alpha, or unverified vector and seamless-tiling claims.",
+      "negative_prompt": "impossible paper interlacing, heart icon stickers, gift tags, garish plastic shine, gibberish text",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "Traditional Christmas Paper Craft",
+        "material": "Show three woven paper hearts made by interlacing narrow matte red and cream folded-paper bands; each has a physically plausible basket-weave pattern and small folded loops for hanging. A fine green cotton string loosely joins the hearts. The festive craft must be accurate without imaginary extra strands.",
+        "designer_persona": "holiday stationery designer",
+        "buyer_use_case": "vertical greeting card and independent craft market story",
+        "design_placement": "vertical greeting card and independent craft market story",
+        "design_function": "Reusable holiday visual design component",
+        "design_reuse_cases": [
+          "Printed Christmas greeting-card center panel with separately composed lettering",
+          "Vertical craft-market social post with paper-heart edging"
+        ],
+        "integration_guidance": "Flat raster greeting background; left edge ornaments; central-right safe field; no alpha claim",
+        "reusability_rationale": "Physical interlacing and border function differ from prior red paper-cut windows, Christmas foil stars and loose tissue collage.",
+        "art_style": "Commercial Heritage Paper Craft Flat Lay",
+        "style_rationale": "Use credible scissor-cut edges, tiny paper thickness, faint creases at each interlace, a restrained heirloom holiday palette and near-orthographic handcrafted precision.",
+        "distinctiveness": "Physical interlacing and border function differ from prior red paper-cut windows, Christmas foil stars and loose tissue collage.",
+        "copy_space": "Keep the overlapping hearts entering from the upper left and left boundary, leaving at least the middle-right two thirds of the card as uninterrupted warm ivory paper. Provide clear mobile-safe top and lower margins, with subtle asymmetric placement rather than a repeated sticker sheet.",
+        "metadata_seed_keywords": [
+          "woven paper heart",
+          "Christmas craft",
+          "Scandinavian paper decoration",
+          "holiday border",
+          "greeting background"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://international.au.dk/currently/news/preview/artikel/christmas-decorating-the-danish-way"
+        ],
+        "editorial_score_breakdown": {
+          "buyer_utility": 28,
+          "conceptual_distinctiveness": 22,
+          "composition_flexibility": 14,
+          "material_or_medium_credibility": 9,
+          "technical_4k_feasibility": 9,
+          "seasonal_or_reuse_timeliness": 5,
+          "portfolio_diversity": 4
+        },
+        "originality_notes": "Screened against all 11 user-reported similar-content entries and prior named holiday and creative-components queues; inspect generated image before Adobe submission.",
+        "prompt_word_count": 203
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Forest Windowpane Plaid with Fine Woven Fiber Slubs",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 87,
+      "topic_bucket": "APPROVED",
+      "palette": "forest green, burgundy, oatmeal ivory, muted charcoal",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create an original reusable Christmas design component for gift wrapping and lifestyle retail designer, intended for printed gift-wrap concept and warm seasonal e-commerce masthead. \nSubject: Show a real woven windowpane check textile plane with disciplined crossing forest-green bands, thinner burgundy and oatmeal accent lines, visible tiny yarn crossings and sparse irregular cotton fiber slubs. Intersections should follow believable weaving and minor organic thread tension. \nComposition: Single 16:9 frame. Use a level horizontal crop containing large repeated-looking check squares that naturally extend beyond all four borders. Keep a quieter lower-center check field for a modest independently placed logo; do not insert a literal logo window or fake textile swatch. \nArt style: High-Fidelity Commercial Textile Scan. Traditional woven windowpane tartan language with realistic low-relief fibers, carefully restrained color contrast, and grid lines that maintain convincing continuity across the image; do not claim a verified seamless tile. \nLight and finish: Even diffuse copy-stand lighting that reveals fine threads without strong folds, shadows or moire. \nConstraints: One flat raster component with practical copy space where appropriate. The buyer adds all typography and brands. No letters, logos, watermarks, protected artworks, fake labels, simulated alpha, or unverified vector and seamless-tiling claims.",
+      "negative_prompt": "misaligned grid seams, fantasy weaving, fake plaid decals, fabric garment, sharp moire, text",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "Winter Textile Pattern",
+        "material": "Show a real woven windowpane check textile plane with disciplined crossing forest-green bands, thinner burgundy and oatmeal accent lines, visible tiny yarn crossings and sparse irregular cotton fiber slubs. Intersections should follow believable weaving and minor organic thread tension.",
+        "designer_persona": "gift wrapping and lifestyle retail designer",
+        "buyer_use_case": "printed gift-wrap concept and warm seasonal e-commerce masthead",
+        "design_placement": "printed gift-wrap concept and warm seasonal e-commerce masthead",
+        "design_function": "Reusable holiday visual design component",
+        "design_reuse_cases": [
+          "Full-bleed Christmas gift-wrap background with separately added logo",
+          "Subtle fabric texture behind an apparel retail holiday banner"
+        ],
+        "integration_guidance": "Full-bleed textile background for crops; edge-repeat not guaranteed; place overlays in quieter checks",
+        "reusability_rationale": "Large woven windowpane weave used as full-bleed seasonal graphic surface; differs from pine knit motif, wool acoustic herringbone and prior silk brocade.",
+        "art_style": "High-Fidelity Commercial Textile Scan",
+        "style_rationale": "Traditional woven windowpane tartan language with realistic low-relief fibers, carefully restrained color contrast, and grid lines that maintain convincing continuity across the image; do not claim a verified seamless tile.",
+        "distinctiveness": "Large woven windowpane weave used as full-bleed seasonal graphic surface; differs from pine knit motif, wool acoustic herringbone and prior silk brocade.",
+        "copy_space": "Use a level horizontal crop containing large repeated-looking check squares that naturally extend beyond all four borders. Keep a quieter lower-center check field for a modest independently placed logo; do not insert a literal logo window or fake textile swatch.",
+        "metadata_seed_keywords": [
+          "windowpane plaid",
+          "festive textile",
+          "woven cotton",
+          "Christmas giftwrap",
+          "pattern"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html"
+        ],
+        "editorial_score_breakdown": {
+          "buyer_utility": 27,
+          "conceptual_distinctiveness": 18,
+          "composition_flexibility": 14,
+          "material_or_medium_credibility": 10,
+          "technical_4k_feasibility": 9,
+          "seasonal_or_reuse_timeliness": 5,
+          "portfolio_diversity": 4
+        },
+        "originality_notes": "Screened against all 11 user-reported similar-content entries and prior named holiday and creative-components queues; inspect generated image before Adobe submission.",
+        "prompt_word_count": 197
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Unbranded Christmas Cracker Sleeve with Hand-Folded Rosette Ends",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "ivory card, warm metallic champagne, deep plum, pale shadow",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create an original reusable Christmas design component for retail packaging art director, intended for unbranded festive promotional hero and premium seasonal packaging moodboard. \nSubject: Render one traditional holiday party cracker made from matte unprinted ivory card with an elongated central cylinder, controlled tapered necks and hand-folded fan rosette ends. A single narrow dark-plum thread wraps each neck, without printed motifs, jokes, ribbons, branding or labels. All folds and paper joints must be structurally believable. \nComposition: Single 16:9 frame. Place the full cracker diagonally inside the lower-right third of a warm cream studio plane, with the left half and upper center empty for independently added headline and offer. Avoid centering a grid of products or showing gift boxes. \nArt style: Premium Retail Packaging Product Photography. Clean conventional retail product styling with exact paper geometry, realistic edge thickness, mild fold compression and a neutral upscale finish distinct from generic gift-tag mockups. \nLight and finish: Broad diffused studio softbox at upper left; restrained contact shadow and consistent paper reflectance without glitter hotspots. \nConstraints: One flat raster component with practical copy space where appropriate. The buyer adds all typography and brands. No letters, logos, watermarks, protected artworks, fake labels, simulated alpha, or unverified vector and seamless-tiling claims.",
+      "negative_prompt": "cut-off cracker tips, fake legible jokes, labels, gift tags, empty disassembled pieces, packaging template grids",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "Holiday Packaging Mockup",
+        "material": "Render one traditional holiday party cracker made from matte unprinted ivory card with an elongated central cylinder, controlled tapered necks and hand-folded fan rosette ends. A single narrow dark-plum thread wraps each neck, without printed motifs, jokes, ribbons, branding or labels. All folds and paper joints must be structurally believable.",
+        "designer_persona": "retail packaging art director",
+        "buyer_use_case": "unbranded festive promotional hero and premium seasonal packaging moodboard",
+        "design_placement": "unbranded festive promotional hero and premium seasonal packaging moodboard",
+        "design_function": "Reusable holiday visual design component",
+        "design_reuse_cases": [
+          "Christmas gifting website hero using separate product copy",
+          "Gift-box packaging moodboard showing plausible paper-fold construction"
+        ],
+        "integration_guidance": "Croppable right-side product accent; large left copy-safe area; product is not an editable vector or real unwrapped template",
+        "reusability_rationale": "The cracker has a recognizable twisted folded mechanical silhouette unlike previous tags, red packet flaps and Advent calendar tabs.",
+        "art_style": "Premium Retail Packaging Product Photography",
+        "style_rationale": "Clean conventional retail product styling with exact paper geometry, realistic edge thickness, mild fold compression and a neutral upscale finish distinct from generic gift-tag mockups.",
+        "distinctiveness": "The cracker has a recognizable twisted folded mechanical silhouette unlike previous tags, red packet flaps and Advent calendar tabs.",
+        "copy_space": "Place the full cracker diagonally inside the lower-right third of a warm cream studio plane, with the left half and upper center empty for independently added headline and offer. Avoid centering a grid of products or showing gift boxes.",
+        "metadata_seed_keywords": [
+          "Christmas cracker",
+          "unbranded packaging",
+          "holiday party",
+          "paper fold",
+          "retail mockup"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html"
+        ],
+        "editorial_score_breakdown": {
+          "buyer_utility": 29,
+          "conceptual_distinctiveness": 23,
+          "composition_flexibility": 15,
+          "material_or_medium_credibility": 10,
+          "technical_4k_feasibility": 9,
+          "seasonal_or_reuse_timeliness": 5,
+          "portfolio_diversity": 3
+        },
+        "originality_notes": "Screened against all 11 user-reported similar-content entries and prior named holiday and creative-components queues; inspect generated image before Adobe submission.",
+        "prompt_word_count": 205
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Handblown Glass Baubles at the Upper Right with Clean Cream Field",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 86,
+      "topic_bucket": "APPROVED",
+      "palette": "deep ruby, subdued antique gold, dark pine, vanilla cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create an original reusable Christmas design component for seasonal retail campaign designer, intended for vertical department-store story and luxury greeting e-card. \nSubject: Display three distinct handblown glass spherical ornaments suspended by fine unobtrusive hooks near the top right corner, one ruby transparent glass, one muted olive green, one pale golden glass. Each sphere has plausible glass thickness, small metal caps and controlled soft internal reflections; no patterns, symbols or brand marks. \nComposition: Single 9:16 frame. Portrait crop with only the upper-right quarter populated by the ornaments, their thin suspension threads continuing out of frame. The broad center, bottom and left remain unobstructed smooth cream for typography. Preserve UI-safe margins and meaningful scale differences. \nArt style: Classic Premium Glass Ornament Still Life. Timeless high-end holiday catalog styling with physically grounded glass optics, restrained specular highlights and clearly separated silhouettes. \nLight and finish: Soft large-area studio illumination from upper left; elegant quiet warm reflected glow and believable minimal shadows, without stars, bokeh overlays or snow. \nConstraints: One flat raster component with practical copy space where appropriate. The buyer adds all typography and brands. No letters, logos, watermarks, protected artworks, fake labels, simulated alpha, or unverified vector and seamless-tiling claims.",
+      "negative_prompt": "floating baubles without caps, impossible reflections, plastic spheres, snow globe, string tangles, text",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "Holiday Ornament Framing",
+        "material": "Display three distinct handblown glass spherical ornaments suspended by fine unobtrusive hooks near the top right corner, one ruby transparent glass, one muted olive green, one pale golden glass. Each sphere has plausible glass thickness, small metal caps and controlled soft internal reflections; no patterns, symbols or brand marks.",
+        "designer_persona": "seasonal retail campaign designer",
+        "buyer_use_case": "vertical department-store story and luxury greeting e-card",
+        "design_placement": "vertical department-store story and luxury greeting e-card",
+        "design_function": "Reusable holiday visual design component",
+        "design_reuse_cases": [
+          "Retail holiday social story with editable headline over cream area",
+          "Luxury digital greeting card with classic glass ornament trim"
+        ],
+        "integration_guidance": "Vertical corner accent; typographic center and bottom preserved; flat image with cream background",
+        "reusability_rationale": "Distinct physical glass ornament cluster for title framing, avoiding former tinsel/foil macro treatments and existing winter bokeh.",
+        "art_style": "Classic Premium Glass Ornament Still Life",
+        "style_rationale": "Timeless high-end holiday catalog styling with physically grounded glass optics, restrained specular highlights and clearly separated silhouettes.",
+        "distinctiveness": "Distinct physical glass ornament cluster for title framing, avoiding former tinsel/foil macro treatments and existing winter bokeh.",
+        "copy_space": "Portrait crop with only the upper-right quarter populated by the ornaments, their thin suspension threads continuing out of frame. The broad center, bottom and left remain unobstructed smooth cream for typography. Preserve UI-safe margins and meaningful scale differences.",
+        "metadata_seed_keywords": [
+          "Christmas ornaments",
+          "glass baubles",
+          "retail holiday header",
+          "hanging spheres",
+          "greeting card"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html"
+        ],
+        "editorial_score_breakdown": {
+          "buyer_utility": 27,
+          "conceptual_distinctiveness": 17,
+          "composition_flexibility": 14,
+          "material_or_medium_credibility": 9,
+          "technical_4k_feasibility": 10,
+          "seasonal_or_reuse_timeliness": 5,
+          "portfolio_diversity": 4
+        },
+        "originality_notes": "Screened against all 11 user-reported similar-content entries and prior named holiday and creative-components queues; inspect generated image before Adobe submission.",
+        "prompt_word_count": 199
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Blank Deep Green Holiday Menu Folio with Brass Corner Clips",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "deep spruce, aged brass, warm cream, soft beige",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create an original reusable Christmas design component for restaurant and hospitality menu designer, intended for Christmas dinner menu presentation and seasonal booking web hero. \nSubject: Show one unprinted dark spruce-green folded cardstock menu folio with clean squared corners, a realistic central spine crease and two restrained aged-brass corner clips along the outer right edge. A sliver of ivory inner paper can show at one fold. No plates, glasses, silverware, gift tags, greeting words, holly or fictional menu items. \nComposition: Single 16:9 frame. Horizontal 16:9 overhead flat lay. Position the closed folio as a strong readable rectangle at the far right, with a generous uninterrupted pale left field. Keep a clean light border around the object for safe crop adjustments. \nArt style: Clean Editorial Hospitality Flat Lay. Professional food-and-beverage identity presentation with accurate stationery construction, calm measured geometry and understated traditional holiday colors. \nLight and finish: Large north-facing soft light, slight physical paper contact shadow, balanced warm-white surface and low-contrast editorial restraint. \nConstraints: One flat raster component with practical copy space where appropriate. The buyer adds all typography and brands. No letters, logos, watermarks, protected artworks, fake labels, simulated alpha, or unverified vector and seamless-tiling claims.",
+      "negative_prompt": "printed menu, synthetic gibberish, restaurant setting, cups, gift boxes, clipped corners without attachment",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "Hospitality Stationery Mockup",
+        "material": "Show one unprinted dark spruce-green folded cardstock menu folio with clean squared corners, a realistic central spine crease and two restrained aged-brass corner clips along the outer right edge. A sliver of ivory inner paper can show at one fold. No plates, glasses, silverware, gift tags, greeting words, holly or fictional menu items.",
+        "designer_persona": "restaurant and hospitality menu designer",
+        "buyer_use_case": "Christmas dinner menu presentation and seasonal booking web hero",
+        "design_placement": "Christmas dinner menu presentation and seasonal booking web hero",
+        "design_function": "Reusable holiday visual design component",
+        "design_reuse_cases": [
+          "Blank menu-card background for festive restaurant promotion",
+          "Hospitality landing banner with space for separately typeset reservation details"
+        ],
+        "integration_guidance": "Object on right; broad left copy field; flat raster mockup, not layered PSD or editable template",
+        "reusability_rationale": "A usable blank hospitality folio with fast art-direction integration; substantially different packaging geometry and buyer from prior holiday gift-tag and CNY envelope work.",
+        "art_style": "Clean Editorial Hospitality Flat Lay",
+        "style_rationale": "Professional food-and-beverage identity presentation with accurate stationery construction, calm measured geometry and understated traditional holiday colors.",
+        "distinctiveness": "A usable blank hospitality folio with fast art-direction integration; substantially different packaging geometry and buyer from prior holiday gift-tag and CNY envelope work.",
+        "copy_space": "Horizontal 16:9 overhead flat lay. Position the closed folio as a strong readable rectangle at the far right, with a generous uninterrupted pale left field. Keep a clean light border around the object for safe crop adjustments.",
+        "metadata_seed_keywords": [
+          "blank Christmas menu",
+          "stationery mockup",
+          "hospitality",
+          "spruce green",
+          "brass clip"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html"
+        ],
+        "editorial_score_breakdown": {
+          "buyer_utility": 29,
+          "conceptual_distinctiveness": 21,
+          "composition_flexibility": 15,
+          "material_or_medium_credibility": 9,
+          "technical_4k_feasibility": 9,
+          "seasonal_or_reuse_timeliness": 5,
+          "portfolio_diversity": 4
+        },
+        "originality_notes": "Screened against all 11 user-reported similar-content entries and prior named holiday and creative-components queues; inspect generated image before Adobe submission.",
+        "prompt_word_count": 198
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Die-Cut Snow Crystal Paper Lace on a Warm Grey Greeting Ground",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 86,
+      "topic_bucket": "APPROVED",
+      "palette": "snow white, warm gray, pearl ivory, soft graphite",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create an original reusable Christmas design component for print greeting-card and invitation designer, intended for vertical winter holiday card and luxury paper invitation. \nSubject: Show a single connected strip of delicate white die-cut paper lace made from original geometrical sixfold snow-crystal cutouts. Holes and retained paper bridges must form a physically plausible sturdy paper strip. Allow extremely fine cut fibers and small thickness along the edge. Avoid red paper-cut motifs, stars, greeting lettering, paper fans or decorative objects. \nComposition: Single 9:16 frame. Portrait 9:16 overhead view with the continuous white lace entering from the bottom and one short section at the far right; at least the upper two thirds is smooth warm gray card. Use irregular snowflake sizes without repeating the exact same individual outline. \nArt style: Precision Die-Cut Commercial Stationery Photograph. Classic premium stationery photography of precise handmade cutwork; pale neutral palette, crisp negative cutouts and faint real-edge lift. \nLight and finish: Gentle directional daylight from upper right gives narrow authentic contact shadows, no colorful artificial light effects. \nConstraints: One flat raster component with practical copy space where appropriate. The buyer adds all typography and brands. No letters, logos, watermarks, protected artworks, fake labels, simulated alpha, or unverified vector and seamless-tiling claims.",
+      "negative_prompt": "impossible detached paper bridges, repeated identical flakes, text, foil stars, red Chinese paper cutting",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Christmas",
+        "component_category": "Paper Cutwork Border",
+        "material": "Show a single connected strip of delicate white die-cut paper lace made from original geometrical sixfold snow-crystal cutouts. Holes and retained paper bridges must form a physically plausible sturdy paper strip. Allow extremely fine cut fibers and small thickness along the edge. Avoid red paper-cut motifs, stars, greeting lettering, paper fans or decorative objects.",
+        "designer_persona": "print greeting-card and invitation designer",
+        "buyer_use_case": "vertical winter holiday card and luxury paper invitation",
+        "design_placement": "vertical winter holiday card and luxury paper invitation",
+        "design_function": "Reusable holiday visual design component",
+        "design_reuse_cases": [
+          "Christmas greeting card with die-cut snow lace framing the message",
+          "Winter event invitation with untouched center for typography"
+        ],
+        "integration_guidance": "Paper-lace bottom-border photo; center top blank; no actual alpha or editable cut path claimed",
+        "reusability_rationale": "Snow-crystal negative cutwork border and functional empty card field, separated from prior metallic star perforation and red paper-cut window.",
+        "art_style": "Precision Die-Cut Commercial Stationery Photograph",
+        "style_rationale": "Classic premium stationery photography of precise handmade cutwork; pale neutral palette, crisp negative cutouts and faint real-edge lift.",
+        "distinctiveness": "Snow-crystal negative cutwork border and functional empty card field, separated from prior metallic star perforation and red paper-cut window.",
+        "copy_space": "Portrait 9:16 overhead view with the continuous white lace entering from the bottom and one short section at the far right; at least the upper two thirds is smooth warm gray card. Use irregular snowflake sizes without repeating the exact same individual outline.",
+        "metadata_seed_keywords": [
+          "snow crystal",
+          "die cut paper",
+          "Christmas card border",
+          "paper lace",
+          "winter invitation"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html"
+        ],
+        "editorial_score_breakdown": {
+          "buyer_utility": 27,
+          "conceptual_distinctiveness": 18,
+          "composition_flexibility": 15,
+          "material_or_medium_credibility": 9,
+          "technical_4k_feasibility": 8,
+          "seasonal_or_reuse_timeliness": 5,
+          "portfolio_diversity": 4
+        },
+        "originality_notes": "Screened against all 11 user-reported similar-content entries and prior named holiday and creative-components queues; inspect generated image before Adobe submission.",
+        "prompt_word_count": 206
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "2027 Fire Goat Zodiac Wood Engraving Medallion with Blank Scarlet Field",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "warm scarlet, antique gold, parchment cream, deep ink black",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create an original reusable Lunar New Year design component for 2027 event campaign and zodiac stationery designer, intended for year-specific festive brand hero and print invitation. \nSubject: Make one original hand-engraved line-art medallion showing a anatomically credible standing domestic goat in calm profile, with modest horns, cloven hooves and natural coat folds. Enclose it within a simple rounded medallion rim and small blank decorative ticks, never Chinese characters or calendar numerals. The portrait must be an invented generic animal drawing without copying existing zodiac seal designs. \nComposition: Single 16:9 frame. Horizontal 16:9 with the engraved animal medallion entirely inside the right third on a flat scarlet paper ground. The left and central field stays open for buyer typography. Keep the visual object compact and not mirrored or tiled. \nArt style: Classic Commercial Zodiac Wood Engraving. Traditional commercial engraving: disciplined varying fine etched lines, controlled ink densities, restrained gold-cream accents, clear silhouette at banner size, no faux antiquarian stamps. \nLight and finish: Even print-reproduction light with a light matte paper tooth rather than realistic metallic reflections. \nConstraints: One flat raster component with practical copy space where appropriate. The buyer adds all typography and brands. No letters, logos, watermarks, protected artworks, fake labels, simulated alpha, or unverified vector and seamless-tiling claims.",
+      "negative_prompt": "letters, faux Chinese characters, extra legs, sheep horns on wrong anatomy, copied zodiac illustration, gold ingots",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Lunar New Year",
+        "component_category": "Zodiac Editorial Motif",
+        "material": "Make one original hand-engraved line-art medallion showing a anatomically credible standing domestic goat in calm profile, with modest horns, cloven hooves and natural coat folds. Enclose it within a simple rounded medallion rim and small blank decorative ticks, never Chinese characters or calendar numerals. The portrait must be an invented generic animal drawing without copying existing zodiac seal designs.",
+        "designer_persona": "2027 event campaign and zodiac stationery designer",
+        "buyer_use_case": "year-specific festive brand hero and print invitation",
+        "design_placement": "year-specific festive brand hero and print invitation",
+        "design_function": "Reusable holiday visual design component",
+        "design_reuse_cases": [
+          "2027 zodiac-themed Lunar New Year retail banner with manually added date",
+          "Printed cultural event greeting invitation with a stand-alone animal ornament"
+        ],
+        "integration_guidance": "Year-specific for 2027; no text inside artwork; horizontal left copy field",
+        "reusability_rationale": "Specific 2027 goat identity and engraving medallion use, avoiding earlier fish relief, lion fringe and red paper-cut generic frames.",
+        "art_style": "Classic Commercial Zodiac Wood Engraving",
+        "style_rationale": "Traditional commercial engraving: disciplined varying fine etched lines, controlled ink densities, restrained gold-cream accents, clear silhouette at banner size, no faux antiquarian stamps.",
+        "distinctiveness": "Specific 2027 goat identity and engraving medallion use, avoiding earlier fish relief, lion fringe and red paper-cut generic frames.",
+        "copy_space": "Horizontal 16:9 with the engraved animal medallion entirely inside the right third on a flat scarlet paper ground. The left and central field stays open for buyer typography. Keep the visual object compact and not mirrored or tiled.",
+        "metadata_seed_keywords": [
+          "2027",
+          "year of goat",
+          "Chinese zodiac",
+          "Lunar New Year",
+          "engraved medallion"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://www.hko.gov.hk/en/Observatorys-Blog/109092/No-Lunar-New-Year%E2%80%99s-Eve-on-the-30th-Day-for-Five-Consecutive-Years"
+        ],
+        "editorial_score_breakdown": {
+          "buyer_utility": 29,
+          "conceptual_distinctiveness": 23,
+          "composition_flexibility": 14,
+          "material_or_medium_credibility": 9,
+          "technical_4k_feasibility": 9,
+          "seasonal_or_reuse_timeliness": 5,
+          "portfolio_diversity": 4
+        },
+        "originality_notes": "Screened against all 11 user-reported similar-content entries and prior named holiday and creative-components queues; inspect generated image before Adobe submission.",
+        "prompt_word_count": 212
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Yu Sheng Shredded Vegetable Ribbons Around a Quiet Card Center",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "carrot orange, jade green, radish ivory, beet magenta, warm cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create an original reusable Lunar New Year design component for Southeast Asian food retailer and restaurant designer, intended for festive reunion menu social story and supermarket campaign. \nSubject: Form a lively but intentionally sparse framing arrangement of slender freshly cut carrot, cucumber, white radish and purple radish strips, plus a few tiny golden sesame accents, recognizing the colorful ingredients used in Southeast Asian yu sheng. Interpret the strips as clean commercial layered paper-cut shapes with slight believable irregularities, keeping ingredients recognizable without bowl, hands, fish slices or a completed meal. \nComposition: Single 9:16 frame. Portrait 9:16; let colored ingredient ribbons sweep only along upper left and lower right corners, angled toward but never entering the ample open central cream field. Keep top and bottom story-interface safe regions free from critical content. \nArt style: Contemporary Retail Papercut Food Illustration. Friendly contemporary retail food papercut illustration, exact crisp overlapping cut edges, flat lively color planes and deliberate spatial rhythm; no pseudo vector claim. \nLight and finish: Soft, neutral illustration lighting, tiny consistent separation shadows between cut-paper shapes, bright festive but not neon mood. \nConstraints: One flat raster component with practical copy space where appropriate. The buyer adds all typography and brands. No letters, logos, watermarks, protected artworks, fake labels, simulated alpha, or unverified vector and seamless-tiling claims.",
+      "negative_prompt": "food bowl, restaurant scene, hands, rice noodles, random confetti, text, fake menu labels",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Lunar New Year",
+        "component_category": "Southeast Asian Food Celebration Graphics",
+        "material": "Form a lively but intentionally sparse framing arrangement of slender freshly cut carrot, cucumber, white radish and purple radish strips, plus a few tiny golden sesame accents, recognizing the colorful ingredients used in Southeast Asian yu sheng. Interpret the strips as clean commercial layered paper-cut shapes with slight believable irregularities, keeping ingredients recognizable without bowl, hands, fish slices or a completed meal.",
+        "designer_persona": "Southeast Asian food retailer and restaurant designer",
+        "buyer_use_case": "festive reunion menu social story and supermarket campaign",
+        "design_placement": "festive reunion menu social story and supermarket campaign",
+        "design_function": "Reusable holiday visual design component",
+        "design_reuse_cases": [
+          "Malaysia or Singapore Lunar New Year restaurant story with separate price text",
+          "Fresh-food supermarket promotion with an editable central headline"
+        ],
+        "integration_guidance": "Vertical two-corner framing and broad central copy zone; stylized layered raster artwork",
+        "reusability_rationale": "Focuses on loose vegetable-strip design ingredients and framing behavior rather than prior eight-section tray or complete food scene; locally specific buyer utility.",
+        "art_style": "Contemporary Retail Papercut Food Illustration",
+        "style_rationale": "Friendly contemporary retail food papercut illustration, exact crisp overlapping cut edges, flat lively color planes and deliberate spatial rhythm; no pseudo vector claim.",
+        "distinctiveness": "Focuses on loose vegetable-strip design ingredients and framing behavior rather than prior eight-section tray or complete food scene; locally specific buyer utility.",
+        "copy_space": "Portrait 9:16; let colored ingredient ribbons sweep only along upper left and lower right corners, angled toward but never entering the ample open central cream field. Keep top and bottom story-interface safe regions free from critical content.",
+        "metadata_seed_keywords": [
+          "yu sheng",
+          "lo hei",
+          "lunar new year",
+          "Singapore",
+          "Malaysia",
+          "shredded vegetables",
+          "festival food border"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://www.visitsingapore.com/whats-happening/all-happenings/festivals/chinese-new-year/"
+        ],
+        "editorial_score_breakdown": {
+          "buyer_utility": 30,
+          "conceptual_distinctiveness": 23,
+          "composition_flexibility": 15,
+          "material_or_medium_credibility": 9,
+          "technical_4k_feasibility": 9,
+          "seasonal_or_reuse_timeliness": 5,
+          "portfolio_diversity": 3
+        },
+        "originality_notes": "Screened against all 11 user-reported similar-content entries and prior named holiday and creative-components queues; inspect generated image before Adobe submission.",
+        "prompt_word_count": 218
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Hand-Pleated Jiaozi Dumpling Rim as a Premium Horizontal Border",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 89,
+      "topic_bucket": "APPROVED",
+      "palette": "soft ivory, toasted dough beige, ink gray, light sesame",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create an original reusable Lunar New Year design component for dumpling restaurant and frozen food packaging designer, intended for reunion dinner offer banner and premium dumpling box sleeve. \nSubject: Depict four recognizably hand-folded jiaozi dumplings with accurate crescent body, pinched pleats and delicate lightly translucent flour-dusted dough. The forms must be consistently plausible without extra flaps or distorted dumpling anatomy. Render with restrained watercolor-like food shading anchored by fine controlled ink contour accents, avoiding hand lettering, dipping sauce dishes or table scenes. \nComposition: Single 16:9 frame. Horizontal 16:9 illustration with the four small dumplings forming a gently curved bottom-edge group that never occupies more than the lower quarter. The upper and left regions remain warm off-white and perfectly quiet for later promotional type. \nArt style: Clean Traditional Food Illustration with Ink Accents. Classic commercial cookbook illustration, precise food structure, low-key natural washes, crisp ink accents and sophisticated minimal line weight. \nLight and finish: Soft illustrated warm side light, light contact shadows and a clean inviting food-service mood. \nConstraints: One flat raster component with practical copy space where appropriate. The buyer adds all typography and brands. No letters, logos, watermarks, protected artworks, fake labels, simulated alpha, or unverified vector and seamless-tiling claims.",
+      "negative_prompt": "noodles, chopsticks, fish, food props, strange dumpling seams, text or character glyphs",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Lunar New Year",
+        "component_category": "Holiday Food Packaging Element",
+        "material": "Depict four recognizably hand-folded jiaozi dumplings with accurate crescent body, pinched pleats and delicate lightly translucent flour-dusted dough. The forms must be consistently plausible without extra flaps or distorted dumpling anatomy. Render with restrained watercolor-like food shading anchored by fine controlled ink contour accents, avoiding hand lettering, dipping sauce dishes or table scenes.",
+        "designer_persona": "dumpling restaurant and frozen food packaging designer",
+        "buyer_use_case": "reunion dinner offer banner and premium dumpling box sleeve",
+        "design_placement": "reunion dinner offer banner and premium dumpling box sleeve",
+        "design_function": "Reusable holiday visual design component",
+        "design_reuse_cases": [
+          "Cultural food retailer landing banner with room for menu text",
+          "Frozen dumpling packaging concept using a single edible border element"
+        ],
+        "integration_guidance": "Bottom border, extensive upper copy space; raster food illustration for retail layout",
+        "reusability_rationale": "Works as a reusable bottom food border with a nonidentical edible object, separate from prior sticky rice cake watercolor and pineapple tart pencil motifs.",
+        "art_style": "Clean Traditional Food Illustration with Ink Accents",
+        "style_rationale": "Classic commercial cookbook illustration, precise food structure, low-key natural washes, crisp ink accents and sophisticated minimal line weight.",
+        "distinctiveness": "Works as a reusable bottom food border with a nonidentical edible object, separate from prior sticky rice cake watercolor and pineapple tart pencil motifs.",
+        "copy_space": "Horizontal 16:9 illustration with the four small dumplings forming a gently curved bottom-edge group that never occupies more than the lower quarter. The upper and left regions remain warm off-white and perfectly quiet for later promotional type.",
+        "metadata_seed_keywords": [
+          "jiaozi",
+          "dumpling",
+          "Lunar New Year",
+          "pleated dough",
+          "food packaging border"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://asia.si.edu/whats-on/blog/posts/memories-of-a-lunar-new-year-past/"
+        ],
+        "editorial_score_breakdown": {
+          "buyer_utility": 28,
+          "conceptual_distinctiveness": 18,
+          "composition_flexibility": 15,
+          "material_or_medium_credibility": 9,
+          "technical_4k_feasibility": 10,
+          "seasonal_or_reuse_timeliness": 5,
+          "portfolio_diversity": 4
+        },
+        "originality_notes": "Screened against all 11 user-reported similar-content entries and prior named holiday and creative-components queues; inspect generated image before Adobe submission.",
+        "prompt_word_count": 204
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Bak Kwa Glazed Edges on Folded Unprinted Greaseproof Paper",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 91,
+      "topic_bucket": "APPROVED",
+      "palette": "brick caramel, warm russet, parchment white, neutral cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create an original reusable Lunar New Year design component for Southeast Asian food gift retailer, intended for Chinese New Year bak kwa product advert and food-box wrapper design. \nSubject: Show two small slices of genuinely grilled thin bak kwa meat lying on one square of creased but unprinted greaseproof white paper. The meat exhibits believable caramelized edge charring, irregular slight translucency and a restrained glossy glaze, avoiding raw meat appearance or unnatural laser-straight grill marks. No branded packets, plates, garnish, chopsticks, utensils or visible people. \nComposition: Single 16:9 frame. Horizontal 16:9 overhead product photograph, food occupying the lower-right third and the surrounding warm light paper filling the remainder. Left half remains largely calm with subtle real paper wrinkle detail suitable for later title and price text. \nArt style: High-Key Heritage Food Packaging Photograph. Traditional commercial packaged-food still life, controlled realistic crisp char edges, non-stylized surfaces and strong product legibility for regional marketing. \nLight and finish: Soft studio daylight with a discreet specular accent on cooked glaze, gentle contact shadow and hygienic premium presentation. \nConstraints: One flat raster component with practical copy space where appropriate. The buyer adds all typography and brands. No letters, logos, watermarks, protected artworks, fake labels, simulated alpha, or unverified vector and seamless-tiling claims.",
+      "negative_prompt": "raw meat, fake package printing, skewers, excessive smoke, unnaturally perfect grill stripes, labels",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Lunar New Year",
+        "component_category": "Southeast Asian Packaging Texture",
+        "material": "Show two small slices of genuinely grilled thin bak kwa meat lying on one square of creased but unprinted greaseproof white paper. The meat exhibits believable caramelized edge charring, irregular slight translucency and a restrained glossy glaze, avoiding raw meat appearance or unnatural laser-straight grill marks. No branded packets, plates, garnish, chopsticks, utensils or visible people.",
+        "designer_persona": "Southeast Asian food gift retailer",
+        "buyer_use_case": "Chinese New Year bak kwa product advert and food-box wrapper design",
+        "design_placement": "Chinese New Year bak kwa product advert and food-box wrapper design",
+        "design_function": "Reusable holiday visual design component",
+        "design_reuse_cases": [
+          "Regional CNY food campaign web banner for bak kwa gift packs",
+          "Food packaging moodboard showing realistic glazed meat and paper texture"
+        ],
+        "integration_guidance": "Whole-frame raster food and wrapping material; lower-right product, left copy field",
+        "reusability_rationale": "Region-specific bak kwa wrapping detail with different product function from prior sweet pastry and tangerine rind texture.",
+        "art_style": "High-Key Heritage Food Packaging Photograph",
+        "style_rationale": "Traditional commercial packaged-food still life, controlled realistic crisp char edges, non-stylized surfaces and strong product legibility for regional marketing.",
+        "distinctiveness": "Region-specific bak kwa wrapping detail with different product function from prior sweet pastry and tangerine rind texture.",
+        "copy_space": "Horizontal 16:9 overhead product photograph, food occupying the lower-right third and the surrounding warm light paper filling the remainder. Left half remains largely calm with subtle real paper wrinkle detail suitable for later title and price text.",
+        "metadata_seed_keywords": [
+          "bak kwa",
+          "Chinese New Year",
+          "Singapore",
+          "Malaysia",
+          "food gift packaging",
+          "grilled pork jerky"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://www.visitsingapore.com/whats-happening/all-happenings/festivals/chinese-new-year/"
+        ],
+        "editorial_score_breakdown": {
+          "buyer_utility": 29,
+          "conceptual_distinctiveness": 20,
+          "composition_flexibility": 15,
+          "material_or_medium_credibility": 10,
+          "technical_4k_feasibility": 9,
+          "seasonal_or_reuse_timeliness": 5,
+          "portfolio_diversity": 3
+        },
+        "originality_notes": "Screened against all 11 user-reported similar-content entries and prior named holiday and creative-components queues; inspect generated image before Adobe submission.",
+        "prompt_word_count": 210
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Round Bamboo Steamer Weave Rim as an Open Invitation Frame",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 87,
+      "topic_bucket": "APPROVED",
+      "palette": "warm bamboo, linen ivory, honey ochre, natural shadow",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create an original reusable Lunar New Year design component for dim sum and hospitality promotional designer, intended for Lunar New Year reunion banquet poster and food-service website story. \nSubject: Study only the upper curved rim of a traditional pale bamboo steamer with convincing close, nested bamboo splints, small equidistant binding wraps and naturally irregular woven fibers. The curved rim is presented as a crescent entering the lower right of a blank linen-colored card, with no food, steam, tabletop props, lids or recognizable building interiors. \nComposition: Single 9:16 frame. Portrait 9:16, large open central and upper cream paper area. Restrict the material to a deliberate thin lower-right arc and a short segment at the bottom. Keep realistic curved perspective and ensure the material does not intrude on typography safe zones. \nArt style: Traditional Bamboo Craft Product Detail. Commercial craft-detail still life with accurate parallel bamboo strip spacing, subtle handmade asymmetry, modest grain contrast and precise tangential fibers. \nLight and finish: Light grazing daylight from left reveals warm natural rim relief, restrained shadow, premium calm hospitality palette. \nConstraints: One flat raster component with practical copy space where appropriate. The buyer adds all typography and brands. No letters, logos, watermarks, protected artworks, fake labels, simulated alpha, or unverified vector and seamless-tiling claims.",
+      "negative_prompt": "full baskets, artificial repeated weave, spaghetti-like bamboo, food scenes, text, distorted ellipse",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Lunar New Year",
+        "component_category": "Craft Food Service Layout Material",
+        "material": "Study only the upper curved rim of a traditional pale bamboo steamer with convincing close, nested bamboo splints, small equidistant binding wraps and naturally irregular woven fibers. The curved rim is presented as a crescent entering the lower right of a blank linen-colored card, with no food, steam, tabletop props, lids or recognizable building interiors.",
+        "designer_persona": "dim sum and hospitality promotional designer",
+        "buyer_use_case": "Lunar New Year reunion banquet poster and food-service website story",
+        "design_placement": "Lunar New Year reunion banquet poster and food-service website story",
+        "design_function": "Reusable holiday visual design component",
+        "design_reuse_cases": [
+          "Vertical dim sum restaurant festival promotion with typography in center",
+          "Reunion meal invitation template background for hospitality client"
+        ],
+        "integration_guidance": "Lower corner semicircular bamboo craft element, upper two thirds reserved for independent type",
+        "reusability_rationale": "Circular rim craft as typographic framing, different from willow basket edge, paper honeycomb and eight-section sweets tray.",
+        "art_style": "Traditional Bamboo Craft Product Detail",
+        "style_rationale": "Commercial craft-detail still life with accurate parallel bamboo strip spacing, subtle handmade asymmetry, modest grain contrast and precise tangential fibers.",
+        "distinctiveness": "Circular rim craft as typographic framing, different from willow basket edge, paper honeycomb and eight-section sweets tray.",
+        "copy_space": "Portrait 9:16, large open central and upper cream paper area. Restrict the material to a deliberate thin lower-right arc and a short segment at the bottom. Keep realistic curved perspective and ensure the material does not intrude on typography safe zones.",
+        "metadata_seed_keywords": [
+          "bamboo steamer",
+          "dim sum",
+          "reunion dinner",
+          "Chinese new year",
+          "restaurant invitation"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://www.visitsingapore.com/whats-happening/all-happenings/festivals/chinese-new-year/"
+        ],
+        "editorial_score_breakdown": {
+          "buyer_utility": 27,
+          "conceptual_distinctiveness": 18,
+          "composition_flexibility": 15,
+          "material_or_medium_credibility": 9,
+          "technical_4k_feasibility": 9,
+          "seasonal_or_reuse_timeliness": 5,
+          "portfolio_diversity": 4
+        },
+        "originality_notes": "Screened against all 11 user-reported similar-content entries and prior named holiday and creative-components queues; inspect generated image before Adobe submission.",
+        "prompt_word_count": 212
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Mahjong Tile Backs and Jade Felt Margin for Reunion Social Design",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 86,
+      "topic_bucket": "APPROVED",
+      "palette": "jade felt, ivory ceramic, muted moss, soft cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create an original reusable Lunar New Year design component for community event and family entertainment designer, intended for family reunion social post and tabletop game night invitation. \nSubject: Arrange six anonymous mahjong tile backs, showing only plain smooth ivory thickness and muted jade green unmarked rear panels on a dark jade felt tabletop edge. Each tile is physically consistent in size and rectangular proportion, with faint corner rounding and credible stack height. No tile faces, Chinese characters, numbers, cartoon icons, playing cards, dice, money or gambling interface. \nComposition: Single 9:16 frame. Vertical 9:16 with all tiles arranged in one restrained diagonal at the bottom and lower right, leaving a large calm unmarked jade felt field across the top and center. Keep the main blank region low contrast for future typesetting and safe mobile crops. \nArt style: High-Key Product Still Life for Retail Graphics. Conventional studio still-life look with accurate tile geometry, tactile wool-like felt grain, clean margins and a modest festive green-ivory palette. \nLight and finish: Even top-left softbox, subtle individual tile contact shadows, clean inviting community rather than gambling atmosphere. \nConstraints: One flat raster component with practical copy space where appropriate. The buyer adds all typography and brands. No letters, logos, watermarks, protected artworks, fake labels, simulated alpha, or unverified vector and seamless-tiling claims.",
+      "negative_prompt": "tile faces or numerals, gaming wagers, chips, brand markings, nonsense Chinese writing, tile geometry errors",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Lunar New Year",
+        "component_category": "Family Game Night Graphic Surface",
+        "material": "Arrange six anonymous mahjong tile backs, showing only plain smooth ivory thickness and muted jade green unmarked rear panels on a dark jade felt tabletop edge. Each tile is physically consistent in size and rectangular proportion, with faint corner rounding and credible stack height. No tile faces, Chinese characters, numbers, cartoon icons, playing cards, dice, money or gambling interface.",
+        "designer_persona": "community event and family entertainment designer",
+        "buyer_use_case": "family reunion social post and tabletop game night invitation",
+        "design_placement": "family reunion social post and tabletop game night invitation",
+        "design_function": "Reusable holiday visual design component",
+        "design_reuse_cases": [
+          "Lunar New Year family game evening social invitation",
+          "Evergreen tabletop social club website banner background"
+        ],
+        "integration_guidance": "Vertical top copy space; visually culturally contextual, but do not claim mahjong is universal to all Lunar New Year communities",
+        "reusability_rationale": "An unmarked tabletop game-surface composition, usable year-round and distinct from spring couplets, paper packets or holiday food.",
+        "art_style": "High-Key Product Still Life for Retail Graphics",
+        "style_rationale": "Conventional studio still-life look with accurate tile geometry, tactile wool-like felt grain, clean margins and a modest festive green-ivory palette.",
+        "distinctiveness": "An unmarked tabletop game-surface composition, usable year-round and distinct from spring couplets, paper packets or holiday food.",
+        "copy_space": "Vertical 9:16 with all tiles arranged in one restrained diagonal at the bottom and lower right, leaving a large calm unmarked jade felt field across the top and center. Keep the main blank region low contrast for future typesetting and safe mobile crops.",
+        "metadata_seed_keywords": [
+          "mahjong tile backs",
+          "jade felt",
+          "family game",
+          "Lunar New Year",
+          "social invitation"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html"
+        ],
+        "editorial_score_breakdown": {
+          "buyer_utility": 27,
+          "conceptual_distinctiveness": 18,
+          "composition_flexibility": 15,
+          "material_or_medium_credibility": 9,
+          "technical_4k_feasibility": 9,
+          "seasonal_or_reuse_timeliness": 4,
+          "portfolio_diversity": 4
+        },
+        "originality_notes": "Screened against all 11 user-reported similar-content entries and prior named holiday and creative-components queues; inspect generated image before Adobe submission.",
+        "prompt_word_count": 218
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Blank Vermilion Gift Sack Gusset with Wide Ivory Insert",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 87,
+      "topic_bucket": "APPROVED",
+      "palette": "vermilion red, chalk ivory, soft brass, neutral beige",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create an original reusable Lunar New Year design component for retail gifting and paper-bag packaging designer, intended for New Year limited-edition packaging preview and festive online retail banner. \nSubject: Feature one thick vermilion paper gift sack with believable folded side gusset, broad flat blank front, simple die-cut concealed handle and a single unprinted ivory card partially inserted at the open top. Avoid envelope-flap geometry, red packets, gold coin ornaments, text, product logos, package contents or gift wrapping clutter. \nComposition: Single 16:9 frame. Horizontal 16:9 studio flat lay with the bag occupying the right half but not clipping its folds; left half stays even warm ivory for independent promotional headlines. The blank front must be sufficiently planar for a buyer to composite a brand identity. \nArt style: Modern Premium Gift Packaging Flat Lay. Mainstream modern commercial packaging mockup photography, exact paper thickness and folded gusset logic, satin-matte stock with natural subtle edge wear. \nLight and finish: Large diffused studio light, accurate small shadows at handle and under bag, minimal warm neutral backdrop. \nConstraints: One flat raster component with practical copy space where appropriate. The buyer adds all typography and brands. No letters, logos, watermarks, protected artworks, fake labels, simulated alpha, or unverified vector and seamless-tiling claims.",
+      "negative_prompt": "red envelope, fake Chinese text, dangling tassel, letterhead, random product pile, warped gusset",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Lunar New Year",
+        "component_category": "Retail Festive Packaging Mockup",
+        "material": "Feature one thick vermilion paper gift sack with believable folded side gusset, broad flat blank front, simple die-cut concealed handle and a single unprinted ivory card partially inserted at the open top. Avoid envelope-flap geometry, red packets, gold coin ornaments, text, product logos, package contents or gift wrapping clutter.",
+        "designer_persona": "retail gifting and paper-bag packaging designer",
+        "buyer_use_case": "New Year limited-edition packaging preview and festive online retail banner",
+        "design_placement": "New Year limited-edition packaging preview and festive online retail banner",
+        "design_function": "Reusable holiday visual design component",
+        "design_reuse_cases": [
+          "Branded CNY shopping-bag concept with separately composited identity",
+          "Holiday retail banner featuring a blank gusseted red gift sack"
+        ],
+        "integration_guidance": "Brand-safe raster packaging mockup, editable only through external compositing; left copy region and planar bag front",
+        "reusability_rationale": "Strong independent packaging blank with bag gusset/handle instead of prior holiday tag, CNY packet flap or generic red paper border.",
+        "art_style": "Modern Premium Gift Packaging Flat Lay",
+        "style_rationale": "Mainstream modern commercial packaging mockup photography, exact paper thickness and folded gusset logic, satin-matte stock with natural subtle edge wear.",
+        "distinctiveness": "Strong independent packaging blank with bag gusset/handle instead of prior holiday tag, CNY packet flap or generic red paper border.",
+        "copy_space": "Horizontal 16:9 studio flat lay with the bag occupying the right half but not clipping its folds; left half stays even warm ivory for independent promotional headlines. The blank front must be sufficiently planar for a buyer to composite a brand identity.",
+        "metadata_seed_keywords": [
+          "blank red paper bag",
+          "Lunar New Year packaging",
+          "gift sack",
+          "brand mockup",
+          "red retail"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html"
+        ],
+        "editorial_score_breakdown": {
+          "buyer_utility": 28,
+          "conceptual_distinctiveness": 18,
+          "composition_flexibility": 15,
+          "material_or_medium_credibility": 9,
+          "technical_4k_feasibility": 9,
+          "seasonal_or_reuse_timeliness": 4,
+          "portfolio_diversity": 4
+        },
+        "originality_notes": "Screened against all 11 user-reported similar-content entries and prior named holiday and creative-components queues; inspect generated image before Adobe submission.",
+        "prompt_word_count": 208
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "White Porcelain Gaiwan Lid and Amber Tea Halo on Pearl Card",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 85,
+      "topic_bucket": "APPROVED",
+      "palette": "porcelain white, pale amber, soft jade, paper pearl",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Purpose: Create an original reusable Lunar New Year design component for tea boutique seasonal gifting designer, intended for Lunar New Year tea gift launch banner and year-round premium tea brochure. \nSubject: Place the clean lid and shallow porcelain saucer of a generic white glazed gaiwan, viewed from above and slightly angled, on one pearl-ivory unprinted sheet. A small amount of amber tea reflection is visible only inside the lid rim as a restrained warm optical accent. Show believable glazed ceramic lip thickness and natural pale highlights. No full tea table, tea leaves, poured liquid stream, tea bags, red envelope or invented decorative characters. \nComposition: Single 16:9 frame. Horizontal 16:9 with the two small porcelain components arranged at the far lower-right, leaving the majority of left and upper center as a clean pearl field for typography. Keep layout visually spacious and compatible with cropping into premium product announcements. \nArt style: Elegant Editorial Tea Product Still Life. Traditional restrained editorial tea still life with clean physical ceramic surfaces, correct scale, calm premium finish and meaningful negative space. \nLight and finish: Quiet diffuse morning light, minimal warm-amber specular reflection, soft soft-edged contact shadows and muted tone. \nConstraints: One flat raster component with practical copy space where appropriate. The buyer adds all typography and brands. No letters, logos, watermarks, protected artworks, fake labels, simulated alpha, or unverified vector and seamless-tiling claims.",
+      "negative_prompt": "fake calligraphy, complete tea ceremony scene, cups scattered, brand name, pouring hand, unrealistic liquid",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "finder": "creative_components",
+        "product_line": "commercial_background",
+        "holiday": "Lunar New Year",
+        "component_category": "Premium Tea Gift Advertising Surface",
+        "material": "Place the clean lid and shallow porcelain saucer of a generic white glazed gaiwan, viewed from above and slightly angled, on one pearl-ivory unprinted sheet. A small amount of amber tea reflection is visible only inside the lid rim as a restrained warm optical accent. Show believable glazed ceramic lip thickness and natural pale highlights. No full tea table, tea leaves, poured liquid stream, tea bags, red envelope or invented decorative characters.",
+        "designer_persona": "tea boutique seasonal gifting designer",
+        "buyer_use_case": "Lunar New Year tea gift launch banner and year-round premium tea brochure",
+        "design_placement": "Lunar New Year tea gift launch banner and year-round premium tea brochure",
+        "design_function": "Reusable holiday visual design component",
+        "design_reuse_cases": [
+          "Chinese New Year specialty tea gift campaign hero",
+          "Evergreen premium tea editorial page with separately placed brand copy"
+        ],
+        "integration_guidance": "Raster still-life for compositing tea-brand copy externally; lower-right props and broad clear left field",
+        "reusability_rationale": "Unbranded tea gift advertising component with restrained ceramic lid optics, unlike prior firecracker, red packet, fan and tissue crafting motifs.",
+        "art_style": "Elegant Editorial Tea Product Still Life",
+        "style_rationale": "Traditional restrained editorial tea still life with clean physical ceramic surfaces, correct scale, calm premium finish and meaningful negative space.",
+        "distinctiveness": "Unbranded tea gift advertising component with restrained ceramic lid optics, unlike prior firecracker, red packet, fan and tissue crafting motifs.",
+        "copy_space": "Horizontal 16:9 with the two small porcelain components arranged at the far lower-right, leaving the majority of left and upper center as a clean pearl field for typography. Keep layout visually spacious and compatible with cropping into premium product announcements.",
+        "metadata_seed_keywords": [
+          "gaiwan lid",
+          "tea gifts",
+          "Lunar New Year",
+          "premium tea",
+          "porcelain",
+          "advertising background"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://stock.adobe.com/pages/artisthub/get-inspired/vector-graphics-illustrations-content-needs",
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html"
+        ],
+        "editorial_score_breakdown": {
+          "buyer_utility": 27,
+          "conceptual_distinctiveness": 17,
+          "composition_flexibility": 15,
+          "material_or_medium_credibility": 9,
+          "technical_4k_feasibility": 9,
+          "seasonal_or_reuse_timeliness": 4,
+          "portfolio_diversity": 4
+        },
+        "originality_notes": "Screened against all 11 user-reported similar-content entries and prior named holiday and creative-components queues; inspect generated image before Adobe submission.",
+        "prompt_word_count": 229
+      }
+    }
+  ]
+}
