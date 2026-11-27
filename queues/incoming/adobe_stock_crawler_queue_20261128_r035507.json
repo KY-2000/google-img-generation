@@ -1,0 +1,837 @@
+{
+  "run_id": "TF_category_crawler_20261128_r035507",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-28T03:55:07+08:00",
+  "research": {
+    "strategy": "broad_query_subject_and_use_case",
+    "source_urls": [
+      "https://stock.adobe.com/my/illustrations",
+      "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+      "https://docs.google.com/document/d/1_D-QBzmhaKmpC42T4hDLefIgOPQ96qHFauaBAm5BgaQ/edit"
+    ],
+    "market": "Adobe Stock Malaysia",
+    "discovered_categories": 12,
+    "deep_categories": [
+      "教育",
+      "技术",
+      "可持续",
+      "图标"
+    ],
+    "candidate_count": 32,
+    "sample_counts": {
+      "query_pages": 8,
+      "total_cards": 48,
+      "unique_cards": 48,
+      "visual_attempts": 16,
+      "visual_successes": 16,
+      "visual_failures": 0,
+      "not_sampled": 32
+    },
+    "sampling_rule": "每组相关性排序第一页取前六个可见卡作为本轮证据，实看该组前两张预览，并记录排名。",
+    "queries": [
+      {
+        "name": "science illustration",
+        "category": "教育",
+        "display_count": 24553,
+        "time": "2026-11-28T03:55:43+08:00",
+        "ids": [
+          "568398771",
+          "283526701",
+          "762003050",
+          "924108365",
+          "479909571",
+          "1174471361"
+        ],
+        "filter": "illustrations",
+        "order": "relevance",
+        "url": "https://stock.adobe.com/my/search?k=science%20illustration&filters%5Bcontent_type%3Aillustration%5D=1"
+      },
+      {
+        "name": "science classroom poster",
+        "category": "教育",
+        "display_count": 5,
+        "time": "2026-11-28T03:55:49+08:00",
+        "ids": [
+          "810335781",
+          "413915757",
+          "579901187",
+          "336930516",
+          "649981306",
+          "332754491"
+        ],
+        "filter": "illustrations",
+        "order": "relevance",
+        "url": "https://stock.adobe.com/my/search?k=science%20classroom%20poster&filters%5Bcontent_type%3Aillustration%5D=1"
+      },
+      {
+        "name": "technology background",
+        "category": "技术",
+        "display_count": 45211,
+        "time": "2026-11-28T03:55:53+08:00",
+        "ids": [
+          "300257078",
+          "329002139",
+          "189360493",
+          "199229077",
+          "181566647",
+          "215796247"
+        ],
+        "filter": "illustrations",
+        "order": "relevance",
+        "url": "https://stock.adobe.com/my/search?k=technology%20background&filters%5Bcontent_type%3Aillustration%5D=1"
+      },
+      {
+        "name": "cloud computing illustration",
+        "category": "技术",
+        "display_count": 918,
+        "time": "2026-11-28T03:56:03+08:00",
+        "ids": [
+          "645633031",
+          "428909896",
+          "265254999",
+          "220604499",
+          "365444857",
+          "642272769"
+        ],
+        "filter": "illustrations",
+        "order": "relevance",
+        "url": "https://stock.adobe.com/my/search?k=cloud%20computing%20illustration&filters%5Bcontent_type%3Aillustration%5D=1"
+      },
+      {
+        "name": "recycling illustration",
+        "category": "可持续",
+        "display_count": 1211,
+        "time": "2026-11-28T03:56:06+08:00",
+        "ids": [
+          "280319586",
+          "549987526",
+          "366824703",
+          "722170335",
+          "632588864",
+          "984086532"
+        ],
+        "filter": "illustrations",
+        "order": "relevance",
+        "url": "https://stock.adobe.com/my/search?k=recycling%20illustration&filters%5Bcontent_type%3Aillustration%5D=1"
+      },
+      {
+        "name": "recycling poster",
+        "category": "可持续",
+        "display_count": 186,
+        "time": "2026-11-28T03:56:09+08:00",
+        "ids": [
+          "412479423",
+          "671009495",
+          "1368049552",
+          "410065466",
+          "620630423",
+          "422995217"
+        ],
+        "filter": "illustrations",
+        "order": "relevance",
+        "url": "https://stock.adobe.com/my/search?k=recycling%20poster&filters%5Bcontent_type%3Aillustration%5D=1"
+      },
+      {
+        "name": "accessibility icons",
+        "category": "图标",
+        "display_count": 165,
+        "time": "2026-11-28T03:56:18+08:00",
+        "ids": [
+          "73639096",
+          "562324338",
+          "380058310",
+          "452516954",
+          "316237096",
+          "228969835"
+        ],
+        "filter": "illustrations",
+        "order": "relevance",
+        "url": "https://stock.adobe.com/my/search?k=accessibility%20icons&filters%5Bcontent_type%3Aillustration%5D=1"
+      },
+      {
+        "name": "wayfinding icons",
+        "category": "图标",
+        "display_count": 4,
+        "time": "2026-11-28T03:56:22+08:00",
+        "ids": [
+          "862520132",
+          "1151486283",
+          "877950871",
+          "652536851",
+          "397111521",
+          "602233016"
+        ],
+        "filter": "illustrations",
+        "order": "relevance",
+        "url": "https://stock.adobe.com/my/search?k=wayfinding%20icons&filters%5Bcontent_type%3Aillustration%5D=1"
+      }
+    ],
+    "asset_cards": [
+      {
+        "asset_id": "568398771",
+        "rank": 1,
+        "query": "science illustration",
+        "title": "Health care and medical pattern innovation concept science background design. Abstract geometric hexagons shape medicine and science background, illustration.",
+        "detail_url": "https://stock.adobe.com/my/images/health-care-and-medical-pattern-innovation-concept-science-background-design-abstract-geometric-hexagons-shape-medicine-and-science-background-illustration/568398771",
+        "preview_url": "https://t4.ftcdn.net/jpg/05/68/39/87/360_F_568398771_bvBVCxsSnzY62cQnhh5uzZPN8TLvDfIH.jpg",
+        "note": "浅蓝医疗六边形装饰围绕亮中央。",
+        "visual_status": "reviewed"
+      },
+      {
+        "asset_id": "283526701",
+        "rank": 2,
+        "query": "science illustration",
+        "title": "chemical science banner",
+        "detail_url": "https://stock.adobe.com/my/images/chemical-science-banner/283526701",
+        "preview_url": "https://t4.ftcdn.net/jpg/02/83/52/67/360_F_283526701_RHiG40SYkSYgVkpFn0xltfThxcfkkDf1.jpg",
+        "note": "彩色渐变背景中叠着分子式样的线条。",
+        "visual_status": "reviewed"
+      },
+      {
+        "asset_id": "762003050",
+        "rank": 3,
+        "query": "science illustration",
+        "title": "dna 3d illustration",
+        "detail_url": "https://stock.adobe.com/my/images/dna-3d-illustration/762003050",
+        "preview_url": "https://t3.ftcdn.net/jpg/07/62/00/30/360_F_762003050_bPWJdL5jdIFPOWlUL322t2VCLnIlmS0b.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "924108365",
+        "rank": 4,
+        "query": "science illustration",
+        "title": "3D Atom molecule chemistry nuclear scientific research orbital electrons colorful cartoon style on isolated background. energy education 3d render. illustration",
+        "detail_url": "https://stock.adobe.com/my/images/3d-atom-molecule-chemistry-nuclear-scientific-research-orbital-electrons-colorful-cartoon-style-on-isolated-background-energy-education-3d-render-illustration/924108365",
+        "preview_url": "https://t4.ftcdn.net/jpg/09/24/10/83/360_F_924108365_dtpHRadtCntTzQApDxLscxyp8R7vwLIH.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "479909571",
+        "rank": 5,
+        "query": "science illustration",
+        "title": "scientist looking at a microscope",
+        "detail_url": "https://stock.adobe.com/my/images/scientist-looking-at-a-microscope/479909571",
+        "preview_url": "https://t4.ftcdn.net/jpg/04/79/90/95/360_F_479909571_pmTaE25EdoECoDm6GpwPNFVXHbUrnIaP.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "1174471361",
+        "rank": 6,
+        "query": "science illustration",
+        "title": "3D Illustration Biochemistry",
+        "detail_url": "https://stock.adobe.com/my/images/3d-illustration-biochemistry/1174471361",
+        "preview_url": "https://t4.ftcdn.net/jpg/11/74/47/13/360_F_1174471361_p0lxGsGnVEfAPGULZNU7phhm9nBznRIQ.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "810335781",
+        "rank": 1,
+        "query": "science classroom poster",
+        "title": "3D Isometric Flat Illustration of Geography School Subject, Cartography and Navigation",
+        "detail_url": "https://stock.adobe.com/my/images/3d-isometric-flat-illustration-of-geography-school-subject-cartography-and-navigation/810335781",
+        "preview_url": "https://t4.ftcdn.net/jpg/08/10/33/57/360_F_810335781_s7HOzpm5OhQxRDF4njrXFUIWRApJfWpX.jpg",
+        "note": "地球仪、地图、书本、定位点和人物拼成地理课场景。",
+        "visual_status": "reviewed"
+      },
+      {
+        "asset_id": "413915757",
+        "rank": 2,
+        "query": "science classroom poster",
+        "title": "Space alphabet poster Watercolor alphabet Abc poster Homeschooling Educational poster Watercolor space Nursery wall art Kids room decor Printable Illustration for each letter of English alphabet",
+        "detail_url": "https://stock.adobe.com/my/images/space-alphabet-poster-watercolor-alphabet-abc-poster-homeschooling-educational-poster-watercolor-space-nursery-wall-art-kids-room-decor-printable-illustration-for-each-letter-of-english-alphabet/413915757",
+        "preview_url": "https://t4.ftcdn.net/jpg/04/13/91/57/360_F_413915757_IypKfwk7EAY5imuYXXOO0ZHA3z8TqU9y.jpg",
+        "note": "深底字母海报，各天体与器材旁已有字号文字。",
+        "visual_status": "reviewed"
+      },
+      {
+        "asset_id": "579901187",
+        "rank": 3,
+        "query": "science classroom poster",
+        "title": "3d icon purple bagpack object for website, aplication, icon banner, render",
+        "detail_url": "https://stock.adobe.com/my/images/3d-icon-purple-bagpack-object-for-website-aplication-icon-banner-render/579901187",
+        "preview_url": "https://t4.ftcdn.net/jpg/05/79/90/11/360_F_579901187_kgzN9rXMBqMRkcMScjCBn7myQmynifl3.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "336930516",
+        "rank": 4,
+        "query": "science classroom poster",
+        "title": "Multiplication table. Multiplication Square. Educational illustration chart for school students, in gray and green, on white background. Poster for kids.",
+        "detail_url": "https://stock.adobe.com/my/images/multiplication-table-multiplication-square-educational-illustration-chart-for-school-students-in-gray-and-green-on-white-background-poster-for-kids/336930516",
+        "preview_url": "https://t4.ftcdn.net/jpg/03/36/93/05/360_F_336930516_JKxfwBr8z3CzLW9zuz2p7SOFTrTyawOk.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "649981306",
+        "rank": 5,
+        "query": "science classroom poster",
+        "title": "3D Isometric Flat Conceptual Illustration of Sieving, Sifting and Elimination, Separating Mixtures",
+        "detail_url": "https://stock.adobe.com/my/images/3d-isometric-flat-conceptual-illustration-of-sieving-sifting-and-elimination-separating-mixtures/649981306",
+        "preview_url": "https://t4.ftcdn.net/jpg/06/49/98/13/360_F_649981306_dkaNvb7kD3hrMe0juEqpr766ONiA8572.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "332754491",
+        "rank": 6,
+        "query": "science classroom poster",
+        "title": "Dark blackboard with white school supplies doodles. Back to school concept.",
+        "detail_url": "https://stock.adobe.com/my/images/dark-blackboard-with-white-school-supplies-doodles-back-to-school-concept/332754491",
+        "preview_url": "https://t3.ftcdn.net/jpg/03/32/75/44/360_F_332754491_z2t5SC7SoA4B7BAh6pMmiTcyN7Ma1QPq.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "300257078",
+        "rank": 1,
+        "query": "technology background",
+        "title": "Abstract technology big data background concept.",
+        "detail_url": "https://stock.adobe.com/my/images/abstract-technology-big-data-background-concept/300257078",
+        "preview_url": "https://t3.ftcdn.net/jpg/03/00/25/70/360_F_300257078_jOK2L3lIvnlHMoWrKAWtE7FBa4WI5jTf.jpg",
+        "note": "蓝色网格地平线收束到中央光点，带放射环。",
+        "visual_status": "reviewed"
+      },
+      {
+        "asset_id": "329002139",
+        "rank": 2,
+        "query": "technology background",
+        "title": "futuristic technology background",
+        "detail_url": "https://stock.adobe.com/my/images/futuristic-technology-background/329002139",
+        "preview_url": "https://t4.ftcdn.net/jpg/03/29/00/21/360_F_329002139_cmFeAFvu47kRIfDuKWKA3mIuGvYnbax4.jpg",
+        "note": "紫蓝光束收束到中央，属于抽象科技底图。",
+        "visual_status": "reviewed"
+      },
+      {
+        "asset_id": "189360493",
+        "rank": 3,
+        "query": "technology background",
+        "title": "Digital binary code matrix background - 3D rendering of a scientific technology data binary code network conveying connectivity, complexity and data flood of modern digital age",
+        "detail_url": "https://stock.adobe.com/my/images/digital-binary-code-matrix-background-3d-rendering-of-a-scientific-technology-data-binary-code-network-conveying-connectivity-complexity-and-data-flood-of-modern-digital-age/189360493",
+        "preview_url": "https://t3.ftcdn.net/jpg/01/89/36/04/360_F_189360493_K2uvLC2JTnLVkueToDwkqfXNVKRBoA9y.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "199229077",
+        "rank": 4,
+        "query": "technology background",
+        "title": "Abstract technology geometric polygonal mesh lines background",
+        "detail_url": "https://stock.adobe.com/my/images/abstract-technology-geometric-polygonal-mesh-lines-background/199229077",
+        "preview_url": "https://t3.ftcdn.net/jpg/01/99/22/90/360_F_199229077_j3S4b4IGx7agtmQjdAwFlprSdLULQYNz.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "181566647",
+        "rank": 5,
+        "query": "technology background",
+        "title": "blue geometric shape abstract technology background",
+        "detail_url": "https://stock.adobe.com/my/images/blue-geometric-shape-abstract-technology-background/181566647",
+        "preview_url": "https://t3.ftcdn.net/jpg/01/81/56/66/360_F_181566647_CWNWWW7u1cBxRacifLlWvJxxXLyWBuhE.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "215796247",
+        "rank": 6,
+        "query": "technology background",
+        "title": "Abstract technology background",
+        "detail_url": "https://stock.adobe.com/my/images/abstract-technology-background/215796247",
+        "preview_url": "https://t3.ftcdn.net/jpg/02/15/79/62/360_F_215796247_U9YuC2eGtFcNmPkioGhv3h750v48AGpU.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "645633031",
+        "rank": 1,
+        "query": "cloud computing illustration",
+        "title": "cloud computing circuit board background",
+        "detail_url": "https://stock.adobe.com/my/images/cloud-computing-circuit-board-background/645633031",
+        "preview_url": "https://t3.ftcdn.net/jpg/06/45/63/30/360_F_645633031_AO2nNv8k8Uk1wFW0zi4fOHEJOIXzVbru.jpg",
+        "note": "发光云标识立在电路板上，后方有漂浮数字。",
+        "visual_status": "reviewed"
+      },
+      {
+        "asset_id": "428909896",
+        "rank": 2,
+        "query": "cloud computing illustration",
+        "title": "Cloud storage technology and online data storage, cloud computing, hosting white cloud with blue background. 3d render illustration",
+        "detail_url": "https://stock.adobe.com/my/images/cloud-storage-technology-and-online-data-storage-cloud-computing-hosting-white-cloud-with-blue-background-3d-render-illustration/428909896",
+        "preview_url": "https://t3.ftcdn.net/jpg/04/28/90/98/360_F_428909896_APUv3NuPAW0SfDqTVymwPVLVm8ehR9mS.jpg",
+        "note": "白色云图形贴在纯蓝底，底部延伸数条线路。",
+        "visual_status": "reviewed"
+      },
+      {
+        "asset_id": "265254999",
+        "rank": 3,
+        "query": "cloud computing illustration",
+        "title": "Cloud computing and network security concept, 3d rendering,conceptual image.",
+        "detail_url": "https://stock.adobe.com/my/images/cloud-computing-and-network-security-concept-3d-rendering-conceptual-image/265254999",
+        "preview_url": "https://t4.ftcdn.net/jpg/02/65/25/49/360_F_265254999_nqnO1BiALPdoWKvJH83mhvPeGQ6d2bnf.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "220604499",
+        "rank": 4,
+        "query": "cloud computing illustration",
+        "title": "cloud computing technology",
+        "detail_url": "https://stock.adobe.com/my/images/cloud-computing-technology/220604499",
+        "preview_url": "https://t3.ftcdn.net/jpg/02/20/60/44/360_F_220604499_q2ktEMCtDAnn6GPiwvHgaacun5L2d8pK.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "365444857",
+        "rank": 5,
+        "query": "cloud computing illustration",
+        "title": "Cyber computing cloud symbols 3d illustration",
+        "detail_url": "https://stock.adobe.com/my/images/cyber-computing-cloud-symbols-3d-illustration/365444857",
+        "preview_url": "https://t3.ftcdn.net/jpg/03/65/44/48/360_F_365444857_ttp0IWFocDpPD2IR7W2fOYE9a5IOBN9u.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "642272769",
+        "rank": 6,
+        "query": "cloud computing illustration",
+        "title": "Abstract background image, cloud storage concept, data transfer, high tech communication network",
+        "detail_url": "https://stock.adobe.com/my/images/abstract-background-image-cloud-storage-concept-data-transfer-high-tech-communication-network/642272769",
+        "preview_url": "https://t4.ftcdn.net/jpg/06/42/27/27/360_F_642272769_eZzAL9OnGSmN72zNcQh68XzRz93KKay8.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "280319586",
+        "rank": 1,
+        "query": "recycling illustration",
+        "title": "Watercolor recycling sign isolated on white background. Hand drawn reuse symbol for ecological design. Zero waste lifestyle.",
+        "detail_url": "https://stock.adobe.com/my/images/watercolor-recycling-sign-isolated-on-white-background-hand-drawn-reuse-symbol-for-ecological-design-zero-waste-lifestyle/280319586",
+        "preview_url": "https://t4.ftcdn.net/jpg/02/80/31/95/360_F_280319586_8ReDbtbZmqG2LqKHzha1jba8OgLSA338.jpg",
+        "note": "白底水彩三箭头回收标志。",
+        "visual_status": "reviewed"
+      },
+      {
+        "asset_id": "549987526",
+        "rank": 2,
+        "query": "recycling illustration",
+        "title": "Waste disposal - colorful flat design style illustration",
+        "detail_url": "https://stock.adobe.com/my/images/waste-disposal-colorful-flat-design-style-illustration/549987526",
+        "preview_url": "https://t4.ftcdn.net/jpg/05/49/98/75/360_F_549987526_2M92nPCp4qGSpM2DdDv4n813zxYNBTxI.jpg",
+        "note": "人物手持物件靠近绿色回收桶，旁边有装饰叶片。",
+        "visual_status": "reviewed"
+      },
+      {
+        "asset_id": "366824703",
+        "rank": 3,
+        "query": "recycling illustration",
+        "title": "People putting organic food into eco friendly bag with recycling sign. Shoppers with fresh fruits and plastic cup. illustration for sustainable development, zero waste, reuse concept",
+        "detail_url": "https://stock.adobe.com/my/images/people-putting-organic-food-into-eco-friendly-bag-with-recycling-sign-shoppers-with-fresh-fruits-and-plastic-cup-illustration-for-sustainable-development-zero-waste-reuse-concept/366824703",
+        "preview_url": "https://t4.ftcdn.net/jpg/03/66/82/47/360_F_366824703_BOa8XmTQNxWqz4cjptriyFYTtGAo9tvB.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "722170335",
+        "rank": 4,
+        "query": "recycling illustration",
+        "title": "Crushed aluminum can outline drawing set. Simple black and white line art illustration, hand drawn doodle.",
+        "detail_url": "https://stock.adobe.com/my/images/crushed-aluminum-can-outline-drawing-set-simple-black-and-white-line-art-illustration-hand-drawn-doodle/722170335",
+        "preview_url": "https://t4.ftcdn.net/jpg/07/22/17/03/360_F_722170335_zpSd7wMUeD8szSAG9MPDFKte3pjutQpO.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "632588864",
+        "rank": 5,
+        "query": "recycling illustration",
+        "title": "circular economy icon circular arrow process symbol endless loop logo concept of environmentally responsible green corporate industrial business, recycling. png graphic illustration",
+        "detail_url": "https://stock.adobe.com/my/images/circular-economy-icon-circular-arrow-process-symbol-endless-loop-logo-concept-of-environmentally-responsible-green-corporate-industrial-business-recycling-png-graphic-illustration/632588864",
+        "preview_url": "https://t3.ftcdn.net/jpg/06/32/58/88/360_F_632588864_GZDVcSoZOWVh6VpWPbLiWa01qakNr6jw.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "984086532",
+        "rank": 6,
+        "query": "recycling illustration",
+        "title": "paper background",
+        "detail_url": "https://stock.adobe.com/my/images/paper-background/984086532",
+        "preview_url": "https://t4.ftcdn.net/jpg/09/84/08/65/360_F_984086532_3ccwwdwUzfIUKlt6ymGlyIv3nkej8aKF.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "412479423",
+        "rank": 1,
+        "query": "recycling poster",
+        "title": "Watercolor pile of plastic. Plastic pollution background. Plastic bags, plastic bottles arrangement for ecology posters, enviroment protection, save the ocean, Earth day posters, web, social media",
+        "detail_url": "https://stock.adobe.com/my/images/watercolor-pile-of-plastic-plastic-pollution-background-plastic-bags-plastic-bottles-arrangement-for-ecology-posters-enviroment-protection-save-the-ocean-earth-day-posters-web-social-media/412479423",
+        "preview_url": "https://t3.ftcdn.net/jpg/04/12/47/94/360_F_412479423_pWIuEolp3xl4CPfxwzGFt7CDcmiIH5pw.jpg",
+        "note": "白底半透明蓝塑料瓶堆，传达垃圾堆积。",
+        "visual_status": "reviewed"
+      },
+      {
+        "asset_id": "671009495",
+        "rank": 2,
+        "query": "recycling poster",
+        "title": "Crumpled paper overlay texture. Wrinkled weathered grunge paper effect background. Great for music poster, vinyl album cover, vintage design. Realistic photo of creased torn mockup document.",
+        "detail_url": "https://stock.adobe.com/my/images/crumpled-paper-overlay-texture-wrinkled-weathered-grunge-paper-effect-background-great-for-music-poster-vinyl-album-cover-vintage-design-realistic-photo-of-creased-torn-mockup-document/671009495",
+        "preview_url": "https://t3.ftcdn.net/jpg/06/71/00/94/360_F_671009495_kCj8ABdPsuXFMudvNGKv780fah8cy7nF.jpg",
+        "note": "浅灰皱纸纹理，画面没出现材料回收动作。",
+        "visual_status": "reviewed"
+      },
+      {
+        "asset_id": "1368049552",
+        "rank": 3,
+        "query": "recycling poster",
+        "title": "Green recycle symbol on a white background representing eco-friendly recycling",
+        "detail_url": "https://stock.adobe.com/my/images/green-recycle-symbol-on-a-white-background-representing-eco-friendly-recycling/1368049552",
+        "preview_url": "https://t4.ftcdn.net/jpg/13/68/04/95/360_F_1368049552_nExH5O0zg4cPz74iixCLsj9QgjiXYr7U.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "410065466",
+        "rank": 4,
+        "query": "recycling poster",
+        "title": "Save the planet poster for world environment day",
+        "detail_url": "https://stock.adobe.com/my/images/save-the-planet-poster-for-world-environment-day/410065466",
+        "preview_url": "https://t3.ftcdn.net/jpg/04/10/06/54/360_F_410065466_RoueNEF9l3Mo0Fh0otnxFKjY69pJkkz1.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "620630423",
+        "rank": 5,
+        "query": "recycling poster",
+        "title": "Retro photo paper texture. Old antique sheet paper texture. Announcement board. Recycle vintage paper background. Aged and yellowed wallpaper.",
+        "detail_url": "https://stock.adobe.com/my/images/retro-photo-paper-texture-old-antique-sheet-paper-texture-announcement-board-recycle-vintage-paper-background-aged-and-yellowed-wallpaper/620630423",
+        "preview_url": "https://t3.ftcdn.net/jpg/06/20/63/04/360_F_620630423_95DFeEaWr8l9I8LsN2iQkY14SA0rZGNU.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "422995217",
+        "rank": 6,
+        "query": "recycling poster",
+        "title": "Environmental concept. Green tree, made of green leaves and sprout with sketches of hand holding plant.Think Green. Ecology Concept. Plant the tree. Protecting and love nature.Flat lay.Top view",
+        "detail_url": "https://stock.adobe.com/my/images/environmental-concept-green-tree-made-of-green-leaves-and-sprout-with-sketches-of-hand-holding-plant-think-green-ecology-concept-plant-the-tree-protecting-and-love-nature-flat-lay-top-view/422995217",
+        "preview_url": "https://t3.ftcdn.net/jpg/04/22/99/52/360_F_422995217_GdyuBpG1Qc3OQX22mOs2ZyBZmZ3AhfEo.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "73639096",
+        "rank": 1,
+        "query": "accessibility icons",
+        "title": "Disabled icons set",
+        "detail_url": "https://stock.adobe.com/my/images/disabled-icons-set/73639096",
+        "preview_url": "https://t3.ftcdn.net/jpg/00/73/63/90/360_F_73639096_XP4438oh60AG9XWiJW4f2BKYuE9tmKZA.jpg",
+        "note": "蓝黑图标网格，包括轮椅、坡道、听觉和辅助工具。",
+        "visual_status": "reviewed"
+      },
+      {
+        "asset_id": "562324338",
+        "rank": 2,
+        "query": "accessibility icons",
+        "title": "disabled parking sign",
+        "detail_url": "https://stock.adobe.com/my/images/disabled-parking-sign/562324338",
+        "preview_url": "https://t4.ftcdn.net/jpg/05/62/32/43/360_F_562324338_yMbLPLhktfQAljUsxPxM4ggkdlJeIqW4.jpg",
+        "note": "蓝色圆牌中的白色轮椅图示。",
+        "visual_status": "reviewed"
+      },
+      {
+        "asset_id": "380058310",
+        "rank": 3,
+        "query": "accessibility icons",
+        "title": "Accessibility icon with wheelchair and technology abstract background. Access in online internet website and technology applied to people with disabilities and handicap",
+        "detail_url": "https://stock.adobe.com/my/images/accessibility-icon-with-wheelchair-and-technology-abstract-background-access-in-online-internet-website-and-technology-applied-to-people-with-disabilities-and-handicap/380058310",
+        "preview_url": "https://t4.ftcdn.net/jpg/03/80/05/83/360_F_380058310_TD38AfZwsAjVpz6YSxRjWlUCkm2pSAnl.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "452516954",
+        "rank": 4,
+        "query": "accessibility icons",
+        "title": "Handicap sign",
+        "detail_url": "https://stock.adobe.com/my/images/handicap-sign/452516954",
+        "preview_url": "https://t4.ftcdn.net/jpg/04/52/51/69/360_F_452516954_eZcFC0PRjZiX43GeVe1xFcb64vBllHsK.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "316237096",
+        "rank": 5,
+        "query": "accessibility icons",
+        "title": "Closed captioning sign",
+        "detail_url": "https://stock.adobe.com/my/images/closed-captioning-sign/316237096",
+        "preview_url": "https://t3.ftcdn.net/jpg/03/16/23/70/360_F_316237096_KfP1WWd7itPswvYHJzO0RQle9W3DX5Si.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "228969835",
+        "rank": 6,
+        "query": "accessibility icons",
+        "title": "symbol reserved for disabled people or handicap",
+        "detail_url": "https://stock.adobe.com/my/images/symbol-reserved-for-disabled-people-or-handicap/228969835",
+        "preview_url": "https://t3.ftcdn.net/jpg/02/28/96/98/360_F_228969835_fVaDRwQiIF9YCTnTXF0NS7RHwFl4rmOM.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "862520132",
+        "rank": 1,
+        "query": "wayfinding icons",
+        "title": "Compass Arrow Flat Icon Set On Transparent Background, Flat Design Compass Arrow Icon Set, North, South, West, and Earth Directions.",
+        "detail_url": "https://stock.adobe.com/my/images/compass-arrow-flat-icon-set-on-transparent-background-flat-design-compass-arrow-icon-set-north-south-west-and-earth-directions/862520132",
+        "preview_url": "https://t4.ftcdn.net/jpg/08/62/52/01/360_F_862520132_xaSEM8FGBO5Q23CmNb7YPRFO4tg93tW0.jpg",
+        "note": "黑白指南针箭头组，部分箭头附方位字母。",
+        "visual_status": "reviewed"
+      },
+      {
+        "asset_id": "1151486283",
+        "rank": 2,
+        "query": "wayfinding icons",
+        "title": "Compass icon featuring sharp directional points, designed for clear navigation, presented in PNG format with a transparent background.",
+        "detail_url": "https://stock.adobe.com/my/images/compass-icon-featuring-sharp-directional-points-designed-for-clear-navigation-presented-in-png-format-with-a-transparent-background/1151486283",
+        "preview_url": "https://t3.ftcdn.net/jpg/11/51/48/62/360_F_1151486283_VYAI5YN00ScLwaMq84ZAEEqKQKTrb1Jt.jpg",
+        "note": "单个黑色放射罗盘，没有路径或实际地面。",
+        "visual_status": "reviewed"
+      },
+      {
+        "asset_id": "877950871",
+        "rank": 3,
+        "query": "wayfinding icons",
+        "title": "direction arrow sign",
+        "detail_url": "https://stock.adobe.com/my/images/direction-arrow-sign/877950871",
+        "preview_url": "https://t3.ftcdn.net/jpg/08/77/95/08/360_F_877950871_XeADzTfomVcAxpJViyDkIILQeZhy087X.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "652536851",
+        "rank": 4,
+        "query": "wayfinding icons",
+        "title": "3D Isometric Flat Conceptual Illustration of Restroom For Disabled People, Accessible Public Toilet",
+        "detail_url": "https://stock.adobe.com/my/images/3d-isometric-flat-conceptual-illustration-of-restroom-for-disabled-people-accessible-public-toilet/652536851",
+        "preview_url": "https://t3.ftcdn.net/jpg/06/52/53/68/360_F_652536851_d4MwR5KbYM6DFuHGETPDSJbwWN0kDllj.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "397111521",
+        "rank": 5,
+        "query": "wayfinding icons",
+        "title": "Location, navigation, map icons set. Collection of transport, route, navigation related vector illustrations. Map pin, location marker, map, signpost, route, satellite, compass, etc.",
+        "detail_url": "https://stock.adobe.com/my/images/location-navigation-map-icons-set-collection-of-transport-route-navigation-related-vector-illustrations-map-pin-location-marker-map-signpost-route-satellite-compass-etc/397111521",
+        "preview_url": "https://t4.ftcdn.net/jpg/03/97/11/15/360_F_397111521_jUx89ZJXHWuuwZ5gM8keM4VQ0jbKooqO.jpg",
+        "visual_status": "not_sampled"
+      },
+      {
+        "asset_id": "602233016",
+        "rank": 6,
+        "query": "wayfinding icons",
+        "title": "red blue road sign 3d icon",
+        "detail_url": "https://stock.adobe.com/my/images/red-blue-road-sign-3d-icon/602233016",
+        "preview_url": "https://t3.ftcdn.net/jpg/06/02/23/30/360_F_602233016_FNJm1HCoZgxsN9rqlaZ86NiP5nyYnWOr.jpg",
+        "visual_status": "not_sampled"
+      }
+    ],
+    "history": {
+      "files": 33,
+      "assets": 314,
+      "confirmed_rejection_cases": 11
+    },
+    "limitations": "样本只覆盖 8 个查询第一页前 6 张卡片。页面汇总标题有时小于实际出现的卡片数，未据此推断精确供给。识别到的 48 项均归档标题、详情、预览与排名。仅前两位逐张看图，其余为卡片层证据。",
+    "creative_rule": "目标用途或视觉表达须有实质变化。增加同类主体并排、移到下缘、把对角装饰改为两侧边框都不足以通过。"
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Pencil Refraction at a Single Water Surface",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "warm ivory, graphite, graphite blue, mustard yellow",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a horizontal 4K educational illustration for an introductory physics slide or a museum activity page. Set one clear rectangular glass vessel on a plain warm ivory surface, half filled with clean water. Show one straight yellow pencil crossing the water surface at a diagonal, with the portion seen through water visibly displaced at the boundary from the portion in air. Keep the pencil thickness and color consistent so the viewer recognizes one continuous object. Use a slightly elevated oblique view, a thin readable waterline, and restrained glass reflections. Make the apparent offset visible without adding ray traces or exaggerated bending. Render with clean textbook contours, soft diffuse light, and a limited graphite blue palette. Keep a quiet region opposite the vessel for a teacher supplied question. Exclude labels, equations, arrows, hands, second pencils, logos, and watermarks.",
+      "negative_prompt": "actual broken pencil, multiple pencils, decorative refraction, ray diagram, arrows, labels, formula, logo, watermark",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "教育",
+        "base_topic": "通用科学分子纹理和课堂用品拼贴",
+        "distinctiveness": "用一支连续铅笔穿过水面，画出同一物体在界面两侧的视位偏移。单一现象成为可让学生预测和解释的课堂观察。",
+        "design_reuse_cases": [
+          "中小学物理课件",
+          "科学馆家庭实验活动页"
+        ],
+        "seasonality": "常青",
+        "competition": "未知",
+        "competition_basis": "宽词对照包含明显用途混合，狭义构图的竞争未用专项样本核实。",
+        "similar_content_review": "与旧队列的偏振反光、光学比色皿对照和玻璃墙面折射区分。这里用同一铅笔与水面讲入门光学，单幅呈现。",
+        "source_urls": [
+          "https://openstax.org/books/physics/pages/16-2-refraction",
+          "https://www.adobe.com/express/templates/infographic/educational",
+          "https://stock.adobe.com/my/images/health-care-and-medical-pattern-innovation-concept-science-background-design-abstract-geometric-hexagons-shape-medicine-and-science-background-illustration/568398771",
+          "https://stock.adobe.com/my/images/3d-isometric-flat-illustration-of-geography-school-subject-cartography-and-navigation/810335781"
+        ],
+        "evidence_ids": [
+          "568398771",
+          "810335781"
+        ],
+        "score_breakdown": {
+          "utility": 24,
+          "demand_coverage_and_evidence": 19,
+          "differentiation": 9,
+          "composition": 14,
+          "material": 9,
+          "feasibility": 9,
+          "timeliness": 4,
+          "diversity": 4
+        },
+        "quality_check": "先验收是否一眼可认出同一支铅笔与水面。折射的精确光路不在图中表达。"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "One Document Ribbon Connecting Two Devices",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 89,
+      "topic_bucket": "APPROVED",
+      "palette": "warm chalk, slate blue, soft jade",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a horizontal 4K product education illustration for a cloud document onboarding page or an internal training slide. Depict an anonymous open laptop and an upright phone from the same gentle isometric viewpoint. Connect the display surfaces with one continuous pale paper ribbon, gently bending through the intervening space as a metaphor for a shared document. Give the ribbon a distinctive folded corner at its leading edge and place a restrained cluster of short abstract embossed lines along it. Integrate it flush with both display planes so the connection reads as uninterrupted. Use simple slate blue device frames, a muted jade accent, soft studio illumination, and clean matte shadows. Leave quiet space above for a heading. Avoid recognizable hardware silhouettes, user interface controls, status badges, network arrows, cloud icons, letters, brands, and watermarks.",
+      "negative_prompt": "cloud symbol, neon circuit board, separate documents, brand, recognizable interface, words, logo, watermark",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "技术",
+        "base_topic": "发光云朵和电路板科技底图",
+        "distinctiveness": "将云作为装饰符号的表达改为跨设备连续性。同一条带有独特折角的文档从电脑延续到手机，两个屏幕共享同一条文档结构。",
+        "design_reuse_cases": [
+          "云端文档产品说明页",
+          "员工跨设备办公培训"
+        ],
+        "seasonality": "常青",
+        "competition": "未知",
+        "competition_basis": "宽词对照包含明显用途混合，狭义构图的竞争未用专项样本核实。",
+        "similar_content_review": "旧队列的小企业备份工作空间是办公安全场景。此案去掉人物、备份状态与云图标，以一份文档的连续浮雕为唯一视觉机制。",
+        "source_urls": [
+          "https://support.microsoft.com/en-au/sharepoint/sync/work-with-synced-files-in-file-explorer",
+          "https://www.adobe.com/express/templates/infographic",
+          "https://stock.adobe.com/my/images/abstract-technology-big-data-background-concept/300257078",
+          "https://stock.adobe.com/my/images/cloud-computing-circuit-board-background/645633031",
+          "https://stock.adobe.com/my/images/cloud-storage-technology-and-online-data-storage-cloud-computing-hosting-white-cloud-with-blue-background-3d-render-illustration/428909896"
+        ],
+        "evidence_ids": [
+          "300257078",
+          "645633031",
+          "428909896"
+        ],
+        "score_breakdown": {
+          "utility": 23,
+          "demand_coverage_and_evidence": 18,
+          "differentiation": 8,
+          "composition": 14,
+          "material": 9,
+          "feasibility": 9,
+          "timeliness": 4,
+          "diversity": 4
+        },
+        "quality_check": "核心是一条连续文档带。画面只隐喻跨设备连续性，避免暗示固定同步方向、延迟或功能承诺。"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "A Shipping Carton Being Flattened for Recycling",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "kraft brown, warm chalk, pine green",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a vertical 4K public information illustration for a residential recycling poster or a sign near a shared collection point. Show one clean empty corrugated parcel box in the act of being flattened. The top and bottom flaps should already be opened so both opposite walls can move together along the original vertical score lines. Use a slightly elevated angled view that makes the partly collapsed geometry clear. Show two natural hands, one pressing a broad side panel and the other steadying the box near a fold. Use restrained kraft paper texture, visible fine corrugation along one exposed edge, and simple soft shading on a light neutral surface. Reserve a clear upper field for locally supplied wording. Use an editorial instructional style with strong silhouettes. Omit rulers, tools, extra boxes, bin symbols, arrows, printed packaging, labels, and logos.",
+      "negative_prompt": "pile of boxes, unopened carton, shipping label, recycling arrows, bin colors, tools, extra fingers, words, branding",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "可持续",
+        "base_topic": "循环箭头和绿色垃圾桶宣传图",
+        "distinctiveness": "聚焦一只拆开的空纸箱正在沿原折痕压平的瞬间。把抽象环保符号变成可理解的准备动作。",
+        "design_reuse_cases": [
+          "住户回收告示",
+          "公寓回收点说明贴"
+        ],
+        "seasonality": "常青",
+        "competition": "未知",
+        "competition_basis": "宽词对照包含明显用途混合，狭义构图的竞争未用专项样本核实。",
+        "similar_content_review": "避免 SC-009 的零废弃瓶罐补充站，也避开历史退货换标签、包装边角剖面和礼品包装折缝。图中仅展示一个纸箱的折叠动作。",
+        "source_urls": [
+          "https://www.ccktc.org.sg/recycle-cartons-the-right-way/",
+          "https://www.nea.gov.sg/docs/default-source/our-services/waste-management/recycling-guide_v6.pdf",
+          "https://stock.adobe.com/my/images/watercolor-recycling-sign-isolated-on-white-background-hand-drawn-reuse-symbol-for-ecological-design-zero-waste-lifestyle/280319586",
+          "https://stock.adobe.com/my/images/waste-disposal-colorful-flat-design-style-illustration/549987526",
+          "https://stock.adobe.com/my/images/watercolor-pile-of-plastic-plastic-pollution-background-plastic-bags-plastic-bottles-arrangement-for-ecology-posters-enviroment-protection-save-the-ocean-earth-day-posters-web-social-media/412479423"
+        ],
+        "evidence_ids": [
+          "280319586",
+          "549987526",
+          "412479423"
+        ],
+        "score_breakdown": {
+          "utility": 24,
+          "demand_coverage_and_evidence": 19,
+          "differentiation": 9,
+          "composition": 14,
+          "material": 9,
+          "feasibility": 9,
+          "timeliness": 4,
+          "diversity": 5
+        },
+        "quality_check": "核查上下箱舌都打开，箱壁能按现有压痕收合，手指数量和手的接触位置自然。"
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Continuous Step Free Path from Drop Off to a Venue Plaza",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 89,
+      "topic_bucket": "APPROVED",
+      "palette": "warm gray, muted teal, pale sandstone, shadow blue",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a wide 4K illustration for a museum arrival guide or an event venue visitor information page. Show a single outdoor public plaza from a high oblique viewpoint, including a quiet drop off edge, a broad curb cut, and a simple paved route ending at an open plaza landing. Use a continuous muted teal inlay within the paving to help the eye follow the same uninterrupted route around a shallow planted island. Let the continuous contact between the curb ramp and the adjoining surface remain visible. Keep street furniture outside the path, and place the building mass in the distance as context. Use clear editorial geometry, warm gray paving, pale sandstone, and short soft shadows. Preserve modest sky or ground space for a buyer supplied title. Omit symbols, route labels, gradients indicating measurements, logos, and construction dimensions.",
+      "negative_prompt": "compass rose, standardized road sign, arrows, indoor doorway, stairs on highlighted route, logo, letters, measurements",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "图标",
+        "base_topic": "罗盘箭头和轮椅标识图套",
+        "distinctiveness": "把方向符号变为一条可以用视线走完的实体路线，从落客边缘经缘石坡口接入广场。通过地形关系表达公共场所的到达方式。",
+        "design_reuse_cases": [
+          "展馆行前指引封面",
+          "活动主办方交通到达页"
+        ],
+        "seasonality": "常青",
+        "competition": "未知",
+        "competition_basis": "宽词对照包含明显用途混合，狭义构图的竞争未用专项样本核实。",
+        "similar_content_review": "旧队列有盲道点条材质对照和房地产开放玄关案例。此案采用室外完整动线，终点为广场，没有门口室内场景、材质样板或方向图标套。",
+        "source_urls": [
+          "https://www.metmuseum.org/visit-guides/accessibility",
+          "https://fitzmuseum.cam.ac.uk/plan-your-visit",
+          "https://stock.adobe.com/my/images/disabled-icons-set/73639096",
+          "https://stock.adobe.com/my/images/disabled-parking-sign/562324338",
+          "https://stock.adobe.com/my/images/compass-arrow-flat-icon-set-on-transparent-background-flat-design-compass-arrow-icon-set-north-south-west-and-earth-directions/862520132",
+          "https://stock.adobe.com/my/images/compass-icon-featuring-sharp-directional-points-designed-for-clear-navigation-presented-in-png-format-with-a-transparent-background/1151486283"
+        ],
+        "evidence_ids": [
+          "73639096",
+          "562324338",
+          "862520132",
+          "1151486283"
+        ],
+        "score_breakdown": {
+          "utility": 22,
+          "demand_coverage_and_evidence": 18,
+          "differentiation": 9,
+          "composition": 14,
+          "material": 8,
+          "feasibility": 9,
+          "timeliness": 4,
+          "diversity": 5
+        },
+        "quality_check": "检查路线沿真实地面连续，落客端到广场没有突变台阶。用作通用题材说明，真实场馆导视需替换成实际路线。"
+      }
+    }
+  ]
+}
