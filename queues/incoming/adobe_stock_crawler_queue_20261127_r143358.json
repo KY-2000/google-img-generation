@@ -1,0 +1,649 @@
+{
+  "run_id": "TF_category_crawler_20261127_r143358",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-27T14:33:58+08:00",
+  "research": {
+    "strategy": "category_crawler",
+    "product_line": "commercial_background",
+    "timezone": "Asia/Kuala_Lumpur",
+    "research_date": "2026-11-27",
+    "research_language": "zh-CN",
+    "re_evaluated_prior_watchlist": {
+      "source_run_id": "TF_category_crawler_20261127_r111029",
+      "total_re_evaluated": 14,
+      "promoted_to_approved": [
+        "W03",
+        "W04",
+        "W05",
+        "W07",
+        "W10 (refactored)",
+        "W12",
+        "W13",
+        "W14"
+      ],
+      "retained_in_watchlist": [
+        "W01",
+        "W02",
+        "W11"
+      ],
+      "moved_to_excluded_due_to_new_main_queue_r111035": [
+        "W06",
+        "W08",
+        "W09"
+      ]
+    },
+    "selected_categories": [
+      "2027 春季与母亲节花卉留白及包装背景 (Graphic resources / Plants and flowers)",
+      "亚洲茶饮与健康轻食菜单留白背景 (Food & Drinks)",
+      "传统织物与中世纪现代手工几何无缝背景 (Graphic resources / Culture and religion)",
+      "极简有机肌理与商业演示（PPT/Keynote）通用留白背景 (Graphic resources / Business)",
+      "2027 Q1 斋月/开斋节竖版社媒故事与早春庆典留白背景 (Culture and religion / Lifestyle)"
+    ],
+    "candidate_summary": {
+      "total_candidates": 34,
+      "approved": 11,
+      "watchlist": 13,
+      "excluded": 10
+    },
+    "first_tests": [
+      "Hand-Painted Matcha Whisk and Ceramic Chawan Lower-Border Drink Poster",
+      "Seamless Medium-Gauge Indigo Sashiko Wave Stitch Pattern on Slub Linen"
+    ],
+    "sampling_rule": "本轮启动时对 stock.adobe.com/my/illustrations 做单次探测仍返回 HTTP/2 403 (x-datadome: protected)，按规范立即停止访问，Adobe Stock 原生卡记 0、覆盖率不可计算、站内供给记未知。补充公开商用图库（Vecteezy/Dreamstime/Shutterstock）按 5 类 12 组新宽词与用途词检索，预先计划每类抽样 5 张代表性公开缩略图（共 25 张）实看核对，遇 403/429 即停；其余未抽样卡片一律标为「仅标题或元数据」。",
+    "sample_counts": {
+      "adobe_stock_native": {
+        "raw_cards": 0,
+        "distinct_ids": 0,
+        "previews_attempted": 0,
+        "previews_verified": 0,
+        "previews_failed_or_illegible": 0,
+        "previews_unattempted": 0,
+        "visual_audit_coverage": "不可计算",
+        "block_reason": "2026-11-27 14:33:58 +08:00 探测 https://stock.adobe.com/my/illustrations 仍返回 HTTP/2 403 (x-datadome: protected)，立即停采。"
+      },
+      "supplementary_public_stock": {
+        "queries_executed": 12,
+        "raw_cards": 135,
+        "distinct_cards": 98,
+        "distinct_cards_with_preview_url": 66,
+        "previews_attempted": 25,
+        "previews_verified": 25,
+        "previews_failed_or_illegible": 0,
+        "previews_unattempted": 73,
+        "visual_audit_coverage": "25.51% (25/98)",
+        "unattempted_reason": "按每类 5 张预设抽样限额控制规模，其余 73 条标为「仅标题或元数据」。"
+      }
+    },
+    "history_check": {
+      "github_main_queues_checked": 30,
+      "incoming_files": 26,
+      "production_files": 4,
+      "newly_pulled_since_last_run": [
+        "queues/incoming/adobe_stock_crawler_queue_20261127_r111029.json (10 assets)",
+        "queues/incoming/adobe_stock_crawler_queue_20261127_r111035.json (5 assets, commit bec7293)"
+      ],
+      "research_page_status": "无法访问（https://chatgpt.com/space/page_ef5e74d873dc81919960f0769ca7f9c3 需登录鉴权，已输出完整补录文本）。"
+    },
+    "scoring_note": "严格遵循任务所列 7 项细分满分（25+20+10+15+10+10+5=95），topic_score 为 7 项真实之和；因 Adobe Stock 原生页面受阻，需求证据分保守封顶于 18/20。",
+    "source_urls": [
+      "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+      "https://helpx.adobe.com/stock/contributor/content-policies-guidelines/metadata/choose-right-category-content.html",
+      "https://business.adobe.com/blog/adobe-2026-creative-trends-forecast",
+      "https://www.adobe.com/express/learn/blog/design-trends-2026",
+      "https://www.accio.com/business/adobe-stock-best-selling-image-categories",
+      "https://hijri-miladi.com/ramadan-date",
+      "https://www.islamicfinder.org/special-islamic-days/eid-ul-fitr-2027/",
+      "https://www.vecteezy.com/free-vector/cherry-blossom-background",
+      "https://www.vecteezy.com/free-vector/lemon-seamless-pattern",
+      "https://www.shutterstock.com/search/sashiko-pattern",
+      "https://www.shutterstock.com/search/mid-century-arch",
+      "https://www.shutterstock.com/search/background-relief",
+      "https://www.shutterstock.com/search/ramadan-vertical"
+    ],
+    "limitations": "1) stock.adobe.com 仍受 DataDome HTTP 403 阻断，本轮未采得 Adobe Stock 原生素材卡，站内供给记为未知；2) 研究页 chatgpt.com/space 仍需登录无法直读直写，已提供完整补录文本；3) 补充公开商用图库 25 张实看样本仅能证明已看样本中的嵌字误匹配、摩尔纹与同质化特征，不能推论全部未检视结果，且无法仅凭缩略图确认原图四边精确无缝或真实透明通道。"
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Seamless White Camellia and Glossy Tea Leaf Pattern on Pale Celadon",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 86,
+      "topic_bucket": "APPROVED",
+      "palette": "ivory camellia white, deep tea leaf green, pale celadon, soft ochre stamen",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Design a 4K horizontal 16:9 standalone seamless repeating botanical pattern tailored for specialty tea tins, botanical skincare boxes, and spring cotton textiles. Depict newly composed ivory-white camellia blossoms with soft golden stamens, plump unopened buds, and deep glossy serrated tea leaves arranged in a graceful half-drop botanical rhythm across a pale celadon matte paper background. Balance larger open blooms with smaller leaf clusters and open breathing space so all four edges connect seamlessly with zero visible seams, tiling bands, or rigid rows. Render in refined hand-painted matte gouache with delicate layered petal shading, subtle midrib veining, and fine natural paper tooth rather than flat coloring-book line art. Illuminate evenly with gentle diffused studio daylight to create a calm, refined East Asian botanical mood with steady luminance for commercial printing. Deliver an opaque raster surface pattern free of text, logos, watermarks, mockups, or decorative borders.",
+      "negative_prompt": "text, logos, watermarks, mockups, black and white coloring book outlines, mixed lily and rose clipart, cartoon flat stickers, harsh shadows, visible tile seams, transparent background, checkerboard",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "2027 春季与母亲节花卉留白及包装背景 (Graphic resources / Plants and flowers)",
+        "base_topic": "山茶花与茶叶无缝包装图案（上轮观察项 W03 再评估升级）",
+        "re_evaluation_note": "上轮 W03 因暂避与玫瑰包装重叠列为观察；本轮实看山茶公开样本（Dreamstime:124936434）多为无层次黑白混花线描，改以浅青瓷底+象牙白山茶+革质茶叶水粉重构，与 A01 暖亚麻玫瑰在植物形态、底色和买家垂类（茶品/护肤）上完全区分，升格入选。",
+        "buyer_persona": "茶饮与护肤品包装设计师、春季织物印花师、精品文具封面美编",
+        "design_reuse_cases": [
+          "精品茶罐外盒与天然护肤品包装纸满印",
+          "春季丝巾、棉麻布料与家居抱枕印花",
+          "高档文具封面与礼盒内衬纸"
+        ],
+        "demand_evidence": "Adobe 2026 Creative Trends 强调 Local Flavor 与细腻触感；Vecteezy 与 Dreamstime 检索 camellia pattern 显示山茶植物在包装、布艺与壁纸中的长期常青需求。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库可见样本多为黑白填色书混花线稿（Dreamstime:124936434）或扁平卡通白底矢量。",
+        "distinctiveness": "独立以哑光水粉表现象牙白山茶、含苞花蕾与深绿革质茶叶，落于低饱和浅青瓷纸面并保持均衡负空间，四边连续无拼缝。",
+        "similar_content_review": "已对照 Dreamstime:124936434 及 GitHub main 全部 30 份历史队列（含 r111029 玫瑰/无花果无缝与 r111035 剪纸雏菊）；全库无山茶与茶叶无缝图案，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 23,
+          "demand_evidence": 17,
+          "differentiation": 9,
+          "composition_usability": 14,
+          "material_credibility": 9,
+          "timeliness": 9,
+          "portfolio_diversity": 5
+        },
+        "reference_ids": [
+          "Dreamstime:124936434"
+        ],
+        "source_urls": [
+          "https://business.adobe.com/blog/adobe-2026-creative-trends-forecast",
+          "https://www.dreamstime.com/illustration/camellia-pattern.html",
+          "https://www.vecteezy.com/free-vector/camellia"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Hand-Painted Cherry Blossom Branch Upper Canopy on Warm Silk Paper",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 85,
+      "topic_bucket": "APPROVED",
+      "palette": "blush sakura pink, warm ivory silk paper, muted bark umber, soft pale gold",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Paint a 4K horizontal 16:9 seasonal copy-space background tailored for spring 2027 retail hero banners, seasonal beauty campaigns, and greeting cards. Position graceful arching cherry blossom branches solely along the upper edge and top corners, with layered pale blush sakura blooms, tight coral-pink buds, and a few delicately drifting petals tapering lightly downward. Keep the entire lower two-thirds and central reading zone completely open on a refined warm ivory silk-fiber paper surface so designers have dependable contrast for multilingual sale headlines, invitations, or product callouts. Illustrate in expressive botanical watercolor paired with fine muted-umber ink brushwork on twigs, highlighting translucent petal edges and authentic paper fiber grain. Light with bright, serene spring overcast daylight, avoiding harsh magenta skies, fake glowing moons, or mountain silhouettes. Deliver a single opaque raster sheet free of text, ribbons, logos, watermarks, or card mockups.",
+      "negative_prompt": "text, neon magenta sky, white circle moon, mountain silhouettes, Mount Fuji clipart, paper ribbon banners, glitter sparkles, low-contrast washed-out pattern, logos, watermarks, mockups, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "2027 春季与母亲节花卉留白及包装背景 (Plants and flowers / Lifestyle)",
+        "base_topic": "春季樱花横幅留白背景（上轮观察项 W14 再评估升级）",
+        "re_evaluation_note": "上轮 W14 含纸丝带元素偏杂且未完成视觉核对；本轮实看樱花横幅样本（Vecteezy:5421775 俗艳桃粉天空配大白圆月与山影、Shutterstock:2696633881 极淡对比发灰），据此剔除丝带/月亮/山影，重构为暖白丝纹纸顶部樱枝垂帘+下方 2/3 高可读留白，卡位 2027 春季 3.5–4.5 个月提前期。",
+        "buyer_persona": "美妆与零售品牌视觉设计师、春季活动横幅美编、节庆电子贺卡创作者",
+        "design_reuse_cases": [
+          "2027 春季美妆/饮品新品上市官网横幅",
+          "樱花季促销活动海报与商业演示封面",
+          "春季婚礼及聚会横版电子请柬"
+        ],
+        "demand_evidence": "Vecteezy 检索 cherry blossom background 显示 1,814 条矢量供给；当前（2026-11-27）距 2027 年 3–4 月樱花季约 3.5–4.5 个月，正值商业横幅提前准备期。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本常混入俗艳粉天空大白圆（Vecteezy:5421775）或对比度过低难以识别（Shutterstock:2696633881）。",
+        "distinctiveness": "摒弃粉天空、白月亮、山景与花哨丝带，仅在暖白丝纹纸顶部舒展水彩与细墨樱花枝条，下方 2/3 均匀留白直接可用。",
+        "similar_content_review": "已对照 Vecteezy:5421775、Shutterstock:2696633881 及全部 30 份历史队列；历史 W48_decorative_r01 为 9:16 竖版紫藤垂帘，r111029 为橄榄枝对角，全库无 16:9 横版樱枝顶部留白背景，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 23,
+          "demand_evidence": 17,
+          "differentiation": 9,
+          "composition_usability": 14,
+          "material_credibility": 9,
+          "timeliness": 9,
+          "portfolio_diversity": 4
+        },
+        "reference_ids": [
+          "Vecteezy:5421775",
+          "Shutterstock:2696633881"
+        ],
+        "source_urls": [
+          "https://www.vecteezy.com/free-vector/cherry-blossom-background",
+          "https://www.shutterstock.com/search/cherry-blossom-card",
+          "https://www.adobe.com/express/learn/blog/design-trends-2026"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Botanical Lavender Sprig and Honeybee Asymmetric Header on Ivory Cotton",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 81,
+      "topic_bucket": "APPROVED",
+      "palette": "muted violet lavender, silvery sage stem, warm honey amber, ivory cotton paper",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Illustrate a 4K horizontal 16:9 botanical stationery and packaging header background suited for organic honey labels, aromatherapy flyers, and spring editorial cards. Arrange slender hand-painted lavender flower spikes leaning gently inward across the upper-left corner and top-left margin, accompanied by one small finely rendered honeybee hovering near the blossoms. Keep the entire right half and lower two-thirds clear on an even, lightly textured warm ivory cold-press cotton paper surface to guarantee effortless typography legibility for product copy, invitations, or presentation headings. Paint in natural botanical watercolor with delicate colored-pencil calyx texture, realistic soft pigment granulation, and clean paper tooth, avoiding heavy purple digital smoke washes or rigid circular wreaths. Use soft diffused natural daylight for an authentic apothecary and garden editorial mood. Deliver a single opaque raster sheet without embedded lettering, badges, logos, watermarks, or card mockups.",
+      "negative_prompt": "text, logos, watermarks, mockups, purple digital fog smoke, circular centered wreath, paint splatter clipart, neon violet, busy background, photographic bokeh, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "2027 春季与母亲节花卉留白及包装背景 (Plants and flowers / Lifestyle)",
+        "base_topic": "水彩薰衣草与蜜蜂非对称页眉留白背景（上轮观察项 W12 再评估升级）",
+        "re_evaluation_note": "上轮 W12 仅按夏秋季节性评估而暂缓；本轮复查发现薰衣草+蜜蜂在芳疗护肤、有机蜂蜜包装与健康生活卡片中属于全年常青刚需，且实看样本普遍存在数码紫黄烟雾（Dreamstime:179237555）或对称圆环泼墨（Dreamstime:154548556），改造为左上非对称页眉留白后实用性大幅提升。",
+        "buyer_persona": "有机食品与蜂蜜包装设计师、芳疗与护肤品牌美编、活动宣传单排版师",
+        "design_reuse_cases": [
+          "有机蜂蜜、花草茶与精油产品宣传卡及标签背景",
+          "芳疗工作坊与春季沙龙横版电子请柬",
+          "生活方式品牌博客横幅与演示标题页"
+        ],
+        "demand_evidence": "Dreamstime 与 Shutterstock 检索 watercolor lavender copy space 显示其在芳疗、有机食品与请柬场景长期稳定被复用，契合 Adobe Express 2026 自然人文风。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本多带厚重紫黄数码烟雾（Dreamstime:179237555）或居中圆环（Dreamstime:154548556）。",
+        "distinctiveness": "摒弃数码烟雾与对称圆环，将水彩薰衣草枝与一只克制小蜜蜂布置于暖白冷压棉纸左上页眉区，保留右侧与中下大片均匀文字区。",
+        "similar_content_review": "已对照 Dreamstime:179237555、Dreamstime:154548556 及全部 30 份历史队列；全库无薰衣草与蜜蜂左上方留白横幅，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 22,
+          "demand_evidence": 16,
+          "differentiation": 8,
+          "composition_usability": 14,
+          "material_credibility": 9,
+          "timeliness": 8,
+          "portfolio_diversity": 4
+        },
+        "reference_ids": [
+          "Dreamstime:179237555",
+          "Dreamstime:154548556"
+        ],
+        "source_urls": [
+          "https://www.dreamstime.com/illustration/watercolor-background-lavender.html",
+          "https://www.dreamstime.com/illustration/lavender-watercolor-frame.html",
+          "https://www.adobe.com/express/learn/blog/design-trends-2026"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Hand-Painted Matcha Whisk and Ceramic Chawan Lower-Border Drink Poster",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 88,
+      "topic_bucket": "APPROVED",
+      "palette": "ceremonial matcha green, toasted bamboo, stoneware charcoal, warm cream washi",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Illustrate a 4K vertical 9:16 editorial menu and social story background tailored for specialty tea bars, matcha cafes, and culinary workshop posters. Arrange a calm horizontal still-life border along the lower quarter of the frame featuring a hand-thrown stoneware matcha chawan bowl filled with frothy emerald matcha, a curved bamboo chasen whisk resting beside a wooden tea scoop, and a soft dusting of bright green matcha powder. Keep the entire upper two-thirds and generous side margins completely open on a warm unbleached cream washi paper ground so designers can cleanly set drink menus, pricing lists, or event announcements in any language. Paint in tactile matte gouache and delicate colored-pencil shading that highlights ceramic glaze speckles, bamboo tines, and gentle paper fiber grain. Illuminate with soft side-window morning light for a serene, modern teahouse atmosphere. Deliver an opaque raster layout completely free of embedded menu text, prices, calligraphy, logos, or watermarks.",
+      "negative_prompt": "text, Japanese calligraphy, menu prices, numbers, centered isolated clipart cup, thick black cartoon outlines, busy table clutter, hands, logos, watermarks, mockups, transparent background",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "亚洲茶饮与健康轻食菜单留白背景 (Food & Drinks)",
+        "base_topic": "抹茶茶筅与茶碗下缘留白竖版菜单底图（上轮头号观察项 W07 正式升级）",
+        "re_evaluation_note": "上轮 W07 得 79 分列为首要观察项；本轮结合 r111035 已补齐意式咖啡菜单后，亚洲茶饮留白菜单成为餐饮板块最清晰的空白点，且实看茶饮样本多为居中孤立单杯/茶具（Dreamstime:95922172、Dreamstime:75535085、Shutterstock:2820011683），升级为下缘构图+上方 2/3 暖白和纸留白后直击买家刚需。",
+        "buyer_persona": "茶饮品牌视觉设计师、独立咖啡茶馆菜单排版师、饮食文化活动美编",
+        "design_reuse_cases": [
+          "抹茶与精品茶饮店多语种竖版饮品单与季节特调卡",
+          "茶道体验课与门店新品 Instagram Story / 竖版立牌海报",
+          "抹茶粉与茶具品牌宣传册内页底图"
+        ],
+        "demand_evidence": "Adobe HelpX 官方 Drinks 分类明确覆盖茶饮与冲泡文化；Dreamstime oolong/tea ceremony 达 9,982+ 公开结果，Vecteezy 与 Shutterstock 检索 matcha tea 菜单与饮品海报需求持续活跃。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本多为白底居中单杯（Dreamstime:95922172）、居中茶壶静物（Dreamstime:75535085）或俯拍占满中央的托盘实拍（Shutterstock:2820011683）。",
+        "distinctiveness": "放弃居中孤立单品，将手作陶质抹茶碗、竹制茶筅、茶勺与一撮抹茶粉稳妥布局在 9:16 暖白和纸下缘四分之一处，上方三分之二提供极佳的竖版菜单排字空间。",
+        "similar_content_review": "已对照 Dreamstime:75535085、Dreamstime:95922172、Shutterstock:2820011683 及全部 30 份历史队列（含 r111029 手冲咖啡左缘、r111035 三杯意式咖啡与 nonchristmas_lifestyle_r04 桂花茶杯）；全库无抹茶茶具下缘留白竖版菜单底图，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 24,
+          "demand_evidence": 17,
+          "differentiation": 9,
+          "composition_usability": 15,
+          "material_credibility": 9,
+          "timeliness": 9,
+          "portfolio_diversity": 5
+        },
+        "reference_ids": [
+          "Dreamstime:75535085",
+          "Shutterstock:2820011683",
+          "Dreamstime:95922172"
+        ],
+        "source_urls": [
+          "https://helpx.adobe.com/stock/contributor/content-policies-guidelines/metadata/choose-right-category-content.html",
+          "https://www.dreamstime.com/illustration/tea-ceremony.html",
+          "https://www.dreamstime.com/photos-images/oolong-tea.html",
+          "https://www.shutterstock.com/search/latte-packaging"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Seamless Hand-Painted Meyer Lemon, Thyme Sprig, and Blossom Kitchen Wrap Pattern",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 85,
+      "topic_bucket": "APPROVED",
+      "palette": "warm meyer lemon gold, soft herb sage, ivory blossom, pale sandy linen",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a 4K horizontal 16:9 standalone seamless repeating culinary pattern designed for deli wrapping paper, kitchen tea towels, and Mediterranean food packaging. Illustrate plump golden Meyer lemons with textured dimpled peels, delicate flowering lemon blossoms, and slender leafy thyme sprigs distributed in an airy, balanced multi-directional repeat over a pale warm sandy-linen matte ground. Keep spacing harmonious and motif scales varied so opposite top-bottom and left-right borders connect seamlessly with zero visible seams, awkward stripes, or overcrowded dark clusters. Render in refined editorial matte gouache and soft colored pencil with nuanced warm golden highlights, natural leaf veining, and subtle paper grain rather than flat bright-yellow vector shapes. Illuminate with uniform, gentle daylight to preserve clean print readability across fabric and paper substrates. Output an opaque raster textile pattern free of text, sliced cartoon faces, logos, watermarks, or package mockups.",
+      "negative_prompt": "text, logos, watermarks, mockups, flat bright yellow vector clipart, crowded blue background etching, cartoon citrus faces, plastic glossy shine, visible tile seams, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "亚洲茶饮与健康轻食菜单留白背景 (Food & Drinks / Graphic resources)",
+        "base_topic": "柑橘与香草厨房包装无缝图案（本轮新增）",
+        "buyer_persona": "轻食与餐饮包装设计师、厨房布艺与围裙印花师、果饮及调味品礼盒美编",
+        "design_reuse_cases": [
+          "轻食店防油包装纸、饮品外卖袋与果酱瓶身底纹",
+          "厨房茶巾、围裙与餐桌布艺纺织印花",
+          "地中海与健康食谱杂志扉页与电商专题背景"
+        ],
+        "demand_evidence": "Vecteezy 检索 lemon seamless pattern 显示 1,741 条供给，Shutterstock 检索 lemon seamless 显示其高频用于厨房布艺、包装纸与夏日饮品品牌，属强常青商用题材。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本多为纯白底廉价扁平矢量（Vecteezy:2262627）或蓝底繁密杂乱刻线（Vecteezy:2291274）。",
+        "distinctiveness": "跳出扁平纯白矢量与繁密蓝底刻线，以水粉+彩铅手绘带果皮颗粒质感的暖金迈耶柠檬、百里香细枝与白柑橘花，落于淡沙亚麻纸底并保持宽松呼吸节奏。",
+        "similar_content_review": "已对照 Vecteezy:2291274、Vecteezy:2262627 及全部 30 份历史队列；已刻意避开 20261123_lifestyle_r03 的迷迭香静物（改用百里香），与 r111029 地中海无花果版画在主体、配色与媒介上完全不同，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 23,
+          "demand_evidence": 17,
+          "differentiation": 9,
+          "composition_usability": 13,
+          "material_credibility": 9,
+          "timeliness": 9,
+          "portfolio_diversity": 5
+        },
+        "reference_ids": [
+          "Vecteezy:2291274",
+          "Vecteezy:2262627"
+        ],
+        "source_urls": [
+          "https://www.vecteezy.com/free-vector/lemon-seamless-pattern",
+          "https://www.shutterstock.com/search/lemon-seamless",
+          "https://helpx.adobe.com/stock/contributor/content-policies-guidelines/metadata/choose-right-category-content.html"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Hand-Painted Garden Salad Greens, Avocado, and Basil Right-Border Menu Background",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 83,
+      "topic_bucket": "APPROVED",
+      "palette": "fresh basil green, muted avocado sage, radish rose, warm cream paper",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Paint a 4K vertical 9:16 culinary copy-space background created for healthy cafes, salad bar menus, and nutrition workshop handouts. Compose an organic vertical border exclusively along the right edge featuring hand-painted halved avocado, crisp arugula and baby spinach leaves, sliced pink radishes, and fresh sweet basil sprigs overlapping naturally. Leave the entire left two-thirds, plus quiet top and bottom strips, completely open on a clean warm ivory cotton-paper field so designers can effortlessly place multilingual menu columns, calorie notes, or seasonal specials without clutter. Render in refined editorial gouache and fine colored-pencil accents, capturing believable leaf translucency, smooth avocado flesh, and subtle paper grain rather than flat cartoon infographic icons. Light with bright, crisp morning daylight for a wholesome, appetizing editorial tone. Deliver one opaque raster composition with zero embedded prices, food labels, chalkboard frames, logos, or watermarks.",
+      "negative_prompt": "text, prices, dollar signs, vegetable labels, broccoli flyer template, flat infographic circles, chalkboard, cartoon faces, cluttered center, logos, watermarks, transparent background",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "亚洲茶饮与健康轻食菜单留白背景 (Food & Drinks)",
+        "base_topic": "健康轻食与蔬果右缘留白竖版菜单背景（本轮新增）",
+        "buyer_persona": "健康轻食与沙拉品牌美编、素食餐厅菜单设计师、营养课程讲义排版师",
+        "design_reuse_cases": [
+          "沙拉/轻食/素食餐厅多语种竖版菜单与外卖单页",
+          "营养健康课程讲义、食谱卡与社媒竖版食谱封面",
+          "生鲜电商与有机农场促销竖版海报"
+        ],
+        "demand_evidence": "Adobe HelpX 官方 Food 分类包含食谱与餐饮场景；Dreamstime 与 Shutterstock 检索 healthy food menu background 显示健康轻食餐饮传单与菜单模板存在广泛持续需求。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本（如 Dreamstime:59858499）直接写死英文蔬菜名与美元标价，无法二次排版。",
+        "distinctiveness": "彻底清除写死价格、英文品名与扁平色块图标，采用暖白棉纸右缘水粉+彩铅手绘牛油果、芝麻菜、樱桃萝卜与罗勒叶，左侧 2/3 保留洁净多语言菜单区。",
+        "similar_content_review": "已对照 Dreamstime:59858499 及全部 30 份历史队列（含 20261123_insight_r01 番茄色阶与 r111029 左缘咖啡菜单）；采用不同食材组合且为右缘构图，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 23,
+          "demand_evidence": 16,
+          "differentiation": 8,
+          "composition_usability": 14,
+          "material_credibility": 9,
+          "timeliness": 9,
+          "portfolio_diversity": 4
+        },
+        "reference_ids": [
+          "Dreamstime:59858499"
+        ],
+        "source_urls": [
+          "https://www.dreamstime.com/illustration/healthy-food-menu.html",
+          "https://www.shutterstock.com/image-vector/healthy-food-menu-background-recipes-vegetable-339307109",
+          "https://helpx.adobe.com/stock/contributor/content-policies-guidelines/metadata/choose-right-category-content.html"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Seamless Medium-Gauge Indigo Sashiko Wave Stitch Pattern on Slub Linen",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 87,
+      "topic_bucket": "APPROVED",
+      "palette": "deep natural indigo, unbleached ecru cotton thread, soft denim slate",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Render a 4K horizontal 16:9 standalone seamless textile surface pattern tailored for artisanal gift wrap, bookbinding covers, and heritage craft branding. Depict traditional Japanese Sashiko overlapping wave arcs stitched in unbleached ecru cotton thread across richly woven deep indigo slub linen fabric. Keep stitch gauge distinctly medium-bold with generous spacing between concentric arcs so the running stitches remain crisp at both 4K print scale and small web thumbnails without visual moire or shimmering. Ensure all four borders align seamlessly for effortless continuous tiling. Capture authentic tactile fabric details including subtle horizontal linen slub threads, slightly organic hand-stitched dash tension, and gentle pinhole dimples where cotton yarn enters the weave. Light obliquely with soft neutral studio light to reveal honest thread relief while keeping overall luminance balanced for overlaid light headlines. Deliver an opaque raster textile texture free of text, labels, patches, logos, or watermarks.",
+      "negative_prompt": "text, logos, watermarks, mockups, flat digital vector dashed lines, ultra-dense fine lines causing moire, solid continuous geometric lines, plastic sheen, patchwork seams, visible tile seams, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "传统织物与中世纪现代手工几何无缝背景 (Graphic resources / Culture and religion)",
+        "base_topic": "靛蓝竹节亚麻布中粗号刺子绣波纹无缝图案（上轮观察项 W05 解决摩尔纹后升级）",
+        "re_evaluation_note": "上轮 W05 因担心细密针脚在 4K 缩放产生摩尔纹暂列观察；本轮实看 Vecteezy:11529203 确实因虚线过密出现视觉闪烁，Shutterstock:2565054233 与 Vecteezy:88679701 则全无织物触感。本方案明确放大针脚粗度与波弧节距并叠加真实竹节亚麻布与棉线压痕，彻底化解摩尔纹痛点。",
+        "buyer_persona": "文创与手作包装设计师、书籍装帧美编、服饰及餐饮品牌视觉团队",
+        "design_reuse_cases": [
+          "手作茶礼/陶器包装纸与品牌手提袋满印",
+          "精装书封、手账封面与布艺家居印花",
+          "日式与东方文化主题网站横幅及深色 PPT 背景"
+        ],
+        "demand_evidence": "Adobe 2026 Creative Trends 明确聚焦 All the Feels（触感材质）与 Local Flavor（在地工艺文化）；Shutterstock 与 Vecteezy 检索 sashiko pattern 显示其在包装、织物与工艺品牌中具备稳定需求。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本多为纯平矢量虚线（Shutterstock:2565054233）、易生摩尔纹的超密青海波（Vecteezy:11529203）或机械实线网格（Vecteezy:88679701）。",
+        "distinctiveness": "专门采用中粗号米白棉线与宽松波弧节距，在深靛蓝竹节亚麻布上呈现真实手工针脚张力与细微布面压痕，兼具高触感与零摩尔纹实用性。",
+        "similar_content_review": "已对照 Shutterstock:2565054233、Vecteezy:11529203、Vecteezy:88679701 及全部 30 份历史队列（含 W47_r02 再生牛仔斜纹、20261123_stylegrammar 蜡染丝绸斜带与 r111035 编织格纹）；全库无靛蓝亚麻刺子绣无缝图案，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 23,
+          "demand_evidence": 17,
+          "differentiation": 9,
+          "composition_usability": 14,
+          "material_credibility": 10,
+          "timeliness": 9,
+          "portfolio_diversity": 5
+        },
+        "reference_ids": [
+          "Shutterstock:2565054233",
+          "Vecteezy:11529203",
+          "Vecteezy:88679701"
+        ],
+        "source_urls": [
+          "https://business.adobe.com/blog/adobe-2026-creative-trends-forecast",
+          "https://www.shutterstock.com/search/sashiko-pattern",
+          "https://www.vecteezy.com/free-vector/sashiko-tradition"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Seamless Hand-Stamped Mid-Century Terracotta Arch and Botanical Dot Pattern",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 83,
+      "topic_bucket": "APPROVED",
+      "palette": "warm terracotta clay, muted mustard ochre, deep espresso brown, warm cream cotton",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a 4K horizontal 16:9 standalone seamless geometric surface pattern designed for boutique retail wrapping paper, notebook covers, and modern brand packaging. Compose staggered mid-century terracotta arches, inverted mustard-ochre semicircles, and rhythmic hand-stamped espresso seed dots arranged in a clean architectural grid across a warm cream matte cotton-paper ground. Balance positive ink shapes with generous cream negative space so all four edges join seamlessly without visible tile seams or visual fatigue. Execute in an authentic hand-carved rubber-stamp and block-print aesthetic showing gentle ink density variations, slightly imperfect stamped edges, and tactile cotton paper tooth instead of sterile flat vector fills or retro atomic starburst cliches. Illuminate evenly with neutral soft studio light to guarantee uniform print density across large packaging runs. Deliver an opaque raster pattern completely free of text, logos, watermarks, mockups, or framed borders.",
+      "negative_prompt": "text, logos, watermarks, mockups, flat sterile vector shapes, 1950s atomic starbursts, scattered icon strip, neon orange, glossy plastic shine, visible tile seams, woven ribbon checker, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "传统织物与中世纪现代手工几何无缝背景 (Graphic resources)",
+        "base_topic": "中世纪现代手工压印陶土拱形几何无缝图案（上轮观察项 W04 升级）",
+        "re_evaluation_note": "上轮 W04 因未完成视觉核对、担心纯扁平色块同质化而暂列观察；本轮实看样本多为扁平原子星芒（Vecteezy:88740081）或零散包豪斯图标条（Shutterstock:2769646361），且 Dreamstime 8,038 条与 Shutterstock 10,403 条证实中世纪拱形无缝图案商业需求庞大。改造为手工橡皮章/版画油墨压印肌理后与平涂矢量及 r111035 编织格纹形成清晰差异。",
+        "buyer_persona": "独立消费品牌包装设计师、文具笔记本封面美编、室内与生活方式视觉设计师",
+        "design_reuse_cases": [
+          "精品咖啡、香薰与文创品牌包装纸及手提袋满印",
+          "笔记本封面、明信片背面与品牌礼盒内衬",
+          "现代复古风品牌社媒视觉与网站背景底纹"
+        ],
+        "demand_evidence": "Dreamstime seamless mid century 达 8,038 条、Shutterstock mid century arch 达 10,403 条公开结果；Adobe Express 2026 趋势高度强调 Organic and imperfect design 手工压印质感。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本偏向扁平复古原子星芒（Vecteezy:88740081）或不成平铺的零散图标条（Shutterstock:2769646361）。",
+        "distinctiveness": "放弃平涂原子星芒，改以手工刻章与块印肌理表现错落陶土拱门、芥末赭半圆与深棕点阵，赋予真实油墨浓淡变化与暖棉纸触感。",
+        "similar_content_review": "已对照 Vecteezy:88740081、Shutterstock:2769646361 及全部 30 份历史队列（含 r111035 蓝金编织格纹与 r111029 鼠尾草八角星陶砖/深炭 Art Deco）；构图、工艺媒介与色板均截然不同，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 22,
+          "demand_evidence": 17,
+          "differentiation": 8,
+          "composition_usability": 14,
+          "material_credibility": 9,
+          "timeliness": 8,
+          "portfolio_diversity": 5
+        },
+        "reference_ids": [
+          "Vecteezy:88740081",
+          "Shutterstock:2769646361"
+        ],
+        "source_urls": [
+          "https://www.dreamstime.com/illustration/seamless-mid-century.html",
+          "https://www.shutterstock.com/search/mid-century-arch",
+          "https://www.adobe.com/express/learn/blog/design-trends-2026"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Soft Sculpted Lime Plaster Wave Relief Presentation Background in Warm Sand",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 86,
+      "topic_bucket": "APPROVED",
+      "palette": "warm limestone sand, soft alabaster chalk, pale travertine beige",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Render a 4K horizontal 16:9 minimalist architectural presentation background engineered for corporate Keynote decks, luxury brand websites, and editorial title slides. Sculpt broad, gentle undulating waves into matte hand-troweled lime plaster concentrated along the left third and lower border, allowing the relief ridges to flatten smoothly into an expansive, quiet, uniform warm-sand plaster plane across the center and right two-thirds for crisp dark typography. Keep mineral aggregate fine and restrained so the surface communicates authentic tactile plaster craftsmanship without creating distracting visual noise behind body copy. Cast calm, low-angle directional daylight from the upper left to model subtle soft gradients along the curved ridges while maintaining bright, even luminance in the text field. Deliver a clean opaque raster backdrop completely free of text, icons, folded paper creases, leaf shadows, logos, or product pedestals.",
+      "negative_prompt": "text, VECTOR DESIGN lettering, folded paper product stage, podium, leaf shadows, harsh deep crevices, neon magenta watercolor, tropical leaf border, logos, watermarks, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "极简有机肌理与商业演示（PPT/Keynote）通用留白背景 (Graphic resources / Business)",
+        "base_topic": "柔和手抹石灰灰泥浅波浮雕商业演示留白背景（本轮新增）",
+        "buyer_persona": "企业商业演示（PPT/Keynote）设计师、品牌官网 UI 设计师、高端画册排版师",
+        "design_reuse_cases": [
+          "企业年度报告、商业路演 PPT / Keynote 封面与章节分隔页",
+          "建筑、家居与护肤品牌官网首屏横幅背景",
+          "极简品牌画册标题页与产品目录留白底图"
+        ],
+        "demand_evidence": "Shutterstock background relief 达 845,324 条公开结果；Accio 2026 Adobe Stock 市场指南指出极简不抢字的演示与背景资产稳居最畅销品类前列；Adobe 2026 趋势突出有机建筑触感。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库演示背景样本常含写死“VECTOR DESIGN”字样的杂乱拼贴（Dreamstime:72671654）、过艳洋红水彩（Dreamstime:470380114）或单调平铺灰波（Shutterstock:2774848585）。",
+        "distinctiveness": "打破全幅均匀波纹难排字的局限，将手抹石灰灰泥缓波集中在画面左侧与底部 1/3，中上及右侧 2/3 自然过渡为平整细腻暖沙留白区，兼顾高级材质感与极高文字可读性。",
+        "similar_content_review": "已对照 Dreamstime:72671654、Dreamstime:470380114、Shutterstock:2774848585 及全部 30 份历史队列（明确避开 r111035 折纸产品台、W47_r02 洞石截面与叶脉墙影及 20261119 风纹沙地）；通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 24,
+          "demand_evidence": 17,
+          "differentiation": 8,
+          "composition_usability": 15,
+          "material_credibility": 9,
+          "timeliness": 9,
+          "portfolio_diversity": 4
+        },
+        "reference_ids": [
+          "Dreamstime:72671654",
+          "Dreamstime:470380114",
+          "Shutterstock:2774848585"
+        ],
+        "source_urls": [
+          "https://www.shutterstock.com/search/background-relief",
+          "https://www.accio.com/business/adobe-stock-best-selling-image-categories",
+          "https://www.adobe.com/express/learn/blog/design-trends-2026"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Layered Handmade Washi Paper Horizon and Mist Wash Slide Background",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 84,
+      "topic_bucket": "APPROVED",
+      "palette": "warm rice paper white, pale mist sage, soft stone gray, muted warm linen",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a 4K horizontal 16:9 minimalist editorial slide and report cover background crafted for wellness brands, cultural institutions, and modern business presentations. Arrange two gently undulating low horizontal bands along the bottom third formed from softly deckled handmade washi paper tinted with translucent pale mist-sage and warm linen watercolor washes. Preserve the entire upper two-thirds as an uncluttered, softly textured warm rice-paper expanse that supports crisp headlines, executive summaries, or event titles across light-mode layouts. Emphasize believable delicate mulberry paper fibers along the feathered deckled edges, subtle translucent pigment bleeding, and calm low-contrast layering rather than bright saturated neon washes or rigid geometric frames. Illuminate evenly with quiet natural daylight to deliver a peaceful, airy contemporary atmosphere. Output one opaque raster background completely free of text, botanical silhouettes, drop-shadow mockups, logos, or watermarks.",
+      "negative_prompt": "text, logos, watermarks, mockups, bright magenta wash, glowing blue ribbons, hard rectangular border frame, tropical leaves, leaf shadows, vertical torn paper collage stack, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "极简有机肌理与商业演示（PPT/Keynote）通用留白背景 (Graphic resources / Business)",
+        "base_topic": "手工和纸柔边远岚水彩演示留白背景（上轮观察项 W10 规避光影撞车后重构升级）",
+        "re_evaluation_note": "上轮 W10（陶土剪纸拱门+植物阴影）存在与历史 W47_r02 叶脉阴影及 r111035 折纸台邻近风险；本轮针对演示背景样本普遍过艳（Dreamstime:470380114）或套用生硬绿框（Shutterstock:2745330345）的问题，将其彻底重构为横向低位和纸毛边+浅雾灰水彩层+上方 2/3 洁净宣纸留白，彻底避开冲突且大幅拓宽商务演示复用面。",
+        "buyer_persona": "企业报告与演示设计师、健康疗愈与文化机构美编、电子书封面排版师",
+        "design_reuse_cases": [
+          "企业 ESG 报告、健康品牌路演 PPT / Keynote 标题页",
+          "电子书扉页、课程大纲与文化讲座宣传横幅",
+          "极简官网 Banner 与新闻简报页眉背景"
+        ],
+        "demand_evidence": "Adobe Express 2026 趋势重点提及 Collage and layered visual elements 与柔和人文色调；Accio 2026 指南确认不干扰排字的极简背景为 Adobe Stock 高频刚需。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库水彩演示底图常过艳过暗（Dreamstime:470380114）或带有科技发光丝带（Dreamstime:476366135）。",
+        "distinctiveness": "将视觉层次克制收束于下缘 1/3 的两层浅雾灰/暖亚麻毛边和纸水彩带，上方 2/3 为完整高可读暖白宣纸面，兼顾东方纸艺质感与现代商业演示排版。",
+        "similar_content_review": "已对照 Dreamstime:470380114、Dreamstime:476366135、Shutterstock:2745330345 及全部 30 份历史队列（W47_r02 为 9:16 竖版纯桑皮纸叠层材质特写，无横版低位远岚水彩演示留白构图），通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 23,
+          "demand_evidence": 16,
+          "differentiation": 8,
+          "composition_usability": 15,
+          "material_credibility": 9,
+          "timeliness": 9,
+          "portfolio_diversity": 4
+        },
+        "reference_ids": [
+          "Dreamstime:470380114",
+          "Dreamstime:476366135",
+          "Shutterstock:2745330345"
+        ],
+        "source_urls": [
+          "https://www.adobe.com/express/learn/blog/design-trends-2026",
+          "https://www.dreamstime.com/illustration/presentation-watercolor.html",
+          "https://www.accio.com/business/adobe-stock-best-selling-image-categories"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Soft Plaster Crescent Archway and Jasmine Vine Vertical Eid Story Background",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 87,
+      "topic_bucket": "APPROVED",
+      "palette": "warm cream plaster, soft parchment sand, ivory jasmine blossom, muted sage, brushed brass",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Illustrate a 4K vertical 9:16 seasonal greeting and social story background tailored for Ramadan and Eid al-Fitr 2027 invitations, retail story announcements, and digital greeting cards. Frame the vertical composition with a graceful pointed architectural archway rendered in soft matte warm-cream lime plaster, with slender hand-painted white jasmine vines and muted sage leaves draping delicately over the upper arch shoulders beside one restrained matte brushed-brass crescent pendant at the apex. Keep the entire interior archway field clean and evenly toned in pale parchment sand, with quiet top and bottom mobile UI safe margins so buyers can cleanly set Arabic, Malay, English, or multilingual greetings. Render in refined editorial gouache with gentle architectural plaster relief, delicate botanical brushwork, and authentic paper grain. Light softly from the upper left to create calm warmth without harsh lens flares, busy mosaics, or neon glow. Deliver an opaque raster layout completely free of preset greeting words, calligraphy, logos, or watermarks.",
+      "negative_prompt": "text, Ramadan Kareem lettering, Eid Mubarak calligraphy, Arabic script, lens flare, glowing bokeh, busy mosaic tile fill, dark green template, hanging lantern pair, mosque skyline, logos, watermarks, transparent background",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "2027 Q1 斋月/开斋节竖版社媒故事与早春庆典留白背景 (Culture and religion / Lifestyle)",
+        "base_topic": "柔和石膏新月拱廊与茉莉藤蔓竖版开斋节故事卡（上轮头号观察项 W13 正式升级）",
+        "re_evaluation_note": "上轮 W13 得 79 分暂候；本轮专项检视 5 张伊斯兰拱门公开样本（Shutterstock:2505155479、Vecteezy:369992、Vecteezy:49346731、Dreamstime:202752562、Dreamstime:76116299），发现几乎全部存在写死祝福书法文字、过曝镜头光晕或密集高对比马赛克。升级为哑光奶油石膏浅拱+白茉莉藤蔓+极简黄铜小新月+完全无字中央浅沙留白，与 r111029 的 16:9 深青横版提灯形成精准横竖互补。",
+        "buyer_persona": "东南亚与中东品牌社媒视觉团队、节庆电子请柬设计师、零售与酒店移动推广美编",
+        "design_reuse_cases": [
+          "2027 斋月与开斋节 Instagram Story / TikTok / WhatsApp 竖版电子贺卡",
+          "品牌节庆晚宴与新品发布竖版电子邀请函",
+          "节庆礼盒竖版腰封与门店立牌海报背景"
+        ],
+        "demand_evidence": "2027 斋月预计 2 月 8 日开始、开斋节预计 3 月 9–10 日，当前正处 2.4–3.4 个月最佳商业备货窗口；Shutterstock 与 Dreamstime 检索 islamic arch ramadan vertical 显示竖版贺卡与社媒故事留白需求高度集中。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库 5 张拱门样本中 3 张直接写死“Ramadan Kareem”等文字（Vecteezy:369992、Dreamstime:202752562、Dreamstime:76116299），1 张带过曝镜头光晕（Shutterstock:2505155479），1 张为多窗图标合集（Vecteezy:49346731）。",
+        "distinctiveness": "彻底清除写死书法文字、繁密马赛克与刺眼光晕，采用低饱和哑光奶油石膏浅浮雕尖拱搭配手绘白茉莉藤蔓与一枚克制黄铜新月挂饰，拱内留出极高可读性的浅沙留白区。",
+        "similar_content_review": "已对照 5 张拱门公开样本及全部 30 份历史队列；与 r111029 #9（16:9 横版深青黛黄铜提灯左下边框）在比例、色系、建筑拱廊结构与主体上完全互补无重叠，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 23,
+          "demand_evidence": 18,
+          "differentiation": 9,
+          "composition_usability": 14,
+          "material_credibility": 9,
+          "timeliness": 10,
+          "portfolio_diversity": 4
+        },
+        "reference_ids": [
+          "Shutterstock:2505155479",
+          "Vecteezy:369992",
+          "Dreamstime:202752562",
+          "Dreamstime:76116299"
+        ],
+        "source_urls": [
+          "https://hijri-miladi.com/ramadan-date",
+          "https://www.islamicfinder.org/special-islamic-days/eid-ul-fitr-2027/",
+          "https://www.shutterstock.com/search/ramadan-vertical",
+          "https://www.dreamstime.com/illustration/ramadan-arch.html"
+        ]
+      }
+    }
+  ]
+}
