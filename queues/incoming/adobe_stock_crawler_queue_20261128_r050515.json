@@ -1,0 +1,2202 @@
+{
+  "run_id": "TF_category_crawler_20261128_r050515",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-28T05:12:45+08:00",
+  "research": {
+    "strategy": "category_crawler",
+    "source_urls": [
+      "https://stock.adobe.com/my/illustrations",
+      "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+      "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+      "https://chatgpt.com/space/page_ef5e74d873dc81919960f0769ca7f9c3",
+      "https://docs.google.com/document/d/1_D-QBzmhaKmpC42T4hDLefIgOPQ96qHFauaBAm5BgaQ/edit",
+      "本",
+      "轮",
+      "首",
+      "次",
+      "深",
+      "研",
+      "，",
+      "自",
+      "然",
+      "类",
+      "尚",
+      "未",
+      "到",
+      "且",
+      "实",
+      "地",
+      "指",
+      "南",
+      "与",
+      "展",
+      "板",
+      "有",
+      "可",
+      "验",
+      "证",
+      "用",
+      "途",
+      "。",
+      "前",
+      "一",
+      "聚",
+      "焦",
+      "咖",
+      "啡",
+      "和",
+      "烘",
+      "焙",
+      "；",
+      "此",
+      "改",
+      "查",
+      "日",
+      "常",
+      "蔬",
+      "菜",
+      "制",
+      "作",
+      "步",
+      "骤",
+      "历",
+      "史",
+      "已",
+      "覆",
+      "盖",
+      "几",
+      "何",
+      "图",
+      "案",
+      "商",
+      "品",
+      "台",
+      "纸",
+      "张",
+      "在",
+      "演",
+      "示",
+      "编",
+      "辑",
+      "版",
+      "式",
+      "中",
+      "的",
+      "以",
+      "花",
+      "卉",
+      "邀",
+      "请",
+      "函",
+      "、",
+      "装",
+      "饰",
+      "性",
+      "植",
+      "物",
+      "为",
+      "主",
+      "香",
+      "草",
+      "种",
+      "说",
+      "明"
+    ],
+    "discovered_categories": [
+      {
+        "category": "Christmas illustrations",
+        "url": "https://stock.adobe.com/my/Category/Christmas/457?filters%5Bcontent_type%3Aillustration%5D=1&hide_panel=1&load_type=illustrations+lp",
+        "research_date": "2026-11-28",
+        "deep_research": false
+      },
+      {
+        "category": "Fashion illustrations",
+        "url": "https://stock.adobe.com/my/Category/Fashion/665?filters%5Bcontent_type%3Aillustration%5D=1&hide_panel=1&load_type=illustrations+lp",
+        "research_date": "2026-11-28",
+        "deep_research": false
+      },
+      {
+        "category": "Food illustrations",
+        "url": "https://stock.adobe.com/my/Category/Food/289?filters%5Bcontent_type%3Aillustration%5D=1&hide_panel=1&load_type=illustrations+lp",
+        "research_date": "2026-11-28",
+        "deep_research": true
+      },
+      {
+        "category": "Nature",
+        "url": "https://stock.adobe.com/my/inspiration/nature",
+        "research_date": "2026-11-28",
+        "deep_research": true
+      },
+      {
+        "category": "Backgrounds",
+        "url": "https://stock.adobe.com/my/inspiration/backgrounds",
+        "research_date": "2026-11-28",
+        "deep_research": true
+      },
+      {
+        "category": "Plants and Flowers",
+        "url": "https://stock.adobe.com/my/inspiration/plants-and-flowers",
+        "research_date": "2026-11-28",
+        "deep_research": true
+      },
+      {
+        "category": "Icons",
+        "url": "https://stock.adobe.com/my/inspiration/icons",
+        "research_date": "2026-11-28",
+        "deep_research": false
+      },
+      {
+        "category": "Artificial Intelligence",
+        "url": "https://stock.adobe.com/my/inspiration/artificial-intelligence",
+        "research_date": "2026-11-28",
+        "deep_research": false
+      },
+      {
+        "category": "Education",
+        "url": "https://stock.adobe.com/my/inspiration/education",
+        "research_date": "2026-11-28",
+        "deep_research": false
+      },
+      {
+        "category": "Sustainability and Environment",
+        "url": "https://stock.adobe.com/my/inspiration/sustainability-and-environment",
+        "research_date": "2026-11-28",
+        "deep_research": false
+      },
+      {
+        "category": "Technology",
+        "url": "https://stock.adobe.com/my/inspiration/technology",
+        "research_date": "2026-11-28",
+        "deep_research": false
+      },
+      {
+        "category": "Humor",
+        "url": "https://stock.adobe.com/my/inspiration/humor",
+        "research_date": "2026-11-28",
+        "deep_research": false
+      }
+    ],
+    "scope": [
+      {
+        "category": "Nature",
+        "base_topic": "海岸景观插画",
+        "rotation": "本轮首次深研，自然类尚未轮到，且实地指南与展板有可验证用途。",
+        "demand": "NPS 有可折叠潮间带实地指南和游客解说展板，Adobe Express 有旅行折页版式。支持场景存在，公园例子集中在特定地点。",
+        "supply": "竞争程度未知。样本见沙丘散件、目的地风景和灯塔；用途词显示 3，浏览页另列相关结果。潮间带近邻为同一海岸的两幅潮位版画。",
+        "sources": [
+          "https://www.nps.gov/cabr/learn/intertidal-field-guide.htm",
+          "https://www.nps.gov/places/tidepool-wayside-display.htm",
+          "https://www.adobe.com/express/templates/brochure/travel"
+        ]
+      },
+      {
+        "category": "Food illustrations",
+        "base_topic": "蔬菜图案与食谱配图",
+        "rotation": "前一深研聚焦咖啡和烘焙；此轮改查日常蔬菜制作步骤。",
+        "demand": "Adobe Express 有食谱卡。华盛顿州立大学推广部与中俄亥俄食物减废倡议均用菜谱说明西兰花梗削皮与再利用。",
+        "supply": "竞争程度样本暂评中。宽词有密集蔬菜图案，两个词都出现番茄图组；用途样本用途覆盖锅具概念、空白食谱书，单动作近似供给仍未知。",
+        "sources": [
+          "https://www.adobe.com/express/templates/card/recipe",
+          "https://wpcdn.web.wsu.edu/wp-extension/uploads/sites/2079/2025/04/4.9.25-Food-Waste-Prevention.pdf",
+          "https://savemorethanfood.org/resource/broccoli-florets-and-stems-with-peanut-sauce/"
+        ]
+      },
+      {
+        "category": "Backgrounds",
+        "base_topic": "纸张材质与演示背景",
+        "rotation": "历史已覆盖几何图案和商品展台；改查纸张在演示和编辑版式中的用途。",
+        "demand": "Artist Hub 征集背景、图案及材质，Adobe Express 有演示模板。对特定纸窗需求仍缺直接证据。",
+        "supply": "竞争程度样本暂评高。宽词与用途词都显示大量结果，重复出现银灰纹理；已看满版揉皱、蓝图网格，标题另见样机。",
+        "sources": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://www.adobe.com/express/templates/presentation"
+        ]
+      },
+      {
+        "category": "Plants and Flowers",
+        "base_topic": "香草植物图谱",
+        "rotation": "历史以花卉邀请函、装饰性植物为主；改查香草种植说明。",
+        "demand": "RHS 明确列出容器种植的香草并建议旺盛生长的薄荷单独栽植；适合苗圃养护说明和园艺教学。温带春季可配合种植专题，其余视地区。",
+        "supply": "竞争程度未知。宽词样本见物种图谱、枝叶与纹理误匹配；用途词提示无精确结果，18 是页面显示值。",
+        "sources": [
+          "https://www.rhs.org.uk/advice/grow-your-own/containers/june-edible-container-idea",
+          "https://www.rhs.org.uk/herbs/mint/grow-your-own",
+          "https://www.rhs.org.uk/herbs/containers"
+        ]
+      }
+    ],
+    "history": {
+      "main_head_reviewed": "617b1f8743da44be1f52fe8f3a46658e6b689fb4",
+      "incoming_queue_count": 30,
+      "incoming_asset_records": 309,
+      "production_queue_count": 4,
+      "production_asset_records": 20,
+      "contract_schema_example_excluded": true,
+      "known_rejection_cases": 11,
+      "page_exclusions": 8,
+      "review_dimensions": [
+        "主体轮廓",
+        "元素排列",
+        "整体版式",
+        "买家用途"
+      ],
+      "gap": "未同步的本地稿件、审核后台和未公开投稿无法核对。历史发布前记录中的圣诞与时尚试点已有仓库主题，具体初始研究时间未回填。"
+    },
+    "sampling_rule": "浏览页未经登录。每词记录第一页前六个卡片位置，观察每个宽词第1位。用途词通常看第1位，同一番茄卡在另一食物查询前列，改看第2位；纸张用途词的第1位是通用银纹，优先查看贴合演示的第2位。海岸宽词追加第17位潮位版画，食谱用途词追加第5位的书页留白证据。每个查询先记录采样计划再逐张打开，查看到结构明确即可停止。单次逐条导航、无并发；其余仅标题或元数据。用可核对的公开 HTML 抄录同位同 ID 卡片元数据，三个动态相关卡片取浏览页所见。",
+    "statistics": {
+      "raw_cards": 49,
+      "unique_assets": 47,
+      "preview_attempted": 10,
+      "preview_completed": 10,
+      "preview_failed_or_unclear": 0,
+      "preview_not_attempted": 37,
+      "coverage_percent": 21.3,
+      "per_category": {
+        "Nature": {
+          "原始卡片": 13,
+          "去重资产": 13,
+          "尝试看预览": 3,
+          "完成视觉": 3,
+          "失败或难辨": 0,
+          "未尝试": 10,
+          "覆盖率": 23.1
+        },
+        "Food illustrations": {
+          "原始卡片": 12,
+          "去重资产": 11,
+          "尝试看预览": 3,
+          "完成视觉": 3,
+          "失败或难辨": 0,
+          "未尝试": 8,
+          "覆盖率": 27.3
+        },
+        "Backgrounds": {
+          "原始卡片": 12,
+          "去重资产": 11,
+          "尝试看预览": 2,
+          "完成视觉": 2,
+          "失败或难辨": 0,
+          "未尝试": 9,
+          "覆盖率": 18.2
+        },
+        "Plants and Flowers": {
+          "原始卡片": 12,
+          "去重资产": 12,
+          "尝试看预览": 2,
+          "完成视觉": 2,
+          "失败或难辨": 0,
+          "未尝试": 10,
+          "覆盖率": 16.7
+        }
+      },
+      "repeated_positions": {
+        "165667839": [
+          "vegetable illustration 第2位",
+          "vegetable recipe illustration 第1位"
+        ],
+        "299477599": [
+          "paper texture background 第4位",
+          "paper presentation background 第1位"
+        ]
+      }
+    },
+    "limitations": "8个检索均观察到可见卡片。主结果计数可能小于实际卡片数，部分检索有相关回退。结果数、相关性排名和低供给无法推算销量、下载量或需求规模。10张JPG预览支持样本观察，未核实真透明、无缝拼接或原图细节。未尝试37张均在视觉计划外。没有预览失败。主题使用实例来自相关机构与Adobe官方资源，无关键词销量资料。",
+    "queries": [
+      {
+        "query": "coastal landscape illustration",
+        "query_kind": "宽词",
+        "category": "Nature",
+        "search_url": "https://stock.adobe.com/my/search?k=coastal%20landscape%20illustration&filters%5Bcontent_type%3Aillustration%5D=1",
+        "media_filter": "Illustrations",
+        "sort": "Relevance",
+        "captured_at": "2026-11-28T05:06:57+08:00",
+        "displayed_results": 59,
+        "headings": [
+          "59 results for coastal landscape illustration in images",
+          "We found few exact matches for coastal landscape illustration. Related results are shown below."
+        ],
+        "sample_cards": [
+          {
+            "asset_id": "740530492",
+            "title": "Coastal dune, sea grass set. Hand drawn watercolor illustration isolated on white background",
+            "detail_url": "https://stock.adobe.com/my/images/coastal-dune-sea-grass-set-hand-drawn-watercolor-illustration-isolated-on-white-background/740530492",
+            "preview_url": "https://t3.ftcdn.net/jpg/07/40/53/04/360_F_740530492_7LsI2NoD0XjhZ4xBm12P8t42B6WukRqp.jpg",
+            "position": 1,
+            "site_match_status": "主结果区",
+            "match_status": "部分相关",
+            "visual_observation": "白底上水彩沙丘、沙纹与草丛各自散放，便于拼贴；没有连续岸线或文字栏，JPG 预览无法确认透明。",
+            "preview_state": "已打开并完成视觉核对"
+          },
+          {
+            "asset_id": "211502129",
+            "title": "Traveler hiking into a mysterious coastal environment - digital fantasy painting",
+            "detail_url": "https://stock.adobe.com/my/images/traveler-hiking-into-a-mysterious-coastal-environment-digital-fantasy-painting/211502129",
+            "preview_url": "https://t4.ftcdn.net/jpg/02/11/50/21/360_F_211502129_Rf2nC9KNEgnKM58JnqzwxtHODdj7qII7.jpg",
+            "position": 2,
+            "site_match_status": "主结果区",
+            "match_status": "直接相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "123568163",
+            "title": "Cobbled Streets at Clovelly on the Devon Coast",
+            "detail_url": "https://stock.adobe.com/my/images/cobbled-streets-at-clovelly-on-the-devon-coast/123568163",
+            "preview_url": "https://t4.ftcdn.net/jpg/01/23/56/81/360_F_123568163_LwoH64KxI3lrAuHqGf7dloLyjUPguGu5.jpg",
+            "position": 3,
+            "site_match_status": "主结果区",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "108813711",
+            "title": "Aldeburgh seafront panorama Ink and Watercolour painting",
+            "detail_url": "https://stock.adobe.com/my/images/aldeburgh-seafront-panorama-ink-and-watercolour-painting/108813711",
+            "preview_url": "https://t4.ftcdn.net/jpg/01/08/81/37/360_F_108813711_lHWRvhJ253fpLs5XIwDAvgGNHU4a42wg.jpg",
+            "position": 4,
+            "site_match_status": "主结果区",
+            "match_status": "直接相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "125814417",
+            "title": "Digital watercolor painting of Manarola. Liguria, Italy",
+            "detail_url": "https://stock.adobe.com/my/images/digital-watercolor-painting-of-manarola-liguria-italy/125814417",
+            "preview_url": "https://t3.ftcdn.net/jpg/01/25/81/44/360_F_125814417_rzvyzWpafRcPjElEKOukenEAadm3WlcE.jpg",
+            "position": 5,
+            "site_match_status": "主结果区",
+            "match_status": "直接相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "392682412",
+            "title": "Sea coast with lighthouse colorful painting looks like picture",
+            "detail_url": "https://stock.adobe.com/my/images/sea-coast-with-lighthouse-colorful-painting-looks-like-picture/392682412",
+            "preview_url": "https://t3.ftcdn.net/jpg/03/92/68/24/360_F_392682412_DyF0LlBLXmxyQa17lKrAx3K0tLD3R8KV.jpg",
+            "position": 6,
+            "site_match_status": "主结果区",
+            "match_status": "直接相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "242305720",
+            "title": "Vintage engraving of English Channel coast with the tidal sea waters variations from ebb to high tide",
+            "detail_url": "https://stock.adobe.com/my/images/vintage-engraving-of-english-channel-coast-with-the-tidal-sea-waters-variations-from-ebb-to-high-tide/242305720",
+            "preview_url": "https://t4.ftcdn.net/jpg/02/42/30/57/360_F_242305720_oSKiVOgM3dKExRBWESwxEXYabMVVELCs.jpg",
+            "position": 17,
+            "site_match_status": "主结果区",
+            "match_status": "直接相关",
+            "visual_observation": "同一悬崖并排画成两幅黑白版画；左边露出海滩，右边浪接石壁，图下印有说明。适合潮位比较，双图和固有文字限制直接复用。",
+            "preview_state": "已打开并完成视觉核对"
+          }
+        ]
+      },
+      {
+        "query": "coastal travel brochure background",
+        "query_kind": "用途词",
+        "category": "Nature",
+        "search_url": "https://stock.adobe.com/my/search/images?filters%5Bcontent_type%3Aphoto%5D=0&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=0&filters%5Bcontent_type%3Avideo%5D=0&filters%5Bcontent_type%3Atemplate%5D=0&filters%5Bcontent_type%3A3d%5D=0&filters%5Bcontent_type%3Aaudio%5D=0&filters%5Binclude_stock_enterprise%5D=0&filters%5Bis_editorial%5D=0&filters%5Bglobally_safe_collection%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=coastal+travel+brochure+background&order=relevance&search_page=1&search_type=usertyped&acp=&get_facets=1",
+        "media_filter": "Illustrations",
+        "sort": "Relevance",
+        "captured_at": "2026-11-28T05:07:00+08:00",
+        "displayed_results": 3,
+        "headings": [
+          "3 results for coastal travel brochure background in images",
+          "We found few exact matches for coastal travel brochure background. Related results are shown below."
+        ],
+        "sample_cards": [
+          {
+            "asset_id": "142656637",
+            "title": "Tropical Watercolor Caribbean Exotic Coast Seascape Scenic Ocean Beach hand painted illustration",
+            "detail_url": "https://stock.adobe.com/my/images/tropical-watercolor-caribbean-exotic-coast-seascape-scenic-ocean-beach-hand-painted-illustration/142656637",
+            "preview_url": "https://t3.ftcdn.net/jpg/01/42/65/66/360_F_142656637_bLRBFCWoXevi9CZUsJOKb6WhOxDf7NTZ.jpg",
+            "position": 1,
+            "site_match_status": "主结果区",
+            "match_status": "部分相关",
+            "visual_observation": "左边棕榈叶、远处两艘小船，浅海和水彩天空贯穿全幅；右上有空间但云纹可影响大字。可当目的地封面背景。",
+            "preview_state": "已打开并完成视觉核对"
+          },
+          {
+            "asset_id": "39955759",
+            "title": "Watercolor lighthouse",
+            "detail_url": "https://stock.adobe.com/my/images/watercolor-lighthouse/39955759",
+            "preview_url": "https://t4.ftcdn.net/jpg/00/39/95/57/360_F_39955759_zjFbQ9h2n19y73Hpuhy30UfwBVBpv1fk.jpg",
+            "position": 2,
+            "site_match_status": "主结果区",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "40198567",
+            "title": "Watercolor illustration of lighthouse",
+            "detail_url": "https://stock.adobe.com/my/images/watercolor-illustration-of-lighthouse/40198567",
+            "preview_url": "https://t4.ftcdn.net/jpg/00/40/19/85/360_F_40198567_NXwMLSuymkgo4UgHt1n2j6itQiASkKgy.jpg",
+            "position": 3,
+            "site_match_status": "主结果区",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "256896212",
+            "title": "Tropical island paradise.Vintage poster background with palms silhouette",
+            "detail_url": "https://stock.adobe.com/my/images/tropical-island-paradise-vintage-poster-background-with-palms-silhouette/256896212",
+            "preview_url": "https://t3.ftcdn.net/jpg/02/56/89/62/360_F_256896212_JDH5dVC55HyzTUp7XmWGaUR5AXnMTlAc.jpg",
+            "position": 4,
+            "site_match_status": "相关结果",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "376028291",
+            "title": "Aquarelle set of seaside sketch art, background illustration",
+            "detail_url": "https://stock.adobe.com/my/images/aquarelle-set-of-seaside-sketch-art-background-illustration/376028291",
+            "preview_url": "https://t3.ftcdn.net/jpg/03/76/02/82/360_F_376028291_GEQoXLJsom6cLyM0XYV9Qu4G3i1kZU9f.jpg",
+            "position": 5,
+            "site_match_status": "相关结果",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "593828572",
+            "title": "Summer season wallpaper background. Blurred Summer Background Free Space",
+            "detail_url": "https://stock.adobe.com/my/images/summer-season-wallpaper-background-blurred-summer-background-free-space/593828572",
+            "preview_url": "https://t4.ftcdn.net/jpg/05/93/82/85/360_F_593828572_889BlX8cLT4v8b3J1L6RKp9va8gzm8WO.jpg",
+            "position": 6,
+            "site_match_status": "相关结果",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          }
+        ]
+      },
+      {
+        "query": "vegetable illustration",
+        "query_kind": "宽词",
+        "category": "Food illustrations",
+        "search_url": "https://stock.adobe.com/my/search/images?filters%5Bcontent_type%3Aphoto%5D=0&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=0&filters%5Bcontent_type%3Avideo%5D=0&filters%5Bcontent_type%3Atemplate%5D=0&filters%5Bcontent_type%3A3d%5D=0&filters%5Bcontent_type%3Aaudio%5D=0&filters%5Binclude_stock_enterprise%5D=0&filters%5Bis_editorial%5D=0&filters%5Bglobally_safe_collection%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=vegetable+illustration&order=relevance&limit=100&search_page=1&search_type=usertyped&acp=&get_facets=1",
+        "media_filter": "Illustrations",
+        "sort": "Relevance",
+        "captured_at": "2026-11-28T05:07:07+08:00",
+        "displayed_results": 3758,
+        "headings": [
+          "3,758 results for vegetable illustration in images"
+        ],
+        "sample_cards": [
+          {
+            "asset_id": "436770671",
+            "title": "Hand drawn vegetable pattern illustration",
+            "detail_url": "https://stock.adobe.com/my/images/hand-drawn-vegetable-pattern-illustration/436770671",
+            "preview_url": "https://t3.ftcdn.net/jpg/04/36/77/06/360_F_436770671_swQ30a9lYTcB1Ecba1kEZ84RvEpteRMN.jpg",
+            "position": 1,
+            "site_match_status": "UNKNOWN",
+            "match_status": "直接相关",
+            "visual_observation": "浅底铺满彩色蔬菜，西兰花只是独立图样之一，适合食材总览或包装；空白零散，步骤与物件关系缺失。未核实可平铺。",
+            "preview_state": "已打开并完成视觉核对"
+          },
+          {
+            "asset_id": "165667839",
+            "title": "Set of hand drawn tomatoes on the white background. Stylized food illustration",
+            "detail_url": "https://stock.adobe.com/my/images/set-of-hand-drawn-tomatoes-on-the-white-background-stylized-food-illustration/165667839",
+            "preview_url": "https://t3.ftcdn.net/jpg/01/65/66/78/360_F_165667839_kjajkVph9jkquPrTINouDYShNC0HkTCL.jpg",
+            "position": 2,
+            "site_match_status": "UNKNOWN",
+            "match_status": "直接相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "545911116",
+            "title": "Vegetables Fruit Produce Food Illustration Woodcut",
+            "detail_url": "https://stock.adobe.com/my/images/vegetables-fruit-produce-food-illustration-woodcut/545911116",
+            "preview_url": "https://t4.ftcdn.net/jpg/05/45/91/11/360_F_545911116_pjgjf249gBL7et7VkaNJhPChRLdOJvwt.jpg",
+            "position": 3,
+            "site_match_status": "UNKNOWN",
+            "match_status": "直接相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "263792638",
+            "title": "Watercolor painted collection of vegetables. Fresh colorful veggies background",
+            "detail_url": "https://stock.adobe.com/my/images/watercolor-painted-collection-of-vegetables-fresh-colorful-veggies-background/263792638",
+            "preview_url": "https://t3.ftcdn.net/jpg/02/63/79/26/360_F_263792638_29LPbR1TtDmpUJYu3i4hYRYft2FKLz2E.jpg",
+            "position": 4,
+            "site_match_status": "UNKNOWN",
+            "match_status": "直接相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "125913839",
+            "title": "drawing, etching, engraved, vegetable illustration",
+            "detail_url": "https://stock.adobe.com/my/images/drawing-etching-engraved-vegetable-illustration/125913839",
+            "preview_url": "https://t3.ftcdn.net/jpg/01/25/91/38/360_F_125913839_Rv5oorXoSNXlHo6d9J3lLGqTd5zeof66.jpg",
+            "position": 5,
+            "site_match_status": "UNKNOWN",
+            "match_status": "直接相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "637875960",
+            "title": "A watercolor illustration of pastel-colored pumpkins, isolated on white background. Set of three fall plants. Botanical painting. PNG clipart.",
+            "detail_url": "https://stock.adobe.com/my/images/a-watercolor-illustration-of-pastel-colored-pumpkins-isolated-on-white-background-set-of-three-fall-plants-botanical-painting-png-clipart/637875960",
+            "preview_url": "https://t4.ftcdn.net/jpg/06/37/87/59/360_F_637875960_3MV2em6IObOknRrA9pKWmikDD7EmJrAR.jpg",
+            "position": 6,
+            "site_match_status": "UNKNOWN",
+            "match_status": "直接相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          }
+        ]
+      },
+      {
+        "query": "vegetable recipe illustration",
+        "query_kind": "用途词",
+        "category": "Food illustrations",
+        "search_url": "https://stock.adobe.com/my/search/images?filters%5Bcontent_type%3Aphoto%5D=0&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=0&filters%5Bcontent_type%3Avideo%5D=0&filters%5Bcontent_type%3Atemplate%5D=0&filters%5Bcontent_type%3A3d%5D=0&filters%5Bcontent_type%3Aaudio%5D=0&filters%5Binclude_stock_enterprise%5D=0&filters%5Bis_editorial%5D=0&filters%5Bglobally_safe_collection%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=vegetable+recipe+illustration&order=relevance&limit=100&search_page=1&search_type=usertyped&acp=&get_facets=1",
+        "media_filter": "Illustrations",
+        "sort": "Relevance",
+        "captured_at": "2026-11-28T05:07:09+08:00",
+        "displayed_results": 185,
+        "headings": [
+          "185 results for vegetable recipe illustration in images"
+        ],
+        "sample_cards": [
+          {
+            "asset_id": "165667839",
+            "title": "Set of hand drawn tomatoes on the white background. Stylized food illustration",
+            "detail_url": "https://stock.adobe.com/my/images/set-of-hand-drawn-tomatoes-on-the-white-background-stylized-food-illustration/165667839",
+            "preview_url": "https://t3.ftcdn.net/jpg/01/65/66/78/360_F_165667839_kjajkVph9jkquPrTINouDYShNC0HkTCL.jpg",
+            "position": 1,
+            "site_match_status": "UNKNOWN",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "618480680",
+            "title": "Cooking pot with fresh vegetable ingredients isolated. Organic healthy food and casserole. Sketch illustration",
+            "detail_url": "https://stock.adobe.com/my/images/cooking-pot-with-fresh-vegetable-ingredients-isolated-organic-healthy-food-and-casserole-sketch-illustration/618480680",
+            "preview_url": "https://t3.ftcdn.net/jpg/06/18/48/06/360_F_618480680_0drHicHp9ptsyiiQrX61a8XjvO6JpD6q.jpg",
+            "position": 2,
+            "site_match_status": "UNKNOWN",
+            "match_status": "部分相关",
+            "visual_observation": "黑色线描锅口上方漂浮整块蔬菜和切面，主体竖向居中；适合烹饪概念，缺处理顺序和连贯侧栏。",
+            "preview_state": "已打开并完成视觉核对"
+          },
+          {
+            "asset_id": "587218421",
+            "title": "chili 3d illustration",
+            "detail_url": "https://stock.adobe.com/my/images/chili-3d-illustration/587218421",
+            "preview_url": "https://t3.ftcdn.net/jpg/05/87/21/84/360_F_587218421_K0atvmPhNmuX0iIJfBLIOpSvKh43bdbF.jpg",
+            "position": 3,
+            "site_match_status": "UNKNOWN",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "494468131",
+            "title": "Salad still life cartoon poster illustration. vegetables abstract banner. Funny colored typography poster, apparel print design, restaurant menu decoration. food poster. Hands holding vegetables",
+            "detail_url": "https://stock.adobe.com/my/images/salad-still-life-cartoon-poster-illustration-vegetables-abstract-banner-funny-colored-typography-poster-apparel-print-design-restaurant-menu-decoration-food-poster-hands-holding-vegetables/494468131",
+            "preview_url": "https://t4.ftcdn.net/jpg/04/94/46/81/360_F_494468131_97jEzhNN0bznK3VAwrOdU5Rz50oYy9yL.jpg",
+            "position": 4,
+            "site_match_status": "UNKNOWN",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "397731394",
+            "title": "Cookig concept template. Open cookbook with copy space and vegetables with kitchen utensils. Watercolor hand drawn illustration, isolated on white background",
+            "detail_url": "https://stock.adobe.com/my/images/cookig-concept-template-open-cookbook-with-copy-space-and-vegetables-with-kitchen-utensils-watercolor-hand-drawn-illustration-isolated-on-white-background/397731394",
+            "preview_url": "https://t4.ftcdn.net/jpg/03/97/73/13/360_F_397731394_wRDiPq1TmHaDjD1zrMaFH9YpQyOPvx4h.jpg",
+            "position": 5,
+            "site_match_status": "UNKNOWN",
+            "match_status": "直接相关",
+            "visual_observation": "水彩展开书页构成中央双栏，锅铲、擀面杖和蔬菜围绕。可做食谱封面，书沟和透视压缩直接排文案的空间。",
+            "preview_state": "已打开并完成视觉核对"
+          },
+          {
+            "asset_id": "369905089",
+            "title": "Watercolor banner with parsley, Basil, dill and tomatoes in a frame on a white background.",
+            "detail_url": "https://stock.adobe.com/my/images/watercolor-banner-with-parsley-basil-dill-and-tomatoes-in-a-frame-on-a-white-background/369905089",
+            "preview_url": "https://t3.ftcdn.net/jpg/03/69/90/50/360_F_369905089_DozRs3gwX3ZjveTo3lj1BUxFP783zYQ3.jpg",
+            "position": 6,
+            "site_match_status": "UNKNOWN",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          }
+        ]
+      },
+      {
+        "query": "paper texture background",
+        "query_kind": "宽词",
+        "category": "Backgrounds",
+        "search_url": "https://stock.adobe.com/my/search/images?filters%5Bcontent_type%3Aphoto%5D=0&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=0&filters%5Bcontent_type%3Avideo%5D=0&filters%5Bcontent_type%3Atemplate%5D=0&filters%5Bcontent_type%3A3d%5D=0&filters%5Bcontent_type%3Aaudio%5D=0&filters%5Binclude_stock_enterprise%5D=0&filters%5Bis_editorial%5D=0&filters%5Bglobally_safe_collection%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=paper+texture+background&order=relevance&limit=100&search_page=1&search_type=usertyped&acp=&get_facets=1",
+        "media_filter": "Illustrations",
+        "sort": "Relevance",
+        "captured_at": "2026-11-28T05:07:12+08:00",
+        "displayed_results": 18760,
+        "headings": [
+          "18,760 results for paper texture background in images"
+        ],
+        "sample_cards": [
+          {
+            "asset_id": "560618055",
+            "title": "Seamless white crumpled paper background texture pattern. Tileable wrinkled high resolution arts and craft flat lay backdrop with copy space. Artistic abstract creative concept 3D rendering. .",
+            "detail_url": "https://stock.adobe.com/my/images/seamless-white-crumpled-paper-background-texture-pattern-tileable-wrinkled-high-resolution-arts-and-craft-flat-lay-backdrop-with-copy-space-artistic-abstract-creative-concept-3d-rendering/560618055",
+            "preview_url": "https://t3.ftcdn.net/jpg/05/60/61/80/360_F_560618055_gz6dOkDVHgBSfyrZcMQwToiZ1LJIvLPz.jpg",
+            "position": 1,
+            "site_match_status": "UNKNOWN",
+            "match_status": "直接相关",
+            "visual_observation": "白灰揉皱纹理铺满全幅，亮暗折痕均匀散布。可当低色阶材质，但可见折痕会穿过排字区。单张预览无法核实无缝。",
+            "preview_state": "已打开并完成视觉核对"
+          },
+          {
+            "asset_id": "423534119",
+            "title": "white canvas texture cardboard paper packing texture background",
+            "detail_url": "https://stock.adobe.com/my/images/white-canvas-texture-cardboard-paper-packing-texture-background/423534119",
+            "preview_url": "https://t4.ftcdn.net/jpg/04/23/53/41/360_F_423534119_I62LwBgtEUws4TLRvu0M1fK17mByq6kz.jpg",
+            "position": 2,
+            "site_match_status": "UNKNOWN",
+            "match_status": "直接相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "369188679",
+            "title": "background new texture wall paper shape. High quality and have copy space for text",
+            "detail_url": "https://stock.adobe.com/my/images/background-new-texture-wall-paper-shape-high-quality-and-have-copy-space-for-text/369188679",
+            "preview_url": "https://t3.ftcdn.net/jpg/03/69/18/86/360_F_369188679_yj6JgOfOEgI9nl6m8iRx5WxDKUgZRwdG.jpg",
+            "position": 3,
+            "site_match_status": "UNKNOWN",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "299477599",
+            "title": "Silver texture abstract background with gain noise texture background.",
+            "detail_url": "https://stock.adobe.com/my/images/silver-texture-abstract-background-with-gain-noise-texture-background/299477599",
+            "preview_url": "https://t4.ftcdn.net/jpg/02/99/47/75/360_F_299477599_D7nutjAVA0lgJqqrzQIiOPaFwLAyNjmR.jpg",
+            "position": 4,
+            "site_match_status": "UNKNOWN",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "315896496",
+            "title": "White paper with texture for watercolor. High scan quality and resolution",
+            "detail_url": "https://stock.adobe.com/my/images/white-paper-with-texture-for-watercolor-high-scan-quality-and-resolution/315896496",
+            "preview_url": "https://t3.ftcdn.net/jpg/03/15/89/64/360_F_315896496_HhQDYRJF5x328oMI7jxeFqa0SbrdPakX.jpg",
+            "position": 5,
+            "site_match_status": "UNKNOWN",
+            "match_status": "直接相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "427481493",
+            "title": "Newspaper paper grunge vintage old aged texture background",
+            "detail_url": "https://stock.adobe.com/my/images/newspaper-paper-grunge-vintage-old-aged-texture-background/427481493",
+            "preview_url": "https://t3.ftcdn.net/jpg/04/27/48/14/360_F_427481493_bbBHJr7OQa1xW8RT8cuyyeqpvSxExTaO.jpg",
+            "position": 6,
+            "site_match_status": "UNKNOWN",
+            "match_status": "直接相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          }
+        ]
+      },
+      {
+        "query": "paper presentation background",
+        "query_kind": "用途词",
+        "category": "Backgrounds",
+        "search_url": "https://stock.adobe.com/my/search/images?filters%5Bcontent_type%3Aphoto%5D=0&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=0&filters%5Bcontent_type%3Avideo%5D=0&filters%5Bcontent_type%3Atemplate%5D=0&filters%5Bcontent_type%3A3d%5D=0&filters%5Bcontent_type%3Aaudio%5D=0&filters%5Binclude_stock_enterprise%5D=0&filters%5Bis_editorial%5D=0&filters%5Bglobally_safe_collection%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=paper+presentation+background&order=relevance&limit=100&search_page=1&search_type=usertyped&acp=&get_facets=1",
+        "media_filter": "Illustrations",
+        "sort": "Relevance",
+        "captured_at": "2026-11-28T05:07:15+08:00",
+        "displayed_results": 3448,
+        "headings": [
+          "3,448 results for paper presentation background in images"
+        ],
+        "sample_cards": [
+          {
+            "asset_id": "299477599",
+            "title": "Silver texture abstract background with gain noise texture background.",
+            "detail_url": "https://stock.adobe.com/my/images/silver-texture-abstract-background-with-gain-noise-texture-background/299477599",
+            "preview_url": "https://t4.ftcdn.net/jpg/02/99/47/75/360_F_299477599_D7nutjAVA0lgJqqrzQIiOPaFwLAyNjmR.jpg",
+            "position": 1,
+            "site_match_status": "UNKNOWN",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "838395450",
+            "title": "Blue print background or millimeter paper pattern with grid lines for design projects and animations. Technical looking backdrop for presentation of mechanical or acrchitecture early design.",
+            "detail_url": "https://stock.adobe.com/my/images/blue-print-background-or-millimeter-paper-pattern-with-grid-lines-for-design-projects-and-animations-technical-looking-backdrop-for-presentation-of-mechanical-or-acrchitecture-early-design/838395450",
+            "preview_url": "https://t3.ftcdn.net/jpg/08/38/39/54/360_F_838395450_jY8gjL5nmYZ53m3SJ8k6fTznQapTch8o.jpg",
+            "position": 2,
+            "site_match_status": "UNKNOWN",
+            "match_status": "直接相关",
+            "visual_observation": "蓝底毫米网格贯穿画面，四周细框、中央稍亮；适合叠技术线稿，网格持续穿过小字区。",
+            "preview_state": "已打开并完成视觉核对"
+          },
+          {
+            "asset_id": "600902829",
+            "title": "Black background with marbled vintage grunge texture, old dark and light black and charcoal gray stone or rock wall, solid black paper in rich fancy elegant design, textured pattern",
+            "detail_url": "https://stock.adobe.com/my/images/black-background-with-marbled-vintage-grunge-texture-old-dark-and-light-black-and-charcoal-gray-stone-or-rock-wall-solid-black-paper-in-rich-fancy-elegant-design-textured-pattern/600902829",
+            "preview_url": "https://t3.ftcdn.net/jpg/06/00/90/28/360_F_600902829_Aa0OIhRDwvlQAErzbsAQKQtI6eRTOSkr.jpg",
+            "position": 3,
+            "site_match_status": "UNKNOWN",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "618640024",
+            "title": "Abstract blue and white background in creative geometric art pattern, modern abstract art style business background with diagonal stripes shapes and triangles in border design",
+            "detail_url": "https://stock.adobe.com/my/images/abstract-blue-and-white-background-in-creative-geometric-art-pattern-modern-abstract-art-style-business-background-with-diagonal-stripes-shapes-and-triangles-in-border-design/618640024",
+            "preview_url": "https://t3.ftcdn.net/jpg/06/18/64/00/360_F_618640024_bOk07Cupn8vRHvxoNwrRGHgD1sEeNa95.jpg",
+            "position": 4,
+            "site_match_status": "UNKNOWN",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "611439471",
+            "title": "Modern business card mockup template with clipping path. Mock-up design for presentation branding, corporate identity, advertising, personal, stationery, graphic designers presentations. 3d Rendering.",
+            "detail_url": "https://stock.adobe.com/my/images/modern-business-card-mockup-template-with-clipping-path-mock-up-design-for-presentation-branding-corporate-identity-advertising-personal-stationery-graphic-designers-presentations-3d-rendering/611439471",
+            "preview_url": "https://t3.ftcdn.net/jpg/06/11/43/94/360_F_611439471_bevyBRwuI0Qk1rYVE23C1H0np4N4vxYQ.jpg",
+            "position": 5,
+            "site_match_status": "UNKNOWN",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "205798653",
+            "title": "White vertical paper sheet Mockup, letter or invitation",
+            "detail_url": "https://stock.adobe.com/my/images/white-vertical-paper-sheet-mockup-letter-or-invitation/205798653",
+            "preview_url": "https://t3.ftcdn.net/jpg/02/05/79/86/360_F_205798653_N36rgHSbc3gyELzjSwUsBYVLIkHd5v0J.jpg",
+            "position": 6,
+            "site_match_status": "UNKNOWN",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          }
+        ]
+      },
+      {
+        "query": "herb illustration",
+        "query_kind": "宽词",
+        "category": "Plants and Flowers",
+        "search_url": "https://stock.adobe.com/my/search/images?filters%5Bcontent_type%3Aphoto%5D=0&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=0&filters%5Bcontent_type%3Avideo%5D=0&filters%5Bcontent_type%3Atemplate%5D=0&filters%5Bcontent_type%3A3d%5D=0&filters%5Bcontent_type%3Aaudio%5D=0&filters%5Binclude_stock_enterprise%5D=0&filters%5Bis_editorial%5D=0&filters%5Bglobally_safe_collection%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=herb+illustration&order=relevance&limit=100&search_page=1&search_type=usertyped&acp=&get_facets=1",
+        "media_filter": "Illustrations",
+        "sort": "Relevance",
+        "captured_at": "2026-11-28T05:07:18+08:00",
+        "displayed_results": 4355,
+        "headings": [
+          "4,355 results for herb illustration in images"
+        ],
+        "sample_cards": [
+          {
+            "asset_id": "240557543",
+            "title": "Watercolor botanical illustration of medicine herbs",
+            "detail_url": "https://stock.adobe.com/my/images/watercolor-botanical-illustration-of-medicine-herbs/240557543",
+            "preview_url": "https://t4.ftcdn.net/jpg/02/40/55/75/360_F_240557543_nZeUVCpwBcBcEqVtjI4dkgV2pLDC6YEk.jpg",
+            "position": 1,
+            "site_match_status": "UNKNOWN",
+            "match_status": "直接相关",
+            "visual_observation": "带现成标题与植物名的药草图谱，三排枝叶等距分布；适合物种识别，版式已经定型，没有园艺操作关系。",
+            "preview_state": "已打开并完成视觉核对"
+          },
+          {
+            "asset_id": "375900355",
+            "title": "Illustration of wild plants, herbs and flowers, monochrome botanical illustration ink drawn in black line.",
+            "detail_url": "https://stock.adobe.com/my/images/illustration-of-wild-plants-herbs-and-flowers-monochrome-botanical-illustration-ink-drawn-in-black-line/375900355",
+            "preview_url": "https://t4.ftcdn.net/jpg/03/75/90/03/360_F_375900355_bGCxHJk4s5CfqSKIcTWYwGvMNovy2IZT.jpg",
+            "position": 2,
+            "site_match_status": "UNKNOWN",
+            "match_status": "直接相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "525179047",
+            "title": "Green plant and leafs pattern. Pencil, hand drawn natural illustration. Simple organic plants design. Botany vintage graphic art. 4k wallpaper, background. Simple, minimal, clean design.",
+            "detail_url": "https://stock.adobe.com/my/images/green-plant-and-leafs-pattern-pencil-hand-drawn-natural-illustration-simple-organic-plants-design-botany-vintage-graphic-art-4k-wallpaper-background-simple-minimal-clean-design/525179047",
+            "preview_url": "https://t3.ftcdn.net/jpg/05/25/17/90/360_F_525179047_pg8bOmLS5NxT5LtU8Zd1tEbCclI76Xtf.jpg",
+            "position": 3,
+            "site_match_status": "UNKNOWN",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "657179289",
+            "title": "Green grass texture background close up. Green lawn pattern and texture background. top view. 3d rendering illustration",
+            "detail_url": "https://stock.adobe.com/my/images/green-grass-texture-background-close-up-green-lawn-pattern-and-texture-background-top-view-3d-rendering-illustration/657179289",
+            "preview_url": "https://t3.ftcdn.net/jpg/06/57/17/92/360_F_657179289_8IBmua3RJMqwuL6jEVNtSPwKqlhPhAOO.jpg",
+            "position": 4,
+            "site_match_status": "UNKNOWN",
+            "match_status": "误匹配",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "641814220",
+            "title": "Watercolor floral set of green leaves, greenery, branches, twigs, flowers etc. Cut out hand drawn PNG illustration on transparent background. Watercolour clipart drawing.",
+            "detail_url": "https://stock.adobe.com/my/images/watercolor-floral-set-of-green-leaves-greenery-branches-twigs-flowers-etc-cut-out-hand-drawn-png-illustration-on-transparent-background-watercolour-clipart-drawing/641814220",
+            "preview_url": "https://t3.ftcdn.net/jpg/06/41/81/42/360_F_641814220_v3xpDXeCAV9g6E68O5iFtRNwBX6KWuOi.jpg",
+            "position": 5,
+            "site_match_status": "UNKNOWN",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "580953057",
+            "title": "Watercolor lavender flower illustration. Farmhouse vintage style. Rusty iron pitcher, watering can, wheel. Provence hand painted set for print, sticker, scrapbooking, rustic wedding design",
+            "detail_url": "https://stock.adobe.com/my/images/watercolor-lavender-flower-illustration-farmhouse-vintage-style-rusty-iron-pitcher-watering-can-wheel-provence-hand-painted-set-for-print-sticker-scrapbooking-rustic-wedding-design/580953057",
+            "preview_url": "https://t3.ftcdn.net/jpg/05/80/95/30/360_F_580953057_wqVHdtMoQxaZA4NazYNgERuRLhio069r.jpg",
+            "position": 6,
+            "site_match_status": "UNKNOWN",
+            "match_status": "直接相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          }
+        ]
+      },
+      {
+        "query": "herb planting guide illustration",
+        "query_kind": "用途词",
+        "category": "Plants and Flowers",
+        "search_url": "https://stock.adobe.com/my/search/images?filters%5Bcontent_type%3Aphoto%5D=0&filters%5Bcontent_type%3Aillustration%5D=1&filters%5Bcontent_type%3Azip_vector%5D=0&filters%5Bcontent_type%3Avideo%5D=0&filters%5Bcontent_type%3Atemplate%5D=0&filters%5Bcontent_type%3A3d%5D=0&filters%5Bcontent_type%3Aaudio%5D=0&filters%5Binclude_stock_enterprise%5D=0&filters%5Bis_editorial%5D=0&filters%5Bglobally_safe_collection%5D=1&filters%5Bcontent_type%3Aimage%5D=1&k=herb+planting+guide+illustration&order=relevance&limit=100&search_page=1&search_type=usertyped&acp=&get_facets=1",
+        "media_filter": "Illustrations",
+        "sort": "Relevance",
+        "captured_at": "2026-11-28T05:07:20+08:00",
+        "displayed_results": 18,
+        "headings": [
+          "We couldn't find any exact matches for herb planting guide illustration. Related results are shown below.",
+          "18 results for herb planting guide illustration in images"
+        ],
+        "sample_cards": [
+          {
+            "asset_id": "78832383",
+            "title": "Aromatic Plants",
+            "detail_url": "https://stock.adobe.com/my/images/aromatic-plants/78832383",
+            "preview_url": "https://t4.ftcdn.net/jpg/00/78/83/23/360_F_78832383_fTIuyEjMh3eoRRBrsu1MsS1IlQKWIxyo.jpg",
+            "position": 1,
+            "site_match_status": "相关结果",
+            "match_status": "部分相关",
+            "visual_observation": "白底上两组绿色枝叶横向分离，中央留空；便于枝叶识别，没有盆器或地下结构，无法说明种植决策。",
+            "preview_state": "已打开并完成视觉核对"
+          },
+          {
+            "asset_id": "179852755",
+            "title": "Watercolor herbs set volume 4. Illustration in high resolution.",
+            "detail_url": "https://stock.adobe.com/my/images/watercolor-herbs-set-volume-4-illustration-in-high-resolution/179852755",
+            "preview_url": "https://t4.ftcdn.net/jpg/01/79/85/27/360_F_179852755_N61qvQg4IQUxr7UBGxwlhOMyMF4aMMMa.jpg",
+            "position": 2,
+            "site_match_status": "相关结果",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "607134020",
+            "title": "Drawings ORIGANUM THYMUS. Hand drawn illustration. Latin name Thymus vulgaris L.",
+            "detail_url": "https://stock.adobe.com/my/images/drawings-origanum-thymus-hand-drawn-illustration-latin-name-thymus-vulgaris-l/607134020",
+            "preview_url": "https://t3.ftcdn.net/jpg/06/07/13/40/360_F_607134020_Auu3AabEGC7f8orGsI2BqGMpa5m7QWmp.jpg",
+            "position": 3,
+            "site_match_status": "相关结果",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "727091089",
+            "title": "Flowers, sprouts and garden tools. Spring works in the garden concept. Hand drawn watercolor illustration isolated on white background",
+            "detail_url": "https://stock.adobe.com/my/images/flowers-sprouts-and-garden-tools-spring-works-in-the-garden-concept-hand-drawn-watercolor-illustration-isolated-on-white-background/727091089",
+            "preview_url": "https://t3.ftcdn.net/jpg/07/27/09/10/360_F_727091089_LaeKCMnr6qMxnpLfRyciPQmPozC5o7c0.jpg",
+            "position": 4,
+            "site_match_status": "相关结果",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "314138180",
+            "title": "Thyme herb watercolor isolated on white background",
+            "detail_url": "https://stock.adobe.com/my/images/thyme-herb-watercolor-isolated-on-white-background/314138180",
+            "preview_url": "https://t4.ftcdn.net/jpg/03/14/13/81/360_F_314138180_PeCw3D8MpYmoIGXbR1x6bSk1rsNZdpws.jpg",
+            "position": 5,
+            "site_match_status": "相关结果",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          },
+          {
+            "asset_id": "289503555",
+            "title": "Decorative plants for the kitchen on railing in a bucket",
+            "detail_url": "https://stock.adobe.com/my/images/decorative-plants-for-the-kitchen-on-railing-in-a-bucket/289503555",
+            "preview_url": "https://t4.ftcdn.net/jpg/02/89/50/35/360_F_289503555_o0FRaIq4tSnWyV8bcmjpmBvyZeicrTWV.jpg",
+            "position": 6,
+            "site_match_status": "相关结果",
+            "match_status": "部分相关",
+            "visual_observation": "UNKNOWN",
+            "preview_state": "仅标题或元数据"
+          }
+        ]
+      }
+    ],
+    "candidates": [
+      {
+        "candidate_id": "C01",
+        "category": "Nature",
+        "theme": "Rock Shelf Tide Pool Cutaway",
+        "base_topic": "海岸景观插画",
+        "target_buyer": "公园解说编辑与自然教材设计师",
+        "design_reuse_cases": [
+          "潮间带实地指南插图",
+          "自然中心展板"
+        ],
+        "reference_asset_ids": [
+          "740530492",
+          "242305720",
+          "142656637"
+        ],
+        "observed_useful_features": "水彩草丘可用作散件，潮位版画擅长同地点地貌对照，热带水彩可作目的地封面。",
+        "observed_similarity_risk": "海岸风景、棕榈、灯塔与装饰性潮池易趋同；回避历史潮池野花广告格局。",
+        "distinctiveness": "从海岸全景改为单个岩台的侧向剖面，展示退潮后岩唇留水，远侧海水已退到岩台外",
+        "score_breakdown": {
+          "买家效用": 24,
+          "需求覆盖与证据": 17,
+          "差异化": 10,
+          "构图可用性": 14,
+          "材质可信度": 9,
+          "4K可行性": 9,
+          "时效": 5,
+          "组合多样性": 5
+        },
+        "topic_score": 93,
+        "decision": "APPROVED",
+        "decision_reason": "SC-002 的野花潮池风景与广告地平线均不采用；242305720 用两张完整海景比较潮位，本案只有一个剖面和一条水体分隔线"
+      },
+      {
+        "candidate_id": "C02",
+        "category": "Nature",
+        "theme": "Dune Grass Sand Capture Cutaway",
+        "base_topic": "海岸景观插画",
+        "target_buyer": "公园解说员与海岸基金会",
+        "design_reuse_cases": [
+          "沙丘保育展板",
+          "志愿者说明页"
+        ],
+        "reference_asset_ids": [
+          "740530492",
+          "242305720",
+          "142656637"
+        ],
+        "observed_useful_features": "水彩草丘可用作散件，潮位版画擅长同地点地貌对照，热带水彩可作目的地封面。",
+        "observed_similarity_risk": "海岸风景、棕榈、灯塔与装饰性潮池易趋同；回避历史潮池野花广告格局。",
+        "distinctiveness": "将散放的草束与沙堆连接成单株草阻滞积沙的剖面",
+        "score_breakdown": {
+          "买家效用": 22,
+          "需求覆盖与证据": 13,
+          "差异化": 9,
+          "构图可用性": 13,
+          "材质可信度": 8,
+          "4K可行性": 8,
+          "时效": 4,
+          "组合多样性": 4
+        },
+        "topic_score": 81,
+        "decision": "WATCHLIST",
+        "decision_reason": "需验证公园对积沙机制画稿的具体用途与当地草种形态；风积砂旧稿仅看表面纹理"
+      },
+      {
+        "candidate_id": "C03",
+        "category": "Nature",
+        "theme": "High Tide Cutoff Along a Cove",
+        "base_topic": "海岸景观插画",
+        "target_buyer": "旅游机构与公园运营方",
+        "design_reuse_cases": [
+          "行前说明页",
+          "步道入口告示"
+        ],
+        "reference_asset_ids": [
+          "740530492",
+          "242305720",
+          "142656637"
+        ],
+        "observed_useful_features": "水彩草丘可用作散件，潮位版画擅长同地点地貌对照，热带水彩可作目的地封面。",
+        "observed_similarity_risk": "海岸风景、棕榈、灯塔与装饰性潮池易趋同；回避历史潮池野花广告格局。",
+        "distinctiveness": "从海岛风景改成高水位遮断一段沿岸通道的连续俯视图",
+        "score_breakdown": {
+          "买家效用": 23,
+          "需求覆盖与证据": 15,
+          "差异化": 8,
+          "构图可用性": 13,
+          "材质可信度": 8,
+          "4K可行性": 8,
+          "时效": 4,
+          "组合多样性": 3
+        },
+        "topic_score": 82,
+        "decision": "WATCHLIST",
+        "decision_reason": "通用图容易被当作实地安全指引，需确定场馆适配方式；242305720 已有潮位对照，历史无台阶路线同为路径变量"
+      },
+      {
+        "candidate_id": "C04",
+        "category": "Nature",
+        "theme": "Windward Dune Boardwalk Cross Section",
+        "base_topic": "海岸景观插画",
+        "target_buyer": "步道管理者与环境教育编辑",
+        "design_reuse_cases": [
+          "步道宣传折页",
+          "户外课堂手册"
+        ],
+        "reference_asset_ids": [
+          "740530492",
+          "242305720",
+          "142656637"
+        ],
+        "observed_useful_features": "水彩草丘可用作散件，潮位版画擅长同地点地貌对照，热带水彩可作目的地封面。",
+        "observed_similarity_risk": "海岸风景、棕榈、灯塔与装饰性潮池易趋同；回避历史潮池野花广告格局。",
+        "distinctiveness": "用跨越沙丘的栈道和下方植被解释通行与保护带的关系",
+        "score_breakdown": {
+          "买家效用": 21,
+          "需求覆盖与证据": 13,
+          "差异化": 9,
+          "构图可用性": 13,
+          "材质可信度": 8,
+          "4K可行性": 8,
+          "时效": 4,
+          "组合多样性": 4
+        },
+        "topic_score": 80,
+        "decision": "WATCHLIST",
+        "decision_reason": "需要栈道与生态保护两类用途来源；近邻为上轮无台阶路线，要确认不构成同一到达版式"
+      },
+      {
+        "candidate_id": "C05",
+        "category": "Nature",
+        "theme": "Sheltered Harbour Gap From Above",
+        "base_topic": "海岸景观插画",
+        "target_buyer": "滨海博物馆与海岸课程编辑",
+        "design_reuse_cases": [
+          "展馆水域图版",
+          "环境课程示意"
+        ],
+        "reference_asset_ids": [
+          "740530492",
+          "242305720",
+          "142656637"
+        ],
+        "observed_useful_features": "水彩草丘可用作散件，潮位版画擅长同地点地貌对照，热带水彩可作目的地封面。",
+        "observed_similarity_risk": "海岸风景、棕榈、灯塔与装饰性潮池易趋同；回避历史潮池野花广告格局。",
+        "distinctiveness": "拆掉城镇天际线，以单个缺口和内外两种有机波纹展示港湾遮蔽",
+        "score_breakdown": {
+          "买家效用": 20,
+          "需求覆盖与证据": 12,
+          "差异化": 9,
+          "构图可用性": 13,
+          "材质可信度": 8,
+          "4K可行性": 8,
+          "时效": 4,
+          "组合多样性": 4
+        },
+        "topic_score": 78,
+        "decision": "WATCHLIST",
+        "decision_reason": "缺买家任务的具体来源及单缺口局部的视觉比对"
+      },
+      {
+        "candidate_id": "C06",
+        "category": "Nature",
+        "theme": "Dune Grass and Sand Watercolor Kit",
+        "base_topic": "海岸景观插画",
+        "target_buyer": "旅行品牌设计师与手账设计师",
+        "design_reuse_cases": [
+          "旅游宣传折页素材",
+          "手账贴纸"
+        ],
+        "reference_asset_ids": [
+          "740530492",
+          "242305720",
+          "142656637"
+        ],
+        "observed_useful_features": "水彩草丘可用作散件，潮位版画擅长同地点地貌对照，热带水彩可作目的地封面。",
+        "observed_similarity_risk": "海岸风景、棕榈、灯塔与装饰性潮池易趋同；回避历史潮池野花广告格局。",
+        "distinctiveness": "按不同地形分出草丘与风蚀草束作为可自由重组的组件",
+        "score_breakdown": {
+          "买家效用": 21,
+          "需求覆盖与证据": 14,
+          "差异化": 5,
+          "构图可用性": 11,
+          "材质可信度": 8,
+          "4K可行性": 8,
+          "时效": 4,
+          "组合多样性": 2
+        },
+        "topic_score": 73,
+        "decision": "EXCLUDED",
+        "decision_reason": "接近 Adobe 740530492 的水彩草丘散件，剪贴使用还依赖透明通道"
+      },
+      {
+        "candidate_id": "C07",
+        "category": "Nature",
+        "theme": "Tide Pool Wildflower Scenic Banner",
+        "base_topic": "海岸景观插画",
+        "target_buyer": "住宿推广设计师与地方旅游编辑",
+        "design_reuse_cases": [
+          "民宿横幅",
+          "旅游折页封面"
+        ],
+        "reference_asset_ids": [
+          "740530492",
+          "242305720",
+          "142656637"
+        ],
+        "observed_useful_features": "水彩草丘可用作散件，潮位版画擅长同地点地貌对照，热带水彩可作目的地封面。",
+        "observed_similarity_risk": "海岸风景、棕榈、灯塔与装饰性潮池易趋同；回避历史潮池野花广告格局。",
+        "distinctiveness": "改用较低机位重画野花与潮池前景",
+        "score_breakdown": {
+          "买家效用": 20,
+          "需求覆盖与证据": 14,
+          "差异化": 3,
+          "构图可用性": 12,
+          "材质可信度": 8,
+          "4K可行性": 9,
+          "时效": 4,
+          "组合多样性": 1
+        },
+        "topic_score": 71,
+        "decision": "EXCLUDED",
+        "decision_reason": "命中 SC-002 的潮池、野花前景和广告留白；机位变化价值不足"
+      },
+      {
+        "candidate_id": "C08",
+        "category": "Nature",
+        "theme": "Unbranded Palm Coast Brochure Cover",
+        "base_topic": "海岸景观插画",
+        "target_buyer": "旅游编辑与酒店营销团队",
+        "design_reuse_cases": [
+          "岛屿折页封面",
+          "住宿促销横幅"
+        ],
+        "reference_asset_ids": [
+          "740530492",
+          "242305720",
+          "142656637"
+        ],
+        "observed_useful_features": "水彩草丘可用作散件，潮位版画擅长同地点地貌对照，热带水彩可作目的地封面。",
+        "observed_similarity_risk": "海岸风景、棕榈、灯塔与装饰性潮池易趋同；回避历史潮池野花广告格局。",
+        "distinctiveness": "改用棕榈投影延伸到水面并留下标题位置",
+        "score_breakdown": {
+          "买家效用": 21,
+          "需求覆盖与证据": 15,
+          "差异化": 4,
+          "构图可用性": 13,
+          "材质可信度": 8,
+          "4K可行性": 9,
+          "时效": 4,
+          "组合多样性": 2
+        },
+        "topic_score": 76,
+        "decision": "EXCLUDED",
+        "decision_reason": "与 Adobe 142656637 的棕榈左边缘、浅海和天空版面接近，且 Adobe 256896212 标题也指向棕榈剪影海岛背景"
+      },
+      {
+        "candidate_id": "C09",
+        "category": "Food illustrations",
+        "theme": "Peeled Broccoli Stem Preparation",
+        "base_topic": "蔬菜图案与食谱配图",
+        "target_buyer": "食谱编辑与减废推广团队",
+        "design_reuse_cases": [
+          "西兰花梗食谱卡",
+          "食材减废教学图"
+        ],
+        "reference_asset_ids": [
+          "436770671",
+          "618480680",
+          "397731394"
+        ],
+        "observed_useful_features": "单个食材的完整轮廓、烹饪联想和书页文案区有复用价值。",
+        "observed_similarity_risk": "多食材散放、入锅概念、空白书页已经出现；菜谱补图需能传达具体步骤。",
+        "distinctiveness": "将满版蔬菜变成一根去冠菜梗的削皮瞬间，用连续皮条与原位连接解释去掉哪一层",
+        "score_breakdown": {
+          "买家效用": 24,
+          "需求覆盖与证据": 19,
+          "差异化": 10,
+          "构图可用性": 14,
+          "材质可信度": 9,
+          "4K可行性": 9,
+          "时效": 5,
+          "组合多样性": 5
+        },
+        "topic_score": 95,
+        "decision": "APPROVED",
+        "decision_reason": "436770671 的西兰花与其他蔬菜散列，618480680 表现食材入锅，397731394 用书页承载文案；历史同为蔬菜丝的 Yu Sheng 关注节庆摆盘，本案关注菜梗处理"
+      },
+      {
+        "candidate_id": "C10",
+        "category": "Food illustrations",
+        "theme": "Carrot Top Pesto Sorting",
+        "base_topic": "蔬菜图案与食谱配图",
+        "target_buyer": "食谱编辑与农贸零售设计师",
+        "design_reuse_cases": [
+          "食谱步骤卡",
+          "整株利用活动图"
+        ],
+        "reference_asset_ids": [
+          "436770671",
+          "618480680",
+          "397731394"
+        ],
+        "observed_useful_features": "单个食材的完整轮廓、烹饪联想和书页文案区有复用价值。",
+        "observed_similarity_risk": "多食材散放、入锅概念、空白书页已经出现；菜谱补图需能传达具体步骤。",
+        "distinctiveness": "围绕胡萝卜叶梗分离动作表现留用叶片的位点",
+        "score_breakdown": {
+          "买家效用": 22,
+          "需求覆盖与证据": 13,
+          "差异化": 9,
+          "构图可用性": 13,
+          "材质可信度": 8,
+          "4K可行性": 8,
+          "时效": 4,
+          "组合多样性": 4
+        },
+        "topic_score": 81,
+        "decision": "WATCHLIST",
+        "decision_reason": "需核实这个部位的处理与真实食谱卡用途；近邻 C09 同为单一减废动作"
+      },
+      {
+        "candidate_id": "C11",
+        "category": "Food illustrations",
+        "theme": "Cabbage Core Wedge Removal",
+        "base_topic": "蔬菜图案与食谱配图",
+        "target_buyer": "烹饪教材编辑与生鲜品牌设计师",
+        "design_reuse_cases": [
+          "卷心菜备料说明",
+          "厨房入门卡"
+        ],
+        "reference_asset_ids": [
+          "436770671",
+          "618480680",
+          "397731394"
+        ],
+        "observed_useful_features": "单个食材的完整轮廓、烹饪联想和书页文案区有复用价值。",
+        "observed_similarity_risk": "多食材散放、入锅概念、空白书页已经出现；菜谱补图需能传达具体步骤。",
+        "distinctiveness": "用一颗四分之一卷心菜呈现芯与切口的楔形契合",
+        "score_breakdown": {
+          "买家效用": 23,
+          "需求覆盖与证据": 14,
+          "差异化": 9,
+          "构图可用性": 13,
+          "材质可信度": 8,
+          "4K可行性": 8,
+          "时效": 4,
+          "组合多样性": 4
+        },
+        "topic_score": 83,
+        "decision": "WATCHLIST",
+        "decision_reason": "需核实操作参考和相似剖面素材，切口方向需清楚"
+      },
+      {
+        "candidate_id": "C12",
+        "category": "Food illustrations",
+        "theme": "Cauliflower Floret Break at the Joint",
+        "base_topic": "蔬菜图案与食谱配图",
+        "target_buyer": "家庭食谱编辑与烹饪课程设计师",
+        "design_reuse_cases": [
+          "烤菜食谱小图",
+          "食材处理示范卡"
+        ],
+        "reference_asset_ids": [
+          "436770671",
+          "618480680",
+          "397731394"
+        ],
+        "observed_useful_features": "单个食材的完整轮廓、烹饪联想和书页文案区有复用价值。",
+        "observed_similarity_risk": "多食材散放、入锅概念、空白书页已经出现；菜谱补图需能传达具体步骤。",
+        "distinctiveness": "从蔬菜合集改成一朵花球在自然分叉处断开的画面",
+        "score_breakdown": {
+          "买家效用": 22,
+          "需求覆盖与证据": 14,
+          "差异化": 8,
+          "构图可用性": 12,
+          "材质可信度": 8,
+          "4K可行性": 8,
+          "时效": 4,
+          "组合多样性": 4
+        },
+        "topic_score": 80,
+        "decision": "WATCHLIST",
+        "decision_reason": "需具体消费者或教学素材使用证据；应先与 C09 测试单动作素材需求"
+      },
+      {
+        "candidate_id": "C13",
+        "category": "Food illustrations",
+        "theme": "Vegetable Pan Spacing Diagram",
+        "base_topic": "蔬菜图案与食谱配图",
+        "target_buyer": "食谱媒体与烹饪老师",
+        "design_reuse_cases": [
+          "烤盘拥挤说明图",
+          "烤蔬菜步骤卡"
+        ],
+        "reference_asset_ids": [
+          "436770671",
+          "618480680",
+          "397731394"
+        ],
+        "observed_useful_features": "单个食材的完整轮廓、烹饪联想和书页文案区有复用价值。",
+        "observed_similarity_risk": "多食材散放、入锅概念、空白书页已经出现；菜谱补图需能传达具体步骤。",
+        "distinctiveness": "用一只烤盘的两个区域表达通风间距与摆放密度",
+        "score_breakdown": {
+          "买家效用": 22,
+          "需求覆盖与证据": 14,
+          "差异化": 9,
+          "构图可用性": 13,
+          "材质可信度": 8,
+          "4K可行性": 8,
+          "时效": 4,
+          "组合多样性": 3
+        },
+        "topic_score": 81,
+        "decision": "WATCHLIST",
+        "decision_reason": "需对照摆放与成品因果来源，单图容易让人误读成食材分类"
+      },
+      {
+        "candidate_id": "C14",
+        "category": "Food illustrations",
+        "theme": "Open Blank Cookbook with Vegetables",
+        "base_topic": "蔬菜图案与食谱配图",
+        "target_buyer": "食谱出版设计师与美食博客编辑",
+        "design_reuse_cases": [
+          "食谱封面",
+          "社媒菜谱卡"
+        ],
+        "reference_asset_ids": [
+          "436770671",
+          "618480680",
+          "397731394"
+        ],
+        "observed_useful_features": "单个食材的完整轮廓、烹饪联想和书页文案区有复用价值。",
+        "observed_similarity_risk": "多食材散放、入锅概念、空白书页已经出现；菜谱补图需能传达具体步骤。",
+        "distinctiveness": "把开放食谱翻成斜视并将蔬菜移到另一侧",
+        "score_breakdown": {
+          "买家效用": 20,
+          "需求覆盖与证据": 16,
+          "差异化": 3,
+          "构图可用性": 12,
+          "材质可信度": 8,
+          "4K可行性": 9,
+          "时效": 4,
+          "组合多样性": 1
+        },
+        "topic_score": 73,
+        "decision": "EXCLUDED",
+        "decision_reason": "与 Adobe 397731394 的敞开空白书页、菜蔬和厨具叙事相同，移动位点不足"
+      },
+      {
+        "candidate_id": "C15",
+        "category": "Food illustrations",
+        "theme": "Tomato Ripeness Calendar Strip",
+        "base_topic": "蔬菜图案与食谱配图",
+        "target_buyer": "生鲜营销设计师与园艺报道编辑",
+        "design_reuse_cases": [
+          "农贸摊位季节卡",
+          "采收月历页眉"
+        ],
+        "reference_asset_ids": [
+          "436770671",
+          "618480680",
+          "397731394"
+        ],
+        "observed_useful_features": "单个食材的完整轮廓、烹饪联想和书页文案区有复用价值。",
+        "observed_similarity_risk": "多食材散放、入锅概念、空白书页已经出现；菜谱补图需能传达具体步骤。",
+        "distinctiveness": "按果实成熟颜色组织一排番茄并留标注位置",
+        "score_breakdown": {
+          "买家效用": 22,
+          "需求覆盖与证据": 14,
+          "差异化": 4,
+          "构图可用性": 12,
+          "材质可信度": 8,
+          "4K可行性": 9,
+          "时效": 4,
+          "组合多样性": 1
+        },
+        "topic_score": 74,
+        "decision": "EXCLUDED",
+        "decision_reason": "近似历史 Heirloom Tomato Color Stage Row，同为颜色阶段加水平排列"
+      },
+      {
+        "candidate_id": "C16",
+        "category": "Food illustrations",
+        "theme": "Market Produce Transparent Sticker Set",
+        "base_topic": "蔬菜图案与食谱配图",
+        "target_buyer": "杂货广告设计师与食谱出版设计师",
+        "design_reuse_cases": [
+          "移动促销叠图",
+          "食谱标注贴纸"
+        ],
+        "reference_asset_ids": [
+          "436770671",
+          "618480680",
+          "397731394"
+        ],
+        "observed_useful_features": "单个食材的完整轮廓、烹饪联想和书页文案区有复用价值。",
+        "observed_similarity_risk": "多食材散放、入锅概念、空白书页已经出现；菜谱补图需能传达具体步骤。",
+        "distinctiveness": "分出可单独操控的可食部位剪贴件",
+        "score_breakdown": {
+          "买家效用": 22,
+          "需求覆盖与证据": 15,
+          "差异化": 7,
+          "构图可用性": 11,
+          "材质可信度": 8,
+          "4K可行性": 7,
+          "时效": 4,
+          "组合多样性": 3
+        },
+        "topic_score": 77,
+        "decision": "EXCLUDED",
+        "decision_reason": "核心用途依赖真实透明通道；436770671 也是食材散件方向"
+      },
+      {
+        "candidate_id": "C17",
+        "category": "Backgrounds",
+        "theme": "Recessed Paper Label Window for Editorial Layouts",
+        "base_topic": "纸张材质与演示背景",
+        "target_buyer": "文化机构平面设计师与小品牌制作人",
+        "design_reuse_cases": [
+          "展览目录封面",
+          "品牌报告章节页"
+        ],
+        "reference_asset_ids": [
+          "560618055",
+          "838395450"
+        ],
+        "observed_useful_features": "低色阶揉皱有材质感，网格提供对齐参照。",
+        "observed_similarity_risk": "满幅纹理与栅格重复多；纸折、纸纹、叠纸地平线已入队。",
+        "distinctiveness": "在一层厚纸中切出明确的内凹长窗，显示内底为可排正文的平面",
+        "score_breakdown": {
+          "买家效用": 22,
+          "需求覆盖与证据": 15,
+          "差异化": 8,
+          "构图可用性": 14,
+          "材质可信度": 8,
+          "4K可行性": 8,
+          "时效": 4,
+          "组合多样性": 4
+        },
+        "topic_score": 83,
+        "decision": "WATCHLIST",
+        "decision_reason": "Adobe 征集只支持大类，需核实这类单栅格长窗用于展览版式的实例；比对历史纸张展示底图的可排字凹面"
+      },
+      {
+        "candidate_id": "C18",
+        "category": "Backgrounds",
+        "theme": "Paper Fiber Density Field for Data Slides",
+        "base_topic": "纸张材质与演示背景",
+        "target_buyer": "报告设计师与教育机构编辑",
+        "design_reuse_cases": [
+          "数据页底图",
+          "教学幻灯片背景"
+        ],
+        "reference_asset_ids": [
+          "560618055",
+          "838395450"
+        ],
+        "observed_useful_features": "低色阶揉皱有材质感，网格提供对齐参照。",
+        "observed_similarity_risk": "满幅纹理与栅格重复多；纸折、纸纹、叠纸地平线已入队。",
+        "distinctiveness": "以纸纤维低频过渡划出可覆盖图表的开阔窗口",
+        "score_breakdown": {
+          "买家效用": 21,
+          "需求覆盖与证据": 15,
+          "差异化": 6,
+          "构图可用性": 13,
+          "材质可信度": 8,
+          "4K可行性": 8,
+          "时效": 4,
+          "组合多样性": 3
+        },
+        "topic_score": 78,
+        "decision": "WATCHLIST",
+        "decision_reason": "需验证数据与纸张用途结合；只改变密度容易落入普通纹理轻微变体"
+      },
+      {
+        "candidate_id": "C19",
+        "category": "Backgrounds",
+        "theme": "Unprinted Envelope Pocket Presentation Field",
+        "base_topic": "纸张材质与演示背景",
+        "target_buyer": "活动视觉设计师与文具品牌编辑",
+        "design_reuse_cases": [
+          "邮件活动主视觉",
+          "印品提案章节页"
+        ],
+        "reference_asset_ids": [
+          "560618055",
+          "838395450"
+        ],
+        "observed_useful_features": "低色阶揉皱有材质感，网格提供对齐参照。",
+        "observed_similarity_risk": "满幅纹理与栅格重复多；纸折、纸纹、叠纸地平线已入队。",
+        "distinctiveness": "用未印信封内袋和半露插片组合引导阅读层级",
+        "score_breakdown": {
+          "买家效用": 22,
+          "需求覆盖与证据": 14,
+          "差异化": 8,
+          "构图可用性": 14,
+          "材质可信度": 8,
+          "4K可行性": 8,
+          "时效": 4,
+          "组合多样性": 3
+        },
+        "topic_score": 81,
+        "decision": "WATCHLIST",
+        "decision_reason": "需证实页面用途，历史礼品包装折缝和信封结构需进一步对照"
+      },
+      {
+        "candidate_id": "C20",
+        "category": "Backgrounds",
+        "theme": "Paper Deckle Registration Margin",
+        "base_topic": "纸张材质与演示背景",
+        "target_buyer": "印刷设计师与独立出版编辑",
+        "design_reuse_cases": [
+          "打样提案封面",
+          "工艺课程页面"
+        ],
+        "reference_asset_ids": [
+          "560618055",
+          "838395450"
+        ],
+        "observed_useful_features": "低色阶揉皱有材质感，网格提供对齐参照。",
+        "observed_similarity_risk": "满幅纹理与栅格重复多；纸折、纸纹、叠纸地平线已入队。",
+        "distinctiveness": "将粗纤维压限制于单一显示纸张成型边缘的标记区",
+        "score_breakdown": {
+          "买家效用": 19,
+          "需求覆盖与证据": 13,
+          "差异化": 6,
+          "构图可用性": 12,
+          "材质可信度": 8,
+          "4K可行性": 8,
+          "时效": 4,
+          "组合多样性": 2
+        },
+        "topic_score": 72,
+        "decision": "EXCLUDED",
+        "decision_reason": "近似历史 Hand Torn Mulberry Paper Overlap 的毛边主视觉；单边和范围变化不足"
+      },
+      {
+        "candidate_id": "C21",
+        "category": "Backgrounds",
+        "theme": "Quiet Blueprint Graphic Grid",
+        "base_topic": "纸张材质与演示背景",
+        "target_buyer": "演示设计师与建筑事务所传播团队",
+        "design_reuse_cases": [
+          "建筑汇报首页",
+          "建筑课幻灯片"
+        ],
+        "reference_asset_ids": [
+          "560618055",
+          "838395450"
+        ],
+        "observed_useful_features": "低色阶揉皱有材质感，网格提供对齐参照。",
+        "observed_similarity_risk": "满幅纹理与栅格重复多；纸折、纸纹、叠纸地平线已入队。",
+        "distinctiveness": "弱化网格局部以容纳文字和图表",
+        "score_breakdown": {
+          "买家效用": 21,
+          "需求覆盖与证据": 15,
+          "差异化": 3,
+          "构图可用性": 13,
+          "材质可信度": 8,
+          "4K可行性": 9,
+          "时效": 4,
+          "组合多样性": 2
+        },
+        "topic_score": 75,
+        "decision": "EXCLUDED",
+        "decision_reason": "与 838395450 的满版毫米格极接近；减线及降低对比度变化不足"
+      },
+      {
+        "candidate_id": "C22",
+        "category": "Backgrounds",
+        "theme": "Handmade Paper Horizon for Slides",
+        "base_topic": "纸张材质与演示背景",
+        "target_buyer": "小型文化机构编辑与品牌演示设计师",
+        "design_reuse_cases": [
+          "报告封面",
+          "作品集章节页"
+        ],
+        "reference_asset_ids": [
+          "560618055",
+          "838395450"
+        ],
+        "observed_useful_features": "低色阶揉皱有材质感，网格提供对齐参照。",
+        "observed_similarity_risk": "满幅纹理与栅格重复多；纸折、纸纹、叠纸地平线已入队。",
+        "distinctiveness": "让手工纸水平方向叠成地平线并略调雾化层次",
+        "score_breakdown": {
+          "买家效用": 21,
+          "需求覆盖与证据": 15,
+          "差异化": 3,
+          "构图可用性": 13,
+          "材质可信度": 9,
+          "4K可行性": 9,
+          "时效": 4,
+          "组合多样性": 1
+        },
+        "topic_score": 75,
+        "decision": "EXCLUDED",
+        "decision_reason": "与历史 Layered Handmade Washi Paper Horizon and Mist Wash Slide Background 直接重叠"
+      },
+      {
+        "candidate_id": "C23",
+        "category": "Backgrounds",
+        "theme": "Folded Paper Product Landing Stage",
+        "base_topic": "纸张材质与演示背景",
+        "target_buyer": "商品营销设计师与商品目录编辑",
+        "design_reuse_cases": [
+          "产品广告横幅",
+          "商品页规格区"
+        ],
+        "reference_asset_ids": [
+          "560618055",
+          "838395450"
+        ],
+        "observed_useful_features": "低色阶揉皱有材质感，网格提供对齐参照。",
+        "observed_similarity_risk": "满幅纹理与栅格重复多；纸折、纸纹、叠纸地平线已入队。",
+        "distinctiveness": "沿边折出一个较矮台面以承接产品",
+        "score_breakdown": {
+          "买家效用": 22,
+          "需求覆盖与证据": 15,
+          "差异化": 3,
+          "构图可用性": 14,
+          "材质可信度": 8,
+          "4K可行性": 9,
+          "时效": 4,
+          "组合多样性": 1
+        },
+        "topic_score": 76,
+        "decision": "EXCLUDED",
+        "decision_reason": "近似历史 Overhead Folded Paper Product Backdrop with a Clear Label Field 的纸折和商品落位"
+      },
+      {
+        "candidate_id": "C24",
+        "category": "Backgrounds",
+        "theme": "Torn Paper Transparent Window Overlay",
+        "base_topic": "纸张材质与演示背景",
+        "target_buyer": "视频包装设计师与拼贴编辑",
+        "design_reuse_cases": [
+          "短视频遮罩",
+          "海报照片叠层"
+        ],
+        "reference_asset_ids": [
+          "560618055",
+          "838395450"
+        ],
+        "observed_useful_features": "低色阶揉皱有材质感，网格提供对齐参照。",
+        "observed_similarity_risk": "满幅纹理与栅格重复多；纸折、纸纹、叠纸地平线已入队。",
+        "distinctiveness": "撕出不会割裂主体的偏心开窗作为叠层",
+        "score_breakdown": {
+          "买家效用": 23,
+          "需求覆盖与证据": 16,
+          "差异化": 8,
+          "构图可用性": 12,
+          "材质可信度": 8,
+          "4K可行性": 7,
+          "时效": 4,
+          "组合多样性": 4
+        },
+        "topic_score": 82,
+        "decision": "EXCLUDED",
+        "decision_reason": "功能依赖真实透明窗口；已知不透明队列无法交付此图层"
+      },
+      {
+        "candidate_id": "C25",
+        "category": "Plants and Flowers",
+        "theme": "Spreading Mint in a Dedicated Pot",
+        "base_topic": "香草植物图谱",
+        "target_buyer": "苗圃商品内容编辑与社区园艺培训师",
+        "design_reuse_cases": [
+          "盆栽薄荷养护说明",
+          "社区园艺课讲义"
+        ],
+        "reference_asset_ids": [
+          "240557543",
+          "78832383"
+        ],
+        "observed_useful_features": "枝叶轮廓清楚、物种图谱有稳定阅读顺序。",
+        "observed_similarity_risk": "药草识别图和散件都已见；装饰花枝与历史题材相近。",
+        "distinctiveness": "从药草图谱变为单盆半剖，显示一条浅层地下横走茎在节点萌出盆内新枝，盆壁清楚界定空间",
+        "score_breakdown": {
+          "买家效用": 24,
+          "需求覆盖与证据": 17,
+          "差异化": 10,
+          "构图可用性": 14,
+          "材质可信度": 8,
+          "4K可行性": 9,
+          "时效": 5,
+          "组合多样性": 5
+        },
+        "topic_score": 92,
+        "decision": "APPROVED",
+        "decision_reason": "240557543 和 78832383 是枝叶辨识板；历史同土平面主根与须根比较和豆苗主根采用根形识别，本案用横走茎新芽与盆壁关系解释分盆"
+      },
+      {
+        "candidate_id": "C26",
+        "category": "Plants and Flowers",
+        "theme": "Basil Shoot Pinch at a Leaf Node",
+        "base_topic": "香草植物图谱",
+        "target_buyer": "香草苗圃与园艺通讯编辑",
+        "design_reuse_cases": [
+          "罗勒养护卡",
+          "校内香草种植讲义"
+        ],
+        "reference_asset_ids": [
+          "240557543",
+          "78832383"
+        ],
+        "observed_useful_features": "枝叶轮廓清楚、物种图谱有稳定阅读顺序。",
+        "observed_similarity_risk": "药草识别图和散件都已见；装饰花枝与历史题材相近。",
+        "distinctiveness": "将草药枝叶图谱改成一枝可指认叶节的掐尖编辑图",
+        "score_breakdown": {
+          "买家效用": 23,
+          "需求覆盖与证据": 14,
+          "差异化": 9,
+          "构图可用性": 13,
+          "材质可信度": 8,
+          "4K可行性": 8,
+          "时效": 4,
+          "组合多样性": 4
+        },
+        "topic_score": 83,
+        "decision": "WATCHLIST",
+        "decision_reason": "需直接核实芽点和剪摘位置及近似主动作预览"
+      },
+      {
+        "candidate_id": "C27",
+        "category": "Plants and Flowers",
+        "theme": "Thyme Drainage Profile in a Deep Pot",
+        "base_topic": "香草植物图谱",
+        "target_buyer": "容器园艺编辑与园艺中心",
+        "design_reuse_cases": [
+          "种植商品说明",
+          "入门园艺活动海报"
+        ],
+        "reference_asset_ids": [
+          "240557543",
+          "78832383"
+        ],
+        "observed_useful_features": "枝叶轮廓清楚、物种图谱有稳定阅读顺序。",
+        "observed_similarity_risk": "药草识别图和散件都已见；装饰花枝与历史题材相近。",
+        "distinctiveness": "通过盆底和土层剖面表达一种栽培条件",
+        "score_breakdown": {
+          "买家效用": 22,
+          "需求覆盖与证据": 14,
+          "差异化": 8,
+          "构图可用性": 13,
+          "材质可信度": 8,
+          "4K可行性": 8,
+          "时效": 4,
+          "组合多样性": 3
+        },
+        "topic_score": 80,
+        "decision": "WATCHLIST",
+        "decision_reason": "需更强来源核实介质与盆底画法；与本轮单盆剖面在结构和用途上接近"
+      },
+      {
+        "candidate_id": "C28",
+        "category": "Plants and Flowers",
+        "theme": "Chive Division at the Root Crown",
+        "base_topic": "香草植物图谱",
+        "target_buyer": "园艺教材编辑与植物馆教育员",
+        "design_reuse_cases": [
+          "分株步骤手册",
+          "园艺活动辅助图"
+        ],
+        "reference_asset_ids": [
+          "240557543",
+          "78832383"
+        ],
+        "observed_useful_features": "枝叶轮廓清楚、物种图谱有稳定阅读顺序。",
+        "observed_similarity_risk": "药草识别图和散件都已见；装饰花枝与历史题材相近。",
+        "distinctiveness": "展示一团根冠分成两簇的接触关系",
+        "score_breakdown": {
+          "买家效用": 22,
+          "需求覆盖与证据": 13,
+          "差异化": 9,
+          "构图可用性": 13,
+          "材质可信度": 8,
+          "4K可行性": 8,
+          "时效": 4,
+          "组合多样性": 4
+        },
+        "topic_score": 81,
+        "decision": "WATCHLIST",
+        "decision_reason": "需查证分株步骤来源和盆外结构的相似预览"
+      },
+      {
+        "candidate_id": "C29",
+        "category": "Plants and Flowers",
+        "theme": "Rosemary Sprig Ingredient Scatter",
+        "base_topic": "香草植物图谱",
+        "target_buyer": "包装设计师与料理内容设计师",
+        "design_reuse_cases": [
+          "香草包装纸",
+          "食谱页眉"
+        ],
+        "reference_asset_ids": [
+          "240557543",
+          "78832383"
+        ],
+        "observed_useful_features": "枝叶轮廓清楚、物种图谱有稳定阅读顺序。",
+        "observed_similarity_risk": "药草识别图和散件都已见；装饰花枝与历史题材相近。",
+        "distinctiveness": "以不同长短枝交叉增加版面节奏",
+        "score_breakdown": {
+          "买家效用": 20,
+          "需求覆盖与证据": 14,
+          "差异化": 3,
+          "构图可用性": 12,
+          "材质可信度": 8,
+          "4K可行性": 9,
+          "时效": 4,
+          "组合多样性": 1
+        },
+        "topic_score": 71,
+        "decision": "EXCLUDED",
+        "decision_reason": "历史 Loose Rosemary Sprigs Collection on Pale Surface 已有散放枝叶；Adobe 78832383 也有横向分隔枝叶"
+      },
+      {
+        "candidate_id": "C30",
+        "category": "Plants and Flowers",
+        "theme": "Magnolia on Warm Paper for Invitations",
+        "base_topic": "香草植物图谱",
+        "target_buyer": "花店平面设计师与邀请函编辑",
+        "design_reuse_cases": [
+          "花店活动卡",
+          "春季请柬"
+        ],
+        "reference_asset_ids": [
+          "240557543",
+          "78832383"
+        ],
+        "observed_useful_features": "枝叶轮廓清楚、物种图谱有稳定阅读顺序。",
+        "observed_similarity_risk": "药草识别图和散件都已见；装饰花枝与历史题材相近。",
+        "distinctiveness": "在浅纸上用木兰侧枝并扩大正文区",
+        "score_breakdown": {
+          "买家效用": 21,
+          "需求覆盖与证据": 15,
+          "差异化": 2,
+          "构图可用性": 13,
+          "材质可信度": 8,
+          "4K可行性": 9,
+          "时效": 4,
+          "组合多样性": 1
+        },
+        "topic_score": 73,
+        "decision": "EXCLUDED",
+        "decision_reason": "命中 SC-001 单枝、纸纹和留白，并近似同日 Ivory Magnolia Branch Left-Edge"
+      },
+      {
+        "candidate_id": "C31",
+        "category": "Plants and Flowers",
+        "theme": "Sage and Thyme Swap-In Herb Cutouts",
+        "base_topic": "香草植物图谱",
+        "target_buyer": "零售菜单编辑与杂志图文设计师",
+        "design_reuse_cases": [
+          "菜单小图标",
+          "图文叠层"
+        ],
+        "reference_asset_ids": [
+          "240557543",
+          "78832383"
+        ],
+        "observed_useful_features": "枝叶轮廓清楚、物种图谱有稳定阅读顺序。",
+        "observed_similarity_risk": "药草识别图和散件都已见；装饰花枝与历史题材相近。",
+        "distinctiveness": "将茎叶做成可交换的单独层",
+        "score_breakdown": {
+          "买家效用": 21,
+          "需求覆盖与证据": 15,
+          "差异化": 7,
+          "构图可用性": 11,
+          "材质可信度": 8,
+          "4K可行性": 7,
+          "时效": 4,
+          "组合多样性": 3
+        },
+        "topic_score": 76,
+        "decision": "EXCLUDED",
+        "decision_reason": "交付依赖真实透明，且与 Adobe 78832383 和 641814220 都有枝叶分件同质化风险"
+      },
+      {
+        "candidate_id": "C32",
+        "category": "Plants and Flowers",
+        "theme": "Seed Starting Pot with Germination Line",
+        "base_topic": "香草植物图谱",
+        "target_buyer": "种子品牌设计师与种植课堂老师",
+        "design_reuse_cases": [
+          "种子培育卡",
+          "观察练习页"
+        ],
+        "reference_asset_ids": [
+          "240557543",
+          "78832383"
+        ],
+        "observed_useful_features": "枝叶轮廓清楚、物种图谱有稳定阅读顺序。",
+        "observed_similarity_risk": "药草识别图和散件都已见；装饰花枝与历史题材相近。",
+        "distinctiveness": "把发芽状态置于浅盆，部分露出子叶与主根",
+        "score_breakdown": {
+          "买家效用": 22,
+          "需求覆盖与证据": 15,
+          "差异化": 5,
+          "构图可用性": 12,
+          "材质可信度": 8,
+          "4K可行性": 8,
+          "时效": 4,
+          "组合多样性": 2
+        },
+        "topic_score": 76,
+        "decision": "EXCLUDED",
+        "decision_reason": "旧 Bean Seedling with Exposed Cotyledons and Primary Root 已覆盖同一观察目标；加入浅盆不足"
+      }
+    ],
+    "candidate_counts": {
+      "APPROVED": 3,
+      "WATCHLIST": 14,
+      "EXCLUDED": 15
+    },
+    "next_round": "时尚、人工智能、幽默三类优先，并用节日提前量决定第四类。时尚核对服装护理或版型的实际用途，人工智能查可解释的常见人机协作场景，幽默查适用于内部沟通的通用情景，圣诞可按下一季安排，近期如需节日则评估农历新年或情人节的版式机会。"
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Rock Shelf Tide Pool Cutaway",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 93,
+      "topic_bucket": "APPROVED",
+      "palette": "slate gray, sea green, muted teal, off white",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create an opaque widescreen 4K illustration for a coastal field guide and a nature center interpretation panel. Use one oblique sectional view of a low rocky shore shelf at ebb tide. Place a single shallow basin in the center left, where a small raised rock lip holds still water above the lower open sea. Make the physical separation obvious through exposed rock between the two water surfaces. Show only a small patch of attached mussels fixed to the wet inner rim to establish scale. Reserve the upper right quarter in even pale gray for a designer to add a short heading and two captions. Render rough sedimentary bands and restrained wet highlights in refined editorial gouache. Use overcast coastal light so the contour and water levels stay readable. Deliver one unlabeled 16:9 scene of a generic shore with clean edges and accurate water geometry.",
+      "negative_prompt": "two panels, repeated coastline, landscape horizon, wildflowers, sunset, lighthouse, map, people, arrows, measurements, text, branding, watermark",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "candidate_id": "C01",
+        "category": "Nature",
+        "base_topic": "海岸景观插画",
+        "target_buyer": "公园解说编辑与自然教材设计师",
+        "design_reuse_cases": [
+          "潮间带实地指南插图",
+          "自然中心展板"
+        ],
+        "reference_asset_ids": [
+          "740530492",
+          "242305720",
+          "142656637"
+        ],
+        "observed_useful_features": "水彩草丘可用作散件，潮位版画擅长同地点地貌对照，热带水彩可作目的地封面。",
+        "observed_similarity_risk": "海岸风景、棕榈、灯塔与装饰性潮池易趋同；回避历史潮池野花广告格局。",
+        "distinctiveness": "从海岸全景改为单个岩台的侧向剖面，展示退潮后岩唇留水，远侧海水已退到岩台外",
+        "score_breakdown": {
+          "买家效用": 24,
+          "需求覆盖与证据": 17,
+          "差异化": 10,
+          "构图可用性": 14,
+          "材质可信度": 9,
+          "4K可行性": 9,
+          "时效": 5,
+          "组合多样性": 5
+        },
+        "decision_reason": "SC-002 的野花潮池风景与广告地平线均不采用；242305720 用两张完整海景比较潮位，本案只有一个剖面和一条水体分隔线",
+        "demand_evidence": "NPS 有可折叠潮间带实地指南和游客解说展板，Adobe Express 有旅行折页版式。支持场景存在，公园例子集中在特定地点。",
+        "demand_sources": [
+          "https://www.nps.gov/cabr/learn/intertidal-field-guide.htm",
+          "https://www.nps.gov/places/tidepool-wayside-display.htm"
+        ],
+        "similar_content_review": "SC-002 的野花潮池风景与广告地平线均不采用；242305720 用两张完整海景比较潮位，本案只有一个剖面和一条水体分隔线",
+        "historical_comparison_sources": [
+          "https://docs.google.com/document/d/1_D-QBzmhaKmpC42T4hDLefIgOPQ96qHFauaBAm5BgaQ/edit",
+          "https://github.com/KY-2000/google-img-generation/blob/main/queues/incoming/adobe_stock_crawler_queue_20261120_r090514.json",
+          "https://github.com/KY-2000/google-img-generation/blob/main/queues/incoming/adobe_stock_crawler_queue_20261128_r035507.json"
+        ],
+        "reference_urls": [
+          "https://stock.adobe.com/my/images/coastal-dune-sea-grass-set-hand-drawn-watercolor-illustration-isolated-on-white-background/740530492",
+          "https://stock.adobe.com/my/images/vintage-engraving-of-english-channel-coast-with-the-tidal-sea-waters-variations-from-ebb-to-high-tide/242305720",
+          "https://stock.adobe.com/my/images/tropical-watercolor-caribbean-exotic-coast-seascape-scenic-ocean-beach-hand-painted-illustration/142656637"
+        ],
+        "score_rationale_and_render_checks": "淡灰文案区14分及岩唇阻水的原创机制10分；印刷指南和展板可复用，但主要证据集中于自然解说，需求17分。旧沉积层图以岩层样本为主，旧铅笔折射画透射视位，均无沿岸岩台留水机制。4K 核对两处水面均近水平，岩唇连续，湾外水位较低。",
+        "priority_test": false,
+        "hard_gate_review": {
+          "明确买家任务": "通过",
+          "可追溯证据": "通过",
+          "实质原创改动": "通过",
+          "4K不透明栅格适配": "通过",
+          "明显品牌或知识产权风险": "未发现；原创无标志通用场景",
+          "已知相似内容": "通过；见参考与历史对照"
+        },
+        "prompt_english_word_count": 142
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Peeled Broccoli Stem Preparation",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 95,
+      "topic_bucket": "APPROVED",
+      "palette": "broccoli green, pale celery, warm cream, graphite steel",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a vertical 4K editorial illustration for a broccoli stem recipe card and a food waste prevention handout. Show a single trimmed broccoli stalk lying on an unmarked matte prep surface, angled across the lower half. Capture the moment an unbranded vegetable peeler lifts a thin ribbon from the thick dark green outer skin. Keep the lifted ribbon visibly attached at the blade and reveal the smooth pale green flesh directly beneath its path. Give the cut end believable fine fibres and the stalk a recognizably broad vegetable profile. Place one naturally posed hand at the handle, with the tool contacting the stalk and the grip clear of the blade. Use restrained coloured pencil detail and soft left window light. Keep the upper third empty for typesetting. Deliver one clean, opaque 9:16 illustration with accurate anatomy, a readable material transition, and no lettering.",
+      "negative_prompt": "whole broccoli crown, floating vegetables, cookware, open cookbook, detached curling garnish, unrelated ingredients, doubled blades, extra fingers, text, logo, watermark",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "candidate_id": "C09",
+        "category": "Food illustrations",
+        "base_topic": "蔬菜图案与食谱配图",
+        "target_buyer": "食谱编辑与减废推广团队",
+        "design_reuse_cases": [
+          "西兰花梗食谱卡",
+          "食材减废教学图"
+        ],
+        "reference_asset_ids": [
+          "436770671",
+          "618480680",
+          "397731394"
+        ],
+        "observed_useful_features": "单个食材的完整轮廓、烹饪联想和书页文案区有复用价值。",
+        "observed_similarity_risk": "多食材散放、入锅概念、空白书页已经出现；菜谱补图需能传达具体步骤。",
+        "distinctiveness": "将满版蔬菜变成一根去冠菜梗的削皮瞬间，用连续皮条与原位连接解释去掉哪一层",
+        "score_breakdown": {
+          "买家效用": 24,
+          "需求覆盖与证据": 19,
+          "差异化": 10,
+          "构图可用性": 14,
+          "材质可信度": 9,
+          "4K可行性": 9,
+          "时效": 5,
+          "组合多样性": 5
+        },
+        "decision_reason": "436770671 的西兰花与其他蔬菜散列，618480680 表现食材入锅，397731394 用书页承载文案；历史同为蔬菜丝的 Yu Sheng 关注节庆摆盘，本案关注菜梗处理",
+        "demand_evidence": "Adobe Express 有食谱卡。华盛顿州立大学推广部与中俄亥俄食物减废倡议均用菜谱说明西兰花梗削皮与再利用。",
+        "demand_sources": [
+          "https://www.adobe.com/express/templates/card/recipe",
+          "https://wpcdn.web.wsu.edu/wp-extension/uploads/sites/2079/2025/04/4.9.25-Food-Waste-Prevention.pdf",
+          "https://savemorethanfood.org/resource/broccoli-florets-and-stems-with-peanut-sauce/"
+        ],
+        "similar_content_review": "436770671 的西兰花与其他蔬菜散列，618480680 表现食材入锅，397731394 用书页承载文案；历史同为蔬菜丝的 Yu Sheng 关注节庆摆盘，本案关注菜梗处理",
+        "historical_comparison_sources": [
+          "https://docs.google.com/document/d/1_D-QBzmhaKmpC42T4hDLefIgOPQ96qHFauaBAm5BgaQ/edit",
+          "https://github.com/KY-2000/google-img-generation/blob/main/queues/incoming/creative_components_holiday_queue_2026W48_r01.json"
+        ],
+        "reference_urls": [
+          "https://stock.adobe.com/my/images/hand-drawn-vegetable-pattern-illustration/436770671",
+          "https://stock.adobe.com/my/images/cooking-pot-with-fresh-vegetable-ingredients-isolated-organic-healthy-food-and-casserole-sketch-illustration/618480680",
+          "https://stock.adobe.com/my/images/cookig-concept-template-open-cookbook-with-copy-space-and-vegetables-with-kitchen-utensils-watercolor-hand-drawn-illustration-isolated-on-white-background/397731394"
+        ],
+        "score_rationale_and_render_checks": "推广部与减废倡议都有可复核操作步骤，食谱卡是可核实的版式，因此需求19分；皮条连回削皮点，直接展示该去除的层。4K 核对去冠菜梗、刀口接触、连续薄皮及手指位置。手部绘制仍需检查。",
+        "priority_test": true,
+        "hard_gate_review": {
+          "明确买家任务": "通过",
+          "可追溯证据": "通过",
+          "实质原创改动": "通过",
+          "4K不透明栅格适配": "通过",
+          "明显品牌或知识产权风险": "未发现；原创无标志通用场景",
+          "已知相似内容": "通过；见参考与历史对照"
+        },
+        "prompt_english_word_count": 141
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Spreading Mint in a Dedicated Pot",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "leaf green, muted terracotta, dark loam, warm ivory",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a wide 4K botanical editorial illustration for a nursery mint care card and a community container gardening handout. Place one ordinary terracotta pot on the left, with a tidy cutaway in the front wall exposing dark growing medium. Show a mature mint stem with opposite serrated leaves and a single shallow horizontal underground runner connected to its base. Add one small daughter shoot emerging from a node on that same runner inside the pot, with a few finer roots below it. The exposed edges must align with the intact curved wall so the container clearly defines the growing space. Keep the right two fifths of the warm ivory background open for a heading and a concise planting note. Use softly lit coloured pencil and transparent gouache textures rendered on an opaque ground. Deliver one unlabeled horizontal 16:9 scene with crisp tiers and restrained soil detail.",
+      "negative_prompt": "second pot, exposed roots outside the pot wall, root penetrating terracotta, root comparison panel, botanical specimen grid, decorative garnish, invented leaves, labels, logos, watermark",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "candidate_id": "C25",
+        "category": "Plants and Flowers",
+        "base_topic": "香草植物图谱",
+        "target_buyer": "苗圃商品内容编辑与社区园艺培训师",
+        "design_reuse_cases": [
+          "盆栽薄荷养护说明",
+          "社区园艺课讲义"
+        ],
+        "reference_asset_ids": [
+          "240557543",
+          "78832383"
+        ],
+        "observed_useful_features": "枝叶轮廓清楚、物种图谱有稳定阅读顺序。",
+        "observed_similarity_risk": "药草识别图和散件都已见；装饰花枝与历史题材相近。",
+        "distinctiveness": "从药草图谱变为单盆半剖，显示一条浅层地下横走茎在节点萌出盆内新枝，盆壁清楚界定空间",
+        "score_breakdown": {
+          "买家效用": 24,
+          "需求覆盖与证据": 17,
+          "差异化": 10,
+          "构图可用性": 14,
+          "材质可信度": 8,
+          "4K可行性": 9,
+          "时效": 5,
+          "组合多样性": 5
+        },
+        "decision_reason": "240557543 和 78832383 是枝叶辨识板；历史同土平面主根与须根比较和豆苗主根采用根形识别，本案用横走茎新芽与盆壁关系解释分盆",
+        "demand_evidence": "RHS 明确列出容器种植的香草并建议旺盛生长的薄荷单独栽植；适合苗圃养护说明和园艺教学。温带春季可配合种植专题，其余视地区。",
+        "demand_sources": [
+          "https://www.rhs.org.uk/advice/grow-your-own/containers/june-edible-container-idea",
+          "https://www.rhs.org.uk/herbs/mint/grow-your-own",
+          "https://www.rhs.org.uk/herbs/containers"
+        ],
+        "similar_content_review": "240557543 和 78832383 是枝叶辨识板；历史同土平面主根与须根比较和豆苗主根采用根形识别，本案用横走茎新芽与盆壁关系解释分盆",
+        "historical_comparison_sources": [
+          "https://docs.google.com/document/d/1_D-QBzmhaKmpC42T4hDLefIgOPQ96qHFauaBAm5BgaQ/edit",
+          "https://github.com/KY-2000/google-img-generation/blob/main/queues/incoming/adobe_stock_crawler_queue_20261119_r104158.json",
+          "https://github.com/KY-2000/google-img-generation/blob/main/queues/incoming/adobe_stock_crawler_queue_20261123_lifestyle_r03.json"
+        ],
+        "reference_urls": [
+          "https://stock.adobe.com/my/images/watercolor-botanical-illustration-of-medicine-herbs/240557543",
+          "https://stock.adobe.com/my/images/aromatic-plants/78832383"
+        ],
+        "score_rationale_and_render_checks": "明确服务苗圃说明和园艺课，买家效用24分；横走茎与新枝的因果组织得10分。地下结构和植物形态需要人工核图，材质可信度8分。输出检查盆壁不被穿透、横走茎与新枝连接、盆壁剖缘和封闭轮廓对齐。",
+        "priority_test": true,
+        "hard_gate_review": {
+          "明确买家任务": "通过",
+          "可追溯证据": "通过",
+          "实质原创改动": "通过",
+          "4K不透明栅格适配": "通过",
+          "明显品牌或知识产权风险": "未发现；原创无标志通用场景",
+          "已知相似内容": "通过；见参考与历史对照"
+        },
+        "prompt_english_word_count": 144
+      }
+    }
+  ]
+}
