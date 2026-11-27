@@ -1,0 +1,569 @@
+{
+  "run_id": "TF_category_crawler_20261127_r111029",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-27T11:10:29+08:00",
+  "research": {
+    "strategy": "category_crawler",
+    "product_line": "commercial_background",
+    "timezone": "Asia/Kuala_Lumpur",
+    "research_date": "2026-11-27",
+    "research_language": "zh-CN",
+    "selected_categories": [
+      "无缝花卉与植物图案 (Graphic resources / Plants and flowers)",
+      "无缝几何与传统建筑纹样背景 (Graphic resources / Culture and religion)",
+      "日常咖啡、茶饮与烘焙插画及菜单/包装底图 (Food & Drinks)",
+      "请柬、婚礼与品牌通用留白背景 (Graphic resources / Lifestyle)",
+      "2027 Q1 节日物件与季节庆典留白背景：斋月/开斋节与情人节 (Culture and religion / Lifestyle)"
+    ],
+    "candidate_summary": {
+      "total_candidates": 32,
+      "approved": 10,
+      "watchlist": 14,
+      "excluded": 8
+    },
+    "first_tests": [
+      "Seamless Pressed Clay Octagonal Star Tile Pattern in Sage and Cream",
+      "Hand-Painted Pour-Over Coffee and Bean Branch Left-Border Menu Background"
+    ],
+    "sampling_rule": "Adobe Stock 公开页遇 DataDome 403 立即停止抓取，站内原生样本为 0、覆盖率不可计算。补充公开商用图库（Vecteezy/Dreamstime/Shutterstock/iStock/Magnific）按 5 类 15 组宽词与用途词检索，每类预先计划抽取 5 张公开缩略图（共 25 张）优先核对宽词靠前结果与查重邻近样本，遇 403/429 即停；未抽样卡片全部标为「仅标题或元数据」。",
+    "sample_counts": {
+      "adobe_stock_native": {
+        "raw_cards": 0,
+        "distinct_ids": 0,
+        "previews_attempted": 0,
+        "previews_verified": 0,
+        "previews_failed_or_illegible": 0,
+        "previews_unattempted": 0,
+        "visual_audit_coverage": "不可计算",
+        "block_reason": "https://stock.adobe.com/my/illustrations 与 Artist Hub 返回 HTTP/2 403 (x-datadome: protected)，按规则立即停止访问。"
+      },
+      "supplementary_public_stock": {
+        "queries_executed": 15,
+        "raw_cards": 168,
+        "distinct_cards": 131,
+        "distinct_cards_with_preview_url": 58,
+        "previews_attempted": 25,
+        "previews_verified": 25,
+        "previews_failed_or_illegible": 0,
+        "previews_unattempted": 106,
+        "visual_audit_coverage": "19.08% (25/131)",
+        "unattempted_reason": "按每类 5 张预设抽样限额控制规模，其余 106 条标为「仅标题或元数据」。"
+      }
+    },
+    "history_check": {
+      "github_main_queues_checked": 29,
+      "incoming_files": 25,
+      "production_files": 4,
+      "research_page_status": "无法访问（https://chatgpt.com/space/page_ef5e74d873dc81919960f0769ca7f9c3 需登录或受限，已于本轮报告输出完整补录文本）。"
+    },
+    "scoring_note": "严格遵循任务所列 7 项细分满分（25+20+10+15+10+10+5=95），未人为拔高分项，topic_score 为 7 项真实之和；因 Adobe Stock 原生页面受阻，需求证据分保守封顶于 18/20。",
+    "source_urls": [
+      "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+      "https://helpx.adobe.com/stock/contributor/content-policies-guidelines/metadata/choose-right-category-content.html",
+      "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html",
+      "https://business.adobe.com/blog/adobe-2026-creative-trends-forecast",
+      "https://blog.adobe.com/en/publish/2026/01/08/how-creators-leveraging-adobe-2026-creative-trends",
+      "https://www.adobe.com/express/learn/blog/design-trends-2026",
+      "https://www.accio.com/business/adobe-stock-best-selling-image-categories",
+      "https://hijri-miladi.com/ramadan-date",
+      "https://www.islamicfinder.org/special-islamic-days/ramadan-2027/",
+      "https://www.thenationalnews.com/news/uae/2026/10/06/ramadan-2027-uae-dates-eid-al-fitr-holiday/"
+    ],
+    "limitations": "1) stock.adobe.com/my/illustrations、Artist Hub 与站内搜索页均触发 DataDome HTTP 403 防护，本轮未抓取到 Adobe Stock 原生素材卡，所有词条的 Adobe Stock 站内供给记为未知；2) 研究页 chatgpt.com/space 无法直接读取与写回，无法核对历史排除清单中未同步至 GitHub 的条目；3) 补充图库 25 张视觉核对仅能说明所看样本的构图、嵌字误匹配与同质化特征，无法代表所有未检视结果，且无法仅凭缩略图确认原图四边精确无缝或真实透明通道。"
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Seamless Garden Rose and Rosebud Sprig Pattern on Warm Linen",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 86,
+      "topic_bucket": "APPROVED",
+      "palette": "dusty rose, warm blush, muted sage, ivory linen, soft taupe",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Design a 4K horizontal 16:9 standalone seamless repeating floral pattern for gift wrapping paper, cotton fabric printing, and boutique stationery covers. Depict newly composed garden rose blossoms, half-opened rosebuds, slender stems, and serrated sage leaves arranged in a balanced organic half-drop rhythm across a warm ivory textured linen paper ground. Vary floral scale from open focal blooms to delicate trailing buds with generous breathing room between motifs so the pattern tiles smoothly on all four edges with zero visible seams or rigid grid repetition. Paint in refined hand-painted matte gouache with subtle dry-brush petal shading, delicate botanical veining, and tactile paper grain. Illuminate evenly with soft diffuse daylight for a calm, timeless romantic mood and consistent print luminance across the entire repeat. Deliver an opaque raster surface pattern with no text, logos, watermarks, mockups, borders, or drop shadows.",
+      "negative_prompt": "text, typography, letters, logos, watermarks, mockups, visible tile seams, harsh grid lines, neon colors, flat ditsy four-petal clipart, dark red heavy outlines, transparent background, checkerboard, picture frames",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "无缝花卉与植物图案 (Graphic resources / Plants and flowers)",
+        "base_topic": "无缝小碎花与玫瑰平铺背景",
+        "buyer_persona": "礼品包装设计师、面料印花师、文具与护肤品礼盒美编",
+        "design_reuse_cases": [
+          "节日与日常礼品包装纸满印",
+          "春季棉麻布料与丝巾纺织印花",
+          "精装笔记本封面与礼盒内衬纸"
+        ],
+        "demand_evidence": "Adobe 2026 Creative Trends 与 Adobe Express 2026 设计趋势均强调手工触感（All the Feels）与有机微瑕质地（Organic and imperfect design）；补充公开商用图库 Vecteezy 检索 seamless floral pattern 显示 6,425 条矢量供给，包装与布料印花为高频常青用途。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库可见样本偏机械四瓣碎花（Vecteezy:9948404）或沉闷暗红密线（Vecteezy:77349874）。",
+        "distinctiveness": "从空白构图独立设计水粉质感花园玫瑰、半开花苞与锯齿枝叶，建立大中小三级尺度与半移位呼吸节奏，并叠合温润亚麻纸底，彻底脱离机械小碎花与单薄矢量线稿。",
+        "similar_content_review": "已对照公开视觉样本 Vecteezy:9948404、Vecteezy:77349874、Vecteezy:24055392 及仓库全部 29 份历史队列；历史队列仅含圣诞松果/冬青无缝图案（creative_components_christmas_*_queue_2026W48_r01.json），无常规玫瑰花卉无缝图案，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 23,
+          "demand_evidence": 17,
+          "differentiation": 9,
+          "composition_usability": 14,
+          "material_credibility": 9,
+          "timeliness": 9,
+          "portfolio_diversity": 5
+        },
+        "reference_ids": [
+          "Vecteezy:9948404",
+          "Vecteezy:77349874",
+          "Vecteezy:24055392"
+        ],
+        "source_urls": [
+          "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+          "https://www.adobe.com/express/learn/blog/design-trends-2026",
+          "https://www.vecteezy.com/free-vector/seamless-floral-pattern",
+          "https://www.vecteezy.com/vector-art/9948404-simple-vector-seamless-flower-pattern-background-seamless-floral-pattern-for-paper-cover-fabric-gift-wrap-wall-art-home-decor-backdrop-web-theme-wallpaper"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Seamless Mediterranean Fig Branch and Blossom Block Print Pattern",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 82,
+      "topic_bucket": "APPROVED",
+      "palette": "muted terracotta, olive green, warm cream, plum brown",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a 4K horizontal 16:9 standalone seamless botanical surface pattern tailored for kitchen textiles, artisan food packaging, and cookbook endpapers. Feature hand-carved Mediterranean fig branches bearing whole ripe figs, deeply lobed leaves, and clusters of tiny pale blossoms distributed evenly across an unbleached warm cream cotton ground. Organize the motifs in a rhythmic diagonal repeat with carefully balanced negative space so opposite horizontal and vertical borders connect seamlessly without banding or crowding. Execute in an authentic three-color linocut block print aesthetic using muted olive green, earthy terracotta, and soft plum-brown inks, revealing subtle carved gouge edges and delicate hand-pressed ink grain. Keep illumination flat, neutral, and uniform to preserve true print flatness and consistent tonal contrast for commercial production. Produce an opaque raster textile pattern completely free of sliced neon fruit clichés, text, logos, watermarks, mockups, or decorative borders.",
+      "negative_prompt": "text, logos, watermarks, mockups, visible seams, tropical monstera leaves, bright neon pink sliced figs, glossy 3D plastic fruit, photographic glare, frames, transparent background, checkerboard",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "无缝花卉与植物图案 (Graphic resources / Plants and flowers)",
+        "base_topic": "果枝与植物布料无缝图案",
+        "buyer_persona": "餐厨织品设计师、有机食品包装美编、生活方式出版物装帧师",
+        "design_reuse_cases": [
+          "厨房茶巾、围裙与餐垫纺织印花",
+          "有机果酱、蜂蜜与橄榄油礼盒包装纸",
+          "食谱书扉页与品牌包装内衬"
+        ],
+        "demand_evidence": "Adobe 2026 Creative Trends 强调地域风味（Local Flavor）与有机手工版画感；Shutterstock fig-flower-pattern 检索显示果枝植物无缝纹高频用于厨房布艺、包装纸与墙纸。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本多为高饱和热带龟背竹（Vecteezy:6745516）或鲜红切面水彩果。",
+        "distinctiveness": "避开常见鲜红切面无花果与热带叶，独立采用三色手工亚麻油毡套印（linocut）呈现完整无花果、深裂枝叶与淡白小花，强调刻痕与油墨压印质感。",
+        "similar_content_review": "已对照 Vecteezy:6745516、Shutterstock fig-flower-pattern 摘要及全部 29 份历史队列；历史队列中 20261123_lifestyle_r03 仅为孤立梨/柑橘/苹果静物，W47_r02 为冬季松果鳞片版画，无地中海无花果枝无缝图案，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 22,
+          "demand_evidence": 16,
+          "differentiation": 9,
+          "composition_usability": 13,
+          "material_credibility": 9,
+          "timeliness": 8,
+          "portfolio_diversity": 5
+        },
+        "reference_ids": [
+          "Vecteezy:6745516",
+          "Vecteezy:6514462"
+        ],
+        "source_urls": [
+          "https://business.adobe.com/blog/adobe-2026-creative-trends-forecast",
+          "https://www.adobe.com/express/learn/blog/design-trends-2026",
+          "https://www.shutterstock.com/search/fig-flower-pattern",
+          "https://www.vecteezy.com/free-vector/seamless-floral-pattern"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Seamless Pressed Clay Octagonal Star Tile Pattern in Sage and Cream",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 88,
+      "topic_bucket": "APPROVED",
+      "palette": "muted sage green, warm alabaster cream, soft stone grout, pale ochre",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Render a 4K horizontal 16:9 standalone seamless geometric tile surface pattern designed for Ramadan and Eid 2027 gift box sleeves, luxury tea packaging, and heritage editorial backgrounds. Compose interlocking eight-pointed geometric stars and cross-shaped tiles crafted from matte pressed ceramic clay in muted sage green and warm alabaster cream, separated by fine light stone grout lines. Arrange the tessellation at a crisp orthogonal top-down scale with continuous edge-to-edge symmetry so all four sides repeat seamlessly without visual breaks or center medallion lock-in. Emphasize subtle tactile glaze variation, gently beveled tile shoulders, and restrained artisanal surface speckles inspired by handcrafted glazed earthenware. Cast soft directional raking studio light from the upper left to reveal gentle low-relief depth while keeping overall luminance calm and even enough for overlaid typography. Output an opaque raster texture with zero calligraphy, text, badges, logos, watermarks, or harsh reflections.",
+      "negative_prompt": "text, Arabic calligraphy, Eid Mubarak lettering, center medallion badge, logos, watermarks, mockups, glossy plastic reflections, broken tiles, uneven perspective, visible repeat seams, neon green, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "无缝几何与传统建筑纹样背景 (Graphic resources / Culture and religion)",
+        "base_topic": "传统八角星伊斯兰几何与陶砖无缝背景",
+        "buyer_persona": "节庆礼品包装设计师、精品茶点与香氛品牌美编、企业节庆视觉设计团队",
+        "design_reuse_cases": [
+          "2027 斋月与开斋节礼盒包装纸及腰封",
+          "精品椰枣、茶叶与家居香氛外盒底纹",
+          "多语种品牌节庆贺卡与官网横幅背景"
+        ],
+        "demand_evidence": "2027 斋月预计 2 月 8 日开启、开斋节预计 3 月 9–10 日，当前（2026-11-27）正处 2.4–3.4 个月最佳提前上架期；Adobe 2026 趋势明确突出 Local Flavor 与 All the Feels 触感表达；Shutterstock 与 Dreamstime 检索显示斋月几何包装纹需求持续存在。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本常嵌死文字框（Shutterstock:2730237039）、锁死中心徽章（Dreamstime:136905758）或仅为单薄绿线（Vecteezy:41648854）。",
+        "distinctiveness": "彻底清除预设文字与中心徽章，将八角星与十字嵌砖重构为哑光压模微浮雕陶釉砖面，兼顾 2027 斋月/开斋节档期与全年建筑肌理包装复用。",
+        "similar_content_review": "已对照 Shutterstock:2730237039、Dreamstime:136905758、Vecteezy:41648854、Shutterstock:2805917695 及全部 29 份历史队列；历史队列中无任何八角星陶砖或伊斯兰几何无缝图案（W46_r02 为水磨石，20261123_stylegrammar 为碎瓷散片），通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 23,
+          "demand_evidence": 18,
+          "differentiation": 9,
+          "composition_usability": 14,
+          "material_credibility": 9,
+          "timeliness": 10,
+          "portfolio_diversity": 5
+        },
+        "reference_ids": [
+          "Shutterstock:2730237039",
+          "Dreamstime:136905758",
+          "Vecteezy:41648854",
+          "Shutterstock:2805917695"
+        ],
+        "source_urls": [
+          "https://hijri-miladi.com/ramadan-date",
+          "https://www.islamicfinder.org/special-islamic-days/ramadan-2027/",
+          "https://business.adobe.com/blog/adobe-2026-creative-trends-forecast",
+          "https://www.shutterstock.com/search/ramadan-geometric",
+          "https://www.vecteezy.com/free-vector/traditional-islamic-pattern"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Seamless Art Deco Scalloped Fan Relief Pattern on Matte Charcoal",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 82,
+      "topic_bucket": "APPROVED",
+      "palette": "deep charcoal slate, brushed antique champagne gold, warm graphite",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a 4K horizontal 16:9 standalone seamless Art Deco geometric surface background built for luxury packaging, gala event invitations, and executive presentation covers. Arrange layered scalloped fan arches with restrained radial ribbing across a deep matte charcoal cotton-paper surface, pairing subtle blind-debossed grooves with fine brushed antique champagne-gold line inlays. Keep the geometric repeat well-proportioned and moderate in density so every four-sided edge joins seamlessly and fine details stay crisp when scaled down for print labels or digital banners. Model authentic paper fiber grain and tactile micro-embossing rather than glossy digital gradients or flashy chrome highlights. Illuminate with calm oblique studio light that gently catches the matte metallic ridges while maintaining a quiet, refined dark mood suitable for light overlaid headlines. Deliver an opaque raster pattern completely free of text, monograms, logos, watermarks, or framed mockup edges.",
+      "negative_prompt": "text, letters, monograms, logos, watermarks, mockups, bright yellow chrome glare, lens flare, glitter sparkles, crowded hairline maze, white background, visible tile seams, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "无缝几何与传统建筑纹样背景 (Graphic resources)",
+        "base_topic": "Art Deco 复古几何无缝背景",
+        "buyer_persona": "高端酒水/巧克力包装设计师、商业演示模板美编、精品酒店品牌视觉师",
+        "design_reuse_cases": [
+          "高端巧克力、精品茶酒礼盒外包装底纹",
+          "企业晚宴与周年庆典菜单及请柬封面",
+          "商业 PPT / Keynote 深色章节背景"
+        ],
+        "demand_evidence": "Adobe Stock 市场指南指出抽象与几何背景是高频常青刚需；Dreamstime、Shutterstock 与 Vecteezy 检索 art deco geometric seamless pattern 显示稳定包装、壁纸与邀请函商业需求。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本多为白底过密细线加生硬渐变高光（Dreamstime:141597064），缩小易糊。",
+        "distinctiveness": "改用深炭青哑光棉卡纸底结合盲压微浮雕与克制的拉丝暗香槟金扇形拱纹，收简线条密度、放大单元节奏，兼顾 4K 印刷质地与叠加浅色文字的高可读性。",
+        "similar_content_review": "已对照 Dreamstime:141597064 及全部 29 份历史队列；历史队列 W47_r01 仅为星形微孔箔纸与朱红纸扇局部折痕特写，非深色盲压 Art Deco 几何无缝平铺，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 22,
+          "demand_evidence": 16,
+          "differentiation": 8,
+          "composition_usability": 14,
+          "material_credibility": 9,
+          "timeliness": 8,
+          "portfolio_diversity": 5
+        },
+        "reference_ids": [
+          "Dreamstime:141597064",
+          "iStock:1161291603"
+        ],
+        "source_urls": [
+          "https://www.accio.com/business/adobe-stock-best-selling-image-categories",
+          "https://www.dreamstime.com/illustration/art-deco-geometric-pattern.html",
+          "https://www.shutterstock.com/search/seamless-art-deco"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Hand-Painted Pour-Over Coffee and Bean Branch Left-Border Menu Background",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 87,
+      "topic_bucket": "APPROVED",
+      "palette": "warm espresso brown, roasted sienna, muted coffee leaf green, unbleached oat cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Illustrate a 4K vertical 9:16 editorial copy-space background tailored for specialty cafe menus, seasonal brew cards, and coffee shop social announcements. Compose a vertical column of hand-painted coffee subjects nestled gracefully along the left edge, featuring a matte gooseneck pour-over kettle, a ribbed ceramic dripper over a glass server, roasted beans, and botanical coffee branches with glossy leaves and red cherries. Keep the entire right two-thirds, plus generous top and bottom margins, completely open on a softly textured unbleached oat-cream cotton paper surface so designers can set multilingual menu lists, pricing columns, or promotional titles cleanly. Render in warm editorial gouache paired with fine colored-pencil contour details, soft natural paper grain, and grounded subtle shadows. Light with gentle morning window warmth for an inviting artisan cafe mood. Deliver an opaque raster layout free of embedded menu text, numbers, prices, chalkboard frames, logos, or watermarks.",
+      "negative_prompt": "text, menu words, prices, numbers, chalkboard, coffee shop logo, watermarks, cartoon faces, cluttered center, photographic table mockup, hands, transparent background, checkerboard",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "日常咖啡、茶饮与烘焙插画及菜单/包装底图 (Food & Drinks)",
+        "base_topic": "咖啡馆菜单插画与留白背景",
+        "buyer_persona": "独立咖啡馆品牌设计师、餐饮菜单排版师、食品饮料社媒运营美编",
+        "design_reuse_cases": [
+          "精品咖啡馆多语种竖版饮品菜单与季节单品卡",
+          "手冲课程与新品上市 Instagram Story / 竖版门店海报",
+          "咖啡豆礼盒附带冲煮指南内页底图"
+        ],
+        "demand_evidence": "Adobe HelpX 官方分类表将 Drinks（Coffee culture / Brewing processes）列为核心常青类目；iStock 咖啡背景插画达 86,900+ 条，Dreamstime 咖啡菜单背景达 95,593 条，显示持续高频餐饮排版需求。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库菜单样本多写死英文菜单字样与黑板框（Dreamstime:42974723），或为孤立居中单品（Dreamstime:95922172）。",
+        "distinctiveness": "彻底移除写死英文价目与陈旧黑板样式，改为未漂白燕麦棉纸底+左侧边缘垂直组织手冲器具与咖啡果枝叶，右侧 2/3 留出高可读性多语言菜单排版区。",
+        "similar_content_review": "已对照 Dreamstime:42974723、Dreamstime:95922172、Dreamstime:143934517 及全部 29 份历史队列；历史队列 W44_r02 为写实咖啡杯测课空间，20261123_lifestyle_r03 为三个空陶杯静物，无手冲咖啡左缘留白菜单插画，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 24,
+          "demand_evidence": 17,
+          "differentiation": 9,
+          "composition_usability": 14,
+          "material_credibility": 9,
+          "timeliness": 9,
+          "portfolio_diversity": 5
+        },
+        "reference_ids": [
+          "Dreamstime:42974723",
+          "Dreamstime:95922172",
+          "Dreamstime:143934517"
+        ],
+        "source_urls": [
+          "https://helpx.adobe.com/stock/contributor/content-policies-guidelines/metadata/choose-right-category-content.html",
+          "https://www.istockphoto.com/illustrations/coffee-background",
+          "https://www.dreamstime.com/illustration/background-coffee-menu.html"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Seamless Artisan Croissant, Sourdough, and Wheat Sprig Bakery Wrap Pattern",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 85,
+      "topic_bucket": "APPROVED",
+      "palette": "golden pastry crust, toasted ochre, warm oat kraft, flour cream, muted wheat gold",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a 4K horizontal 16:9 standalone seamless repeating bakery pattern crafted for artisan bread wrapping paper, pastry box liners, and cafe takeaway bags. Illustrate flaky butter croissants, round scored sourdough boules, crusty baguette sections, and slender golden wheat sprigs arranged in an airy, tossed all-over repeat on a warm matte oat-kraft paper ground. Balance motif orientations and spacing evenly so the pattern tiles cleanly across all four edges with zero visible seams, crowding, or awkward empty alleys. Render in tactile soft oil pastel and matte gouache with delicate crust blisters, flour-dusted highlights, and warm earthy tones instead of neon candy colors. Use even, warm studio lighting to keep print density consistent and appetizing from edge to edge. Produce an opaque raster surface design completely free of cartoon faces, donuts with bright pink frosting, embedded labels, logos, watermarks, or package mockups.",
+      "negative_prompt": "text, logos, watermarks, mockups, bright pink frosting, neon candy sprinkles, cartoon kawaii eyes, black and white appliance icons, kitchen mixer clipart, visible tile seams, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "日常咖啡、茶饮与烘焙插画及菜单/包装底图 (Food & Drinks)",
+        "base_topic": "烘焙糕点无缝包装图案",
+        "buyer_persona": "独立烘焙坊品牌设计师、餐饮包装袋与防油纸设计师、美食内容美编",
+        "design_reuse_cases": [
+          "烘焙坊防油垫纸、面包包装纸与外卖手提袋满印",
+          "手工糕点礼盒内衬纸与餐桌纸垫",
+          "早餐菜单封面与食品电商专题横幅底纹"
+        ],
+        "demand_evidence": "Adobe HelpX 官方 Food 分类覆盖食材与烘焙场景；补充图库 Vecteezy 检索 pastry pattern 达 2,018 条、bakery seamless pattern 达 1,493 条，Dreamstime 达 31,746 条，包装平铺为明确刚需。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本多为高饱和糖果色甜品堆砌（Dreamstime:64453068）或粗糙黑白电器图标（Vecteezy:5967523）。",
+        "distinctiveness": "放弃低龄卡通甜甜圈与单线厨具，改以油画棒+哑光水粉描绘起酥牛角包、乡村酸种面包、法棍与麦穗，落于暖燕麦牛皮纸底色，服务中高端精品烘焙包装。",
+        "similar_content_review": "已对照 Dreamstime:64453068、Vecteezy:5967523、Dreamstime:143934517 及全部 29 份历史队列；历史队列 20261120_r090514 为酸种割包生熟对比教学图，20261123_lifestyle_r03 为饼干静物，无烘焙无缝包装图案，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 23,
+          "demand_evidence": 17,
+          "differentiation": 9,
+          "composition_usability": 13,
+          "material_credibility": 9,
+          "timeliness": 9,
+          "portfolio_diversity": 5
+        },
+        "reference_ids": [
+          "Dreamstime:64453068",
+          "Vecteezy:5967523"
+        ],
+        "source_urls": [
+          "https://helpx.adobe.com/stock/contributor/content-policies-guidelines/metadata/choose-right-category-content.html",
+          "https://www.vecteezy.com/free-vector/bakery-seamless-pattern",
+          "https://www.vecteezy.com/free-vector/pastry-pattern",
+          "https://www.dreamstime.com/illustration/vector-food-bakery-seamless-pattern.html"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Olive Branch and White Citrus Blossom Diagonal Corner Invitation Background",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 86,
+      "topic_bucket": "APPROVED",
+      "palette": "silvery olive green, warm alabaster blossom, pale lemon bud, ivory cotton paper",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Paint a 4K horizontal 16:9 botanical copy-space background designed for wedding invitations, spring event announcements, and refined brand hero banners. Arrange curving silvery-green olive branches, delicate white five-petal citrus blossoms, and small pale lemon buds exclusively in the upper-left and lower-right corners, curving gently inward without crossing into the center. Preserve a broad, quiet, evenly toned warm ivory cold-press watercolor paper field across the middle and opposite corners so designers have dependable high-contrast space for serif headlines, event details, or web callouts. Render in transparent botanical watercolor layered with crisp fine ink-and-pencil stem details, authentic pigment blooms, and organic paper tooth. Use bright, soft overcast daylight to maintain an airy, timeless Mediterranean editorial mood with zero harsh cast shadows. Deliver a single clean opaque raster sheet with no card mockups, placeholder lettering, gold glitter borders, logos, or watermarks.",
+      "negative_prompt": "text, save the date lettering, wedding card mockup, multiple cards, pink peonies, red roses, gold glitter dust, heavy dark vignette, logos, watermarks, centered isolated clipart, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "请柬、婚礼与品牌通用留白背景 (Graphic resources / Lifestyle)",
+        "base_topic": "水彩花卉角花请柬留白背景",
+        "buyer_persona": "婚礼与活动请柬设计师、品牌贺卡美编、电商与演示横幅设计师",
+        "design_reuse_cases": [
+          "婚礼、晚宴及品牌发布会横版电子请柬与印刷卡片",
+          "春季品牌官网横幅与商业演示文稿封面",
+          "餐厅礼券与精品品牌感谢卡底图"
+        ],
+        "demand_evidence": "补充商用图库 Vecteezy 检索 floral invitation background 达 7,152 条、Dreamstime rustic wedding invitation 达 19,894 条；Adobe Express 2026 趋势强调温润手工纸感与自然有机视觉（Warm, personal visual style）。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本常混入带文字三联样机（Dreamstime:182893865）、单体白底花（Shutterstock:2741250205）或极度饱和的浅粉牡丹/深红玫瑰（Dreamstime:178431487、Magnific:9975-29197）。",
+        "distinctiveness": "跳过高度同质化的粉牡丹/玫瑰与多卡样机，独立设计银绿橄榄枝+白橙花的左上/右下非对称对角构图，配合均匀温润的冷压手工棉纸中央留白区，单张零文字直出可用。",
+        "similar_content_review": "已对照 Dreamstime:178431487、Dreamstime:182893865、Magnific:9975-29197、Shutterstock:2741250205 及全部 29 份历史队列；历史队列 W47_r03 为冬季雪松柑橘圣诞边框，W48_decorative_r02 为竖版蕨类尤加利椭圆花环，无橄榄枝与橙花横版对角常青请柬背景，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 24,
+          "demand_evidence": 17,
+          "differentiation": 8,
+          "composition_usability": 15,
+          "material_credibility": 9,
+          "timeliness": 9,
+          "portfolio_diversity": 4
+        },
+        "reference_ids": [
+          "Dreamstime:178431487",
+          "Dreamstime:182893865",
+          "Magnific:9975-29197"
+        ],
+        "source_urls": [
+          "https://www.adobe.com/express/learn/blog/design-trends-2026",
+          "https://www.vecteezy.com/free-vector/floral-invitation-background",
+          "https://www.dreamstime.com/photos-images/rustic-wedding-invitation-background.html"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Pressed Chamomile and Sage Leaf Archway Frame on Warm Cotton Paper",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 84,
+      "topic_bucket": "APPROVED",
+      "palette": "chamomile white, warm honey yellow, dusty sage green, soft oatmeal paper",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Design a 4K vertical 9:16 botanical invitation and social story background tailored for wellness brands, spring workshops, and modern event stationery. Frame the composition with a slender rounded architectural arch traced delicately by pressed wild chamomile daisies, dusty sage leaves, and wispy meadow grass stems gathered softly along the upper curve and lower base corners. Leave the entire interior of the arch and outer safety margins open as an uncluttered, gently textured warm oatmeal cotton-paper surface ready for centered event headlines, schedules, or vertical story typography. Illustrate in refined naturalist watercolor and colored pencil with realistic petal translucency, fine stem overlap, and organic matte paper fibers. Illuminate evenly with soft, diffused natural daylight for a serene, welcoming editorial mood with balanced tonal contrast. Deliver one opaque raster composition containing no placeholder text, gold foil clipart lines, card mockups, logos, or watermarks.",
+      "negative_prompt": "text, invitation typography, mockup frames, gold glitter lines, eucalyptus oval wreath, wisteria vines, harsh drop shadows, photographic studio props, logos, watermarks, transparent background",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "请柬、婚礼与品牌通用留白背景 (Graphic resources / Lifestyle)",
+        "base_topic": "极简植物留白竖版海报与请柬背景",
+        "buyer_persona": "天然护肤与芳疗品牌美编、花艺与手作工作坊设计师、社媒竖版模板创作者",
+        "design_reuse_cases": [
+          "春季工作坊、婚礼与沙龙竖版请柬及日程卡",
+          "护肤、花草茶品牌 Instagram Story 与竖版宣传海报",
+          "产品说明书与品牌感谢卡竖版背景"
+        ],
+        "demand_evidence": "Dreamstime minimalist botanical aesthetic 达 6,895 条公开结果；Adobe Express 2026 趋势强调柔和人文与有机手工纸质感，9:16 竖版适配社媒故事与移动请柬主流尺寸。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本多为单枝极简摄影（Dreamstime:139767098）或孤立白底剪贴画（Shutterstock:2741250205）。",
+        "distinctiveness": "将分散单枝花改造为柔和的拱门植物框留白构图，以洋甘菊、鼠尾草与纤细草穗沿拱线自然编排，中央拱内保留干净稳定的暖燕麦棉纸文案区，兼顾移动端 UI 安全边距。",
+        "similar_content_review": "已对照 Dreamstime:139767098、Shutterstock:2741250205 及全部 29 份历史队列；历史队列 W48_decorative_r02 为椭圆蕨类尤加利花环，W48_decorative_r01 为紫藤花垂帘，W44_r02 为情人节压花课场景，无拱形洋甘菊鼠尾草竖版留白框，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 23,
+          "demand_evidence": 16,
+          "differentiation": 9,
+          "composition_usability": 14,
+          "material_credibility": 9,
+          "timeliness": 9,
+          "portfolio_diversity": 4
+        },
+        "reference_ids": [
+          "Dreamstime:139767098",
+          "Shutterstock:2741250205"
+        ],
+        "source_urls": [
+          "https://www.adobe.com/express/learn/blog/design-trends-2026",
+          "https://www.dreamstime.com/photos-images/minimalist-botanical-aesthetic.html",
+          "https://www.dreamstime.com/photos-images/minimalist-floral-background-design-poster-copy-space.html"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Pierced Brass Lantern and Date Palm Lower Border on Deep Teal Copy Field",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 87,
+      "topic_bucket": "APPROVED",
+      "palette": "deep twilight teal, burnished antique brass, warm candlelight amber, muted olive gold",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Illustrate a 4K horizontal 16:9 seasonal greeting and campaign banner background built for Ramadan and Eid 2027 corporate e-cards, hospitality promotions, and retail web headers. Place two handcrafted pierced antique brass lanterns at staggered heights along the lower-left edge, accompanied by graceful muted olive date-palm fronds framing the bottom-left corner. Keep the entire upper field and right two-thirds clear as a calm, evenly graded deep twilight-teal matte paper background that accommodates Arabic, Malay, English, or multilingual headlines without clutter. Paint in refined editorial gouache with crisp geometric metal fretwork, realistic warm candlelight softly grazing the nearest palm leaflets, and delicate paper surface grain. Avoid harsh lens flares, mosque skyline silhouettes, or glowing neon sparkles, maintaining an elegant, welcoming evening warmth. Deliver an opaque raster layout completely free of preset greeting words, calligraphy, logos, watermarks, or card mockups.",
+      "negative_prompt": "text, Eid Mubarak lettering, Ramadan Kareem calligraphy, mosque silhouette, lens flare, neon glow, floating 3D glossy gold crescent, village veranda pelita oil lamps, logos, watermarks, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "2027 Q1 节日物件与季节庆典留白背景 (Culture and religion / Lifestyle)",
+        "base_topic": "斋月与开斋节提灯留白贺卡横幅",
+        "buyer_persona": "东南亚及中东零售品牌视觉团队、企业节庆贺卡设计师、酒店餐饮促销美编",
+        "design_reuse_cases": [
+          "2027 斋月与开斋节企业多语种电子贺卡及官网横幅",
+          "酒店开斋自助晚宴与零售节庆促销横版海报",
+          "节庆礼盒封套与电子邀请函背景"
+        ],
+        "demand_evidence": "2027 斋月预计 2 月 8 日开始、开斋节预计 3 月 9–10 日，当前距档期 2.4–3.4 个月正值商业素材提前采购窗口；Shutterstock ramadan-space 与 ramadan-lantern 检索显示企业贺卡与促销横幅留白需求明确。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本（如 Shutterstock:2592333811）常直接写死“EID MUBARAK”文字并堆砌陈旧清真寺光效。",
+        "distinctiveness": "彻底去除写死祝福文字、清真寺剪影与廉价数码光斑，采用手工水粉质感镂空黄铜提灯与枣椰枝左下稳妥构图，上方与右侧 2/3 为深青黛哑光纸面均匀留白，方便多语种排版。",
+        "similar_content_review": "已对照 Shutterstock:2592333811 及全部 29 份历史队列；历史队列 adobe_stock_crawler_queue_2026W48_nonchristmas_lifestyle_r04.json 仅含乡村长廊油灯实景（Traditional Pelita Lamps Along a Quiet Veranda）与马来粽/饼干静物，无黄铜提灯深青留白横幅，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 23,
+          "demand_evidence": 18,
+          "differentiation": 9,
+          "composition_usability": 14,
+          "material_credibility": 9,
+          "timeliness": 10,
+          "portfolio_diversity": 4
+        },
+        "reference_ids": [
+          "Shutterstock:2592333811",
+          "Vecteezy:41648854"
+        ],
+        "source_urls": [
+          "https://hijri-miladi.com/ramadan-date",
+          "https://www.thenationalnews.com/news/uae/2026/10/06/ramadan-2027-uae-dates-eid-al-fitr-holiday/",
+          "https://www.shutterstock.com/search/ramadan-space",
+          "https://www.shutterstock.com/search/ramadan-lantern"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Seamless Wild Rosehip, Ribbon Bow, and Tiny Heart Sprig Wrap Pattern",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 83,
+      "topic_bucket": "APPROVED",
+      "palette": "burgundy berry red, dusty rose ribbon, muted moss green, warm cream cotton",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Design a 4K horizontal 16:9 standalone seamless gift wrap pattern tailored for Valentine's Day 2027 packaging, patisserie gift boxes, and year-round romantic stationery. Interweave slender wild rosehip twigs with burgundy berries, loosely tied dusty-rose velvet ribbon bows, and sparse tiny hand-painted hearts across a warm cream matte cotton-paper ground. Distribute elements in a gentle multi-directional repeat with ample open cream spacing so all four edges tile cleanly without seams, clustering, or rigid rows. Paint in charming editorial gouache with crisp botanical brushwork, soft fabric ribbon folds, and delicate paper tooth, elevating the palette into refined berry and blush tones that remain reusable beyond February for Mother's Day and wedding favors. Light evenly with soft neutral daylight for clean print reproduction and warm tactile charm. Deliver an opaque raster pattern free of lettering, neon hearts, cartoon doodles, logos, watermarks, or wrapping mockups.",
+      "negative_prompt": "text, love typography, neon pink cartoon hearts, crowded doodle hearts, stark black outline grid, felt heart garland, logos, watermarks, gift box mockups, visible tile seams, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "2027 Q1 节日物件与季节庆典留白背景 (Lifestyle / Graphic resources)",
+        "base_topic": "情人节礼品包装纸无缝图案",
+        "buyer_persona": "礼品包装与丝带设计师、精品巧克力与甜品礼盒美编、家居布艺印花师",
+        "design_reuse_cases": [
+          "2027 情人节礼品包装纸、手提袋与礼盒内衬满印",
+          "手工巧克力、甜品店与花店伴手礼包装",
+          "母亲节及婚礼伴手礼延展包装纸与丝巾印花"
+        ],
+        "demand_evidence": "2027 情人节（2 月 14 日）距今约 2.6 个月，处于标准 2–3 个月提前上架期；Shutterstock、Dreamstime 与 iStock 检索 valentine seamless pattern 显示包装纸与布料印花需求稳定。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本普遍陷入高饱和粉橙涂鸦爱心堆砌（Dreamstime:87663637）或冰冷单线爱心网格（iStock:941733700、Dreamstime:198072089）。",
+        "distinctiveness": "跳出纯爱心满铺套路，将野蔷薇红果枝条、柔雾粉丝绒蝴蝶结与稀疏迷你实心桃心以手工水粉语言重组于暖奶油棉纸底上，提升商业礼赠质感并延长跨节日复用生命周期。",
+        "similar_content_review": "已对照 Dreamstime:87663637、iStock:941733700、Dreamstime:198072089 及全部 29 份历史队列；历史队列 nonchristmas_lifestyle_r04 仅为棉绳毛毡爱心横向边框，W44_r02 为情人节压花课场景，无情人节植物丝带无缝包装图案，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 22,
+          "demand_evidence": 17,
+          "differentiation": 8,
+          "composition_usability": 13,
+          "material_credibility": 9,
+          "timeliness": 10,
+          "portfolio_diversity": 4
+        },
+        "reference_ids": [
+          "Dreamstime:87663637",
+          "iStock:941733700",
+          "Dreamstime:198072089"
+        ],
+        "source_urls": [
+          "https://www.adobe.com/express/learn/blog/design-trends-2026",
+          "https://www.dreamstime.com/illustration/valentine-wrap.html",
+          "https://www.istockphoto.com/illustrations/seamless-pattern-with-valentine-hearts-smiles",
+          "https://www.shutterstock.com/search/valentine-seamless"
+        ]
+      }
+    }
+  ]
+}
