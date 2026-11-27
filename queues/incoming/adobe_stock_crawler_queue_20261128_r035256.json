@@ -1,0 +1,696 @@
+{
+  "run_id": "TF_category_crawler_20261128_r035256",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-28T03:52:56+08:00",
+  "research": {
+    "strategy": "category_crawler",
+    "product_line": "commercial_background",
+    "timezone": "Asia/Kuala_Lumpur",
+    "research_date": "2026-11-28",
+    "research_language": "zh-CN",
+    "re_evaluated_prior_watchlist": {
+      "source_run_id": "TF_category_crawler_20261127_r143358",
+      "total_re_evaluated": 13,
+      "promoted_to_approved": [
+        "W01 (upgraded to warm oat)",
+        "W15",
+        "W17",
+        "W18",
+        "W19",
+        "W21",
+        "W23",
+        "W24 (egg-free spring meadow)"
+      ],
+      "retained_in_watchlist": [
+        "W02",
+        "W16",
+        "W22"
+      ],
+      "moved_to_excluded": [
+        "W11 (low distinctiveness / saturated gold-line templates)",
+        "W20 (overlaps new W48_r01 windowpane plaid & r111035 ribbon checker)"
+      ]
+    },
+    "selected_categories": [
+      "2027 春季/地球日与母亲节花卉请柬及无缝植物图案 (Plants and flowers / Graphic resources)",
+      "传统世界几何与织物包装纹样 (Graphic resources / Culture and religion)",
+      "茶饮草本、手工草莓包装与美食菜单留白背景 (Food & Drinks)",
+      "极简有机抽象与商业演示/品牌产品展示留白背景 (Graphic resources / Business)",
+      "2027 全年通用庆典、生日/感谢卡与礼赠包装图案 (Lifestyle / Graphic resources)"
+    ],
+    "candidate_summary": {
+      "total_candidates": 34,
+      "approved": 12,
+      "watchlist": 12,
+      "excluded": 10
+    },
+    "first_tests": [
+      "Seamless Hand-Painted Cobalt Azulejo Ceramic Tile Pattern with Subtle Glaze",
+      "Seamless Block-Printed Moroccan Ogee Lattice Pattern in Warm Ochre and Chalk"
+    ],
+    "sampling_rule": "本轮启动时（2026-11-28 03:52:56 +08:00）对 stock.adobe.com/my/illustrations 做单次探测仍返回 HTTP/2 403 (x-datadome: protected)，按规范立即停采，Adobe Stock 原生卡记 0、覆盖率不可计算、站内供给记未知。补充公开商用图库（Vecteezy/Dreamstime/Shutterstock/Magnific）按 5 类 15 组新宽词与用途词检索（其中 13 组返回结果），预先计划每类抽取 5 张代表性公开缩略图（共 25 张）实看核对，遇 403/429 即停；其余未抽样卡片一律标为「仅标题或元数据」。",
+    "sample_counts": {
+      "adobe_stock_native": {
+        "raw_cards": 0,
+        "distinct_ids": 0,
+        "previews_attempted": 0,
+        "previews_verified": 0,
+        "previews_failed_or_illegible": 0,
+        "previews_unattempted": 0,
+        "visual_audit_coverage": "不可计算",
+        "block_reason": "2026-11-28 03:52:56 +08:00 探测 https://stock.adobe.com/my/illustrations 仍返回 HTTP/2 403 (x-datadome: protected)，立即停采。"
+      },
+      "supplementary_public_stock": {
+        "queries_executed": 15,
+        "queries_with_results": 13,
+        "raw_cards": 180,
+        "distinct_cards": 116,
+        "distinct_cards_with_preview_url": 72,
+        "previews_attempted": 25,
+        "previews_verified": 25,
+        "previews_failed_or_illegible": 0,
+        "previews_unattempted": 91,
+        "visual_audit_coverage": "21.55% (25/116)",
+        "unattempted_reason": "按每类 5 张预设抽样限额控制规模，其余 91 条标为「仅标题或元数据」。"
+      }
+    },
+    "history_check": {
+      "github_main_queues_checked": 33,
+      "incoming_files": 29,
+      "production_files": 4,
+      "newly_pulled_since_last_run": [
+        "queues/incoming/creative_components_holiday_queue_2026W48_r01.json (14 assets, commit 7c965f1)"
+      ],
+      "research_page_status": "无法访问（https://chatgpt.com/space/page_ef5e74d873dc81919960f0769ca7f9c3 需登录鉴权，已输出完整补录文本）。"
+    },
+    "scoring_note": "严格遵循任务所列 7 项细分满分（25+20+10+15+10+10+5=95），topic_score 为 7 项真实之和；因 Adobe Stock 原生页面受阻，需求证据分保守封顶于 18/20。",
+    "source_urls": [
+      "https://helpx.adobe.com/stock/contributor/submit-your-content/submit-generative-ai-content/distinct-generative-ai-submission-best-practices.html",
+      "https://helpx.adobe.com/stock/contributor/content-policies-guidelines/metadata/choose-right-category-content.html",
+      "https://business.adobe.com/blog/adobe-2026-creative-trends-forecast",
+      "https://www.adobe.com/express/learn/blog/design-trends-2026",
+      "https://www.accio.com/business/adobe-stock-best-selling-image-categories",
+      "https://www.dreamstime.com/photos-images/watercolor-magnolia.html",
+      "https://www.dreamstime.com/photos-images/watercolor-illustration-wildflower-border-featuring-vibrant-colorful-floral-frame-botanical.html",
+      "https://www.dreamstime.com/photos-images/fern-pattern-seamless.html",
+      "https://www.shutterstock.com/search/moroccan-lattice",
+      "https://www.shutterstock.com/search/portuguese-pattern",
+      "https://www.dreamstime.com/illustration/herbal-tea-menu.html",
+      "https://www.shutterstock.com/search/strawberry-patterns",
+      "https://www.dreamstime.com/illustration/abstract-terracotta-background.html",
+      "https://www.shutterstock.com/search/arch-display?page=7",
+      "https://www.dreamstime.com/illustration/happy-birthday-card-background.html",
+      "https://www.vecteezy.com/free-vector/gift-wrap-pattern"
+    ],
+    "limitations": "1) stock.adobe.com 仍受 DataDome HTTP 403 阻断，本轮未采得 Adobe Stock 原生素材卡，站内供给记为未知；2) 研究页 chatgpt.com/space 仍需登录无法直读直写，已提供完整补录文本；3) 补充公开商用图库 25 张实看样本仅能反映已检视画面中的嵌字误匹配、拼接样张与同质化特征，不能推论全部未检视结果，且无法仅凭缩略图确认原图四边精确无缝或真实透明通道。"
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Hand-Painted Ivory Magnolia Branch Left-Edge Invitation Background",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 86,
+      "topic_bucket": "APPROVED",
+      "palette": "ivory magnolia petal, warm stone beige, muted bark brown, soft olive leaf, pale blush",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Paint a 4K vertical 9:16 botanical invitation and editorial story background tailored for spring weddings, fine stationery, and luxury skincare announcements. Arrange a single sculptural woody magnolia branch extending organically along the left vertical margin, bearing two open goblet-shaped ivory-cream blooms with faint blush bases, velvety unopened buds, and sparse matte olive-green leaves. Keep the entire right two-thirds and top and bottom UI safe margins open as a quiet, evenly toned warm stone-beige handmade cotton paper field that ensures clean contrast for serif titles or event details. Illustrate in luminous botanical watercolor paired with fine muted-sepia pencil detail, showing translucent petal overlaps and organic cold-press paper tooth rather than flat purple clipart on harsh pure white. Use soft diffuse overcast studio light for a calm, refined editorial mood. Deliver one opaque raster background completely free of text, card mockups, gold lines, logos, or watermarks.",
+      "negative_prompt": "text, logos, watermarks, mockups, bright purple magnolia clipart, pure stark white void, checkerboard transparent background, centered isolated sprig, gold glitter frame, cherry blossoms",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "2027 春季/地球日与母亲节花卉请柬及无缝植物图案 (Plants and flowers / Lifestyle)",
+        "base_topic": "玉兰花枝左缘留白竖版请柬背景（上轮观察项 W21 再评估升格）",
+        "re_evaluation_note": "上轮 W21 为避开同轮樱花暂留观察；本轮实看玉兰公开样本多为纯白底浓紫花框（Dreamstime:141210343）或孤立透明单枝（Magnific:84443-66290），本方案改用暖灰米棉纸+左侧垂直舒展象牙白玉兰大花+右侧 2/3 洁净留白，与 r143358 16:9 顶部樱花横幅完全错位互补，升格入选。",
+        "buyer_persona": "婚礼与活动请柬设计师、高端护肤品牌社媒美编、文具贺卡出版商",
+        "design_reuse_cases": [
+          "2027 春季婚礼、沙龙与品牌发布会 9:16 竖版电子请柬",
+          "护肤与香氛品牌 Instagram Story / Pinterest 竖版宣传底图",
+          "精品感谢卡与高档菜单竖版封面背景"
+        ],
+        "demand_evidence": "Vecteezy 与 Dreamstime 检索 watercolor magnolia 显示其在婚礼请柬、春季礼盒与美妆包装中具稳定常青及早春需求，且契合 Adobe Express 2026 温润手工纸感趋势。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库可见样本偏纯白底浓紫边框（Dreamstime:141210343）或透明格孤立单枝（Magnific:84443-66290）。",
+        "distinctiveness": "独立设计象牙白大瓣玉兰、绒毛花苞与木质枝干沿 9:16 暖灰米棉纸左侧纵向伸展，右侧三分之二与上下边缘保留高可读留白区。",
+        "similar_content_review": "已对照 Dreamstime:141210343、Magnific:84443-66290 及 GitHub main 全部 33 份历史队列（r143358 为 16:9 顶部粉樱花，W48_decorative_r01 为紫藤垂帘）；全库无玉兰左缘竖版请柬背景，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 23,
+          "demand_evidence": 17,
+          "differentiation": 9,
+          "composition_usability": 14,
+          "material_credibility": 9,
+          "timeliness": 9,
+          "portfolio_diversity": 5
+        },
+        "reference_ids": [
+          "Dreamstime:141210343",
+          "Magnific:84443-66290"
+        ],
+        "source_urls": [
+          "https://www.dreamstime.com/photos-images/watercolor-magnolia.html",
+          "https://www.vecteezy.com/free-vector/watercolor-magnolia",
+          "https://www.adobe.com/express/learn/blog/design-trends-2026"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Hand-Painted Spring Wildflower Meadow Lower-Border Poster Background",
+      "source_type": "SEASONAL_COMMERCIAL",
+      "topic_score": 85,
+      "topic_bucket": "APPROVED",
+      "palette": "cornflower blue, buttercup gold, chamomile white, meadow sage, warm cream paper",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Illustrate a 4K horizontal 16:9 seasonal botanical copy-space background tailored for spring 2027 farmers markets, Earth Day campaigns, and outdoor event banners. Arrange an airy meadow border exclusively along the lower quarter of the frame, composed of hand-painted white field daisies, yellow buttercups, cornflower blue blooms, clover leaves, and wispy seed grasses growing upward in natural staggered heights. Leave the entire upper three-quarters completely uncluttered on a softly textured warm cream watercolor paper ground so designers have abundant, high-contrast room for event headlines, dates, and logos without busy top-and-bottom crowding. Render in fresh naturalist watercolor and fine colored pencil showing translucent overlapping petals, slender stems, and authentic cotton paper tooth. Light with gentle bright spring daylight for an uplifting, organic editorial feel. Deliver a single opaque raster sheet free of embedded lettering, Easter eggs, bird nests, frames, logos, or watermarks.",
+      "negative_prompt": "text, wildflower frame lettering, Easter eggs, bird nest, bunnies, upper and lower double border, stark digital white void, neon clipart flowers, logos, watermarks, mockups, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "2027 春季/地球日与母亲节花卉请柬及无缝植物图案 (Plants and flowers / The environment)",
+        "base_topic": "春日草甸野花下缘留白海报背景（上轮观察项 W24 升级重构）",
+        "re_evaluation_note": "上轮 W24 原定位偏复活节；本轮彻底剔除彩蛋与鸟巢（完全避开历史 W48_decorative_r02 的彩蛋鸟巢草甸边框），并针对公开野花边框样本中央写死“wildflower frame”文字（Dreamstime:192811690）及纯白底上下夹逼构图（Dreamstime:172221624）的问题，重构为下缘 1/4 单边草甸+上方 3/4 暖白水彩纸高通用横版留白，同时覆盖春季促销、地球日与婚礼活动。",
+        "buyer_persona": "春季市集与地球日活动设计师、有机食品/花艺品牌美编、婚礼与派对横幅排版师",
+        "design_reuse_cases": [
+          "2027 春季市集、地球日与环保倡议官网横幅及海报",
+          "户外婚礼、花园早午餐电子请柬与演示封面",
+          "有机食品与天然日化品牌春季促销主视觉"
+        ],
+        "demand_evidence": "Dreamstime 检索 watercolor wildflower border 达 1,707 条、Vecteezy 达 856 条，显示野花草甸边框在春季与婚礼/环保活动中需求广泛；当前距 2027 春季与地球日约 3.5–4.5 个月。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本常在中央写死英文“wildflower frame”（Dreamstime:192811690）或纯白底上下双边挤占版面（Dreamstime:172221624）。",
+        "distinctiveness": "去文字、去彩蛋、改纯白为温润冷压水彩纸，将野花草甸克制收束在底部四分之一，上方四分之三提供极佳横版排字空间。",
+        "similar_content_review": "已对照 Dreamstime:192811690、Dreamstime:172221624 及全部 33 份历史队列（W48_decorative_r02 为含彩蛋与鸟巢的复活节边框，r143358 为顶部樱花垂帘）；无纯野花草甸下缘横版背景，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 23,
+          "demand_evidence": 17,
+          "differentiation": 8,
+          "composition_usability": 15,
+          "material_credibility": 9,
+          "timeliness": 9,
+          "portfolio_diversity": 4
+        },
+        "reference_ids": [
+          "Dreamstime:192811690",
+          "Dreamstime:172221624"
+        ],
+        "source_urls": [
+          "https://www.dreamstime.com/photos-images/watercolor-illustration-wildflower-border-featuring-vibrant-colorful-floral-frame-botanical.html",
+          "https://www.dreamstime.com/illustration/wildflower-border.html",
+          "https://www.vecteezy.com/free-vector/wildflower-border"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Seamless Pressed Woodland Fern Frond and Seed Pod Block Print on Warm Oat",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 82,
+      "topic_bucket": "APPROVED",
+      "palette": "deep woodland moss, soft charcoal umber, warm oat linen, muted lichen sage",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a 4K horizontal 16:9 standalone seamless botanical surface pattern crafted for eco-friendly gift wrapping paper, linen home textiles, and nature-themed stationery covers. Depict delicate woodland fern fronds paired with slender wild seed pods and fine forest twigs arranged in an airy, multi-directional half-drop repeat over an unbleached warm oat-linen paper ground. Keep spacing balanced and open so all four borders tile seamlessly with zero visible seams, dark crowding, or harsh digital repetition. Execute in an authentic two-color linocut block print technique using deep woodland moss green and warm charcoal umber inks, highlighting hand-carved leaflet edges, subtle pressed ink texture, and organic paper fibers rather than overcrowded bright green tropical palm clipart. Use calm, uniform daylight illumination to ensure steady commercial print reproduction. Deliver an opaque raster pattern free of text, logos, watermarks, mockups, or picture frames.",
+      "negative_prompt": "text, logos, watermarks, mockups, dense neon green tropical palm jungle, pure white flat vector, oval wreath frame, eucalyptus branches, visible tile seams, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "2027 春季/地球日与母亲节花卉请柬及无缝植物图案 (Graphic resources / Plants and flowers)",
+        "base_topic": "林地蕨叶与野生种荚暖燕麦底块印无缝图案（上轮观察项 W01 换底升级）",
+        "re_evaluation_note": "此前 W01 采用深灰底导致包装与文具受众偏窄；本轮实看蕨类平铺样本（Dreamstime:177604690）为纯白底过密亮绿热带棕榈风，遂将 W01 改造为暖燕麦亚麻底+苔绿/炭褐双色林地蕨叶与种荚手工版画，大幅拓展环保包装、家居布艺与手账封面通用性。",
+        "buyer_persona": "环保包装与纸品设计师、自然风布艺印花师、户外及可持续品牌美编",
+        "design_reuse_cases": [
+          "环保与可持续品牌礼品包装纸及手提袋满印",
+          "自然风棉麻抱枕、桌布与笔记本封面印花",
+          "生态与植物学主题出版物扉页底纹"
+        ],
+        "demand_evidence": "Dreamstime 检索 fern pattern seamless 达 1,468 条，Vecteezy 与 Shutterstock 均具丰富织物与包装用途；契合 Adobe Express 2026 Organic and imperfect design 趋势。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本偏向白底高密度亮绿热带棕榈/蕨叶满铺（Dreamstime:177604690），缺乏透气版画感。",
+        "distinctiveness": "以双色手工油毡版画语言将纤细林地蕨叶与野生种荚错落排布于暖燕麦亚麻纸面，保留刻痕肌理与宽松呼吸空间。",
+        "similar_content_review": "已对照 Dreamstime:177604690 及全部 33 份历史队列（W48_decorative_r02 为竖版椭圆蕨类尤加利花环，非无缝全幅包装纹）；通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 22,
+          "demand_evidence": 16,
+          "differentiation": 9,
+          "composition_usability": 13,
+          "material_credibility": 9,
+          "timeliness": 8,
+          "portfolio_diversity": 5
+        },
+        "reference_ids": [
+          "Dreamstime:177604690"
+        ],
+        "source_urls": [
+          "https://www.dreamstime.com/photos-images/fern-pattern-seamless.html",
+          "https://www.vecteezy.com/free-vector/fern-seamless",
+          "https://www.adobe.com/express/learn/blog/design-trends-2026"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Seamless Block-Printed Moroccan Ogee Lattice Pattern in Warm Ochre and Chalk",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 86,
+      "topic_bucket": "APPROVED",
+      "palette": "warm sunlit ochre, muted burnt sienna, soft chalk ivory, pale clay beige",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Design a 4K horizontal 16:9 standalone seamless heritage geometric surface pattern built for luxury gift wrapping paper, home textile printing, and boutique hospitality stationery. Arrange classic interlocking Moroccan ogee quatrefoil latticework accented with small diamond star centers across a softly textured warm chalk-ivory cotton paper ground. Keep motif scale medium-balanced with generous open ivory breathing space inside each ogee cell so all four edges tile seamlessly without breaks, crowded mesh noise, or isolated strip borders. Render in authentic hand-carved woodblock print style using warm sunlit ochre and muted burnt-sienna inks, showing delicate hand-stamped edge irregularities, light ink grain, and natural paper tooth rather than sterile flat digital vectors. Illuminate evenly with neutral soft studio light for reliable print consistency and subtle artisanal warmth. Deliver an opaque raster pattern free of text, calligraphy, badges, logos, watermarks, or mockups.",
+      "negative_prompt": "text, Arabic calligraphy, logos, watermarks, mockups, single horizontal ribbon strip, glossy 3D tiles, neon purple damask, rigid digital vector lines, sage ceramic star tiles, visible tile seams, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "传统世界几何与织物包装纹样 (Graphic resources / Culture and religion)",
+        "base_topic": "暖赭石与粉笔白手工木刻摩洛哥尖拱格无缝图案（上轮观察项 W17 升格）",
+        "re_evaluation_note": "上轮 W17 得 79 分留待本轮轮换；本轮实看摩洛哥格纹公开样本常为单行圆环边框（Vecteezy:87396459）或纯平数码矢量，遂以暖赭石+焦糖陶土色手工木刻版画语言重构四边连续尖拱四叶格纹，与 r111029 鼠尾草绿浮雕陶砖和 r143358 中世纪赤陶拱门完全区隔，推荐为本轮优先测试 #2。",
+        "buyer_persona": "高端礼品包装与手提袋设计师、家居布艺与墙纸设计师、酒店及餐饮品牌美编",
+        "design_reuse_cases": [
+          "全年高端礼盒包装纸、布艺抱枕与墙纸满印",
+          "2027 斋月/开斋节与地中海风餐饮菜单封底及腰封",
+          "精品酒店与香氛品牌画册衬页背景"
+        ],
+        "demand_evidence": "Shutterstock 检索 moroccan lattice 显示其在奢侈品包装、墙纸与纺织印花中广泛复用；契合 Adobe 2026 Creative Trends 的 Local Flavor 与手工触感方向。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本多为单行花边（Vecteezy:87396459）或纯平高饱和紫色/蓝色矢量网格。",
+        "distinctiveness": "采用手工木刻套印肌理演绎暖赭石与焦糖色摩洛哥尖拱格纹，留出柔和粉笔白单元内空间，兼具文化辨识度与现代印刷高级感。",
+        "similar_content_review": "已对照 Vecteezy:87396459 及全部 33 份历史队列（与 r111029 鼠尾草绿微浮雕八角星陶砖、r143358 中世纪赤陶拱门在纹样几何、色彩与材质上均显著不同）；通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 23,
+          "demand_evidence": 17,
+          "differentiation": 9,
+          "composition_usability": 14,
+          "material_credibility": 9,
+          "timeliness": 9,
+          "portfolio_diversity": 5
+        },
+        "reference_ids": [
+          "Vecteezy:87396459"
+        ],
+        "source_urls": [
+          "https://www.shutterstock.com/search/moroccan-lattice",
+          "https://business.adobe.com/blog/adobe-2026-creative-trends-forecast",
+          "https://www.vecteezy.com/free-vector/terracotta-background?page=6"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Seamless Hand-Painted Cobalt Azulejo Ceramic Tile Pattern with Subtle Glaze",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 87,
+      "topic_bucket": "APPROVED",
+      "palette": "hand-painted cobalt blue, soft delft slate blue, warm milk-white glaze, pale warm grout",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Render a 4K horizontal 16:9 standalone seamless Portuguese Azulejo ceramic tile surface pattern built for Mediterranean food packaging, summer textiles, and boutique stationery covers. Arrange a cohesive grid of square hand-glazed earthenware tiles decorated with simplified symmetrical cobalt-blue floral rosettes and corner leaf scrolls that connect cleanly across tile joints into one continuous all-over repeat. Ensure all four edges match seamlessly without patchwork mismatch grids, cut-off sample strips, or harsh neon blue digital fills. Emphasize authentic tin-glazed ceramic tactility including gentle cobalt brush density shifts, slightly soft hand-painted cobalt-and-slate shading, micro-beveled warm milk-white tile edges, and narrow pale warm grout lines. Illuminate with calm diffuse overhead daylight to show restrained matte-satin ceramic sheen without blown specular glare. Deliver an opaque raster pattern free of text, cracked decay, logos, watermarks, or room mockups.",
+      "negative_prompt": "text, logos, watermarks, mockups, mismatched 16-tile patchwork chart, flat digital royal blue vector, isolated single tile icon, heavy yellow talavera clutter, cracked broken walls, visible repeat seams, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "传统世界几何与织物包装纹样 (Graphic resources / Culture and religion)",
+        "base_topic": "葡萄牙手工釉面青花瓷砖无缝图案（本轮新增，优先测试 #1）",
+        "buyer_persona": "餐饮与食品礼盒设计师、夏季度假服饰/布艺印花师、陶瓷香氛品牌视觉设计师",
+        "design_reuse_cases": [
+          "地中海餐饮、橄榄油、罐头与甜品礼盒包装纸满印",
+          "春夏度假风丝巾、连衣裙、桌布与餐垫纺织印花",
+          "旅游/生活方式品牌专题页与文具精装封面底纹"
+        ],
+        "demand_evidence": "Shutterstock 与 Dreamstime 检索 portuguese tile / azulejo seamless pattern 呈现持续高密度商业供给与新上架作品（含 2026-01 新品），且完美呼应 Adobe 2026 趋势 Local Flavor 与 All the Feels 触感表达。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本多为纯平宝蓝矢量（Shutterstock:2799605815）、双砖孤立样（Shutterstock:2795620035）、过密单条（Dreamstime:127906326）或 16 款混拼表（Magnific:1308-189945）。",
+        "distinctiveness": "摒弃混拼样张与扁平数码矢量，独立设计单一和谐的四边连续手绘釉面青花瓷砖平铺，保留钴蓝水彩般笔触浓淡、温润乳白微弧砖肩与柔和细灰缝，商用直出可用。",
+        "similar_content_review": "已对照 Shutterstock:2799605815、Shutterstock:2795620035、Dreamstime:127906326、Magnific:1308-189945 及全部 33 份历史队列；全库无任何葡萄牙青花釉面陶砖无缝图案，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 24,
+          "demand_evidence": 17,
+          "differentiation": 9,
+          "composition_usability": 14,
+          "material_credibility": 9,
+          "timeliness": 9,
+          "portfolio_diversity": 5
+        },
+        "reference_ids": [
+          "Shutterstock:2799605815",
+          "Shutterstock:2795620035",
+          "Dreamstime:127906326",
+          "Magnific:1308-189945"
+        ],
+        "source_urls": [
+          "https://www.shutterstock.com/search/portuguese-pattern",
+          "https://www.dreamstime.com/illustration/portuguese-pattern.html",
+          "https://business.adobe.com/blog/adobe-2026-creative-trends-forecast"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Hand-Painted Clay Teapot, Teacups, and Bamboo Leaf Horizontal Tea Menu Banner",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 84,
+      "topic_bucket": "APPROVED",
+      "palette": "warm terracotta stoneware, amber oolong tea, muted bamboo sage, unbleached warm cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Illustrate a 4K horizontal 16:9 culinary editorial copy-space background tailored for teahouse menus, oolong tea web banners, and cultural tasting invitations. Position a balanced still-life arrangement exclusively in the lower-left corner and left third, depicting a small handmade matte stoneware clay teapot, two simple handleless ceramic teacups filled with warm amber tea, loose rolled tea leaves, and a slender sprig of pale sage bamboo leaves. Leave the entire right two-thirds and upper margin completely clear on a gently textured unbleached warm cream rice-paper ground so designers can cleanly set tea menus, brewing guides, or promotional headlines in any language. Paint in refined matte gouache and soft colored-pencil contours that convey honest unglazed clay texture and calm natural warmth. Light gently from the left window side without harsh glare or cluttered table props. Output one opaque raster banner free of text, calligraphy, logos, watermarks, or white porcelain gaiwan close-ups.",
+      "negative_prompt": "text, tea room lettering, prices, white porcelain gaiwan lid macro, centered isolated teapot clipart, scattered icon sheet, chalkboard, hands, logos, watermarks, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "茶饮草本、手工意面/厨房食材与美食菜单留白背景 (Food & Drinks)",
+        "base_topic": "粗陶乌龙茶壶与竹叶横版茶单留白背景（上轮观察项 W15 升格）",
+        "re_evaluation_note": "上轮 W15 得 79 分留待补足 16:9 横版茶饮线；本轮复核新合入 W48_r01 #14 为白瓷盖碗盖局部特写，与本方案的 16:9 横版手绘粗陶小壶+双茶杯+竹叶左下留白构图在主体、媒介与版式上完全区隔，并与 r143358 的 9:16 抹茶竖版形成横竖配套，正式升格。",
+        "buyer_persona": "中式/亚洲茶馆菜单设计师、茶叶电商官网横幅美编、茶文化活动视觉设计师",
+        "design_reuse_cases": [
+          "精品茶馆与茶饮品牌 16:9 官网首屏横幅与横版茶单",
+          "茶叶品鉴会电子请柬与冲泡说明卡背景",
+          "茶饮品牌演示文稿与礼盒内页底图"
+        ],
+        "demand_evidence": "Dreamstime oolong tea 达 9,982 条公开结果；Adobe HelpX 官方 Drinks 分类明确包含茶饮冲泡场景，横版多语言无字茶单横幅实用价值高。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本多为白底居中单壶静物（Dreamstime:75535085）、占满中央的托盘实拍（Shutterstock:2820011683）或分散水彩小图标合集（Dreamstime:480881509）。",
+        "distinctiveness": "将哑光粗陶壶、两只琥珀茶汤素杯、乌龙茶干与纤细竹叶精准组织在 16:9 暖白宣纸左下三分之一处，右侧与顶部留足高可读排字空间。",
+        "similar_content_review": "已对照 Dreamstime:480881509 及全部 33 份历史队列（W48_r01 #14 为白瓷盖碗盖与茶晕局部特写，r143358 为 9:16 竖版抹茶碗下缘，nonchristmas_lifestyle_r04 为桂花茶单杯）；构图与主体完全区分，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 23,
+          "demand_evidence": 17,
+          "differentiation": 8,
+          "composition_usability": 14,
+          "material_credibility": 9,
+          "timeliness": 9,
+          "portfolio_diversity": 4
+        },
+        "reference_ids": [
+          "Dreamstime:480881509",
+          "Dreamstime:75535085"
+        ],
+        "source_urls": [
+          "https://www.dreamstime.com/photos-images/oolong-tea.html",
+          "https://www.dreamstime.com/illustration/herbal-tea-menu.html",
+          "https://helpx.adobe.com/stock/contributor/content-policies-guidelines/metadata/choose-right-category-content.html"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Hand-Painted Dried Herbal Tea Apothecary Jars Lower-Border Flyer Background",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 82,
+      "topic_bucket": "APPROVED",
+      "palette": "amber glass tint, dried chamomile gold, muted peppermint sage, rosehip terracotta, warm cream",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Paint a 4K vertical 9:16 botanical apothecary flyer and menu background designed for herbal tea boutiques, wellness workshops, and organic pantry brands. Compose a calm horizontal lower border along the bottom quarter featuring three unlabelled clear glass cork-stoppered apothecary jars filled respectively with dried golden chamomile blossoms, crushed sage-green mint leaves, and tiny dried rosebuds, accompanied by a small wooden scoop and a few loose petals. Keep the entire upper three-quarters completely open on a softly textured warm cream cotton paper background so buyers can cleanly arrange event schedules, herbal blend menus, or product copy in any language. Illustrate in detailed editorial gouache and delicate ink outlines that render gentle glass reflections, cork grain, and botanical dryness honestly without visual clutter. Use soft diffused morning light for a reassuring, wholesome apothecary mood. Deliver an opaque raster layout completely free of jar labels, herb names, prices, logos, or watermarks.",
+      "negative_prompt": "text, herb labels, Latin plant names, recipe title lines, scattered icon grid, chalkboard, cartoon cups, glass spice jar row photography, logos, watermarks, transparent background",
+      "aspect_ratio": "9:16",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "茶饮草本、手工意面/厨房食材与美食菜单留白背景 (Food & Drinks / Lifestyle)",
+        "base_topic": "干花草药玻璃罐下缘留白竖版宣传单背景（上轮观察项 W18 升格）",
+        "re_evaluation_note": "上轮 W18 暂列观察；本轮实看草本花茶公开样本（Dreamstime:480881509 为分散 12 图标表，Dreamstime:57077783 为写死英文药草名的黑白网格，Vecteezy:53272098 为写死 Recipe 横线模板），证实市场极缺无标签、可直接排版的 9:16 竖版草本茶饮/芳疗宣传单留白插画，升级入选。",
+        "buyer_persona": "草本茶饮与芳疗工作坊美编、有机杂货与健康生活品牌设计师、社媒竖版传单排版师",
+        "design_reuse_cases": [
+          "花草茶店、有机市集与芳疗工作坊 9:16 竖版宣传单及菜单",
+          "健康生活品牌 Instagram Story 与产品冲泡卡背景",
+          "自然疗法与食育课程讲义封面"
+        ],
+        "demand_evidence": "Vecteezy herbal tea concept 达 990 条、Dreamstime recipe card background 达 18,671 条，证实草本茶饮与健康菜单背景需求稳定。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本多为分散图标合集（Dreamstime:480881509）、写死英文草药名网格（Dreamstime:57077783）或写死“Recipe”字样（Vecteezy:53272098）。",
+        "distinctiveness": "采用三只无标签软木塞玻璃罐盛放干洋甘菊、薄荷叶与干玫瑰蕾配木勺，稳妥排列于 9:16 暖白纸下缘 1/4，上方 3/4 纯净留白零预设文字。",
+        "similar_content_review": "已对照 Dreamstime:480881509、Dreamstime:57077783、Vecteezy:53272098 及全部 33 份历史队列（20261123_lifestyle_r03 为 16:9 居中香料瓶排布实拍，无 9:16 手绘干花草茶下缘留白宣传单）；通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 22,
+          "demand_evidence": 16,
+          "differentiation": 9,
+          "composition_usability": 14,
+          "material_credibility": 9,
+          "timeliness": 8,
+          "portfolio_diversity": 4
+        },
+        "reference_ids": [
+          "Dreamstime:480881509",
+          "Dreamstime:57077783",
+          "Vecteezy:53272098"
+        ],
+        "source_urls": [
+          "https://www.dreamstime.com/illustration/herbal-tea-menu.html",
+          "https://www.vecteezy.com/free-vector/herbal-tea-concept?page=4",
+          "https://www.vecteezy.com/free-vector/recipe-card"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Seamless Hand-Painted Wild Strawberry, Blossom, and Leaf Patisserie Wrap Pattern",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 85,
+      "topic_bucket": "APPROVED",
+      "palette": "ripe wild berry red, ivory blossom white, fresh meadow leaf green, warm cream linen",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a 4K horizontal 16:9 standalone seamless botanical fruit pattern crafted for patisserie gift wrap, artisan jam packaging, and spring cotton apparel prints. Depict petite wild woodland strawberries on slender curving stems alongside five-petal ivory strawberry blossoms and serrated green leaves arranged in a light, graceful tossed repeat over a warm cream textured linen-paper ground. Vary cluster orientation and spacing naturally so all four edges connect seamlessly without visible seams, gingham stripes, or crowded photo-collage scatter. Render in charming matte gouache and delicate colored-pencil seed detail with soft organic brushwork and warm nostalgic tones rather than rigid cartoon vectors or neon pink backgrounds. Illuminate evenly with gentle neutral daylight to maintain crisp commercial print consistency from edge to edge. Output an opaque raster surface pattern completely free of text, chocolate drips, logos, watermarks, or packaging mockups.",
+      "negative_prompt": "text, logos, watermarks, mockups, pink gingham plaid background, stiff symmetrical cartoon strawberries, photographic cut berry slices, donuts, mousse saucers, visible tile seams, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "茶饮草本、手工意面/厨房食材与美食菜单留白背景 (Food & Drinks / Graphic resources)",
+        "base_topic": "手绘野草莓、小白花与绿叶甜品包装无缝图案（本轮新增）",
+        "buyer_persona": "法式甜品与果酱包装设计师、春夏童装/居家布艺印花师、文具礼盒美编",
+        "design_reuse_cases": [
+          "甜品店糕点礼盒内衬纸、手工果酱包装纸与外卖袋满印",
+          "春夏季棉麻服装、围裙与餐巾纺织印花",
+          "手账封面、贺卡背面与美食博客专题底纹"
+        ],
+        "demand_evidence": "Shutterstock、Vecteezy 与 Dreamstime 检索 strawberry seamless pattern 显示大量持续更新的包装与布艺印花需求（含 2025 年多批新品），兼具全年常青与春季水果旺季优势。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本多为粉白格僵硬对称矢量（Vecteezy:8915878）或白底写实切片照片拼贴感（Dreamstime:206949809）。",
+        "distinctiveness": "摒弃僵硬卡通大草莓与切片拼贴，以法式插画水粉+彩铅描绘带细枝的纤巧野草莓、五瓣小白花与锯齿叶，落于暖奶油亚麻纸底并保持轻盈四边连续节奏。",
+        "similar_content_review": "已对照 Vecteezy:8915878、Dreamstime:206949809 及全部 33 份历史队列（nonchristmas_lifestyle_r04 为白瓷碟草莓慕斯静物，W44 为圣诞草莓蛋糕店场景）；全库无草莓植物无缝包装图案，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 23,
+          "demand_evidence": 17,
+          "differentiation": 9,
+          "composition_usability": 13,
+          "material_credibility": 9,
+          "timeliness": 9,
+          "portfolio_diversity": 5
+        },
+        "reference_ids": [
+          "Vecteezy:8915878",
+          "Dreamstime:206949809"
+        ],
+        "source_urls": [
+          "https://www.vecteezy.com/vector-art/8915878-seamless-pattern-with-strawberries-fruit-concept-wrapping-paper-pattern",
+          "https://www.shutterstock.com/search/strawberry-patterns",
+          "https://www.dreamstime.com/illustration/strawberry-wrapping-paper.html"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Matte Gouache Terracotta and Sage Organic Pebble Shapes Slide Background",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 85,
+      "topic_bucket": "APPROVED",
+      "palette": "muted terracotta clay, soft sage green, pale warm sand, unbleached ivory paper",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Design a 4K horizontal 16:9 contemporary corporate presentation and brand hero background tailored for Keynote decks, sustainability reports, and minimalist web headers. Group three overlapping smooth organic pebble-like matte shapes in muted terracotta clay, dusty sage green, and pale warm sand neatly along the right third and lower-right corner, accented by one delicate fine charcoal-gray curved contour line. Preserve the entire left two-thirds and upper margin as an uncluttered, gently textured warm ivory cotton-paper surface so business headlines, bullet lists, and data callouts remain sharply legible. Paint in tactile matte gouache with subtle dry-brush texture along the shape edges and authentic fine paper tooth rather than shiny corporate 3D gradients or cluttered multi-panel poster sets. Light evenly with calm neutral studio daylight for a warm, human-centered modern aesthetic. Deliver one opaque raster slide background completely free of embedded placeholder text, logos, watermarks, or mockups.",
+      "negative_prompt": "text, Modern background lettering, VECTOR ABSTRACT SHAPES words, four-panel mockup set, neon 3D waves, glossy gradients, leaf shadows, logos, watermarks, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "极简有机抽象与商业演示/品牌产品展示留白背景 (Graphic resources / Business)",
+        "base_topic": "哑光水粉陶土与鼠尾草有机卵石商业演示留白背景（上轮观察项 W19 升格）",
+        "re_evaluation_note": "上轮 W19 得 78 分留作下轮储备；本轮实看有机色块演示样本普遍存在写死英文标题“Modern background”（Dreamstime:175397662）或四联拼接样机（Vecteezy:10687852），且 Dreamstime 14,081 条与 Vecteezy 8,527 条证实商业演示抽象有机背景体量巨大，将色块克制收束在右侧 1/3 后正式升格。",
+        "buyer_persona": "企业商业演示（PPT/Keynote）设计师、品牌策划美编、SaaS 与可持续发展报告设计师",
+        "design_reuse_cases": [
+          "企业路演、品牌提案与 ESG 报告 PPT / Keynote 封面及内容页",
+          "生活方式与环保科技官网首屏横幅背景",
+          "线上研讨会预告海报与社交封面底图"
+        ],
+        "demand_evidence": "Vecteezy abstract background presentation 达 8,527 条、Dreamstime abstract terracotta background 达 14,081 条、abstract beige organic shapes 达 7,438 条；Accio 2026 指南列为 Adobe Stock 高频刚需大类。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本常直接写死“Modern background / VECTOR ABSTRACT SHAPES”（Dreamstime:175397662）或四联样机拼图（Vecteezy:10687852）。",
+        "distinctiveness": "去文字、去拼图，采用带手工哑光水粉笔触的暖陶土、鼠尾草绿与浅沙有机卵石形收束于右侧三分之一，左侧三分之二为纯净暖白棉纸排版区。",
+        "similar_content_review": "已对照 Dreamstime:175397662、Vecteezy:10687852 及全部 33 份历史队列（与 r143358 灰泥浮雕波浪和低位和纸远岚在色彩、形状结构与视觉锚点上完全区分）；通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 24,
+          "demand_evidence": 17,
+          "differentiation": 8,
+          "composition_usability": 15,
+          "material_credibility": 8,
+          "timeliness": 9,
+          "portfolio_diversity": 4
+        },
+        "reference_ids": [
+          "Dreamstime:175397662",
+          "Vecteezy:10687852"
+        ],
+        "source_urls": [
+          "https://www.vecteezy.com/free-vector/abstract-background-presentation?page=2",
+          "https://www.dreamstime.com/illustration/abstract-terracotta-background.html",
+          "https://www.dreamstime.com/illustration/abstract-beige-organic-shapes.html",
+          "https://www.accio.com/business/adobe-stock-best-selling-image-categories"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Sunlit Warm Sandstone Recessed Arch Alcove Product Banner with Right Copy Field",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 84,
+      "topic_bucket": "APPROVED",
+      "palette": "warm sandstone beige, sunlit cream limestone, soft architectural shadow taupe",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Render a 4K horizontal 16:9 minimalist architectural product display backdrop engineered for skincare banners, fragrance campaigns, and boutique e-commerce hero headers. Place one clean recessed semicircular archway alcove with a flat, low integral sandstone ledge on the left half of the composition so designers can composite a bottle, candle, or ceramic piece naturally inside the niche. Extend the smooth sunlit warm sandstone wall seamlessly across the entire right half as a calm, uninterrupted copy field for product headlines and promotional badges. Render authentic fine-grained matte natural sandstone and soft mineral plaster texture without glossy plastic 3D cylinder clutter, floating rings, or tropical palm shadows. Cast gentle oblique afternoon sunlight from the upper right to carve a soft architectural shadow crescent inside the alcove while keeping the right copy wall luminous and even. Deliver an opaque raster stage backdrop free of products, text, logos, or watermarks.",
+      "negative_prompt": "text, logos, watermarks, cosmetic bottles, palm leaf shadow, multiple cylinders, orange neon glow, folded paper creases, Islamic crescent ornaments, floral vines, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "极简有机抽象与商业演示/品牌产品展示留白背景 (Graphic resources / Buildings and architecture)",
+        "base_topic": "暖砂岩建筑凹龛左置产品展示台与右侧留白横幅（上轮观察项 W23 升格）",
+        "re_evaluation_note": "上轮 W23 得 79 分待拉大与折纸产品台区分度；本轮实看拱门展示台公开样本（Magnific:53876-123562 冷灰居中对称无排字区、Vecteezy:83987274 满版圆柱与棕榈影、Dreamstime:471120618 刺眼橙柱），据此设计左置建筑凹龛+平整一体低台+右侧整面受光暖砂岩墙留白，无折纸、无棕榈影、无宗教饰纹，精准切入电商主图横幅刚需。",
+        "buyer_persona": "美妆护肤/香氛电商品牌设计师、视觉合成美编、零售官网横幅排版师",
+        "design_reuse_cases": [
+          "护肤品、香水与家居香薰电商 16:9 详情页首屏横幅",
+          "新品上市促销 Banner 与社交媒体广告合成底图",
+          "品牌画册产品展示页背景"
+        ],
+        "demand_evidence": "Shutterstock arch / product display backdrop 呈现海量持续商业需求（2,860,662 条拱门相关结果），且实看产品展示台为 Adobe Stock 电商高频刚需品类。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本多为居中对称冷灰舞台（Magnific:53876-123562）、满版杂物阴影（Vecteezy:83987274）或刺眼单色圆柱（Dreamstime:471120618）。",
+        "distinctiveness": "采用左置一体式暖砂岩凹龛与平滑低台承载产品合成，右侧半幅保持干净均匀受光砂岩墙面专供文案排版，彻底摆脱廉价 3D 圆柱堆砌与棕榈叶阴影套路。",
+        "similar_content_review": "已对照 Magnific:53876-123562、Vecteezy:83987274、Dreamstime:471120618 及全部 33 份历史队列（r111035 #2 为俯视折纸产品背景，r143358 #11 为 9:16 竖版伊斯兰茉莉新月拱廊，W47_r02 为叶脉墙影）；架构与用途均截然不同，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 24,
+          "demand_evidence": 17,
+          "differentiation": 8,
+          "composition_usability": 14,
+          "material_credibility": 9,
+          "timeliness": 8,
+          "portfolio_diversity": 4
+        },
+        "reference_ids": [
+          "Magnific:53876-123562",
+          "Vecteezy:83987274",
+          "Dreamstime:471120618"
+        ],
+        "source_urls": [
+          "https://www.shutterstock.com/search/arch-display?page=7",
+          "https://www.magnific.com/free-photos-vectors/arch-product",
+          "https://www.vecteezy.com/free-photos/abstract-organic-shape?page=3"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Hand-Painted Festive Paper Bunting and Confetti Upper-Border Celebration Card",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 85,
+      "topic_bucket": "APPROVED",
+      "palette": "terracotta blush, muted mustard gold, soft sage green, dusty sky blue, warm ivory cotton",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Illustrate a 4K horizontal 16:9 everyday celebration and greeting card copy-space background tailored for birthday invitations, anniversary announcements, and corporate milestone banners. Suspend two gently draping strings of triangular matte paper bunting pennants across the upper border and top corners, painted in harmonious low-saturation terracotta blush, warm mustard gold, sage green, and dusty sky blue with sparse drifting hand-painted paper confetti dots tapering lightly below the strings. Leave the entire middle and lower three-quarters completely clear on a warm ivory cold-press cotton paper surface so buyers can cleanly typeset greetings, names, or invitations in any language. Render in charming editorial gouache with subtle brush texture, fine cotton twine lines, and authentic paper grain rather than garish rainbow rays, 3D metallic balloons, or preset English lettering. Light evenly with bright, cheerful natural daylight. Deliver one opaque raster sheet free of text, balloons, cakes, logos, or mockups.",
+      "negative_prompt": "text, Happy Birthday lettering, Thank you words, rainbow sunburst rays, 3D metallic balloons, speech bubbles, cartoon cupcakes, card mockup, neon colors, logos, watermarks, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "2027 Q1/Q2 通用庆典与生活文具（生日、感谢卡、礼赠包装）(Lifestyle / Graphic resources)",
+        "base_topic": "手绘柔和莫兰迪纸旗与彩纸碎点上缘留白庆典贺卡（本轮新辟大类）",
+        "buyer_persona": "企业员工祝福与活动美编、贺卡与文具设计师、派对与周年庆横幅排版师",
+        "design_reuse_cases": [
+          "多语种生日贺卡、周年庆典与员工里程碑祝贺电子卡",
+          "品牌周年促销、宝宝宴与社区活动 16:9 官网横幅",
+          "线下派对邀请函与餐厅庆生桌卡背景"
+        ],
+        "demand_evidence": "Dreamstime 检索 seamless pattern colorful confetti 达 18,620 条，Vecteezy thank you / birthday card background 均逾千条；生日与通用庆典是全年 365 天无淡季的刚需场景。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本几乎全部写死“HAPPY BIRTHDAY!”（Dreamstime:26532402、Shutterstock:2812701505）或“Thank you / LOREM IPSUM”（Vecteezy:3260849）且审美过时。",
+        "distinctiveness": "彻底零文字、剔除刺眼彩虹光束与 3D 金属气球，以温柔莫兰迪色手工水粉纸旗串与稀疏碎点装饰暖白冷压棉纸上缘 1/4，中下 3/4 留出极高通用度多语种排版区。",
+        "similar_content_review": "已对照 Dreamstime:26532402、Shutterstock:2812701505、Vecteezy:3260849 及全部 33 份历史队列（W48_decorative_r01 为 9:16 竖版粉彩气球拱门）；主体改用纸旗串且为 16:9 横版上缘留白，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 24,
+          "demand_evidence": 17,
+          "differentiation": 8,
+          "composition_usability": 15,
+          "material_credibility": 8,
+          "timeliness": 9,
+          "portfolio_diversity": 4
+        },
+        "reference_ids": [
+          "Dreamstime:26532402",
+          "Shutterstock:2812701505",
+          "Vecteezy:3260849"
+        ],
+        "source_urls": [
+          "https://www.dreamstime.com/illustration/happy-birthday-card-background.html",
+          "https://www.vecteezy.com/free-vector/thank-you-card-background",
+          "https://www.dreamstime.com/illustration/seamless-pattern-colorful-confetti.html"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Seamless Hand-Painted Gift Box, Paper Star, and Streamer Dot Wrap Pattern",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 83,
+      "topic_bucket": "APPROVED",
+      "palette": "dusty slate blue, warm ochre gold, muted coral clay, soft ivory cotton",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a 4K horizontal 16:9 standalone seamless all-occasion gift wrapping pattern designed for year-round birthday wrap, retail tissue liners, and boutique stationery covers. Arrange charming small hand-painted wrapped gift parcels in varied rectangular and square proportions alongside eight-pointed folded paper stars and light scattered streamer dots across an airy warm ivory matte cotton-paper ground. Use a refined non-holiday palette of dusty slate blue, warm ochre gold, and muted coral clay so the pattern stays effortlessly usable across birthdays, graduations, housewarmings, and retail gifting all year. Distribute motifs in a balanced multi-directional repeat with comfortable open ivory spacing so all four edges tile seamlessly without visible seams or patchwork grid splits. Paint in soft matte gouache with delicate brush imperfections and fine paper tooth under uniform soft daylight. Deliver an opaque raster surface pattern free of text, Christmas trees, hearts, logos, or mockups.",
+      "negative_prompt": "text, logos, watermarks, mockups, six-panel sample grid, Christmas holly, Santa hats, Valentine hearts, neon cartoon clipart, heavy black outlines, visible tile seams, transparent background",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "category": "2027 Q1/Q2 通用庆典与生活文具（生日、感谢卡、礼赠包装）(Graphic resources / Lifestyle)",
+        "base_topic": "全年通用手绘礼盒、纸星与波点无缝包装纸图案（本轮新辟大类）",
+        "buyer_persona": "礼品包装纸与手提袋品牌设计师、零售电商礼盒内衬美编、文具与布艺印花师",
+        "design_reuse_cases": [
+          "全年通用生日、毕业与乔迁礼品包装纸及礼袋满印",
+          "精品买手店与零售品牌礼盒雪梨纸/内衬底纹",
+          "贺卡背面、手账封面与庆典专题背景"
+        ],
+        "demand_evidence": "Vecteezy 检索 gift wrap pattern 达 2,065 条，Dreamstime 庆典碎纸包装纹逾 1.8 万条；剥离圣诞/情人节符号后的全年礼赠包装纸生命周期更长、复购稳定。",
+        "supply_status": "Adobe Stock 本站供给未知（DataDome 403 受阻）；补充图库样本多为六宫格拼接样张（Vecteezy:95601）、圣诞限定元素或生硬卡通礼盒图标。",
+        "distinctiveness": "完全去除圣诞与情人节元素，采用灰蓝、暖赭金与淡珊瑚陶土低饱和配色，以哑光水粉手绘大小错落的礼盒、八角纸星与波点，四边无缝且全年适用。",
+        "similar_content_review": "已对照 Vecteezy:95601 及全部 33 份历史队列（刻意避开 r111029 #10 玫瑰果丝带蝴蝶结与 W48 圣诞礼品贴纸表）；全库无全年非节日礼盒+纸星无缝包装图案，通过复核。",
+        "score_breakdown": {
+          "buyer_utility": 23,
+          "demand_evidence": 16,
+          "differentiation": 8,
+          "composition_usability": 14,
+          "material_credibility": 8,
+          "timeliness": 9,
+          "portfolio_diversity": 5
+        },
+        "reference_ids": [
+          "Vecteezy:95601"
+        ],
+        "source_urls": [
+          "https://www.vecteezy.com/free-vector/gift-wrap-pattern",
+          "https://www.vecteezy.com/free-vector/gift-wrapping-pattern",
+          "https://www.dreamstime.com/illustration/gift-wrap.html"
+        ]
+      }
+    }
+  ]
+}
