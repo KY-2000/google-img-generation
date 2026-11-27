@@ -1,0 +1,440 @@
+{
+  "run_id": "TF_category_crawler_20261127_r082452",
+  "topic_finder_version": "commercial_background_v1",
+  "generated_at": "2026-11-27T08:24:52+08:00",
+  "research": {
+    "finder": "creative_components",
+    "strategy": "category_crawler",
+    "product_line": "commercial_background",
+    "market": "Adobe Stock Malaysia public web",
+    "research_language": "zh-CN",
+    "candidate_count": 34,
+    "first_tests": [
+      "Raised Dot and Ridge Paving Samples with Open Callout Space",
+      "Matched Object and Pixel Mask for Image Segmentation"
+    ],
+    "sample_counts": {
+      "pages": 29,
+      "entry_links": 12,
+      "pages_with_cards": 17,
+      "cards_before_global_dedupe": 690,
+      "distinct_ids": 688,
+      "duplicate_appearances": 2,
+      "visual_previews_reviewed": 38
+    },
+    "evidence_file": "adobe_stock_crawler_cards_20261127_r082452.csv",
+    "source_urls": [
+      "https://stock.adobe.com/my/illustrations",
+      "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+      "https://helpx.adobe.com/in/stock/contributor/submit-your-content/submit-generative-ai-content/generative-ai-content-guidelines.html",
+      "https://helpx.adobe.com/stock/contributor/content-moderation/content-moderation.html",
+      "https://helpx.adobe.com/stock/contributor/get-started/manage-your-account/account-submission-guidelines.html",
+      "https://docs.google.com/document/d/1_D-QBzmhaKmpC42T4hDLefIgOPQ96qHFauaBAm5BgaQ/edit"
+    ],
+    "limitations": "排名为页面公开供给信息；主题检索含相关回退、误匹配和缺卡。SQLite 由使用者实际运行环境分配资产编号。"
+  },
+  "assets": [
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Raised Dot and Ridge Paving Samples with Open Callout Space",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 96,
+      "topic_bucket": "APPROVED",
+      "palette": "warm stone, muted ochre, pale clay, charcoal",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a 4K 16:9 architectural materials illustration for a public space training slide or a landscape specification board. Arrange two separate square paving samples on a neutral light field, both seen from the same shallow three quarter direction. The left sample has short raised round studs in a regular grid, and the right sample has parallel rounded ribs along one axis. Use restrained mineral colors and fine nonuniform aggregate so the broad form remains readable when reduced. Rake a broad soft light across the relief from the upper left and keep the thin exposed edges visible. Set the samples in the middle height of the frame with an open gutter and quiet margins above for editor supplied captions. Maintain complete perimeter clearance so each sample can be cropped as an inset. Show physical surface differences without suggesting a layout specification. Omit letters, dimensions, compliance marks, streets, arrows, and branding.",
+      "negative_prompt": "street scene, warning signs, arrows, compliance symbols, road crossing layout, measurements, text, logos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "component_category": "无障碍铺装材料比较",
+        "material": "矿物点状铺砖和条脊铺砖",
+        "designer_persona": "交通无障碍课件美编、景观材料库编辑",
+        "buyer_use_case": "直观比较两种凸起结构",
+        "design_placement": "公共空间培训页",
+        "design_function": "两块独立试样等角度，侧边展现凸点及纵脊高度",
+        "art_style": "Architectural Material Illustration with Directional Relief Lighting",
+        "style_rationale": "两套阴影和比例统一，避免临时拼两张材质图带来的沟通混淆",
+        "distinctiveness": "两块独立试样等角度，侧边展现凸点及纵脊高度",
+        "copy_space": "两张样可各自裁出，中央和顶部可置文字",
+        "metadata_seed_keywords": [
+          "tactile surface",
+          "paving relief",
+          "raised dots",
+          "directional ridges",
+          "accessibility education"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://www.gov.uk/government/publications/inclusive-mobility-using-tactile-paving-surfaces",
+          "https://stock.adobe.com/my/search?k=tactile+paving&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=tactile+paving&filters%5Bcontent_type%3Aphoto%5D=1",
+          "https://stock.adobe.com/my/images/%E7%82%B9%E5%AD%97%E3%83%96%E3%83%AD%E3%83%83%E3%82%AF/292823927",
+          "https://stock.adobe.com/my/images/tactile-paving-for-blind-handicap-on-tiles-pathway-walkway-for-blindness-people/254150940",
+          "https://stock.adobe.com/my/images/metal-tactile-paving-tiles-for-the-blind/187952172",
+          "https://stock.adobe.com/my/images/yellow-dome-and-block-of-tactile-paving-which-act-as-a-guidance-for-visually-impaired-or-blind-citizen-to-avoid-hazard-on-street-or-public-transport-such-as-train-station-or-subway-platform/265747444"
+        ],
+        "originality_notes": "照片多把材料嵌入路线或环境，插画相关条目也含铁路场景。保留同取景角度的两块材料，使编辑可分别加注。素材只示意表面类型。",
+        "design_reuse_cases": [
+          "公共空间培训页",
+          "景观方案选材板"
+        ],
+        "integration_guidance": "两张样可各自裁出，中央和顶部可置文字",
+        "reusability_rationale": "两套阴影和比例统一，避免临时拼两张材质图带来的沟通混淆",
+        "quality_check": "点状与条形清晰可数，保持概念示意，不提供铺设图或合规尺寸",
+        "score_breakdown": {
+          "utility": 29,
+          "differentiation": 24,
+          "composition": 15,
+          "material": 10,
+          "feasibility": 9,
+          "timeliness": 5,
+          "diversity": 4
+        },
+        "evidence_ids": [
+          "292823927",
+          "254150940",
+          "187952172",
+          "265747444"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Oil Droplet Dispersion beside Settled Oil and Water",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 95,
+      "topic_bucket": "APPROVED",
+      "palette": "warm yellow, pale blue, porcelain white, slate",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Make a 4K horizontal 16:9 food science plate for a classroom worksheet or a culinary training article. Place two low rectangular vessel cross sections at the same height and scale on an unbroken ivory field. In the first show a pale liquid below a cohesive golden oil layer with one clear boundary. In the second show small rounded golden droplets dispersed throughout a continuous very pale blue liquid, with no intact surface oil band. Draw both views frontally using soft colored pigment, fine contour lines and restrained diffuse illumination. The simplified vessel rims should read clearly without decorative caustics. Keep the empty central gutter wide and both sample silhouettes complete for cropping. Reserve a clean strip above the vessels for labels added by the designer, and preserve the quiet area below for a short caption. Present a qualitative teaching schematic with no numerical scales, type, emulsifier claims, logos, or utensils.",
+      "negative_prompt": "foam bubbles, salad, pouring stream, kitchen scene, fake instrument scales, labels, logo",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "component_category": "食品两状态教学组件",
+        "material": "浅色水相与金黄油滴",
+        "designer_persona": "食品科学教学美编、食谱教育编辑",
+        "buyer_use_case": "对照分层和油滴分散",
+        "design_placement": "食育教材单元",
+        "design_function": "同尺寸剖面容器便于比较可见界面和分散态",
+        "art_style": "Food Science Plate in Soft Pigment and Fine Contour",
+        "style_rationale": "连续相与油滴视觉分级清晰，优于通用搅拌广告图",
+        "distinctiveness": "同尺寸剖面容器便于比较可见界面和分散态",
+        "copy_space": "隔开容器可单裁，上下均能添加状态标签",
+        "metadata_seed_keywords": [
+          "emulsification",
+          "oil droplets",
+          "oil in water",
+          "settled oil",
+          "food education"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://www.ifst.org/lovefoodlovescience/resources/fats-and-oils-emulsification",
+          "https://stock.adobe.com/my/search?k=oil+water+emulsion&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/images/typen-von-emulsionen-ow-und-wo/98772908",
+          "https://stock.adobe.com/my/images/water-in-oil-in-abstract-style-on-yellow-background-orange-liquid-splash-golden-yellow-bubble-oil-abstract-background/295152601",
+          "https://stock.adobe.com/my/images/hyaluronic-acid-serum-texture-beauty-skin-care-liquid-gel-background-clear-cosmetic-cream-with-bubbles-closeup/806659470"
+        ],
+        "originality_notes": "9 张卡片包含美容液滴及一种双乳化相示意。入选方案把已分层和油滴分散配成教学对照，压缩装饰元素，留出上下标注带。",
+        "design_reuse_cases": [
+          "食育教材单元",
+          "调味品品牌工艺课程"
+        ],
+        "integration_guidance": "隔开容器可单裁，上下均能添加状态标签",
+        "reusability_rationale": "连续相与油滴视觉分级清晰，优于通用搅拌广告图",
+        "quality_check": "分层上油下水，分散态油滴途径无下沉固体，避免假显微尺度",
+        "score_breakdown": {
+          "utility": 29,
+          "differentiation": 23,
+          "composition": 15,
+          "material": 10,
+          "feasibility": 9,
+          "timeliness": 5,
+          "diversity": 4
+        },
+        "evidence_ids": [
+          "98772908",
+          "295152601",
+          "806659470"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Matched Object and Pixel Mask for Image Segmentation",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 95,
+      "topic_bucket": "APPROVED",
+      "palette": "stone, terracotta, muted teal, white, charcoal",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a clean 4K horizontal 16:9 reference plate for image segmentation documentation or a computer vision workbook. On the left show one generic terracotta ring shaped object with an irregular but simple outline and a clearly visible central opening. View the piece from directly above, with diffuse light shading the material subtly and only a thin contact shadow. On the right show the corresponding binary mask at exactly the same scale and orientation. The mask should fill the identical outer form in rich muted teal and leave the same central opening in a uniform off white field. Use crisp technical illustration, restrained grain on the object and completely flat values on the mask. Keep a wide central gutter, safe perimeter margins and generous quiet space above both views for separate educator captions. Let designers crop each view independently. Exclude interface mockups, data labels, boundary boxes, letters, brand shapes and transparency grids.",
+      "negative_prompt": "bounding boxes, code, charts, dashboard, checkerboard, extra holes, contour mismatch, logo",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "component_category": "机器视觉对照插图",
+        "material": "陶土环、平涂像素遮罩",
+        "designer_persona": "视觉 AI SDK 文档美编、机器视觉课程设计师",
+        "buyer_use_case": "精确对照原图占用轮廓和类别掩膜",
+        "design_placement": "模型文档示意",
+        "design_function": "同一俯视无字三维物件与平面单色掩膜并排，孔洞同形",
+        "art_style": "Flat Technical Illustration with Soft Object Shading and Hard Mask Edges",
+        "style_rationale": "一致形状和内孔是教学关键，避免手工描两次或买UI场景",
+        "distinctiveness": "同一俯视无字三维物件与平面单色掩膜并排，孔洞同形",
+        "copy_space": "双区域可分别裁出，顶部留术语，中央留编辑间隔",
+        "metadata_seed_keywords": [
+          "semantic segmentation",
+          "pixel mask",
+          "computer vision",
+          "object silhouette",
+          "annotation"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://developers.google.com/edge/mediapipe/solutions/vision/interactive_segmenter?tab=Web",
+          "https://stock.adobe.com/my/search?k=image+segmentation+mask&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=object+detection+bounding+box&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=training+data+annotation&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=image+segmentation&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=object+detection&filters%5Bcontent_type%3Azip_vector%5D=1",
+          "https://stock.adobe.com/my/images/grey-living-room-interior-with-drawer-and-couch-mockup-frame/575891141",
+          "https://stock.adobe.com/my/images/city-crossing-through-eyes-of-ai-computer-vision/368421071",
+          "https://stock.adobe.com/my/images/convolutional-neural-network-work-scheme-object-detection-and-instant-segmentation/256303420"
+        ],
+        "originality_notes": "细分插画关键词缺卡，短词首先出现室内样机和图案。相邻矢量检索出现目标检测与分割流程，可用于对照任务层级。入选方案缩小到同一物件与同孔遮罩，不模拟检测界面。",
+        "design_reuse_cases": [
+          "模型文档示意",
+          "图像标注实训题"
+        ],
+        "integration_guidance": "双区域可分别裁出，顶部留术语，中央留编辑间隔",
+        "reusability_rationale": "一致形状和内孔是教学关键，避免手工描两次或买UI场景",
+        "quality_check": "两边轮廓匹配，孔洞必须保留，双色掩膜为不透明教学示意",
+        "score_breakdown": {
+          "utility": 29,
+          "differentiation": 24,
+          "composition": 15,
+          "material": 9,
+          "feasibility": 9,
+          "timeliness": 5,
+          "diversity": 4
+        },
+        "evidence_ids": [
+          "575891141",
+          "368421071",
+          "256303420"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Two Layer Rubber Tile with Exposed Recycled Granule Base",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 94,
+      "topic_bucket": "APPROVED",
+      "palette": "coal, charcoal, low saturation olive, warm gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Render a horizontal 16:9 4K industrial material study for a surface supplier specification sheet or a circular materials report. Show the cropped corner of a generic bonded rubber tile resting on a warm gray matte field. Let one near edge reveal a thick charcoal base of recycled rubber granules bonded below a thinner muted olive wear layer. Use a credible continuous interface with no black gap between layers. Show finer colored granules at the top and slightly larger irregular dark granules below. Use one broad raking source from the upper left so shallow pores and the matte grain separate without crushed shadows. Set the material within the left half and leave the right half quiet for layout and annotation. Give the near corner enough clearance to crop as a standalone detail. Keep color and scale restrained and omit products, logos, watermarks, numbers, performance grades, sport markings and room context.",
+      "negative_prompt": "tread patterns, sponge holes, asphalt road, playground scene, safety rating, text, logos",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "component_category": "循环材料断面说明",
+        "material": "双层弹性橡胶颗粒",
+        "designer_persona": "地面铺装规格美编、循环材料报告设计师",
+        "buyer_use_case": "对照表层颗粒与再生基层",
+        "design_placement": "弹性板材选型卡",
+        "design_function": "左侧板角显示薄磨耗层和深色再生基层",
+        "art_style": "Industrial Material Study with Soft Raking Light",
+        "style_rationale": "厚度方向的双色及颗粒层界便于说明材料构造，省去为平铺图另配示意图",
+        "distinctiveness": "左侧板角显示薄磨耗层和深色再生基层",
+        "copy_space": "右方加技术标签，板角可单独做细节裁切",
+        "metadata_seed_keywords": [
+          "rubber granulate",
+          "bonded tile",
+          "recycled tire material",
+          "porous edge",
+          "flooring"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://www.surfaceamerica.com/wp-content/uploads/2017/05/Everlast-SmashTile-Surface-America-3-Part-Spec.pdf",
+          "https://recykl.pl/wp-content/uploads/2025/09/Spec_GreenGran_Recykl_EN_v.1_TECHNICAL-DATA-SHEET-1.pdf",
+          "https://stock.adobe.com/my/search?k=recycled+rubber+granules&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=rubber+granules&filters%5Bcontent_type%3Aphoto%5D=1",
+          "https://stock.adobe.com/my/images/black-rubber-granules/343183689",
+          "https://stock.adobe.com/my/images/samples-of-rubber-granules/183244862",
+          "https://stock.adobe.com/my/images/mason-leveling-artificial-rubber-coating/298104566"
+        ],
+        "originality_notes": "精确插画无卡，照片短搜显示散粒和施工。选题用双层厚度与界面作为说明重点，区分近期已入队的穿孔毛毡板和旧软木块。",
+        "design_reuse_cases": [
+          "弹性板材选型卡",
+          "材料循环报告插图"
+        ],
+        "integration_guidance": "右方加技术标签，板角可单独做细节裁切",
+        "reusability_rationale": "厚度方向的双色及颗粒层界便于说明材料构造，省去为平铺图另配示意图",
+        "quality_check": "双层边界连续，孔隙规模自然，图中省去缓冲或环保等级",
+        "score_breakdown": {
+          "utility": 27,
+          "differentiation": 24,
+          "composition": 15,
+          "material": 10,
+          "feasibility": 10,
+          "timeliness": 4,
+          "diversity": 4
+        },
+        "evidence_ids": [
+          "343183689",
+          "183244862",
+          "298104566"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Spouted Pouch Closure with Visible Tamper Band Gap",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "warm gray, pale teal, ivory, charcoal",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a 4K horizontal 16:9 packaging engineering illustration for a flexible pouch specification page or a customer opening guide. Show only the upper corner of a generic refill pouch, its short molded spout, and a plain threaded cap hovering just above the neck on the same axis. Keep a narrow separated tamper band seated below the external threads so the gap reads directly at thumbnail size. At the base show a believable transition where flexible matte laminate meets the thicker molded fitment, with a quiet weld line and a few broad folds. Place the assembly on the left side of a uniform warm gray field. Reserve the right side for callouts and keep the cap and full neck inside generous crop margins. Use clean three quarter product illustration and broad diffuse studio light. Omit contents, retail labeling, certification icons, text, marks and recognizable commercial closure designs.",
+      "negative_prompt": "trademarked fitment, exact patent geometry, recycling badge, liquid pour, checkerboard, label, logo",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "component_category": "包装开合结构标注组件",
+        "material": "软包装复合膜和通用塑料旋盖",
+        "designer_persona": "软包装项目美编、电商商品信息设计师",
+        "buyer_use_case": "说明盖体、螺纹和开启后分离的环",
+        "design_placement": "包装规格讲解",
+        "design_function": "一步分离旋盖的局部结构，不描绘零售场景",
+        "art_style": "Packaging Engineering Illustration on a Matte Studio Field",
+        "style_rationale": "一次同时交代柔膜热封过渡和硬塑关闭关系，避免用整袋样机讲细节",
+        "distinctiveness": "一步分离旋盖的局部结构，不描绘零售场景",
+        "copy_space": "部件上下同轴，右面留分解标注，素材可裁入窄图栏",
+        "metadata_seed_keywords": [
+          "spout pouch",
+          "twist cap",
+          "tamper band",
+          "refill package",
+          "closure detail"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://www.gozenpackaging.com/spout-pouch/",
+          "https://icpe.in/icpefoodnpackaging/pdfs/32_ancillary.pdf",
+          "https://stock.adobe.com/my/search?k=refill+pouch+spout&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=spout+pouch&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/images/set-of-white-doypacks-cut-out/616930067",
+          "https://stock.adobe.com/my/images/blank-foil-drink-bags-pouches-with-spout-on-white-background/94432555",
+          "https://stock.adobe.com/my/images/reusable-white-blank-plastic-pouch-with-spout/94432434"
+        ],
+        "originality_notes": "精确插画词缺卡，短词的供给主要是完整袋或并列样机。入选是开盖后的局部对位图，布局围绕盖、口、环的位置关系。",
+        "design_reuse_cases": [
+          "包装规格讲解",
+          "补充装开启说明"
+        ],
+        "integration_guidance": "部件上下同轴，右面留分解标注，素材可裁入窄图栏",
+        "reusability_rationale": "一次同时交代柔膜热封过渡和硬塑关闭关系，避免用整袋样机讲细节",
+        "quality_check": "结构只作通用示意，测试环在瓶口下方，取消具体专利结构",
+        "score_breakdown": {
+          "utility": 27,
+          "differentiation": 22,
+          "composition": 15,
+          "material": 10,
+          "feasibility": 9,
+          "timeliness": 5,
+          "diversity": 4
+        },
+        "evidence_ids": [
+          "616930067",
+          "94432555",
+          "94432434"
+        ]
+      }
+    },
+    {
+      "asset_type": "commercial_background",
+      "domain": "Commercial Background",
+      "theme": "Polarization Glare Comparison over the Same Slate Surface",
+      "source_type": "EVERGREEN_COMMERCIAL",
+      "topic_score": 92,
+      "topic_bucket": "APPROVED",
+      "palette": "dark slate, pale cream, silver gray",
+      "status": "APPROVED",
+      "topic_finder_version": "commercial_background_v1",
+      "prompt": "Create a 4K horizontal 16:9 teaching illustration for an optics lesson or a material photography guide. Show two matched shallow angle views of one dark honed slate tile, each with identical dimensions, orientation and fine mineral marks. On the left depict a broad pale reflected band from an off frame source passing across the tile at an oblique angle. On the right keep that band in the same position but render it much weaker, allowing the original slate detail to remain visible at the same overall exposure. Treat the panels as two separate editorial crops on a single warm cream field. Preserve a broad central gutter and blank caption space above each tile. Use refined optical illustration with subdued gray mids, soft highlights and clean polygonal edges. Make a qualitative depiction of reducing polarized reflection. Leave out cameras, lenses, beam arrows, numeric claims, logos and text.",
+      "negative_prompt": "camera body, lenses, eyewear, infographic arrows, fake measurement, text, logo",
+      "aspect_ratio": "16:9",
+      "resolution": "4K",
+      "remove_background": false,
+      "research": {
+        "component_category": "光学反光同位对照",
+        "material": "哑光板岩与减弱的反光",
+        "designer_persona": "光学课程编辑、材料摄影培训美编",
+        "buyer_use_case": "对照光反射与偏光压减",
+        "design_placement": "镜面反射课程引图",
+        "design_function": "同一块斜面在两个视图对照，只控制反光峰",
+        "art_style": "Optical Demonstration Illustration with Matched Reflection Geometry",
+        "style_rationale": "保留同光位和同实体，有助于分辨反光变化与更换样品",
+        "distinctiveness": "同一块斜面在两个视图对照，只控制反光峰",
+        "copy_space": "中间留格，左右可独立裁出，顶部可加状态",
+        "metadata_seed_keywords": [
+          "polarization",
+          "reflection glare",
+          "slate surface",
+          "optics education",
+          "matched comparison"
+        ],
+        "source_urls": [
+          "https://stock.adobe.com/pages/artisthub/get-inspired/design-assets-content-needs",
+          "https://openstax.org/books/university-physics-volume-3/pages/1-7-polarization",
+          "https://stock.adobe.com/my/search?k=polarization+reflection&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/search?k=polarized+light&filters%5Bcontent_type%3Aillustration%5D=1",
+          "https://stock.adobe.com/my/images/%E5%85%89%E3%80%80%E3%83%97%E3%83%AA%E3%82%BA%E3%83%A0%E3%80%80%E8%83%8C%E6%99%AF/308894873",
+          "https://stock.adobe.com/my/images/light-rays-penetrate-reflected-off-surface-3d-rendering/272908379",
+          "https://stock.adobe.com/my/images/concept-protective-lens/134498615"
+        ],
+        "originality_notes": "长词唯一图片标题指向棱镜背景，短词含防护镜、反射光线路。入选同视角比较高光变化，不加摄影器材。供给证据限于相邻用途。",
+        "design_reuse_cases": [
+          "镜面反射课程引图",
+          "材料摄影教学说明"
+        ],
+        "integration_guidance": "中间留格，左右可独立裁出，顶部可加状态",
+        "reusability_rationale": "保留同光位和同实体，有助于分辨反光变化与更换样品",
+        "quality_check": "不宣布定量消除，反光位置一致且高光被压弱后仍留物体纹理",
+        "score_breakdown": {
+          "utility": 27,
+          "differentiation": 23,
+          "composition": 15,
+          "material": 9,
+          "feasibility": 9,
+          "timeliness": 5,
+          "diversity": 4
+        },
+        "evidence_ids": [
+          "308894873",
+          "272908379",
+          "134498615"
+        ]
+      }
+    }
+  ]
+}
